@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'common/app_locales.dart';
-import 'view/di/system_settings.dart';
-import 'view/di/injector.dart';
-import 'view/ui/widgets/flavor_banner.dart';
-import 'flavors.dart';
-import 'package:flutter/foundation.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'common/app_locales.dart';
+import 'flavors.dart';
+import 'view/di/injector.dart';
+import 'view/di/system_settings.dart';
+import 'view/ui/widgets/flavor_banner.dart';
 
 Future<void> main() async {
   _validateFlavor();
@@ -17,7 +16,7 @@ Future<void> main() async {
     LocalizationWrapper(
       child: FlavorBanner(
         name: F.name,
-        isVisible: kDebugMode, // TODO: Set the visibility of the flavor banner
+        isVisible: F.appFlavor != Flavor.prod,
         child: Injector(child: MyApp()),
       ),
     ),
@@ -31,7 +30,7 @@ class MyApp extends ConsumerWidget {
   Widget build(context, ref) {
     final routerProvider = ref.appRouter;
     final themeProvider = ref.appTheme;
-    
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
@@ -53,10 +52,10 @@ class LocalizationWrapper extends StatelessWidget {
     return EasyLocalization(
       supportedLocales: [
         AppLocales.en.locale,
-        AppLocales.uk.locale
+        AppLocales.uk.locale,
       ],
       path: 'assets/translations',
-      fallbackLocale: AppLocales.en.locale, // TODO: Set the default locale
+      fallbackLocale: AppLocales.en.locale,
       child: child,
     );
   }
@@ -68,4 +67,3 @@ void _validateFlavor() {
         'with a specific flavor entry point (e.g., main_dev.dart or main_prod.dart).');
   }
 }
-
