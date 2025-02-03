@@ -3,7 +3,7 @@ flutter_native_splash:
   image: "assets/splash/splash_logo_4x_dev.png"
 
   android_12:
-    color: "#808080" #TODO: Change background color.
+    color: "#242A32"
     image: "assets/splash/splash_logo_android_12_1152_dev.png"
 
   android: true
