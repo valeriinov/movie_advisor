@@ -11,6 +11,8 @@
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3629BC24CBC1FB1BE0FD6723 /* devRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 745CC95F919430AD7BBAB590 /* devRelease.xcconfig */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		530F5D9D2D511C7800095B36 /* LaunchScreenDev.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530F5D992D511C7800095B36 /* LaunchScreenDev.storyboard */; };
+		530F5D9E2D511C7800095B36 /* LaunchScreenProd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530F5D9A2D511C7800095B36 /* LaunchScreenProd.storyboard */; };
 		5B7BA91E9146A2C150011085 /* prodLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 311020699EC4D1D19A562152 /* prodLaunchScreen.storyboard */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		86A27D58C74A64DCBF3953A7 /* devDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 05D00717AEEA94AE68B55731 /* devDebug.xcconfig */; };
@@ -58,6 +60,8 @@
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
+		530F5D9B2D511C7800095B36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreenProd.storyboard; sourceTree = "<group>"; };
+		530F5D9C2D511C7800095B36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreenDev.storyboard; sourceTree = "<group>"; };
 		5862A9484B5E0D27B500765C /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		72EC945A98292950253230DC /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		745CC95F919430AD7BBAB590 /* devRelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = devRelease.xcconfig; path = Flutter/devRelease.xcconfig; sourceTree = "<group>"; };
@@ -113,7 +117,6 @@
 				BBEB2C976B150ABDFABEA81A /* Pods-RunnerTests.release.xcconfig */,
 				5862A9484B5E0D27B500765C /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -177,6 +180,8 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				530F5D992D511C7800095B36 /* LaunchScreenDev.storyboard */,
+				530F5D9A2D511C7800095B36 /* LaunchScreenProd.storyboard */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -290,6 +295,8 @@
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				86A27D58C74A64DCBF3953A7 /* devDebug.xcconfig in Resources */,
 				98A0B0C2E8B9526BBBC4E4C3 /* devProfile.xcconfig in Resources */,
+				530F5D9D2D511C7800095B36 /* LaunchScreenDev.storyboard in Resources */,
+				530F5D9E2D511C7800095B36 /* LaunchScreenProd.storyboard in Resources */,
 				3629BC24CBC1FB1BE0FD6723 /* devRelease.xcconfig in Resources */,
 				97F4D2D17BA9F7AA0531ACC2 /* prodDebug.xcconfig in Resources */,
 				E37AAAB9FFC836360E009070 /* prodProfile.xcconfig in Resources */,
@@ -425,6 +432,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		530F5D992D511C7800095B36 /* LaunchScreenDev.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				530F5D9C2D511C7800095B36 /* Base */,
+			);
+			name = LaunchScreenDev.storyboard;
+			sourceTree = "<group>";
+		};
+		530F5D9A2D511C7800095B36 /* LaunchScreenProd.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				530F5D9B2D511C7800095B36 /* Base */,
+			);
+			name = LaunchScreenProd.storyboard;
+			sourceTree = "<group>";
+		};
 		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -651,6 +674,7 @@
 				DEVELOPMENT_TEAM = A8R53836XG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				LAUNCH_SCREEN_STORYBOARD = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -712,6 +736,96 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
 			};
 			name = Profile;
+		};
+		530F5D8D2D511C5D00095B36 /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
+				PRODUCT_NAME = Runner;
+			};
+			name = "Debug-dev";
+		};
+		530F5D8E2D511C5D00095B36 /* Profile-dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
+				PRODUCT_NAME = Runner;
+			};
+			name = "Profile-dev";
+		};
+		530F5D8F2D511C5D00095B36 /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
+				PRODUCT_NAME = Runner;
+			};
+			name = "Release-dev";
+		};
+		530F5D902D511C5D00095B36 /* Debug-prod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
+				PRODUCT_NAME = Runner;
+			};
+			name = "Debug-prod";
+		};
+		530F5D912D511C5D00095B36 /* Profile-prod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
+				PRODUCT_NAME = Runner;
+			};
+			name = "Profile-prod";
+		};
+		530F5D922D511C5D00095B36 /* Release-prod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
+				PRODUCT_NAME = Runner;
+			};
+			name = "Release-prod";
+		};
+		530F5D932D511C5D00095B36 /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Debug-dev";
+		};
+		530F5D942D511C5D00095B36 /* Profile-dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Profile-dev";
+		};
+		530F5D952D511C5D00095B36 /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Release-dev";
+		};
+		530F5D962D511C5D00095B36 /* Debug-prod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Debug-prod";
+		};
+		530F5D972D511C5D00095B36 /* Profile-prod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Profile-prod";
+		};
+		530F5D982D511C5D00095B36 /* Release-prod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Release-prod";
 		};
 		567C3F765A57A2B0D63066B0 /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
@@ -981,6 +1095,7 @@
 				DEVELOPMENT_TEAM = A8R53836XG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				LAUNCH_SCREEN_STORYBOARD = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1004,6 +1119,7 @@
 				DEVELOPMENT_TEAM = A8R53836XG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				LAUNCH_SCREEN_STORYBOARD = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1167,6 +1283,12 @@
 				331C8088294A63A400263BE5 /* Debug */,
 				331C8089294A63A400263BE5 /* Release */,
 				331C808A294A63A400263BE5 /* Profile */,
+				530F5D932D511C5D00095B36 /* Debug-dev */,
+				530F5D942D511C5D00095B36 /* Profile-dev */,
+				530F5D952D511C5D00095B36 /* Release-dev */,
+				530F5D962D511C5D00095B36 /* Debug-prod */,
+				530F5D972D511C5D00095B36 /* Profile-prod */,
+				530F5D982D511C5D00095B36 /* Release-prod */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1193,6 +1315,12 @@
 				97C147061CF9000F007C117D /* Debug */,
 				97C147071CF9000F007C117D /* Release */,
 				249021D4217E4FDB00AE95B9 /* Profile */,
+				530F5D8D2D511C5D00095B36 /* Debug-dev */,
+				530F5D8E2D511C5D00095B36 /* Profile-dev */,
+				530F5D8F2D511C5D00095B36 /* Release-dev */,
+				530F5D902D511C5D00095B36 /* Debug-prod */,
+				530F5D912D511C5D00095B36 /* Profile-prod */,
+				530F5D922D511C5D00095B36 /* Release-prod */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
