@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'app_router.dart';
 import 'app_routes.dart';
-import 'routes/main_routes.dart';
+import '../scenes/nav_menu/nav_menu_screen.dart';
+import 'utils/extended_shell_branch.dart';
+import 'routes/home_routes.dart';
+import 'routes/watch_list_routes.dart';
+import 'routes/watched_routes.dart';
+import 'routes/more_routes.dart';
 
 final class ImplAppRouter implements AppRouter {
   final GlobalKey<NavigatorState> _rootNavKey;
@@ -33,9 +37,28 @@ final class ImplAppRouter implements AppRouter {
   GoRouter _createRouter() {
     return GoRouter(
         navigatorKey: _rootNavKey,
-        initialLocation: AppRoutes.main,
+        initialLocation: AppRoutes.home,
         routes: [
-          $mainRoute,
+          StatefulShellRoute(
+            builder: (_, __, child) => child,
+            navigatorContainerBuilder: (context, navShell, children) {
+              return NavMenuScreen(navShell: navShell, children: children);
+            },
+            branches: [
+              ExtendedShellBranch(
+                routes: [$homeRoute],
+              ),
+              ExtendedShellBranch(
+                routes: [$watchListRoute],
+              ),
+              ExtendedShellBranch(
+                routes: [$watchedRoute],
+              ),
+              ExtendedShellBranch(
+                routes: [$moreRoute],
+              ),
+            ],
+          ),
         ]);
   }
 }
