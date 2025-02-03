@@ -30,22 +30,57 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  theme_tailor_annotation: ^3.0.1
+  intl: any
+  flutter_utils:
+    git:
+      url: https://github.com/valeriinov/flutter_utils.git
+      ref: v1.0.0
+  dart_mappable: ^4.3.0
+  dartz: ^0.10.1
+  dio: ^5.7.0
+  pretty_dio_logger: ^1.4.0
+  shared_preferences: ^2.4.0
+  extended_image: ^9.1.0
+  flutter_animate: ^4.5.2
+  go_router: ^14.7.1
+  flutter_dotenv: ^5.2.1
+  keyboard_actions: ^4.2.0
+  flutter_form_builder: ^9.7.0
+  collection: any
+  skeletonizer: ^1.4.3
+  flutter_hooks: ^0.20.5
+  extended_masked_text: ^3.0.1
+  class_namer_annotation:
+    git:
+      url: https://github.com/valeriinov/class_namer.git
+      path: packages/class_namer_annotation
+      ref: main
+  flutter_native_splash: ^2.4.4
+  easy_localization: ^3.0.7+1
+  flutter_riverpod: ^2.6.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^5.0.0
-
+  proj_gen_init_cli:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: proj_gen_init_cli
+      ref: main
+  theme_tailor: ^3.0.1
+  build_runner: ^2.4.14
+  dart_mappable_builder: ^4.3.0
+  go_router_builder: any
+  build_verify: any
+  class_namer:
+    git:
+      url: https://github.com/valeriinov/class_namer.git
+      path: packages/class_namer
+      ref: main
+  flutter_flavorizr: ^2.2.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -57,6 +92,39 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto/Roboto-Medium.ttf
+        - asset: assets/fonts/roboto/Roboto-Light.ttf
+        - asset: assets/fonts/roboto/Roboto-Regular.ttf
+        - asset: assets/fonts/roboto/Roboto-MediumItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-ThinItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-BoldItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-LightItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-Italic.ttf
+        - asset: assets/fonts/roboto/Roboto-BlackItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-Bold.ttf
+        - asset: assets/fonts/roboto/Roboto-Thin.ttf
+        - asset: assets/fonts/roboto/Roboto-Black.ttf
+  assets:
+    - assets/images/
+    - assets/translations/
+scripts:
+  gen: dart run build_runner build --delete-conflicting-outputs
+  aabDev: flutter build appbundle --flavor dev -t lib/main_dev.dart
+  apkDev: flutter build apk --flavor dev -t lib/main_dev.dart
+  runDev: flutter run --flavor dev -t lib/main_dev.dart
+  aabProd: flutter build appbundle --flavor prod -t lib/main_prod.dart
+  apkProd: flutter build apk --flavor prod -t lib/main_prod.dart
+  runProd: flutter run --flavor prod -t lib/main_prod.dart
+  genLocaleKeys: dart run easy_localization:generate -f keys -o locale_keys.g.dart -O "lib/view/ui/resources" -S "assets/translations"
+  genDto: mason make dto
+  genEntity: mason make entity
+  genRepo: mason make repo --arch mvvm_riverpod
+  genScene: mason make riverpod_scene
+  updFonts: mason make upd_fonts
+  updImages: mason make upd_images
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,0 +1,47 @@
+flavors:
+  dev:
+    app:
+      name: "Movie Advisor Dev"
+      icon: "assets/icon/icon_1024_dev.png"
+    android:
+      applicationId: "com.movieadvisor.app.dev"
+      adaptiveIcon:
+        foreground: "assets/icon/android_icon_foreground_1024_dev.png"
+        background: "assets/icon/android_icon_background_1024_dev.png"
+    ios:
+      bundleId: "com.movieadvisor.app.dev"
+
+  prod:
+    app:
+      name: "Movie Advisor"
+      icon: "assets/icon/icon_1024_prod.png"
+    android:
+      applicationId: "com.movieadvisor.app"
+      adaptiveIcon:
+        foreground: "assets/icon/android_icon_foreground_1024_prod.png"
+        background: "assets/icon/android_icon_background_1024_prod.png"
+    ios:
+      bundleId: "com.movieadvisor.app"
+
+
+instructions:
+  - assets:download
+  - assets:extract
+  - android:buildGradle
+  - android:androidManifest
+  - android:dummyAssets
+  - android:icons
+  - flutter:flavors
+  - flutter:targets
+  - ide:config
+  - ios:podfile
+  - ios:xcconfig
+  - ios:buildTargets
+  - ios:schema
+  - ios:dummyAssets
+  - ios:icons
+  - ios:plist
+  - ios:launchScreen
+  - assets:clean
+
+ide: idea

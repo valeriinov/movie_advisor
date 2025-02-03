@@ -1,0 +1,9 @@
+/// {@category Navigation}
+///
+/// The [AppRoutes] class defines constant route names used throughout the application.
+///
+/// It serves as a centralized location for managing route names, ensuring consistency
+/// and reducing the likelihood of typos in route strings.
+abstract final class AppRoutes {
+  static const String main = '/';
+}

@@ -1,0 +1,116 @@
+bricks:
+  dto:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/dto
+      ref: main
+  entities:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/entities
+      ref: main
+  entity:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/entity
+      ref: main
+  flavors:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/flavors
+      ref: main
+  getx_base:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/getx_base
+      ref: main
+  getx_scene:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/getx_scene
+      ref: main
+  riverpod_base:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/riverpod_base
+      ref: main
+  riverpod_scene:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/riverpod_scene
+      ref: main
+  icon:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/icon
+      ref: main
+  localization:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/localization
+      ref: main
+  repo:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/repo
+      ref: main
+  splash:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/splash
+      ref: main
+  start_project:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/start_project
+      ref: main
+  structure:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/structure
+      ref: main
+  theme:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/theme
+      ref: main
+  upd_fonts:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/upd_fonts
+      ref: main
+  upd_images:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/upd_images
+      ref: main
+  feat_auth:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/feat_auth
+      ref: main
+  feat_nav:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/feat_nav
+      ref: main
+  feat_perm:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/feat_perm
+      ref: main
+  feat_picker:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/feat_picker
+      ref: main
+  feat_prof:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/feat_prof
+      ref: main
+  feat_edit_prof:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: bricks/feat_edit_prof
+      ref: main

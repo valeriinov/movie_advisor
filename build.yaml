@@ -1,0 +1,14 @@
+global_options:
+targets:
+  $default:
+    builders:
+      theme_tailor:
+        options:
+          theme_getter: on_build_context
+      dart_mappable_builder:
+        options:
+          renameMethods:
+            fromJson: fromJsonString
+            toJson: toJsonString
+            fromMap: fromJson
+            toMap: toJson
