@@ -9,13 +9,17 @@ part of 'base_nav_bars_styles_ext.dart';
 // **************************************************************************
 
 mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
+  TextStyle get botNavBarLabelTextStyle;
   IconThemeData get appBarPrimIconTheme;
 
   @override
   BaseNavBarsStyles copyWith({
+    TextStyle? botNavBarLabelTextStyle,
     IconThemeData? appBarPrimIconTheme,
   }) {
     return BaseNavBarsStyles(
+      botNavBarLabelTextStyle:
+          botNavBarLabelTextStyle ?? this.botNavBarLabelTextStyle,
       appBarPrimIconTheme: appBarPrimIconTheme ?? this.appBarPrimIconTheme,
     );
   }
@@ -25,6 +29,8 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
       covariant ThemeExtension<BaseNavBarsStyles>? other, double t) {
     if (other is! BaseNavBarsStyles) return this as BaseNavBarsStyles;
     return BaseNavBarsStyles(
+      botNavBarLabelTextStyle: TextStyle.lerp(
+          botNavBarLabelTextStyle, other.botNavBarLabelTextStyle, t)!,
       appBarPrimIconTheme:
           t < 0.5 ? appBarPrimIconTheme : other.appBarPrimIconTheme,
     );
@@ -35,6 +41,8 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BaseNavBarsStyles &&
+            const DeepCollectionEquality().equals(
+                botNavBarLabelTextStyle, other.botNavBarLabelTextStyle) &&
             const DeepCollectionEquality()
                 .equals(appBarPrimIconTheme, other.appBarPrimIconTheme));
   }
@@ -43,6 +51,7 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(botNavBarLabelTextStyle),
       const DeepCollectionEquality().hash(appBarPrimIconTheme),
     );
   }

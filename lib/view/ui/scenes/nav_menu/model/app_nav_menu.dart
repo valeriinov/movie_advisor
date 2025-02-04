@@ -1,36 +1,36 @@
-import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import '../../../resources/app_images.dart';
+import '../../../resources/locale_keys.g.dart';
 
 enum AppNavMenu {
   home(
-    label: 'Home', // TODO: Localize label
-    screenTitle: 'Home Screen', // TODO: Localize screen title
-    icon: Icons.menu, // TODO: Update icon
+    label: LocaleKeys.homeNavTab,
+    iconPath: AppImages.homeIcon,
   ),
   watchList(
-    label: 'Watch List', // TODO: Localize label
-    screenTitle: 'Watch List Screen', // TODO: Localize screen title
-    icon: Icons.menu, // TODO: Update icon
+    label: LocaleKeys.watchlistNavTab,
+    iconPath: AppImages.watchListIcon,
   ),
   watched(
-    label: 'Watched', // TODO: Localize label
-    screenTitle: 'Watched Screen', // TODO: Localize screen title
-    icon: Icons.menu, // TODO: Update icon
+    label: LocaleKeys.watchedNavTab,
+    iconPath: AppImages.watchedIcon,
   ),
   more(
-    label: 'More', // TODO: Localize label
-    screenTitle: 'More Screen', // TODO: Localize screen title
-    icon: Icons.menu, // TODO: Update icon
+    label: LocaleKeys.moreNavTab,
+    iconPath: AppImages.moreIcon,
   );
 
-  final String label;
-  final String? screenTitle;
-  final IconData? icon; // TODO: It can be String for custom icons
+  final String _label;
+  final String iconPath;
+
+  String get label => _label.tr();
 
   const AppNavMenu({
-    required this.label,
-    this.screenTitle,
-    this.icon,
-  });
+    required String label,
+    required this.iconPath,
+  }) : _label = label;
+
   factory AppNavMenu.fromIndex(int index) {
     return AppNavMenu.values.firstWhere(
       (e) => e.index == index,

@@ -53,6 +53,7 @@ abstract final class _BaseColors {
   static const botNavBarBg = Color(0xFF242A32);
   static const botNavBarFgSelect = Color(0xFF0296E5);
   static const botNavBarFgUnselect = Color(0xFF67686D);
+  static const botNavBarDivider = Color(0xFF0296E5);
 
   // Inputs
   static const txtFldPrimFill = Color(0xFFF5F5F5);

@@ -41,7 +41,8 @@ class AppTheme {
       scaffoldBackgroundColor: colors.scaffoldBg,
       textTheme: textStyles.createTextTheme(),
       appBarTheme: _createAppBarTheme(colors, navBarsStyles),
-      bottomNavigationBarTheme: _createBottomNavigationBarTheme(colors),
+      bottomNavigationBarTheme:
+          _createBottomNavigationBarTheme(colors, navBarsStyles),
       floatingActionButtonTheme: _createFabTheme(colors, buttonsStyles),
       outlinedButtonTheme: _createOutBtnTheme(buttonsStyles),
       elevatedButtonTheme: _createElevBtnTheme(buttonsStyles),
@@ -77,11 +78,14 @@ class AppTheme {
   }
 
   BottomNavigationBarThemeData _createBottomNavigationBarTheme(
-      BaseColors colors) {
+      BaseColors colors, BaseNavBarsStyles styles) {
     return BottomNavigationBarThemeData(
       backgroundColor: colors.botNavBarBg,
       selectedItemColor: colors.botNavBarFgSelect,
       unselectedItemColor: colors.botNavBarFgUnselect,
+      selectedLabelStyle: styles.botNavBarLabelTextStyle,
+      unselectedLabelStyle: styles.botNavBarLabelTextStyle,
+      type: BottomNavigationBarType.fixed,
     );
   }
 

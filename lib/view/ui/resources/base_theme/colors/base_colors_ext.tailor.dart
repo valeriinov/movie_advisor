@@ -46,6 +46,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get botNavBarBg;
   Color get botNavBarFgSelect;
   Color get botNavBarFgUnselect;
+  Color get botNavBarDivider;
   Color get txtFldPrimFill;
   Color get txtFldPrimInput;
   Color get txtFldPrimLabel;
@@ -106,6 +107,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? botNavBarBg,
     Color? botNavBarFgSelect,
     Color? botNavBarFgUnselect,
+    Color? botNavBarDivider,
     Color? txtFldPrimFill,
     Color? txtFldPrimInput,
     Color? txtFldPrimLabel,
@@ -165,6 +167,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       botNavBarBg: botNavBarBg ?? this.botNavBarBg,
       botNavBarFgSelect: botNavBarFgSelect ?? this.botNavBarFgSelect,
       botNavBarFgUnselect: botNavBarFgUnselect ?? this.botNavBarFgUnselect,
+      botNavBarDivider: botNavBarDivider ?? this.botNavBarDivider,
       txtFldPrimFill: txtFldPrimFill ?? this.txtFldPrimFill,
       txtFldPrimInput: txtFldPrimInput ?? this.txtFldPrimInput,
       txtFldPrimLabel: txtFldPrimLabel ?? this.txtFldPrimLabel,
@@ -248,6 +251,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
           Color.lerp(botNavBarFgSelect, other.botNavBarFgSelect, t)!,
       botNavBarFgUnselect:
           Color.lerp(botNavBarFgUnselect, other.botNavBarFgUnselect, t)!,
+      botNavBarDivider:
+          Color.lerp(botNavBarDivider, other.botNavBarDivider, t)!,
       txtFldPrimFill: Color.lerp(txtFldPrimFill, other.txtFldPrimFill, t)!,
       txtFldPrimInput: Color.lerp(txtFldPrimInput, other.txtFldPrimInput, t)!,
       txtFldPrimLabel: Color.lerp(txtFldPrimLabel, other.txtFldPrimLabel, t)!,
@@ -354,6 +359,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality()
                 .equals(botNavBarFgUnselect, other.botNavBarFgUnselect) &&
             const DeepCollectionEquality()
+                .equals(botNavBarDivider, other.botNavBarDivider) &&
+            const DeepCollectionEquality()
                 .equals(txtFldPrimFill, other.txtFldPrimFill) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimInput, other.txtFldPrimInput) &&
@@ -372,8 +379,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(dlgPrimBg, other.dlgPrimBg) &&
             const DeepCollectionEquality()
                 .equals(dlgPrimTitle, other.dlgPrimTitle) &&
-            const DeepCollectionEquality()
-                .equals(dlgPrimCont, other.dlgPrimCont) &&
+            const DeepCollectionEquality().equals(dlgPrimCont, other.dlgPrimCont) &&
             const DeepCollectionEquality().equals(dlgPrimBtnFg, other.dlgPrimBtnFg) &&
             const DeepCollectionEquality().equals(cardPrimBg, other.cardPrimBg) &&
             const DeepCollectionEquality().equals(cardPrimSurfTint, other.cardPrimSurfTint) &&
@@ -426,6 +432,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(botNavBarBg),
       const DeepCollectionEquality().hash(botNavBarFgSelect),
       const DeepCollectionEquality().hash(botNavBarFgUnselect),
+      const DeepCollectionEquality().hash(botNavBarDivider),
       const DeepCollectionEquality().hash(txtFldPrimFill),
       const DeepCollectionEquality().hash(txtFldPrimInput),
       const DeepCollectionEquality().hash(txtFldPrimLabel),

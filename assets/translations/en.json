@@ -1,2 +1,6 @@
 {
+  "homeNavTab": "Home",
+  "watchlistNavTab": "Watch List",
+  "watchedNavTab": "Watched",
+  "moreNavTab": "More"
 }

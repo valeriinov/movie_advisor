@@ -45,6 +45,7 @@ abstract final class BaseColorsFactory {
         botNavBarBg: _BaseColors.botNavBarBg,
         botNavBarFgSelect: _BaseColors.botNavBarFgSelect,
         botNavBarFgUnselect: _BaseColors.botNavBarFgUnselect,
+        botNavBarDivider: _BaseColors.botNavBarDivider,
         txtFldPrimFill: _BaseColors.txtFldPrimFill,
         txtFldPrimInput: _BaseColors.txtFldPrimInput,
         txtFldPrimLabel: _BaseColors.txtFldPrimLabel,
@@ -227,6 +228,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color botNavBarFgUnselect;
 
+  /// Bottom Navigation Bar divider color.
+  @override
+  final Color botNavBarDivider;
+
   // INPUTS
 
   /// TextField fill color.
@@ -357,6 +362,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.botNavBarBg,
     required this.botNavBarFgSelect,
     required this.botNavBarFgUnselect,
+    required this.botNavBarDivider,
     required this.txtFldPrimFill,
     required this.txtFldPrimInput,
     required this.txtFldPrimLabel,
