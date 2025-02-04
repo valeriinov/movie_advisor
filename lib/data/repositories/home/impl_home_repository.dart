@@ -15,9 +15,9 @@ class ImplHomeRepository implements HomeRepository {
         _mapper = mapper;
 
   @override
-  Future<Result<void>> fetch() async {
+  Future<Result<void>> getNowPlayingMovies({required int page}) async {
     try {
-      await _dataSource.fetch();
+      await _dataSource.getNowPlayingMovies(page: page);
 
       return Right(null);
     } catch (e) {

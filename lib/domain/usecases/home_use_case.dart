@@ -5,9 +5,9 @@ import '../entities/result.dart';
 class HomeUseCase {
   final HomeRepository _repository;
 
-HomeUseCase({required HomeRepository repository}) : _repository = repository;
+  HomeUseCase({required HomeRepository repository}) : _repository = repository;
 
-  Future<Result<void>> fetch() {
-    return _repository.fetch();
+  Future<Result<void>> getNowPlayingMovies({int page = 1}) {
+    return _repository.getNowPlayingMovies(page: page);
   }
 }

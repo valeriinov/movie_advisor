@@ -1,3 +1,3 @@
 abstract interface class HomeRemoteDataSource {
-  Future<void> fetch();
+  Future<void> getNowPlayingMovies({required int page});
 }

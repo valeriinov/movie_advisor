@@ -14,8 +14,11 @@ class HomeService {
   })  : _moviesApiClient = moviesApiClient,
         _imageUrlHandler = imageUrlHandler;
 
-  Future<void> getNowPlayingMovies() async {
-    final result = await _moviesApiClient.get('/movie/now_playing');
+  Future<void> getNowPlayingMovies({required int page}) async {
+    final result =
+        await _moviesApiClient.get('/movie/now_playing', queryParameters: {
+      'page': page,
+    });
 
     final rawDto = MoviesResponseDataDto.fromJson(result.data);
     final results = _imageUrlHandler.handleMoviesImages(rawDto.results ?? []);

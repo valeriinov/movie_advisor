@@ -35,7 +35,7 @@ class HomeViewModel extends AutoDisposeNotifier<HomeState>
   Future<void> loadMovies({bool showLoader = true}) async {
     _updateStatus(HomeBaseStatus(isLoading: showLoader));
 
-    await safeCall(_homeUseCase.fetch, onResult: _handleMoviesResult);
+    await safeCall(_homeUseCase.getNowPlayingMovies, onResult: _handleMoviesResult);
   }
 
   void _handleMoviesResult(Result<void> result) {

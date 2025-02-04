@@ -7,7 +7,7 @@ class ImplHomeRemoteDataSource implements HomeRemoteDataSource {
   ImplHomeRemoteDataSource({required HomeService service}) : _service = service;
 
   @override
-  Future<void> fetch() {
-    return _service.getNowPlayingMovies();
+  Future<void> getNowPlayingMovies({required int page}) {
+    return _service.getNowPlayingMovies(page: page);
   }
 }
