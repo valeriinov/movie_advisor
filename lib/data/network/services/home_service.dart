@@ -1,22 +1,26 @@
 import 'package:flutter_utils/flutter_utils.dart';
 
+import '../../dto/movie/movies_response_data_dto.dart';
 import '../network_manager/network_manager.dart';
+import '../utils/image_url_handler/image_url_handler.dart';
 
 class HomeService {
   final NetworkManager _moviesApiClient;
-  final NetworkManager _imagesApiClient;
+  final ImageUrlHandler _imageUrlHandler;
 
   HomeService({
     required NetworkManager moviesApiClient,
-    required NetworkManager imagesApiClient,
+    required ImageUrlHandler imageUrlHandler,
   })  : _moviesApiClient = moviesApiClient,
-        _imagesApiClient = imagesApiClient;
+        _imageUrlHandler = imageUrlHandler;
 
-  Future<void> getMovies() async {
-    final result = await _moviesApiClient.get('discover/movie');
+  Future<void> getNowPlayingMovies() async {
+    final result = await _moviesApiClient.get('/movie/now_playing');
 
-    debugLog('[RESULT STATUS]: ${result.statusCode}');
-    debugLog('[RESULT MESSAGE]: ${result.message}');
-    debugLog('[RESULT DATA]: ${result.data}', prettyPrint: true);
+    final rawDto = MoviesResponseDataDto.fromJson(result.data);
+    final results = _imageUrlHandler.handleMoviesImages(rawDto.results ?? []);
+    final resultDto = rawDto.copyWith(results: results);
+
+    debugLog('[RESULT DTO]: $resultDto', prettyPrint: true);
   }
 }

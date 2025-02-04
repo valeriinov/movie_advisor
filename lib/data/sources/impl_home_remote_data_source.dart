@@ -8,6 +8,6 @@ class ImplHomeRemoteDataSource implements HomeRemoteDataSource {
 
   @override
   Future<void> fetch() {
-    return _service.getMovies();
+    return _service.getNowPlayingMovies();
   }
 }

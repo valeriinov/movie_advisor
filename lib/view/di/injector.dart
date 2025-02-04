@@ -10,6 +10,8 @@ import '../../data/network/network_manager/impl_dio/dio_error_handler.dart';
 import '../../data/network/network_manager/impl_dio/impl_network_manager.dart';
 import '../../data/network/network_manager/network_manager.dart';
 import '../../data/network/services/home_service.dart';
+import '../../data/network/utils/image_url_handler/image_url_handler.dart';
+import '../../data/network/utils/image_url_handler/impl_image_url_handler.dart';
 import '../../data/repositories/home/home_remote_data_source.dart';
 import '../../data/repositories/home/impl_home_repository.dart';
 import '../../data/repositories/settings_provider.dart';
@@ -50,16 +52,8 @@ final envPr = Provider<EnvProvider>((_) => throw UnimplementedError());
 final settingsPr =
     Provider<SettingsProvider>((_) => throw UnimplementedError());
 
-final moviesApiClientPr = Provider<NetworkManager>(
-  (ref) => _createNetworkManager(ref, ref.read(envPr).baseUrl),
-);
-
-final imagesApiClientPr = Provider<NetworkManager>(
-  (ref) => _createNetworkManager(ref, ref.read(envPr).imageUrl),
-);
-
-ImplNetworkManager _createNetworkManager(
-    Ref<NetworkManager> ref, String baseUrl) {
+final moviesApiClientPr = Provider<NetworkManager>((ref) {
+  final baseUrl = ref.read(envPr).baseUrl;
   final settingsProvider = ref.read(settingsPr);
 
   final dioBuilder = DioBuilder(settingsProvider: settingsProvider)
@@ -73,12 +67,16 @@ ImplNetworkManager _createNetworkManager(
     dio: dioBuilder.build(),
     errorHandler: DioErrorHandler(),
   );
-}
+});
+
+final imageUrlHandlerPr = Provider<ImageUrlHandler>(
+  (ref) => ImplImageUrlHandler(envProvider: ref.read(envPr)),
+);
 
 // HOME
 final homeServicePr = Provider<HomeService>((ref) => HomeService(
       moviesApiClient: ref.read(moviesApiClientPr),
-      imagesApiClient: ref.read(imagesApiClientPr),
+      imageUrlHandler: ref.read(imageUrlHandlerPr),
     ));
 final homeRemoteDataSourcePr = Provider<HomeRemoteDataSource>(
   (ref) => ImplHomeRemoteDataSource(service: ref.read(homeServicePr)),

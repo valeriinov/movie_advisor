@@ -10,7 +10,7 @@ class ImplEnvProvider implements EnvProvider {
 
   @override
   String get baseUrl =>
-      '${_getEnvVariable(_baseUrlKey)}${_getEnvVariable(_apiVersionKey)}/';
+      '${_getEnvVariable(_baseUrlKey)}${_getEnvVariable(_apiVersionKey)}';
 
   @override
   String get imageUrl => _getEnvVariable(_imgUrlKey);
