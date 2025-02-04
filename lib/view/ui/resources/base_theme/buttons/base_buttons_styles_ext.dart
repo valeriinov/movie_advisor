@@ -3,6 +3,7 @@ import 'package:flutter_utils/flutter_utils.dart';
 
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
+import '../../app_fonts.dart';
 import '../colors/base_colors_ext.dart';
 
 part 'base_buttons_styles.dart';

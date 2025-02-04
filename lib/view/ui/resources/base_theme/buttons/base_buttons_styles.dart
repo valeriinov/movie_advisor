@@ -1,14 +1,21 @@
 part of 'base_buttons_styles_ext.dart';
 
 abstract final class _BaseButtonsStyles {
-  static const borderRadius = 12.0;
-  static const btnHeight = 48.0;
+  static const borderRadius = 28.0;
+  static const btnHeight = 56.0;
 
   static const elevBtnPrimTextStyle = TextStyle();
 
   static const outBtnPrimTextStyle = TextStyle();
 
-  static const fillBtnPrimTextStyle = TextStyle();
+  static const fillBtnPrimTextStyle = TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w600,
+    fontSize: 16.0,
+    height: 28.0 / 16.0,
+    letterSpacing: 0.75,
+    overflow: TextOverflow.ellipsis,
+  );
 
   static const textBtnPrimTextStyle = TextStyle();
 

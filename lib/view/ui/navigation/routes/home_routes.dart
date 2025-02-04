@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../scenes/home/home_screen.dart';
+import '../../widgets/theme_preview_screen.dart';
 import '../app_routes.dart';
 
 part 'home_routes.g.dart';
@@ -13,7 +13,7 @@ class HomeRoute extends GoRouteData {
     return NoTransitionPage(
       key: state.pageKey,
       name: state.fullPath,
-      child: HomeScreen(),
+      child: ThemePreviewScreen(),
     );
   }
 }

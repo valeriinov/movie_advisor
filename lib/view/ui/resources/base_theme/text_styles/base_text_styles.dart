@@ -10,16 +10,16 @@ final class _BaseTextStyles {
   static const double headlineSmallFontSize = 24;
 
   static const double titleLargeFontSize = 22;
-  static const double titleMediumFontSize = 16;
-  static const double titleSmallFontSize = 14;
+  static const double titleMediumFontSize = 18;
+  static const double titleSmallFontSize = 18;
 
   static const double labelLargeFontSize = 14;
   static const double labelMediumFontSize = 12;
   static const double labelSmallFontSize = 11;
 
-  static const double bodyLargeFontSize = 18;
-  static const double bodyMediumFontSize = 16;
-  static const double bodySmallFontSize = 14;
+  static const double bodyLargeFontSize = 16;
+  static const double bodyMediumFontSize = 14;
+  static const double bodySmallFontSize = 12;
 
   static TextStyle displayLarge(Color color) => TextStyle(
         fontFamily: AppFonts.roboto,
@@ -64,21 +64,21 @@ final class _BaseTextStyles {
       );
 
   static TextStyle titleLarge(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.openSans,
         fontWeight: FontWeight.w500,
         fontSize: titleLargeFontSize,
         color: color,
       );
 
   static TextStyle titleMedium(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.openSans,
         fontWeight: FontWeight.w500,
         fontSize: titleMediumFontSize,
         color: color,
       );
 
   static TextStyle titleSmall(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.montserrat,
         fontWeight: FontWeight.w500,
         fontSize: titleSmallFontSize,
         color: color,
@@ -106,21 +106,21 @@ final class _BaseTextStyles {
       );
 
   static TextStyle bodyLarge(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.openSans,
         fontWeight: FontWeight.w400,
         fontSize: bodyLargeFontSize,
         color: color,
       );
 
   static TextStyle bodyMedium(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.openSans,
         fontWeight: FontWeight.w400,
         fontSize: bodyMediumFontSize,
         color: color,
       );
 
   static TextStyle bodySmall(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.openSans,
         fontWeight: FontWeight.w400,
         fontSize: bodySmallFontSize,
         color: color,

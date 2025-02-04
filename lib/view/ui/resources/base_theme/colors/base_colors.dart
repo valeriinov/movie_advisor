@@ -2,11 +2,11 @@ part of 'base_colors_ext.dart';
 
 abstract final class _BaseColors {
   // Base
-  static const seed = Color(0xFF6200EA);
-  static const scaffoldBg = Color(0xFFF5F5F5);
+  static const seed = Color(0xFF242A32);
+  static const scaffoldBg = Color(0xFF242A32);
 
   // Text
-  static const textThemePrim = Color(0xFF212121);
+  static const textThemePrim = Color(0xFFFFFFFF);
 
   // Buttons
   static const btnElevPrimFg = Color(0xFFFFFFFF);
@@ -24,9 +24,9 @@ abstract final class _BaseColors {
   static const btnOutPrimBgDis = Color(0xFFE0E0E0);
 
   static const btnFillPrimFg = Color(0xFFFFFFFF);
-  static const btnFillPrimBg = Color(0xFF6200EA);
+  static const btnFillPrimBg = Color(0xFF0296E5);
   static const btnFillPrimFgPress = Color(0xFFFFFFFF);
-  static const btnFillPrimBgPress = Color(0xFF3700B3);
+  static const btnFillPrimBgPress = Color(0xFF036fac);
   static const btnFillPrimFgDis = Color(0xFFBDBDBD);
   static const btnFillPrimBgDis = Color(0xFFE0E0E0);
 
@@ -41,18 +41,18 @@ abstract final class _BaseColors {
   static const btnFABBg = Color(0xFF6200EA);
   static const btnFABFgSplash = Color(0xFF3700B3);
 
-  static const btnIconPrim = Color(0xFF6200EA);
+  static const btnIconPrim = Color(0xFFFFFFFF);
 
   // Loading Indicator
-  static const loadingIndicator = Color(0xFF6200EA);
+  static const loadingIndicator = Color(0xFF0296E5);
 
   // Nav Bars
   static const appBarPrimFg = Color(0xFFFFFFFF);
-  static const appBarPrimBg = Color(0xFF6200EA);
+  static const appBarPrimBg = Color(0xFF242A32);
 
-  static const botNavBarBg = Color(0xFFFFFFFF);
-  static const botNavBarFgSelect = Color(0xFF6200EA);
-  static const botNavBarFgUnselect = Color(0xFF757575);
+  static const botNavBarBg = Color(0xFF242A32);
+  static const botNavBarFgSelect = Color(0xFF0296E5);
+  static const botNavBarFgUnselect = Color(0xFF67686D);
 
   // Inputs
   static const txtFldPrimFill = Color(0xFFF5F5F5);

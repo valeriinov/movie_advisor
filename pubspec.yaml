@@ -93,6 +93,64 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/montserrat/Montserrat-LightItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+        - asset: assets/fonts/montserrat/Montserrat-BoldItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Light.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ThinItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraLight.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Thin.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-MediumItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-BlackItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraLightItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Black.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Italic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-SemiBoldItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBoldItalic.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-MediumItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-Regular.ttf
+        - asset: assets/fonts/open_sans/OpenSans-SemiBold.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-Bold.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-Medium.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-Light.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-ExtraBold.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-SemiBoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-SemiBold.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-SemiBold.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-LightItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-Bold.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Light.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Italic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-Medium.ttf
+        - asset: assets/fonts/open_sans/OpenSans-MediumItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-Light.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-SemiBoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-ExtraBold.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-BoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-ExtraBold.ttf
+        - asset: assets/fonts/open_sans/OpenSans-LightItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-LightItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Bold.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-MediumItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-Italic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Medium.ttf
+        - asset: assets/fonts/open_sans/OpenSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-BoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-BoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-Regular.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-ExtraBoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_Condensed-Italic.ttf
+        - asset: assets/fonts/open_sans/OpenSans_SemiCondensed-ExtraBoldItalic.ttf
     - family: Roboto
       fonts:
         - asset: assets/fonts/roboto/Roboto-Medium.ttf

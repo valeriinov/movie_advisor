@@ -16,5 +16,7 @@
 abstract class AppFonts {
   AppFonts._();
 
+  static const String montserrat = 'Montserrat';
+  static const String openSans = 'OpenSans';
   static const String roboto = 'Roboto';
 }
