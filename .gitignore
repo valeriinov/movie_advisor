@@ -43,5 +43,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Project related
 .mason/
 mason-lock.json
+dev.env
+prod.env
