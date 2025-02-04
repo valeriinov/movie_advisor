@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'common/app_locales.dart';
+import 'data/network/env_provider/impl_env_provider.dart';
 import 'flavors.dart';
 import 'view/di/injector.dart';
 import 'view/di/system_settings.dart';
@@ -12,12 +13,19 @@ Future<void> main() async {
   _validateFlavor();
 
   await SystemSettings.initializeSystemSettings();
+
+  final envProvider = ImplEnvProvider();
+  await envProvider.init('${F.name}.env');
+
   runApp(
     LocalizationWrapper(
       child: FlavorBanner(
         name: F.name,
         isVisible: F.appFlavor != Flavor.prod,
-        child: Injector(child: MyApp()),
+        child: Injector(
+          envProvider: envProvider,
+          child: MyApp(),
+        ),
       ),
     ),
   );

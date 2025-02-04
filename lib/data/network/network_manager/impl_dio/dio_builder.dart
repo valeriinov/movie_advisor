@@ -25,11 +25,11 @@ import '../../../repositories/settings_provider.dart';
 /// ```
 class DioBuilder {
   static const String _authHeader = 'Authorization';
-  static const String _localizationHeader = 'Accept-Language';
   static const String _contentTypeHeader = 'Content-Type';
   static const String _acceptHeader = 'Accept';
   static const String _jsonType = 'application/json';
   static const String _bearer = 'Bearer';
+  static const String _languageParam = 'language';
 
   Dio? _dio;
   final SettingsProvider _settingsProvider;
@@ -58,13 +58,22 @@ class DioBuilder {
   /// Configures common headers and adds an interceptor for dynamic headers.
   ///
   /// Includes `Content-Type`, `Accept`, and dynamically sets
-  /// `Authorization` and `Accept-Language` headers based on the current settings.
+  /// `Authorization` header based on the current settings.
   DioBuilder headers() {
     _currentDio.options.headers = {
       _contentTypeHeader: _jsonType,
       _acceptHeader: _jsonType,
     };
     _currentDio.interceptors.add(_createHeadersInterceptor());
+    return this;
+  }
+
+  /// Adds a language interceptor to the Dio instance.
+  ///
+  /// The interceptor dynamically sets the `language` query parameter
+  /// based on the current locale from the settings provider.
+  DioBuilder language() {
+    _currentDio.interceptors.add(_createLanguageInterceptor());
     return this;
   }
 
@@ -105,15 +114,21 @@ class DioBuilder {
     return InterceptorsWrapper(
       onRequest: (options, handler) async {
         final token = await _settingsProvider.getAuthToken();
-        final locale = _settingsProvider.currentLocale;
 
         if (token.isNotEmpty) {
           options.headers[_authHeader] = '$_bearer $token';
         }
-        if (locale.isNotEmpty) {
-          options.headers[_localizationHeader] = locale;
-        }
 
+        return handler.next(options);
+      },
+    );
+  }
+
+  InterceptorsWrapper _createLanguageInterceptor() {
+    return InterceptorsWrapper(
+      onRequest: (options, handler) {
+        final locale = _settingsProvider.currentLocale;
+        options.queryParameters[_languageParam] = locale;
         return handler.next(options);
       },
     );
