@@ -13,6 +13,8 @@ class HomeStateMapper extends ClassMapperBase<HomeState> {
   static HomeStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = HomeStateMapper._());
+      MovieLoadInfoMapper.ensureInitialized();
+      SeriesLoadInfoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,17 +22,50 @@ class HomeStateMapper extends ClassMapperBase<HomeState> {
   @override
   final String id = 'HomeState';
 
+  static MovieTab _$movieTab(HomeState v) => v.movieTab;
+  static const Field<HomeState, MovieTab> _f$movieTab =
+      Field('movieTab', _$movieTab, opt: true, def: MovieTab.nowPlaying);
+  static SeriesTab _$seriesTab(HomeState v) => v.seriesTab;
+  static const Field<HomeState, SeriesTab> _f$seriesTab =
+      Field('seriesTab', _$seriesTab, opt: true, def: SeriesTab.none);
+  static MovieLoadInfo _$suggestedMovies(HomeState v) => v.suggestedMovies;
+  static const Field<HomeState, MovieLoadInfo> _f$suggestedMovies = Field(
+      'suggestedMovies', _$suggestedMovies,
+      opt: true, def: const MovieLoadInfo());
+  static MovieLoadInfo _$tabMovies(HomeState v) => v.tabMovies;
+  static const Field<HomeState, MovieLoadInfo> _f$tabMovies =
+      Field('tabMovies', _$tabMovies, opt: true, def: const MovieLoadInfo());
+  static SeriesLoadInfo _$suggestedSeries(HomeState v) => v.suggestedSeries;
+  static const Field<HomeState, SeriesLoadInfo> _f$suggestedSeries = Field(
+      'suggestedSeries', _$suggestedSeries,
+      opt: true, def: const SeriesLoadInfo());
+  static SeriesLoadInfo _$tabSeries(HomeState v) => v.tabSeries;
+  static const Field<HomeState, SeriesLoadInfo> _f$tabSeries =
+      Field('tabSeries', _$tabSeries, opt: true, def: const SeriesLoadInfo());
   static HomeStatus _$status(HomeState v) => v.status;
   static const Field<HomeState, HomeStatus> _f$status =
       Field('status', _$status, opt: true, def: const HomeBaseStatus());
 
   @override
   final MappableFields<HomeState> fields = const {
+    #movieTab: _f$movieTab,
+    #seriesTab: _f$seriesTab,
+    #suggestedMovies: _f$suggestedMovies,
+    #tabMovies: _f$tabMovies,
+    #suggestedSeries: _f$suggestedSeries,
+    #tabSeries: _f$tabSeries,
     #status: _f$status,
   };
 
   static HomeState _instantiate(DecodingData data) {
-    return HomeState(status: data.dec(_f$status));
+    return HomeState(
+        movieTab: data.dec(_f$movieTab),
+        seriesTab: data.dec(_f$seriesTab),
+        suggestedMovies: data.dec(_f$suggestedMovies),
+        tabMovies: data.dec(_f$tabMovies),
+        suggestedSeries: data.dec(_f$suggestedSeries),
+        tabSeries: data.dec(_f$tabSeries),
+        status: data.dec(_f$status));
   }
 
   @override
@@ -65,7 +100,19 @@ extension HomeStateValueCopy<$R, $Out> on ObjectCopyWith<$R, HomeState, $Out> {
 
 abstract class HomeStateCopyWith<$R, $In extends HomeState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({HomeStatus? status});
+  MovieLoadInfoCopyWith<$R, MovieLoadInfo, MovieLoadInfo> get suggestedMovies;
+  MovieLoadInfoCopyWith<$R, MovieLoadInfo, MovieLoadInfo> get tabMovies;
+  SeriesLoadInfoCopyWith<$R, SeriesLoadInfo, SeriesLoadInfo>
+      get suggestedSeries;
+  SeriesLoadInfoCopyWith<$R, SeriesLoadInfo, SeriesLoadInfo> get tabSeries;
+  $R call(
+      {MovieTab? movieTab,
+      SeriesTab? seriesTab,
+      MovieLoadInfo? suggestedMovies,
+      MovieLoadInfo? tabMovies,
+      SeriesLoadInfo? suggestedSeries,
+      SeriesLoadInfo? tabSeries,
+      HomeStatus? status});
   HomeStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -78,11 +125,45 @@ class _HomeStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<HomeState> $mapper =
       HomeStateMapper.ensureInitialized();
   @override
-  $R call({HomeStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  MovieLoadInfoCopyWith<$R, MovieLoadInfo, MovieLoadInfo> get suggestedMovies =>
+      $value.suggestedMovies.copyWith.$chain((v) => call(suggestedMovies: v));
   @override
-  HomeState $make(CopyWithData data) =>
-      HomeState(status: data.get(#status, or: $value.status));
+  MovieLoadInfoCopyWith<$R, MovieLoadInfo, MovieLoadInfo> get tabMovies =>
+      $value.tabMovies.copyWith.$chain((v) => call(tabMovies: v));
+  @override
+  SeriesLoadInfoCopyWith<$R, SeriesLoadInfo, SeriesLoadInfo>
+      get suggestedSeries => $value.suggestedSeries.copyWith
+          .$chain((v) => call(suggestedSeries: v));
+  @override
+  SeriesLoadInfoCopyWith<$R, SeriesLoadInfo, SeriesLoadInfo> get tabSeries =>
+      $value.tabSeries.copyWith.$chain((v) => call(tabSeries: v));
+  @override
+  $R call(
+          {MovieTab? movieTab,
+          SeriesTab? seriesTab,
+          MovieLoadInfo? suggestedMovies,
+          MovieLoadInfo? tabMovies,
+          SeriesLoadInfo? suggestedSeries,
+          SeriesLoadInfo? tabSeries,
+          HomeStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (movieTab != null) #movieTab: movieTab,
+        if (seriesTab != null) #seriesTab: seriesTab,
+        if (suggestedMovies != null) #suggestedMovies: suggestedMovies,
+        if (tabMovies != null) #tabMovies: tabMovies,
+        if (suggestedSeries != null) #suggestedSeries: suggestedSeries,
+        if (tabSeries != null) #tabSeries: tabSeries,
+        if (status != null) #status: status
+      }));
+  @override
+  HomeState $make(CopyWithData data) => HomeState(
+      movieTab: data.get(#movieTab, or: $value.movieTab),
+      seriesTab: data.get(#seriesTab, or: $value.seriesTab),
+      suggestedMovies: data.get(#suggestedMovies, or: $value.suggestedMovies),
+      tabMovies: data.get(#tabMovies, or: $value.tabMovies),
+      suggestedSeries: data.get(#suggestedSeries, or: $value.suggestedSeries),
+      tabSeries: data.get(#tabSeries, or: $value.tabSeries),
+      status: data.get(#status, or: $value.status));
 
   @override
   HomeStateCopyWith<$R2, HomeState, $Out2> $chain<$R2, $Out2>(

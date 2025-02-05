@@ -5,7 +5,7 @@ import '../mappable_entity.dart';
 part 'list_with_pagination_data.mapper.dart';
 
 @mappableEntity
-final class ListWithPaginationData<T> with ListWithPaginationDataMappable {
+final class ListWithPaginationData<T> with ListWithPaginationDataMappable<T> {
   final int currentPage;
   final bool isLastPage;
   final List<T> items;
@@ -19,8 +19,8 @@ final class ListWithPaginationData<T> with ListWithPaginationDataMappable {
   ListWithPaginationData<T> copyWithUpdateItems(List<T>? prevItems,
       {bool isNewPageLoaded = true}) {
     return copyWith(
-        items: getUpdatedItems(prevItems ?? [],
-            isNewPageLoaded: isNewPageLoaded)) as ListWithPaginationData<T>;
+      items: getUpdatedItems(prevItems ?? [], isNewPageLoaded: isNewPageLoaded),
+    );
   }
 
   List<T> getUpdatedItems(List<T> prevItems, {bool isNewPageLoaded = true}) {
