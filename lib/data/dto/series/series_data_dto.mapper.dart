@@ -13,6 +13,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static SeriesDataDtoMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SeriesDataDtoMapper._());
+      SeriesGenreDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -25,9 +26,9 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static String? _$backdropPath(SeriesDataDto v) => v.backdropPath;
   static const Field<SeriesDataDto, String> _f$backdropPath =
       Field('backdropPath', _$backdropPath, key: 'backdrop_path', opt: true);
-  static List<int>? _$genreIds(SeriesDataDto v) => v.genreIds;
-  static const Field<SeriesDataDto, List<int>> _f$genreIds =
-      Field('genreIds', _$genreIds, key: 'genre_ids', opt: true);
+  static List<SeriesGenreDto>? _$genres(SeriesDataDto v) => v.genres;
+  static const Field<SeriesDataDto, List<SeriesGenreDto>> _f$genres =
+      Field('genres', _$genres, key: 'genre_ids', opt: true);
   static List<String>? _$originCountry(SeriesDataDto v) => v.originCountry;
   static const Field<SeriesDataDto, List<String>> _f$originCountry =
       Field('originCountry', _$originCountry, key: 'origin_country', opt: true);
@@ -64,7 +65,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   final MappableFields<SeriesDataDto> fields = const {
     #id: _f$id,
     #backdropPath: _f$backdropPath,
-    #genreIds: _f$genreIds,
+    #genres: _f$genres,
     #originCountry: _f$originCountry,
     #originalLanguage: _f$originalLanguage,
     #originalName: _f$originalName,
@@ -83,7 +84,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
     return SeriesDataDto(
         id: data.dec(_f$id),
         backdropPath: data.dec(_f$backdropPath),
-        genreIds: data.dec(_f$genreIds),
+        genres: data.dec(_f$genres),
         originCountry: data.dec(_f$originCountry),
         originalLanguage: data.dec(_f$originalLanguage),
         originalName: data.dec(_f$originalName),
@@ -149,13 +150,14 @@ extension SeriesDataDtoValueCopy<$R, $Out>
 
 abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get genreIds;
+  ListCopyWith<$R, SeriesGenreDto,
+      ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get genres;
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
       get originCountry;
   $R call(
       {int? id,
       String? backdropPath,
-      List<int>? genreIds,
+      List<SeriesGenreDto>? genres,
       List<String>? originCountry,
       String? originalLanguage,
       String? originalName,
@@ -178,12 +180,11 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<SeriesDataDto> $mapper =
       SeriesDataDtoMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get genreIds =>
-      $value.genreIds != null
-          ? ListCopyWith(
-              $value.genreIds!,
-              (v, t) => ObjectCopyWith(v, $identity, t),
-              (v) => call(genreIds: v))
+  ListCopyWith<$R, SeriesGenreDto,
+          ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>?
+      get genres => $value.genres != null
+          ? ListCopyWith($value.genres!,
+              (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v))
           : null;
   @override
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
@@ -197,7 +198,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
   $R call(
           {Object? id = $none,
           Object? backdropPath = $none,
-          Object? genreIds = $none,
+          Object? genres = $none,
           Object? originCountry = $none,
           Object? originalLanguage = $none,
           Object? originalName = $none,
@@ -211,7 +212,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (backdropPath != $none) #backdropPath: backdropPath,
-        if (genreIds != $none) #genreIds: genreIds,
+        if (genres != $none) #genres: genres,
         if (originCountry != $none) #originCountry: originCountry,
         if (originalLanguage != $none) #originalLanguage: originalLanguage,
         if (originalName != $none) #originalName: originalName,
@@ -227,7 +228,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
   SeriesDataDto $make(CopyWithData data) => SeriesDataDto(
       id: data.get(#id, or: $value.id),
       backdropPath: data.get(#backdropPath, or: $value.backdropPath),
-      genreIds: data.get(#genreIds, or: $value.genreIds),
+      genres: data.get(#genres, or: $value.genres),
       originCountry: data.get(#originCountry, or: $value.originCountry),
       originalLanguage:
           data.get(#originalLanguage, or: $value.originalLanguage),

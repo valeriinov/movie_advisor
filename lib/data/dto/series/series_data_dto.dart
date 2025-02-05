@@ -1,12 +1,15 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import 'series_genre_dto.dart';
+
 part 'series_data_dto.mapper.dart';
 
 @MappableClass(ignoreNull: true, caseStyle: CaseStyle.snakeCase)
 class SeriesDataDto with SeriesDataDtoMappable {
   final int? id;
   final String? backdropPath;
-  final List<int>? genreIds;
+  @MappableField(key: 'genre_ids')
+  final List<SeriesGenreDto>? genres;
   final List<String>? originCountry;
   final String? originalLanguage;
   final String? originalName;
@@ -21,7 +24,7 @@ class SeriesDataDto with SeriesDataDtoMappable {
   const SeriesDataDto({
     this.id,
     this.backdropPath,
-    this.genreIds,
+    this.genres,
     this.originCountry,
     this.originalLanguage,
     this.originalName,

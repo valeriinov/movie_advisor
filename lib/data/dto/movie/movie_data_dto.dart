@@ -1,12 +1,15 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import 'movie_genre_dto.dart';
+
 part 'movie_data_dto.mapper.dart';
 
 @MappableClass(ignoreNull: true, caseStyle: CaseStyle.snakeCase)
 class MovieDataDto with MovieDataDtoMappable {
   final int? id;
   final String? backdropPath;
-  final List<int>? genreIds;
+  @MappableField(key: 'genre_ids')
+  final List<MovieGenreDto>? genres;
   final String? originalLanguage;
   final String? originalTitle;
   final String? overview;
@@ -20,7 +23,7 @@ class MovieDataDto with MovieDataDtoMappable {
   const MovieDataDto({
     this.id,
     this.backdropPath,
-    this.genreIds,
+    this.genres,
     this.originalLanguage,
     this.originalTitle,
     this.overview,
