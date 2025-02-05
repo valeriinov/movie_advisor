@@ -14,5 +14,6 @@ enum SeriesGenre {
   soap,
   talk,
   warAndPolitics,
-  western;
+  western,
+  none;
 }

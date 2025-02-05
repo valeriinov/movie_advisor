@@ -57,6 +57,16 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static int? _$voteCount(MovieDataDto v) => v.voteCount;
   static const Field<MovieDataDto, int> _f$voteCount =
       Field('voteCount', _$voteCount, key: 'vote_count', opt: true);
+  static int? _$userRating(MovieDataDto v) => v.userRating;
+  static const Field<MovieDataDto, int> _f$userRating =
+      Field('userRating', _$userRating, key: 'user_rating', opt: true);
+  static bool? _$isInWatchlist(MovieDataDto v) => v.isInWatchlist;
+  static const Field<MovieDataDto, bool> _f$isInWatchlist = Field(
+      'isInWatchlist', _$isInWatchlist,
+      key: 'is_in_watchlist', opt: true);
+  static bool? _$isWatched(MovieDataDto v) => v.isWatched;
+  static const Field<MovieDataDto, bool> _f$isWatched =
+      Field('isWatched', _$isWatched, key: 'is_watched', opt: true);
 
   @override
   final MappableFields<MovieDataDto> fields = const {
@@ -72,6 +82,9 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
     #title: _f$title,
     #voteAverage: _f$voteAverage,
     #voteCount: _f$voteCount,
+    #userRating: _f$userRating,
+    #isInWatchlist: _f$isInWatchlist,
+    #isWatched: _f$isWatched,
   };
   @override
   final bool ignoreNull = true;
@@ -89,7 +102,10 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
         releaseDate: data.dec(_f$releaseDate),
         title: data.dec(_f$title),
         voteAverage: data.dec(_f$voteAverage),
-        voteCount: data.dec(_f$voteCount));
+        voteCount: data.dec(_f$voteCount),
+        userRating: data.dec(_f$userRating),
+        isInWatchlist: data.dec(_f$isInWatchlist),
+        isWatched: data.dec(_f$isWatched));
   }
 
   @override
@@ -158,7 +174,10 @@ abstract class MovieDataDtoCopyWith<$R, $In extends MovieDataDto, $Out>
       DateTime? releaseDate,
       String? title,
       double? voteAverage,
-      int? voteCount});
+      int? voteCount,
+      int? userRating,
+      bool? isInWatchlist,
+      bool? isWatched});
   MovieDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -190,7 +209,10 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
           Object? releaseDate = $none,
           Object? title = $none,
           Object? voteAverage = $none,
-          Object? voteCount = $none}) =>
+          Object? voteCount = $none,
+          Object? userRating = $none,
+          Object? isInWatchlist = $none,
+          Object? isWatched = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (backdropPath != $none) #backdropPath: backdropPath,
@@ -203,7 +225,10 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
         if (releaseDate != $none) #releaseDate: releaseDate,
         if (title != $none) #title: title,
         if (voteAverage != $none) #voteAverage: voteAverage,
-        if (voteCount != $none) #voteCount: voteCount
+        if (voteCount != $none) #voteCount: voteCount,
+        if (userRating != $none) #userRating: userRating,
+        if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
+        if (isWatched != $none) #isWatched: isWatched
       }));
   @override
   MovieDataDto $make(CopyWithData data) => MovieDataDto(
@@ -219,7 +244,10 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
       releaseDate: data.get(#releaseDate, or: $value.releaseDate),
       title: data.get(#title, or: $value.title),
       voteAverage: data.get(#voteAverage, or: $value.voteAverage),
-      voteCount: data.get(#voteCount, or: $value.voteCount));
+      voteCount: data.get(#voteCount, or: $value.voteCount),
+      userRating: data.get(#userRating, or: $value.userRating),
+      isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
+      isWatched: data.get(#isWatched, or: $value.isWatched));
 
   @override
   MovieDataDtoCopyWith<$R2, MovieDataDto, $Out2> $chain<$R2, $Out2>(

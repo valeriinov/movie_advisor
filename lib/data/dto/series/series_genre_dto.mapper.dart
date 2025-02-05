@@ -57,8 +57,10 @@ class SeriesGenreDtoMapper extends EnumMapper<SeriesGenreDto> {
         return SeriesGenreDto.warAndPolitics;
       case 37:
         return SeriesGenreDto.western;
+      case -1:
+        return SeriesGenreDto.none;
       default:
-        throw MapperException.unknownEnumValue(value);
+        return SeriesGenreDto.values[16];
     }
   }
 
@@ -97,6 +99,8 @@ class SeriesGenreDtoMapper extends EnumMapper<SeriesGenreDto> {
         return 10768;
       case SeriesGenreDto.western:
         return 37;
+      case SeriesGenreDto.none:
+        return -1;
     }
   }
 }

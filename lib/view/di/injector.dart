@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/mappers/app_home_mapper.dart';
+import '../../data/mappers/app_movies_mapper.dart';
+import '../../data/mappers/app_series_mapper.dart';
 import '../../data/network/env_provider/env_provider.dart';
 import '../../data/network/network_manager/impl_dio/dio_builder.dart';
 import '../../data/network/network_manager/impl_dio/dio_error_handler.dart';
@@ -73,6 +75,9 @@ final imageUrlHandlerPr = Provider<ImageUrlHandler>(
   (ref) => ImplImageUrlHandler(envProvider: ref.read(envPr)),
 );
 
+final moviesMapperPr = Provider<AppMoviesMapper>((_) => AppMoviesMapper());
+final seriesMapperPr = Provider<AppSeriesMapper>((_) => AppSeriesMapper());
+
 // HOME
 final homeServicePr = Provider<HomeService>((ref) => HomeService(
       moviesApiClient: ref.read(moviesApiClientPr),
@@ -81,7 +86,12 @@ final homeServicePr = Provider<HomeService>((ref) => HomeService(
 final homeRemoteDataSourcePr = Provider<HomeRemoteDataSource>(
   (ref) => ImplHomeRemoteDataSource(service: ref.read(homeServicePr)),
 );
-final homeMapperPr = Provider<AppHomeMapper>((_) => AppHomeMapper());
+final homeMapperPr = Provider<AppHomeMapper>(
+  (ref) => AppHomeMapper(
+    moviesMapper: ref.read(moviesMapperPr),
+    seriesMapper: ref.read(seriesMapperPr),
+  ),
+);
 final homeRepositoryPr = Provider<HomeRepository>((ref) => ImplHomeRepository(
       dataSource: ref.read(homeRemoteDataSourcePr),
       mapper: ref.read(homeMapperPr),

@@ -14,7 +14,7 @@ class SeriesData with SeriesDataMappable {
   final List<SeriesGenre> genres;
   final List<String>? originCountry;
   final String? originalLanguage;
-  final String? originalName;
+  final String? originalTitle;
   final DateTime? firstAirDate;
   final String? title;
   final String? overview;
@@ -30,7 +30,7 @@ class SeriesData with SeriesDataMappable {
     required this.genres,
     required this.originCountry,
     required this.originalLanguage,
-    required this.originalName,
+    required this.originalTitle,
     required this.firstAirDate,
     required this.title,
     required this.overview,

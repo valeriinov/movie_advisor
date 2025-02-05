@@ -20,6 +20,9 @@ class SeriesDataDto with SeriesDataDtoMappable {
   final String? name;
   final double? voteAverage;
   final int? voteCount;
+  final int? userRating;
+  final bool? isInWatchlist;
+  final bool? isWatched;
 
   const SeriesDataDto({
     this.id,
@@ -35,6 +38,9 @@ class SeriesDataDto with SeriesDataDtoMappable {
     this.name,
     this.voteAverage,
     this.voteCount,
+    this.userRating,
+    this.isInWatchlist,
+    this.isWatched,
   });
 
   factory SeriesDataDto.fromJson(Map<String, dynamic> json) =>

@@ -63,8 +63,10 @@ class MovieGenreDtoMapper extends EnumMapper<MovieGenreDto> {
         return MovieGenreDto.war;
       case 37:
         return MovieGenreDto.western;
+      case -1:
+        return MovieGenreDto.none;
       default:
-        throw MapperException.unknownEnumValue(value);
+        return MovieGenreDto.values[19];
     }
   }
 
@@ -109,6 +111,8 @@ class MovieGenreDtoMapper extends EnumMapper<MovieGenreDto> {
         return 10752;
       case MovieGenreDto.western:
         return 37;
+      case MovieGenreDto.none:
+        return -1;
     }
   }
 }

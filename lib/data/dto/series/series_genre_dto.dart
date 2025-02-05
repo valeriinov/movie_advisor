@@ -2,7 +2,10 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 part 'series_genre_dto.mapper.dart';
 
-@MappableEnum(mode: ValuesMode.indexed)
+@MappableEnum(
+  mode: ValuesMode.indexed,
+  defaultValue: SeriesGenreDto.none,
+)
 enum SeriesGenreDto {
   @MappableValue(10759)
   actionAndAdventure,
@@ -35,5 +38,7 @@ enum SeriesGenreDto {
   @MappableValue(10768)
   warAndPolitics,
   @MappableValue(37)
-  western;
+  western,
+  @MappableValue(-1)
+  none;
 }

@@ -25,6 +25,7 @@ extension MovieGenreDesc on MovieGenre {
       MovieGenre.thriller => LocaleKeys.genreMovThriller.tr(),
       MovieGenre.war => LocaleKeys.genreMovWar.tr(),
       MovieGenre.western => LocaleKeys.genreMovWestern.tr(),
+      MovieGenre.none => '',
     };
   }
 }

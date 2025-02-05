@@ -17,5 +17,6 @@ enum MovieGenre {
   tvMovie,
   thriller,
   war,
-  western;
+  western,
+  none;
 }

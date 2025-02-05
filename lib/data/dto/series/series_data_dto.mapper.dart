@@ -60,6 +60,16 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static int? _$voteCount(SeriesDataDto v) => v.voteCount;
   static const Field<SeriesDataDto, int> _f$voteCount =
       Field('voteCount', _$voteCount, key: 'vote_count', opt: true);
+  static int? _$userRating(SeriesDataDto v) => v.userRating;
+  static const Field<SeriesDataDto, int> _f$userRating =
+      Field('userRating', _$userRating, key: 'user_rating', opt: true);
+  static bool? _$isInWatchlist(SeriesDataDto v) => v.isInWatchlist;
+  static const Field<SeriesDataDto, bool> _f$isInWatchlist = Field(
+      'isInWatchlist', _$isInWatchlist,
+      key: 'is_in_watchlist', opt: true);
+  static bool? _$isWatched(SeriesDataDto v) => v.isWatched;
+  static const Field<SeriesDataDto, bool> _f$isWatched =
+      Field('isWatched', _$isWatched, key: 'is_watched', opt: true);
 
   @override
   final MappableFields<SeriesDataDto> fields = const {
@@ -76,6 +86,9 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
     #name: _f$name,
     #voteAverage: _f$voteAverage,
     #voteCount: _f$voteCount,
+    #userRating: _f$userRating,
+    #isInWatchlist: _f$isInWatchlist,
+    #isWatched: _f$isWatched,
   };
   @override
   final bool ignoreNull = true;
@@ -94,7 +107,10 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
         firstAirDate: data.dec(_f$firstAirDate),
         name: data.dec(_f$name),
         voteAverage: data.dec(_f$voteAverage),
-        voteCount: data.dec(_f$voteCount));
+        voteCount: data.dec(_f$voteCount),
+        userRating: data.dec(_f$userRating),
+        isInWatchlist: data.dec(_f$isInWatchlist),
+        isWatched: data.dec(_f$isWatched));
   }
 
   @override
@@ -167,7 +183,10 @@ abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
       DateTime? firstAirDate,
       String? name,
       double? voteAverage,
-      int? voteCount});
+      int? voteCount,
+      int? userRating,
+      bool? isInWatchlist,
+      bool? isWatched});
   SeriesDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -208,7 +227,10 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
           Object? firstAirDate = $none,
           Object? name = $none,
           Object? voteAverage = $none,
-          Object? voteCount = $none}) =>
+          Object? voteCount = $none,
+          Object? userRating = $none,
+          Object? isInWatchlist = $none,
+          Object? isWatched = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (backdropPath != $none) #backdropPath: backdropPath,
@@ -222,7 +244,10 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
         if (firstAirDate != $none) #firstAirDate: firstAirDate,
         if (name != $none) #name: name,
         if (voteAverage != $none) #voteAverage: voteAverage,
-        if (voteCount != $none) #voteCount: voteCount
+        if (voteCount != $none) #voteCount: voteCount,
+        if (userRating != $none) #userRating: userRating,
+        if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
+        if (isWatched != $none) #isWatched: isWatched
       }));
   @override
   SeriesDataDto $make(CopyWithData data) => SeriesDataDto(
@@ -239,7 +264,10 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
       firstAirDate: data.get(#firstAirDate, or: $value.firstAirDate),
       name: data.get(#name, or: $value.name),
       voteAverage: data.get(#voteAverage, or: $value.voteAverage),
-      voteCount: data.get(#voteCount, or: $value.voteCount));
+      voteCount: data.get(#voteCount, or: $value.voteCount),
+      userRating: data.get(#userRating, or: $value.userRating),
+      isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
+      isWatched: data.get(#isWatched, or: $value.isWatched));
 
   @override
   SeriesDataDtoCopyWith<$R2, SeriesDataDto, $Out2> $chain<$R2, $Out2>(

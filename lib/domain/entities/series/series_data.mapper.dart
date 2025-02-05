@@ -38,9 +38,9 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
   static String? _$originalLanguage(SeriesData v) => v.originalLanguage;
   static const Field<SeriesData, String> _f$originalLanguage =
       Field('originalLanguage', _$originalLanguage);
-  static String? _$originalName(SeriesData v) => v.originalName;
-  static const Field<SeriesData, String> _f$originalName =
-      Field('originalName', _$originalName);
+  static String? _$originalTitle(SeriesData v) => v.originalTitle;
+  static const Field<SeriesData, String> _f$originalTitle =
+      Field('originalTitle', _$originalTitle);
   static DateTime? _$firstAirDate(SeriesData v) => v.firstAirDate;
   static const Field<SeriesData, DateTime> _f$firstAirDate =
       Field('firstAirDate', _$firstAirDate);
@@ -70,7 +70,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     #genres: _f$genres,
     #originCountry: _f$originCountry,
     #originalLanguage: _f$originalLanguage,
-    #originalName: _f$originalName,
+    #originalTitle: _f$originalTitle,
     #firstAirDate: _f$firstAirDate,
     #title: _f$title,
     #overview: _f$overview,
@@ -88,7 +88,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
         genres: data.dec(_f$genres),
         originCountry: data.dec(_f$originCountry),
         originalLanguage: data.dec(_f$originalLanguage),
-        originalName: data.dec(_f$originalName),
+        originalTitle: data.dec(_f$originalTitle),
         firstAirDate: data.dec(_f$firstAirDate),
         title: data.dec(_f$title),
         overview: data.dec(_f$overview),
@@ -143,7 +143,7 @@ abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
       List<SeriesGenre>? genres,
       List<String>? originCountry,
       String? originalLanguage,
-      String? originalName,
+      String? originalTitle,
       DateTime? firstAirDate,
       String? title,
       String? overview,
@@ -185,7 +185,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
           List<SeriesGenre>? genres,
           Object? originCountry = $none,
           Object? originalLanguage = $none,
-          Object? originalName = $none,
+          Object? originalTitle = $none,
           Object? firstAirDate = $none,
           Object? title = $none,
           Object? overview = $none,
@@ -200,7 +200,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
         if (genres != null) #genres: genres,
         if (originCountry != $none) #originCountry: originCountry,
         if (originalLanguage != $none) #originalLanguage: originalLanguage,
-        if (originalName != $none) #originalName: originalName,
+        if (originalTitle != $none) #originalTitle: originalTitle,
         if (firstAirDate != $none) #firstAirDate: firstAirDate,
         if (title != $none) #title: title,
         if (overview != $none) #overview: overview,
@@ -218,7 +218,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
       originCountry: data.get(#originCountry, or: $value.originCountry),
       originalLanguage:
           data.get(#originalLanguage, or: $value.originalLanguage),
-      originalName: data.get(#originalName, or: $value.originalName),
+      originalTitle: data.get(#originalTitle, or: $value.originalTitle),
       firstAirDate: data.get(#firstAirDate, or: $value.firstAirDate),
       title: data.get(#title, or: $value.title),
       overview: data.get(#overview, or: $value.overview),

@@ -22,6 +22,7 @@ extension SeriesGenreDesc on SeriesGenre {
       SeriesGenre.talk => LocaleKeys.genreSerTalk.tr(),
       SeriesGenre.warAndPolitics => LocaleKeys.genreSerWarPolitics.tr(),
       SeriesGenre.western => LocaleKeys.genreSerWestern.tr(),
+      SeriesGenre.none => '',
     };
   }
 }

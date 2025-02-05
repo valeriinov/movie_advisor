@@ -2,7 +2,10 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 part 'movie_genre_dto.mapper.dart';
 
-@MappableEnum(mode: ValuesMode.indexed)
+@MappableEnum(
+  mode: ValuesMode.indexed,
+  defaultValue: MovieGenreDto.none,
+)
 enum MovieGenreDto {
   @MappableValue(28)
   action,
@@ -41,5 +44,7 @@ enum MovieGenreDto {
   @MappableValue(10752)
   war,
   @MappableValue(37)
-  western;
+  western,
+  @MappableValue(-1)
+  none;
 }
