@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../domain/entities/movie/movie_short_data.dart';
+import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/usecases/home_use_case.dart';
 import '../../../../di/injector.dart';
@@ -35,13 +37,16 @@ class HomeViewModel extends AutoDisposeNotifier<HomeState>
   Future<void> loadMovies({bool showLoader = true}) async {
     _updateStatus(HomeBaseStatus(isLoading: showLoader));
 
-    await safeCall(_homeUseCase.getNowPlayingMovies, onResult: _handleMoviesResult);
+    await safeCall(_homeUseCase.getNowPlayingMovies,
+        onResult: _handleMoviesResult);
   }
 
-  void _handleMoviesResult(Result<void> result) {
+  void _handleMoviesResult(
+    Result<ListWithPaginationData<MovieShortData>> result,
+  ) {
     result.fold((error) {
       _updateStatus(HomeBaseInitStatus(errorMessage: error.message));
-    }, (user) {
+    }, (data) {
       _updateStatus(HomeBaseInitStatus());
     });
   }
