@@ -5,7 +5,7 @@ import 'app_routes.dart';
 import '../scenes/nav_menu/nav_menu_screen.dart';
 import 'utils/extended_shell_branch.dart';
 import 'routes/home_routes.dart';
-import 'routes/watch_list_routes.dart';
+import 'routes/watchlist_routes.dart';
 import 'routes/watched_routes.dart';
 import 'routes/more_routes.dart';
 
@@ -49,7 +49,7 @@ final class ImplAppRouter implements AppRouter {
                 routes: [$homeRoute],
               ),
               ExtendedShellBranch(
-                routes: [$watchListRoute],
+                routes: [$watchlistRoute],
               ),
               ExtendedShellBranch(
                 routes: [$watchedRoute],

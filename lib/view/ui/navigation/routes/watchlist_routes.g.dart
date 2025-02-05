@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'watch_list_routes.dart';
+part of 'watchlist_routes.dart';
 
 // **************************************************************************
 // GoRouterGenerator
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $watchListRoute,
+      $watchlistRoute,
     ];
 
-RouteBase get $watchListRoute => GoRouteData.$route(
+RouteBase get $watchlistRoute => GoRouteData.$route(
       path: '/watch-list',
-      factory: $WatchListRouteExtension._fromState,
+      factory: $WatchlistRouteExtension._fromState,
     );
 
-extension $WatchListRouteExtension on WatchListRoute {
-  static WatchListRoute _fromState(GoRouterState state) => WatchListRoute();
+extension $WatchlistRouteExtension on WatchlistRoute {
+  static WatchlistRoute _fromState(GoRouterState state) => WatchlistRoute();
 
   String get location => GoRouteData.$location(
         '/watch-list',
