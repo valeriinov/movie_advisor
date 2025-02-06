@@ -13,6 +13,7 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
   static MovieDataMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MovieDataMapper._());
+      MediaDataMapper.ensureInitialized();
       TMDBRatingMapper.ensureInitialized();
     }
     return _instance!;
@@ -32,15 +33,18 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
   static List<MovieGenre> _$genres(MovieData v) => v.genres;
   static const Field<MovieData, List<MovieGenre>> _f$genres =
       Field('genres', _$genres);
+  static List<String> _$originCountry(MovieData v) => v.originCountry;
+  static const Field<MovieData, List<String>> _f$originCountry =
+      Field('originCountry', _$originCountry);
   static String _$originalLanguage(MovieData v) => v.originalLanguage;
   static const Field<MovieData, String> _f$originalLanguage =
       Field('originalLanguage', _$originalLanguage);
   static String _$originalTitle(MovieData v) => v.originalTitle;
   static const Field<MovieData, String> _f$originalTitle =
       Field('originalTitle', _$originalTitle);
-  static DateTime _$releaseDate(MovieData v) => v.releaseDate;
-  static const Field<MovieData, DateTime> _f$releaseDate =
-      Field('releaseDate', _$releaseDate);
+  static DateTime _$premiereDate(MovieData v) => v.premiereDate;
+  static const Field<MovieData, DateTime> _f$premiereDate =
+      Field('premiereDate', _$premiereDate);
   static String _$title(MovieData v) => v.title;
   static const Field<MovieData, String> _f$title = Field('title', _$title);
   static String _$overview(MovieData v) => v.overview;
@@ -65,9 +69,10 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
     #backdropUrl: _f$backdropUrl,
     #posterUrl: _f$posterUrl,
     #genres: _f$genres,
+    #originCountry: _f$originCountry,
     #originalLanguage: _f$originalLanguage,
     #originalTitle: _f$originalTitle,
-    #releaseDate: _f$releaseDate,
+    #premiereDate: _f$premiereDate,
     #title: _f$title,
     #overview: _f$overview,
     #tmdbRating: _f$tmdbRating,
@@ -82,9 +87,10 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
         backdropUrl: data.dec(_f$backdropUrl),
         posterUrl: data.dec(_f$posterUrl),
         genres: data.dec(_f$genres),
+        originCountry: data.dec(_f$originCountry),
         originalLanguage: data.dec(_f$originalLanguage),
         originalTitle: data.dec(_f$originalTitle),
-        releaseDate: data.dec(_f$releaseDate),
+        premiereDate: data.dec(_f$premiereDate),
         title: data.dec(_f$title),
         overview: data.dec(_f$overview),
         tmdbRating: data.dec(_f$tmdbRating),
@@ -124,18 +130,24 @@ extension MovieDataValueCopy<$R, $Out> on ObjectCopyWith<$R, MovieData, $Out> {
 }
 
 abstract class MovieDataCopyWith<$R, $In extends MovieData, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+    implements MediaDataCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, MovieGenre, ObjectCopyWith<$R, MovieGenre, MovieGenre>>
       get genres;
+  @override
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+      get originCountry;
+  @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
+  @override
   $R call(
       {int? id,
       String? backdropUrl,
       String? posterUrl,
       List<MovieGenre>? genres,
+      List<String>? originCountry,
       String? originalLanguage,
       String? originalTitle,
-      DateTime? releaseDate,
+      DateTime? premiereDate,
       String? title,
       String? overview,
       TMDBRating? tmdbRating,
@@ -158,6 +170,12 @@ class _MovieDataCopyWithImpl<$R, $Out>
       get genres => ListCopyWith($value.genres,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v));
   @override
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+      get originCountry => ListCopyWith(
+          $value.originCountry,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(originCountry: v));
+  @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating =>
       $value.tmdbRating.copyWith.$chain((v) => call(tmdbRating: v));
   @override
@@ -166,9 +184,10 @@ class _MovieDataCopyWithImpl<$R, $Out>
           String? backdropUrl,
           String? posterUrl,
           List<MovieGenre>? genres,
+          List<String>? originCountry,
           String? originalLanguage,
           String? originalTitle,
-          DateTime? releaseDate,
+          DateTime? premiereDate,
           String? title,
           String? overview,
           TMDBRating? tmdbRating,
@@ -180,9 +199,10 @@ class _MovieDataCopyWithImpl<$R, $Out>
         if (backdropUrl != null) #backdropUrl: backdropUrl,
         if (posterUrl != null) #posterUrl: posterUrl,
         if (genres != null) #genres: genres,
+        if (originCountry != null) #originCountry: originCountry,
         if (originalLanguage != null) #originalLanguage: originalLanguage,
         if (originalTitle != null) #originalTitle: originalTitle,
-        if (releaseDate != null) #releaseDate: releaseDate,
+        if (premiereDate != null) #premiereDate: premiereDate,
         if (title != null) #title: title,
         if (overview != null) #overview: overview,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
@@ -196,10 +216,11 @@ class _MovieDataCopyWithImpl<$R, $Out>
       backdropUrl: data.get(#backdropUrl, or: $value.backdropUrl),
       posterUrl: data.get(#posterUrl, or: $value.posterUrl),
       genres: data.get(#genres, or: $value.genres),
+      originCountry: data.get(#originCountry, or: $value.originCountry),
       originalLanguage:
           data.get(#originalLanguage, or: $value.originalLanguage),
       originalTitle: data.get(#originalTitle, or: $value.originalTitle),
-      releaseDate: data.get(#releaseDate, or: $value.releaseDate),
+      premiereDate: data.get(#premiereDate, or: $value.premiereDate),
       title: data.get(#title, or: $value.title),
       overview: data.get(#overview, or: $value.overview),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),

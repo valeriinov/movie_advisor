@@ -3,40 +3,28 @@ import 'package:dart_mappable/dart_mappable.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 import 'series_genre.dart';
+import '../base_media/media_data.dart';
 
 part 'series_data.mapper.dart';
 
 @mappableEntity
-class SeriesData with SeriesDataMappable {
-  final int id;
-  final String backdropUrl;
-  final String posterUrl;
+final class SeriesData extends MediaData with SeriesDataMappable {
   final List<SeriesGenre> genres;
-  final List<String>? originCountry;
-  final String? originalLanguage;
-  final String? originalTitle;
-  final DateTime? firstAirDate;
-  final String? title;
-  final String? overview;
-  final TMDBRating tmdbRating;
-  final int userRating;
-  final bool isInWatchlist;
-  final bool isWatched;
 
   const SeriesData({
-    required this.id,
-    required this.backdropUrl,
-    required this.posterUrl,
+    required super.id,
+    required super.backdropUrl,
+    required super.posterUrl,
     required this.genres,
-    required this.originCountry,
-    required this.originalLanguage,
-    required this.originalTitle,
-    required this.firstAirDate,
-    required this.title,
-    required this.overview,
-    required this.tmdbRating,
-    required this.userRating,
-    required this.isInWatchlist,
-    required this.isWatched,
+    required super.originCountry,
+    required super.originalLanguage,
+    required super.originalTitle,
+    required super.premiereDate,
+    required super.title,
+    required super.overview,
+    required super.tmdbRating,
+    required super.userRating,
+    required super.isInWatchlist,
+    required super.isWatched,
   });
 }

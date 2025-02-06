@@ -13,6 +13,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
   static SeriesDataMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SeriesDataMapper._());
+      MediaDataMapper.ensureInitialized();
       TMDBRatingMapper.ensureInitialized();
     }
     return _instance!;
@@ -32,21 +33,21 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
   static List<SeriesGenre> _$genres(SeriesData v) => v.genres;
   static const Field<SeriesData, List<SeriesGenre>> _f$genres =
       Field('genres', _$genres);
-  static List<String>? _$originCountry(SeriesData v) => v.originCountry;
+  static List<String> _$originCountry(SeriesData v) => v.originCountry;
   static const Field<SeriesData, List<String>> _f$originCountry =
       Field('originCountry', _$originCountry);
-  static String? _$originalLanguage(SeriesData v) => v.originalLanguage;
+  static String _$originalLanguage(SeriesData v) => v.originalLanguage;
   static const Field<SeriesData, String> _f$originalLanguage =
       Field('originalLanguage', _$originalLanguage);
-  static String? _$originalTitle(SeriesData v) => v.originalTitle;
+  static String _$originalTitle(SeriesData v) => v.originalTitle;
   static const Field<SeriesData, String> _f$originalTitle =
       Field('originalTitle', _$originalTitle);
-  static DateTime? _$firstAirDate(SeriesData v) => v.firstAirDate;
-  static const Field<SeriesData, DateTime> _f$firstAirDate =
-      Field('firstAirDate', _$firstAirDate);
-  static String? _$title(SeriesData v) => v.title;
+  static DateTime _$premiereDate(SeriesData v) => v.premiereDate;
+  static const Field<SeriesData, DateTime> _f$premiereDate =
+      Field('premiereDate', _$premiereDate);
+  static String _$title(SeriesData v) => v.title;
   static const Field<SeriesData, String> _f$title = Field('title', _$title);
-  static String? _$overview(SeriesData v) => v.overview;
+  static String _$overview(SeriesData v) => v.overview;
   static const Field<SeriesData, String> _f$overview =
       Field('overview', _$overview);
   static TMDBRating _$tmdbRating(SeriesData v) => v.tmdbRating;
@@ -71,7 +72,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     #originCountry: _f$originCountry,
     #originalLanguage: _f$originalLanguage,
     #originalTitle: _f$originalTitle,
-    #firstAirDate: _f$firstAirDate,
+    #premiereDate: _f$premiereDate,
     #title: _f$title,
     #overview: _f$overview,
     #tmdbRating: _f$tmdbRating,
@@ -89,7 +90,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
         originCountry: data.dec(_f$originCountry),
         originalLanguage: data.dec(_f$originalLanguage),
         originalTitle: data.dec(_f$originalTitle),
-        firstAirDate: data.dec(_f$firstAirDate),
+        premiereDate: data.dec(_f$premiereDate),
         title: data.dec(_f$title),
         overview: data.dec(_f$overview),
         tmdbRating: data.dec(_f$tmdbRating),
@@ -130,12 +131,15 @@ extension SeriesDataValueCopy<$R, $Out>
 }
 
 abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+    implements MediaDataCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, SeriesGenre, ObjectCopyWith<$R, SeriesGenre, SeriesGenre>>
       get genres;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  @override
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
       get originCountry;
+  @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
+  @override
   $R call(
       {int? id,
       String? backdropUrl,
@@ -144,7 +148,7 @@ abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
       List<String>? originCountry,
       String? originalLanguage,
       String? originalTitle,
-      DateTime? firstAirDate,
+      DateTime? premiereDate,
       String? title,
       String? overview,
       TMDBRating? tmdbRating,
@@ -167,13 +171,11 @@ class _SeriesDataCopyWithImpl<$R, $Out>
       get genres => ListCopyWith($value.genres,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v));
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
-      get originCountry => $value.originCountry != null
-          ? ListCopyWith(
-              $value.originCountry!,
-              (v, t) => ObjectCopyWith(v, $identity, t),
-              (v) => call(originCountry: v))
-          : null;
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+      get originCountry => ListCopyWith(
+          $value.originCountry,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(originCountry: v));
   @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating =>
       $value.tmdbRating.copyWith.$chain((v) => call(tmdbRating: v));
@@ -183,12 +185,12 @@ class _SeriesDataCopyWithImpl<$R, $Out>
           String? backdropUrl,
           String? posterUrl,
           List<SeriesGenre>? genres,
-          Object? originCountry = $none,
-          Object? originalLanguage = $none,
-          Object? originalTitle = $none,
-          Object? firstAirDate = $none,
-          Object? title = $none,
-          Object? overview = $none,
+          List<String>? originCountry,
+          String? originalLanguage,
+          String? originalTitle,
+          DateTime? premiereDate,
+          String? title,
+          String? overview,
           TMDBRating? tmdbRating,
           int? userRating,
           bool? isInWatchlist,
@@ -198,12 +200,12 @@ class _SeriesDataCopyWithImpl<$R, $Out>
         if (backdropUrl != null) #backdropUrl: backdropUrl,
         if (posterUrl != null) #posterUrl: posterUrl,
         if (genres != null) #genres: genres,
-        if (originCountry != $none) #originCountry: originCountry,
-        if (originalLanguage != $none) #originalLanguage: originalLanguage,
-        if (originalTitle != $none) #originalTitle: originalTitle,
-        if (firstAirDate != $none) #firstAirDate: firstAirDate,
-        if (title != $none) #title: title,
-        if (overview != $none) #overview: overview,
+        if (originCountry != null) #originCountry: originCountry,
+        if (originalLanguage != null) #originalLanguage: originalLanguage,
+        if (originalTitle != null) #originalTitle: originalTitle,
+        if (premiereDate != null) #premiereDate: premiereDate,
+        if (title != null) #title: title,
+        if (overview != null) #overview: overview,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
         if (userRating != null) #userRating: userRating,
         if (isInWatchlist != null) #isInWatchlist: isInWatchlist,
@@ -219,7 +221,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
       originalLanguage:
           data.get(#originalLanguage, or: $value.originalLanguage),
       originalTitle: data.get(#originalTitle, or: $value.originalTitle),
-      firstAirDate: data.get(#firstAirDate, or: $value.firstAirDate),
+      premiereDate: data.get(#premiereDate, or: $value.premiereDate),
       title: data.get(#title, or: $value.title),
       overview: data.get(#overview, or: $value.overview),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),

@@ -13,6 +13,7 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
   static SeriesShortDataMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SeriesShortDataMapper._());
+      MediaShortDataMapper.ensureInitialized();
       TMDBRatingMapper.ensureInitialized();
     }
     return _instance!;
@@ -29,9 +30,9 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
   static List<SeriesGenre> _$genres(SeriesShortData v) => v.genres;
   static const Field<SeriesShortData, List<SeriesGenre>> _f$genres =
       Field('genres', _$genres);
-  static DateTime? _$firstAirDate(SeriesShortData v) => v.firstAirDate;
-  static const Field<SeriesShortData, DateTime> _f$firstAirDate =
-      Field('firstAirDate', _$firstAirDate);
+  static DateTime? _$premiereDate(SeriesShortData v) => v.premiereDate;
+  static const Field<SeriesShortData, DateTime> _f$premiereDate =
+      Field('premiereDate', _$premiereDate);
   static String? _$title(SeriesShortData v) => v.title;
   static const Field<SeriesShortData, String> _f$title =
       Field('title', _$title);
@@ -53,7 +54,7 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
     #id: _f$id,
     #posterUrl: _f$posterUrl,
     #genres: _f$genres,
-    #firstAirDate: _f$firstAirDate,
+    #premiereDate: _f$premiereDate,
     #title: _f$title,
     #tmdbRating: _f$tmdbRating,
     #userRating: _f$userRating,
@@ -66,7 +67,7 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
         id: data.dec(_f$id),
         posterUrl: data.dec(_f$posterUrl),
         genres: data.dec(_f$genres),
-        firstAirDate: data.dec(_f$firstAirDate),
+        premiereDate: data.dec(_f$premiereDate),
         title: data.dec(_f$title),
         tmdbRating: data.dec(_f$tmdbRating),
         userRating: data.dec(_f$userRating),
@@ -108,15 +109,17 @@ extension SeriesShortDataValueCopy<$R, $Out>
 }
 
 abstract class SeriesShortDataCopyWith<$R, $In extends SeriesShortData, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+    implements MediaShortDataCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, SeriesGenre, ObjectCopyWith<$R, SeriesGenre, SeriesGenre>>
       get genres;
+  @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
+  @override
   $R call(
       {int? id,
       String? posterUrl,
       List<SeriesGenre>? genres,
-      DateTime? firstAirDate,
+      DateTime? premiereDate,
       String? title,
       TMDBRating? tmdbRating,
       int? userRating,
@@ -146,7 +149,7 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
           {int? id,
           String? posterUrl,
           List<SeriesGenre>? genres,
-          Object? firstAirDate = $none,
+          Object? premiereDate = $none,
           Object? title = $none,
           TMDBRating? tmdbRating,
           int? userRating,
@@ -156,7 +159,7 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
         if (id != null) #id: id,
         if (posterUrl != null) #posterUrl: posterUrl,
         if (genres != null) #genres: genres,
-        if (firstAirDate != $none) #firstAirDate: firstAirDate,
+        if (premiereDate != $none) #premiereDate: premiereDate,
         if (title != $none) #title: title,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
         if (userRating != null) #userRating: userRating,
@@ -168,7 +171,7 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       posterUrl: data.get(#posterUrl, or: $value.posterUrl),
       genres: data.get(#genres, or: $value.genres),
-      firstAirDate: data.get(#firstAirDate, or: $value.firstAirDate),
+      premiereDate: data.get(#premiereDate, or: $value.premiereDate),
       title: data.get(#title, or: $value.title),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
       userRating: data.get(#userRating, or: $value.userRating),

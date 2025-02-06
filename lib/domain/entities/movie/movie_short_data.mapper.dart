@@ -13,6 +13,7 @@ class MovieShortDataMapper extends ClassMapperBase<MovieShortData> {
   static MovieShortDataMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MovieShortDataMapper._());
+      MediaShortDataMapper.ensureInitialized();
       TMDBRatingMapper.ensureInitialized();
     }
     return _instance!;
@@ -29,10 +30,10 @@ class MovieShortDataMapper extends ClassMapperBase<MovieShortData> {
   static List<MovieGenre> _$genres(MovieShortData v) => v.genres;
   static const Field<MovieShortData, List<MovieGenre>> _f$genres =
       Field('genres', _$genres);
-  static DateTime _$releaseDate(MovieShortData v) => v.releaseDate;
-  static const Field<MovieShortData, DateTime> _f$releaseDate =
-      Field('releaseDate', _$releaseDate);
-  static String _$title(MovieShortData v) => v.title;
+  static DateTime? _$premiereDate(MovieShortData v) => v.premiereDate;
+  static const Field<MovieShortData, DateTime> _f$premiereDate =
+      Field('premiereDate', _$premiereDate);
+  static String? _$title(MovieShortData v) => v.title;
   static const Field<MovieShortData, String> _f$title = Field('title', _$title);
   static TMDBRating _$tmdbRating(MovieShortData v) => v.tmdbRating;
   static const Field<MovieShortData, TMDBRating> _f$tmdbRating =
@@ -52,7 +53,7 @@ class MovieShortDataMapper extends ClassMapperBase<MovieShortData> {
     #id: _f$id,
     #posterUrl: _f$posterUrl,
     #genres: _f$genres,
-    #releaseDate: _f$releaseDate,
+    #premiereDate: _f$premiereDate,
     #title: _f$title,
     #tmdbRating: _f$tmdbRating,
     #userRating: _f$userRating,
@@ -65,7 +66,7 @@ class MovieShortDataMapper extends ClassMapperBase<MovieShortData> {
         id: data.dec(_f$id),
         posterUrl: data.dec(_f$posterUrl),
         genres: data.dec(_f$genres),
-        releaseDate: data.dec(_f$releaseDate),
+        premiereDate: data.dec(_f$premiereDate),
         title: data.dec(_f$title),
         tmdbRating: data.dec(_f$tmdbRating),
         userRating: data.dec(_f$userRating),
@@ -107,15 +108,17 @@ extension MovieShortDataValueCopy<$R, $Out>
 }
 
 abstract class MovieShortDataCopyWith<$R, $In extends MovieShortData, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+    implements MediaShortDataCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, MovieGenre, ObjectCopyWith<$R, MovieGenre, MovieGenre>>
       get genres;
+  @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
+  @override
   $R call(
       {int? id,
       String? posterUrl,
       List<MovieGenre>? genres,
-      DateTime? releaseDate,
+      DateTime? premiereDate,
       String? title,
       TMDBRating? tmdbRating,
       int? userRating,
@@ -145,8 +148,8 @@ class _MovieShortDataCopyWithImpl<$R, $Out>
           {int? id,
           String? posterUrl,
           List<MovieGenre>? genres,
-          DateTime? releaseDate,
-          String? title,
+          Object? premiereDate = $none,
+          Object? title = $none,
           TMDBRating? tmdbRating,
           int? userRating,
           bool? isInWatchlist,
@@ -155,8 +158,8 @@ class _MovieShortDataCopyWithImpl<$R, $Out>
         if (id != null) #id: id,
         if (posterUrl != null) #posterUrl: posterUrl,
         if (genres != null) #genres: genres,
-        if (releaseDate != null) #releaseDate: releaseDate,
-        if (title != null) #title: title,
+        if (premiereDate != $none) #premiereDate: premiereDate,
+        if (title != $none) #title: title,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
         if (userRating != null) #userRating: userRating,
         if (isInWatchlist != null) #isInWatchlist: isInWatchlist,
@@ -167,7 +170,7 @@ class _MovieShortDataCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       posterUrl: data.get(#posterUrl, or: $value.posterUrl),
       genres: data.get(#genres, or: $value.genres),
-      releaseDate: data.get(#releaseDate, or: $value.releaseDate),
+      premiereDate: data.get(#premiereDate, or: $value.premiereDate),
       title: data.get(#title, or: $value.title),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
       userRating: data.get(#userRating, or: $value.userRating),
