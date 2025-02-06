@@ -36,7 +36,7 @@ final class HomeSeriesState extends BaseState<HomeSeriesStatus>
     HomeSeriesStatus? status,
     bool? isInitialized,
     bool isNextPageLoading = false,
-    ListWithPaginationData<SeriesShortData>? data,
+    PaginatedSeries? data,
   }) {
     final updatedData = suggestedSeries.copyWithHandledData(
       isInitialized: isInitialized,
@@ -54,7 +54,7 @@ final class HomeSeriesState extends BaseState<HomeSeriesStatus>
     HomeSeriesStatus? status,
     bool? isInitialized,
     bool isNextPageLoading = false,
-    ListWithPaginationData<SeriesShortData>? data,
+    PaginatedSeries? data,
   }) {
     final updatedData = tabSeries.copyWithHandledData(
       isInitialized: isInitialized,

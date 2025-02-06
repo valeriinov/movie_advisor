@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../domain/entities/movie/movie_short_data.dart';
 import '../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../domain/entities/result.dart';
-import '../../../domain/entities/series/series_short_data.dart';
 import '../../../domain/repositories/home_repository.dart';
 import '../../mappers/app_home_mapper.dart';
 import 'home_remote_data_source.dart';
@@ -18,8 +16,7 @@ class ImplHomeRepository implements HomeRepository {
         _mapper = mapper;
 
   @override
-  Future<Result<ListWithPaginationData<MovieShortData>>>
-      getSuggestedMovies() async {
+  Future<Result<PaginatedMovies>> getSuggestedMovies() async {
     try {
       final result = await _dataSource.getSuggestedMovies();
 
@@ -30,7 +27,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<MovieShortData>>> getNowPlayingMovies(
+  Future<Result<PaginatedMovies>> getNowPlayingMovies(
       {required int page}) async {
     try {
       final result = await _dataSource.getNowPlayingMovies(page: page);
@@ -42,8 +39,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<MovieShortData>>> getUpcomingMovies(
-      {required int page}) async {
+  Future<Result<PaginatedMovies>> getUpcomingMovies({required int page}) async {
     try {
       final result = await _dataSource.getUpcomingMovies(page: page);
 
@@ -54,8 +50,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<MovieShortData>>> getTopRatedMovies(
-      {required int page}) async {
+  Future<Result<PaginatedMovies>> getTopRatedMovies({required int page}) async {
     try {
       final result = await _dataSource.getTopRatedMovies(page: page);
 
@@ -66,8 +61,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<MovieShortData>>> getPopularMovies(
-      {required int page}) async {
+  Future<Result<PaginatedMovies>> getPopularMovies({required int page}) async {
     try {
       final result = await _dataSource.getPopularMovies(page: page);
 
@@ -78,8 +72,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<SeriesShortData>>>
-      getSuggestedSeries() async {
+  Future<Result<PaginatedSeries>> getSuggestedSeries() async {
     try {
       final result = await _dataSource.getSuggestedSeries();
 
@@ -90,7 +83,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<SeriesShortData>>> getAiringTodaySeries(
+  Future<Result<PaginatedSeries>> getNowPlayingSeries(
       {required int page}) async {
     try {
       final result = await _dataSource.getAiringTodaySeries(page: page);
@@ -102,8 +95,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<SeriesShortData>>> getOnTheAirSeries(
-      {required int page}) async {
+  Future<Result<PaginatedSeries>> getUpcomingSeries({required int page}) async {
     try {
       final result = await _dataSource.getOnTheAirSeries(page: page);
 
@@ -114,8 +106,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<SeriesShortData>>> getTopRatedSeries(
-      {required int page}) async {
+  Future<Result<PaginatedSeries>> getTopRatedSeries({required int page}) async {
     try {
       final result = await _dataSource.getTopRatedSeries(page: page);
 
@@ -126,8 +117,7 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<ListWithPaginationData<SeriesShortData>>> getPopularSeries(
-      {required int page}) async {
+  Future<Result<PaginatedSeries>> getPopularSeries({required int page}) async {
     try {
       final result = await _dataSource.getPopularSeries(page: page);
 

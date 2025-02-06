@@ -13,11 +13,11 @@ class HomeSeriesUseCase {
   }
 
   Future<Result<PaginatedSeries>> getNowPlayingSeries({int page = 1}) {
-    return _repository.getAiringTodaySeries(page: page);
+    return _repository.getNowPlayingSeries(page: page);
   }
 
   Future<Result<PaginatedSeries>> getUpcomingSeries({int page = 1}) {
-    return _repository.getOnTheAirSeries(page: page);
+    return _repository.getUpcomingSeries(page: page);
   }
 
   Future<Result<PaginatedSeries>> getTopRatedSeries({int page = 1}) {

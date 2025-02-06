@@ -33,21 +33,9 @@ sealed class HomeStatus extends BaseStatus {
 
 /// {@category StateManagement}
 ///
-/// Represents the initial or uninitialized status of a [HomeState].
-/// Used before it has completed its setup.
+/// Represents the neutral or idle status of a [HomeState].
 @mappableEntity
 final class HomeBaseStatus extends HomeStatus with HomeBaseStatusMappable {
   const HomeBaseStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
-}
-
-/// {@category StateManagement}
-///
-/// Represents the neutral or idle status of a [HomeState] after it has completed its initial setup.
-/// Indicates that it is ready for interaction with [isInitialized] set to `true`.
-@mappableEntity
-final class HomeBaseInitStatus extends HomeStatus
-    with HomeBaseInitStatusMappable {
-  const HomeBaseInitStatus(
       {super.isLoading, super.errorMessage, super.isInitialized = true});
 }
