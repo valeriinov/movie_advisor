@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../resources/app_date_formats.dart';
@@ -48,14 +49,19 @@ class InputField extends StatelessWidget {
   }) : this._(
             key: key,
             child: TextFieldBuilderExtended(builder: (props) {
-              final context = props.context;
-              final styles = context.baseInputsStyles;
+              final styles = props.context.baseInputsStyles;
 
               return Hero(
                 tag: 'search',
+                flightShuttleBuilder: (_, animation, __, ___, toHeroCtx) =>
+                    _flightShuttleWithAutofocusHandling(
+                  animation,
+                  toHeroCtx.widget,
+                  props: props,
+                  autoFocus: autoFocus,
+                ),
                 child: TextFormField(
                   enabled: enabled,
-                  autofocus: autoFocus,
                   style: styles.txtFlsPrimInpTextStyle,
                   onChanged: onSearch,
                   focusNode: props.focusNode,
@@ -71,6 +77,45 @@ class InputField extends StatelessWidget {
                 ),
               );
             }));
+
+  /// Handles the flight transition for a Hero animation and requests focus
+  /// on the text field once the animation completes if `autoFocus` is enabled.
+  static Widget _flightShuttleWithAutofocusHandling(
+    Animation<double> animation,
+    Widget child, {
+    required BuilderProps<FormFieldState> props,
+    required bool autoFocus,
+  }) {
+    return HookBuilder(
+      builder: (_) {
+        if (!autoFocus) return child;
+
+        useEffect(() {
+          void listener(AnimationStatus s) =>
+              _animationStatusListener(s, props);
+
+          animation.addStatusListener(listener);
+
+          return () => animation.removeStatusListener(listener);
+        }, const []);
+
+        return child;
+      },
+    );
+  }
+
+  /// Requests focus on the text field after the Hero animation completes.
+  static void _animationStatusListener(
+      AnimationStatus status, BuilderProps<FormFieldState> props) {
+    if (status != AnimationStatus.completed) return;
+
+    // Defer focus request until the next frame to avoid UI inconsistencies.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (props.context.mounted) {
+        props.focusNode.requestFocus();
+      }
+    });
+  }
 
   static Widget? _searchSuffixIcon(
       BuilderProps<FormFieldState> props, VoidCallback? onClear) {
