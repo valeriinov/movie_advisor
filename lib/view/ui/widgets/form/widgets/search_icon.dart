@@ -8,6 +8,10 @@ class SearchIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppSvgAsset(path: AppImages.searchIcon);
+    return Hero(
+        tag: 'searchIcon',
+        child: AppSvgAsset(
+          path: AppImages.searchIcon,
+        ));
   }
 }

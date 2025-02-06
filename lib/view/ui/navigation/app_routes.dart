@@ -9,4 +9,7 @@ abstract final class AppRoutes {
   static const String watchList = '/watch-list';
   static const String watched = '/watched';
   static const String more = '/more';
+
+  // Home/Search
+  static const String search = 'search';
 }
