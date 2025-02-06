@@ -18,7 +18,7 @@ enum AppNavMenu {
   ),
   more(
     label: LocaleKeys.moreNavTab,
-    iconPath: AppImages.moreIcon,
+    iconPath: AppImages.moreHorIcon,
   );
 
   final String _label;

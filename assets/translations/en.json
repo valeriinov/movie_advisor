@@ -37,5 +37,6 @@
   "genreSerSoap": "Soap",
   "genreSerTalk": "Talk",
   "genreSerWarPolitics": "War & Politics",
-  "genreSerWestern": "Western"
+  "genreSerWestern": "Western",
+  "searchHint": "Search"
 }

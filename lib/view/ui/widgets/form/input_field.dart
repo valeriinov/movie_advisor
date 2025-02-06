@@ -1,13 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../resources/app_date_formats.dart';
+import '../../resources/app_images.dart';
 import '../../resources/base_theme/inputs/base_inputs_styles_ext.dart';
+import '../../resources/locale_keys.g.dart';
+import '../app_svg_asset.dart';
 import 'utils/birth_date_validator.dart';
 import 'utils/clear_button_builder.dart';
 import 'widgets/phone_field.dart';
-import 'widgets/search_icon.dart';
 
 /// {@category Widgets}
 ///
@@ -38,6 +41,8 @@ class InputField extends StatelessWidget {
   InputField.search({
     Key? key,
     String? hintText,
+    bool? enabled,
+    bool autoFocus = false,
     Function(String)? onSearch,
     VoidCallback? onClear,
   }) : this._(
@@ -46,18 +51,23 @@ class InputField extends StatelessWidget {
               final context = props.context;
               final styles = context.baseInputsStyles;
 
-              return TextFormField(
-                style: styles.txtFlsPrimInpTextStyle,
-                onChanged: onSearch,
-                focusNode: props.focusNode,
-                controller: props.controller,
-                decoration: InputDecoration(
-                  hintText: hintText,
-                  suffixIconConstraints: const BoxConstraints(
-                    minWidth: 16,
-                    minHeight: 16,
+              return Hero(
+                tag: 'search',
+                child: TextFormField(
+                  enabled: enabled,
+                  autofocus: autoFocus,
+                  style: styles.txtFlsPrimInpTextStyle,
+                  onChanged: onSearch,
+                  focusNode: props.focusNode,
+                  controller: props.controller,
+                  decoration: InputDecoration(
+                    hintText: hintText ?? LocaleKeys.searchHint.tr(),
+                    suffixIconConstraints: const BoxConstraints(
+                      minWidth: 16,
+                      minHeight: 16,
+                    ),
+                    suffixIcon: _searchSuffixIcon(props, onClear),
                   ),
-                  suffixIcon: _searchSuffixIcon(props, onClear),
                 ),
               );
             }));
@@ -74,7 +84,7 @@ class InputField extends StatelessWidget {
     return showSearchIcon
         ? Padding(
             padding: EdgeInsets.only(right: rightPadding),
-            child: SearchIcon(),
+            child: AppSvgAsset(path: AppImages.searchIcon),
           )
         : ClearButtonBuilder.buildClearButton(
             props.controller,

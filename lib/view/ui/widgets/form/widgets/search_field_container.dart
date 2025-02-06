@@ -7,9 +7,15 @@ import '../input_field.dart';
 
 class SearchFieldContainer extends HookWidget {
   final String? hintText;
+  final bool autoFocus;
   final Function(String)? onSearch;
 
-  const SearchFieldContainer({super.key, this.onSearch, this.hintText});
+  const SearchFieldContainer({
+    super.key,
+    this.hintText,
+    this.autoFocus = false,
+    this.onSearch,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +28,7 @@ class SearchFieldContainer extends HookWidget {
 
     return InputField.search(
       hintText: hintText,
+      autoFocus: autoFocus,
       onSearch: (value) => debounce.run(() => onSearch?.call(value)),
       onClear: () => onSearch?.call(''),
     );

@@ -42,5 +42,6 @@ abstract class  LocaleKeys {
   static const genreSerTalk = 'genreSerTalk';
   static const genreSerWarPolitics = 'genreSerWarPolitics';
   static const genreSerWestern = 'genreSerWestern';
+  static const searchHint = 'searchHint';
 
 }
