@@ -72,6 +72,7 @@ class AppTheme {
 
   AppBarTheme _createAppBarTheme(BaseColors colors, BaseNavBarsStyles styles) {
     return AppBarTheme(
+      scrolledUnderElevation: 0,
       color: colors.appBarPrimBg,
       foregroundColor: colors.appBarPrimFg,
       iconTheme: styles.appBarPrimIconTheme,
