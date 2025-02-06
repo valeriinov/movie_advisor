@@ -1,39 +1,44 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../../../../domain/entities/mappable_entity.dart';
+import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
 
-part 'series_load_info.mapper.dart';
+part 'media_load_info.mapper.dart';
+
+typedef MovieLoadInfo = MediaLoadInfo<MovieShortData>;
+
+typedef SeriesLoadInfo = MediaLoadInfo<SeriesShortData>;
 
 @mappableEntity
-class SeriesLoadInfo with SeriesLoadInfoMappable {
+class MediaLoadInfo<T> with MediaLoadInfoMappable<T> {
   final bool isInitialized;
   final bool isNextPageLoading;
-  final ListWithPaginationData<SeriesShortData> seriesData;
+  final ListWithPaginationData<T> mediaData;
 
-  const SeriesLoadInfo({
+  MediaLoadInfo({
     this.isInitialized = false,
     this.isNextPageLoading = false,
-    this.seriesData = const ListWithPaginationData<SeriesShortData>(items: []),
-  });
+    ListWithPaginationData<T>? mediaData,
+  }) : mediaData = mediaData ?? ListWithPaginationData<T>(items: []);
 
-  SeriesLoadInfo copyWithHandledData({
+  MediaLoadInfo<T> copyWithHandledData({
     bool? isInitialized,
     bool isNextPageLoading = false,
-    ListWithPaginationData<SeriesShortData>? data,
+    ListWithPaginationData<T>? data,
   }) {
     final isInitializedValue = isInitialized ?? this.isInitialized;
 
     final preparedData = switch (data) {
-      null => seriesData,
-      _ => data.copyWithUpdateItems(seriesData.items)
+      null => mediaData,
+      _ => data.copyWithUpdateItems(mediaData.items)
     };
 
     return copyWith(
       isInitialized: isInitializedValue,
       isNextPageLoading: isNextPageLoading,
-      seriesData: preparedData,
+      mediaData: preparedData,
     );
   }
 }

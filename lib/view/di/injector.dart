@@ -20,7 +20,8 @@ import '../../data/repositories/settings_provider.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
 import '../../domain/repositories/home_repository.dart';
-import '../../domain/usecases/home_use_case.dart';
+import '../../domain/usecases/home_movies_use_case.dart';
+import '../../domain/usecases/home_series_use_case.dart';
 import '../ui/base/view_model/base_status_handler.dart';
 import '../ui/impl_base_status_handler.dart';
 import '../ui/navigation/app_router.dart';
@@ -96,9 +97,14 @@ final homeRepositoryPr = Provider<HomeRepository>((ref) => ImplHomeRepository(
       dataSource: ref.read(homeRemoteDataSourcePr),
       mapper: ref.read(homeMapperPr),
     ));
-final homeUseCasePr = Provider<HomeUseCase>((ref) => HomeUseCase(
-      repository: ref.read(homeRepositoryPr),
-    ));
+final homeMoviesUseCasePr =
+    Provider<HomeMoviesUseCase>((ref) => HomeMoviesUseCase(
+          repository: ref.read(homeRepositoryPr),
+        ));
+final homeSeriesUseCasePr =
+    Provider<HomeSeriesUseCase>((ref) => HomeSeriesUseCase(
+          repository: ref.read(homeRepositoryPr),
+        ));
 
 /// {@category Utils}
 ///

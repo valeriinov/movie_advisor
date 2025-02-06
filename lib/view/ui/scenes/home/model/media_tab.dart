@@ -1,7 +1,6 @@
-enum MovieTab {
+enum MediaTab {
   nowPlaying,
   upcoming,
   topRated,
-  popular,
-  none;
+  popular;
 }
