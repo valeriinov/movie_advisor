@@ -53,6 +53,7 @@ abstract final class BaseColorsFactory {
         txtFldPrimBorderFocus: _BaseColors.txtFldPrimBorderFocus,
         txtFldPrimBorderError: _BaseColors.txtFldPrimBorderError,
         txtFldPrimError: _BaseColors.txtFldPrimError,
+        txtFldPrimSuffixIcon: _BaseColors.txtFldPrimSuffixIcon,
         kbdActionBar: _BaseColors.kbdActionBar,
         dlgPrimBg: _BaseColors.dlgPrimBg,
         dlgPrimTitle: _BaseColors.dlgPrimTitle,
@@ -262,6 +263,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color txtFldPrimError;
 
+  /// TextField primary suffix icon color.
+  @override
+  final Color txtFldPrimSuffixIcon;
+
   // KEYBOARD ACTIONS
 
   /// Keyboard action bar color.
@@ -370,6 +375,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.txtFldPrimBorderFocus,
     required this.txtFldPrimBorderError,
     required this.txtFldPrimError,
+    required this.txtFldPrimSuffixIcon,
     required this.kbdActionBar,
     required this.dlgPrimBg,
     required this.dlgPrimTitle,

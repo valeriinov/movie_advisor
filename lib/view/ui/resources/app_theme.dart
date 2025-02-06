@@ -53,13 +53,14 @@ class AppTheme {
       cardTheme: _createCardTheme(colors, componentsStyles),
       iconTheme: _createIconTheme(colors),
       primaryIconTheme: _createIconTheme(colors),
-      inputDecorationTheme: _createInputDecorationTheme(inputsStyles),
+      inputDecorationTheme: _createInputDecorationTheme(colors, inputsStyles),
       dialogTheme: _createDialogTheme(colors, dialogsStyles),
       progressIndicatorTheme: _createProgressIndicatorTheme(colors),
       extensions: [
         colors,
         textStyles,
         buttonsStyles,
+        inputsStyles,
         navBarsStyles,
         dialogsStyles,
         componentsStyles,
@@ -139,8 +140,13 @@ class AppTheme {
     return IconThemeData(color: colors.btnIconPrim);
   }
 
-  InputDecorationTheme _createInputDecorationTheme(BaseInputsStyles styles) {
+  InputDecorationTheme _createInputDecorationTheme(
+      BaseColors colors, BaseInputsStyles styles) {
     return InputDecorationTheme(
+      filled: true,
+      suffixIconColor: colors.txtFldPrimSuffixIcon,
+      fillColor: colors.txtFldPrimFill,
+      contentPadding: styles.txtFldPrimContPadding,
       hintStyle: styles.txtFldPrimLabelTextStyle,
       errorStyle: styles.txtFldPrimErrorTextStyle,
       labelStyle: styles.txtFldPrimLabelTextStyle,
@@ -148,6 +154,7 @@ class AppTheme {
       errorBorder: styles.txtFldPrimErrorBorder,
       focusedErrorBorder: styles.txtFldPrimErrorBorder,
       enabledBorder: styles.txtFldPrimInpBorder,
+      disabledBorder: styles.txtFldPrimInpBorder,
     );
   }
 

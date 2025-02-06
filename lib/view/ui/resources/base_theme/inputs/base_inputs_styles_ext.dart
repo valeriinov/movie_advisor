@@ -3,6 +3,7 @@ import 'package:flutter_utils/flutter_utils.dart';
 
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
+import '../../app_fonts.dart';
 import '../colors/base_colors_ext.dart';
 
 part 'base_inputs_styles.dart';
@@ -18,6 +19,7 @@ abstract final class BaseInputsStylesFactory {
           colors.txtFldPrimBorderError),
       txtFldPrimLabelTextStyle:
           _BaseInputsStyles.txtFldPrimLabelTextStyle(colors.txtFldPrimLabel),
+      txtFldPrimContPadding: _BaseInputsStyles.txtFldPrimContPadding,
       txtFldPrimInpBorder:
           _BaseInputsStyles.txtFldPrimInpBorder(colors.txtFldPrimBorder),
       txtFldPrimFocusBorder:
@@ -43,6 +45,10 @@ class BaseInputsStyles extends ThemeExtension<BaseInputsStyles>
   @override
   final TextStyle txtFldPrimLabelTextStyle;
 
+  /// Primary content padding
+  @override
+  final EdgeInsets txtFldPrimContPadding;
+
   // Primary InputBorder
   @override
   final InputBorder txtFldPrimInpBorder;
@@ -59,6 +65,7 @@ class BaseInputsStyles extends ThemeExtension<BaseInputsStyles>
     required this.txtFlsPrimInpTextStyle,
     required this.txtFldPrimErrorTextStyle,
     required this.txtFldPrimLabelTextStyle,
+    required this.txtFldPrimContPadding,
     required this.txtFldPrimInpBorder,
     required this.txtFldPrimFocusBorder,
     required this.txtFldPrimErrorBorder,

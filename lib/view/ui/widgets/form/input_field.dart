@@ -3,9 +3,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../resources/app_date_formats.dart';
+import '../../resources/base_theme/inputs/base_inputs_styles_ext.dart';
 import 'utils/birth_date_validator.dart';
 import 'utils/clear_button_builder.dart';
 import 'widgets/phone_field.dart';
+import 'widgets/search_icon.dart';
 
 /// {@category Widgets}
 ///
@@ -32,6 +34,55 @@ class InputField extends StatelessWidget {
   final Widget child;
 
   const InputField._({super.key, required this.child});
+
+  InputField.search({
+    Key? key,
+    String? hintText,
+    Function(String)? onSearch,
+    VoidCallback? onClear,
+  }) : this._(
+            key: key,
+            child: TextFieldBuilderExtended(builder: (props) {
+              final context = props.context;
+              final styles = context.baseInputsStyles;
+
+              return TextFormField(
+                style: styles.txtFlsPrimInpTextStyle,
+                onChanged: onSearch,
+                focusNode: props.focusNode,
+                controller: props.controller,
+                decoration: InputDecoration(
+                  hintText: hintText,
+                  suffixIconConstraints: const BoxConstraints(
+                    minWidth: 16,
+                    minHeight: 16,
+                  ),
+                  suffixIcon: _searchSuffixIcon(props, onClear),
+                ),
+              );
+            }));
+
+  static Widget? _searchSuffixIcon(
+      BuilderProps<FormFieldState> props, VoidCallback? onClear) {
+    final styles = props.context.baseInputsStyles;
+    final rightPadding = styles.txtFldPrimContPadding.right;
+
+    final value = props.controller.text;
+    final isFocused = props.focusNode.hasFocus;
+    final showSearchIcon = value.isEmpty || !isFocused;
+
+    return showSearchIcon
+        ? Padding(
+            padding: EdgeInsets.only(right: rightPadding),
+            child: SearchIcon(),
+          )
+        : ClearButtonBuilder.buildClearButton(
+            props.controller,
+            '',
+            props.focusNode.hasFocus,
+            onClear: onClear,
+          );
+  }
 
   InputField.name(
       {Key? key,

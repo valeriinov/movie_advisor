@@ -54,6 +54,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get txtFldPrimBorderFocus;
   Color get txtFldPrimBorderError;
   Color get txtFldPrimError;
+  Color get txtFldPrimSuffixIcon;
   Color get kbdActionBar;
   Color get dlgPrimBg;
   Color get dlgPrimTitle;
@@ -115,6 +116,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? txtFldPrimBorderFocus,
     Color? txtFldPrimBorderError,
     Color? txtFldPrimError,
+    Color? txtFldPrimSuffixIcon,
     Color? kbdActionBar,
     Color? dlgPrimBg,
     Color? dlgPrimTitle,
@@ -177,6 +179,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       txtFldPrimBorderError:
           txtFldPrimBorderError ?? this.txtFldPrimBorderError,
       txtFldPrimError: txtFldPrimError ?? this.txtFldPrimError,
+      txtFldPrimSuffixIcon: txtFldPrimSuffixIcon ?? this.txtFldPrimSuffixIcon,
       kbdActionBar: kbdActionBar ?? this.kbdActionBar,
       dlgPrimBg: dlgPrimBg ?? this.dlgPrimBg,
       dlgPrimTitle: dlgPrimTitle ?? this.dlgPrimTitle,
@@ -263,6 +266,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       txtFldPrimBorderError:
           Color.lerp(txtFldPrimBorderError, other.txtFldPrimBorderError, t)!,
       txtFldPrimError: Color.lerp(txtFldPrimError, other.txtFldPrimError, t)!,
+      txtFldPrimSuffixIcon:
+          Color.lerp(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon, t)!,
       kbdActionBar: Color.lerp(kbdActionBar, other.kbdActionBar, t)!,
       dlgPrimBg: Color.lerp(dlgPrimBg, other.dlgPrimBg, t)!,
       dlgPrimTitle: Color.lerp(dlgPrimTitle, other.dlgPrimTitle, t)!,
@@ -375,10 +380,11 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality()
                 .equals(txtFldPrimError, other.txtFldPrimError) &&
             const DeepCollectionEquality()
+                .equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
+            const DeepCollectionEquality()
                 .equals(kbdActionBar, other.kbdActionBar) &&
             const DeepCollectionEquality().equals(dlgPrimBg, other.dlgPrimBg) &&
-            const DeepCollectionEquality()
-                .equals(dlgPrimTitle, other.dlgPrimTitle) &&
+            const DeepCollectionEquality().equals(dlgPrimTitle, other.dlgPrimTitle) &&
             const DeepCollectionEquality().equals(dlgPrimCont, other.dlgPrimCont) &&
             const DeepCollectionEquality().equals(dlgPrimBtnFg, other.dlgPrimBtnFg) &&
             const DeepCollectionEquality().equals(cardPrimBg, other.cardPrimBg) &&
@@ -440,6 +446,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(txtFldPrimBorderFocus),
       const DeepCollectionEquality().hash(txtFldPrimBorderError),
       const DeepCollectionEquality().hash(txtFldPrimError),
+      const DeepCollectionEquality().hash(txtFldPrimSuffixIcon),
       const DeepCollectionEquality().hash(kbdActionBar),
       const DeepCollectionEquality().hash(dlgPrimBg),
       const DeepCollectionEquality().hash(dlgPrimTitle),

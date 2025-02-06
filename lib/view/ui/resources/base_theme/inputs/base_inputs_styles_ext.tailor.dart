@@ -12,6 +12,7 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
   TextStyle get txtFlsPrimInpTextStyle;
   TextStyle get txtFldPrimErrorTextStyle;
   TextStyle get txtFldPrimLabelTextStyle;
+  EdgeInsets get txtFldPrimContPadding;
   InputBorder get txtFldPrimInpBorder;
   InputBorder get txtFldPrimFocusBorder;
   InputBorder get txtFldPrimErrorBorder;
@@ -21,6 +22,7 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
     TextStyle? txtFlsPrimInpTextStyle,
     TextStyle? txtFldPrimErrorTextStyle,
     TextStyle? txtFldPrimLabelTextStyle,
+    EdgeInsets? txtFldPrimContPadding,
     InputBorder? txtFldPrimInpBorder,
     InputBorder? txtFldPrimFocusBorder,
     InputBorder? txtFldPrimErrorBorder,
@@ -32,6 +34,8 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
           txtFldPrimErrorTextStyle ?? this.txtFldPrimErrorTextStyle,
       txtFldPrimLabelTextStyle:
           txtFldPrimLabelTextStyle ?? this.txtFldPrimLabelTextStyle,
+      txtFldPrimContPadding:
+          txtFldPrimContPadding ?? this.txtFldPrimContPadding,
       txtFldPrimInpBorder: txtFldPrimInpBorder ?? this.txtFldPrimInpBorder,
       txtFldPrimFocusBorder:
           txtFldPrimFocusBorder ?? this.txtFldPrimFocusBorder,
@@ -51,6 +55,8 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
           txtFldPrimErrorTextStyle, other.txtFldPrimErrorTextStyle, t)!,
       txtFldPrimLabelTextStyle: TextStyle.lerp(
           txtFldPrimLabelTextStyle, other.txtFldPrimLabelTextStyle, t)!,
+      txtFldPrimContPadding:
+          t < 0.5 ? txtFldPrimContPadding : other.txtFldPrimContPadding,
       txtFldPrimInpBorder:
           t < 0.5 ? txtFldPrimInpBorder : other.txtFldPrimInpBorder,
       txtFldPrimFocusBorder:
@@ -72,6 +78,8 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
             const DeepCollectionEquality().equals(
                 txtFldPrimLabelTextStyle, other.txtFldPrimLabelTextStyle) &&
             const DeepCollectionEquality()
+                .equals(txtFldPrimContPadding, other.txtFldPrimContPadding) &&
+            const DeepCollectionEquality()
                 .equals(txtFldPrimInpBorder, other.txtFldPrimInpBorder) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimFocusBorder, other.txtFldPrimFocusBorder) &&
@@ -86,6 +94,7 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
       const DeepCollectionEquality().hash(txtFlsPrimInpTextStyle),
       const DeepCollectionEquality().hash(txtFldPrimErrorTextStyle),
       const DeepCollectionEquality().hash(txtFldPrimLabelTextStyle),
+      const DeepCollectionEquality().hash(txtFldPrimContPadding),
       const DeepCollectionEquality().hash(txtFldPrimInpBorder),
       const DeepCollectionEquality().hash(txtFldPrimFocusBorder),
       const DeepCollectionEquality().hash(txtFldPrimErrorBorder),

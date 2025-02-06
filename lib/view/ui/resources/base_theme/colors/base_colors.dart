@@ -56,13 +56,14 @@ abstract final class _BaseColors {
   static const botNavBarDivider = Color(0xFF0296E5);
 
   // Inputs
-  static const txtFldPrimFill = Color(0xFFF5F5F5);
-  static const txtFldPrimInput = Color(0xFF212121);
-  static const txtFldPrimLabel = Color(0xFF757575);
-  static const txtFldPrimBorder = Color(0xFFBDBDBD);
-  static const txtFldPrimBorderFocus = Color(0xFF6200EA);
+  static const txtFldPrimFill = Color(0xFF3a3f47);
+  static const txtFldPrimInput = Color(0xFFFFFFFF);
+  static const txtFldPrimLabel = Color(0xFF67686D);
+  static const txtFldPrimBorder = Color(0xFF3a3f47);
+  static const txtFldPrimBorderFocus = Color(0xFF3a3f47);
   static const txtFldPrimBorderError = Color(0xFFB00020);
   static const txtFldPrimError = Color(0xFFB00020);
+  static const txtFldPrimSuffixIcon = Color(0xFF67686D);
 
   // Keyboard Actions
   static const kbdActionBar = Color(0xFFCCCED5);
