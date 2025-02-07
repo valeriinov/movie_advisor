@@ -9,8 +9,8 @@ part 'media_short_data.mapper.dart';
 abstract base class MediaShortData with MediaShortDataMappable {
   final int id;
   final String posterUrl;
-  final DateTime? premiereDate;
-  final String? title;
+  final DateTime premiereDate;
+  final String title;
   final TMDBRating tmdbRating;
   final int userRating;
   final bool isInWatchlist;

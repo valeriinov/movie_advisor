@@ -46,6 +46,9 @@ abstract final class _BaseColors {
   // Loading Indicator
   static const loadingIndicator = Color(0xFF0296E5);
 
+  static const skeletonFrom = Color(0xFF3a3f47);
+  static const skeletonTo = Color(0xFF2e333b);
+
   // Nav Bars
   static const appBarPrimFg = Color(0xFFFFFFFF);
   static const appBarPrimBg = Color(0xFF242A32);
@@ -85,4 +88,8 @@ abstract final class _BaseColors {
 
   static const avatarPrimBg = Color(0xFF6200EA);
   static const avatarPrimFg = Color(0xFFFFFFFF);
+
+  static const suggestNumFill = Color(0xFF242A32);
+  static const suggestNumStroke = Color(0xFF0296E5);
+  static const suggestNumBlur = Color(0xFF000000);
 }

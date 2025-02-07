@@ -15,6 +15,11 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get listTilePrimTitleTextStyle;
   TextStyle get listTilePrimSubtTextStyle;
   TextStyle get avatarPrimTextStyle;
+  double get posterBorderRadius;
+  double get backdrBorderRadius;
+  Size get posterSmallSize;
+  Size get posterMediumSize;
+  Size get posterLargeSize;
 
   @override
   BaseComponentsStyles copyWith({
@@ -23,6 +28,11 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? listTilePrimTitleTextStyle,
     TextStyle? listTilePrimSubtTextStyle,
     TextStyle? avatarPrimTextStyle,
+    double? posterBorderRadius,
+    double? backdrBorderRadius,
+    Size? posterSmallSize,
+    Size? posterMediumSize,
+    Size? posterLargeSize,
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
@@ -32,6 +42,11 @@ mixin _$BaseComponentsStylesTailorMixin
       listTilePrimSubtTextStyle:
           listTilePrimSubtTextStyle ?? this.listTilePrimSubtTextStyle,
       avatarPrimTextStyle: avatarPrimTextStyle ?? this.avatarPrimTextStyle,
+      posterBorderRadius: posterBorderRadius ?? this.posterBorderRadius,
+      backdrBorderRadius: backdrBorderRadius ?? this.backdrBorderRadius,
+      posterSmallSize: posterSmallSize ?? this.posterSmallSize,
+      posterMediumSize: posterMediumSize ?? this.posterMediumSize,
+      posterLargeSize: posterLargeSize ?? this.posterLargeSize,
     );
   }
 
@@ -49,6 +64,13 @@ mixin _$BaseComponentsStylesTailorMixin
           listTilePrimSubtTextStyle, other.listTilePrimSubtTextStyle, t)!,
       avatarPrimTextStyle:
           TextStyle.lerp(avatarPrimTextStyle, other.avatarPrimTextStyle, t)!,
+      posterBorderRadius:
+          t < 0.5 ? posterBorderRadius : other.posterBorderRadius,
+      backdrBorderRadius:
+          t < 0.5 ? backdrBorderRadius : other.backdrBorderRadius,
+      posterSmallSize: t < 0.5 ? posterSmallSize : other.posterSmallSize,
+      posterMediumSize: t < 0.5 ? posterMediumSize : other.posterMediumSize,
+      posterLargeSize: t < 0.5 ? posterLargeSize : other.posterLargeSize,
     );
   }
 
@@ -66,7 +88,17 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality().equals(
                 listTilePrimSubtTextStyle, other.listTilePrimSubtTextStyle) &&
             const DeepCollectionEquality()
-                .equals(avatarPrimTextStyle, other.avatarPrimTextStyle));
+                .equals(avatarPrimTextStyle, other.avatarPrimTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(posterBorderRadius, other.posterBorderRadius) &&
+            const DeepCollectionEquality()
+                .equals(backdrBorderRadius, other.backdrBorderRadius) &&
+            const DeepCollectionEquality()
+                .equals(posterSmallSize, other.posterSmallSize) &&
+            const DeepCollectionEquality()
+                .equals(posterMediumSize, other.posterMediumSize) &&
+            const DeepCollectionEquality()
+                .equals(posterLargeSize, other.posterLargeSize));
   }
 
   @override
@@ -78,6 +110,11 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(listTilePrimTitleTextStyle),
       const DeepCollectionEquality().hash(listTilePrimSubtTextStyle),
       const DeepCollectionEquality().hash(avatarPrimTextStyle),
+      const DeepCollectionEquality().hash(posterBorderRadius),
+      const DeepCollectionEquality().hash(backdrBorderRadius),
+      const DeepCollectionEquality().hash(posterSmallSize),
+      const DeepCollectionEquality().hash(posterMediumSize),
+      const DeepCollectionEquality().hash(posterLargeSize),
     );
   }
 }

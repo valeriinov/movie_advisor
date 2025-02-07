@@ -30,10 +30,10 @@ class MovieShortDataMapper extends ClassMapperBase<MovieShortData> {
   static List<MovieGenre> _$genres(MovieShortData v) => v.genres;
   static const Field<MovieShortData, List<MovieGenre>> _f$genres =
       Field('genres', _$genres);
-  static DateTime? _$premiereDate(MovieShortData v) => v.premiereDate;
+  static DateTime _$premiereDate(MovieShortData v) => v.premiereDate;
   static const Field<MovieShortData, DateTime> _f$premiereDate =
       Field('premiereDate', _$premiereDate);
-  static String? _$title(MovieShortData v) => v.title;
+  static String _$title(MovieShortData v) => v.title;
   static const Field<MovieShortData, String> _f$title = Field('title', _$title);
   static TMDBRating _$tmdbRating(MovieShortData v) => v.tmdbRating;
   static const Field<MovieShortData, TMDBRating> _f$tmdbRating =
@@ -148,8 +148,8 @@ class _MovieShortDataCopyWithImpl<$R, $Out>
           {int? id,
           String? posterUrl,
           List<MovieGenre>? genres,
-          Object? premiereDate = $none,
-          Object? title = $none,
+          DateTime? premiereDate,
+          String? title,
           TMDBRating? tmdbRating,
           int? userRating,
           bool? isInWatchlist,
@@ -158,8 +158,8 @@ class _MovieShortDataCopyWithImpl<$R, $Out>
         if (id != null) #id: id,
         if (posterUrl != null) #posterUrl: posterUrl,
         if (genres != null) #genres: genres,
-        if (premiereDate != $none) #premiereDate: premiereDate,
-        if (title != $none) #title: title,
+        if (premiereDate != null) #premiereDate: premiereDate,
+        if (title != null) #title: title,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
         if (userRating != null) #userRating: userRating,
         if (isInWatchlist != null) #isInWatchlist: isInWatchlist,

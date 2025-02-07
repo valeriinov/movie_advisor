@@ -40,6 +40,8 @@ abstract final class BaseColorsFactory {
         btnFABFgSplash: _BaseColors.btnFABFgSplash,
         btnIconPrim: _BaseColors.btnIconPrim,
         loadingIndicator: _BaseColors.loadingIndicator,
+        skeletonFrom: _BaseColors.skeletonFrom,
+        skeletonTo: _BaseColors.skeletonTo,
         appBarPrimFg: _BaseColors.appBarPrimFg,
         appBarPrimBg: _BaseColors.appBarPrimBg,
         botNavBarBg: _BaseColors.botNavBarBg,
@@ -67,6 +69,9 @@ abstract final class BaseColorsFactory {
         listTilePrimSubtitle: _BaseColors.listTilePrimSubtitle,
         avatarPrimBg: _BaseColors.avatarPrimBg,
         avatarPrimFg: _BaseColors.avatarPrimFg,
+        suggestNumFill: _BaseColors.suggestNumFill,
+        suggestNumStroke: _BaseColors.suggestNumStroke,
+        suggestNumBlur: _BaseColors.suggestNumBlur,
       );
 }
 
@@ -207,6 +212,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color loadingIndicator;
 
+  /// Skeleton effect start color.
+  @override
+  final Color skeletonFrom;
+
+  /// Skeleton effect end color.
+  @override
+  final Color skeletonTo;
+
   // NAV BARS
 
   /// AppBar foreground color.
@@ -325,6 +338,18 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color avatarPrimFg;
 
+  /// Suggestion number fill color.
+  @override
+  final Color suggestNumFill;
+
+  /// Suggestion number stroke color.
+  @override
+  final Color suggestNumStroke;
+
+  /// Suggestion number blur color.
+  @override
+  final Color suggestNumBlur;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -362,6 +387,8 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.btnFABFgSplash,
     required this.btnIconPrim,
     required this.loadingIndicator,
+    required this.skeletonFrom,
+    required this.skeletonTo,
     required this.appBarPrimFg,
     required this.appBarPrimBg,
     required this.botNavBarBg,
@@ -389,5 +416,8 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.listTilePrimSubtitle,
     required this.avatarPrimBg,
     required this.avatarPrimFg,
+    required this.suggestNumFill,
+    required this.suggestNumStroke,
+    required this.suggestNumBlur,
   });
 }

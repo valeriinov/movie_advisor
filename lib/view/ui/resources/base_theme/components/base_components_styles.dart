@@ -18,4 +18,12 @@ abstract final class _BaseComponentsStyles {
       TextStyle(color: color);
 
   static TextStyle avatarPrimTextStyle(Color color) => TextStyle(color: color);
+
+  // Poster and backdrop
+  static const double posterBorderRadius = 16.0;
+  static const double backdrBorderRadius = 16.0;
+
+  static const Size posterSmallSize = Size(95, 120);
+  static const Size posterMediumSize = Size(100, 146);
+  static const Size posterLargeSize = Size(145, 210);
 }

@@ -42,7 +42,7 @@ class LoadingDialogManager {
     _overlayEntry = OverlayEntry(
       builder: (context) => Stack(
         children: [
-          ModalBarrier(dismissible: false, color: Colors.black54),
+          ModalBarrier(dismissible: false, color: Colors.transparent),
           Center(child: dialog),
         ],
       ),

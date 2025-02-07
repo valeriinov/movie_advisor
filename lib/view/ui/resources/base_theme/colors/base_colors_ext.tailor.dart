@@ -41,6 +41,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get btnFABFgSplash;
   Color get btnIconPrim;
   Color get loadingIndicator;
+  Color get skeletonFrom;
+  Color get skeletonTo;
   Color get appBarPrimFg;
   Color get appBarPrimBg;
   Color get botNavBarBg;
@@ -68,6 +70,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get listTilePrimSubtitle;
   Color get avatarPrimBg;
   Color get avatarPrimFg;
+  Color get suggestNumFill;
+  Color get suggestNumStroke;
+  Color get suggestNumBlur;
 
   @override
   BaseColors copyWith({
@@ -103,6 +108,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? btnFABFgSplash,
     Color? btnIconPrim,
     Color? loadingIndicator,
+    Color? skeletonFrom,
+    Color? skeletonTo,
     Color? appBarPrimFg,
     Color? appBarPrimBg,
     Color? botNavBarBg,
@@ -130,6 +137,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? listTilePrimSubtitle,
     Color? avatarPrimBg,
     Color? avatarPrimFg,
+    Color? suggestNumFill,
+    Color? suggestNumStroke,
+    Color? suggestNumBlur,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -164,6 +174,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABFgSplash: btnFABFgSplash ?? this.btnFABFgSplash,
       btnIconPrim: btnIconPrim ?? this.btnIconPrim,
       loadingIndicator: loadingIndicator ?? this.loadingIndicator,
+      skeletonFrom: skeletonFrom ?? this.skeletonFrom,
+      skeletonTo: skeletonTo ?? this.skeletonTo,
       appBarPrimFg: appBarPrimFg ?? this.appBarPrimFg,
       appBarPrimBg: appBarPrimBg ?? this.appBarPrimBg,
       botNavBarBg: botNavBarBg ?? this.botNavBarBg,
@@ -193,6 +205,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       listTilePrimSubtitle: listTilePrimSubtitle ?? this.listTilePrimSubtitle,
       avatarPrimBg: avatarPrimBg ?? this.avatarPrimBg,
       avatarPrimFg: avatarPrimFg ?? this.avatarPrimFg,
+      suggestNumFill: suggestNumFill ?? this.suggestNumFill,
+      suggestNumStroke: suggestNumStroke ?? this.suggestNumStroke,
+      suggestNumBlur: suggestNumBlur ?? this.suggestNumBlur,
     );
   }
 
@@ -247,6 +262,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnIconPrim: Color.lerp(btnIconPrim, other.btnIconPrim, t)!,
       loadingIndicator:
           Color.lerp(loadingIndicator, other.loadingIndicator, t)!,
+      skeletonFrom: Color.lerp(skeletonFrom, other.skeletonFrom, t)!,
+      skeletonTo: Color.lerp(skeletonTo, other.skeletonTo, t)!,
       appBarPrimFg: Color.lerp(appBarPrimFg, other.appBarPrimFg, t)!,
       appBarPrimBg: Color.lerp(appBarPrimBg, other.appBarPrimBg, t)!,
       botNavBarBg: Color.lerp(botNavBarBg, other.botNavBarBg, t)!,
@@ -284,6 +301,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
           Color.lerp(listTilePrimSubtitle, other.listTilePrimSubtitle, t)!,
       avatarPrimBg: Color.lerp(avatarPrimBg, other.avatarPrimBg, t)!,
       avatarPrimFg: Color.lerp(avatarPrimFg, other.avatarPrimFg, t)!,
+      suggestNumFill: Color.lerp(suggestNumFill, other.suggestNumFill, t)!,
+      suggestNumStroke:
+          Color.lerp(suggestNumStroke, other.suggestNumStroke, t)!,
+      suggestNumBlur: Color.lerp(suggestNumBlur, other.suggestNumBlur, t)!,
     );
   }
 
@@ -354,6 +375,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality()
                 .equals(loadingIndicator, other.loadingIndicator) &&
             const DeepCollectionEquality()
+                .equals(skeletonFrom, other.skeletonFrom) &&
+            const DeepCollectionEquality()
+                .equals(skeletonTo, other.skeletonTo) &&
+            const DeepCollectionEquality()
                 .equals(appBarPrimFg, other.appBarPrimFg) &&
             const DeepCollectionEquality()
                 .equals(appBarPrimBg, other.appBarPrimBg) &&
@@ -379,10 +404,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimError, other.txtFldPrimError) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
-            const DeepCollectionEquality()
-                .equals(kbdActionBar, other.kbdActionBar) &&
+            const DeepCollectionEquality().equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
+            const DeepCollectionEquality().equals(kbdActionBar, other.kbdActionBar) &&
             const DeepCollectionEquality().equals(dlgPrimBg, other.dlgPrimBg) &&
             const DeepCollectionEquality().equals(dlgPrimTitle, other.dlgPrimTitle) &&
             const DeepCollectionEquality().equals(dlgPrimCont, other.dlgPrimCont) &&
@@ -394,7 +417,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(listTilePrimTitle, other.listTilePrimTitle) &&
             const DeepCollectionEquality().equals(listTilePrimSubtitle, other.listTilePrimSubtitle) &&
             const DeepCollectionEquality().equals(avatarPrimBg, other.avatarPrimBg) &&
-            const DeepCollectionEquality().equals(avatarPrimFg, other.avatarPrimFg));
+            const DeepCollectionEquality().equals(avatarPrimFg, other.avatarPrimFg) &&
+            const DeepCollectionEquality().equals(suggestNumFill, other.suggestNumFill) &&
+            const DeepCollectionEquality().equals(suggestNumStroke, other.suggestNumStroke) &&
+            const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur));
   }
 
   @override
@@ -433,6 +459,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(btnFABFgSplash),
       const DeepCollectionEquality().hash(btnIconPrim),
       const DeepCollectionEquality().hash(loadingIndicator),
+      const DeepCollectionEquality().hash(skeletonFrom),
+      const DeepCollectionEquality().hash(skeletonTo),
       const DeepCollectionEquality().hash(appBarPrimFg),
       const DeepCollectionEquality().hash(appBarPrimBg),
       const DeepCollectionEquality().hash(botNavBarBg),
@@ -460,6 +488,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(listTilePrimSubtitle),
       const DeepCollectionEquality().hash(avatarPrimBg),
       const DeepCollectionEquality().hash(avatarPrimFg),
+      const DeepCollectionEquality().hash(suggestNumFill),
+      const DeepCollectionEquality().hash(suggestNumStroke),
+      const DeepCollectionEquality().hash(suggestNumBlur),
     ]);
   }
 }

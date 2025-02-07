@@ -26,6 +26,11 @@ abstract final class BaseComponentsStylesFactory {
       avatarPrimTextStyle: _BaseComponentsStyles.avatarPrimTextStyle(
         colors.avatarPrimFg,
       ),
+      posterBorderRadius: _BaseComponentsStyles.posterBorderRadius,
+      backdrBorderRadius: _BaseComponentsStyles.backdrBorderRadius,
+      posterSmallSize: _BaseComponentsStyles.posterSmallSize,
+      posterMediumSize: _BaseComponentsStyles.posterMediumSize,
+      posterLargeSize: _BaseComponentsStyles.posterLargeSize,
     );
   }
 }
@@ -53,11 +58,36 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final TextStyle avatarPrimTextStyle;
 
+  /// BorderRadius of the poster.
+  @override
+  final double posterBorderRadius;
+
+  /// BorderRadius of the backdrop.
+  @override
+  final double backdrBorderRadius;
+
+  /// Size of the small poster.
+  @override
+  final Size posterSmallSize;
+
+  /// Size of the medium poster.
+  @override
+  final Size posterMediumSize;
+
+  /// Size of the large poster.
+  @override
+  final Size posterLargeSize;
+
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
     required this.cardPrimShape,
     required this.listTilePrimTitleTextStyle,
     required this.listTilePrimSubtTextStyle,
     required this.avatarPrimTextStyle,
+    required this.posterBorderRadius,
+    required this.backdrBorderRadius,
+    required this.posterSmallSize,
+    required this.posterMediumSize,
+    required this.posterLargeSize,
   });
 }
