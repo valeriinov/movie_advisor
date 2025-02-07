@@ -76,7 +76,7 @@ class AppTheme {
       color: colors.appBarPrimBg,
       foregroundColor: colors.appBarPrimFg,
       iconTheme: styles.appBarPrimIconTheme,
-      titleTextStyle: styles.appBarTitleTextStyle,
+      titleTextStyle: styles.appBarPrimTitleTextStyle,
       centerTitle: true,
     );
   }

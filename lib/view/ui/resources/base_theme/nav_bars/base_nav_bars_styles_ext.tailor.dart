@@ -9,18 +9,23 @@ part of 'base_nav_bars_styles_ext.dart';
 // **************************************************************************
 
 mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
-  TextStyle get appBarTitleTextStyle;
+  TextStyle get appBarPrimTitleTextStyle;
+  TextStyle get appBarSecTitleTextStyle;
   TextStyle get botNavBarLabelTextStyle;
   IconThemeData get appBarPrimIconTheme;
 
   @override
   BaseNavBarsStyles copyWith({
-    TextStyle? appBarTitleTextStyle,
+    TextStyle? appBarPrimTitleTextStyle,
+    TextStyle? appBarSecTitleTextStyle,
     TextStyle? botNavBarLabelTextStyle,
     IconThemeData? appBarPrimIconTheme,
   }) {
     return BaseNavBarsStyles(
-      appBarTitleTextStyle: appBarTitleTextStyle ?? this.appBarTitleTextStyle,
+      appBarPrimTitleTextStyle:
+          appBarPrimTitleTextStyle ?? this.appBarPrimTitleTextStyle,
+      appBarSecTitleTextStyle:
+          appBarSecTitleTextStyle ?? this.appBarSecTitleTextStyle,
       botNavBarLabelTextStyle:
           botNavBarLabelTextStyle ?? this.botNavBarLabelTextStyle,
       appBarPrimIconTheme: appBarPrimIconTheme ?? this.appBarPrimIconTheme,
@@ -32,8 +37,10 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
       covariant ThemeExtension<BaseNavBarsStyles>? other, double t) {
     if (other is! BaseNavBarsStyles) return this as BaseNavBarsStyles;
     return BaseNavBarsStyles(
-      appBarTitleTextStyle:
-          TextStyle.lerp(appBarTitleTextStyle, other.appBarTitleTextStyle, t)!,
+      appBarPrimTitleTextStyle: TextStyle.lerp(
+          appBarPrimTitleTextStyle, other.appBarPrimTitleTextStyle, t)!,
+      appBarSecTitleTextStyle: TextStyle.lerp(
+          appBarSecTitleTextStyle, other.appBarSecTitleTextStyle, t)!,
       botNavBarLabelTextStyle: TextStyle.lerp(
           botNavBarLabelTextStyle, other.botNavBarLabelTextStyle, t)!,
       appBarPrimIconTheme:
@@ -46,8 +53,10 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BaseNavBarsStyles &&
-            const DeepCollectionEquality()
-                .equals(appBarTitleTextStyle, other.appBarTitleTextStyle) &&
+            const DeepCollectionEquality().equals(
+                appBarPrimTitleTextStyle, other.appBarPrimTitleTextStyle) &&
+            const DeepCollectionEquality().equals(
+                appBarSecTitleTextStyle, other.appBarSecTitleTextStyle) &&
             const DeepCollectionEquality().equals(
                 botNavBarLabelTextStyle, other.botNavBarLabelTextStyle) &&
             const DeepCollectionEquality()
@@ -58,7 +67,8 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(appBarTitleTextStyle),
+      const DeepCollectionEquality().hash(appBarPrimTitleTextStyle),
+      const DeepCollectionEquality().hash(appBarSecTitleTextStyle),
       const DeepCollectionEquality().hash(botNavBarLabelTextStyle),
       const DeepCollectionEquality().hash(appBarPrimIconTheme),
     );

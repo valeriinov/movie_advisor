@@ -12,7 +12,8 @@ part 'base_nav_bars_styles_ext.tailor.dart';
 abstract final class BaseNavBarsStylesFactory {
   static BaseNavBarsStyles createNavBarsStyles(BaseColors colors) {
     return BaseNavBarsStyles(
-      appBarTitleTextStyle: _BaseNavBarsStyles.appBarTitleTextStyle(),
+      appBarPrimTitleTextStyle: _BaseNavBarsStyles.appBarPrimTitleTextStyle(),
+      appBarSecTitleTextStyle: _BaseNavBarsStyles.appBarSecTitleTextStyle(),
       botNavBarLabelTextStyle: _BaseNavBarsStyles.botNavBarLabelTextStyle(),
       appBarPrimIconTheme:
           _BaseNavBarsStyles.appBarPrimIconTheme(colors.appBarPrimFg),
@@ -23,9 +24,13 @@ abstract final class BaseNavBarsStylesFactory {
 @TailorMixin()
 class BaseNavBarsStyles extends ThemeExtension<BaseNavBarsStyles>
     with _$BaseNavBarsStylesTailorMixin {
-  /// TextStyle for the AppBar title
+  /// TextStyle for the primary title in the AppBar
   @override
-  final TextStyle appBarTitleTextStyle;
+  final TextStyle appBarPrimTitleTextStyle;
+
+  /// TextStyle for the secondary title in the AppBar
+  @override
+  final TextStyle appBarSecTitleTextStyle;
 
   /// TextStyle for the BottomNavigationBar labels
   @override
@@ -36,7 +41,8 @@ class BaseNavBarsStyles extends ThemeExtension<BaseNavBarsStyles>
   final IconThemeData appBarPrimIconTheme;
 
   BaseNavBarsStyles({
-    required this.appBarTitleTextStyle,
+    required this.appBarPrimTitleTextStyle,
+    required this.appBarSecTitleTextStyle,
     required this.botNavBarLabelTextStyle,
     required this.appBarPrimIconTheme,
   });
