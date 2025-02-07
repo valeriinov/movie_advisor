@@ -44,5 +44,9 @@ abstract class  LocaleKeys {
   static const genreSerWestern = 'genreSerWestern';
   static const searchHint = 'searchHint';
   static const homeScreenTitle = 'homeScreenTitle';
+  static const nowPlayingTab = 'nowPlayingTab';
+  static const upcomingTab = 'upcomingTab';
+  static const popularTab = 'popularTab';
+  static const topRatedTab = 'topRatedTab';
 
 }

@@ -95,4 +95,6 @@ abstract final class _BaseColors {
   static const suggestNumFill = Color(0xFF242A32);
   static const suggestNumStroke = Color(0xFF0296E5);
   static const suggestNumBlur = Color(0xFF000000);
+
+  static const tabUnderSelect = Color(0xFF3A3F47);
 }

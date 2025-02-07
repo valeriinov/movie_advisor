@@ -75,6 +75,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get suggestNumFill;
   Color get suggestNumStroke;
   Color get suggestNumBlur;
+  Color get tabUnderSelect;
 
   @override
   BaseColors copyWith({
@@ -144,6 +145,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? suggestNumFill,
     Color? suggestNumStroke,
     Color? suggestNumBlur,
+    Color? tabUnderSelect,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -214,6 +216,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumFill: suggestNumFill ?? this.suggestNumFill,
       suggestNumStroke: suggestNumStroke ?? this.suggestNumStroke,
       suggestNumBlur: suggestNumBlur ?? this.suggestNumBlur,
+      tabUnderSelect: tabUnderSelect ?? this.tabUnderSelect,
     );
   }
 
@@ -313,6 +316,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumStroke:
           Color.lerp(suggestNumStroke, other.suggestNumStroke, t)!,
       suggestNumBlur: Color.lerp(suggestNumBlur, other.suggestNumBlur, t)!,
+      tabUnderSelect: Color.lerp(tabUnderSelect, other.tabUnderSelect, t)!,
     );
   }
 
@@ -430,7 +434,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(avatarPrimFg, other.avatarPrimFg) &&
             const DeepCollectionEquality().equals(suggestNumFill, other.suggestNumFill) &&
             const DeepCollectionEquality().equals(suggestNumStroke, other.suggestNumStroke) &&
-            const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur));
+            const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur) &&
+            const DeepCollectionEquality().equals(tabUnderSelect, other.tabUnderSelect));
   }
 
   @override
@@ -503,6 +508,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(suggestNumFill),
       const DeepCollectionEquality().hash(suggestNumStroke),
       const DeepCollectionEquality().hash(suggestNumBlur),
+      const DeepCollectionEquality().hash(tabUnderSelect),
     ]);
   }
 }

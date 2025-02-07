@@ -39,5 +39,9 @@
   "genreSerWarPolitics": "Війна і політика",
   "genreSerWestern": "Вестерн",
   "searchHint": "Пошук",
-  "homeScreenTitle": "Що ви хочете подивитися?"
+  "homeScreenTitle": "Що ви хочете подивитися?",
+  "nowPlayingTab": "На екранах",
+  "upcomingTab": "Незабаром",
+  "popularTab": "Популярні",
+  "topRatedTab": "Топові"
 }

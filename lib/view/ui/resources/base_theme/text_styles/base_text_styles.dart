@@ -85,21 +85,21 @@ final class _BaseTextStyles {
       );
 
   static TextStyle labelLarge(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.openSans,
         fontWeight: FontWeight.w500,
         fontSize: labelLargeFontSize,
         color: color,
       );
 
   static TextStyle labelMedium(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.openSans,
         fontWeight: FontWeight.w500,
         fontSize: labelMediumFontSize,
         color: color,
       );
 
   static TextStyle labelSmall(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
+        fontFamily: AppFonts.openSans,
         fontWeight: FontWeight.w500,
         fontSize: labelSmallFontSize,
         color: color,
