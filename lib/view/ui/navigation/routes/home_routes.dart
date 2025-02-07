@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../scenes/home/home_screen.dart';
 import '../../scenes/search/search_screen.dart';
 import '../app_routes.dart';
+import '../utils/transition_builder_mixin.dart';
 
 part 'home_routes.g.dart';
 
@@ -21,13 +22,14 @@ class HomeRoute extends GoRouteData {
   }
 }
 
-class SearchRoute extends GoRouteData {
+class SearchRoute extends GoRouteData with TransitionBuilderMixin {
   @override
   Page<void> buildPage(context, state) {
-    return MaterialPage(
+    return CustomTransitionPage(
       key: state.pageKey,
       name: state.fullPath,
       child: SearchScreen(),
+      transitionsBuilder: fadeTransitionBuilder,
     );
   }
 }
