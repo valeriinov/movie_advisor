@@ -10,6 +10,8 @@ abstract final class BaseColorsFactory {
   static BaseColors createColors() => BaseColors(
         seed: _BaseColors.seed,
         scaffoldBg: _BaseColors.scaffoldBg,
+        splashColor: _BaseColors.splashColor,
+        highlightColor: _BaseColors.highlightColor,
         textThemePrim: _BaseColors.textThemePrim,
         btnElevPrimFg: _BaseColors.btnElevPrimFg,
         btnElevPrimBg: _BaseColors.btnElevPrimBg,
@@ -83,6 +85,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Seed color for generating color schemes.
   @override
   final Color seed;
+
+  /// Splash color for the theme.
+  @override
+  final Color splashColor;
+
+  /// Highlight color for the theme.
+  @override
+  final Color highlightColor;
 
   /// Scaffold background color.
   @override
@@ -357,6 +367,8 @@ class BaseColors extends ThemeExtension<BaseColors>
   BaseColors({
     required this.seed,
     required this.scaffoldBg,
+    required this.splashColor,
+    required this.highlightColor,
     required this.textThemePrim,
     required this.btnElevPrimFg,
     required this.btnElevPrimBg,

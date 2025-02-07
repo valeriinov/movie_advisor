@@ -5,6 +5,9 @@ abstract final class _BaseColors {
   static const seed = Color(0xFF242A32);
   static const scaffoldBg = Color(0xFF242A32);
 
+  static const Color splashColor = Color(0x33C8C8C8);
+  static const Color highlightColor = Color(0x33BCBCBC);
+
   // Text
   static const textThemePrim = Color(0xFFFFFFFF);
 

@@ -9,11 +9,13 @@ class SuggestionItem extends StatelessWidget {
 
   final int number;
   final String posterUrl;
+  final VoidCallback? onTap;
 
   const SuggestionItem({
     super.key,
     required this.number,
     required this.posterUrl,
+    this.onTap,
   });
 
   @override
@@ -30,6 +32,7 @@ class SuggestionItem extends StatelessWidget {
           Poster(
             url: posterUrl,
             size: posterSize,
+            onTap: onTap,
           ),
           Positioned(
             left: 0,

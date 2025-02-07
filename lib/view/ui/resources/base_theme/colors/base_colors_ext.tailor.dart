@@ -10,6 +10,8 @@ part of 'base_colors_ext.dart';
 
 mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get seed;
+  Color get splashColor;
+  Color get highlightColor;
   Color get scaffoldBg;
   Color get textThemePrim;
   Color get btnElevPrimFg;
@@ -77,6 +79,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   @override
   BaseColors copyWith({
     Color? seed,
+    Color? splashColor,
+    Color? highlightColor,
     Color? scaffoldBg,
     Color? textThemePrim,
     Color? btnElevPrimFg,
@@ -143,6 +147,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
+      splashColor: splashColor ?? this.splashColor,
+      highlightColor: highlightColor ?? this.highlightColor,
       scaffoldBg: scaffoldBg ?? this.scaffoldBg,
       textThemePrim: textThemePrim ?? this.textThemePrim,
       btnElevPrimFg: btnElevPrimFg ?? this.btnElevPrimFg,
@@ -216,6 +222,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     if (other is! BaseColors) return this as BaseColors;
     return BaseColors(
       seed: Color.lerp(seed, other.seed, t)!,
+      splashColor: Color.lerp(splashColor, other.splashColor, t)!,
+      highlightColor: Color.lerp(highlightColor, other.highlightColor, t)!,
       scaffoldBg: Color.lerp(scaffoldBg, other.scaffoldBg, t)!,
       textThemePrim: Color.lerp(textThemePrim, other.textThemePrim, t)!,
       btnElevPrimFg: Color.lerp(btnElevPrimFg, other.btnElevPrimFg, t)!,
@@ -315,6 +323,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             other is BaseColors &&
             const DeepCollectionEquality().equals(seed, other.seed) &&
             const DeepCollectionEquality()
+                .equals(splashColor, other.splashColor) &&
+            const DeepCollectionEquality()
+                .equals(highlightColor, other.highlightColor) &&
+            const DeepCollectionEquality()
                 .equals(scaffoldBg, other.scaffoldBg) &&
             const DeepCollectionEquality()
                 .equals(textThemePrim, other.textThemePrim) &&
@@ -400,10 +412,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimError, other.txtFldPrimError) &&
+            const DeepCollectionEquality().equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
+            const DeepCollectionEquality().equals(txtFldPrimError, other.txtFldPrimError) &&
             const DeepCollectionEquality().equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
             const DeepCollectionEquality().equals(kbdActionBar, other.kbdActionBar) &&
             const DeepCollectionEquality().equals(dlgPrimBg, other.dlgPrimBg) &&
@@ -428,6 +438,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(seed),
+      const DeepCollectionEquality().hash(splashColor),
+      const DeepCollectionEquality().hash(highlightColor),
       const DeepCollectionEquality().hash(scaffoldBg),
       const DeepCollectionEquality().hash(textThemePrim),
       const DeepCollectionEquality().hash(btnElevPrimFg),

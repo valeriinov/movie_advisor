@@ -13,7 +13,6 @@ class HomeMoviesView extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-
     final vsp = ref.vspFromADProvider(homeMoviesViewModelPr);
 
     vsp.handleState(listener: (prev, next) {
@@ -29,6 +28,7 @@ class HomeMoviesView extends ConsumerWidget {
             children: [
               SuggestionsContainer(
                 suggestions: suggestionsContent,
+                onTap: (id) {}, // TODO: Go to movie details
               ),
             ],
           );

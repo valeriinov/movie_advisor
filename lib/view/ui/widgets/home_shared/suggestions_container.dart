@@ -8,8 +8,13 @@ import 'suggestion_item.dart';
 
 class SuggestionsContainer extends StatelessWidget {
   final List<MediaShortData> suggestions;
+  final Function(int id)? onTap;
 
-  const SuggestionsContainer({super.key, required this.suggestions});
+  const SuggestionsContainer({
+    super.key,
+    required this.suggestions,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +36,7 @@ class SuggestionsContainer extends StatelessWidget {
             return SuggestionItem(
               number: number,
               posterUrl: suggestion.posterUrl,
+              onTap: onTap != null ? () => onTap!(suggestion.id) : null,
             );
           },
           separatorBuilder: (_, __) => dimens.spLarge.gapHor(),

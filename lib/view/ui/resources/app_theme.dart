@@ -37,6 +37,8 @@ class AppTheme {
 
     return ThemeData(
       colorScheme: colors.createColorScheme(),
+      splashColor: colors.splashColor,
+      highlightColor: colors.highlightColor,
       fontFamily: AppFonts.roboto,
       scaffoldBackgroundColor: colors.scaffoldBg,
       textTheme: textStyles.createTextTheme(),
