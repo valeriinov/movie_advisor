@@ -43,5 +43,6 @@ abstract class  LocaleKeys {
   static const genreSerWarPolitics = 'genreSerWarPolitics';
   static const genreSerWestern = 'genreSerWestern';
   static const searchHint = 'searchHint';
+  static const homeScreenTitle = 'homeScreenTitle';
 
 }
