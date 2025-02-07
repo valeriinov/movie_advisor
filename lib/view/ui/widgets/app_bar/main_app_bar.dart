@@ -4,8 +4,17 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final Widget? leading;
   final List<Widget>? actions;
+  final bool? centerTitle;
+  final TextStyle? titleTextStyle;
 
-  const MainAppBar({super.key, this.title, this.leading, this.actions});
+  const MainAppBar({
+    super.key,
+    this.title,
+    this.leading,
+    this.actions,
+    this.centerTitle,
+    this.titleTextStyle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +22,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: title,
       leading: leading,
       actions: actions,
+      centerTitle: centerTitle,
+      titleTextStyle: titleTextStyle,
     );
   }
 
