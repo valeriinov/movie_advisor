@@ -23,11 +23,29 @@ class SearchScreenView extends ConsumerWidget {
     final dimens = context.baseDimens;
 
     return Scaffold(
-        // TODO: Localize title
-        appBar: MainAppBar(title: Text('Search Screen')),
-        body: Padding(
-          padding: dimens.padHorPrimIns,
-          child: SearchFieldContainer(),
-        ));
+      // TODO: Localize title
+      appBar: MainAppBar(title: Text('Search Screen')),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            primary: false,
+            leading: SizedBox.shrink(),
+            flexibleSpace: FlexibleSpaceBar(
+              titlePadding: dimens.padHorPrimIns,
+              title: SearchFieldContainer(autoFocus: true),
+            ),
+          ),
+          SliverList.builder(
+              itemCount: 20,
+              itemBuilder: (_, i) {
+                return ListTile(
+                  title: Text('Item $i'),
+                );
+              })
+          // contentMode.isMovies ? HomeMoviesView() : HomeSeriesView(),
+        ],
+      ),
+    );
   }
 }
