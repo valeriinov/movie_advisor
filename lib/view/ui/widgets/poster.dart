@@ -18,7 +18,7 @@ class Poster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final styles = context.baseComponentsStyles;
-    final imgSize = size ?? styles.posterMediumSize;
+    final imgSize = size ?? styles.posterLargeSize;
 
     final borderRadius = BorderRadius.circular(styles.posterBorderRadius);
 
