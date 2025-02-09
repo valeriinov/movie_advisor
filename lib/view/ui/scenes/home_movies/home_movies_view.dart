@@ -7,6 +7,7 @@ import '../../../di/injector.dart';
 import '../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../widgets/home_shared/home_content_skeleton.dart';
+import '../../widgets/home_shared/home_tab_content.dart';
 import '../../widgets/home_shared/suggestions_container.dart';
 import '../../widgets/tabs/app_tabs.dart';
 import '../home/model/media_tab.dart';
@@ -26,6 +27,7 @@ class HomeMoviesView extends ConsumerWidget {
     });
 
     final currentTab = vsp.selectWatch((s) => s.currentTab);
+    final tabMovies = vsp.selectWatch((s) => s.tabMovies);
 
     final suggestionsContent =
         vsp.selectWatch((s) => s.suggestedMovies.mediaData.items);
@@ -44,6 +46,7 @@ class HomeMoviesView extends ConsumerWidget {
                 currentIndex: currentTab.index,
                 onSelect: (index) => _onTabSelect(vsp, index),
               ),
+              HomeTabContent(mediaLoadInfo: tabMovies)
             ],
           );
   }
