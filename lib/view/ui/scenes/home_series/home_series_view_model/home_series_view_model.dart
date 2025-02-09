@@ -4,10 +4,13 @@ import '../../../../../domain/entities/pagination/list_with_pagination_data.dart
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/usecases/home_series_use_case.dart';
 import '../../../../di/injector.dart';
+import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
 import '../../home/model/media_tab.dart';
 import 'home_series_state.dart';
+
+typedef HomeSeriesVSP = ASP<HomeSeriesViewModel, HomeSeriesState>;
 
 /// {@category StateManagement}
 ///
