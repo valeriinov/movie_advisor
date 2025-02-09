@@ -8,8 +8,9 @@ import '../poster.dart';
 
 class HomeTabContent extends StatelessWidget {
   final MediaLoadInfo<MediaShortData> mediaLoadInfo;
+  final void Function(int id)? onTap;
 
-  const HomeTabContent({super.key, required this.mediaLoadInfo});
+  const HomeTabContent({super.key, required this.mediaLoadInfo, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,10 @@ class HomeTabContent extends StatelessWidget {
           (context, index) {
             final item = items[index];
 
-            return Poster(url: item.posterUrl);
+            return Poster(
+              url: item.posterUrl,
+              onTap: onTap != null ? () => onTap!(item.id) : null,
+            );
           },
         ),
       ),

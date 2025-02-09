@@ -8,7 +8,7 @@ import 'suggestion_item.dart';
 
 class SuggestionsContainer extends StatelessWidget {
   final List<MediaShortData> suggestions;
-  final Function(int id)? onTap;
+  final void Function(int id)? onTap;
 
   const SuggestionsContainer({
     super.key,

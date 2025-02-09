@@ -46,7 +46,10 @@ class HomeMoviesView extends ConsumerWidget {
                 currentIndex: currentTab.index,
                 onSelect: (index) => _onTabSelect(vsp, index),
               ),
-              HomeTabContent(mediaLoadInfo: tabMovies)
+              HomeTabContent(
+                mediaLoadInfo: tabMovies,
+                onTap: (id) {}, // TODO: Go to movie details
+              )
             ],
           );
   }
