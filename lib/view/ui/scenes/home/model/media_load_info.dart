@@ -32,7 +32,10 @@ class MediaLoadInfo<T> with MediaLoadInfoMappable<T> {
 
     final preparedData = switch (data) {
       null => mediaData,
-      _ => data.copyWithUpdateItems(mediaData.items)
+      _ => data.copyWithUpdateItems(
+          mediaData.items,
+          isNewPageLoaded: isNextPageLoading,
+        )
     };
 
     return copyWith(
