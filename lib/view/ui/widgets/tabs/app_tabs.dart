@@ -28,7 +28,7 @@ class AppTabs extends StatelessWidget {
         child: Container(
           height: 57,
           color: colors.scaffoldBg,
-          padding: dimens.spMedium.insBottom(),
+          padding: (dimens.spLarge / 2).insBottom(),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: tabs.length,

@@ -31,7 +31,7 @@ class HomeScreenView extends HookWidget {
         controller: scrollController,
         slivers: [
           HomeFloatingTopBar(),
-          SliverPadding(padding: dimens.spMedium.insBottom()),
+          SliverPadding(padding: (dimens.spLarge / 2).insBottom()),
           HomeContentSwitcher(scrollController: scrollController),
           SliverPadding(padding: dimens.padBotPrimIns)
         ],

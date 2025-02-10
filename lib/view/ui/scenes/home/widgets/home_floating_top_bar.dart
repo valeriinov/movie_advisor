@@ -25,7 +25,7 @@ class HomeFloatingTopBar extends ConsumerWidget {
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(
           left: dimens.padHorPrim,
-          bottom: dimens.spMedium,
+          bottom: dimens.spLarge / 2,
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,

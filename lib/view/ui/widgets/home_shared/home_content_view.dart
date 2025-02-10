@@ -48,7 +48,7 @@ class HomeContentView extends StatelessWidget {
           currentIndex: currentTab.index,
           onSelect: onTabSelect,
         ),
-        SliverPadding(padding: dimens.spMedium.insTop()),
+        SliverPadding(padding: (dimens.spLarge / 2).insTop()),
         HomeTabContent(
             isSkeletonVisible: isSkeletonVisible,
             mediaLoadInfo: tabContent,
