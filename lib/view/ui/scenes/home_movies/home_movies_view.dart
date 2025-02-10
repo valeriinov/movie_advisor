@@ -7,10 +7,11 @@ import '../../../di/injector.dart';
 import '../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../widgets/home_shared/home_content_skeleton.dart';
 import '../../widgets/home_shared/home_content_view.dart';
+import '../../widgets/home_shared/utils/jump_to_tab_start_position.dart';
 import '../home/model/media_tab.dart';
 import 'home_movies_view_model/home_movies_view_model.dart';
 
-class HomeMoviesView extends HookConsumerWidget {
+class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
   final ScrollController scrollController;
 
   const HomeMoviesView({super.key, required this.scrollController});
@@ -44,6 +45,14 @@ class HomeMoviesView extends HookConsumerWidget {
 
       return paginationCtrl.dispose;
     }, [currentTab]);
+
+    useEffect(() {
+      jumpToTabStartPosition(
+        scrollController: scrollController,
+        isTabInitialized: tabContent.isInitialized,
+      );
+      return null;
+    }, [tabContent.isInitialized]);
 
     return isSkeletonVisible
         ? HomeContentSkeleton()
