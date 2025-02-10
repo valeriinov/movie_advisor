@@ -55,6 +55,8 @@ class HomeSeriesViewModel extends AutoDisposeNotifier<HomeSeriesState>
   }
 
   void updateCurrentTab(MediaTab tab) {
+    if (tab == state.currentTab) return;
+
     state = state.copyWith(currentTab: tab);
 
     state = state.copyWithUpdTabSer(

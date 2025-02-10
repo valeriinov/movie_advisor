@@ -1,4 +1,3 @@
-import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
@@ -56,6 +55,8 @@ class HomeMoviesViewModel extends AutoDisposeNotifier<HomeMoviesState>
   }
 
   void updateCurrentTab(MediaTab tab) {
+    if(tab == state.currentTab) return;
+
     state = state.copyWith(currentTab: tab);
 
     state = state.copyWithUpdTabMov(
