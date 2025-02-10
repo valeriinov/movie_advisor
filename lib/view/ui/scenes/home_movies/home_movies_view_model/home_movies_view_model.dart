@@ -1,3 +1,4 @@
+import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
@@ -27,6 +28,7 @@ final homeMoviesViewModelPr =
 class HomeMoviesViewModel extends AutoDisposeNotifier<HomeMoviesState>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final HomeMoviesUseCase _homeMoviesUseCase;
+  CancelableOperation<Result<PaginatedMovies>>? _loadTabOperation;
 
   @override
   HomeMoviesState build() {
@@ -55,7 +57,7 @@ class HomeMoviesViewModel extends AutoDisposeNotifier<HomeMoviesState>
   }
 
   void updateCurrentTab(MediaTab tab) {
-    if(tab == state.currentTab) return;
+    if (tab == state.currentTab) return;
 
     state = state.copyWith(currentTab: tab);
 
@@ -78,7 +80,12 @@ class HomeMoviesViewModel extends AutoDisposeNotifier<HomeMoviesState>
     final action = _getMoviesTabAction();
 
     return safeCall(
-      () => action(page: page),
+      () async {
+        _loadTabOperation?.cancel();
+        _loadTabOperation = CancelableOperation.fromFuture(action(page: page));
+
+        return _loadTabOperation?.valueOrCancellation();
+      },
       onResult: (result) => _handleMoviesResult(result, (data) {
         state = state.copyWithUpdTabMov(
           status: HomeMoviesBaseInitStatus(),
@@ -100,10 +107,10 @@ class HomeMoviesViewModel extends AutoDisposeNotifier<HomeMoviesState>
   }
 
   void _handleMoviesResult(
-    Result<PaginatedMovies> result,
+    Result<PaginatedMovies>? result,
     Function(PaginatedMovies data) onSuccess,
   ) {
-    result.fold((error) {
+    result?.fold((error) {
       _updateStatus(HomeMoviesBaseInitStatus(errorMessage: error.message));
     }, onSuccess);
   }

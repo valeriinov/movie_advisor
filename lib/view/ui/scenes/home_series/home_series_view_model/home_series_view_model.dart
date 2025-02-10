@@ -1,3 +1,4 @@
+import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
@@ -27,6 +28,7 @@ final homeSeriesViewModelPr =
 class HomeSeriesViewModel extends AutoDisposeNotifier<HomeSeriesState>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final HomeSeriesUseCase _homeSeriesUseCase;
+  CancelableOperation<Result<PaginatedSeries>>? _loadTabOperation;
 
   @override
   HomeSeriesState build() {
@@ -77,7 +79,12 @@ class HomeSeriesViewModel extends AutoDisposeNotifier<HomeSeriesState>
     final action = _getSeriesTabAction();
 
     return safeCall(
-      () => action(page: page),
+      () async {
+        _loadTabOperation?.cancel();
+        _loadTabOperation = CancelableOperation.fromFuture(action(page: page));
+
+        return _loadTabOperation?.valueOrCancellation();
+      },
       onResult: (result) => _handleSeriesResult(result, (data) {
         state = state.copyWithUpdTabSer(
           status: HomeSeriesBaseInitStatus(),
@@ -99,10 +106,10 @@ class HomeSeriesViewModel extends AutoDisposeNotifier<HomeSeriesState>
   }
 
   void _handleSeriesResult(
-    Result<PaginatedSeries> result,
+    Result<PaginatedSeries>? result,
     Function(PaginatedSeries data) onSuccess,
   ) {
-    result.fold((error) {
+    result?.fold((error) {
       _updateStatus(HomeSeriesBaseInitStatus(errorMessage: error.message));
     }, onSuccess);
   }
