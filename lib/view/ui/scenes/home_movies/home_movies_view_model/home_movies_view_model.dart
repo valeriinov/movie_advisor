@@ -1,4 +1,3 @@
-
 import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -56,15 +55,13 @@ class HomeMoviesViewModel extends AutoDisposeNotifier<HomeMoviesState>
     await _loadTabMovies();
   }
 
-  void updateCurrentTab(MediaTab tab) async {
+  void updateCurrentTab(MediaTab tab) {
     state = state.copyWith(currentTab: tab);
 
     state = state.copyWithUpdTabMov(
       isInitialized: false,
       data: PaginatedMovies(items: []),
     );
-
-    await 1.seconds.delay();
 
     _loadTabMovies();
   }
