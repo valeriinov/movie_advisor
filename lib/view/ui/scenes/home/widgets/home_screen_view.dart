@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/ext/flutter_ext/widget/edge_insets_creator.dart';
 
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
@@ -9,7 +10,7 @@ import '../../../widgets/app_bar/main_app_bar.dart';
 import 'home_content_switcher.dart';
 import 'home_floating_top_bar.dart';
 
-class HomeScreenView extends StatelessWidget {
+class HomeScreenView extends HookWidget {
   const HomeScreenView({super.key});
 
   @override
@@ -18,6 +19,8 @@ class HomeScreenView extends StatelessWidget {
 
     final navBarStyles = context.baseNavBarsStyles;
 
+    final scrollController = useScrollController();
+
     return Scaffold(
       appBar: MainAppBar(
         centerTitle: false,
@@ -25,10 +28,11 @@ class HomeScreenView extends StatelessWidget {
         title: Text(LocaleKeys.homeScreenTitle.tr()),
       ),
       body: CustomScrollView(
+        controller: scrollController,
         slivers: [
           HomeFloatingTopBar(),
           SliverPadding(padding: dimens.spMedium.insBottom()),
-          HomeContentSwitcher(),
+          HomeContentSwitcher(scrollController: scrollController),
           SliverPadding(padding: dimens.padBotPrimIns)
         ],
       ),

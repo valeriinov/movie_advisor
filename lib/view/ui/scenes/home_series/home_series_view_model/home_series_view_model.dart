@@ -65,14 +65,21 @@ class HomeSeriesViewModel extends AutoDisposeNotifier<HomeSeriesState>
     _loadTabSeries();
   }
 
-  Future<void> _loadTabSeries() {
+  Future<void> loadTabNextPage(int page) {
+    state = state.copyWithUpdTabSer(isNextPageLoading: true);
+
+    return _loadTabSeries(page: page, isNewPageLoaded: true);
+  }
+
+  Future<void> _loadTabSeries({int page = 1, bool isNewPageLoaded = false}) {
     final action = _getSeriesTabAction();
 
     return safeCall(
-      action,
+      () => action(page: page),
       onResult: (result) => _handleSeriesResult(result, (data) {
         state = state.copyWithUpdTabSer(
           status: HomeSeriesBaseInitStatus(),
+          isNewPageLoaded: isNewPageLoaded,
           isInitialized: true,
           data: data,
         );
@@ -80,7 +87,7 @@ class HomeSeriesViewModel extends AutoDisposeNotifier<HomeSeriesState>
     );
   }
 
-  Future<Result<PaginatedSeries>> Function() _getSeriesTabAction() {
+  Future<Result<PaginatedSeries>> Function({int page}) _getSeriesTabAction() {
     return switch (state.currentTab) {
       MediaTab.nowPlaying => _homeSeriesUseCase.getNowPlayingSeries,
       MediaTab.upcoming => _homeSeriesUseCase.getUpcomingSeries,

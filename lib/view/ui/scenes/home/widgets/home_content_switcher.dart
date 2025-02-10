@@ -9,7 +9,9 @@ import '../../home_series/home_series_view.dart';
 import '../home_view_model/home_view_model.dart';
 
 class HomeContentSwitcher extends ConsumerWidget {
-  const HomeContentSwitcher({super.key});
+  final ScrollController scrollController;
+
+  const HomeContentSwitcher({super.key, required this.scrollController});
 
   @override
   Widget build(context, ref) {
@@ -21,7 +23,9 @@ class HomeContentSwitcher extends ConsumerWidget {
 
     return SliverAnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child: contentMode.isMovies ? HomeMoviesView() : HomeSeriesView(),
+      child: contentMode.isMovies
+          ? HomeMoviesView(scrollController: scrollController)
+          : HomeSeriesView(scrollController: scrollController),
     );
   }
 }

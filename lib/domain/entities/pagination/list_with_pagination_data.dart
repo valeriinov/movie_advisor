@@ -30,7 +30,7 @@ final class ListWithPaginationData<T> with ListWithPaginationDataMappable<T> {
   }
 
   List<T> getUpdatedItems(List<T> prevItems, {bool isNewPageLoaded = true}) {
-    final isFirstPage = currentPage == 0;
+    final isFirstPage = currentPage == 1;
     return isNewPageLoaded && !isFirstPage
         ? <T>{...prevItems, ...items}.toList()
         : items;

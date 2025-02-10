@@ -60,7 +60,7 @@ dependencies:
       ref: main
   flutter_native_splash: ^2.4.4
   easy_localization: ^3.0.7+1
-  flutter_riverpod: ^2.6.1
+  hooks_riverpod: ^2.6.1
   flutter_svg: ^2.0.17
   sliver_tools: ^0.2.12
 

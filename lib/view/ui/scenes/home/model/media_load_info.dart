@@ -26,6 +26,7 @@ class MediaLoadInfo<T> with MediaLoadInfoMappable<T> {
   MediaLoadInfo<T> copyWithHandledData({
     bool? isInitialized,
     bool isNextPageLoading = false,
+    bool isNewPageLoaded = false,
     ListWithPaginationData<T>? data,
   }) {
     final isInitializedValue = isInitialized ?? this.isInitialized;
@@ -34,7 +35,7 @@ class MediaLoadInfo<T> with MediaLoadInfoMappable<T> {
       null => mediaData,
       _ => data.copyWithUpdateItems(
           mediaData.items,
-          isNewPageLoaded: isNextPageLoading,
+          isNewPageLoaded: isNewPageLoaded,
         )
     };
 

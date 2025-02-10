@@ -36,11 +36,13 @@ final class HomeMoviesState extends BaseState<HomeMoviesStatus>
     HomeMoviesStatus? status,
     bool? isInitialized,
     bool isNextPageLoading = false,
+    bool isNewPageLoaded = false,
     PaginatedMovies? data,
   }) {
     final updatedData = suggestedMovies.copyWithHandledData(
       isInitialized: isInitialized,
       isNextPageLoading: isNextPageLoading,
+      isNewPageLoaded: isNewPageLoaded,
       data: data,
     );
 
@@ -54,11 +56,13 @@ final class HomeMoviesState extends BaseState<HomeMoviesStatus>
     HomeMoviesStatus? status,
     bool? isInitialized,
     bool isNextPageLoading = false,
+    bool isNewPageLoaded = false,
     PaginatedMovies? data,
   }) {
     final updatedData = tabMovies.copyWithHandledData(
       isInitialized: isInitialized,
       isNextPageLoading: isNextPageLoading,
+      isNewPageLoaded: isNewPageLoaded,
       data: data,
     );
 

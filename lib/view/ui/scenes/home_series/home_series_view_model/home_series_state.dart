@@ -36,11 +36,13 @@ final class HomeSeriesState extends BaseState<HomeSeriesStatus>
     HomeSeriesStatus? status,
     bool? isInitialized,
     bool isNextPageLoading = false,
+    bool isNewPageLoaded = false,
     PaginatedSeries? data,
   }) {
     final updatedData = suggestedSeries.copyWithHandledData(
       isInitialized: isInitialized,
       isNextPageLoading: isNextPageLoading,
+      isNewPageLoaded: isNewPageLoaded,
       data: data,
     );
 
@@ -54,11 +56,13 @@ final class HomeSeriesState extends BaseState<HomeSeriesStatus>
     HomeSeriesStatus? status,
     bool? isInitialized,
     bool isNextPageLoading = false,
+    bool isNewPageLoaded = false,
     PaginatedSeries? data,
   }) {
     final updatedData = tabSeries.copyWithHandledData(
       isInitialized: isInitialized,
       isNextPageLoading: isNextPageLoading,
+      isNewPageLoaded: isNewPageLoaded,
       data: data,
     );
 

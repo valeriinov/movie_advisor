@@ -71,16 +71,18 @@ class AppPaginationState {
 /// ```
 class AppScrollPaginationController {
   final ScrollController scrollController;
+  final bool _shouldDisposeController;
 
   double _minLoadNextPageScrollPositionPercent = 0.4;
 
   late AppPaginationState Function() _getPaginationState;
-  late void Function({required int page}) _loadNextPage;
+  late void Function(int page) _loadNextPage;
 
   double? _prevMaxExtent;
 
   AppScrollPaginationController({ScrollController? scrollController})
-      : scrollController = scrollController ?? ScrollController();
+      : _shouldDisposeController = scrollController == null,
+        scrollController = scrollController ?? ScrollController();
 
   /// Initializes the controller with necessary dependencies.
   ///
@@ -92,7 +94,7 @@ class AppScrollPaginationController {
   /// at which the next page should be loaded. The default value is 0.4.
   void init({
     required AppPaginationState Function() getPaginationState,
-    required void Function({required int page}) loadNextPage,
+    required void Function(int page) loadNextPage,
     double minLoadNextPageScrollPositionPercent = 0.4,
   }) {
     _minLoadNextPageScrollPositionPercent =
@@ -110,7 +112,10 @@ class AppScrollPaginationController {
   /// the controller is no longer needed.
   void dispose() {
     scrollController.removeListener(_scrollListener);
-    scrollController.dispose();
+
+    if (_shouldDisposeController) {
+      scrollController.dispose();
+    }
   }
 
   void _scrollListener() {
@@ -119,7 +124,7 @@ class AppScrollPaginationController {
     if (_isReachedMinLoadNextPagePosition(state.currentPage) &&
         !state.isLoading &&
         !state.isLastPage) {
-      _loadNextPage(page: state.currentPage + 1);
+      _loadNextPage(state.currentPage + 1);
     }
   }
 

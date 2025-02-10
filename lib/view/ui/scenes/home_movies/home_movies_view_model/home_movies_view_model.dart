@@ -65,14 +65,22 @@ class HomeMoviesViewModel extends AutoDisposeNotifier<HomeMoviesState>
     _loadTabMovies();
   }
 
-  Future<void> _loadTabMovies() {
+  Future<void> loadTabNextPage(int page) {
+    state = state.copyWithUpdTabMov(isNextPageLoading: true);
+
+    return _loadTabMovies(page: page, isNewPageLoaded: true);
+  }
+
+  Future<void> _loadTabMovies(
+      {int page = 1, bool isNewPageLoaded = false}) async {
     final action = _getMoviesTabAction();
 
     return safeCall(
-      action,
+      () => action(page: page),
       onResult: (result) => _handleMoviesResult(result, (data) {
         state = state.copyWithUpdTabMov(
           status: HomeMoviesBaseInitStatus(),
+          isNewPageLoaded: isNewPageLoaded,
           isInitialized: true,
           data: data,
         );
@@ -80,7 +88,7 @@ class HomeMoviesViewModel extends AutoDisposeNotifier<HomeMoviesState>
     );
   }
 
-  Future<Result<PaginatedMovies>> Function() _getMoviesTabAction() {
+  Future<Result<PaginatedMovies>> Function({int page}) _getMoviesTabAction() {
     return switch (state.currentTab) {
       MediaTab.nowPlaying => _homeMoviesUseCase.getNowPlayingMovies,
       MediaTab.upcoming => _homeMoviesUseCase.getUpcomingMovies,
