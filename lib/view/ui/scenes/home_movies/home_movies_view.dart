@@ -36,11 +36,11 @@ class HomeMoviesView extends ConsumerWidget {
             suggestionsContent: suggestionsContent,
             currentTab: currentTab,
             tabContent: tabContent,
-            // TODO: Go to movie details
-            onTabSelect: (id) {},
+            onTabSelect: (index) => _onTabSelect(vsp, index),
             // TODO: Go to movie details
             onSuggestionItemSelect: (id) {},
-            onTabItemSelect: (index) => _onTabSelect(vsp, index),
+            // TODO: Go to movie details
+            onTabItemSelect: (id) {},
           );
   }
 

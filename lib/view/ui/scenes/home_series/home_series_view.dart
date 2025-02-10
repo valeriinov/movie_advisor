@@ -36,11 +36,11 @@ class HomeSeriesView extends ConsumerWidget {
             suggestionsContent: suggestionsContent,
             currentTab: currentTab,
             tabContent: tabContent,
-            // TODO: Go to series details
-            onTabSelect: (id) {},
+            onTabSelect: (index) => _onTabSelect(vsp, index),
             // TODO: Go to series details
             onSuggestionItemSelect: (id) {},
-            onTabItemSelect: (index) => _onTabSelect(vsp, index),
+            // TODO: Go to series details
+            onTabItemSelect: (id) {},
           );
   }
 
