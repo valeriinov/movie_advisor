@@ -26,7 +26,7 @@ class AppTabs extends StatelessWidget {
     return PinnedHeaderSliver(
       child: Skeleton.keep(
         child: Container(
-          height: 57,
+          height: 41 + (dimens.spLarge / 2),
           color: colors.scaffoldBg,
           padding: (dimens.spLarge / 2).insBottom(),
           child: ListView.separated(
