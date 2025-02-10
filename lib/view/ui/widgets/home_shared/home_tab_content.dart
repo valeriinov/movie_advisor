@@ -37,7 +37,7 @@ class HomeTabContent extends StatelessWidget {
               ),
             )
           : SliverPadding(
-              padding: dimens.padHorPrimIns,
+              padding: dimens.padHorPrimIns.copyWith(top: dimens.spMedium),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   mainAxisSpacing: 14,

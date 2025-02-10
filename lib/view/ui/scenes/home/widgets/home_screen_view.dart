@@ -27,7 +27,7 @@ class HomeScreenView extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           HomeFloatingTopBar(),
-          SliverPadding(padding: dimens.spLarge.insBottom()),
+          SliverPadding(padding: dimens.spMedium.insBottom()),
           HomeContentSwitcher(),
           SliverPadding(padding: dimens.padBotPrimIns)
         ],

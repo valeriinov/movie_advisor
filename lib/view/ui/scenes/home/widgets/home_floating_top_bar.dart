@@ -21,8 +21,12 @@ class HomeFloatingTopBar extends ConsumerWidget {
     return SliverAppBar(
       floating: true,
       primary: false,
+      toolbarHeight: kToolbarHeight + dimens.spMedium,
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.only(left: dimens.padHorPrim),
+        titlePadding: EdgeInsets.only(
+          left: dimens.padHorPrim,
+          bottom: dimens.spMedium,
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
