@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'vm_auto_dispose_family_state_provider.dart';
 import 'vm_auto_dispose_state_provider.dart';
 import 'vm_regular_state_provider.dart';

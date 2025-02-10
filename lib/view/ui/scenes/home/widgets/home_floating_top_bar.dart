@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/home_routes.dart';

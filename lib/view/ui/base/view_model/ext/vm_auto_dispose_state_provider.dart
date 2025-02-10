@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'vm_state_handler_mixin.dart';
 import 'vm_state_provider_creator.dart';
 import '../base_state.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../../../domain/entities/result.dart';
