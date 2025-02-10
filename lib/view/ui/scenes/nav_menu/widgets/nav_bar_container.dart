@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
+import '../../../resources/base_theme/nav_bars/base_nav_bars_styles_ext.dart';
 import '../../../widgets/app_svg_asset.dart';
 import '../model/app_nav_menu.dart';
 
@@ -20,9 +21,11 @@ class NavBarContainer extends StatelessWidget {
       data: context.theme.copyWith(
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
+        // Set the label size to zero so that it doesn't take up any space.
+        bottomNavigationBarTheme: context.theme.bottomNavigationBarTheme
+            .copyWith(selectedLabelStyle: TextStyle(fontSize: 0)),
       ),
       child: Container(
-        height: 78,
         decoration: BoxDecoration(
           border: Border(
             top: BorderSide(color: colors.botNavBarDivider),
@@ -31,7 +34,7 @@ class NavBarContainer extends StatelessWidget {
         child: BottomNavigationBar(
           currentIndex: currentIndex,
           items: AppNavMenu.values
-              .map((item) => _buildNavBarItem(item, currentIndex, colors))
+              .map((item) => _buildNavBarItem(context, item, currentIndex))
               .toList(),
           onTap: onTap,
         ),
@@ -40,18 +43,31 @@ class NavBarContainer extends StatelessWidget {
   }
 
   BottomNavigationBarItem _buildNavBarItem(
+    BuildContext context,
     AppNavMenu item,
     int currentIndex,
-    BaseColors colors,
   ) {
+    final colors = context.baseColors;
+    final styles = context.baseNavBarsStyles;
+
     final isSelected = currentIndex == item.index;
-    final iconColor =
+    final color =
         isSelected ? colors.botNavBarFgSelect : colors.botNavBarFgUnselect;
+    final labelStyle = styles.botNavBarLabelTextStyle.copyWith(color: color);
 
     return BottomNavigationBarItem(
-      icon: AppSvgAsset(path: item.iconPath, color: iconColor)
-          .paddingOnly(bottom: 8),
-      label: item.label,
+      icon: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          16.gapVert(),
+          AppSvgAsset(path: item.iconPath, color: color),
+          8.gapVert(),
+          Text(item.label, style: labelStyle),
+          12.gapVert(),
+        ],
+      ),
+      backgroundColor: colors.botNavBarBg,
+      label: '', // Label is implemented in the icon to set the padding
     );
   }
 }
