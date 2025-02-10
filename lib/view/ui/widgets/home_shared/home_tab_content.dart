@@ -10,10 +10,16 @@ import '../../scenes/home/model/media_load_info.dart';
 import '../poster.dart';
 
 class HomeTabContent extends StatelessWidget {
+  final bool isSkeletonVisible;
   final MediaLoadInfo<MediaShortData> mediaLoadInfo;
   final void Function(int id)? onTap;
 
-  const HomeTabContent({super.key, required this.mediaLoadInfo, this.onTap});
+  const HomeTabContent({
+    super.key,
+    required this.isSkeletonVisible,
+    required this.mediaLoadInfo,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,21 +27,13 @@ class HomeTabContent extends StatelessWidget {
     final dimens = context.baseDimens;
     final styles = context.baseComponentsStyles;
 
-    final isInitialized = mediaLoadInfo.isInitialized;
     final items = mediaLoadInfo.mediaData.items;
     final itemSize = styles.posterMediumSize;
 
     return SliverAnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child: !isInitialized
-          ? SliverFillRemaining(
-              child: SizedBox(
-                height: context.height,
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            )
+      child: _isLoaderVisible()
+          ? _buildLoader(context)
           : SliverPadding(
               padding: dimens.padHorPrimIns.copyWith(top: dimens.spMedium),
               sliver: SliverGrid(
@@ -59,5 +57,22 @@ class HomeTabContent extends StatelessWidget {
               ),
             ),
     );
+  }
+
+  Widget _buildLoader(BuildContext context) {
+    return SliverFillRemaining(
+      child: SizedBox(
+        height: context.height,
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
+    );
+  }
+
+  bool _isLoaderVisible() {
+    final isTabInitialized = mediaLoadInfo.isInitialized;
+
+    return !isSkeletonVisible && !isTabInitialized;
   }
 }

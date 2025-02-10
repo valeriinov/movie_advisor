@@ -4,10 +4,13 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../common/mock/mock_media_short.dart';
+import '../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../resources/base_theme/colors/base_colors_ext.dart';
 import '../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../scenes/home/model/media_load_info.dart';
 import '../../scenes/home/model/media_tab.dart';
 import '../tabs/app_tabs.dart';
+import 'home_tab_content.dart';
 import 'suggestions_container.dart';
 
 class HomeContentSkeleton extends StatelessWidget {
@@ -19,6 +22,7 @@ class HomeContentSkeleton extends StatelessWidget {
     final colors = context.baseColors;
 
     final suggestions = MockMediaShort.createMediaShortDataList(5);
+    final tabMovies = MockMediaShort.createMediaShortDataList(6);
 
     return SliverSkeletonizer(
       effect: PulseEffect(
@@ -36,6 +40,12 @@ class HomeContentSkeleton extends StatelessWidget {
             currentIndex: MediaTab.nowPlaying.index,
             onSelect: (_) {},
           ),
+          HomeTabContent(
+            isSkeletonVisible: true,
+            mediaLoadInfo: MediaLoadInfo(
+                mediaData: ListWithPaginationData(items: tabMovies)),
+            onTap: (id) {}, // TODO: Go to movie details
+          )
         ],
       ),
     );

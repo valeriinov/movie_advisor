@@ -22,8 +22,13 @@ class HomeMoviesView extends ConsumerWidget {
 
     final vsp = ref.vspFromADProvider(homeMoviesViewModelPr);
 
+    final isLoading = vsp.isLoading;
+    final isInitialized = vsp.isInitialized;
+    final isSkeletonVisible = isLoading && !isInitialized;
+
     vsp.handleState(listener: (prev, next) {
-      ref.baseStatusHandler.handleStatus(prev, next);
+      ref.baseStatusHandler
+          .handleStatus(prev, next, handleLoadingState: () => isInitialized);
     });
 
     final currentTab = vsp.selectWatch((s) => s.currentTab);
@@ -32,7 +37,7 @@ class HomeMoviesView extends ConsumerWidget {
     final suggestionsContent =
         vsp.selectWatch((s) => s.suggestedMovies.mediaData.items);
 
-    return vsp.isLoading && !vsp.isInitialized
+    return isSkeletonVisible
         ? HomeContentSkeleton()
         : MultiSliver(
             children: [
@@ -47,6 +52,7 @@ class HomeMoviesView extends ConsumerWidget {
                 onSelect: (index) => _onTabSelect(vsp, index),
               ),
               HomeTabContent(
+                isSkeletonVisible: isSkeletonVisible,
                 mediaLoadInfo: tabMovies,
                 onTap: (id) {}, // TODO: Go to movie details
               )
