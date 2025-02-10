@@ -34,6 +34,8 @@ class HomeContentView extends StatelessWidget {
   Widget build(BuildContext context) {
     final dimens = context.baseDimens;
 
+    final isNextPageLoading = tabContent.isNextPageLoading;
+
     return MultiSliver(
       children: [
         SuggestionsContainer(
@@ -50,7 +52,14 @@ class HomeContentView extends StatelessWidget {
         HomeTabContent(
             isSkeletonVisible: isSkeletonVisible,
             mediaLoadInfo: tabContent,
-            onTap: onTabItemSelect)
+            onTap: onTabItemSelect),
+        if (isNextPageLoading)
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: dimens.spMedium.insTop(),
+              child: Center(child: CircularProgressIndicator()),
+            ),
+          ),
       ],
     );
   }
