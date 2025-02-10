@@ -51,6 +51,7 @@ class HomeMoviesView extends ConsumerWidget {
                 currentIndex: currentTab.index,
                 onSelect: (index) => _onTabSelect(vsp, index),
               ),
+              SliverPadding(padding: dimens.spMedium.insTop()),
               HomeTabContent(
                 isSkeletonVisible: isSkeletonVisible,
                 mediaLoadInfo: tabMovies,
