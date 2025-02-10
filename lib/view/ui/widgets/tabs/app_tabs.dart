@@ -26,6 +26,8 @@ class AppTabs extends StatelessWidget {
     return PinnedHeaderSliver(
       child: Skeleton.keep(
         child: Container(
+          // Fix gap between tabs and header.
+          transform: Matrix4.translationValues(0, -0.2, 0),
           height: 41 + (dimens.spLarge / 2),
           color: colors.scaffoldBg,
           padding: (dimens.spLarge / 2).insBottom(),
