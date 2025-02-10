@@ -8,7 +8,7 @@ import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
-import '../../home/model/media_tab.dart';
+import '../../../widgets/home_shared/model/media_tab.dart';
 import 'home_movies_state.dart';
 
 typedef HomeMoviesVSP = ASP<HomeMoviesViewModel, HomeMoviesState>;

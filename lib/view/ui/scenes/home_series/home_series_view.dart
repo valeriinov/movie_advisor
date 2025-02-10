@@ -7,8 +7,8 @@ import '../../../di/injector.dart';
 import '../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../widgets/home_shared/home_content_skeleton.dart';
 import '../../widgets/home_shared/home_content_view.dart';
+import '../../widgets/home_shared/model/media_tab.dart';
 import '../../widgets/home_shared/utils/jump_to_tab_start_position.dart';
-import '../home/model/media_tab.dart';
 import 'home_series_view_model/home_series_view_model.dart';
 
 class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
@@ -36,7 +36,7 @@ class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
 
     useEffect(() {
       final paginationCtrl =
-      AppScrollPaginationController(scrollController: scrollController);
+          AppScrollPaginationController(scrollController: scrollController);
 
       paginationCtrl.init(
         getPaginationState: () => _getPaginationState(vsp),

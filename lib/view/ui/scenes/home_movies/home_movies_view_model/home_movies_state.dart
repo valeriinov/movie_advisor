@@ -4,8 +4,8 @@ import '../../../../../domain/entities/mappable_entity.dart';
 import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../base/view_model/base_state.dart';
-import '../../home/model/media_load_info.dart';
-import '../../home/model/media_tab.dart';
+import '../../../widgets/home_shared/model/media_load_info.dart';
+import '../../../widgets/home_shared/model/media_tab.dart';
 
 part 'home_movies_state.mapper.dart';
 

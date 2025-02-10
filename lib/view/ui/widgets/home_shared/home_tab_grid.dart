@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../domain/entities/base_media/media_short_data.dart';
 import '../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../resources/base_theme/dimens/base_dimens_ext.dart';
-import '../../scenes/home/model/media_load_info.dart';
 import '../poster.dart';
+import 'model/media_load_info.dart';
 
 class HomeTabGrid extends StatelessWidget {
   final MediaLoadInfo<MediaShortData> mediaLoadInfo;
