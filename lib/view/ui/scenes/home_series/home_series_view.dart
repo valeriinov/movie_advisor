@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_utils/flutter_utils.dart';
-import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../di/injector.dart';
 import '../../base/view_model/ext/vm_state_provider_creator.dart';
-import '../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../widgets/home_shared/home_content_skeleton.dart';
-import '../../widgets/home_shared/suggestions_container.dart';
-import '../../widgets/tabs/app_tabs.dart';
+import '../../widgets/home_shared/home_content_view.dart';
 import '../home/model/media_tab.dart';
 import 'home_series_view_model/home_series_view_model.dart';
 
@@ -17,34 +13,34 @@ class HomeSeriesView extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final dimens = context.baseDimens;
-
     final vsp = ref.vspFromADProvider(homeSeriesViewModelPr);
 
+    final isLoading = vsp.isLoading;
+    final isInitialized = vsp.isInitialized;
+    final isSkeletonVisible = isLoading && !isInitialized;
+
     vsp.handleState(listener: (prev, next) {
-      ref.baseStatusHandler.handleStatus(prev, next);
+      ref.baseStatusHandler
+          .handleStatus(prev, next, handleLoadingState: () => isInitialized);
     });
 
     final currentTab = vsp.selectWatch((s) => s.currentTab);
-
+    final tabContent = vsp.selectWatch((s) => s.tabSeries);
     final suggestionsContent =
         vsp.selectWatch((s) => s.suggestedSeries.mediaData.items);
 
-    return vsp.isLoading && !vsp.isInitialized
+    return isSkeletonVisible
         ? HomeContentSkeleton()
-        : MultiSliver(
-            children: [
-              SuggestionsContainer(
-                suggestions: suggestionsContent,
-                onTap: (id) {}, // TODO: Go to series details
-              ),
-              SliverPadding(padding: dimens.spExtLarge.insTop()),
-              AppTabs(
-                tabs: MediaTab.descriptions,
-                currentIndex: currentTab.index,
-                onSelect: (index) => _onTabSelect(vsp, index),
-              ),
-            ],
+        : HomeContentView(
+            isSkeletonVisible: isSkeletonVisible,
+            suggestionsContent: suggestionsContent,
+            currentTab: currentTab,
+            tabContent: tabContent,
+            // TODO: Go to series details
+            onTabSelect: (id) {},
+            // TODO: Go to series details
+            onSuggestionItemSelect: (id) {},
+            onTabItemSelect: (index) => _onTabSelect(vsp, index),
           );
   }
 
