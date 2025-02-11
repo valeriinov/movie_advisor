@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../di/injector.dart';
 import '../../base/view_model/ext/vm_state_provider_creator.dart';
-import 'home_media_view_model/home_media_view_model.dart';
+import 'home_view_model/home_view_model.dart';
 import 'model/media_tab.dart';
 import 'utils/jump_to_tab_start_position.dart';
 import 'widgets/home_content_skeleton.dart';

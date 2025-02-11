@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../base/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/home_routes.dart';
 import '../../../widgets/app_bar/floating_search_bar.dart';
+import '../../../widgets/content_mode_view_model/content_mode_view_model.dart';
 import '../home_view_model/home_view_model.dart';
+
 
 class HomeFloatingTopBar extends ConsumerWidget {
   const HomeFloatingTopBar({super.key});
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(homeViewModelPr);
+    final vspContMode = ref.vspFromADFProvider(
+      homeContModeViewModelPr(ContentMode.movies),
+    );
 
     return FloatingSearchBar(
       isSearchEnabled: false,
       autoFocus: false,
-      onSearchTap: () => _onSearchTab(context, vsp),
+      onSearchTap: () => _onSearchTab(context, vspContMode),
       // TODO: Add modal bottom sheet
-      onMoreTap: vsp.viewModel.toggleContentMode,
+      onMoreTap: vspContMode.viewModel.toggleMode,
     );
   }
 
-  void _onSearchTab(BuildContext context, HomeVSP vsp) {
-    final contentMode = vsp.selectRead((s) => s.contentMode);
+  void _onSearchTab(BuildContext context, ContentModeAFSP vsp) {
+    final contentMode = vsp.selectRead((s) => s.mode);
 
     SearchRoute(contentMode: contentMode).go(context);
   }

@@ -1,35 +1,24 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../domain/entities/movie/movie_short_data.dart';
+import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../base/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../base/view_model/utils/safe_operations_mixin.dart';
+import '../../../base/view_model/utils/schedule_operation_mixin.dart';
+import '../../../widgets/content_mode_view_model/content_mode_state.dart';
+import '../../../widgets/content_mode_view_model/content_mode_view_model.dart';
 import 'search_state.dart';
 
-typedef SearchAFSP = AFSP<SearchViewModel, SearchState, ContentMode>;
+part 'search_movies_view_model.dart';
 
-/// {@category StateManagement}
-///
-/// A provider for the [SearchViewModel] class.
-final searchViewModelPr = AutoDisposeNotifierProvider.family<SearchViewModel,
-    SearchState, ContentMode>(
-  SearchViewModel.new,
+part 'search_series_view_model.dart';
+
+final searchContModeViewModelPr = AutoDisposeNotifierProvider.family<
+    ContentModeViewModel, ContentModeState, ContentMode>(
+  ContentModeViewModel.new,
 );
 
-/// {@category StateManagement}
-///
-/// A view model for managing `search`-specific logic and state.
-///
-/// This class is responsible for coordinating `search` behavior and interacting with the UI.
-class SearchViewModel
-    extends AutoDisposeFamilyNotifier<SearchState, ContentMode> {
-  @override
-  SearchState build(arg) {
-    return SearchState(contentMode: arg);
-  }
-
-  toggleContentMode() {
-    final contentMode =
-        state.contentMode.isMovies ? ContentMode.series : ContentMode.movies;
-
-    state = state.copyWith(contentMode: contentMode);
-  }
-}
+abstract base class _SearchViewModel<T>
+    extends AutoDisposeNotifier<SearchState<T>>
+    with SafeOperationsMixin, ScheduleOperationsMixin {}

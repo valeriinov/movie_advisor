@@ -13,88 +13,131 @@ class HomeStateMapper extends ClassMapperBase<HomeState> {
   static HomeStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = HomeStateMapper._());
+      MediaLoadInfoMapper.ensureInitialized();
     }
     return _instance!;
   }
 
   @override
   final String id = 'HomeState';
+  @override
+  Function get typeFactory => <T>(f) => f<HomeState<T>>();
 
-  static ContentMode _$contentMode(HomeState v) => v.contentMode;
-  static const Field<HomeState, ContentMode> _f$contentMode =
-      Field('contentMode', _$contentMode, opt: true, def: ContentMode.movies);
+  static MediaTab _$currentTab(HomeState v) => v.currentTab;
+  static const Field<HomeState, MediaTab> _f$currentTab =
+      Field('currentTab', _$currentTab, opt: true, def: MediaTab.nowPlaying);
+  static MediaLoadInfo<dynamic> _$sugCont(HomeState v) => v.sugCont;
+  static dynamic _arg$sugCont<T>(f) => f<MediaLoadInfo<T>>();
+  static const Field<HomeState, MediaLoadInfo<dynamic>> _f$sugCont =
+      Field('sugCont', _$sugCont, opt: true, arg: _arg$sugCont);
+  static MediaLoadInfo<dynamic> _$tabCont(HomeState v) => v.tabCont;
+  static dynamic _arg$tabCont<T>(f) => f<MediaLoadInfo<T>>();
+  static const Field<HomeState, MediaLoadInfo<dynamic>> _f$tabCont =
+      Field('tabCont', _$tabCont, opt: true, arg: _arg$tabCont);
   static HomeStatus _$status(HomeState v) => v.status;
   static const Field<HomeState, HomeStatus> _f$status =
       Field('status', _$status, opt: true, def: const HomeBaseStatus());
 
   @override
   final MappableFields<HomeState> fields = const {
-    #contentMode: _f$contentMode,
+    #currentTab: _f$currentTab,
+    #sugCont: _f$sugCont,
+    #tabCont: _f$tabCont,
     #status: _f$status,
   };
 
-  static HomeState _instantiate(DecodingData data) {
+  static HomeState<T> _instantiate<T>(DecodingData data) {
     return HomeState(
-        contentMode: data.dec(_f$contentMode), status: data.dec(_f$status));
+        currentTab: data.dec(_f$currentTab),
+        sugCont: data.dec(_f$sugCont),
+        tabCont: data.dec(_f$tabCont),
+        status: data.dec(_f$status));
   }
 
   @override
   final Function instantiate = _instantiate;
 }
 
-mixin HomeStateMappable {
-  HomeStateCopyWith<HomeState, HomeState, HomeState> get copyWith =>
-      _HomeStateCopyWithImpl(this as HomeState, $identity, $identity);
+mixin HomeStateMappable<T> {
+  HomeStateCopyWith<HomeState<T>, HomeState<T>, HomeState<T>, T> get copyWith =>
+      _HomeStateCopyWithImpl(this as HomeState<T>, $identity, $identity);
   @override
   String toString() {
     return HomeStateMapper.ensureInitialized()
-        .stringifyValue(this as HomeState);
+        .stringifyValue(this as HomeState<T>);
   }
 
   @override
   bool operator ==(Object other) {
     return HomeStateMapper.ensureInitialized()
-        .equalsValue(this as HomeState, other);
+        .equalsValue(this as HomeState<T>, other);
   }
 
   @override
   int get hashCode {
-    return HomeStateMapper.ensureInitialized().hashValue(this as HomeState);
+    return HomeStateMapper.ensureInitialized().hashValue(this as HomeState<T>);
   }
 }
 
-extension HomeStateValueCopy<$R, $Out> on ObjectCopyWith<$R, HomeState, $Out> {
-  HomeStateCopyWith<$R, HomeState, $Out> get $asHomeState =>
+extension HomeStateValueCopy<$R, $Out, T>
+    on ObjectCopyWith<$R, HomeState<T>, $Out> {
+  HomeStateCopyWith<$R, HomeState<T>, $Out, T> get $asHomeState =>
       $base.as((v, t, t2) => _HomeStateCopyWithImpl(v, t, t2));
 }
 
-abstract class HomeStateCopyWith<$R, $In extends HomeState, $Out>
+abstract class HomeStateCopyWith<$R, $In extends HomeState<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({ContentMode? contentMode, HomeStatus? status});
-  HomeStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+      get sugCont;
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+      get tabCont;
+  $R call(
+      {MediaTab? currentTab,
+      MediaLoadInfo<T>? sugCont,
+      MediaLoadInfo<T>? tabCont,
+      HomeStatus? status});
+  HomeStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
-class _HomeStateCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, HomeState, $Out>
-    implements HomeStateCopyWith<$R, HomeState, $Out> {
+class _HomeStateCopyWithImpl<$R, $Out, T>
+    extends ClassCopyWithBase<$R, HomeState<T>, $Out>
+    implements HomeStateCopyWith<$R, HomeState<T>, $Out, T> {
   _HomeStateCopyWithImpl(super.value, super.then, super.then2);
 
   @override
   late final ClassMapperBase<HomeState> $mapper =
       HomeStateMapper.ensureInitialized();
   @override
-  $R call({ContentMode? contentMode, HomeStatus? status}) =>
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+      get sugCont => ($value.sugCont as MediaLoadInfo<T>)
+          .copyWith
+          .$chain((v) => call(sugCont: v));
+  @override
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+      get tabCont => ($value.tabCont as MediaLoadInfo<T>)
+          .copyWith
+          .$chain((v) => call(tabCont: v));
+  @override
+  $R call(
+          {MediaTab? currentTab,
+          Object? sugCont = $none,
+          Object? tabCont = $none,
+          HomeStatus? status}) =>
       $apply(FieldCopyWithData({
-        if (contentMode != null) #contentMode: contentMode,
+        if (currentTab != null) #currentTab: currentTab,
+        if (sugCont != $none) #sugCont: sugCont,
+        if (tabCont != $none) #tabCont: tabCont,
         if (status != null) #status: status
       }));
   @override
-  HomeState $make(CopyWithData data) => HomeState(
-      contentMode: data.get(#contentMode, or: $value.contentMode),
+  HomeState<T> $make(CopyWithData data) => HomeState(
+      currentTab: data.get(#currentTab, or: $value.currentTab),
+      sugCont: data.get(#sugCont, or: $value.sugCont),
+      tabCont: data.get(#tabCont, or: $value.tabCont),
       status: data.get(#status, or: $value.status));
 
   @override
-  HomeStateCopyWith<$R2, HomeState, $Out2> $chain<$R2, $Out2>(
+  HomeStateCopyWith<$R2, HomeState<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
       _HomeStateCopyWithImpl($value, $cast, t);
 }
@@ -121,7 +164,7 @@ class HomeBaseStatusMapper extends ClassMapperBase<HomeBaseStatus> {
       Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(HomeBaseStatus v) => v.isInitialized;
   static const Field<HomeBaseStatus, bool> _f$isInitialized =
-      Field('isInitialized', _$isInitialized, opt: true, def: true);
+      Field('isInitialized', _$isInitialized, opt: true, def: false);
 
   @override
   final MappableFields<HomeBaseStatus> fields = const {
@@ -205,4 +248,114 @@ class _HomeBaseStatusCopyWithImpl<$R, $Out>
   HomeBaseStatusCopyWith<$R2, HomeBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
       _HomeBaseStatusCopyWithImpl($value, $cast, t);
+}
+
+class HomeBaseInitStatusMapper extends ClassMapperBase<HomeBaseInitStatus> {
+  HomeBaseInitStatusMapper._();
+
+  static HomeBaseInitStatusMapper? _instance;
+  static HomeBaseInitStatusMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = HomeBaseInitStatusMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'HomeBaseInitStatus';
+
+  static bool _$isLoading(HomeBaseInitStatus v) => v.isLoading;
+  static const Field<HomeBaseInitStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
+  static String? _$errorMessage(HomeBaseInitStatus v) => v.errorMessage;
+  static const Field<HomeBaseInitStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
+  static bool _$isInitialized(HomeBaseInitStatus v) => v.isInitialized;
+  static const Field<HomeBaseInitStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
+
+  @override
+  final MappableFields<HomeBaseInitStatus> fields = const {
+    #isLoading: _f$isLoading,
+    #errorMessage: _f$errorMessage,
+    #isInitialized: _f$isInitialized,
+  };
+
+  static HomeBaseInitStatus _instantiate(DecodingData data) {
+    return HomeBaseInitStatus(
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+}
+
+mixin HomeBaseInitStatusMappable {
+  HomeBaseInitStatusCopyWith<HomeBaseInitStatus, HomeBaseInitStatus,
+          HomeBaseInitStatus>
+      get copyWith => _HomeBaseInitStatusCopyWithImpl(
+          this as HomeBaseInitStatus, $identity, $identity);
+  @override
+  String toString() {
+    return HomeBaseInitStatusMapper.ensureInitialized()
+        .stringifyValue(this as HomeBaseInitStatus);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return HomeBaseInitStatusMapper.ensureInitialized()
+        .equalsValue(this as HomeBaseInitStatus, other);
+  }
+
+  @override
+  int get hashCode {
+    return HomeBaseInitStatusMapper.ensureInitialized()
+        .hashValue(this as HomeBaseInitStatus);
+  }
+}
+
+extension HomeBaseInitStatusValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, HomeBaseInitStatus, $Out> {
+  HomeBaseInitStatusCopyWith<$R, HomeBaseInitStatus, $Out>
+      get $asHomeBaseInitStatus =>
+          $base.as((v, t, t2) => _HomeBaseInitStatusCopyWithImpl(v, t, t2));
+}
+
+abstract class HomeBaseInitStatusCopyWith<$R, $In extends HomeBaseInitStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
+  HomeBaseInitStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
+}
+
+class _HomeBaseInitStatusCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, HomeBaseInitStatus, $Out>
+    implements HomeBaseInitStatusCopyWith<$R, HomeBaseInitStatus, $Out> {
+  _HomeBaseInitStatusCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<HomeBaseInitStatus> $mapper =
+      HomeBaseInitStatusMapper.ensureInitialized();
+  @override
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
+  @override
+  HomeBaseInitStatus $make(CopyWithData data) => HomeBaseInitStatus(
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+
+  @override
+  HomeBaseInitStatusCopyWith<$R2, HomeBaseInitStatus, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
+      _HomeBaseInitStatusCopyWithImpl($value, $cast, t);
 }
