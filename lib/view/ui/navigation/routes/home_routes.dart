@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../base/content_mode.dart';
 import '../../scenes/home/home_screen.dart';
 import '../../scenes/search/search_screen.dart';
 import '../app_routes.dart';
@@ -23,12 +24,16 @@ class HomeRoute extends GoRouteData {
 }
 
 class SearchRoute extends GoRouteData with TransitionBuilderMixin {
+  final ContentMode contentMode;
+
+  SearchRoute({required this.contentMode});
+
   @override
   Page<void> buildPage(context, state) {
     return CustomTransitionPage(
       key: state.pageKey,
       name: state.fullPath,
-      child: SearchScreen(),
+      child: SearchScreen(initContentMode: contentMode),
       transitionsBuilder: fadeTransitionBuilder,
     );
   }

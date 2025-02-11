@@ -16,10 +16,15 @@ class HomeFloatingTopBar extends ConsumerWidget {
     return FloatingSearchBar(
       isSearchEnabled: false,
       autoFocus: false,
-      // TODO: Add search mode to route
-      onSearchTap: () => SearchRoute().go(context),
+      onSearchTap: () => _onSearchTab(context, vsp),
       // TODO: Add modal bottom sheet
       onMoreTap: vsp.viewModel.toggleContentMode,
     );
+  }
+
+  void _onSearchTab(BuildContext context, HomeVSP vsp) {
+    final contentMode = vsp.selectRead((s) => s.contentMode);
+
+    SearchRoute(contentMode: contentMode).go(context);
   }
 }
