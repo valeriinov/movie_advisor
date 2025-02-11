@@ -6,11 +6,11 @@ import 'app_mapper.dart';
 import 'app_movies_mapper.dart';
 import 'app_series_mapper.dart';
 
-final class AppMediaMapper extends AppMapper {
+final class AppPaginatedMediaMapper extends AppMapper {
   final AppMoviesMapper _moviesMapper;
   final AppSeriesMapper _seriesMapper;
 
-  AppMediaMapper({
+  AppPaginatedMediaMapper({
     required AppMoviesMapper moviesMapper,
     required AppSeriesMapper seriesMapper,
   })  : _moviesMapper = moviesMapper,
