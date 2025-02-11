@@ -43,5 +43,6 @@
   "nowPlayingTab": "Now playing",
   "upcomingTab": "Upcoming",
   "popularTab": "Popular",
-  "topRatedTab": "Top rated"
+  "topRatedTab": "Top rated",
+  "searchScreenTitle": "Search"
 }

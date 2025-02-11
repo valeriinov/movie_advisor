@@ -43,5 +43,6 @@
   "nowPlayingTab": "На екранах",
   "upcomingTab": "Незабаром",
   "popularTab": "Популярні",
-  "topRatedTab": "Топові"
+  "topRatedTab": "Топові",
+  "searchScreenTitle": "Пошук"
 }

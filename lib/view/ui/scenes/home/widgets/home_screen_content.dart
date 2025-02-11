@@ -10,7 +10,7 @@ import '../model/media_tab.dart';
 import 'home_tab_content.dart';
 import 'suggestions_container.dart';
 
-class HomeContentView extends StatelessWidget {
+class HomeScreenContent extends StatelessWidget {
   final bool isSkeletonVisible;
   final List<MediaShortData> suggestionsContent;
   final MediaLoadInfo<MediaShortData> tabContent;
@@ -19,7 +19,7 @@ class HomeContentView extends StatelessWidget {
   final void Function(int id)? onSuggestionItemSelect;
   final void Function(int id)? onTabItemSelect;
 
-  const HomeContentView({
+  const HomeScreenContent({
     super.key,
     required this.isSkeletonVisible,
     required this.suggestionsContent,
