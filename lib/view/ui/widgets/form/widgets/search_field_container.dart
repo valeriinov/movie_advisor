@@ -8,11 +8,13 @@ import '../input_field.dart';
 class SearchFieldContainer extends HookWidget {
   final String? hintText;
   final bool autoFocus;
+  final bool enabled;
   final Function(String)? onSearch;
 
   const SearchFieldContainer({
     super.key,
     this.hintText,
+    this.enabled = true,
     this.autoFocus = false,
     this.onSearch,
   });
@@ -28,6 +30,7 @@ class SearchFieldContainer extends HookWidget {
 
     return InputField.search(
       hintText: hintText,
+      enabled: enabled,
       autoFocus: autoFocus,
       onSearch: (value) => debounce.run(() => onSearch?.call(value)),
       onClear: () => onSearch?.call(''),

@@ -3,9 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
-import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../../widgets/app_bar/floating_search_bar.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
-import '../../../widgets/form/widgets/search_field_container.dart';
 import '../search_view_model/search_view_model.dart';
 
 class SearchScreenView extends ConsumerWidget {
@@ -20,22 +19,12 @@ class SearchScreenView extends ConsumerWidget {
       ref.baseStatusHandler.handleStatus(prev, next);
     });
 
-    final dimens = context.baseDimens;
-
     return Scaffold(
       // TODO: Localize title
       appBar: MainAppBar(title: Text('Search Screen')),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            floating: true,
-            primary: false,
-            leading: SizedBox.shrink(),
-            flexibleSpace: FlexibleSpaceBar(
-              titlePadding: dimens.padHorPrimIns,
-              title: SearchFieldContainer(autoFocus: true),
-            ),
-          ),
+          FloatingSearchBar(),
           SliverList.builder(
               itemCount: 20,
               itemBuilder: (_, i) {
