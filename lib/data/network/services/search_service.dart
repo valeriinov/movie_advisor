@@ -19,7 +19,7 @@ class SearchService {
     final queryParameters = _buildQueryParameters(filter, page);
 
     final result = await _mediaApiClient.get(
-      '/discover/movie',
+      '/search/movie',
       queryParameters: queryParameters,
     );
 
@@ -31,7 +31,7 @@ class SearchService {
     final queryParameters = _buildQueryParameters(filter, page);
 
     final result = await _mediaApiClient.get(
-      '/discover/tv',
+      '/search/tv',
       queryParameters: queryParameters,
     );
 
@@ -43,7 +43,7 @@ class SearchService {
     final params = <String, dynamic>{'page': page};
 
     if (_hasQuery(filter)) {
-      params['with_keywords'] = filter.query;
+      params['query'] = filter.query;
     }
 
     return params;
