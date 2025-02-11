@@ -41,8 +41,8 @@ abstract final class _BaseColors {
   static const btnTextPrimBgDis = Color(0xFFE0E0E0);
 
   static const btnFABFg = Colors.white;
-  static const btnFABBg = Color(0xFF6200EA);
-  static const btnFABFgSplash = Color(0xFF3700B3);
+  static const btnFABBg = Color(0xFF0296E5);
+  static const btnFABFgSplash = Color(0xFF036fac);
 
   static const btnIconPrim = Color(0xFFFFFFFF);
 

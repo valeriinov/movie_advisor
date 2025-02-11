@@ -10,15 +10,18 @@ part of 'base_durations_ext.dart';
 
 mixin _$BaseDurationsTailorMixin on ThemeExtension<BaseDurations> {
   Duration get animSwitchPrim;
+  Duration get animScrollToTop;
   Duration get searchTrans;
 
   @override
   BaseDurations copyWith({
     Duration? animSwitchPrim,
+    Duration? animScrollToTop,
     Duration? searchTrans,
   }) {
     return BaseDurations(
       animSwitchPrim: animSwitchPrim ?? this.animSwitchPrim,
+      animScrollToTop: animScrollToTop ?? this.animScrollToTop,
       searchTrans: searchTrans ?? this.searchTrans,
     );
   }
@@ -28,6 +31,7 @@ mixin _$BaseDurationsTailorMixin on ThemeExtension<BaseDurations> {
     if (other is! BaseDurations) return this as BaseDurations;
     return BaseDurations(
       animSwitchPrim: t < 0.5 ? animSwitchPrim : other.animSwitchPrim,
+      animScrollToTop: t < 0.5 ? animScrollToTop : other.animScrollToTop,
       searchTrans: t < 0.5 ? searchTrans : other.searchTrans,
     );
   }
@@ -40,6 +44,8 @@ mixin _$BaseDurationsTailorMixin on ThemeExtension<BaseDurations> {
             const DeepCollectionEquality()
                 .equals(animSwitchPrim, other.animSwitchPrim) &&
             const DeepCollectionEquality()
+                .equals(animScrollToTop, other.animScrollToTop) &&
+            const DeepCollectionEquality()
                 .equals(searchTrans, other.searchTrans));
   }
 
@@ -48,6 +54,7 @@ mixin _$BaseDurationsTailorMixin on ThemeExtension<BaseDurations> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(animSwitchPrim),
+      const DeepCollectionEquality().hash(animScrollToTop),
       const DeepCollectionEquality().hash(searchTrans),
     );
   }

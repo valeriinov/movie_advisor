@@ -10,6 +10,7 @@ abstract final class BaseDurationsFactory {
   static BaseDurations createDurations() {
     return BaseDurations(
       animSwitchPrim: _BaseDurations.animSwitchPrim,
+      animScrollToTop: _BaseDurations.animScrollToTop,
       searchTrans: _BaseDurations.searchTrans,
     );
   }
@@ -22,12 +23,17 @@ class BaseDurations extends ThemeExtension<BaseDurations>
   @override
   final Duration animSwitchPrim;
 
+  /// Duration for scrolling to the top of the screen.
+  @override
+  final Duration animScrollToTop;
+
   /// Duration for search field transitions.
   @override
   final Duration searchTrans;
 
   BaseDurations({
     required this.animSwitchPrim,
+    required this.animScrollToTop,
     required this.searchTrans,
   });
 }
