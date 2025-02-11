@@ -25,8 +25,7 @@ final homeContModeViewModelPr = AutoDisposeNotifierProvider.family<
   ContentModeViewModel.new,
 );
 
-abstract base class _HomeViewModel<T>
-    extends AutoDisposeNotifier<HomeState<T>>
+abstract base class _HomeViewModel<T> extends AutoDisposeNotifier<HomeState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final HomeUseCase<T> _homeUseCase;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _loadTabOperation;
@@ -73,6 +72,7 @@ abstract base class _HomeViewModel<T>
     return safeCall(
       () async {
         _loadTabOperation?.cancel();
+
         _loadTabOperation = CancelableOperation.fromFuture(action(page: page));
 
         return _loadTabOperation?.valueOrCancellation();

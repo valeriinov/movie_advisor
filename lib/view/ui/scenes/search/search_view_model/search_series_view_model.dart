@@ -20,6 +20,11 @@ final searchSeriesViewModelPr =
 final class SearchSeriesViewModel extends _SearchViewModel<SeriesShortData> {
   @override
   SearchSeriesState build() {
+    _searchUseCase = ref.read(searchSeriesUseCasePr);
+
+    ref.onDispose(cancelSafeOperations);
+    scheduleCall(loadInitialData);
+
     return SearchSeriesState();
   }
 }
