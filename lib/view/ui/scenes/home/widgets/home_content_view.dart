@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../../domain/entities/base_media/media_short_data.dart';
-import '../../resources/base_theme/dimens/base_dimens_ext.dart';
-import '../tabs/app_tabs.dart';
+import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../../widgets/tabs/app_tabs.dart';
+import '../model/media_load_info.dart';
+import '../model/media_tab.dart';
 import 'home_tab_content.dart';
-import 'model/media_load_info.dart';
-import 'model/media_tab.dart';
 import 'suggestions_container.dart';
 
 class HomeContentView extends StatelessWidget {

@@ -5,20 +5,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../di/injector.dart';
 import '../../base/view_model/ext/vm_state_provider_creator.dart';
-import '../../widgets/home_shared/home_content_skeleton.dart';
-import '../../widgets/home_shared/home_content_view.dart';
-import '../../widgets/home_shared/model/media_tab.dart';
-import '../../widgets/home_shared/utils/jump_to_tab_start_position.dart';
-import 'home_series_view_model/home_series_view_model.dart';
+import 'home_media_view_model/home_media_view_model.dart';
+import 'model/media_tab.dart';
+import 'utils/jump_to_tab_start_position.dart';
+import 'widgets/home_content_skeleton.dart';
+import 'widgets/home_content_view.dart';
 
-class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
+class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
   final ScrollController scrollController;
 
-  const HomeSeriesView({super.key, required this.scrollController});
+  const HomeMoviesView({super.key, required this.scrollController});
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(homeSeriesViewModelPr);
+    final vsp = ref.vspFromADProvider(homeMoviesViewModelPr);
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;
@@ -30,9 +30,9 @@ class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
     });
 
     final currentTab = vsp.selectWatch((s) => s.currentTab);
-    final tabContent = vsp.selectWatch((s) => s.tabSeries);
+    final tabContent = vsp.selectWatch((s) => s.tabCont);
     final suggestionsContent =
-        vsp.selectWatch((s) => s.suggestedSeries.mediaData.items);
+        vsp.selectWatch((s) => s.sugCont.mediaData.items);
 
     useEffect(() {
       final paginationCtrl =
@@ -62,15 +62,15 @@ class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
             currentTab: currentTab,
             tabContent: tabContent,
             onTabSelect: (index) => _onTabSelect(vsp, index),
-            // TODO: Go to series details
+            // TODO: Go to movie details
             onSuggestionItemSelect: (id) {},
-            // TODO: Go to series details
+            // TODO: Go to movie details
             onTabItemSelect: (id) {},
           );
   }
 
-  AppPaginationState _getPaginationState(HomeSeriesVSP vsp) {
-    final loadInfo = vsp.selectRead((s) => s.tabSeries);
+  AppPaginationState _getPaginationState(HomeMoviesVSP vsp) {
+    final loadInfo = vsp.selectRead((s) => s.tabCont);
 
     return AppPaginationState(
       currentPage: loadInfo.mediaData.currentPage,
@@ -79,7 +79,7 @@ class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
     );
   }
 
-  void _onTabSelect(HomeSeriesVSP vsp, int index) {
+  void _onTabSelect(HomeMoviesVSP vsp, int index) {
     final tab = MediaTab.fromIndex(index);
 
     vsp.viewModel.updateCurrentTab(tab);

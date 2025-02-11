@@ -2,7 +2,8 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../../../../domain/entities/mappable_entity.dart';
 import '../../../base/view_model/base_state.dart';
-import '../../../widgets/home_shared/model/content_mode.dart';
+import '../model/content_mode.dart';
+
 
 part 'home_state.mapper.dart';
 

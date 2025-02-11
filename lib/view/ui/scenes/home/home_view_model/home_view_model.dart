@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../widgets/home_shared/model/content_mode.dart';
+import '../model/content_mode.dart';
 import 'home_state.dart';
 
 /// {@category StateManagement}

@@ -4,8 +4,8 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/durations/base_durations_ext.dart';
-import '../../home_movies/home_movies_view.dart';
-import '../../home_series/home_series_view.dart';
+import '../home_movies_view.dart';
+import '../home_series_view.dart';
 import '../home_view_model/home_view_model.dart';
 
 class HomeContentSwitcher extends ConsumerWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../resources/app_fonts.dart';
-import '../../resources/base_theme/colors/base_colors_ext.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../stroke_text.dart';
+
+import '../../../resources/app_fonts.dart';
+import '../../../resources/base_theme/colors/base_colors_ext.dart';
+import '../../../widgets/stroke_text.dart';
 
 class SuggestionNumber extends StatelessWidget {
   final int number;

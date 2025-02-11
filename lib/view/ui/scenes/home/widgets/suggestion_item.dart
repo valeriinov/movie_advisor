@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../resources/base_theme/components/base_components_styles_ext.dart';
-import '../poster.dart';
+import '../../../resources/base_theme/components/base_components_styles_ext.dart';
+import '../../../widgets/poster.dart';
 import 'suggestion_number.dart';
 
 class SuggestionItem extends StatelessWidget {

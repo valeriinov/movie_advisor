@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../../domain/entities/base_media/media_short_data.dart';
-import '../../resources/base_theme/durations/base_durations_ext.dart';
-
+import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../resources/base_theme/durations/base_durations_ext.dart';
+import '../model/media_load_info.dart';
 import 'home_tab_grid.dart';
-import 'model/media_load_info.dart';
 
 class HomeTabContent extends StatelessWidget {
   final bool isSkeletonVisible;
