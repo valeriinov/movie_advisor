@@ -34,4 +34,19 @@ abstract final class _BaseComponentsStyles {
         fontSize: 12,
         color: color,
       );
+
+  // Empty list
+  static TextStyle emptyListTitleTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
+        color: color,
+      );
+
+  static TextStyle emptyListSubtitleTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w500,
+        fontSize: 12,
+        color: color,
+      );
 }

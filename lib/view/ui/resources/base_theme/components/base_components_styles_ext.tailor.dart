@@ -21,6 +21,8 @@ mixin _$BaseComponentsStylesTailorMixin
   Size get posterMediumSize;
   Size get posterLargeSize;
   TextStyle get infoCardRatingTextStyle;
+  TextStyle get emptyListTitleTextStyle;
+  TextStyle get emptyListSubtitleTextStyle;
 
   @override
   BaseComponentsStyles copyWith({
@@ -35,6 +37,8 @@ mixin _$BaseComponentsStylesTailorMixin
     Size? posterMediumSize,
     Size? posterLargeSize,
     TextStyle? infoCardRatingTextStyle,
+    TextStyle? emptyListTitleTextStyle,
+    TextStyle? emptyListSubtitleTextStyle,
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
@@ -51,6 +55,10 @@ mixin _$BaseComponentsStylesTailorMixin
       posterLargeSize: posterLargeSize ?? this.posterLargeSize,
       infoCardRatingTextStyle:
           infoCardRatingTextStyle ?? this.infoCardRatingTextStyle,
+      emptyListTitleTextStyle:
+          emptyListTitleTextStyle ?? this.emptyListTitleTextStyle,
+      emptyListSubtitleTextStyle:
+          emptyListSubtitleTextStyle ?? this.emptyListSubtitleTextStyle,
     );
   }
 
@@ -77,6 +85,10 @@ mixin _$BaseComponentsStylesTailorMixin
       posterLargeSize: t < 0.5 ? posterLargeSize : other.posterLargeSize,
       infoCardRatingTextStyle: TextStyle.lerp(
           infoCardRatingTextStyle, other.infoCardRatingTextStyle, t)!,
+      emptyListTitleTextStyle: TextStyle.lerp(
+          emptyListTitleTextStyle, other.emptyListTitleTextStyle, t)!,
+      emptyListSubtitleTextStyle: TextStyle.lerp(
+          emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle, t)!,
     );
   }
 
@@ -106,7 +118,11 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality()
                 .equals(posterLargeSize, other.posterLargeSize) &&
             const DeepCollectionEquality().equals(
-                infoCardRatingTextStyle, other.infoCardRatingTextStyle));
+                infoCardRatingTextStyle, other.infoCardRatingTextStyle) &&
+            const DeepCollectionEquality().equals(
+                emptyListTitleTextStyle, other.emptyListTitleTextStyle) &&
+            const DeepCollectionEquality().equals(
+                emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle));
   }
 
   @override
@@ -124,6 +140,8 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(posterMediumSize),
       const DeepCollectionEquality().hash(posterLargeSize),
       const DeepCollectionEquality().hash(infoCardRatingTextStyle),
+      const DeepCollectionEquality().hash(emptyListTitleTextStyle),
+      const DeepCollectionEquality().hash(emptyListSubtitleTextStyle),
     );
   }
 }

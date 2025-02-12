@@ -35,6 +35,12 @@ abstract final class BaseComponentsStylesFactory {
       infoCardRatingTextStyle: _BaseComponentsStyles.infoCardRatingTextStyle(
         colors.infoCardRating,
       ),
+      emptyListTitleTextStyle: _BaseComponentsStyles.emptyListTitleTextStyle(
+        colors.emptyListTitle,
+      ),
+      emptyListSubtitleTextStyle: _BaseComponentsStyles.emptyListSubtitleTextStyle(
+        colors.emptyListSubtitle,
+      ),
     );
   }
 }
@@ -82,8 +88,17 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final Size posterLargeSize;
 
+  /// TextStyle of the rating in the info card.
   @override
   final TextStyle infoCardRatingTextStyle;
+
+  /// TextStyle of the title in the empty list.
+  @override
+  final TextStyle emptyListTitleTextStyle;
+
+  /// TextStyle of the subtitle in the empty list.
+  @override
+  final TextStyle emptyListSubtitleTextStyle;
 
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
@@ -97,5 +112,7 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.posterMediumSize,
     required this.posterLargeSize,
     required this.infoCardRatingTextStyle,
+    required this.emptyListTitleTextStyle,
+    required this.emptyListSubtitleTextStyle,
   });
 }

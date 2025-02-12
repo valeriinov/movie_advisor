@@ -78,6 +78,8 @@ abstract final class BaseColorsFactory {
         suggestNumBlur: _BaseColors.suggestNumBlur,
         tabUnderSelect: _BaseColors.tabUnderSelect,
         infoCardRating: _BaseColors.infoCardRating,
+        emptyListTitle: _BaseColors.emptyListTitle,
+        emptyListSubtitle: _BaseColors.emptyListSubtitle,
       );
 }
 
@@ -376,8 +378,17 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color tabUnderSelect;
 
+  /// Info card rating color.
   @override
   final Color infoCardRating;
+
+  /// Empty list title color.
+  @override
+  final Color emptyListTitle;
+
+  /// Empty list subtitle color.
+  @override
+  final Color emptyListSubtitle;
 
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
@@ -454,5 +465,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.suggestNumBlur,
     required this.tabUnderSelect,
     required this.infoCardRating,
+    required this.emptyListTitle,
+    required this.emptyListSubtitle,
   });
 }
