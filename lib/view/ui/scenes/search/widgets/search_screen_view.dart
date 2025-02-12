@@ -10,6 +10,7 @@ import '../../../resources/base_theme/durations/base_durations_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/floating_search_bar.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../search_view_model/search_view_model.dart';
 import 'search_movies_view.dart';
@@ -63,6 +64,9 @@ class SearchScreenView extends HookConsumerWidget {
                 ),
               ],
             ),
+            floatingActionButton: isFabVisible
+                ? ScrollTopFab(scrollController: scrollController)
+                : null,
           );
         });
   }
