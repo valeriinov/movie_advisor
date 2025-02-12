@@ -3,9 +3,10 @@ import 'package:flutter_utils/flutter_utils.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
-import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
-import '../../../widgets/tabs/app_tabs.dart';
 import '../../../base/media_load_info.dart';
+import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../../widgets/next_page_loader.dart';
+import '../../../widgets/tabs/app_tabs.dart';
 import '../model/media_tab.dart';
 import 'home_tab_content.dart';
 import 'suggestions_container.dart';
@@ -53,13 +54,7 @@ class HomeScreenContent extends StatelessWidget {
             isSkeletonVisible: isSkeletonVisible,
             mediaLoadInfo: tabContent,
             onTap: onTabItemSelect),
-        if (isNextPageLoading)
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: dimens.spMedium.insTop(),
-              child: Center(child: CircularProgressIndicator()),
-            ),
-          ),
+        if (isNextPageLoading) NextPageLoader(),
       ],
     );
   }

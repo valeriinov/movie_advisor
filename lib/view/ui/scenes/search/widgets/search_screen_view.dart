@@ -43,6 +43,7 @@ class SearchScreenView extends HookConsumerWidget {
               title: Text(LocaleKeys.searchScreenTitle.tr()),
             ),
             body: CustomScrollView(
+              controller: scrollController,
               slivers: [
                 FloatingSearchBar(
                   onSearch: vspFilter.viewModel.updateSearchQuery,

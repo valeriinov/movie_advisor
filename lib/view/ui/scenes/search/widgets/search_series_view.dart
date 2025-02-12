@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../../di/injector.dart';
 import '../../../base/filter_view_model/filter_state.dart';
 import '../../../base/filter_view_model/filter_view_model.dart';
@@ -25,11 +26,14 @@ class SearchSeriesView extends HookConsumerWidget {
 
     useEffect(() {
       _scheduleInitialDataLoad(context, vspFilter, vsp);
-      return null;
+
+      final paginationCtrl = _initPaginationController(vspFilter, vsp);
+      return paginationCtrl.dispose;
     }, []);
 
     vspFilter.handleState(
-        listener: (prev, next) => _handleFilterState(prev, next, vsp));
+      listener: (prev, next) => _handleFilterUpdate(prev, next, vsp),
+    );
 
     vsp.handleState(listener: (prev, next) {
       ref.baseStatusHandler
@@ -38,9 +42,7 @@ class SearchSeriesView extends HookConsumerWidget {
 
     final results = vsp.selectWatch((s) => s.results);
 
-    return SearchScreenContent(
-      resultsMedia: results.mediaData.items,
-    );
+    return SearchScreenContent(results: results);
   }
 
   void _scheduleInitialDataLoad(
@@ -60,7 +62,36 @@ class SearchSeriesView extends HookConsumerWidget {
     }
   }
 
-  void _handleFilterState(
+  AppScrollPaginationController _initPaginationController(
+    FilterVSP vspFilter,
+    SearchSeriesVSP vsp,
+  ) {
+    final paginationCtrl =
+        AppScrollPaginationController(scrollController: scrollController);
+
+    paginationCtrl.init(
+      getPaginationState: () => _getPaginationState(vsp),
+      loadNextPage: (page) {
+        final filter = vspFilter.selectRead((s) => s.filter);
+
+        vsp.viewModel.loadNextPage(filter, page);
+      },
+    );
+
+    return paginationCtrl;
+  }
+
+  AppPaginationState _getPaginationState(SearchSeriesVSP vsp) {
+    final loadInfo = vsp.selectRead((s) => s.results);
+
+    return AppPaginationState(
+      currentPage: loadInfo.mediaData.currentPage,
+      isLoading: loadInfo.isNextPageLoading,
+      isLastPage: loadInfo.mediaData.isLastPage,
+    );
+  }
+
+  void _handleFilterUpdate(
       FilterState? prev, FilterState next, SearchSeriesVSP vsp) {
     if (next.isUpdate(prev, (s) => s?.filter)) {
       vsp.viewModel.loadByFilter(next.filter);
