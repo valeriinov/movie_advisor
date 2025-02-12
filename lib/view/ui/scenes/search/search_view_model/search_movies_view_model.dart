@@ -23,7 +23,6 @@ final class SearchMoviesViewModel extends _SearchViewModel<MovieShortData> {
     _searchUseCase = ref.read(searchMoviesUseCasePr);
 
     ref.onDispose(cancelSafeOperations);
-    scheduleCall(loadInitialData);
 
     return SearchMoviesState();
   }

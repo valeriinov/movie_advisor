@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../widgets/app_bar/floating_search_bar.dart';
+import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
+import 'search_results.dart';
 
 class SearchScreenContent extends StatelessWidget {
-  final Function(String?)? onSearch;
-  final VoidCallback? onMoreTap;
+  final List<MediaShortData> resultsMedia;
+  final void Function(int id)? onItemSelect;
 
   const SearchScreenContent({
     super.key,
-    this.onSearch,
-    this.onMoreTap,
+    required this.resultsMedia,
+    this.onItemSelect,
   });
 
   @override
   Widget build(BuildContext context) {
-    return MultiSliver(children: [
-      FloatingSearchBar(
-        onSearch: onSearch,
-        onMoreTap: onMoreTap,
-      ),
-      SliverList.builder(
-          itemCount: 20,
-          itemBuilder: (_, i) {
-            return ListTile(
-              title: Text('Item $i'),
-            );
-          })
-    ]);
+    final dimens = context.baseDimens;
+
+    return MultiSliver(
+      children: [
+        SearchResults(
+          resultsMedia: resultsMedia,
+          onItemSelect: onItemSelect,
+        ),
+        SliverPadding(padding: dimens.padBotPrimIns)
+      ],
+    );
   }
 }

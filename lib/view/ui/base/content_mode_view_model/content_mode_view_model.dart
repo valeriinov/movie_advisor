@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../base/content_mode.dart';
+import 'content_mode.dart';
 import '../../base/view_model/ext/vm_state_provider_creator.dart';
 import 'content_mode_state.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../base/content_mode.dart';
+import '../../base/content_mode_view_model/content_mode.dart';
 import '../../scenes/home/home_screen.dart';
 import '../../scenes/search/search_screen.dart';
 import '../app_routes.dart';

@@ -46,9 +46,12 @@ class InputField extends StatelessWidget {
     bool autoFocus = false,
     Function(String)? onSearch,
     VoidCallback? onClear,
+    final TextEditingController? controller,
   }) : this._(
-            key: key,
-            child: TextFieldBuilderExtended(builder: (props) {
+          key: key,
+          child: TextFieldBuilderExtended(
+            controller: controller,
+            builder: (props) {
               final styles = props.context.baseInputsStyles;
 
               return Hero(
@@ -76,7 +79,9 @@ class InputField extends StatelessWidget {
                   ),
                 ),
               );
-            }));
+            },
+          ),
+        );
 
   /// Handles the flight transition for a Hero animation and requests focus
   /// on the text field once the animation completes if `autoFocus` is enabled.

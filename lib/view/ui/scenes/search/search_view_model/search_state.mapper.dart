@@ -13,7 +13,6 @@ class SearchStateMapper extends ClassMapperBase<SearchState> {
   static SearchStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SearchStateMapper._());
-      SearchFilterDataMapper.ensureInitialized();
       MediaLoadInfoMapper.ensureInitialized();
     }
     return _instance!;
@@ -24,9 +23,6 @@ class SearchStateMapper extends ClassMapperBase<SearchState> {
   @override
   Function get typeFactory => <T>(f) => f<SearchState<T>>();
 
-  static SearchFilterData _$filter(SearchState v) => v.filter;
-  static const Field<SearchState, SearchFilterData> _f$filter =
-      Field('filter', _$filter, opt: true, def: const SearchFilterData());
   static MediaLoadInfo<dynamic> _$results(SearchState v) => v.results;
   static dynamic _arg$results<T>(f) => f<MediaLoadInfo<T>>();
   static const Field<SearchState, MediaLoadInfo<dynamic>> _f$results =
@@ -37,16 +33,13 @@ class SearchStateMapper extends ClassMapperBase<SearchState> {
 
   @override
   final MappableFields<SearchState> fields = const {
-    #filter: _f$filter,
     #results: _f$results,
     #status: _f$status,
   };
 
   static SearchState<T> _instantiate<T>(DecodingData data) {
     return SearchState(
-        filter: data.dec(_f$filter),
-        results: data.dec(_f$results),
-        status: data.dec(_f$status));
+        results: data.dec(_f$results), status: data.dec(_f$status));
   }
 
   @override
@@ -84,13 +77,9 @@ extension SearchStateValueCopy<$R, $Out, T>
 
 abstract class SearchStateCopyWith<$R, $In extends SearchState<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  SearchFilterDataCopyWith<$R, SearchFilterData, SearchFilterData> get filter;
   MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
       get results;
-  $R call(
-      {SearchFilterData? filter,
-      MediaLoadInfo<T>? results,
-      SearchStatus? status});
+  $R call({MediaLoadInfo<T>? results, SearchStatus? status});
   SearchStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -104,26 +93,18 @@ class _SearchStateCopyWithImpl<$R, $Out, T>
   late final ClassMapperBase<SearchState> $mapper =
       SearchStateMapper.ensureInitialized();
   @override
-  SearchFilterDataCopyWith<$R, SearchFilterData, SearchFilterData> get filter =>
-      $value.filter.copyWith.$chain((v) => call(filter: v));
-  @override
   MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
       get results => ($value.results as MediaLoadInfo<T>)
           .copyWith
           .$chain((v) => call(results: v));
   @override
-  $R call(
-          {SearchFilterData? filter,
-          Object? results = $none,
-          SearchStatus? status}) =>
+  $R call({Object? results = $none, SearchStatus? status}) =>
       $apply(FieldCopyWithData({
-        if (filter != null) #filter: filter,
         if (results != $none) #results: results,
         if (status != null) #status: status
       }));
   @override
   SearchState<T> $make(CopyWithData data) => SearchState(
-      filter: data.get(#filter, or: $value.filter),
       results: data.get(#results, or: $value.results),
       status: data.get(#status, or: $value.status));
 

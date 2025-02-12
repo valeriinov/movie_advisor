@@ -4,10 +4,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../base/content_mode.dart';
+import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/durations/base_durations_ext.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/app_bar/floating_search_bar.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../search_view_model/search_view_model.dart';
@@ -27,10 +28,12 @@ class SearchScreenView extends HookConsumerWidget {
       searchContModeViewModelPr(initContentMode),
     );
 
+    final vspFilter = ref.vspFromADProvider(searchFilterViewModelPr);
+
     final contMode = vspContMode.selectWatch((s) => s.mode);
-    final contModeViewModel = vspContMode.viewModel;
 
     final scrollController = useScrollController();
+    final searchFieldController = useTextEditingController();
 
     return ScrollTopListener(
         scrollController: scrollController,
@@ -41,18 +44,22 @@ class SearchScreenView extends HookConsumerWidget {
             ),
             body: CustomScrollView(
               slivers: [
+                FloatingSearchBar(
+                  onSearch: vspFilter.viewModel.updateSearchQuery,
+                  // TODO: Add modal bottom sheet
+                  onMoreTap: vspContMode.viewModel.toggleMode,
+                  textController: searchFieldController,
+                ),
                 SliverAnimatedSwitcher(
                   duration: durations.animSwitchPrim,
                   child: contMode.isMovies
                       ? SearchMoviesView(
-                          toggleContentMode: contModeViewModel.toggleMode,
                           scrollController: scrollController,
                         )
                       : SearchSeriesView(
-                          toggleContentMode: contModeViewModel.toggleMode,
                           scrollController: scrollController,
                         ),
-                )
+                ),
               ],
             ),
           );

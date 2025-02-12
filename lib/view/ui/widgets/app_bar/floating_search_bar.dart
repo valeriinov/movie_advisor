@@ -11,6 +11,7 @@ class FloatingSearchBar extends StatelessWidget {
   final void Function(String?)? onSearch;
   final VoidCallback? onSearchTap;
   final VoidCallback? onMoreTap;
+  final TextEditingController? textController;
 
   const FloatingSearchBar({
     super.key,
@@ -19,6 +20,7 @@ class FloatingSearchBar extends StatelessWidget {
     this.onSearch,
     this.onSearchTap,
     this.onMoreTap,
+    this.textController,
   });
 
   @override
@@ -46,6 +48,7 @@ class FloatingSearchBar extends StatelessWidget {
                   enabled: isSearchEnabled,
                   autoFocus: autoFocus,
                   onSearch: onSearch,
+                  controller: textController,
                 ),
               ),
             ),

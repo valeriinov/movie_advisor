@@ -2,9 +2,8 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../../../../domain/entities/mappable_entity.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
-import '../../../../../domain/entities/search/search_filter_data.dart';
-import '../../../base/view_model/base_state.dart';
 import '../../../base/media_load_info.dart';
+import '../../../base/view_model/base_state.dart';
 
 part 'search_state.mapper.dart';
 
@@ -15,14 +14,12 @@ part 'search_state.mapper.dart';
 @mappableEntity
 final class SearchState<T> extends BaseState<SearchStatus>
     with SearchStateMappable<T> {
-  final SearchFilterData filter;
   final MediaLoadInfo<T> results;
 
   @override
   final SearchStatus status;
 
   SearchState({
-    this.filter = const SearchFilterData(),
     MediaLoadInfo<T>? results,
     this.status = const SearchBaseStatus(),
   }) : results = results ?? MediaLoadInfo<T>();

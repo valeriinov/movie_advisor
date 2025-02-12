@@ -11,4 +11,6 @@ class SearchFilterData with SearchFilterDataMappable {
   const SearchFilterData({
     this.query,
   });
+
+  bool get isDefault => this == SearchFilterData();
 }

@@ -23,7 +23,6 @@ final class SearchSeriesViewModel extends _SearchViewModel<SeriesShortData> {
     _searchUseCase = ref.read(searchSeriesUseCasePr);
 
     ref.onDispose(cancelSafeOperations);
-    scheduleCall(loadInitialData);
 
     return SearchSeriesState();
   }
