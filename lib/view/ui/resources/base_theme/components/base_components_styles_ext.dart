@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
+import '../../app_fonts.dart';
 import '../colors/base_colors_ext.dart';
 
 part 'base_components_styles.dart';
@@ -31,6 +32,9 @@ abstract final class BaseComponentsStylesFactory {
       posterSmallSize: _BaseComponentsStyles.posterSmallSize,
       posterMediumSize: _BaseComponentsStyles.posterMediumSize,
       posterLargeSize: _BaseComponentsStyles.posterLargeSize,
+      infoCardRatingTextStyle: _BaseComponentsStyles.infoCardRatingTextStyle(
+        colors.infoCardRating,
+      ),
     );
   }
 }
@@ -78,6 +82,9 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final Size posterLargeSize;
 
+  @override
+  final TextStyle infoCardRatingTextStyle;
+
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
     required this.cardPrimShape,
@@ -89,5 +96,6 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.posterSmallSize,
     required this.posterMediumSize,
     required this.posterLargeSize,
+    required this.infoCardRatingTextStyle,
   });
 }

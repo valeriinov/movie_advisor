@@ -26,4 +26,12 @@ abstract final class _BaseComponentsStyles {
   static const Size posterSmallSize = Size(95, 120);
   static const Size posterMediumSize = Size(100, 146);
   static const Size posterLargeSize = Size(145, 210);
+
+  // Media info card
+  static TextStyle infoCardRatingTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w600,
+        fontSize: 12,
+        color: color,
+      );
 }

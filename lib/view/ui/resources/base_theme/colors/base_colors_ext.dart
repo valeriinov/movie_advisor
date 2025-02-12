@@ -75,6 +75,7 @@ abstract final class BaseColorsFactory {
         suggestNumStroke: _BaseColors.suggestNumStroke,
         suggestNumBlur: _BaseColors.suggestNumBlur,
         tabUnderSelect: _BaseColors.tabUnderSelect,
+        infoCardRating: _BaseColors.infoCardRating,
       );
 }
 
@@ -365,6 +366,9 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color tabUnderSelect;
 
+  @override
+  final Color infoCardRating;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -437,5 +441,6 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.suggestNumStroke,
     required this.suggestNumBlur,
     required this.tabUnderSelect,
+    required this.infoCardRating,
   });
 }
