@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import '../../../common/utils/date_mapper_hook.dart';
 import 'movie_genre_dto.dart';
 
 part 'movie_data_dto.mapper.dart';
@@ -15,6 +16,7 @@ class MovieDataDto with MovieDataDtoMappable {
   final String? overview;
   final double? popularity;
   final String? posterPath;
+  @MappableField(hook: DateMapperHook())
   final DateTime? releaseDate;
   final String? title;
   final double? voteAverage;
@@ -39,7 +41,7 @@ class MovieDataDto with MovieDataDtoMappable {
     this.userRating,
     this.isInWatchlist,
     this.isWatched,
-});
+  });
 
   factory MovieDataDto.fromJson(Map<String, dynamic> json) =>
       MovieDataDtoMapper.fromJson(json);

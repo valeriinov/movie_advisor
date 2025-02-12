@@ -49,8 +49,9 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static const Field<SeriesDataDto, String> _f$posterPath =
       Field('posterPath', _$posterPath, key: 'poster_path', opt: true);
   static DateTime? _$firstAirDate(SeriesDataDto v) => v.firstAirDate;
-  static const Field<SeriesDataDto, DateTime> _f$firstAirDate =
-      Field('firstAirDate', _$firstAirDate, key: 'first_air_date', opt: true);
+  static const Field<SeriesDataDto, DateTime> _f$firstAirDate = Field(
+      'firstAirDate', _$firstAirDate,
+      key: 'first_air_date', opt: true, hook: DateMapperHook());
   static String? _$name(SeriesDataDto v) => v.name;
   static const Field<SeriesDataDto, String> _f$name =
       Field('name', _$name, opt: true);

@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import '../../../common/utils/date_mapper_hook.dart';
 import 'series_genre_dto.dart';
 
 part 'series_data_dto.mapper.dart';
@@ -16,6 +17,7 @@ class SeriesDataDto with SeriesDataDtoMappable {
   final String? overview;
   final double? popularity;
   final String? posterPath;
+  @MappableField(hook: DateMapperHook())
   final DateTime? firstAirDate;
   final String? name;
   final double? voteAverage;
