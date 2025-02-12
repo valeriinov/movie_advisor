@@ -49,5 +49,7 @@ abstract class  LocaleKeys {
   static const popularTab = 'popularTab';
   static const topRatedTab = 'topRatedTab';
   static const searchScreenTitle = 'searchScreenTitle';
+  static const emptySearchTitle = 'emptySearchTitle';
+  static const emptySearchSubtitle = 'emptySearchSubtitle';
 
 }

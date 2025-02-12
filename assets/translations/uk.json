@@ -44,5 +44,7 @@
   "upcomingTab": "Незабаром",
   "popularTab": "Популярні",
   "topRatedTab": "Топові",
-  "searchScreenTitle": "Пошук"
+  "searchScreenTitle": "Пошук",
+  "emptySearchTitle": "Вибачте, Результатів За Вашим Запитом Не Знайдено :(",
+  "emptySearchSubtitle": "Знайдіть свій фільм, ввівши назву, категорії, роки тощо."
 }
