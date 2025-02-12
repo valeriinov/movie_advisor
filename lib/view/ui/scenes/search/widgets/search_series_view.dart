@@ -42,7 +42,10 @@ class SearchSeriesView extends HookConsumerWidget {
 
     final results = vsp.selectWatch((s) => s.results);
 
-    return SearchScreenContent(results: results);
+    return SearchScreenContent(
+      isLoading: vsp.isLoading,
+      results: results,
+    );
   }
 
   void _scheduleInitialDataLoad(
