@@ -29,8 +29,8 @@ class SearchScreenContent extends StatelessWidget {
           resultsMedia: results.mediaData.items,
           onItemSelect: onItemSelect,
         ),
-        SliverPadding(padding: dimens.padBotPrimIns),
         if (isNextPageLoading) NextPageLoader(),
+        SliverPadding(padding: dimens.padBotPrimIns),
       ],
     );
   }
