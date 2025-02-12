@@ -43,6 +43,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get btnFABFgSplash;
   Color get btnIconPrim;
   Color get loadingIndicator;
+  Color get refreshIndicatorFg;
+  Color get refreshIndicatorBg;
   Color get skeletonFrom;
   Color get skeletonTo;
   Color get appBarPrimFg;
@@ -114,6 +116,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? btnFABFgSplash,
     Color? btnIconPrim,
     Color? loadingIndicator,
+    Color? refreshIndicatorFg,
+    Color? refreshIndicatorBg,
     Color? skeletonFrom,
     Color? skeletonTo,
     Color? appBarPrimFg,
@@ -184,6 +188,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABFgSplash: btnFABFgSplash ?? this.btnFABFgSplash,
       btnIconPrim: btnIconPrim ?? this.btnIconPrim,
       loadingIndicator: loadingIndicator ?? this.loadingIndicator,
+      refreshIndicatorFg: refreshIndicatorFg ?? this.refreshIndicatorFg,
+      refreshIndicatorBg: refreshIndicatorBg ?? this.refreshIndicatorBg,
       skeletonFrom: skeletonFrom ?? this.skeletonFrom,
       skeletonTo: skeletonTo ?? this.skeletonTo,
       appBarPrimFg: appBarPrimFg ?? this.appBarPrimFg,
@@ -276,6 +282,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnIconPrim: Color.lerp(btnIconPrim, other.btnIconPrim, t)!,
       loadingIndicator:
           Color.lerp(loadingIndicator, other.loadingIndicator, t)!,
+      refreshIndicatorFg:
+          Color.lerp(refreshIndicatorFg, other.refreshIndicatorFg, t)!,
+      refreshIndicatorBg:
+          Color.lerp(refreshIndicatorBg, other.refreshIndicatorBg, t)!,
       skeletonFrom: Color.lerp(skeletonFrom, other.skeletonFrom, t)!,
       skeletonTo: Color.lerp(skeletonTo, other.skeletonTo, t)!,
       appBarPrimFg: Color.lerp(appBarPrimFg, other.appBarPrimFg, t)!,
@@ -395,6 +405,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality()
                 .equals(loadingIndicator, other.loadingIndicator) &&
             const DeepCollectionEquality()
+                .equals(refreshIndicatorFg, other.refreshIndicatorFg) &&
+            const DeepCollectionEquality()
+                .equals(refreshIndicatorBg, other.refreshIndicatorBg) &&
+            const DeepCollectionEquality()
                 .equals(skeletonFrom, other.skeletonFrom) &&
             const DeepCollectionEquality()
                 .equals(skeletonTo, other.skeletonTo) &&
@@ -416,10 +430,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(txtFldPrimInput, other.txtFldPrimInput) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
+            const DeepCollectionEquality().equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
+            const DeepCollectionEquality().equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
             const DeepCollectionEquality().equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
             const DeepCollectionEquality().equals(txtFldPrimError, other.txtFldPrimError) &&
             const DeepCollectionEquality().equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
@@ -481,6 +493,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(btnFABFgSplash),
       const DeepCollectionEquality().hash(btnIconPrim),
       const DeepCollectionEquality().hash(loadingIndicator),
+      const DeepCollectionEquality().hash(refreshIndicatorFg),
+      const DeepCollectionEquality().hash(refreshIndicatorBg),
       const DeepCollectionEquality().hash(skeletonFrom),
       const DeepCollectionEquality().hash(skeletonTo),
       const DeepCollectionEquality().hash(appBarPrimFg),

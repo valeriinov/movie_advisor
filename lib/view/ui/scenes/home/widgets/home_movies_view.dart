@@ -57,6 +57,9 @@ class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
     return isSkeletonVisible
         ? HomeContentSkeleton()
         : HomeScreenContent(
+            onRefresh: !isLoading
+                ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                : null,
             isSkeletonVisible: isSkeletonVisible,
             suggestionsContent: suggestionsContent,
             currentTab: currentTab,

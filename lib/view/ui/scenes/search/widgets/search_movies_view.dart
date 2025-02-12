@@ -40,12 +40,20 @@ class SearchMoviesView extends HookConsumerWidget {
           .handleStatus(prev, next, handleLoadingState: () => false);
     });
 
+    final isLoading = vsp.isLoading;
     final results = vsp.selectWatch((s) => s.results);
 
     return SearchScreenContent(
-      isLoading: vsp.isLoading,
+      onRefresh: !isLoading ? () => _onRefresh(vspFilter, vsp) : null,
+      isLoading: isLoading,
       results: results,
     );
+  }
+
+  Future<void> _onRefresh(FilterVSP vspFilter, SearchMoviesVSP vsp) {
+    final filter = vspFilter.selectRead((s) => s.filter);
+
+    return vsp.viewModel.loadByFilter(filter, showLoader: false);
   }
 
   void _scheduleInitialDataLoad(

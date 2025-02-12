@@ -6,6 +6,7 @@ import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../base/media_load_info.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../widgets/next_page_loader.dart';
+import '../../../widgets/sliver_refresh_indicator.dart';
 import '../../../widgets/tabs/app_tabs.dart';
 import '../model/media_tab.dart';
 import 'home_tab_content.dart';
@@ -19,6 +20,7 @@ class HomeScreenContent extends StatelessWidget {
   final void Function(int index)? onTabSelect;
   final void Function(int id)? onSuggestionItemSelect;
   final void Function(int id)? onTabItemSelect;
+  final Future<void> Function()? onRefresh;
 
   const HomeScreenContent({
     super.key,
@@ -29,6 +31,7 @@ class HomeScreenContent extends StatelessWidget {
     this.onTabSelect,
     this.onSuggestionItemSelect,
     this.onTabItemSelect,
+    this.onRefresh,
   });
 
   @override
@@ -39,6 +42,10 @@ class HomeScreenContent extends StatelessWidget {
 
     return MultiSliver(
       children: [
+        SliverRefreshIndicator(
+          onRefresh: onRefresh,
+        ),
+        SliverPadding(padding: (dimens.spLarge / 2).insBottom()),
         SuggestionsContainer(
           suggestions: suggestionsContent,
           onTap: onSuggestionItemSelect,

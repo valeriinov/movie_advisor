@@ -42,6 +42,8 @@ abstract final class BaseColorsFactory {
         btnFABFgSplash: _BaseColors.btnFABFgSplash,
         btnIconPrim: _BaseColors.btnIconPrim,
         loadingIndicator: _BaseColors.loadingIndicator,
+        refreshIndicatorFg: _BaseColors.refreshIndicatorFg,
+        refreshIndicatorBg: _BaseColors.refreshIndicatorBg,
         skeletonFrom: _BaseColors.skeletonFrom,
         skeletonTo: _BaseColors.skeletonTo,
         appBarPrimFg: _BaseColors.appBarPrimFg,
@@ -223,6 +225,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Loading indicator color.
   @override
   final Color loadingIndicator;
+
+  /// Refresh indicator foreground color.
+  @override
+  final Color refreshIndicatorFg;
+
+  /// Refresh indicator background color.
+  @override
+  final Color refreshIndicatorBg;
 
   /// Skeleton effect start color.
   @override
@@ -408,6 +418,8 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.btnFABFgSplash,
     required this.btnIconPrim,
     required this.loadingIndicator,
+    required this.refreshIndicatorFg,
+    required this.refreshIndicatorBg,
     required this.skeletonFrom,
     required this.skeletonTo,
     required this.appBarPrimFg,

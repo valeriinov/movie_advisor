@@ -39,6 +39,7 @@ class SearchScreenView extends HookConsumerWidget {
             ),
             body: CustomScrollView(
               controller: scrollController,
+              physics: BouncingScrollPhysics(),
               slivers: [
                 FloatingSearchBar(
                   onSearch: vspFilter.viewModel.updateSearchQuery,
