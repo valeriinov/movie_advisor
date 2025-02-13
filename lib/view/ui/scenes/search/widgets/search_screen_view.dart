@@ -34,6 +34,7 @@ class SearchScreenView extends HookConsumerWidget {
         scrollController: scrollController,
         builder: (_, isFabVisible) {
           return Scaffold(
+            resizeToAvoidBottomInset: false,
             appBar: MainAppBar(
               title: Text(LocaleKeys.searchScreenTitle.tr()),
             ),

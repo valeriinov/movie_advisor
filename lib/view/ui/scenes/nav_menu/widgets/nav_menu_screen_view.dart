@@ -22,6 +22,7 @@ class NavMenuScreenView extends StatelessWidget {
       },
       canPop: currentIndex == 0,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: NavBranchContainer(
           currentIndex: currentIndex,
           children: children,
