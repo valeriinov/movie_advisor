@@ -72,6 +72,7 @@ class AppPaginationState {
 class AppScrollPaginationController {
   final ScrollController scrollController;
   final bool _shouldDisposeController;
+  final int _startPage;
 
   double _minLoadNextPageScrollPositionPercent = 0.4;
 
@@ -80,9 +81,11 @@ class AppScrollPaginationController {
 
   double? _prevMaxExtent;
 
-  AppScrollPaginationController({ScrollController? scrollController})
+  AppScrollPaginationController(
+      {ScrollController? scrollController, int startPage = 1})
       : _shouldDisposeController = scrollController == null,
-        scrollController = scrollController ?? ScrollController();
+        scrollController = scrollController ?? ScrollController(),
+        _startPage = startPage;
 
   /// Initializes the controller with necessary dependencies.
   ///
@@ -129,7 +132,7 @@ class AppScrollPaginationController {
   }
 
   bool _isReachedMinLoadNextPagePosition(int currentPage) {
-    if (currentPage == 0) _prevMaxExtent = null;
+    if (currentPage == _startPage) _prevMaxExtent = null;
 
     final maxExtent = scrollController.position.maxScrollExtent;
     final position = scrollController.position.pixels;

@@ -44,7 +44,7 @@ class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
       );
 
       return paginationCtrl.dispose;
-    }, [currentTab]);
+    }, []);
 
     useEffect(() {
       jumpToTabStartPosition(
