@@ -48,5 +48,8 @@
   "emptySearchTitle": "Sorry, No Results Found For Your Search :(",
   "emptySearchSubtitle": "Try searching by title, genre, year, or other filters.",
   "detailsMovieScreenTitle": "Movie Details",
-  "detailsSeriesScreenTitle": "Series Details"
+  "detailsSeriesScreenTitle": "Series Details",
+  "detailsAboutTab": "About",
+  "detailsReviewsTab": "Reviews",
+  "detailsCastTab": "Cast"
 }

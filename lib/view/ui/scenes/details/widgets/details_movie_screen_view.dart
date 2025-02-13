@@ -7,6 +7,7 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
 import '../details_view_model/details_view_model.dart';
+import '../model/details_tab.dart';
 import 'details_screen_content.dart';
 
 class DetailsMovieScreenView extends ConsumerWidget {
@@ -37,6 +38,8 @@ class DetailsMovieScreenView extends ConsumerWidget {
       ),
       body: DetailsScreenContent(
         data: data,
+        currentTab: DetailsTab.about, // TODO: Implement tab selection
+        onTabSelect: (index) {}, // TODO: Implement tab selection
         onRefresh: !isLoading
             ? () => vsp.viewModel.loadInitialData(showLoader: false)
             : null,

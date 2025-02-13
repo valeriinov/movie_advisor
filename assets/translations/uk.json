@@ -48,5 +48,8 @@
   "emptySearchTitle": "Вибачте, Результатів За Вашим Запитом Не Знайдено :(",
   "emptySearchSubtitle": "Спробуйте шукати за назвою, жанром, роком або іншими фільтрами.",
   "detailsMovieScreenTitle": "Деталі фільму",
-  "detailsSeriesScreenTitle": "Деталі серіалу"
+  "detailsSeriesScreenTitle": "Деталі серіалу",
+  "detailsAboutTab": "Про",
+  "detailsReviewsTab": "Відгуки",
+  "detailsCastTab": "Актори"
 }
