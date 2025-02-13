@@ -29,6 +29,10 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static List<MovieGenreDto>? _$genres(MovieDataDto v) => v.genres;
   static const Field<MovieDataDto, List<MovieGenreDto>> _f$genres =
       Field('genres', _$genres, key: 'genre_ids', opt: true);
+  static List<MovieGenreDto>? _$genresAlt(MovieDataDto v) => v.genresAlt;
+  static const Field<MovieDataDto, List<MovieGenreDto>> _f$genresAlt = Field(
+      'genresAlt', _$genresAlt,
+      key: 'genres', opt: true, hook: GenresHook());
   static String? _$originalLanguage(MovieDataDto v) => v.originalLanguage;
   static const Field<MovieDataDto, String> _f$originalLanguage = Field(
       'originalLanguage', _$originalLanguage,
@@ -74,6 +78,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
     #id: _f$id,
     #backdropPath: _f$backdropPath,
     #genres: _f$genres,
+    #genresAlt: _f$genresAlt,
     #originalLanguage: _f$originalLanguage,
     #originalTitle: _f$originalTitle,
     #overview: _f$overview,
@@ -95,6 +100,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
         id: data.dec(_f$id),
         backdropPath: data.dec(_f$backdropPath),
         genres: data.dec(_f$genres),
+        genresAlt: data.dec(_f$genresAlt),
         originalLanguage: data.dec(_f$originalLanguage),
         originalTitle: data.dec(_f$originalTitle),
         overview: data.dec(_f$overview),
@@ -163,10 +169,13 @@ abstract class MovieDataDtoCopyWith<$R, $In extends MovieDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, MovieGenreDto,
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genres;
+  ListCopyWith<$R, MovieGenreDto,
+      ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genresAlt;
   $R call(
       {int? id,
       String? backdropPath,
       List<MovieGenreDto>? genres,
+      List<MovieGenreDto>? genresAlt,
       String? originalLanguage,
       String? originalTitle,
       String? overview,
@@ -198,10 +207,20 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
               (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v))
           : null;
   @override
+  ListCopyWith<$R, MovieGenreDto,
+          ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>?
+      get genresAlt => $value.genresAlt != null
+          ? ListCopyWith(
+              $value.genresAlt!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(genresAlt: v))
+          : null;
+  @override
   $R call(
           {Object? id = $none,
           Object? backdropPath = $none,
           Object? genres = $none,
+          Object? genresAlt = $none,
           Object? originalLanguage = $none,
           Object? originalTitle = $none,
           Object? overview = $none,
@@ -218,6 +237,7 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
         if (id != $none) #id: id,
         if (backdropPath != $none) #backdropPath: backdropPath,
         if (genres != $none) #genres: genres,
+        if (genresAlt != $none) #genresAlt: genresAlt,
         if (originalLanguage != $none) #originalLanguage: originalLanguage,
         if (originalTitle != $none) #originalTitle: originalTitle,
         if (overview != $none) #overview: overview,
@@ -236,6 +256,7 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       backdropPath: data.get(#backdropPath, or: $value.backdropPath),
       genres: data.get(#genres, or: $value.genres),
+      genresAlt: data.get(#genresAlt, or: $value.genresAlt),
       originalLanguage:
           data.get(#originalLanguage, or: $value.originalLanguage),
       originalTitle: data.get(#originalTitle, or: $value.originalTitle),

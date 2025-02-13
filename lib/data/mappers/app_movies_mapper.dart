@@ -16,7 +16,7 @@ final class AppMoviesMapper extends AppMapper {
       id: dto.id ?? -1,
       backdropUrl: dto.backdropPath ?? '',
       posterUrl: dto.posterPath ?? '',
-      genres: _mapMovieGenresDtoToDomain(dto.genres),
+      genres: _mapMovieGenresDtoToDomain(dto.genres ?? dto.genresAlt),
       originCountry: [],
       originalLanguage: dto.originalLanguage ?? '',
       originalTitle: dto.originalTitle ?? '',

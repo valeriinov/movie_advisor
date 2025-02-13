@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
-import '../../../common/utils/date_mapper_hook.dart';
+import '../../utils/date_mapper_hook.dart';
+import '../../utils/genres_hook.dart';
 import 'series_genre_dto.dart';
 
 part 'series_data_dto.mapper.dart';
@@ -11,6 +12,8 @@ class SeriesDataDto with SeriesDataDtoMappable {
   final String? backdropPath;
   @MappableField(key: 'genre_ids')
   final List<SeriesGenreDto>? genres;
+  @MappableField(key: 'genres', hook: GenresHook())
+  final List<SeriesGenreDto>? genresAlt;
   final List<String>? originCountry;
   final String? originalLanguage;
   final String? originalName;
@@ -30,6 +33,7 @@ class SeriesDataDto with SeriesDataDtoMappable {
     this.id,
     this.backdropPath,
     this.genres,
+    this.genresAlt,
     this.originCountry,
     this.originalLanguage,
     this.originalName,

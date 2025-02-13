@@ -29,6 +29,10 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static List<SeriesGenreDto>? _$genres(SeriesDataDto v) => v.genres;
   static const Field<SeriesDataDto, List<SeriesGenreDto>> _f$genres =
       Field('genres', _$genres, key: 'genre_ids', opt: true);
+  static List<SeriesGenreDto>? _$genresAlt(SeriesDataDto v) => v.genresAlt;
+  static const Field<SeriesDataDto, List<SeriesGenreDto>> _f$genresAlt = Field(
+      'genresAlt', _$genresAlt,
+      key: 'genres', opt: true, hook: GenresHook());
   static List<String>? _$originCountry(SeriesDataDto v) => v.originCountry;
   static const Field<SeriesDataDto, List<String>> _f$originCountry =
       Field('originCountry', _$originCountry, key: 'origin_country', opt: true);
@@ -77,6 +81,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
     #id: _f$id,
     #backdropPath: _f$backdropPath,
     #genres: _f$genres,
+    #genresAlt: _f$genresAlt,
     #originCountry: _f$originCountry,
     #originalLanguage: _f$originalLanguage,
     #originalName: _f$originalName,
@@ -99,6 +104,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
         id: data.dec(_f$id),
         backdropPath: data.dec(_f$backdropPath),
         genres: data.dec(_f$genres),
+        genresAlt: data.dec(_f$genresAlt),
         originCountry: data.dec(_f$originCountry),
         originalLanguage: data.dec(_f$originalLanguage),
         originalName: data.dec(_f$originalName),
@@ -169,12 +175,15 @@ abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, SeriesGenreDto,
       ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get genres;
+  ListCopyWith<$R, SeriesGenreDto,
+      ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get genresAlt;
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
       get originCountry;
   $R call(
       {int? id,
       String? backdropPath,
       List<SeriesGenreDto>? genres,
+      List<SeriesGenreDto>? genresAlt,
       List<String>? originCountry,
       String? originalLanguage,
       String? originalName,
@@ -207,6 +216,15 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
               (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v))
           : null;
   @override
+  ListCopyWith<$R, SeriesGenreDto,
+          ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>?
+      get genresAlt => $value.genresAlt != null
+          ? ListCopyWith(
+              $value.genresAlt!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(genresAlt: v))
+          : null;
+  @override
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
       get originCountry => $value.originCountry != null
           ? ListCopyWith(
@@ -219,6 +237,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
           {Object? id = $none,
           Object? backdropPath = $none,
           Object? genres = $none,
+          Object? genresAlt = $none,
           Object? originCountry = $none,
           Object? originalLanguage = $none,
           Object? originalName = $none,
@@ -236,6 +255,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
         if (id != $none) #id: id,
         if (backdropPath != $none) #backdropPath: backdropPath,
         if (genres != $none) #genres: genres,
+        if (genresAlt != $none) #genresAlt: genresAlt,
         if (originCountry != $none) #originCountry: originCountry,
         if (originalLanguage != $none) #originalLanguage: originalLanguage,
         if (originalName != $none) #originalName: originalName,
@@ -255,6 +275,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       backdropPath: data.get(#backdropPath, or: $value.backdropPath),
       genres: data.get(#genres, or: $value.genres),
+      genresAlt: data.get(#genresAlt, or: $value.genresAlt),
       originCountry: data.get(#originCountry, or: $value.originCountry),
       originalLanguage:
           data.get(#originalLanguage, or: $value.originalLanguage),

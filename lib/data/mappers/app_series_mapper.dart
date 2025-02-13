@@ -16,7 +16,7 @@ final class AppSeriesMapper extends AppMapper {
       id: dto.id ?? -1,
       backdropUrl: dto.backdropPath ?? '',
       posterUrl: dto.posterPath ?? '',
-      genres: _mapSeriesGenresDtoToDomain(dto.genres),
+      genres: _mapSeriesGenresDtoToDomain(dto.genres ?? dto.genresAlt),
       originCountry: dto.originCountry ?? [],
       originalLanguage: dto.originalLanguage ?? '',
       originalTitle: dto.originalName ?? '',
