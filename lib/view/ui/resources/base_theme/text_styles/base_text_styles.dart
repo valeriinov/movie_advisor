@@ -72,7 +72,7 @@ final class _BaseTextStyles {
 
   static TextStyle titleMedium(Color color) => TextStyle(
         fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
         fontSize: titleMediumFontSize,
         color: color,
       );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
 import '../../../widgets/sliver_refresh_indicator.dart';
+import 'details_header.dart';
 
 class DetailsScreenContent extends StatelessWidget {
   final MediaData data;
@@ -20,6 +21,7 @@ class DetailsScreenContent extends StatelessWidget {
         SliverRefreshIndicator(
           onRefresh: onRefresh,
         ),
+        DetailsHeader(data: data),
       ],
     );
   }
