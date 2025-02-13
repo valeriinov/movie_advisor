@@ -79,6 +79,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get suggestNumBlur;
   Color get tabUnderSelect;
   Color get infoCardRating;
+  Color get backdropRatingBg;
   Color get emptyListTitle;
   Color get emptyListSubtitle;
 
@@ -154,6 +155,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? suggestNumBlur,
     Color? tabUnderSelect,
     Color? infoCardRating,
+    Color? backdropRatingBg,
     Color? emptyListTitle,
     Color? emptyListSubtitle,
   }) {
@@ -230,6 +232,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumBlur: suggestNumBlur ?? this.suggestNumBlur,
       tabUnderSelect: tabUnderSelect ?? this.tabUnderSelect,
       infoCardRating: infoCardRating ?? this.infoCardRating,
+      backdropRatingBg: backdropRatingBg ?? this.backdropRatingBg,
       emptyListTitle: emptyListTitle ?? this.emptyListTitle,
       emptyListSubtitle: emptyListSubtitle ?? this.emptyListSubtitle,
     );
@@ -337,6 +340,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumBlur: Color.lerp(suggestNumBlur, other.suggestNumBlur, t)!,
       tabUnderSelect: Color.lerp(tabUnderSelect, other.tabUnderSelect, t)!,
       infoCardRating: Color.lerp(infoCardRating, other.infoCardRating, t)!,
+      backdropRatingBg:
+          Color.lerp(backdropRatingBg, other.backdropRatingBg, t)!,
       emptyListTitle: Color.lerp(emptyListTitle, other.emptyListTitle, t)!,
       emptyListSubtitle:
           Color.lerp(emptyListSubtitle, other.emptyListSubtitle, t)!,
@@ -462,6 +467,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur) &&
             const DeepCollectionEquality().equals(tabUnderSelect, other.tabUnderSelect) &&
             const DeepCollectionEquality().equals(infoCardRating, other.infoCardRating) &&
+            const DeepCollectionEquality().equals(backdropRatingBg, other.backdropRatingBg) &&
             const DeepCollectionEquality().equals(emptyListTitle, other.emptyListTitle) &&
             const DeepCollectionEquality().equals(emptyListSubtitle, other.emptyListSubtitle));
   }
@@ -540,6 +546,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(suggestNumBlur),
       const DeepCollectionEquality().hash(tabUnderSelect),
       const DeepCollectionEquality().hash(infoCardRating),
+      const DeepCollectionEquality().hash(backdropRatingBg),
       const DeepCollectionEquality().hash(emptyListTitle),
       const DeepCollectionEquality().hash(emptyListSubtitle),
     ]);

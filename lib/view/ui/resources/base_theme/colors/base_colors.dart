@@ -102,6 +102,7 @@ abstract final class _BaseColors {
   static const tabUnderSelect = Color(0xFF3A3F47);
 
   static const infoCardRating = Color(0xFFFF8700);
+  static final backdropRatingBg = Color(0xFF252836).withValues(alpha: 0.32);
 
   static const emptyListTitle = Color(0xFFFFFFFF);
   static const emptyListSubtitle = Color(0xFF92929D);

@@ -78,6 +78,7 @@ abstract final class BaseColorsFactory {
         suggestNumBlur: _BaseColors.suggestNumBlur,
         tabUnderSelect: _BaseColors.tabUnderSelect,
         infoCardRating: _BaseColors.infoCardRating,
+        backdropRatingBg: _BaseColors.backdropRatingBg,
         emptyListTitle: _BaseColors.emptyListTitle,
         emptyListSubtitle: _BaseColors.emptyListSubtitle,
       );
@@ -382,6 +383,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color infoCardRating;
 
+  /// Backdrop rating background color.
+  @override
+  final Color backdropRatingBg;
+
   /// Empty list title color.
   @override
   final Color emptyListTitle;
@@ -465,6 +470,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.suggestNumBlur,
     required this.tabUnderSelect,
     required this.infoCardRating,
+    required this.backdropRatingBg,
     required this.emptyListTitle,
     required this.emptyListSubtitle,
   });
