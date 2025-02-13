@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../data/mappers/app_details_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
 import '../../data/mappers/app_paginated_media_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
@@ -12,22 +13,29 @@ import '../../data/network/network_manager/impl_dio/dio_builder.dart';
 import '../../data/network/network_manager/impl_dio/dio_error_handler.dart';
 import '../../data/network/network_manager/impl_dio/impl_network_manager.dart';
 import '../../data/network/network_manager/network_manager.dart';
+import '../../data/network/services/details_service.dart';
 import '../../data/network/services/home_service.dart';
 import '../../data/network/services/search_service.dart';
 import '../../data/network/utils/image_url_handler/image_url_handler.dart';
 import '../../data/network/utils/image_url_handler/impl_image_url_handler.dart';
 import '../../data/network/utils/media_response_handler/impl_media_response_handler.dart';
 import '../../data/network/utils/media_response_handler/media_response_handler.dart';
+import '../../data/repositories/details/details_remote_data_source.dart';
+import '../../data/repositories/details/impl_details_repository.dart';
 import '../../data/repositories/home/home_remote_data_source.dart';
 import '../../data/repositories/home/impl_home_repository.dart';
 import '../../data/repositories/search/impl_search_repository.dart';
 import '../../data/repositories/search/search_remote_data_source.dart';
 import '../../data/repositories/settings_provider.dart';
+import '../../data/sources/impl_details_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
+import '../../domain/repositories/details_repository.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../../domain/repositories/search_repository.dart';
+import '../../domain/usecases/details/details_movie_use_case.dart';
+import '../../domain/usecases/details/details_series_use_case.dart';
 import '../../domain/usecases/home/home_movies_use_case.dart';
 import '../../domain/usecases/home/home_series_use_case.dart';
 import '../../domain/usecases/search/search_movies_use_case.dart';
@@ -143,6 +151,26 @@ final searchMoviesUseCasePr =
 final searchSeriesUseCasePr =
     Provider<SearchSeriesUseCase>((ref) => SearchSeriesUseCase(
           repository: ref.read(searchRepositoryPr),
+        ));
+
+// DETAILS
+final detailsServicePr = Provider<DetailsService>((_) => DetailsService());
+final detailsRemoteDataSourcePr = Provider<DetailsRemoteDataSource>(
+  (ref) => ImplDetailsRemoteDataSource(service: ref.read(detailsServicePr)),
+);
+final detailsMapperPr = Provider<AppDetailsMapper>((_) => AppDetailsMapper());
+final detailsRepositoryPr =
+    Provider<DetailsRepository>((ref) => ImplDetailsRepository(
+          dataSource: ref.read(detailsRemoteDataSourcePr),
+          mapper: ref.read(detailsMapperPr),
+        ));
+final detailsMovieUseCasePr =
+    Provider<DetailsMovieUseCase>((ref) => DetailsMovieUseCase(
+          repository: ref.read(detailsRepositoryPr),
+        ));
+final detailsSeriesUseCasePr =
+    Provider<DetailsSeriesUseCase>((ref) => DetailsSeriesUseCase(
+          repository: ref.read(detailsRepositoryPr),
         ));
 
 /// {@category Utils}

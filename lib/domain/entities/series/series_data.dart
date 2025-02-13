@@ -12,19 +12,19 @@ final class SeriesData extends MediaData with SeriesDataMappable {
   final List<SeriesGenre> genres;
 
   const SeriesData({
-    required super.id,
-    required super.backdropUrl,
-    required super.posterUrl,
-    required this.genres,
-    required super.originCountry,
-    required super.originalLanguage,
-    required super.originalTitle,
-    required super.premiereDate,
-    required super.title,
-    required super.overview,
-    required super.tmdbRating,
-    required super.userRating,
-    required super.isInWatchlist,
-    required super.isWatched,
+    super.id = -1,
+    super.backdropUrl = '',
+    super.posterUrl = '',
+    this.genres = const [],
+    super.originCountry = const [],
+    super.originalLanguage = '',
+    super.originalTitle = '',
+    super.premiereDate,
+    super.title = '',
+    super.overview = '',
+    super.tmdbRating = const TMDBRating(),
+    super.userRating = 0,
+    super.isInWatchlist = false,
+    super.isWatched = false,
   });
 }

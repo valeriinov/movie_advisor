@@ -26,9 +26,9 @@ class MediaShortDataMapper extends ClassMapperBase<MediaShortData> {
   static String _$posterUrl(MediaShortData v) => v.posterUrl;
   static const Field<MediaShortData, String> _f$posterUrl =
       Field('posterUrl', _$posterUrl);
-  static DateTime _$premiereDate(MediaShortData v) => v.premiereDate;
+  static DateTime? _$premiereDate(MediaShortData v) => v.premiereDate;
   static const Field<MediaShortData, DateTime> _f$premiereDate =
-      Field('premiereDate', _$premiereDate);
+      Field('premiereDate', _$premiereDate, opt: true);
   static String _$title(MediaShortData v) => v.title;
   static const Field<MediaShortData, String> _f$title = Field('title', _$title);
   static TMDBRating _$tmdbRating(MediaShortData v) => v.tmdbRating;

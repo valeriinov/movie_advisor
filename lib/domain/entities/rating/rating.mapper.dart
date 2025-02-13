@@ -25,10 +25,10 @@ class TMDBRatingMapper extends ClassMapperBase<TMDBRating> {
       Field('popularity', _$popularity, opt: true);
   static double _$voteAverage(TMDBRating v) => v.voteAverage;
   static const Field<TMDBRating, double> _f$voteAverage =
-      Field('voteAverage', _$voteAverage);
+      Field('voteAverage', _$voteAverage, opt: true, def: 0);
   static int _$voteCount(TMDBRating v) => v.voteCount;
   static const Field<TMDBRating, int> _f$voteCount =
-      Field('voteCount', _$voteCount);
+      Field('voteCount', _$voteCount, opt: true, def: 0);
 
   @override
   final MappableFields<TMDBRating> fields = const {

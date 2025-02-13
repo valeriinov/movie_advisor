@@ -21,7 +21,9 @@ class MediaInfoContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final styles = context.baseComponentsStyles;
     final voteAverage = itemData.tmdbRating.voteAverage;
-    final year = AppDateFormats.yearFormat(itemData.premiereDate);
+    final year = itemData.premiereDate != null
+        ? AppDateFormats.yearFormat(itemData.premiereDate!)
+        : '-';
 
     return Expanded(
       child: Padding(

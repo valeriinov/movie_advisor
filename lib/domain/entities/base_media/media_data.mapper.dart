@@ -38,9 +38,9 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
   static String _$originalTitle(MediaData v) => v.originalTitle;
   static const Field<MediaData, String> _f$originalTitle =
       Field('originalTitle', _$originalTitle);
-  static DateTime _$premiereDate(MediaData v) => v.premiereDate;
+  static DateTime? _$premiereDate(MediaData v) => v.premiereDate;
   static const Field<MediaData, DateTime> _f$premiereDate =
-      Field('premiereDate', _$premiereDate);
+      Field('premiereDate', _$premiereDate, opt: true);
   static String _$title(MediaData v) => v.title;
   static const Field<MediaData, String> _f$title = Field('title', _$title);
   static String _$overview(MediaData v) => v.overview;

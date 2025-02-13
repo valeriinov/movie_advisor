@@ -9,7 +9,7 @@ part 'media_short_data.mapper.dart';
 abstract base class MediaShortData with MediaShortDataMappable {
   final int id;
   final String posterUrl;
-  final DateTime premiereDate;
+  final DateTime? premiereDate;
   final String title;
   final TMDBRating tmdbRating;
   final int userRating;
@@ -19,7 +19,7 @@ abstract base class MediaShortData with MediaShortDataMappable {
   const MediaShortData({
     required this.id,
     required this.posterUrl,
-    required this.premiereDate,
+    this.premiereDate,
     required this.title,
     required this.tmdbRating,
     required this.userRating,

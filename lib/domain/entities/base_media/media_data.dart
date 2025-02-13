@@ -13,7 +13,7 @@ abstract base class MediaData with MediaDataMappable {
   final List<String> originCountry;
   final String originalLanguage;
   final String originalTitle;
-  final DateTime premiereDate;
+  final DateTime? premiereDate;
   final String title;
   final String overview;
   final TMDBRating tmdbRating;
@@ -28,7 +28,7 @@ abstract base class MediaData with MediaDataMappable {
     required this.originCountry,
     required this.originalLanguage,
     required this.originalTitle,
-    required this.premiereDate,
+    this.premiereDate,
     required this.title,
     required this.overview,
     required this.tmdbRating,

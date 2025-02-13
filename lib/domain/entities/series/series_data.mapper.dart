@@ -23,45 +23,47 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
   final String id = 'SeriesData';
 
   static int _$id(SeriesData v) => v.id;
-  static const Field<SeriesData, int> _f$id = Field('id', _$id);
+  static const Field<SeriesData, int> _f$id =
+      Field('id', _$id, opt: true, def: -1);
   static String _$backdropUrl(SeriesData v) => v.backdropUrl;
   static const Field<SeriesData, String> _f$backdropUrl =
-      Field('backdropUrl', _$backdropUrl);
+      Field('backdropUrl', _$backdropUrl, opt: true, def: '');
   static String _$posterUrl(SeriesData v) => v.posterUrl;
   static const Field<SeriesData, String> _f$posterUrl =
-      Field('posterUrl', _$posterUrl);
+      Field('posterUrl', _$posterUrl, opt: true, def: '');
   static List<SeriesGenre> _$genres(SeriesData v) => v.genres;
   static const Field<SeriesData, List<SeriesGenre>> _f$genres =
-      Field('genres', _$genres);
+      Field('genres', _$genres, opt: true, def: const []);
   static List<String> _$originCountry(SeriesData v) => v.originCountry;
   static const Field<SeriesData, List<String>> _f$originCountry =
-      Field('originCountry', _$originCountry);
+      Field('originCountry', _$originCountry, opt: true, def: const []);
   static String _$originalLanguage(SeriesData v) => v.originalLanguage;
   static const Field<SeriesData, String> _f$originalLanguage =
-      Field('originalLanguage', _$originalLanguage);
+      Field('originalLanguage', _$originalLanguage, opt: true, def: '');
   static String _$originalTitle(SeriesData v) => v.originalTitle;
   static const Field<SeriesData, String> _f$originalTitle =
-      Field('originalTitle', _$originalTitle);
-  static DateTime _$premiereDate(SeriesData v) => v.premiereDate;
+      Field('originalTitle', _$originalTitle, opt: true, def: '');
+  static DateTime? _$premiereDate(SeriesData v) => v.premiereDate;
   static const Field<SeriesData, DateTime> _f$premiereDate =
-      Field('premiereDate', _$premiereDate);
+      Field('premiereDate', _$premiereDate, opt: true);
   static String _$title(SeriesData v) => v.title;
-  static const Field<SeriesData, String> _f$title = Field('title', _$title);
+  static const Field<SeriesData, String> _f$title =
+      Field('title', _$title, opt: true, def: '');
   static String _$overview(SeriesData v) => v.overview;
   static const Field<SeriesData, String> _f$overview =
-      Field('overview', _$overview);
+      Field('overview', _$overview, opt: true, def: '');
   static TMDBRating _$tmdbRating(SeriesData v) => v.tmdbRating;
   static const Field<SeriesData, TMDBRating> _f$tmdbRating =
-      Field('tmdbRating', _$tmdbRating);
+      Field('tmdbRating', _$tmdbRating, opt: true, def: const TMDBRating());
   static int _$userRating(SeriesData v) => v.userRating;
   static const Field<SeriesData, int> _f$userRating =
-      Field('userRating', _$userRating);
+      Field('userRating', _$userRating, opt: true, def: 0);
   static bool _$isInWatchlist(SeriesData v) => v.isInWatchlist;
   static const Field<SeriesData, bool> _f$isInWatchlist =
-      Field('isInWatchlist', _$isInWatchlist);
+      Field('isInWatchlist', _$isInWatchlist, opt: true, def: false);
   static bool _$isWatched(SeriesData v) => v.isWatched;
   static const Field<SeriesData, bool> _f$isWatched =
-      Field('isWatched', _$isWatched);
+      Field('isWatched', _$isWatched, opt: true, def: false);
 
   @override
   final MappableFields<SeriesData> fields = const {
@@ -188,7 +190,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
           List<String>? originCountry,
           String? originalLanguage,
           String? originalTitle,
-          DateTime? premiereDate,
+          Object? premiereDate = $none,
           String? title,
           String? overview,
           TMDBRating? tmdbRating,
@@ -203,7 +205,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
         if (originCountry != null) #originCountry: originCountry,
         if (originalLanguage != null) #originalLanguage: originalLanguage,
         if (originalTitle != null) #originalTitle: originalTitle,
-        if (premiereDate != null) #premiereDate: premiereDate,
+        if (premiereDate != $none) #premiereDate: premiereDate,
         if (title != null) #title: title,
         if (overview != null) #overview: overview,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
