@@ -51,5 +51,7 @@ abstract class  LocaleKeys {
   static const searchScreenTitle = 'searchScreenTitle';
   static const emptySearchTitle = 'emptySearchTitle';
   static const emptySearchSubtitle = 'emptySearchSubtitle';
+  static const detailsMovieScreenTitle = 'detailsMovieScreenTitle';
+  static const detailsSeriesScreenTitle = 'detailsSeriesScreenTitle';
 
 }
