@@ -12,27 +12,37 @@ class ImplImageUrlHandler implements ImageUrlHandler {
   }) : _envProvider = envProvider;
 
   @override
-  List<MovieDataDto> handleMoviesImages(List<MovieDataDto> movies) {
-    return movies
-        .map(
-          (m) => m.copyWith(
-            backdropPath: _getBackdropImageUrl(m.backdropPath),
-            posterPath: _getPosterImageUrl(m.posterPath),
-          ),
-        )
-        .toList();
+  MovieDataDto handleMovieImages(MovieDataDto movie) {
+    return _handleMovieImages(movie);
   }
 
   @override
-  List<SeriesDataDto> handleSeriesImages(List<SeriesDataDto> series) {
-    return series
-        .map(
-          (s) => s.copyWith(
-            backdropPath: _getBackdropImageUrl(s.backdropPath),
-            posterPath: _getPosterImageUrl(s.posterPath),
-          ),
-        )
-        .toList();
+  SeriesDataDto handleSeriesImages(SeriesDataDto series) {
+    return _handleSeriesImages(series);
+  }
+
+  @override
+  List<MovieDataDto> handleMoviesListImages(List<MovieDataDto> movies) {
+    return movies.map(_handleMovieImages).toList();
+  }
+
+  @override
+  List<SeriesDataDto> handleSeriesListImages(List<SeriesDataDto> series) {
+    return series.map(_handleSeriesImages).toList();
+  }
+
+  MovieDataDto _handleMovieImages(MovieDataDto movie) {
+    return movie.copyWith(
+      backdropPath: _getBackdropImageUrl(movie.backdropPath),
+      posterPath: _getPosterImageUrl(movie.posterPath),
+    );
+  }
+
+  SeriesDataDto _handleSeriesImages(SeriesDataDto series) {
+    return series.copyWith(
+      backdropPath: _getBackdropImageUrl(series.backdropPath),
+      posterPath: _getPosterImageUrl(series.posterPath),
+    );
   }
 
   String _getBackdropImageUrl(String? backdropPath) {

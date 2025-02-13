@@ -154,7 +154,10 @@ final searchSeriesUseCasePr =
         ));
 
 // DETAILS
-final detailsServicePr = Provider<DetailsService>((_) => DetailsService());
+final detailsServicePr = Provider<DetailsService>((ref) => DetailsService(
+      mediaApiClient: ref.read(mediaApiClientPr),
+      imageUrlHandler: ref.read(imageUrlHandlerPr),
+    ));
 final detailsRemoteDataSourcePr = Provider<DetailsRemoteDataSource>(
   (ref) => ImplDetailsRemoteDataSource(service: ref.read(detailsServicePr)),
 );
@@ -162,7 +165,8 @@ final detailsMapperPr = Provider<AppDetailsMapper>((_) => AppDetailsMapper());
 final detailsRepositoryPr =
     Provider<DetailsRepository>((ref) => ImplDetailsRepository(
           dataSource: ref.read(detailsRemoteDataSourcePr),
-          mapper: ref.read(detailsMapperPr),
+          moviesMapper: ref.read(moviesMapperPr),
+          seriesMapper: ref.read(seriesMapperPr),
         ));
 final detailsMovieUseCasePr =
     Provider<DetailsMovieUseCase>((ref) => DetailsMovieUseCase(

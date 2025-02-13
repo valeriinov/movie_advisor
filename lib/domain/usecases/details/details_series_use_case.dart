@@ -12,7 +12,6 @@ class DetailsSeriesUseCase implements DetailsUseCase<SeriesData> {
 
   @override
   Future<Result<SeriesData>> getDetails(int id) {
-    // TODO: implement getDetails
-    throw UnimplementedError();
+    return _repository.getDetailsSeries(id);
   }
 }

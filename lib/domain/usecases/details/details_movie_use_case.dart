@@ -12,7 +12,6 @@ class DetailsMovieUseCase implements DetailsUseCase<MovieData> {
 
   @override
   Future<Result<MovieData>> getDetails(int id) {
-    // TODO: implement getDetails
-    throw UnimplementedError();
+    return _repository.getDetailsMovie(id);
   }
 }
