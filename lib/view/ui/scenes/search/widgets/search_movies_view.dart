@@ -42,10 +42,12 @@ class SearchMoviesView extends HookConsumerWidget {
 
     final isLoading = vsp.isLoading;
     final results = vsp.selectWatch((s) => s.results);
+    final filter = vspFilter.selectWatch((s) => s.filter);
 
     return SearchScreenContent(
       onRefresh: !isLoading ? () => _onRefresh(vspFilter, vsp) : null,
       isLoading: isLoading,
+      filter: filter,
       results: results,
     );
   }

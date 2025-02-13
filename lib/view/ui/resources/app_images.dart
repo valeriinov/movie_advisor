@@ -16,6 +16,7 @@ abstract final class AppImages {
   static const homeIcon = "${_imgPath}home_icon.svg";
   static const starIcon = "${_imgPath}star_icon.svg";
   static const placeholderImage = "${_imgPath}placeholder_image.png";
+  static const emptyResultImage = "${_imgPath}empty_result_image.png";
   static const watchListIcon = "${_imgPath}watch_list_icon.svg";
   static const watchedIcon = "${_imgPath}watched_icon.svg";
   static const genreIcon = "${_imgPath}genre_icon.svg";
