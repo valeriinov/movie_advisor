@@ -33,7 +33,6 @@ class HomeScreenView extends HookWidget {
             ),
             body: CustomScrollView(
               controller: scrollController,
-              physics: BouncingScrollPhysics(),
               slivers: [
                 HomeFloatingTopBar(),
                 HomeContentSwitcher(scrollController: scrollController),
