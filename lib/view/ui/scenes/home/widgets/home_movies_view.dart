@@ -4,7 +4,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../../di/injector.dart';
+import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../navigation/routes/home_routes.dart';
 import '../home_view_model/home_view_model.dart';
 import '../model/media_tab.dart';
 import '../utils/jump_to_tab_start_position.dart';
@@ -65,10 +67,8 @@ class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
             currentTab: currentTab,
             tabContent: tabContent,
             onTabSelect: (index) => _onTabSelect(vsp, index),
-            // TODO: Go to movie details
-            onSuggestionItemSelect: (id) {},
-            // TODO: Go to movie details
-            onTabItemSelect: (id) {},
+            onSuggestionItemSelect: (id) => _goToDetails(context, id),
+            onTabItemSelect: (id) => _goToDetails(context, id),
           );
   }
 
@@ -86,5 +86,9 @@ class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
     final tab = MediaTab.fromIndex(index);
 
     vsp.viewModel.updateCurrentTab(tab);
+  }
+
+  void _goToDetails(BuildContext context, int id) {
+    HomeDetailsRoute(id: id, contentMode: ContentMode.movies).go(context);
   }
 }

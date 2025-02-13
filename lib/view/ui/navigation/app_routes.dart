@@ -12,4 +12,10 @@ abstract final class AppRoutes {
 
   // Home/Search
   static const String search = 'search';
+
+  // Home/Search/Details
+  // Home/Details
+  // WatchList/Details
+  // Watched/Details
+  static const String details = 'details';
 }

@@ -26,6 +26,8 @@ class DetailsMovieScreenView extends ConsumerWidget {
           .handleStatus(prev, next, handleLoadingState: () => isInitialized);
     });
 
+    final data = vsp.selectWatch((s) => s.data);
+
     return Scaffold(
       appBar: MainAppBar(
         title: Text('Details Movie Screen'), // TODO: Localize title
