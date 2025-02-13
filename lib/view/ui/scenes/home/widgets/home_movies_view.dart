@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../common/utils/scroll_pagination_controller.dart';
-import '../../../di/injector.dart';
-import '../../base/view_model/ext/vm_state_provider_creator.dart';
-import 'home_media_view_model/home_media_view_model.dart';
-import 'model/media_tab.dart';
-import 'utils/jump_to_tab_start_position.dart';
-import 'widgets/home_content_skeleton.dart';
-import 'widgets/home_content_view.dart';
+import '../../../../../common/utils/scroll_pagination_controller.dart';
+import '../../../../di/injector.dart';
+import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../home_view_model/home_view_model.dart';
+import '../model/media_tab.dart';
+import '../utils/jump_to_tab_start_position.dart';
+import 'home_content_skeleton.dart';
+import 'home_screen_content.dart';
 
 class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
   final ScrollController scrollController;
@@ -44,7 +44,7 @@ class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
       );
 
       return paginationCtrl.dispose;
-    }, [currentTab]);
+    }, []);
 
     useEffect(() {
       jumpToTabStartPosition(
@@ -56,7 +56,10 @@ class HomeMoviesView extends HookConsumerWidget with JumpToTabStartPosition {
 
     return isSkeletonVisible
         ? HomeContentSkeleton()
-        : HomeContentView(
+        : HomeScreenContent(
+            onRefresh: !isLoading
+                ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                : null,
             isSkeletonVisible: isSkeletonVisible,
             suggestionsContent: suggestionsContent,
             currentTab: currentTab,

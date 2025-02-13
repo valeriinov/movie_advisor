@@ -46,8 +46,9 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static const Field<MovieDataDto, String> _f$posterPath =
       Field('posterPath', _$posterPath, key: 'poster_path', opt: true);
   static DateTime? _$releaseDate(MovieDataDto v) => v.releaseDate;
-  static const Field<MovieDataDto, DateTime> _f$releaseDate =
-      Field('releaseDate', _$releaseDate, key: 'release_date', opt: true);
+  static const Field<MovieDataDto, DateTime> _f$releaseDate = Field(
+      'releaseDate', _$releaseDate,
+      key: 'release_date', opt: true, hook: DateMapperHook());
   static String? _$title(MovieDataDto v) => v.title;
   static const Field<MovieDataDto, String> _f$title =
       Field('title', _$title, opt: true);

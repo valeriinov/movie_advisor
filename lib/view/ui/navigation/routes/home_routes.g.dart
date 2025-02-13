@@ -39,10 +39,16 @@ extension $HomeRouteExtension on HomeRoute {
 }
 
 extension $SearchRouteExtension on SearchRoute {
-  static SearchRoute _fromState(GoRouterState state) => SearchRoute();
+  static SearchRoute _fromState(GoRouterState state) => SearchRoute(
+        contentMode: _$ContentModeEnumMap
+            ._$fromName(state.uri.queryParameters['content-mode']!),
+      );
 
   String get location => GoRouteData.$location(
         '/home/search',
+        queryParams: {
+          'content-mode': _$ContentModeEnumMap[contentMode],
+        },
       );
 
   void go(BuildContext context) => context.go(location);
@@ -53,4 +59,14 @@ extension $SearchRouteExtension on SearchRoute {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+const _$ContentModeEnumMap = {
+  ContentMode.movies: 'movies',
+  ContentMode.series: 'series',
+};
+
+extension<T extends Enum> on Map<T, String> {
+  T _$fromName(String value) =>
+      entries.singleWhere((element) => element.value == value).key;
 }

@@ -43,5 +43,8 @@
   "nowPlayingTab": "Now playing",
   "upcomingTab": "Upcoming",
   "popularTab": "Popular",
-  "topRatedTab": "Top rated"
+  "topRatedTab": "Top rated",
+  "searchScreenTitle": "Search",
+  "emptySearchTitle": "Sorry, No Results Found For Your Search :(",
+  "emptySearchSubtitle": "Try searching by title, genre, year, or other filters."
 }

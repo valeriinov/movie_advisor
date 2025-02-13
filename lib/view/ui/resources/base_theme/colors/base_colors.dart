@@ -49,6 +49,9 @@ abstract final class _BaseColors {
   // Loading Indicator
   static const loadingIndicator = Color(0xFF0296E5);
 
+  static const refreshIndicatorFg = Color(0xFF242A32);
+  static const refreshIndicatorBg = Color(0xFFa1a3ac);
+
   static const skeletonFrom = Color(0xFF3a3f47);
   static const skeletonTo = Color(0xFF2e333b);
 
@@ -97,4 +100,9 @@ abstract final class _BaseColors {
   static const suggestNumBlur = Color(0xFF000000);
 
   static const tabUnderSelect = Color(0xFF3A3F47);
+
+  static const infoCardRating = Color(0xFFFF8700);
+
+  static const emptyListTitle = Color(0xFFFFFFFF);
+  static const emptyListSubtitle = Color(0xFF92929D);
 }

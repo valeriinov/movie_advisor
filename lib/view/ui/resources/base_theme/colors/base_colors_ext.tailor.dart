@@ -43,6 +43,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get btnFABFgSplash;
   Color get btnIconPrim;
   Color get loadingIndicator;
+  Color get refreshIndicatorFg;
+  Color get refreshIndicatorBg;
   Color get skeletonFrom;
   Color get skeletonTo;
   Color get appBarPrimFg;
@@ -76,6 +78,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get suggestNumStroke;
   Color get suggestNumBlur;
   Color get tabUnderSelect;
+  Color get infoCardRating;
+  Color get emptyListTitle;
+  Color get emptyListSubtitle;
 
   @override
   BaseColors copyWith({
@@ -113,6 +118,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? btnFABFgSplash,
     Color? btnIconPrim,
     Color? loadingIndicator,
+    Color? refreshIndicatorFg,
+    Color? refreshIndicatorBg,
     Color? skeletonFrom,
     Color? skeletonTo,
     Color? appBarPrimFg,
@@ -146,6 +153,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? suggestNumStroke,
     Color? suggestNumBlur,
     Color? tabUnderSelect,
+    Color? infoCardRating,
+    Color? emptyListTitle,
+    Color? emptyListSubtitle,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -182,6 +192,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABFgSplash: btnFABFgSplash ?? this.btnFABFgSplash,
       btnIconPrim: btnIconPrim ?? this.btnIconPrim,
       loadingIndicator: loadingIndicator ?? this.loadingIndicator,
+      refreshIndicatorFg: refreshIndicatorFg ?? this.refreshIndicatorFg,
+      refreshIndicatorBg: refreshIndicatorBg ?? this.refreshIndicatorBg,
       skeletonFrom: skeletonFrom ?? this.skeletonFrom,
       skeletonTo: skeletonTo ?? this.skeletonTo,
       appBarPrimFg: appBarPrimFg ?? this.appBarPrimFg,
@@ -217,6 +229,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumStroke: suggestNumStroke ?? this.suggestNumStroke,
       suggestNumBlur: suggestNumBlur ?? this.suggestNumBlur,
       tabUnderSelect: tabUnderSelect ?? this.tabUnderSelect,
+      infoCardRating: infoCardRating ?? this.infoCardRating,
+      emptyListTitle: emptyListTitle ?? this.emptyListTitle,
+      emptyListSubtitle: emptyListSubtitle ?? this.emptyListSubtitle,
     );
   }
 
@@ -273,6 +288,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnIconPrim: Color.lerp(btnIconPrim, other.btnIconPrim, t)!,
       loadingIndicator:
           Color.lerp(loadingIndicator, other.loadingIndicator, t)!,
+      refreshIndicatorFg:
+          Color.lerp(refreshIndicatorFg, other.refreshIndicatorFg, t)!,
+      refreshIndicatorBg:
+          Color.lerp(refreshIndicatorBg, other.refreshIndicatorBg, t)!,
       skeletonFrom: Color.lerp(skeletonFrom, other.skeletonFrom, t)!,
       skeletonTo: Color.lerp(skeletonTo, other.skeletonTo, t)!,
       appBarPrimFg: Color.lerp(appBarPrimFg, other.appBarPrimFg, t)!,
@@ -317,6 +336,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
           Color.lerp(suggestNumStroke, other.suggestNumStroke, t)!,
       suggestNumBlur: Color.lerp(suggestNumBlur, other.suggestNumBlur, t)!,
       tabUnderSelect: Color.lerp(tabUnderSelect, other.tabUnderSelect, t)!,
+      infoCardRating: Color.lerp(infoCardRating, other.infoCardRating, t)!,
+      emptyListTitle: Color.lerp(emptyListTitle, other.emptyListTitle, t)!,
+      emptyListSubtitle:
+          Color.lerp(emptyListSubtitle, other.emptyListSubtitle, t)!,
     );
   }
 
@@ -391,6 +414,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality()
                 .equals(loadingIndicator, other.loadingIndicator) &&
             const DeepCollectionEquality()
+                .equals(refreshIndicatorFg, other.refreshIndicatorFg) &&
+            const DeepCollectionEquality()
+                .equals(refreshIndicatorBg, other.refreshIndicatorBg) &&
+            const DeepCollectionEquality()
                 .equals(skeletonFrom, other.skeletonFrom) &&
             const DeepCollectionEquality()
                 .equals(skeletonTo, other.skeletonTo) &&
@@ -412,10 +439,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(txtFldPrimInput, other.txtFldPrimInput) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
+            const DeepCollectionEquality().equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
+            const DeepCollectionEquality().equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
             const DeepCollectionEquality().equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
             const DeepCollectionEquality().equals(txtFldPrimError, other.txtFldPrimError) &&
             const DeepCollectionEquality().equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
@@ -435,7 +460,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(suggestNumFill, other.suggestNumFill) &&
             const DeepCollectionEquality().equals(suggestNumStroke, other.suggestNumStroke) &&
             const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur) &&
-            const DeepCollectionEquality().equals(tabUnderSelect, other.tabUnderSelect));
+            const DeepCollectionEquality().equals(tabUnderSelect, other.tabUnderSelect) &&
+            const DeepCollectionEquality().equals(infoCardRating, other.infoCardRating) &&
+            const DeepCollectionEquality().equals(emptyListTitle, other.emptyListTitle) &&
+            const DeepCollectionEquality().equals(emptyListSubtitle, other.emptyListSubtitle));
   }
 
   @override
@@ -476,6 +504,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(btnFABFgSplash),
       const DeepCollectionEquality().hash(btnIconPrim),
       const DeepCollectionEquality().hash(loadingIndicator),
+      const DeepCollectionEquality().hash(refreshIndicatorFg),
+      const DeepCollectionEquality().hash(refreshIndicatorBg),
       const DeepCollectionEquality().hash(skeletonFrom),
       const DeepCollectionEquality().hash(skeletonTo),
       const DeepCollectionEquality().hash(appBarPrimFg),
@@ -509,6 +539,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(suggestNumStroke),
       const DeepCollectionEquality().hash(suggestNumBlur),
       const DeepCollectionEquality().hash(tabUnderSelect),
+      const DeepCollectionEquality().hash(infoCardRating),
+      const DeepCollectionEquality().hash(emptyListTitle),
+      const DeepCollectionEquality().hash(emptyListSubtitle),
     ]);
   }
 }

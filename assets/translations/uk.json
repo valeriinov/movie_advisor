@@ -43,5 +43,8 @@
   "nowPlayingTab": "На екранах",
   "upcomingTab": "Незабаром",
   "popularTab": "Популярні",
-  "topRatedTab": "Топові"
+  "topRatedTab": "Топові",
+  "searchScreenTitle": "Пошук",
+  "emptySearchTitle": "Вибачте, Результатів За Вашим Запитом Не Знайдено :(",
+  "emptySearchSubtitle": "Спробуйте шукати за назвою, жанром, роком або іншими фільтрами."
 }

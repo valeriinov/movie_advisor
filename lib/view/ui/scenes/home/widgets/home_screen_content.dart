@@ -3,14 +3,16 @@ import 'package:flutter_utils/flutter_utils.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../base/media_load_info.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../../widgets/next_page_loader.dart';
+import '../../../widgets/sliver_refresh_indicator.dart';
 import '../../../widgets/tabs/app_tabs.dart';
-import '../model/media_load_info.dart';
 import '../model/media_tab.dart';
 import 'home_tab_content.dart';
 import 'suggestions_container.dart';
 
-class HomeContentView extends StatelessWidget {
+class HomeScreenContent extends StatelessWidget {
   final bool isSkeletonVisible;
   final List<MediaShortData> suggestionsContent;
   final MediaLoadInfo<MediaShortData> tabContent;
@@ -18,8 +20,9 @@ class HomeContentView extends StatelessWidget {
   final void Function(int index)? onTabSelect;
   final void Function(int id)? onSuggestionItemSelect;
   final void Function(int id)? onTabItemSelect;
+  final Future<void> Function()? onRefresh;
 
-  const HomeContentView({
+  const HomeScreenContent({
     super.key,
     required this.isSkeletonVisible,
     required this.suggestionsContent,
@@ -28,6 +31,7 @@ class HomeContentView extends StatelessWidget {
     this.onTabSelect,
     this.onSuggestionItemSelect,
     this.onTabItemSelect,
+    this.onRefresh,
   });
 
   @override
@@ -38,6 +42,10 @@ class HomeContentView extends StatelessWidget {
 
     return MultiSliver(
       children: [
+        SliverRefreshIndicator(
+          onRefresh: onRefresh,
+        ),
+        SliverPadding(padding: (dimens.spLarge / 2).insBottom()),
         SuggestionsContainer(
           suggestions: suggestionsContent,
           onTap: onSuggestionItemSelect,
@@ -53,13 +61,7 @@ class HomeContentView extends StatelessWidget {
             isSkeletonVisible: isSkeletonVisible,
             mediaLoadInfo: tabContent,
             onTap: onTabItemSelect),
-        if (isNextPageLoading)
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: dimens.spMedium.insTop(),
-              child: Center(child: CircularProgressIndicator()),
-            ),
-          ),
+        if (isNextPageLoading) NextPageLoader(),
       ],
     );
   }

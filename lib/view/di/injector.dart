@@ -3,8 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../data/mappers/app_home_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
+import '../../data/mappers/app_paginated_media_mapper.dart';
+import '../../data/mappers/app_search_mapper.dart';
 import '../../data/mappers/app_series_mapper.dart';
 import '../../data/network/env_provider/env_provider.dart';
 import '../../data/network/network_manager/impl_dio/dio_builder.dart';
@@ -12,16 +13,25 @@ import '../../data/network/network_manager/impl_dio/dio_error_handler.dart';
 import '../../data/network/network_manager/impl_dio/impl_network_manager.dart';
 import '../../data/network/network_manager/network_manager.dart';
 import '../../data/network/services/home_service.dart';
+import '../../data/network/services/search_service.dart';
 import '../../data/network/utils/image_url_handler/image_url_handler.dart';
 import '../../data/network/utils/image_url_handler/impl_image_url_handler.dart';
+import '../../data/network/utils/media_response_handler/impl_media_response_handler.dart';
+import '../../data/network/utils/media_response_handler/media_response_handler.dart';
 import '../../data/repositories/home/home_remote_data_source.dart';
 import '../../data/repositories/home/impl_home_repository.dart';
+import '../../data/repositories/search/impl_search_repository.dart';
+import '../../data/repositories/search/search_remote_data_source.dart';
 import '../../data/repositories/settings_provider.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
+import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
 import '../../domain/repositories/home_repository.dart';
+import '../../domain/repositories/search_repository.dart';
 import '../../domain/usecases/home/home_movies_use_case.dart';
 import '../../domain/usecases/home/home_series_use_case.dart';
+import '../../domain/usecases/search/search_movies_use_case.dart';
+import '../../domain/usecases/search/search_series_use_case.dart';
 import '../ui/base/view_model/base_status_handler.dart';
 import '../ui/impl_base_status_handler.dart';
 import '../ui/navigation/app_router.dart';
@@ -55,7 +65,7 @@ final envPr = Provider<EnvProvider>((_) => throw UnimplementedError());
 final settingsPr =
     Provider<SettingsProvider>((_) => throw UnimplementedError());
 
-final moviesApiClientPr = Provider<NetworkManager>((ref) {
+final mediaApiClientPr = Provider<NetworkManager>((ref) {
   final baseUrl = ref.read(envPr).baseUrl;
   final settingsProvider = ref.read(settingsPr);
 
@@ -75,27 +85,32 @@ final moviesApiClientPr = Provider<NetworkManager>((ref) {
 final imageUrlHandlerPr = Provider<ImageUrlHandler>(
   (ref) => ImplImageUrlHandler(envProvider: ref.read(envPr)),
 );
+final mediaResponseHandlerPr = Provider<MediaResponseHandler>(
+  (ref) => ImpMediaResponseHandler(
+    imageUrlHandler: ref.read(imageUrlHandlerPr),
+  ),
+);
 
 final moviesMapperPr = Provider<AppMoviesMapper>((_) => AppMoviesMapper());
 final seriesMapperPr = Provider<AppSeriesMapper>((_) => AppSeriesMapper());
-
-// HOME
-final homeServicePr = Provider<HomeService>((ref) => HomeService(
-      moviesApiClient: ref.read(moviesApiClientPr),
-      imageUrlHandler: ref.read(imageUrlHandlerPr),
-    ));
-final homeRemoteDataSourcePr = Provider<HomeRemoteDataSource>(
-  (ref) => ImplHomeRemoteDataSource(service: ref.read(homeServicePr)),
-);
-final homeMapperPr = Provider<AppHomeMapper>(
-  (ref) => AppHomeMapper(
+final paginatedMediaMapperPr = Provider<AppPaginatedMediaMapper>(
+  (ref) => AppPaginatedMediaMapper(
     moviesMapper: ref.read(moviesMapperPr),
     seriesMapper: ref.read(seriesMapperPr),
   ),
 );
+
+// HOME
+final homeServicePr = Provider<HomeService>((ref) => HomeService(
+      mediaApiClient: ref.read(mediaApiClientPr),
+      responseHandler: ref.read(mediaResponseHandlerPr),
+    ));
+final homeRemoteDataSourcePr = Provider<HomeRemoteDataSource>(
+  (ref) => ImplHomeRemoteDataSource(service: ref.read(homeServicePr)),
+);
 final homeRepositoryPr = Provider<HomeRepository>((ref) => ImplHomeRepository(
       dataSource: ref.read(homeRemoteDataSourcePr),
-      mapper: ref.read(homeMapperPr),
+      mapper: ref.read(paginatedMediaMapperPr),
     ));
 final homeMoviesUseCasePr =
     Provider<HomeMoviesUseCase>((ref) => HomeMoviesUseCase(
@@ -104,6 +119,30 @@ final homeMoviesUseCasePr =
 final homeSeriesUseCasePr =
     Provider<HomeSeriesUseCase>((ref) => HomeSeriesUseCase(
           repository: ref.read(homeRepositoryPr),
+        ));
+
+// SEARCH
+final searchServicePr = Provider<SearchService>((ref) => SearchService(
+      mediaApiClient: ref.read(mediaApiClientPr),
+      responseHandler: ref.read(mediaResponseHandlerPr),
+    ));
+final searchRemoteDataSourcePr = Provider<SearchRemoteDataSource>(
+  (ref) => ImplSearchRemoteDataSource(service: ref.read(searchServicePr)),
+);
+final searchMapperPr = Provider<AppSearchMapper>((_) => AppSearchMapper());
+final searchRepositoryPr =
+    Provider<SearchRepository>((ref) => ImplSearchRepository(
+          dataSource: ref.read(searchRemoteDataSourcePr),
+          searchMapper: ref.read(searchMapperPr),
+          mediaMapper: ref.read(paginatedMediaMapperPr),
+        ));
+final searchMoviesUseCasePr =
+    Provider<SearchMoviesUseCase>((ref) => SearchMoviesUseCase(
+          repository: ref.read(searchRepositoryPr),
+        ));
+final searchSeriesUseCasePr =
+    Provider<SearchSeriesUseCase>((ref) => SearchSeriesUseCase(
+          repository: ref.read(searchRepositoryPr),
         ));
 
 /// {@category Utils}

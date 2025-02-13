@@ -13,80 +13,103 @@ class SearchStateMapper extends ClassMapperBase<SearchState> {
   static SearchStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SearchStateMapper._());
+      MediaLoadInfoMapper.ensureInitialized();
     }
     return _instance!;
   }
 
   @override
   final String id = 'SearchState';
+  @override
+  Function get typeFactory => <T>(f) => f<SearchState<T>>();
 
+  static MediaLoadInfo<dynamic> _$results(SearchState v) => v.results;
+  static dynamic _arg$results<T>(f) => f<MediaLoadInfo<T>>();
+  static const Field<SearchState, MediaLoadInfo<dynamic>> _f$results =
+      Field('results', _$results, opt: true, arg: _arg$results);
   static SearchStatus _$status(SearchState v) => v.status;
   static const Field<SearchState, SearchStatus> _f$status =
       Field('status', _$status, opt: true, def: const SearchBaseStatus());
 
   @override
   final MappableFields<SearchState> fields = const {
+    #results: _f$results,
     #status: _f$status,
   };
 
-  static SearchState _instantiate(DecodingData data) {
-    return SearchState(status: data.dec(_f$status));
+  static SearchState<T> _instantiate<T>(DecodingData data) {
+    return SearchState(
+        results: data.dec(_f$results), status: data.dec(_f$status));
   }
 
   @override
   final Function instantiate = _instantiate;
 }
 
-mixin SearchStateMappable {
-  SearchStateCopyWith<SearchState, SearchState, SearchState> get copyWith =>
-      _SearchStateCopyWithImpl(this as SearchState, $identity, $identity);
+mixin SearchStateMappable<T> {
+  SearchStateCopyWith<SearchState<T>, SearchState<T>, SearchState<T>, T>
+      get copyWith => _SearchStateCopyWithImpl(
+          this as SearchState<T>, $identity, $identity);
   @override
   String toString() {
     return SearchStateMapper.ensureInitialized()
-        .stringifyValue(this as SearchState);
+        .stringifyValue(this as SearchState<T>);
   }
 
   @override
   bool operator ==(Object other) {
     return SearchStateMapper.ensureInitialized()
-        .equalsValue(this as SearchState, other);
+        .equalsValue(this as SearchState<T>, other);
   }
 
   @override
   int get hashCode {
-    return SearchStateMapper.ensureInitialized().hashValue(this as SearchState);
+    return SearchStateMapper.ensureInitialized()
+        .hashValue(this as SearchState<T>);
   }
 }
 
-extension SearchStateValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, SearchState, $Out> {
-  SearchStateCopyWith<$R, SearchState, $Out> get $asSearchState =>
+extension SearchStateValueCopy<$R, $Out, T>
+    on ObjectCopyWith<$R, SearchState<T>, $Out> {
+  SearchStateCopyWith<$R, SearchState<T>, $Out, T> get $asSearchState =>
       $base.as((v, t, t2) => _SearchStateCopyWithImpl(v, t, t2));
 }
 
-abstract class SearchStateCopyWith<$R, $In extends SearchState, $Out>
+abstract class SearchStateCopyWith<$R, $In extends SearchState<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({SearchStatus? status});
-  SearchStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+      get results;
+  $R call({MediaLoadInfo<T>? results, SearchStatus? status});
+  SearchStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
 }
 
-class _SearchStateCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, SearchState, $Out>
-    implements SearchStateCopyWith<$R, SearchState, $Out> {
+class _SearchStateCopyWithImpl<$R, $Out, T>
+    extends ClassCopyWithBase<$R, SearchState<T>, $Out>
+    implements SearchStateCopyWith<$R, SearchState<T>, $Out, T> {
   _SearchStateCopyWithImpl(super.value, super.then, super.then2);
 
   @override
   late final ClassMapperBase<SearchState> $mapper =
       SearchStateMapper.ensureInitialized();
   @override
-  $R call({SearchStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+      get results => ($value.results as MediaLoadInfo<T>)
+          .copyWith
+          .$chain((v) => call(results: v));
   @override
-  SearchState $make(CopyWithData data) =>
-      SearchState(status: data.get(#status, or: $value.status));
+  $R call({Object? results = $none, SearchStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (results != $none) #results: results,
+        if (status != null) #status: status
+      }));
+  @override
+  SearchState<T> $make(CopyWithData data) => SearchState(
+      results: data.get(#results, or: $value.results),
+      status: data.get(#status, or: $value.status));
 
   @override
-  SearchStateCopyWith<$R2, SearchState, $Out2> $chain<$R2, $Out2>(
+  SearchStateCopyWith<$R2, SearchState<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
       _SearchStateCopyWithImpl($value, $cast, t);
 }

@@ -41,11 +41,20 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      scrollBehavior: _scrollBehaviorWithBouncing(context),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routerConfig: routerProvider.routerConfig,
       theme: themeProvider.theme,
+    );
+  }
+
+  ScrollBehavior _scrollBehaviorWithBouncing(BuildContext context) {
+    return ScrollConfiguration.of(context).copyWith(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
     );
   }
 }

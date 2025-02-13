@@ -1,9 +1,9 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
-import '../../../../../domain/entities/mappable_entity.dart';
-import '../../../../../domain/entities/movie/movie_short_data.dart';
-import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
-import '../../../../../domain/entities/series/series_short_data.dart';
+import '../../../domain/entities/mappable_entity.dart';
+import '../../../domain/entities/movie/movie_short_data.dart';
+import '../../../domain/entities/pagination/list_with_pagination_data.dart';
+import '../../../domain/entities/series/series_short_data.dart';
 
 part 'media_load_info.mapper.dart';
 

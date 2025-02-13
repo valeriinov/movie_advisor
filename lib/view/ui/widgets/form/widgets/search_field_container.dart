@@ -10,6 +10,7 @@ class SearchFieldContainer extends HookWidget {
   final bool autoFocus;
   final bool enabled;
   final Function(String)? onSearch;
+  final TextEditingController? controller;
 
   const SearchFieldContainer({
     super.key,
@@ -17,6 +18,7 @@ class SearchFieldContainer extends HookWidget {
     this.enabled = true,
     this.autoFocus = false,
     this.onSearch,
+    this.controller,
   });
 
   @override
@@ -32,6 +34,7 @@ class SearchFieldContainer extends HookWidget {
       hintText: hintText,
       enabled: enabled,
       autoFocus: autoFocus,
+      controller: controller,
       onSearch: (value) => debounce.run(() => onSearch?.call(value)),
       onClear: () => onSearch?.call(''),
     );

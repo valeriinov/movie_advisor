@@ -20,6 +20,9 @@ mixin _$BaseComponentsStylesTailorMixin
   Size get posterSmallSize;
   Size get posterMediumSize;
   Size get posterLargeSize;
+  TextStyle get infoCardRatingTextStyle;
+  TextStyle get emptyListTitleTextStyle;
+  TextStyle get emptyListSubtitleTextStyle;
 
   @override
   BaseComponentsStyles copyWith({
@@ -33,6 +36,9 @@ mixin _$BaseComponentsStylesTailorMixin
     Size? posterSmallSize,
     Size? posterMediumSize,
     Size? posterLargeSize,
+    TextStyle? infoCardRatingTextStyle,
+    TextStyle? emptyListTitleTextStyle,
+    TextStyle? emptyListSubtitleTextStyle,
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
@@ -47,6 +53,12 @@ mixin _$BaseComponentsStylesTailorMixin
       posterSmallSize: posterSmallSize ?? this.posterSmallSize,
       posterMediumSize: posterMediumSize ?? this.posterMediumSize,
       posterLargeSize: posterLargeSize ?? this.posterLargeSize,
+      infoCardRatingTextStyle:
+          infoCardRatingTextStyle ?? this.infoCardRatingTextStyle,
+      emptyListTitleTextStyle:
+          emptyListTitleTextStyle ?? this.emptyListTitleTextStyle,
+      emptyListSubtitleTextStyle:
+          emptyListSubtitleTextStyle ?? this.emptyListSubtitleTextStyle,
     );
   }
 
@@ -71,6 +83,12 @@ mixin _$BaseComponentsStylesTailorMixin
       posterSmallSize: t < 0.5 ? posterSmallSize : other.posterSmallSize,
       posterMediumSize: t < 0.5 ? posterMediumSize : other.posterMediumSize,
       posterLargeSize: t < 0.5 ? posterLargeSize : other.posterLargeSize,
+      infoCardRatingTextStyle: TextStyle.lerp(
+          infoCardRatingTextStyle, other.infoCardRatingTextStyle, t)!,
+      emptyListTitleTextStyle: TextStyle.lerp(
+          emptyListTitleTextStyle, other.emptyListTitleTextStyle, t)!,
+      emptyListSubtitleTextStyle: TextStyle.lerp(
+          emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle, t)!,
     );
   }
 
@@ -98,7 +116,13 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality()
                 .equals(posterMediumSize, other.posterMediumSize) &&
             const DeepCollectionEquality()
-                .equals(posterLargeSize, other.posterLargeSize));
+                .equals(posterLargeSize, other.posterLargeSize) &&
+            const DeepCollectionEquality().equals(
+                infoCardRatingTextStyle, other.infoCardRatingTextStyle) &&
+            const DeepCollectionEquality().equals(
+                emptyListTitleTextStyle, other.emptyListTitleTextStyle) &&
+            const DeepCollectionEquality().equals(
+                emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle));
   }
 
   @override
@@ -115,6 +139,9 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(posterSmallSize),
       const DeepCollectionEquality().hash(posterMediumSize),
       const DeepCollectionEquality().hash(posterLargeSize),
+      const DeepCollectionEquality().hash(infoCardRatingTextStyle),
+      const DeepCollectionEquality().hash(emptyListTitleTextStyle),
+      const DeepCollectionEquality().hash(emptyListSubtitleTextStyle),
     );
   }
 }

@@ -1,114 +1,98 @@
 import '../../dto/movie/movies_response_data_dto.dart';
 import '../../dto/series/series_response_data_dto.dart';
-import '../network_manager/net_response.dart';
 import '../network_manager/network_manager.dart';
-import '../utils/image_url_handler/image_url_handler.dart';
+import '../utils/media_response_handler/media_response_handler.dart';
 
 class HomeService {
-  final NetworkManager _moviesApiClient;
-  final ImageUrlHandler _imageUrlHandler;
+  final NetworkManager _mediaApiClient;
+  final MediaResponseHandler _responseHandler;
 
   HomeService({
-    required NetworkManager moviesApiClient,
-    required ImageUrlHandler imageUrlHandler,
-  })  : _moviesApiClient = moviesApiClient,
-        _imageUrlHandler = imageUrlHandler;
+    required NetworkManager mediaApiClient,
+    required MediaResponseHandler responseHandler,
+  })  : _mediaApiClient = mediaApiClient,
+        _responseHandler = responseHandler;
 
   Future<MoviesResponseDataDto> getSuggestedMovies() async {
-    final result = await _moviesApiClient.get('/movie/top_rated');
+    final result = await _mediaApiClient.get('/movie/top_rated');
 
-    return _handleMoviesResult(result);
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<MoviesResponseDataDto> getNowPlayingMovies({required int page}) async {
     final result =
-        await _moviesApiClient.get('/movie/now_playing', queryParameters: {
+        await _mediaApiClient.get('/movie/now_playing', queryParameters: {
       'page': page,
     });
 
-    return _handleMoviesResult(result);
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<MoviesResponseDataDto> getUpcomingMovies({required int page}) async {
     final result =
-        await _moviesApiClient.get('/movie/upcoming', queryParameters: {
+        await _mediaApiClient.get('/movie/upcoming', queryParameters: {
       'page': page,
     });
 
-    return _handleMoviesResult(result);
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<MoviesResponseDataDto> getTopRatedMovies({required int page}) async {
     final result =
-        await _moviesApiClient.get('/movie/top_rated', queryParameters: {
+        await _mediaApiClient.get('/movie/top_rated', queryParameters: {
       'page': page,
     });
 
-    return _handleMoviesResult(result);
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<MoviesResponseDataDto> getPopularMovies({required int page}) async {
     final result =
-        await _moviesApiClient.get('/movie/popular', queryParameters: {
+        await _mediaApiClient.get('/movie/popular', queryParameters: {
       'page': page,
     });
 
-    return _handleMoviesResult(result);
-  }
-
-  MoviesResponseDataDto _handleMoviesResult(NetResponse<dynamic> result) {
-    final rawDto = MoviesResponseDataDto.fromJson(result.data);
-    final results = _imageUrlHandler.handleMoviesImages(rawDto.results ?? []);
-
-    return rawDto.copyWith(results: results);
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getSuggestedSeries() async {
-    final result = await _moviesApiClient.get('/tv/top_rated');
+    final result = await _mediaApiClient.get('/tv/top_rated');
 
-    return _handleSeriesResult(result);
+    return _responseHandler.handleSeriesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getAiringTodaySeries(
       {required int page}) async {
     final result =
-        await _moviesApiClient.get('/tv/airing_today', queryParameters: {
+        await _mediaApiClient.get('/tv/airing_today', queryParameters: {
       'page': page,
     });
 
-    return _handleSeriesResult(result);
+    return _responseHandler.handleSeriesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getOnTheAirSeries({required int page}) async {
     final result =
-        await _moviesApiClient.get('/tv/on_the_air', queryParameters: {
+        await _mediaApiClient.get('/tv/on_the_air', queryParameters: {
       'page': page,
     });
 
-    return _handleSeriesResult(result);
+    return _responseHandler.handleSeriesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getTopRatedSeries({required int page}) async {
-    final result =
-        await _moviesApiClient.get('/tv/top_rated', queryParameters: {
+    final result = await _mediaApiClient.get('/tv/top_rated', queryParameters: {
       'page': page,
     });
 
-    return _handleSeriesResult(result);
+    return _responseHandler.handleSeriesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getPopularSeries({required int page}) async {
-    final result = await _moviesApiClient.get('/tv/popular', queryParameters: {
+    final result = await _mediaApiClient.get('/tv/popular', queryParameters: {
       'page': page,
     });
 
-    return _handleSeriesResult(result);
-  }
-
-  SeriesResponseDataDto _handleSeriesResult(NetResponse<dynamic> result) {
-    final rawDto = SeriesResponseDataDto.fromJson(result.data);
-    final results = _imageUrlHandler.handleSeriesImages(rawDto.results ?? []);
-
-    return rawDto.copyWith(results: results);
+    return _responseHandler.handleSeriesResponse(result);
   }
 }

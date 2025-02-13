@@ -4,9 +4,9 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../common/mock/mock_media_short.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
-import '../model/media_load_info.dart';
+import '../../../base/media_load_info.dart';
 import '../model/media_tab.dart';
-import 'home_content_view.dart';
+import 'home_screen_content.dart';
 
 class HomeContentSkeleton extends StatelessWidget {
   const HomeContentSkeleton({super.key});
@@ -23,7 +23,7 @@ class HomeContentSkeleton extends StatelessWidget {
         from: colors.skeletonFrom,
         to: colors.skeletonTo,
       ),
-      child: HomeContentView(
+      child: HomeScreenContent(
         isSkeletonVisible: true,
         suggestionsContent: suggestionsContent,
         currentTab: MediaTab.nowPlaying,
