@@ -36,10 +36,13 @@ abstract final class BaseComponentsStylesFactory {
         colors.infoCardRating,
       ),
       emptyListTitleTextStyle: _BaseComponentsStyles.emptyListTitleTextStyle(
-        colors.emptyListTitle,
+        colors.textThemePrim,
       ),
       emptyListSubtitleTextStyle: _BaseComponentsStyles.emptyListSubtitleTextStyle(
-        colors.emptyListSubtitle,
+        colors.textThemeSec,
+      ),
+      detailsPropsTextStyle: _BaseComponentsStyles.detailsPropsTextStyle(
+        colors.textThemeSec,
       ),
     );
   }
@@ -100,6 +103,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final TextStyle emptyListSubtitleTextStyle;
 
+  /// TextStyle of the details properties.
+  @override
+  final TextStyle detailsPropsTextStyle;
+
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
     required this.cardPrimShape,
@@ -114,5 +121,6 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.infoCardRatingTextStyle,
     required this.emptyListTitleTextStyle,
     required this.emptyListSubtitleTextStyle,
+    required this.detailsPropsTextStyle,
   });
 }

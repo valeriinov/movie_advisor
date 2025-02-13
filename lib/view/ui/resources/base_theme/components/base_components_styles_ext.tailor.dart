@@ -23,6 +23,7 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get infoCardRatingTextStyle;
   TextStyle get emptyListTitleTextStyle;
   TextStyle get emptyListSubtitleTextStyle;
+  TextStyle get detailsPropsTextStyle;
 
   @override
   BaseComponentsStyles copyWith({
@@ -39,6 +40,7 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? infoCardRatingTextStyle,
     TextStyle? emptyListTitleTextStyle,
     TextStyle? emptyListSubtitleTextStyle,
+    TextStyle? detailsPropsTextStyle,
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
@@ -59,6 +61,8 @@ mixin _$BaseComponentsStylesTailorMixin
           emptyListTitleTextStyle ?? this.emptyListTitleTextStyle,
       emptyListSubtitleTextStyle:
           emptyListSubtitleTextStyle ?? this.emptyListSubtitleTextStyle,
+      detailsPropsTextStyle:
+          detailsPropsTextStyle ?? this.detailsPropsTextStyle,
     );
   }
 
@@ -89,6 +93,8 @@ mixin _$BaseComponentsStylesTailorMixin
           emptyListTitleTextStyle, other.emptyListTitleTextStyle, t)!,
       emptyListSubtitleTextStyle: TextStyle.lerp(
           emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle, t)!,
+      detailsPropsTextStyle: TextStyle.lerp(
+          detailsPropsTextStyle, other.detailsPropsTextStyle, t)!,
     );
   }
 
@@ -122,7 +128,9 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality().equals(
                 emptyListTitleTextStyle, other.emptyListTitleTextStyle) &&
             const DeepCollectionEquality().equals(
-                emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle));
+                emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(detailsPropsTextStyle, other.detailsPropsTextStyle));
   }
 
   @override
@@ -142,6 +150,7 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(infoCardRatingTextStyle),
       const DeepCollectionEquality().hash(emptyListTitleTextStyle),
       const DeepCollectionEquality().hash(emptyListSubtitleTextStyle),
+      const DeepCollectionEquality().hash(detailsPropsTextStyle),
     );
   }
 }

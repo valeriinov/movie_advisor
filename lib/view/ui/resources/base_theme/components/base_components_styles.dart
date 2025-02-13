@@ -49,4 +49,12 @@ abstract final class _BaseComponentsStyles {
         fontSize: 12,
         color: color,
       );
+
+  // Details
+  static TextStyle detailsPropsTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w500,
+        fontSize: 14,
+        color: color,
+      );
 }

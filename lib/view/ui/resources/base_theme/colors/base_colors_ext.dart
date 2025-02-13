@@ -13,6 +13,7 @@ abstract final class BaseColorsFactory {
         splashColor: _BaseColors.splashColor,
         highlightColor: _BaseColors.highlightColor,
         textThemePrim: _BaseColors.textThemePrim,
+        textThemeSec: _BaseColors.textThemeSec,
         btnElevPrimFg: _BaseColors.btnElevPrimFg,
         btnElevPrimBg: _BaseColors.btnElevPrimBg,
         btnElevPrimFgPress: _BaseColors.btnElevPrimFgPress,
@@ -79,8 +80,6 @@ abstract final class BaseColorsFactory {
         tabUnderSelect: _BaseColors.tabUnderSelect,
         infoCardRating: _BaseColors.infoCardRating,
         backdropRatingBg: _BaseColors.backdropRatingBg,
-        emptyListTitle: _BaseColors.emptyListTitle,
-        emptyListSubtitle: _BaseColors.emptyListSubtitle,
       );
 }
 
@@ -108,6 +107,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Primary text color for the theme.
   @override
   final Color textThemePrim;
+
+  /// Secondary text color for the theme.
+  @override
+  final Color textThemeSec;
 
   // BUTTONS
 
@@ -387,14 +390,6 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color backdropRatingBg;
 
-  /// Empty list title color.
-  @override
-  final Color emptyListTitle;
-
-  /// Empty list subtitle color.
-  @override
-  final Color emptyListSubtitle;
-
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -405,6 +400,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.splashColor,
     required this.highlightColor,
     required this.textThemePrim,
+    required this.textThemeSec,
     required this.btnElevPrimFg,
     required this.btnElevPrimBg,
     required this.btnElevPrimFgPress,
@@ -471,7 +467,5 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.tabUnderSelect,
     required this.infoCardRating,
     required this.backdropRatingBg,
-    required this.emptyListTitle,
-    required this.emptyListSubtitle,
   });
 }

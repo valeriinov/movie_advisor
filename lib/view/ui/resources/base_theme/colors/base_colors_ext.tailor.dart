@@ -14,6 +14,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get highlightColor;
   Color get scaffoldBg;
   Color get textThemePrim;
+  Color get textThemeSec;
   Color get btnElevPrimFg;
   Color get btnElevPrimBg;
   Color get btnElevPrimFgPress;
@@ -80,8 +81,6 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get tabUnderSelect;
   Color get infoCardRating;
   Color get backdropRatingBg;
-  Color get emptyListTitle;
-  Color get emptyListSubtitle;
 
   @override
   BaseColors copyWith({
@@ -90,6 +89,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? highlightColor,
     Color? scaffoldBg,
     Color? textThemePrim,
+    Color? textThemeSec,
     Color? btnElevPrimFg,
     Color? btnElevPrimBg,
     Color? btnElevPrimFgPress,
@@ -156,8 +156,6 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? tabUnderSelect,
     Color? infoCardRating,
     Color? backdropRatingBg,
-    Color? emptyListTitle,
-    Color? emptyListSubtitle,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -165,6 +163,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       highlightColor: highlightColor ?? this.highlightColor,
       scaffoldBg: scaffoldBg ?? this.scaffoldBg,
       textThemePrim: textThemePrim ?? this.textThemePrim,
+      textThemeSec: textThemeSec ?? this.textThemeSec,
       btnElevPrimFg: btnElevPrimFg ?? this.btnElevPrimFg,
       btnElevPrimBg: btnElevPrimBg ?? this.btnElevPrimBg,
       btnElevPrimFgPress: btnElevPrimFgPress ?? this.btnElevPrimFgPress,
@@ -233,8 +232,6 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       tabUnderSelect: tabUnderSelect ?? this.tabUnderSelect,
       infoCardRating: infoCardRating ?? this.infoCardRating,
       backdropRatingBg: backdropRatingBg ?? this.backdropRatingBg,
-      emptyListTitle: emptyListTitle ?? this.emptyListTitle,
-      emptyListSubtitle: emptyListSubtitle ?? this.emptyListSubtitle,
     );
   }
 
@@ -247,6 +244,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       highlightColor: Color.lerp(highlightColor, other.highlightColor, t)!,
       scaffoldBg: Color.lerp(scaffoldBg, other.scaffoldBg, t)!,
       textThemePrim: Color.lerp(textThemePrim, other.textThemePrim, t)!,
+      textThemeSec: Color.lerp(textThemeSec, other.textThemeSec, t)!,
       btnElevPrimFg: Color.lerp(btnElevPrimFg, other.btnElevPrimFg, t)!,
       btnElevPrimBg: Color.lerp(btnElevPrimBg, other.btnElevPrimBg, t)!,
       btnElevPrimFgPress:
@@ -342,9 +340,6 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       infoCardRating: Color.lerp(infoCardRating, other.infoCardRating, t)!,
       backdropRatingBg:
           Color.lerp(backdropRatingBg, other.backdropRatingBg, t)!,
-      emptyListTitle: Color.lerp(emptyListTitle, other.emptyListTitle, t)!,
-      emptyListSubtitle:
-          Color.lerp(emptyListSubtitle, other.emptyListSubtitle, t)!,
     );
   }
 
@@ -362,6 +357,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(scaffoldBg, other.scaffoldBg) &&
             const DeepCollectionEquality()
                 .equals(textThemePrim, other.textThemePrim) &&
+            const DeepCollectionEquality()
+                .equals(textThemeSec, other.textThemeSec) &&
             const DeepCollectionEquality()
                 .equals(btnElevPrimFg, other.btnElevPrimFg) &&
             const DeepCollectionEquality()
@@ -442,8 +439,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(txtFldPrimFill, other.txtFldPrimFill) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimInput, other.txtFldPrimInput) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
+            const DeepCollectionEquality().equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
             const DeepCollectionEquality().equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
             const DeepCollectionEquality().equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
             const DeepCollectionEquality().equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
@@ -467,9 +463,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur) &&
             const DeepCollectionEquality().equals(tabUnderSelect, other.tabUnderSelect) &&
             const DeepCollectionEquality().equals(infoCardRating, other.infoCardRating) &&
-            const DeepCollectionEquality().equals(backdropRatingBg, other.backdropRatingBg) &&
-            const DeepCollectionEquality().equals(emptyListTitle, other.emptyListTitle) &&
-            const DeepCollectionEquality().equals(emptyListSubtitle, other.emptyListSubtitle));
+            const DeepCollectionEquality().equals(backdropRatingBg, other.backdropRatingBg));
   }
 
   @override
@@ -481,6 +475,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(highlightColor),
       const DeepCollectionEquality().hash(scaffoldBg),
       const DeepCollectionEquality().hash(textThemePrim),
+      const DeepCollectionEquality().hash(textThemeSec),
       const DeepCollectionEquality().hash(btnElevPrimFg),
       const DeepCollectionEquality().hash(btnElevPrimBg),
       const DeepCollectionEquality().hash(btnElevPrimFgPress),
@@ -547,8 +542,6 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(tabUnderSelect),
       const DeepCollectionEquality().hash(infoCardRating),
       const DeepCollectionEquality().hash(backdropRatingBg),
-      const DeepCollectionEquality().hash(emptyListTitle),
-      const DeepCollectionEquality().hash(emptyListSubtitle),
     ]);
   }
 }

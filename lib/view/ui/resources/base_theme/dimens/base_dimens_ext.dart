@@ -12,9 +12,11 @@ abstract final class BaseDimensFactory {
       padHorPrim: _BaseDimens.padHorPrim,
       padTopPrim: _BaseDimens.padTopPrim,
       padBotPrim: _BaseDimens.padBotPrim,
+      padBotSec: _BaseDimens.padHorSec,
       padHorPrimIns: _BaseDimens.padHorPrimIns,
       padTopPrimIns: _BaseDimens.padTopPrimIns,
       padBotPrimIns: _BaseDimens.padBotPrimIns,
+      padHorSecIns: _BaseDimens.padHorSecIns,
       spExtSmall: _BaseDimens.spExtSmall,
       spSmall: _BaseDimens.spSmall,
       spMedium: _BaseDimens.spMedium,
@@ -41,6 +43,10 @@ class BaseDimens extends ThemeExtension<BaseDimens>
   @override
   final double padBotPrim;
 
+  /// Secondary horizontal padding value for the screen
+  @override
+  final double padBotSec;
+
   /// Primary horizontal padding for the screen
   @override
   final EdgeInsets padHorPrimIns;
@@ -52,6 +58,10 @@ class BaseDimens extends ThemeExtension<BaseDimens>
   /// Primary bottom padding for the screen
   @override
   final EdgeInsets padBotPrimIns;
+
+  /// Secondary horizontal padding for the screen
+  @override
+  final EdgeInsets padHorSecIns;
 
   // SPACINGS
 
@@ -79,9 +89,11 @@ class BaseDimens extends ThemeExtension<BaseDimens>
     required this.padHorPrim,
     required this.padTopPrim,
     required this.padBotPrim,
+    required this.padBotSec,
     required this.padHorPrimIns,
     required this.padTopPrimIns,
     required this.padBotPrimIns,
+    required this.padHorSecIns,
     required this.spExtSmall,
     required this.spSmall,
     required this.spMedium,

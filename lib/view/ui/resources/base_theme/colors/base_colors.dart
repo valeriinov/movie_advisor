@@ -10,6 +10,7 @@ abstract final class _BaseColors {
 
   // Text
   static const textThemePrim = Color(0xFFFFFFFF);
+  static const textThemeSec = Color(0xFF92929D);
 
   // Buttons
   static const btnElevPrimFg = Color(0xFFFFFFFF);
@@ -103,7 +104,4 @@ abstract final class _BaseColors {
 
   static const infoCardRating = Color(0xFFFF8700);
   static final backdropRatingBg = Color(0xFF252836).withValues(alpha: 0.32);
-
-  static const emptyListTitle = Color(0xFFFFFFFF);
-  static const emptyListSubtitle = Color(0xFF92929D);
 }

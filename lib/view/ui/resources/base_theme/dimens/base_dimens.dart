@@ -6,9 +6,13 @@ abstract final class _BaseDimens {
   static const double padTopPrim = 30;
   static const double padBotPrim = 30;
 
+  static const double padHorSec = 32;
+
   static const padHorPrimIns = EdgeInsets.symmetric(horizontal: padHorPrim);
   static const padTopPrimIns = EdgeInsets.only(top: padTopPrim);
   static const padBotPrimIns = EdgeInsets.only(bottom: padBotPrim);
+
+  static const padHorSecIns = EdgeInsets.symmetric(horizontal: padHorSec);
 
   // Spacings
   static const double spExtSmall = 4;
