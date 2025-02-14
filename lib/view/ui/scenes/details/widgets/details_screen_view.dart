@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../base/content_mode_view_model/content_mode.dart';
-import 'details_movie_screen_view.dart';
-import 'details_series_screen_view.dart';
+import 'details_movie_view.dart';
+import 'details_series_view.dart';
 
 class DetailsScreenView extends StatelessWidget {
   final int id;
@@ -17,7 +17,7 @@ class DetailsScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return contentMode.isMovies
-        ? DetailsMovieScreenView(id: id)
-        : DetailsSeriesScreenView(id: id);
+        ? DetailsMovieView(id: id)
+        : DetailsSeriesView(id: id);
   }
 }

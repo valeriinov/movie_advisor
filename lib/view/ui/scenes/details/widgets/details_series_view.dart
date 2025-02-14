@@ -10,15 +10,15 @@ import '../details_view_model/details_view_model.dart';
 import '../model/details_tab.dart';
 import 'details_screen_content.dart';
 
-class DetailsMovieScreenView extends ConsumerWidget {
+class DetailsSeriesView extends ConsumerWidget {
   final int id;
 
-  const DetailsMovieScreenView({super.key, required this.id});
+  const DetailsSeriesView({super.key, required this.id});
 
   @override
   Widget build(context, ref) {
     final vsp = ref.vspFromADFProvider(
-      detailsMovieViewModelPr(id),
+      detailsSeriesViewModelPr(id),
     );
 
     final isLoading = vsp.isLoading;
@@ -35,7 +35,7 @@ class DetailsMovieScreenView extends ConsumerWidget {
 
     return Scaffold(
       appBar: MainAppBar(
-        title: Text(LocaleKeys.detailsMovieScreenTitle.tr()),
+        title: Text(LocaleKeys.detailsSeriesScreenTitle.tr()),
       ),
       body: DetailsScreenContent(
         data: data,
@@ -48,7 +48,7 @@ class DetailsMovieScreenView extends ConsumerWidget {
     );
   }
 
-  void _onTabSelect(DetailsMovieVSP vsp, int index) {
+  void _onTabSelect(DetailsSeriesVSP vsp, int index) {
     final tab = DetailsTab.fromIndex(index);
 
     vsp.viewModel.updateCurrentTab(tab);
