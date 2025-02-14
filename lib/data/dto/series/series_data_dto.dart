@@ -12,7 +12,7 @@ class SeriesDataDto with SeriesDataDtoMappable {
   final String? backdropPath;
   @MappableField(key: 'genre_ids')
   final List<SeriesGenreDto>? genres;
-  @MappableField(key: 'genres', hook: GenresHook())
+  @MappableField(key: 'genres', hook: SeriesGenreHook())
   final List<SeriesGenreDto>? genresAlt;
   final List<String>? originCountry;
   final String? originalLanguage;

@@ -31,6 +31,7 @@ class DetailsSeriesScreenView extends ConsumerWidget {
     });
 
     final data = vsp.selectWatch((s) => s.data);
+    print('[DATA] $data');
 
     return Scaffold(
       appBar: MainAppBar(

@@ -32,7 +32,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static List<MovieGenreDto>? _$genresAlt(MovieDataDto v) => v.genresAlt;
   static const Field<MovieDataDto, List<MovieGenreDto>> _f$genresAlt = Field(
       'genresAlt', _$genresAlt,
-      key: 'genres', opt: true, hook: GenresHook());
+      key: 'genres', opt: true, hook: MovieGenresHook());
   static String? _$originalLanguage(MovieDataDto v) => v.originalLanguage;
   static const Field<MovieDataDto, String> _f$originalLanguage = Field(
       'originalLanguage', _$originalLanguage,

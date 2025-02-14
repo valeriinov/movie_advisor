@@ -12,7 +12,7 @@ class MovieDataDto with MovieDataDtoMappable {
   final String? backdropPath;
   @MappableField(key: 'genre_ids')
   final List<MovieGenreDto>? genres;
-  @MappableField(key: 'genres', hook: GenresHook())
+  @MappableField(key: 'genres', hook: MovieGenresHook())
   final List<MovieGenreDto>? genresAlt;
   final String? originalLanguage;
   final String? originalTitle;

@@ -32,7 +32,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static List<SeriesGenreDto>? _$genresAlt(SeriesDataDto v) => v.genresAlt;
   static const Field<SeriesDataDto, List<SeriesGenreDto>> _f$genresAlt = Field(
       'genresAlt', _$genresAlt,
-      key: 'genres', opt: true, hook: GenresHook());
+      key: 'genres', opt: true, hook: SeriesGenreHook());
   static List<String>? _$originCountry(SeriesDataDto v) => v.originCountry;
   static const Field<SeriesDataDto, List<String>> _f$originCountry =
       Field('originCountry', _$originCountry, key: 'origin_country', opt: true);
