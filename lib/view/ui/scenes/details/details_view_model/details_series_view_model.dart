@@ -18,10 +18,12 @@ final detailsSeriesViewModelPr = AutoDisposeNotifierProvider.family<
 /// A view model for managing `details_series`-specific logic and state.
 ///
 /// This class is responsible for coordinating `details_series` behavior and interacting with the UI.
-final class DetailsSeriesViewModel extends _DetailsViewModel<SeriesData> {
+final class DetailsSeriesViewModel
+    extends _DetailsViewModel<SeriesData, SeriesShortData> {
   @override
   DetailsSeriesState build(arg) {
     _detailsUseCase = ref.read(detailsSeriesUseCasePr);
+    _watchUseCase = ref.read(watchSeriesUseCasePr);
 
     ref.onDispose(cancelSafeOperations);
     scheduleCall(loadInitialData);
