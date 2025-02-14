@@ -14,7 +14,10 @@ class DetailsService {
         _imageUrlHandler = imageUrlHandler;
 
   Future<MovieDataDto> getDetailsMovie(int id) async {
-    final result = await _mediaApiClient.get('/movie/$id');
+    final result = await _mediaApiClient.get(
+      '/movie/$id',
+      queryParameters: _buildQueryParameters(),
+    );
 
     final dto = MovieDataDto.fromJson(result.data);
 
@@ -22,10 +25,19 @@ class DetailsService {
   }
 
   Future<SeriesDataDto> getDetailsSeries(int id) async {
-    final result = await _mediaApiClient.get('/tv/$id');
+    final result = await _mediaApiClient.get(
+      '/tv/$id',
+      queryParameters: _buildQueryParameters(),
+    );
 
     final dto = SeriesDataDto.fromJson(result.data);
 
     return _imageUrlHandler.handleSeriesImages(dto);
+  }
+
+  Map<String, dynamic> _buildQueryParameters() {
+    return {
+      'append_to_response': 'credits',
+    };
   }
 }

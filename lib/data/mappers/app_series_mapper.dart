@@ -4,9 +4,15 @@ import '../../domain/entities/series/series_genre.dart';
 import '../../domain/entities/series/series_short_data.dart';
 import '../dto/series/series_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
+import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
 
 final class AppSeriesMapper extends AppMapper {
+  final AppCastMapper _castMapper;
+
+  AppSeriesMapper({required AppCastMapper castMapper})
+      : _castMapper = castMapper;
+
   List<SeriesData> mapSeriesDataListDtoToDomain(List<SeriesDataDto> dtos) {
     return dtos.map(mapSeriesDataDtoToDomain).toList();
   }
@@ -24,6 +30,9 @@ final class AppSeriesMapper extends AppMapper {
       title: dto.name ?? '',
       overview: dto.overview ?? '',
       tmdbRating: _mapSeriesDataDtoToTMDBRating(dto),
+      cast: dto.credits != null
+          ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
+          : [],
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
@@ -87,6 +96,7 @@ final class AppSeriesMapper extends AppMapper {
       popularity: data.tmdbRating.popularity,
       voteAverage: data.tmdbRating.voteAverage,
       voteCount: data.tmdbRating.voteCount,
+      credits: _castMapper.mapCastDataListToCreditsDataDto(data.cast),
       userRating: data.userRating,
       isInWatchlist: data.isInWatchlist,
       isWatched: data.isWatched,

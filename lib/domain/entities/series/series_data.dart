@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import '../base_media/cast_data.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 import 'series_genre.dart';
@@ -23,6 +24,7 @@ final class SeriesData extends MediaData with SeriesDataMappable {
     super.title = '',
     super.overview = '',
     super.tmdbRating = const TMDBRating(),
+    super.cast = const [],
     super.userRating = 0,
     super.isInWatchlist = false,
     super.isWatched = false,

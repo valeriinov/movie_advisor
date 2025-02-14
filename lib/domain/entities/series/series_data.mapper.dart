@@ -15,6 +15,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
       MapperContainer.globals.use(_instance = SeriesDataMapper._());
       MediaDataMapper.ensureInitialized();
       TMDBRatingMapper.ensureInitialized();
+      CastDataMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -55,6 +56,9 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
   static TMDBRating _$tmdbRating(SeriesData v) => v.tmdbRating;
   static const Field<SeriesData, TMDBRating> _f$tmdbRating =
       Field('tmdbRating', _$tmdbRating, opt: true, def: const TMDBRating());
+  static List<CastData> _$cast(SeriesData v) => v.cast;
+  static const Field<SeriesData, List<CastData>> _f$cast =
+      Field('cast', _$cast, opt: true, def: const []);
   static int _$userRating(SeriesData v) => v.userRating;
   static const Field<SeriesData, int> _f$userRating =
       Field('userRating', _$userRating, opt: true, def: 0);
@@ -78,6 +82,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     #title: _f$title,
     #overview: _f$overview,
     #tmdbRating: _f$tmdbRating,
+    #cast: _f$cast,
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
@@ -96,6 +101,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
         title: data.dec(_f$title),
         overview: data.dec(_f$overview),
         tmdbRating: data.dec(_f$tmdbRating),
+        cast: data.dec(_f$cast),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
         isWatched: data.dec(_f$isWatched));
@@ -142,6 +148,8 @@ abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
   @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
   @override
+  ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>> get cast;
+  @override
   $R call(
       {int? id,
       String? backdropUrl,
@@ -154,6 +162,7 @@ abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
       String? title,
       String? overview,
       TMDBRating? tmdbRating,
+      List<CastData>? cast,
       int? userRating,
       bool? isInWatchlist,
       bool? isWatched});
@@ -182,6 +191,10 @@ class _SeriesDataCopyWithImpl<$R, $Out>
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating =>
       $value.tmdbRating.copyWith.$chain((v) => call(tmdbRating: v));
   @override
+  ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>>
+      get cast => ListCopyWith(
+          $value.cast, (v, t) => v.copyWith.$chain(t), (v) => call(cast: v));
+  @override
   $R call(
           {int? id,
           String? backdropUrl,
@@ -194,6 +207,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
           String? title,
           String? overview,
           TMDBRating? tmdbRating,
+          List<CastData>? cast,
           int? userRating,
           bool? isInWatchlist,
           bool? isWatched}) =>
@@ -209,6 +223,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
         if (title != null) #title: title,
         if (overview != null) #overview: overview,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
+        if (cast != null) #cast: cast,
         if (userRating != null) #userRating: userRating,
         if (isInWatchlist != null) #isInWatchlist: isInWatchlist,
         if (isWatched != null) #isWatched: isWatched
@@ -227,6 +242,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
       title: data.get(#title, or: $value.title),
       overview: data.get(#overview, or: $value.overview),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
+      cast: data.get(#cast, or: $value.cast),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
       isWatched: data.get(#isWatched, or: $value.isWatched));

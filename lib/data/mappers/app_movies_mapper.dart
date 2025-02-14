@@ -4,9 +4,15 @@ import '../../domain/entities/movie/movie_short_data.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../dto/movie/movie_data_dto.dart';
 import '../dto/movie/movie_genre_dto.dart';
+import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
 
 final class AppMoviesMapper extends AppMapper {
+  final AppCastMapper _castMapper;
+
+  AppMoviesMapper({required AppCastMapper castMapper})
+      : _castMapper = castMapper;
+
   List<MovieData> mapMovieDataListDtoToDomain(List<MovieDataDto> dtos) {
     return dtos.map(mapMovieDataDtoToDomain).toList();
   }
@@ -24,6 +30,9 @@ final class AppMoviesMapper extends AppMapper {
       title: dto.title ?? '',
       overview: dto.overview ?? '',
       tmdbRating: _mapMovieDataDtoToTMDBRating(dto),
+      cast: dto.credits != null
+          ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
+          : [],
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
@@ -82,6 +91,7 @@ final class AppMoviesMapper extends AppMapper {
       popularity: data.tmdbRating.popularity,
       voteAverage: data.tmdbRating.voteAverage,
       voteCount: data.tmdbRating.voteCount,
+      credits: _castMapper.mapCastDataListToCreditsDataDto(data.cast),
       userRating: data.userRating,
       isInWatchlist: data.isInWatchlist,
       isWatched: data.isWatched,

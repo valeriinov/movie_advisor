@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../data/mappers/app_details_mapper.dart';
+import '../../data/mappers/app_cast_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
 import '../../data/mappers/app_paginated_media_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
@@ -99,8 +99,13 @@ final mediaResponseHandlerPr = Provider<MediaResponseHandler>(
   ),
 );
 
-final moviesMapperPr = Provider<AppMoviesMapper>((_) => AppMoviesMapper());
-final seriesMapperPr = Provider<AppSeriesMapper>((_) => AppSeriesMapper());
+final castMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
+final moviesMapperPr = Provider<AppMoviesMapper>(
+  (ref) => AppMoviesMapper(castMapper: ref.read(castMapperPr)),
+);
+final seriesMapperPr = Provider<AppSeriesMapper>(
+  (ref) => AppSeriesMapper(castMapper: ref.read(castMapperPr)),
+);
 final paginatedMediaMapperPr = Provider<AppPaginatedMediaMapper>(
   (ref) => AppPaginatedMediaMapper(
     moviesMapper: ref.read(moviesMapperPr),
@@ -161,7 +166,7 @@ final detailsServicePr = Provider<DetailsService>((ref) => DetailsService(
 final detailsRemoteDataSourcePr = Provider<DetailsRemoteDataSource>(
   (ref) => ImplDetailsRemoteDataSource(service: ref.read(detailsServicePr)),
 );
-final detailsMapperPr = Provider<AppDetailsMapper>((_) => AppDetailsMapper());
+final detailsMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
 final detailsRepositoryPr =
     Provider<DetailsRepository>((ref) => ImplDetailsRepository(
           dataSource: ref.read(detailsRemoteDataSourcePr),
