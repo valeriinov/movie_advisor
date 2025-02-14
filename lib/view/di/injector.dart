@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../data/local/app_local_database.dart';
 import '../../data/mappers/app_cast_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
 import '../../data/mappers/app_paginated_media_mapper.dart';
@@ -98,6 +99,8 @@ final mediaResponseHandlerPr = Provider<MediaResponseHandler>(
     imageUrlHandler: ref.read(imageUrlHandlerPr),
   ),
 );
+
+final localDatabasePr = Provider<AppLocalDatabase>((_) => AppLocalDatabase());
 
 final castMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
 final moviesMapperPr = Provider<AppMoviesMapper>(
