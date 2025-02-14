@@ -9,6 +9,7 @@ import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
+import '../model/details_tab.dart';
 import 'details_state.dart';
 
 part 'details_movie_view_model.dart';
@@ -43,6 +44,12 @@ abstract base class _DetailsViewModel<T extends MediaData>
         data: data,
       );
     });
+  }
+
+  void updateCurrentTab(DetailsTab tab) {
+    if (tab == state.currentTab) return;
+
+    state = state.copyWith(currentTab: tab);
   }
 
   void _updateStatus(DetailsStatus status) {

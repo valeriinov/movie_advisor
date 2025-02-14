@@ -31,7 +31,7 @@ class DetailsSeriesScreenView extends ConsumerWidget {
     });
 
     final data = vsp.selectWatch((s) => s.data);
-    print('[DATA] $data');
+    final currentTab = vsp.selectWatch((s) => s.currentTab);
 
     return Scaffold(
       appBar: MainAppBar(
@@ -39,12 +39,18 @@ class DetailsSeriesScreenView extends ConsumerWidget {
       ),
       body: DetailsScreenContent(
         data: data,
-        currentTab: DetailsTab.about, // TODO: Implement tab selection
-        onTabSelect: (index) {}, // TODO: Implement tab selection
+        currentTab: currentTab,
+        onTabSelect: (index) => _onTabSelect(vsp, index),
         onRefresh: !isLoading
             ? () => vsp.viewModel.loadInitialData(showLoader: false)
             : null,
       ),
     );
+  }
+
+  void _onTabSelect(DetailsSeriesVSP vsp, int index) {
+    final tab = DetailsTab.fromIndex(index);
+
+    vsp.viewModel.updateCurrentTab(tab);
   }
 }

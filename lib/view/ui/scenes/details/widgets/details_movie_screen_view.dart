@@ -31,6 +31,7 @@ class DetailsMovieScreenView extends ConsumerWidget {
     });
 
     final data = vsp.selectWatch((s) => s.data);
+    final currentTab = vsp.selectWatch((s) => s.currentTab);
 
     return Scaffold(
       appBar: MainAppBar(
@@ -38,12 +39,18 @@ class DetailsMovieScreenView extends ConsumerWidget {
       ),
       body: DetailsScreenContent(
         data: data,
-        currentTab: DetailsTab.about, // TODO: Implement tab selection
-        onTabSelect: (index) {}, // TODO: Implement tab selection
+        currentTab: currentTab,
+        onTabSelect: (index) => _onTabSelect(vsp, index),
         onRefresh: !isLoading
             ? () => vsp.viewModel.loadInitialData(showLoader: false)
             : null,
       ),
     );
+  }
+
+  void _onTabSelect(DetailsMovieVSP vsp, int index) {
+    final tab = DetailsTab.fromIndex(index);
+
+    vsp.viewModel.updateCurrentTab(tab);
   }
 }

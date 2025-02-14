@@ -27,6 +27,9 @@ class DetailsStateMapper extends ClassMapperBase<DetailsState> {
   static dynamic _arg$data<T extends MediaData>(f) => f<T>();
   static const Field<DetailsState, MediaData> _f$data =
       Field('data', _$data, arg: _arg$data);
+  static DetailsTab _$currentTab(DetailsState v) => v.currentTab;
+  static const Field<DetailsState, DetailsTab> _f$currentTab =
+      Field('currentTab', _$currentTab, opt: true, def: DetailsTab.about);
   static DetailsStatus _$status(DetailsState v) => v.status;
   static const Field<DetailsState, DetailsStatus> _f$status =
       Field('status', _$status, opt: true, def: const DetailsBaseStatus());
@@ -34,11 +37,15 @@ class DetailsStateMapper extends ClassMapperBase<DetailsState> {
   @override
   final MappableFields<DetailsState> fields = const {
     #data: _f$data,
+    #currentTab: _f$currentTab,
     #status: _f$status,
   };
 
   static DetailsState<T> _instantiate<T extends MediaData>(DecodingData data) {
-    return DetailsState(data: data.dec(_f$data), status: data.dec(_f$status));
+    return DetailsState(
+        data: data.dec(_f$data),
+        currentTab: data.dec(_f$currentTab),
+        status: data.dec(_f$status));
   }
 
   @override
@@ -76,7 +83,7 @@ extension DetailsStateValueCopy<$R, $Out, T extends MediaData>
 
 abstract class DetailsStateCopyWith<$R, $In extends DetailsState<T>, $Out,
     T extends MediaData> implements ClassCopyWith<$R, $In, $Out> {
-  $R call({T? data, DetailsStatus? status});
+  $R call({T? data, DetailsTab? currentTab, DetailsStatus? status});
   DetailsStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -90,11 +97,16 @@ class _DetailsStateCopyWithImpl<$R, $Out, T extends MediaData>
   late final ClassMapperBase<DetailsState> $mapper =
       DetailsStateMapper.ensureInitialized();
   @override
-  $R call({T? data, DetailsStatus? status}) => $apply(FieldCopyWithData(
-      {if (data != null) #data: data, if (status != null) #status: status}));
+  $R call({T? data, DetailsTab? currentTab, DetailsStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (data != null) #data: data,
+        if (currentTab != null) #currentTab: currentTab,
+        if (status != null) #status: status
+      }));
   @override
   DetailsState<T> $make(CopyWithData data) => DetailsState(
       data: data.get(#data, or: $value.data),
+      currentTab: data.get(#currentTab, or: $value.currentTab),
       status: data.get(#status, or: $value.status));
 
   @override

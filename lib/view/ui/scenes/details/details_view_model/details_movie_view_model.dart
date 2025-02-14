@@ -2,7 +2,7 @@ part of 'details_view_model.dart';
 
 typedef DetailsMovieState = DetailsState<MovieData>;
 
-typedef DetailsMoviesVSP = AFSP<DetailsMovieViewModel, DetailsMovieState, int>;
+typedef DetailsMovieVSP = AFSP<DetailsMovieViewModel, DetailsMovieState, int>;
 
 /// {@category StateManagement}
 ///

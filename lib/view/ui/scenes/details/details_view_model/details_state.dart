@@ -3,6 +3,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 import '../../../../../domain/entities/base_media/media_data.dart';
 import '../../../../../domain/entities/mappable_entity.dart';
 import '../../../base/view_model/base_state.dart';
+import '../model/details_tab.dart';
 
 part 'details_state.mapper.dart';
 
@@ -14,12 +15,14 @@ part 'details_state.mapper.dart';
 final class DetailsState<T extends MediaData> extends BaseState<DetailsStatus>
     with DetailsStateMappable<T> {
   final T data;
+  final DetailsTab currentTab;
 
   @override
   final DetailsStatus status;
 
   const DetailsState({
     required this.data,
+    this.currentTab = DetailsTab.about,
     this.status = const DetailsBaseStatus(),
   });
 }
