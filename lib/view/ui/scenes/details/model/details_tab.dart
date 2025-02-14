@@ -4,7 +4,6 @@ import '../../../resources/locale_keys.g.dart';
 
 enum DetailsTab {
   about(LocaleKeys.detailsAboutTab),
-  reviews(LocaleKeys.detailsReviewsTab),
   cast(LocaleKeys.detailsCastTab);
 
   final String _desc;
