@@ -4,6 +4,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../resources/base_theme/colors/base_colors_ext.dart';
 import '../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../no_always_scroll_wrapper.dart';
 import 'app_tab.dart';
 
 class AppTabs extends StatelessWidget {
@@ -36,21 +37,23 @@ class AppTabs extends StatelessWidget {
             transform: Matrix4.translationValues(0, -0.2, 0),
             color: colors.scaffoldBg,
             padding: (dimens.spLarge / 2).insBottom(),
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: tabs.length,
-              padding: dimens.padHorPrimIns,
-              itemBuilder: (context, index) {
-                final title = tabs[index];
-                final isSelected = index == currentIndex;
+            child: NoAlwaysScrollWrapper(
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: tabs.length,
+                padding: dimens.padHorPrimIns,
+                itemBuilder: (context, index) {
+                  final title = tabs[index];
+                  final isSelected = index == currentIndex;
 
-                return AppTab(
-                  title: title,
-                  isSelected: isSelected,
-                  onTap: onSelect != null ? () => onSelect!(index) : null,
-                );
-              },
-              separatorBuilder: (_, __) => 4.gapHor(),
+                  return AppTab(
+                    title: title,
+                    isSelected: isSelected,
+                    onTap: onSelect != null ? () => onSelect!(index) : null,
+                  );
+                },
+                separatorBuilder: (_, __) => 4.gapHor(),
+              ),
             ),
           ),
         ),
