@@ -30,7 +30,7 @@ class DetailsTabContent extends StatelessWidget {
   Widget _getTabContent() {
     return switch (currentTab) {
       DetailsTab.about => AboutTabContent(overview: data.overview),
-      DetailsTab.cast => CastTabContent(),
+      DetailsTab.cast => CastTabContent(cast: data.cast),
     };
   }
 }
