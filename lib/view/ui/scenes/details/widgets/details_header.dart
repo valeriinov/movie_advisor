@@ -64,7 +64,7 @@ class DetailsHeader extends StatelessWidget {
       return Flexible(
         child: Padding(
           padding: EdgeInsets.only(
-            left: 136.0,
+            left: 123.0,
             top: 12,
             right: dimens.padHorPrim,
           ),
@@ -79,14 +79,16 @@ class DetailsHeader extends StatelessWidget {
 
   Widget _buildPoster() {
     return Builder(builder: (context) {
+      final dimens = context.baseDimens;
       final styles = context.baseComponentsStyles;
 
       return Positioned(
         top: 151,
-        left: 29,
+        left: dimens.padHorPrim,
         child: Poster(
           url: data.posterUrl,
           size: styles.posterSmallSize,
+          transparentPlaceholder: true,
         ),
       );
     });
