@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class AppSvgAsset extends StatelessWidget {
   final String path;
@@ -17,12 +18,14 @@ class AppSvgAsset extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      path,
-      width: width,
-      height: height,
-      colorFilter:
-          color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+    return Skeleton.ignore(
+      child: SvgPicture.asset(
+        path,
+        width: width,
+        height: height,
+        colorFilter:
+            color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+      ),
     );
   }
 }

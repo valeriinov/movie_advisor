@@ -13,7 +13,7 @@ import 'details_tab_content.dart';
 class DetailsScreenContent extends StatelessWidget {
   final MediaData data;
   final DetailsTab currentTab;
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
   final Future<void> Function()? onRefresh;
   final void Function(int index)? onTabSelect;
 
@@ -21,7 +21,7 @@ class DetailsScreenContent extends StatelessWidget {
     super.key,
     required this.data,
     required this.currentTab,
-    required this.scrollController,
+    this.scrollController,
     this.onRefresh,
     this.onTabSelect,
   });
@@ -45,6 +45,7 @@ class DetailsScreenContent extends StatelessWidget {
           currentIndex: currentTab.index,
           onSelect: onTabSelect,
           isPinned: false,
+          isSkeletonKeep: false,
         ),
         SliverPadding(padding: dimens.spSmall.insVert()),
         DetailsTabContent(

@@ -11,6 +11,7 @@ import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../details_view_model/details_view_model.dart';
 import '../model/details_tab.dart';
+import 'details_content_skeleton.dart';
 import 'details_screen_content.dart';
 
 class DetailsMovieView extends HookConsumerWidget {
@@ -41,25 +42,26 @@ class DetailsMovieView extends HookConsumerWidget {
     return ScrollTopListener(
         scrollController: scrollController,
         builder: (_, isFabVisible) {
-        return Scaffold(
-          appBar: MainAppBar(
-            title: Text(LocaleKeys.detailsMovieScreenTitle.tr()),
-          ),
-          body: DetailsScreenContent(
-            data: data,
-            currentTab: currentTab,
-            scrollController: scrollController,
-            onTabSelect: (index) => _onTabSelect(vsp, index),
-            onRefresh: !isLoading
-                ? () => vsp.viewModel.loadInitialData(showLoader: false)
+          return Scaffold(
+            appBar: MainAppBar(
+              title: Text(LocaleKeys.detailsMovieScreenTitle.tr()),
+            ),
+            body: isSkeletonVisible
+                ? DetailsContentSkeleton()
+                : DetailsScreenContent(
+                    data: data,
+                    currentTab: currentTab,
+                    scrollController: scrollController,
+                    onTabSelect: (index) => _onTabSelect(vsp, index),
+                    onRefresh: !isLoading
+                        ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                        : null,
+                  ),
+            floatingActionButton: isFabVisible
+                ? ScrollTopFab(scrollController: scrollController)
                 : null,
-          ),
-          floatingActionButton: isFabVisible
-              ? ScrollTopFab(scrollController: scrollController)
-              : null,
-        );
-      }
-    );
+          );
+        });
   }
 
   void _onTabSelect(DetailsMovieVSP vsp, int index) {

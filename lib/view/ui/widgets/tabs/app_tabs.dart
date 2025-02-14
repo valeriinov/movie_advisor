@@ -11,6 +11,7 @@ class AppTabs extends StatelessWidget {
   final List<String> tabs;
   final int currentIndex;
   final bool isPinned;
+  final bool isSkeletonKeep;
   final Function(int)? onSelect;
 
   const AppTabs({
@@ -18,6 +19,7 @@ class AppTabs extends StatelessWidget {
     required this.tabs,
     required this.currentIndex,
     this.isPinned = true,
+    this.isSkeletonKeep = true,
     this.onSelect,
   });
 
@@ -32,6 +34,7 @@ class AppTabs extends StatelessWidget {
       automaticallyImplyLeading: false,
       flexibleSpace: FlexibleSpaceBar(
         background: Skeleton.keep(
+          keep: isSkeletonKeep,
           child: Container(
             // Fix gap between tabs and header.
             transform: Matrix4.translationValues(0, -0.2, 0),

@@ -1,3 +1,4 @@
+import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
@@ -13,7 +14,6 @@ import '../model/details_tab.dart';
 import 'details_state.dart';
 
 part 'details_movie_view_model.dart';
-
 part 'details_series_view_model.dart';
 
 /// {@category StateManagement}
@@ -28,6 +28,8 @@ abstract base class _DetailsViewModel<T extends MediaData>
 
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(DetailsBaseStatus(isLoading: showLoader));
+
+    await 4.seconds.delay();
 
     await safeCall(
       () => _detailsUseCase.getDetails(state.data.id),
