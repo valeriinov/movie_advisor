@@ -1,16 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/scroll_top_fab.dart';
+import '../../../widgets/scroll_top_listener.dart';
 import '../details_view_model/details_view_model.dart';
 import '../model/details_tab.dart';
 import 'details_screen_content.dart';
 
-class DetailsSeriesView extends ConsumerWidget {
+class DetailsSeriesView extends HookConsumerWidget {
   final int id;
 
   const DetailsSeriesView({super.key, required this.id});
@@ -33,19 +36,29 @@ class DetailsSeriesView extends ConsumerWidget {
     final data = vsp.selectWatch((s) => s.data);
     final currentTab = vsp.selectWatch((s) => s.currentTab);
 
-    return Scaffold(
-      appBar: MainAppBar(
-        title: Text(LocaleKeys.detailsSeriesScreenTitle.tr()),
-      ),
-      body: DetailsScreenContent(
-        data: data,
-        currentTab: currentTab,
-        onTabSelect: (index) => _onTabSelect(vsp, index),
-        onRefresh: !isLoading
-            ? () => vsp.viewModel.loadInitialData(showLoader: false)
-            : null,
-      ),
-    );
+    final scrollController = useScrollController();
+
+    return ScrollTopListener(
+        scrollController: scrollController,
+        builder: (_, isFabVisible) {
+          return Scaffold(
+            appBar: MainAppBar(
+              title: Text(LocaleKeys.detailsSeriesScreenTitle.tr()),
+            ),
+            body: DetailsScreenContent(
+              data: data,
+              currentTab: currentTab,
+              scrollController: scrollController,
+              onTabSelect: (index) => _onTabSelect(vsp, index),
+              onRefresh: !isLoading
+                  ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                  : null,
+            ),
+            floatingActionButton: isFabVisible
+                ? ScrollTopFab(scrollController: scrollController)
+                : null,
+          );
+        });
   }
 
   void _onTabSelect(DetailsSeriesVSP vsp, int index) {
