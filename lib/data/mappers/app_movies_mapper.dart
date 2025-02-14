@@ -4,6 +4,8 @@ import '../../domain/entities/movie/movie_short_data.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../dto/movie/movie_data_dto.dart';
 import '../dto/movie/movie_genre_dto.dart';
+import '../dto/movie/movie_short_data_dto.dart';
+import '../dto/rating/rating_data_dto.dart';
 import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
 
@@ -77,24 +79,25 @@ final class AppMoviesMapper extends AppMapper {
     );
   }
 
-  MovieDataDto mapMovieDataToDto(MovieData data) {
-    return MovieDataDto(
+  MovieShortDataDto mapMovieDataToDto(MovieData data) {
+    return MovieShortDataDto(
       id: data.id,
-      backdropPath: data.backdropUrl,
-      posterPath: data.posterUrl,
+      posterUrl: data.posterUrl,
       genres: _mapMovieGenresToDto(data.genres),
-      originalLanguage: data.originalLanguage,
-      originalTitle: data.originalTitle,
-      releaseDate: data.premiereDate,
+      premiereDate: data.premiereDate,
       title: data.title,
-      overview: data.overview,
-      popularity: data.tmdbRating.popularity,
-      voteAverage: data.tmdbRating.voteAverage,
-      voteCount: data.tmdbRating.voteCount,
-      credits: _castMapper.mapCastDataListToCreditsDataDto(data.cast),
+      tmdbRating: _mapRatingToDto(data.tmdbRating),
       userRating: data.userRating,
       isInWatchlist: data.isInWatchlist,
       isWatched: data.isWatched,
+    );
+  }
+
+  RatingDataDto _mapRatingToDto(Rating rating) {
+    return RatingDataDto(
+      popularity: rating.popularity,
+      voteAverage: rating.voteAverage,
+      voteCount: rating.voteCount,
     );
   }
 

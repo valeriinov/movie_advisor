@@ -2,8 +2,10 @@ import '../../domain/entities/rating/rating.dart';
 import '../../domain/entities/series/series_data.dart';
 import '../../domain/entities/series/series_genre.dart';
 import '../../domain/entities/series/series_short_data.dart';
+import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
+import '../dto/series/series_short_data_dto.dart';
 import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
 
@@ -77,29 +79,25 @@ final class AppSeriesMapper extends AppMapper {
     );
   }
 
-  List<SeriesDataDto> mapSeriesDataListToDto(List<SeriesData> data) {
-    return data.map(mapSeriesDataToDto).toList();
-  }
-
-  SeriesDataDto mapSeriesDataToDto(SeriesData data) {
-    return SeriesDataDto(
+  SeriesShortDataDto mapSeriesDataToDto(SeriesData data) {
+    return SeriesShortDataDto(
       id: data.id,
-      backdropPath: data.backdropUrl,
-      posterPath: data.posterUrl,
+      posterUrl: data.posterUrl,
       genres: _mapSeriesGenresToDto(data.genres),
-      originCountry: data.originCountry,
-      originalLanguage: data.originalLanguage,
-      originalName: data.originalTitle,
-      firstAirDate: data.premiereDate,
-      name: data.title,
-      overview: data.overview,
-      popularity: data.tmdbRating.popularity,
-      voteAverage: data.tmdbRating.voteAverage,
-      voteCount: data.tmdbRating.voteCount,
-      credits: _castMapper.mapCastDataListToCreditsDataDto(data.cast),
+      premiereDate: data.premiereDate,
+      title: data.title,
+      tmdbRating: _mapRatingToDto(data.tmdbRating),
       userRating: data.userRating,
       isInWatchlist: data.isInWatchlist,
       isWatched: data.isWatched,
+    );
+  }
+
+  RatingDataDto _mapRatingToDto(Rating rating) {
+    return RatingDataDto(
+      popularity: rating.popularity,
+      voteAverage: rating.voteAverage,
+      voteCount: rating.voteCount,
     );
   }
 
