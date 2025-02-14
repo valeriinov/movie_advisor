@@ -1,52 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_routes.dart';
+part of 'details_route.dart';
 
 // **************************************************************************
 // GoRouterGenerator
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $homeRoute,
+      $detailsRoute,
     ];
 
-RouteBase get $homeRoute => GoRouteData.$route(
-      path: '/home',
-      factory: $HomeRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: 'search',
-          factory: $SearchRouteExtension._fromState,
-        ),
-      ],
+RouteBase get $detailsRoute => GoRouteData.$route(
+      path: '/details',
+      factory: $DetailsRouteExtension._fromState,
     );
 
-extension $HomeRouteExtension on HomeRoute {
-  static HomeRoute _fromState(GoRouterState state) => HomeRoute();
-
-  String get location => GoRouteData.$location(
-        '/home',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $SearchRouteExtension on SearchRoute {
-  static SearchRoute _fromState(GoRouterState state) => SearchRoute(
+extension $DetailsRouteExtension on DetailsRoute {
+  static DetailsRoute _fromState(GoRouterState state) => DetailsRoute(
+        id: int.parse(state.uri.queryParameters['id']!),
         contentMode: _$ContentModeEnumMap
             ._$fromName(state.uri.queryParameters['content-mode']!),
       );
 
   String get location => GoRouteData.$location(
-        '/home/search',
+        '/details',
         queryParams: {
+          'id': id.toString(),
           'content-mode': _$ContentModeEnumMap[contentMode],
         },
       );

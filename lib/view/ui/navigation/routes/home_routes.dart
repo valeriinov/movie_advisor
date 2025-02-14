@@ -11,10 +11,7 @@ import '../utils/transition_builder_mixin.dart';
 part 'home_routes.g.dart';
 
 @TypedGoRoute<HomeRoute>(path: AppRoutes.home, routes: [
-  TypedGoRoute<SearchRoute>(path: AppRoutes.search, routes: [
-    TypedGoRoute<SearchDetailsRoute>(path: AppRoutes.details),
-  ]),
-  TypedGoRoute<HomeDetailsRoute>(path: AppRoutes.details),
+  TypedGoRoute<SearchRoute>(path: AppRoutes.search),
 ])
 class HomeRoute extends GoRouteData {
   @override
@@ -39,44 +36,6 @@ class SearchRoute extends GoRouteData with TransitionBuilderMixin {
       name: state.fullPath,
       child: SearchScreen(initContentMode: contentMode),
       transitionsBuilder: fadeTransitionBuilder,
-    );
-  }
-}
-
-class HomeDetailsRoute extends GoRouteData {
-  final int id;
-  final ContentMode contentMode;
-
-  HomeDetailsRoute({required this.id, required this.contentMode});
-
-  @override
-  Page<void> buildPage(context, state) {
-    return MaterialPage(
-      key: state.pageKey,
-      name: state.fullPath,
-      child: DetailsScreen(
-        id: id,
-        contentMode: contentMode,
-      ),
-    );
-  }
-}
-
-class SearchDetailsRoute extends GoRouteData {
-  final int id;
-  final ContentMode contentMode;
-
-  SearchDetailsRoute({required this.id, required this.contentMode});
-
-  @override
-  Page<void> buildPage(context, state) {
-    return MaterialPage(
-      key: state.pageKey,
-      name: state.fullPath,
-      child: DetailsScreen(
-        id: id,
-        contentMode: contentMode,
-      ),
     );
   }
 }

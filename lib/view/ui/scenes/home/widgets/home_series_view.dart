@@ -6,6 +6,7 @@ import '../../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../navigation/routes/details_route.dart';
 import '../../../navigation/routes/home_routes.dart';
 import '../home_view_model/home_view_model.dart';
 import '../model/media_tab.dart';
@@ -89,6 +90,6 @@ class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
   }
 
   void _goToDetails(BuildContext context, int id) {
-    HomeDetailsRoute(id: id, contentMode: ContentMode.series).go(context);
+    DetailsRoute(id: id, contentMode: ContentMode.series).push(context);
   }
 }
