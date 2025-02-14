@@ -1,0 +1,2 @@
+/Users/valeriinovykov/Documents/dev/movie_advisor/android/app/.cxx/Debug/46l696x3/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/valeriinovykov/Documents/dev/movie_advisor/android/app/.cxx/Debug/46l696x3/armeabi-v7a/CMakeFiles/rebuild_cache.dir
