@@ -6,11 +6,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/app_bar/main_app_bar.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../details_view_model/details_view_model.dart';
 import '../model/details_tab.dart';
+import 'details_app_bar.dart';
 import 'details_content_skeleton.dart';
 import 'details_screen_content.dart';
 
@@ -43,8 +43,14 @@ class DetailsMovieView extends HookConsumerWidget {
         scrollController: scrollController,
         builder: (_, isFabVisible) {
           return Scaffold(
-            appBar: MainAppBar(
-              title: Text(LocaleKeys.detailsMovieScreenTitle.tr()),
+            appBar: DetailsAppBar(
+              title: LocaleKeys.detailsMovieScreenTitle.tr(),
+              isInWatchlist: data.isInWatchlist,
+              isWatched: data.isWatched,
+              // TODO: Implement onWatchlistTap
+              onWatchlistTap: isSkeletonVisible ? null : () {},
+              // TODO: Implement onWatchedTap
+              onWatchedTap: isSkeletonVisible ? null : () {},
             ),
             body: isSkeletonVisible
                 ? DetailsContentSkeleton()
