@@ -10,7 +10,7 @@ enum AppNavMenu {
   ),
   watchList(
     label: LocaleKeys.watchlistNavTab,
-    iconPath: AppImages.watchListIcon,
+    iconPath: AppImages.watchlistIcon,
   ),
   watched(
     label: LocaleKeys.watchedNavTab,
