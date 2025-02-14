@@ -36,7 +36,7 @@ dependencies:
   flutter_utils:
     git:
       url: https://github.com/valeriinov/flutter_utils.git
-      ref: v1.0.0
+      ref: 1.1.0
   dart_mappable: ^4.3.0
   dartz: ^0.10.1
   dio: ^5.7.0
