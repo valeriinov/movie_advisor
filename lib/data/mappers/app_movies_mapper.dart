@@ -79,7 +79,7 @@ final class AppMoviesMapper extends AppMapper {
     );
   }
 
-  MovieShortDataDto mapMovieDataToDto(MovieData data) {
+  MovieShortDataDto mapMovieShortDataToDto(MovieShortData data) {
     return MovieShortDataDto(
       id: data.id,
       posterUrl: data.posterUrl,

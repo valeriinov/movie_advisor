@@ -28,19 +28,25 @@ import '../../data/repositories/home/impl_home_repository.dart';
 import '../../data/repositories/search/impl_search_repository.dart';
 import '../../data/repositories/search/search_remote_data_source.dart';
 import '../../data/repositories/settings_provider.dart';
+import '../../data/repositories/watch/impl_watch_repository.dart';
+import '../../data/repositories/watch/watch_local_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
+import '../../data/sources/impl_watch_local_data_source.dart';
 import '../../domain/repositories/details_repository.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../../domain/repositories/search_repository.dart';
+import '../../domain/repositories/watch_repository.dart';
 import '../../domain/usecases/details/details_movie_use_case.dart';
 import '../../domain/usecases/details/details_series_use_case.dart';
 import '../../domain/usecases/home/home_movies_use_case.dart';
 import '../../domain/usecases/home/home_series_use_case.dart';
 import '../../domain/usecases/search/search_movies_use_case.dart';
 import '../../domain/usecases/search/search_series_use_case.dart';
+import '../../domain/usecases/watch/watch_movie_use_case.dart';
+import '../../domain/usecases/watch/watch_series_use_case.dart';
 import '../ui/base/view_model/base_status_handler.dart';
 import '../ui/impl_base_status_handler.dart';
 import '../ui/navigation/app_router.dart';
@@ -183,6 +189,25 @@ final detailsMovieUseCasePr =
 final detailsSeriesUseCasePr =
     Provider<DetailsSeriesUseCase>((ref) => DetailsSeriesUseCase(
           repository: ref.read(detailsRepositoryPr),
+        ));
+
+// WATCH
+final watchLocalDataSourcePr = Provider<WatchLocalDataSource>(
+  (ref) => ImplWatchLocalDataSource(database: ref.read(localDatabasePr)),
+);
+final watchRepositoryPr =
+    Provider<WatchRepository>((ref) => ImplWatchRepository(
+          dataSource: ref.read(watchLocalDataSourcePr),
+          moviesMapper: ref.read(moviesMapperPr),
+          seriesMapper: ref.read(seriesMapperPr),
+        ));
+final watchMovieUseCasePr =
+    Provider<WatchMovieUseCase>((ref) => WatchMovieUseCase(
+          repository: ref.read(watchRepositoryPr),
+        ));
+final watchSeriesUseCasePr =
+    Provider<WatchSeriesUseCase>((ref) => WatchSeriesUseCase(
+          repository: ref.read(watchRepositoryPr),
         ));
 
 /// {@category Utils}

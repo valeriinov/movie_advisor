@@ -79,7 +79,7 @@ final class AppSeriesMapper extends AppMapper {
     );
   }
 
-  SeriesShortDataDto mapSeriesDataToDto(SeriesData data) {
+  SeriesShortDataDto mapSeriesShortDataToDto(SeriesShortData data) {
     return SeriesShortDataDto(
       id: data.id,
       posterUrl: data.posterUrl,
