@@ -44,6 +44,7 @@ class DetailsScreenContent extends StatelessWidget {
           tabs: DetailsTab.descriptions,
           currentIndex: currentTab.index,
           onSelect: onTabSelect,
+          isPinned: false,
         ),
         SliverPadding(padding: dimens.spSmall.insVert()),
         DetailsTabContent(
