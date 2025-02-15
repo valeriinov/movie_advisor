@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../common/utils/ext/double/to_rating.dart';
 import '../../../../../domain/entities/base_media/media_data.dart';
@@ -85,10 +86,12 @@ class DetailsHeader extends StatelessWidget {
       return Positioned(
         top: 151,
         left: dimens.padHorPrim,
-        child: Poster(
-          url: data.posterUrl,
-          size: styles.posterSmallSize,
-          transparentPlaceholder: true,
+        child: Skeleton.ignore(
+          child: Poster(
+            url: data.posterUrl,
+            size: styles.posterSmallSize,
+            transparentPlaceholder: true,
+          ),
         ),
       );
     });
