@@ -75,6 +75,14 @@ class $MoviesTableTable extends MoviesTable
       requiredDuringInsert: false,
       defaultConstraints:
           GeneratedColumn.constraintIsAlways('CHECK ("is_watched" IN (0, 1))'));
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -85,7 +93,8 @@ class $MoviesTableTable extends MoviesTable
         tmdbRating,
         userRating,
         isInWatchlist,
-        isWatched
+        isWatched,
+        createdAt
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -134,6 +143,10 @@ class $MoviesTableTable extends MoviesTable
       context.handle(_isWatchedMeta,
           isWatched.isAcceptableOrUnknown(data['is_watched']!, _isWatchedMeta));
     }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
     return context;
   }
 
@@ -163,6 +176,8 @@ class $MoviesTableTable extends MoviesTable
           .read(DriftSqlType.bool, data['${effectivePrefix}is_in_watchlist']),
       isWatched: attachedDatabase.typeMapping
           .read(DriftSqlType.bool, data['${effectivePrefix}is_watched']),
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
@@ -191,6 +206,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
   final int? userRating;
   final bool? isInWatchlist;
   final bool? isWatched;
+  final DateTime createdAt;
   const MoviesTableData(
       {required this.id,
       required this.tmdbId,
@@ -200,7 +216,8 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       this.tmdbRating,
       this.userRating,
       this.isInWatchlist,
-      this.isWatched});
+      this.isWatched,
+      required this.createdAt});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -229,6 +246,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     if (!nullToAbsent || isWatched != null) {
       map['is_watched'] = Variable<bool>(isWatched);
     }
+    map['created_at'] = Variable<DateTime>(createdAt);
     return map;
   }
 
@@ -255,6 +273,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       isWatched: isWatched == null && nullToAbsent
           ? const Value.absent()
           : Value(isWatched),
+      createdAt: Value(createdAt),
     );
   }
 
@@ -271,6 +290,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       userRating: serializer.fromJson<int?>(json['userRating']),
       isInWatchlist: serializer.fromJson<bool?>(json['isInWatchlist']),
       isWatched: serializer.fromJson<bool?>(json['isWatched']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
   @override
@@ -286,6 +306,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       'userRating': serializer.toJson<int?>(userRating),
       'isInWatchlist': serializer.toJson<bool?>(isInWatchlist),
       'isWatched': serializer.toJson<bool?>(isWatched),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
@@ -298,7 +319,8 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
           Value<RatingDataDto?> tmdbRating = const Value.absent(),
           Value<int?> userRating = const Value.absent(),
           Value<bool?> isInWatchlist = const Value.absent(),
-          Value<bool?> isWatched = const Value.absent()}) =>
+          Value<bool?> isWatched = const Value.absent(),
+          DateTime? createdAt}) =>
       MoviesTableData(
         id: id ?? this.id,
         tmdbId: tmdbId ?? this.tmdbId,
@@ -311,6 +333,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
         isInWatchlist:
             isInWatchlist.present ? isInWatchlist.value : this.isInWatchlist,
         isWatched: isWatched.present ? isWatched.value : this.isWatched,
+        createdAt: createdAt ?? this.createdAt,
       );
   MoviesTableData copyWithCompanion(MoviesTableCompanion data) {
     return MoviesTableData(
@@ -329,6 +352,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
           ? data.isInWatchlist.value
           : this.isInWatchlist,
       isWatched: data.isWatched.present ? data.isWatched.value : this.isWatched,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -343,14 +367,15 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
           ..write('tmdbRating: $tmdbRating, ')
           ..write('userRating: $userRating, ')
           ..write('isInWatchlist: $isInWatchlist, ')
-          ..write('isWatched: $isWatched')
+          ..write('isWatched: $isWatched, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(id, tmdbId, genres, premiereDate, title,
-      tmdbRating, userRating, isInWatchlist, isWatched);
+      tmdbRating, userRating, isInWatchlist, isWatched, createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -363,7 +388,8 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
           other.tmdbRating == this.tmdbRating &&
           other.userRating == this.userRating &&
           other.isInWatchlist == this.isInWatchlist &&
-          other.isWatched == this.isWatched);
+          other.isWatched == this.isWatched &&
+          other.createdAt == this.createdAt);
 }
 
 class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
@@ -376,6 +402,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
   final Value<int?> userRating;
   final Value<bool?> isInWatchlist;
   final Value<bool?> isWatched;
+  final Value<DateTime> createdAt;
   const MoviesTableCompanion({
     this.id = const Value.absent(),
     this.tmdbId = const Value.absent(),
@@ -386,6 +413,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     this.userRating = const Value.absent(),
     this.isInWatchlist = const Value.absent(),
     this.isWatched = const Value.absent(),
+    this.createdAt = const Value.absent(),
   });
   MoviesTableCompanion.insert({
     this.id = const Value.absent(),
@@ -397,6 +425,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     this.userRating = const Value.absent(),
     this.isInWatchlist = const Value.absent(),
     this.isWatched = const Value.absent(),
+    this.createdAt = const Value.absent(),
   }) : tmdbId = Value(tmdbId);
   static Insertable<MoviesTableData> custom({
     Expression<int>? id,
@@ -408,6 +437,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     Expression<int>? userRating,
     Expression<bool>? isInWatchlist,
     Expression<bool>? isWatched,
+    Expression<DateTime>? createdAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -419,6 +449,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
       if (userRating != null) 'user_rating': userRating,
       if (isInWatchlist != null) 'is_in_watchlist': isInWatchlist,
       if (isWatched != null) 'is_watched': isWatched,
+      if (createdAt != null) 'created_at': createdAt,
     });
   }
 
@@ -431,7 +462,8 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
       Value<RatingDataDto?>? tmdbRating,
       Value<int?>? userRating,
       Value<bool?>? isInWatchlist,
-      Value<bool?>? isWatched}) {
+      Value<bool?>? isWatched,
+      Value<DateTime>? createdAt}) {
     return MoviesTableCompanion(
       id: id ?? this.id,
       tmdbId: tmdbId ?? this.tmdbId,
@@ -442,6 +474,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
       userRating: userRating ?? this.userRating,
       isInWatchlist: isInWatchlist ?? this.isInWatchlist,
       isWatched: isWatched ?? this.isWatched,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -477,6 +510,9 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     if (isWatched.present) {
       map['is_watched'] = Variable<bool>(isWatched.value);
     }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
     return map;
   }
 
@@ -491,7 +527,8 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
           ..write('tmdbRating: $tmdbRating, ')
           ..write('userRating: $userRating, ')
           ..write('isInWatchlist: $isInWatchlist, ')
-          ..write('isWatched: $isWatched')
+          ..write('isWatched: $isWatched, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
@@ -1015,6 +1052,7 @@ typedef $$MoviesTableTableCreateCompanionBuilder = MoviesTableCompanion
   Value<int?> userRating,
   Value<bool?> isInWatchlist,
   Value<bool?> isWatched,
+  Value<DateTime> createdAt,
 });
 typedef $$MoviesTableTableUpdateCompanionBuilder = MoviesTableCompanion
     Function({
@@ -1027,6 +1065,7 @@ typedef $$MoviesTableTableUpdateCompanionBuilder = MoviesTableCompanion
   Value<int?> userRating,
   Value<bool?> isInWatchlist,
   Value<bool?> isWatched,
+  Value<DateTime> createdAt,
 });
 
 class $$MoviesTableTableFilterComposer
@@ -1069,6 +1108,9 @@ class $$MoviesTableTableFilterComposer
 
   ColumnFilters<bool> get isWatched => $composableBuilder(
       column: $table.isWatched, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
 }
 
 class $$MoviesTableTableOrderingComposer
@@ -1108,6 +1150,9 @@ class $$MoviesTableTableOrderingComposer
 
   ColumnOrderings<bool> get isWatched => $composableBuilder(
       column: $table.isWatched, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
 }
 
 class $$MoviesTableTableAnnotationComposer
@@ -1146,6 +1191,9 @@ class $$MoviesTableTableAnnotationComposer
 
   GeneratedColumn<bool> get isWatched =>
       $composableBuilder(column: $table.isWatched, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
 }
 
 class $$MoviesTableTableTableManager extends RootTableManager<
@@ -1183,6 +1231,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
             Value<int?> userRating = const Value.absent(),
             Value<bool?> isInWatchlist = const Value.absent(),
             Value<bool?> isWatched = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
           }) =>
               MoviesTableCompanion(
             id: id,
@@ -1194,6 +1243,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
             userRating: userRating,
             isInWatchlist: isInWatchlist,
             isWatched: isWatched,
+            createdAt: createdAt,
           ),
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
@@ -1205,6 +1255,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
             Value<int?> userRating = const Value.absent(),
             Value<bool?> isInWatchlist = const Value.absent(),
             Value<bool?> isWatched = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
           }) =>
               MoviesTableCompanion.insert(
             id: id,
@@ -1216,6 +1267,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
             userRating: userRating,
             isInWatchlist: isInWatchlist,
             isWatched: isWatched,
+            createdAt: createdAt,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
