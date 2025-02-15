@@ -48,7 +48,8 @@ class DetailsMovieView extends HookConsumerWidget {
               isInWatchlist: data.isInWatchlist,
               isWatched: data.isWatched,
               // TODO: Implement onWatchlistTap
-              onWatchlistTap: isSkeletonVisible ? null : () {},
+              onWatchlistTap:
+                  isSkeletonVisible ? null : () => _onWatchlistTap(vsp),
               // TODO: Implement onWatchedTap
               onWatchedTap: isSkeletonVisible ? null : () {},
             ),
@@ -68,6 +69,16 @@ class DetailsMovieView extends HookConsumerWidget {
                 : null,
           );
         });
+  }
+
+  void _onWatchlistTap(DetailsMovieVSP vsp) {
+    final isInWatchlist = vsp.selectRead((s) => s.data.isInWatchlist);
+
+    if (isInWatchlist) {
+      vsp.viewModel.removeFromWatchlist();
+    } else {
+      vsp.viewModel.addToWatchlist();
+    }
   }
 
   void _onTabSelect(DetailsMovieVSP vsp, int index) {

@@ -8,12 +8,17 @@ import '../dto/series/series_genre_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
+import 'app_rating_mapper.dart';
 
 final class AppSeriesMapper extends AppMapper {
+  final AppRatingMapper _ratingMapper;
   final AppCastMapper _castMapper;
 
-  AppSeriesMapper({required AppCastMapper castMapper})
-      : _castMapper = castMapper;
+  AppSeriesMapper(
+      {required AppRatingMapper ratingMapper,
+      required AppCastMapper castMapper})
+      : _ratingMapper = ratingMapper,
+        _castMapper = castMapper;
 
   List<SeriesData> mapSeriesDataListDtoToDomain(List<SeriesDataDto> dtos) {
     return dtos.map(mapSeriesDataDtoToDomain).toList();
@@ -31,7 +36,7 @@ final class AppSeriesMapper extends AppMapper {
       premiereDate: dto.firstAirDate,
       title: dto.name ?? '',
       overview: dto.overview ?? '',
-      tmdbRating: _mapSeriesDataDtoToTMDBRating(dto),
+      tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
       cast: dto.credits != null
           ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
           : [],
@@ -41,19 +46,38 @@ final class AppSeriesMapper extends AppMapper {
     );
   }
 
-  List<SeriesShortData> mapSeriesShortDataListDtoToDomain(
+  List<SeriesShortData> mapSeriesDataListDtoToShortDomain(
       List<SeriesDataDto> dtos) {
-    return dtos.map(_mapSeriesShortDataDtoToDomain).toList();
+    return dtos.map(_mapSeriesDataDtoToShortDomain).toList();
   }
 
-  SeriesShortData _mapSeriesShortDataDtoToDomain(SeriesDataDto dto) {
+  SeriesShortData _mapSeriesDataDtoToShortDomain(SeriesDataDto dto) {
     return SeriesShortData(
       id: dto.id ?? -1,
       posterUrl: dto.posterPath ?? '',
       genres: _mapSeriesGenresDtoToDomain(dto.genres),
       premiereDate: dto.firstAirDate,
       title: dto.name ?? '',
-      tmdbRating: _mapSeriesDataDtoToTMDBRating(dto),
+      tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
+      userRating: dto.userRating ?? 0,
+      isInWatchlist: dto.isInWatchlist ?? false,
+      isWatched: dto.isWatched ?? false,
+    );
+  }
+
+  List<SeriesShortData> mapSeriesShortDataListDtoToDomain(
+      List<SeriesShortDataDto> dtos) {
+    return dtos.map(_mapSeriesShortDataDtoToDomain).toList();
+  }
+
+  SeriesShortData _mapSeriesShortDataDtoToDomain(SeriesShortDataDto dto) {
+    return SeriesShortData(
+      id: dto.id ?? -1,
+      posterUrl: dto.posterUrl ?? '',
+      genres: _mapSeriesGenresDtoToDomain(dto.genres),
+      premiereDate: dto.premiereDate,
+      title: dto.title ?? '',
+      tmdbRating: _ratingMapper.mapRatingDtoToTMDBRating(dto.tmdbRating),
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
@@ -68,14 +92,6 @@ final class AppSeriesMapper extends AppMapper {
     return SeriesGenre.values.firstWhere(
       (e) => e.name == dto?.name,
       orElse: () => SeriesGenre.none,
-    );
-  }
-
-  TMDBRating _mapSeriesDataDtoToTMDBRating(SeriesDataDto dto) {
-    return TMDBRating(
-      popularity: dto.popularity,
-      voteAverage: dto.voteAverage ?? 0,
-      voteCount: dto.voteCount ?? 0,
     );
   }
 

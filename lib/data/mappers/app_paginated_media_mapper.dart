@@ -18,7 +18,7 @@ final class AppPaginatedMediaMapper extends AppMapper {
 
   PaginatedMovies mapMoviesResponseDataToDomain(MoviesResponseDataDto dto) {
     return PaginatedMovies(
-      items: _moviesMapper.mapMovieShortDataListDtoToDomain(dto.results ?? []),
+      items: _moviesMapper.mapMovieDataListDtoToShortDomain(dto.results ?? []),
       currentPage: dto.page ?? 1,
       isLastPage: dto.page.isLastPage(dto.totalPages),
     );
@@ -26,7 +26,7 @@ final class AppPaginatedMediaMapper extends AppMapper {
 
   PaginatedSeries mapSeriesResponseDataToDomain(SeriesResponseDataDto dto) {
     return PaginatedSeries(
-      items: _seriesMapper.mapSeriesShortDataListDtoToDomain(dto.results ?? []),
+      items: _seriesMapper.mapSeriesDataListDtoToShortDomain(dto.results ?? []),
       currentPage: dto.page ?? 1,
       isLastPage: dto.page.isLastPage(dto.totalPages),
     );

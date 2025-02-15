@@ -1,4 +1,5 @@
 import '../../entities/movie/movie_short_data.dart';
+import '../../entities/pagination/list_with_pagination_data.dart';
 import '../../entities/result.dart';
 import '../../repositories/watch_repository.dart';
 import 'watch_use_case.dart';
@@ -8,6 +9,16 @@ class WatchMovieUseCase implements WatchUseCase<MovieShortData> {
 
   WatchMovieUseCase({required WatchRepository repository})
       : _repository = repository;
+
+  @override
+  Future<Result<PaginatedMovies>> getWatchlist({required int page}) {
+    return _repository.getWatchlistMovies(page: page);
+  }
+
+  @override
+  Future<Result<PaginatedMovies>> getWatched({required int page}) {
+    return _repository.getWatchedMovies(page: page);
+  }
 
   @override
   Future<Result<void>> addToWatchlist(MovieShortData data) {

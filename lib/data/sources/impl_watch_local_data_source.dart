@@ -1,7 +1,9 @@
 import 'package:drift/drift.dart';
 
 import '../dto/movie/movie_short_data_dto.dart';
+import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
+import '../dto/series/series_short_response_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../repositories/watch/watch_local_data_source.dart';
 
@@ -10,6 +12,52 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
   ImplWatchLocalDataSource({required AppLocalDatabase database})
       : _database = database;
+
+  @override
+  Future<MoviesShortResponseDataDto> getWatchedMovies({required int page}) async{
+    const int pageSize = 20;
+    final int offset = (page - 1) * pageSize;
+
+    final moviesQuery = (_database.select(_database.moviesTable)
+      ..where((tbl) => tbl.isWatched.equals(true))
+      ..limit(pageSize, offset: offset));
+
+    final movies = await moviesQuery.get();
+
+    final countExp = _database.moviesTable.id.count();
+    final totalCountQuery = _database.selectOnly(_database.moviesTable)
+      ..addColumns([countExp])
+      ..where(_database.moviesTable.isWatched.equals(true));
+
+    final totalCountResult = await totalCountQuery.map((row) => row.read(countExp)).getSingle();
+    final totalCount = totalCountResult ?? 0;
+
+    final totalPages = (totalCount / pageSize).ceil();
+
+    return MoviesShortResponseDataDto(
+      page: page,
+      results: movies.map((movie) => movie.toDto()).toList(),
+      totalPages: totalPages,
+    );
+  }
+
+  @override
+  Future<MoviesShortResponseDataDto> getWatchlistMovies({required int page}) {
+    // TODO: implement getWatchlistMovies
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<SeriesShortResponseDataDto> getWatchedSeries({required int page}) {
+    // TODO: implement getWatchedSeries
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<SeriesShortResponseDataDto> getWatchlistSeries({required int page}) {
+    // TODO: implement getWatchlistSeries
+    throw UnimplementedError();
+  }
 
   @override
   Future<void> addToWatchedMovie(MovieShortDataDto data) {

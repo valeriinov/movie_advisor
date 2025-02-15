@@ -1,8 +1,17 @@
 import '../entities/movie/movie_short_data.dart';
+import '../entities/pagination/list_with_pagination_data.dart';
 import '../entities/result.dart';
 import '../entities/series/series_short_data.dart';
 
 abstract interface class WatchRepository {
+  Future<Result<PaginatedMovies>> getWatchlistMovies({required int page});
+
+  Future<Result<PaginatedMovies>> getWatchedMovies({required int page});
+
+  Future<Result<PaginatedSeries>> getWatchlistSeries({required int page});
+
+  Future<Result<PaginatedSeries>> getWatchedSeries({required int page});
+
   Future<Result<void>> addToWatchlistMovie(MovieShortData data);
 
   Future<Result<void>> addToWatchedMovie(MovieShortData data);

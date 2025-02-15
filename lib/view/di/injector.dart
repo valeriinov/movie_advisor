@@ -7,6 +7,7 @@ import '../../data/local/app_local_database.dart';
 import '../../data/mappers/app_cast_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
 import '../../data/mappers/app_paginated_media_mapper.dart';
+import '../../data/mappers/app_rating_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
 import '../../data/mappers/app_series_mapper.dart';
 import '../../data/network/env_provider/env_provider.dart';
@@ -109,11 +110,18 @@ final mediaResponseHandlerPr = Provider<MediaResponseHandler>(
 final localDatabasePr = Provider<AppLocalDatabase>((_) => AppLocalDatabase());
 
 final castMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
+final ratingMapperPr = Provider<AppRatingMapper>((_) => AppRatingMapper());
 final moviesMapperPr = Provider<AppMoviesMapper>(
-  (ref) => AppMoviesMapper(castMapper: ref.read(castMapperPr)),
+  (ref) => AppMoviesMapper(
+    ratingMapper: ref.read(ratingMapperPr),
+    castMapper: ref.read(castMapperPr),
+  ),
 );
 final seriesMapperPr = Provider<AppSeriesMapper>(
-  (ref) => AppSeriesMapper(castMapper: ref.read(castMapperPr)),
+  (ref) => AppSeriesMapper(
+    ratingMapper: ref.read(ratingMapperPr),
+    castMapper: ref.read(castMapperPr),
+  ),
 );
 final paginatedMediaMapperPr = Provider<AppPaginatedMediaMapper>(
   (ref) => AppPaginatedMediaMapper(

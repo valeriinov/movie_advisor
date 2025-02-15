@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/movie/movie_short_data.dart';
+import '../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../domain/entities/result.dart';
 import '../../../domain/entities/series/series_short_data.dart';
 import '../../../domain/repositories/watch_repository.dart';
@@ -20,6 +21,30 @@ class ImplWatchRepository implements WatchRepository {
       : _dataSource = dataSource,
         _moviesMapper = moviesMapper,
         _seriesMapper = seriesMapper;
+
+  @override
+  Future<Result<PaginatedMovies>> getWatchlistMovies({required int page}) async{
+    // TODO: implement getWatchlistMovies
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<PaginatedMovies>> getWatchedMovies({required int page}) async{
+    // TODO: implement getWatchedMovies
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<PaginatedSeries>> getWatchlistSeries({required int page}) async{
+    // TODO: implement getWatchlistSeries
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<PaginatedSeries>> getWatchedSeries({required int page}) async{
+    // TODO: implement getWatchedSeries
+    throw UnimplementedError();
+  }
 
   @override
   Future<Result<void>> addToWatchlistMovie(MovieShortData data) async {
