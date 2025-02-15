@@ -8,6 +8,8 @@ class SeriesTable extends Table {
 
   IntColumn get tmdbId => integer().unique()();
 
+  TextColumn get posterUrl => text().nullable()();
+
   TextColumn get genres => text().map(seriesGenresConverter).nullable()();
 
   DateTimeColumn get premiereDate => dateTime().nullable()();
@@ -21,6 +23,8 @@ class SeriesTable extends Table {
   BoolColumn get isInWatchlist => boolean().nullable()();
 
   BoolColumn get isWatched => boolean().nullable()();
+
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 }
 
 final TypeConverter<List<SeriesGenreDto>, String> seriesGenresConverter =

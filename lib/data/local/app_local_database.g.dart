@@ -25,6 +25,12 @@ class $MoviesTableTable extends MoviesTable
       type: DriftSqlType.int,
       requiredDuringInsert: true,
       defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
+  static const VerificationMeta _posterUrlMeta =
+      const VerificationMeta('posterUrl');
+  @override
+  late final GeneratedColumn<String> posterUrl = GeneratedColumn<String>(
+      'poster_url', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _genresMeta = const VerificationMeta('genres');
   @override
   late final GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String>
@@ -87,6 +93,7 @@ class $MoviesTableTable extends MoviesTable
   List<GeneratedColumn> get $columns => [
         id,
         tmdbId,
+        posterUrl,
         genres,
         premiereDate,
         title,
@@ -114,6 +121,10 @@ class $MoviesTableTable extends MoviesTable
           tmdbId.isAcceptableOrUnknown(data['tmdb_id']!, _tmdbIdMeta));
     } else if (isInserting) {
       context.missing(_tmdbIdMeta);
+    }
+    if (data.containsKey('poster_url')) {
+      context.handle(_posterUrlMeta,
+          posterUrl.isAcceptableOrUnknown(data['poster_url']!, _posterUrlMeta));
     }
     context.handle(_genresMeta, const VerificationResult.success());
     if (data.containsKey('premiere_date')) {
@@ -160,6 +171,8 @@ class $MoviesTableTable extends MoviesTable
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       tmdbId: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}tmdb_id'])!,
+      posterUrl: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}poster_url']),
       genres: $MoviesTableTable.$convertergenresn.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}genres'])),
@@ -199,6 +212,7 @@ class $MoviesTableTable extends MoviesTable
 class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
   final int id;
   final int tmdbId;
+  final String? posterUrl;
   final List<MovieGenreDto>? genres;
   final DateTime? premiereDate;
   final String? title;
@@ -210,6 +224,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
   const MoviesTableData(
       {required this.id,
       required this.tmdbId,
+      this.posterUrl,
       this.genres,
       this.premiereDate,
       this.title,
@@ -223,6 +238,9 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['tmdb_id'] = Variable<int>(tmdbId);
+    if (!nullToAbsent || posterUrl != null) {
+      map['poster_url'] = Variable<String>(posterUrl);
+    }
     if (!nullToAbsent || genres != null) {
       map['genres'] =
           Variable<String>($MoviesTableTable.$convertergenresn.toSql(genres));
@@ -254,6 +272,9 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     return MoviesTableCompanion(
       id: Value(id),
       tmdbId: Value(tmdbId),
+      posterUrl: posterUrl == null && nullToAbsent
+          ? const Value.absent()
+          : Value(posterUrl),
       genres:
           genres == null && nullToAbsent ? const Value.absent() : Value(genres),
       premiereDate: premiereDate == null && nullToAbsent
@@ -283,6 +304,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     return MoviesTableData(
       id: serializer.fromJson<int>(json['id']),
       tmdbId: serializer.fromJson<int>(json['tmdbId']),
+      posterUrl: serializer.fromJson<String?>(json['posterUrl']),
       genres: serializer.fromJson<List<MovieGenreDto>?>(json['genres']),
       premiereDate: serializer.fromJson<DateTime?>(json['premiereDate']),
       title: serializer.fromJson<String?>(json['title']),
@@ -299,6 +321,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'tmdbId': serializer.toJson<int>(tmdbId),
+      'posterUrl': serializer.toJson<String?>(posterUrl),
       'genres': serializer.toJson<List<MovieGenreDto>?>(genres),
       'premiereDate': serializer.toJson<DateTime?>(premiereDate),
       'title': serializer.toJson<String?>(title),
@@ -313,6 +336,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
   MoviesTableData copyWith(
           {int? id,
           int? tmdbId,
+          Value<String?> posterUrl = const Value.absent(),
           Value<List<MovieGenreDto>?> genres = const Value.absent(),
           Value<DateTime?> premiereDate = const Value.absent(),
           Value<String?> title = const Value.absent(),
@@ -324,6 +348,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       MoviesTableData(
         id: id ?? this.id,
         tmdbId: tmdbId ?? this.tmdbId,
+        posterUrl: posterUrl.present ? posterUrl.value : this.posterUrl,
         genres: genres.present ? genres.value : this.genres,
         premiereDate:
             premiereDate.present ? premiereDate.value : this.premiereDate,
@@ -339,6 +364,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     return MoviesTableData(
       id: data.id.present ? data.id.value : this.id,
       tmdbId: data.tmdbId.present ? data.tmdbId.value : this.tmdbId,
+      posterUrl: data.posterUrl.present ? data.posterUrl.value : this.posterUrl,
       genres: data.genres.present ? data.genres.value : this.genres,
       premiereDate: data.premiereDate.present
           ? data.premiereDate.value
@@ -361,6 +387,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     return (StringBuffer('MoviesTableData(')
           ..write('id: $id, ')
           ..write('tmdbId: $tmdbId, ')
+          ..write('posterUrl: $posterUrl, ')
           ..write('genres: $genres, ')
           ..write('premiereDate: $premiereDate, ')
           ..write('title: $title, ')
@@ -374,14 +401,15 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
   }
 
   @override
-  int get hashCode => Object.hash(id, tmdbId, genres, premiereDate, title,
-      tmdbRating, userRating, isInWatchlist, isWatched, createdAt);
+  int get hashCode => Object.hash(id, tmdbId, posterUrl, genres, premiereDate,
+      title, tmdbRating, userRating, isInWatchlist, isWatched, createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is MoviesTableData &&
           other.id == this.id &&
           other.tmdbId == this.tmdbId &&
+          other.posterUrl == this.posterUrl &&
           other.genres == this.genres &&
           other.premiereDate == this.premiereDate &&
           other.title == this.title &&
@@ -395,6 +423,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
 class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
   final Value<int> id;
   final Value<int> tmdbId;
+  final Value<String?> posterUrl;
   final Value<List<MovieGenreDto>?> genres;
   final Value<DateTime?> premiereDate;
   final Value<String?> title;
@@ -406,6 +435,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
   const MoviesTableCompanion({
     this.id = const Value.absent(),
     this.tmdbId = const Value.absent(),
+    this.posterUrl = const Value.absent(),
     this.genres = const Value.absent(),
     this.premiereDate = const Value.absent(),
     this.title = const Value.absent(),
@@ -418,6 +448,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
   MoviesTableCompanion.insert({
     this.id = const Value.absent(),
     required int tmdbId,
+    this.posterUrl = const Value.absent(),
     this.genres = const Value.absent(),
     this.premiereDate = const Value.absent(),
     this.title = const Value.absent(),
@@ -430,6 +461,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
   static Insertable<MoviesTableData> custom({
     Expression<int>? id,
     Expression<int>? tmdbId,
+    Expression<String>? posterUrl,
     Expression<String>? genres,
     Expression<DateTime>? premiereDate,
     Expression<String>? title,
@@ -442,6 +474,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (tmdbId != null) 'tmdb_id': tmdbId,
+      if (posterUrl != null) 'poster_url': posterUrl,
       if (genres != null) 'genres': genres,
       if (premiereDate != null) 'premiere_date': premiereDate,
       if (title != null) 'title': title,
@@ -456,6 +489,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
   MoviesTableCompanion copyWith(
       {Value<int>? id,
       Value<int>? tmdbId,
+      Value<String?>? posterUrl,
       Value<List<MovieGenreDto>?>? genres,
       Value<DateTime?>? premiereDate,
       Value<String?>? title,
@@ -467,6 +501,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     return MoviesTableCompanion(
       id: id ?? this.id,
       tmdbId: tmdbId ?? this.tmdbId,
+      posterUrl: posterUrl ?? this.posterUrl,
       genres: genres ?? this.genres,
       premiereDate: premiereDate ?? this.premiereDate,
       title: title ?? this.title,
@@ -486,6 +521,9 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     }
     if (tmdbId.present) {
       map['tmdb_id'] = Variable<int>(tmdbId.value);
+    }
+    if (posterUrl.present) {
+      map['poster_url'] = Variable<String>(posterUrl.value);
     }
     if (genres.present) {
       map['genres'] = Variable<String>(
@@ -521,6 +559,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     return (StringBuffer('MoviesTableCompanion(')
           ..write('id: $id, ')
           ..write('tmdbId: $tmdbId, ')
+          ..write('posterUrl: $posterUrl, ')
           ..write('genres: $genres, ')
           ..write('premiereDate: $premiereDate, ')
           ..write('title: $title, ')
@@ -556,6 +595,12 @@ class $SeriesTableTable extends SeriesTable
       type: DriftSqlType.int,
       requiredDuringInsert: true,
       defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
+  static const VerificationMeta _posterUrlMeta =
+      const VerificationMeta('posterUrl');
+  @override
+  late final GeneratedColumn<String> posterUrl = GeneratedColumn<String>(
+      'poster_url', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _genresMeta = const VerificationMeta('genres');
   @override
   late final GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String>
@@ -606,17 +651,27 @@ class $SeriesTableTable extends SeriesTable
       requiredDuringInsert: false,
       defaultConstraints:
           GeneratedColumn.constraintIsAlways('CHECK ("is_watched" IN (0, 1))'));
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
   @override
   List<GeneratedColumn> get $columns => [
         id,
         tmdbId,
+        posterUrl,
         genres,
         premiereDate,
         title,
         tmdbRating,
         userRating,
         isInWatchlist,
-        isWatched
+        isWatched,
+        createdAt
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -636,6 +691,10 @@ class $SeriesTableTable extends SeriesTable
           tmdbId.isAcceptableOrUnknown(data['tmdb_id']!, _tmdbIdMeta));
     } else if (isInserting) {
       context.missing(_tmdbIdMeta);
+    }
+    if (data.containsKey('poster_url')) {
+      context.handle(_posterUrlMeta,
+          posterUrl.isAcceptableOrUnknown(data['poster_url']!, _posterUrlMeta));
     }
     context.handle(_genresMeta, const VerificationResult.success());
     if (data.containsKey('premiere_date')) {
@@ -665,6 +724,10 @@ class $SeriesTableTable extends SeriesTable
       context.handle(_isWatchedMeta,
           isWatched.isAcceptableOrUnknown(data['is_watched']!, _isWatchedMeta));
     }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
     return context;
   }
 
@@ -678,6 +741,8 @@ class $SeriesTableTable extends SeriesTable
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       tmdbId: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}tmdb_id'])!,
+      posterUrl: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}poster_url']),
       genres: $SeriesTableTable.$convertergenresn.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}genres'])),
@@ -694,6 +759,8 @@ class $SeriesTableTable extends SeriesTable
           .read(DriftSqlType.bool, data['${effectivePrefix}is_in_watchlist']),
       isWatched: attachedDatabase.typeMapping
           .read(DriftSqlType.bool, data['${effectivePrefix}is_watched']),
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
@@ -715,6 +782,7 @@ class $SeriesTableTable extends SeriesTable
 class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
   final int id;
   final int tmdbId;
+  final String? posterUrl;
   final List<SeriesGenreDto>? genres;
   final DateTime? premiereDate;
   final String? title;
@@ -722,21 +790,27 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
   final int? userRating;
   final bool? isInWatchlist;
   final bool? isWatched;
+  final DateTime createdAt;
   const SeriesTableData(
       {required this.id,
       required this.tmdbId,
+      this.posterUrl,
       this.genres,
       this.premiereDate,
       this.title,
       this.tmdbRating,
       this.userRating,
       this.isInWatchlist,
-      this.isWatched});
+      this.isWatched,
+      required this.createdAt});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['tmdb_id'] = Variable<int>(tmdbId);
+    if (!nullToAbsent || posterUrl != null) {
+      map['poster_url'] = Variable<String>(posterUrl);
+    }
     if (!nullToAbsent || genres != null) {
       map['genres'] =
           Variable<String>($SeriesTableTable.$convertergenresn.toSql(genres));
@@ -760,6 +834,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
     if (!nullToAbsent || isWatched != null) {
       map['is_watched'] = Variable<bool>(isWatched);
     }
+    map['created_at'] = Variable<DateTime>(createdAt);
     return map;
   }
 
@@ -767,6 +842,9 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
     return SeriesTableCompanion(
       id: Value(id),
       tmdbId: Value(tmdbId),
+      posterUrl: posterUrl == null && nullToAbsent
+          ? const Value.absent()
+          : Value(posterUrl),
       genres:
           genres == null && nullToAbsent ? const Value.absent() : Value(genres),
       premiereDate: premiereDate == null && nullToAbsent
@@ -786,6 +864,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       isWatched: isWatched == null && nullToAbsent
           ? const Value.absent()
           : Value(isWatched),
+      createdAt: Value(createdAt),
     );
   }
 
@@ -795,6 +874,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
     return SeriesTableData(
       id: serializer.fromJson<int>(json['id']),
       tmdbId: serializer.fromJson<int>(json['tmdbId']),
+      posterUrl: serializer.fromJson<String?>(json['posterUrl']),
       genres: serializer.fromJson<List<SeriesGenreDto>?>(json['genres']),
       premiereDate: serializer.fromJson<DateTime?>(json['premiereDate']),
       title: serializer.fromJson<String?>(json['title']),
@@ -802,6 +882,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       userRating: serializer.fromJson<int?>(json['userRating']),
       isInWatchlist: serializer.fromJson<bool?>(json['isInWatchlist']),
       isWatched: serializer.fromJson<bool?>(json['isWatched']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
   @override
@@ -810,6 +891,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'tmdbId': serializer.toJson<int>(tmdbId),
+      'posterUrl': serializer.toJson<String?>(posterUrl),
       'genres': serializer.toJson<List<SeriesGenreDto>?>(genres),
       'premiereDate': serializer.toJson<DateTime?>(premiereDate),
       'title': serializer.toJson<String?>(title),
@@ -817,22 +899,26 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       'userRating': serializer.toJson<int?>(userRating),
       'isInWatchlist': serializer.toJson<bool?>(isInWatchlist),
       'isWatched': serializer.toJson<bool?>(isWatched),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
   SeriesTableData copyWith(
           {int? id,
           int? tmdbId,
+          Value<String?> posterUrl = const Value.absent(),
           Value<List<SeriesGenreDto>?> genres = const Value.absent(),
           Value<DateTime?> premiereDate = const Value.absent(),
           Value<String?> title = const Value.absent(),
           Value<RatingDataDto?> tmdbRating = const Value.absent(),
           Value<int?> userRating = const Value.absent(),
           Value<bool?> isInWatchlist = const Value.absent(),
-          Value<bool?> isWatched = const Value.absent()}) =>
+          Value<bool?> isWatched = const Value.absent(),
+          DateTime? createdAt}) =>
       SeriesTableData(
         id: id ?? this.id,
         tmdbId: tmdbId ?? this.tmdbId,
+        posterUrl: posterUrl.present ? posterUrl.value : this.posterUrl,
         genres: genres.present ? genres.value : this.genres,
         premiereDate:
             premiereDate.present ? premiereDate.value : this.premiereDate,
@@ -842,11 +928,13 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
         isInWatchlist:
             isInWatchlist.present ? isInWatchlist.value : this.isInWatchlist,
         isWatched: isWatched.present ? isWatched.value : this.isWatched,
+        createdAt: createdAt ?? this.createdAt,
       );
   SeriesTableData copyWithCompanion(SeriesTableCompanion data) {
     return SeriesTableData(
       id: data.id.present ? data.id.value : this.id,
       tmdbId: data.tmdbId.present ? data.tmdbId.value : this.tmdbId,
+      posterUrl: data.posterUrl.present ? data.posterUrl.value : this.posterUrl,
       genres: data.genres.present ? data.genres.value : this.genres,
       premiereDate: data.premiereDate.present
           ? data.premiereDate.value
@@ -860,6 +948,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
           ? data.isInWatchlist.value
           : this.isInWatchlist,
       isWatched: data.isWatched.present ? data.isWatched.value : this.isWatched,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -868,38 +957,43 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
     return (StringBuffer('SeriesTableData(')
           ..write('id: $id, ')
           ..write('tmdbId: $tmdbId, ')
+          ..write('posterUrl: $posterUrl, ')
           ..write('genres: $genres, ')
           ..write('premiereDate: $premiereDate, ')
           ..write('title: $title, ')
           ..write('tmdbRating: $tmdbRating, ')
           ..write('userRating: $userRating, ')
           ..write('isInWatchlist: $isInWatchlist, ')
-          ..write('isWatched: $isWatched')
+          ..write('isWatched: $isWatched, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, tmdbId, genres, premiereDate, title,
-      tmdbRating, userRating, isInWatchlist, isWatched);
+  int get hashCode => Object.hash(id, tmdbId, posterUrl, genres, premiereDate,
+      title, tmdbRating, userRating, isInWatchlist, isWatched, createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is SeriesTableData &&
           other.id == this.id &&
           other.tmdbId == this.tmdbId &&
+          other.posterUrl == this.posterUrl &&
           other.genres == this.genres &&
           other.premiereDate == this.premiereDate &&
           other.title == this.title &&
           other.tmdbRating == this.tmdbRating &&
           other.userRating == this.userRating &&
           other.isInWatchlist == this.isInWatchlist &&
-          other.isWatched == this.isWatched);
+          other.isWatched == this.isWatched &&
+          other.createdAt == this.createdAt);
 }
 
 class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
   final Value<int> id;
   final Value<int> tmdbId;
+  final Value<String?> posterUrl;
   final Value<List<SeriesGenreDto>?> genres;
   final Value<DateTime?> premiereDate;
   final Value<String?> title;
@@ -907,9 +1001,11 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
   final Value<int?> userRating;
   final Value<bool?> isInWatchlist;
   final Value<bool?> isWatched;
+  final Value<DateTime> createdAt;
   const SeriesTableCompanion({
     this.id = const Value.absent(),
     this.tmdbId = const Value.absent(),
+    this.posterUrl = const Value.absent(),
     this.genres = const Value.absent(),
     this.premiereDate = const Value.absent(),
     this.title = const Value.absent(),
@@ -917,10 +1013,12 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     this.userRating = const Value.absent(),
     this.isInWatchlist = const Value.absent(),
     this.isWatched = const Value.absent(),
+    this.createdAt = const Value.absent(),
   });
   SeriesTableCompanion.insert({
     this.id = const Value.absent(),
     required int tmdbId,
+    this.posterUrl = const Value.absent(),
     this.genres = const Value.absent(),
     this.premiereDate = const Value.absent(),
     this.title = const Value.absent(),
@@ -928,10 +1026,12 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     this.userRating = const Value.absent(),
     this.isInWatchlist = const Value.absent(),
     this.isWatched = const Value.absent(),
+    this.createdAt = const Value.absent(),
   }) : tmdbId = Value(tmdbId);
   static Insertable<SeriesTableData> custom({
     Expression<int>? id,
     Expression<int>? tmdbId,
+    Expression<String>? posterUrl,
     Expression<String>? genres,
     Expression<DateTime>? premiereDate,
     Expression<String>? title,
@@ -939,10 +1039,12 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     Expression<int>? userRating,
     Expression<bool>? isInWatchlist,
     Expression<bool>? isWatched,
+    Expression<DateTime>? createdAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (tmdbId != null) 'tmdb_id': tmdbId,
+      if (posterUrl != null) 'poster_url': posterUrl,
       if (genres != null) 'genres': genres,
       if (premiereDate != null) 'premiere_date': premiereDate,
       if (title != null) 'title': title,
@@ -950,22 +1052,26 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
       if (userRating != null) 'user_rating': userRating,
       if (isInWatchlist != null) 'is_in_watchlist': isInWatchlist,
       if (isWatched != null) 'is_watched': isWatched,
+      if (createdAt != null) 'created_at': createdAt,
     });
   }
 
   SeriesTableCompanion copyWith(
       {Value<int>? id,
       Value<int>? tmdbId,
+      Value<String?>? posterUrl,
       Value<List<SeriesGenreDto>?>? genres,
       Value<DateTime?>? premiereDate,
       Value<String?>? title,
       Value<RatingDataDto?>? tmdbRating,
       Value<int?>? userRating,
       Value<bool?>? isInWatchlist,
-      Value<bool?>? isWatched}) {
+      Value<bool?>? isWatched,
+      Value<DateTime>? createdAt}) {
     return SeriesTableCompanion(
       id: id ?? this.id,
       tmdbId: tmdbId ?? this.tmdbId,
+      posterUrl: posterUrl ?? this.posterUrl,
       genres: genres ?? this.genres,
       premiereDate: premiereDate ?? this.premiereDate,
       title: title ?? this.title,
@@ -973,6 +1079,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
       userRating: userRating ?? this.userRating,
       isInWatchlist: isInWatchlist ?? this.isInWatchlist,
       isWatched: isWatched ?? this.isWatched,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -984,6 +1091,9 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     }
     if (tmdbId.present) {
       map['tmdb_id'] = Variable<int>(tmdbId.value);
+    }
+    if (posterUrl.present) {
+      map['poster_url'] = Variable<String>(posterUrl.value);
     }
     if (genres.present) {
       map['genres'] = Variable<String>(
@@ -1008,6 +1118,9 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     if (isWatched.present) {
       map['is_watched'] = Variable<bool>(isWatched.value);
     }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
     return map;
   }
 
@@ -1016,13 +1129,15 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     return (StringBuffer('SeriesTableCompanion(')
           ..write('id: $id, ')
           ..write('tmdbId: $tmdbId, ')
+          ..write('posterUrl: $posterUrl, ')
           ..write('genres: $genres, ')
           ..write('premiereDate: $premiereDate, ')
           ..write('title: $title, ')
           ..write('tmdbRating: $tmdbRating, ')
           ..write('userRating: $userRating, ')
           ..write('isInWatchlist: $isInWatchlist, ')
-          ..write('isWatched: $isWatched')
+          ..write('isWatched: $isWatched, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
@@ -1045,6 +1160,7 @@ typedef $$MoviesTableTableCreateCompanionBuilder = MoviesTableCompanion
     Function({
   Value<int> id,
   required int tmdbId,
+  Value<String?> posterUrl,
   Value<List<MovieGenreDto>?> genres,
   Value<DateTime?> premiereDate,
   Value<String?> title,
@@ -1058,6 +1174,7 @@ typedef $$MoviesTableTableUpdateCompanionBuilder = MoviesTableCompanion
     Function({
   Value<int> id,
   Value<int> tmdbId,
+  Value<String?> posterUrl,
   Value<List<MovieGenreDto>?> genres,
   Value<DateTime?> premiereDate,
   Value<String?> title,
@@ -1082,6 +1199,9 @@ class $$MoviesTableTableFilterComposer
 
   ColumnFilters<int> get tmdbId => $composableBuilder(
       column: $table.tmdbId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get posterUrl => $composableBuilder(
+      column: $table.posterUrl, builder: (column) => ColumnFilters(column));
 
   ColumnWithTypeConverterFilters<List<MovieGenreDto>?, List<MovieGenreDto>,
           String>
@@ -1128,6 +1248,9 @@ class $$MoviesTableTableOrderingComposer
   ColumnOrderings<int> get tmdbId => $composableBuilder(
       column: $table.tmdbId, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get posterUrl => $composableBuilder(
+      column: $table.posterUrl, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get genres => $composableBuilder(
       column: $table.genres, builder: (column) => ColumnOrderings(column));
 
@@ -1169,6 +1292,9 @@ class $$MoviesTableTableAnnotationComposer
 
   GeneratedColumn<int> get tmdbId =>
       $composableBuilder(column: $table.tmdbId, builder: (column) => column);
+
+  GeneratedColumn<String> get posterUrl =>
+      $composableBuilder(column: $table.posterUrl, builder: (column) => column);
 
   GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String> get genres =>
       $composableBuilder(column: $table.genres, builder: (column) => column);
@@ -1224,6 +1350,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<int> id = const Value.absent(),
             Value<int> tmdbId = const Value.absent(),
+            Value<String?> posterUrl = const Value.absent(),
             Value<List<MovieGenreDto>?> genres = const Value.absent(),
             Value<DateTime?> premiereDate = const Value.absent(),
             Value<String?> title = const Value.absent(),
@@ -1236,6 +1363,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
               MoviesTableCompanion(
             id: id,
             tmdbId: tmdbId,
+            posterUrl: posterUrl,
             genres: genres,
             premiereDate: premiereDate,
             title: title,
@@ -1248,6 +1376,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
             required int tmdbId,
+            Value<String?> posterUrl = const Value.absent(),
             Value<List<MovieGenreDto>?> genres = const Value.absent(),
             Value<DateTime?> premiereDate = const Value.absent(),
             Value<String?> title = const Value.absent(),
@@ -1260,6 +1389,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
               MoviesTableCompanion.insert(
             id: id,
             tmdbId: tmdbId,
+            posterUrl: posterUrl,
             genres: genres,
             premiereDate: premiereDate,
             title: title,
@@ -1295,6 +1425,7 @@ typedef $$SeriesTableTableCreateCompanionBuilder = SeriesTableCompanion
     Function({
   Value<int> id,
   required int tmdbId,
+  Value<String?> posterUrl,
   Value<List<SeriesGenreDto>?> genres,
   Value<DateTime?> premiereDate,
   Value<String?> title,
@@ -1302,11 +1433,13 @@ typedef $$SeriesTableTableCreateCompanionBuilder = SeriesTableCompanion
   Value<int?> userRating,
   Value<bool?> isInWatchlist,
   Value<bool?> isWatched,
+  Value<DateTime> createdAt,
 });
 typedef $$SeriesTableTableUpdateCompanionBuilder = SeriesTableCompanion
     Function({
   Value<int> id,
   Value<int> tmdbId,
+  Value<String?> posterUrl,
   Value<List<SeriesGenreDto>?> genres,
   Value<DateTime?> premiereDate,
   Value<String?> title,
@@ -1314,6 +1447,7 @@ typedef $$SeriesTableTableUpdateCompanionBuilder = SeriesTableCompanion
   Value<int?> userRating,
   Value<bool?> isInWatchlist,
   Value<bool?> isWatched,
+  Value<DateTime> createdAt,
 });
 
 class $$SeriesTableTableFilterComposer
@@ -1330,6 +1464,9 @@ class $$SeriesTableTableFilterComposer
 
   ColumnFilters<int> get tmdbId => $composableBuilder(
       column: $table.tmdbId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get posterUrl => $composableBuilder(
+      column: $table.posterUrl, builder: (column) => ColumnFilters(column));
 
   ColumnWithTypeConverterFilters<List<SeriesGenreDto>?, List<SeriesGenreDto>,
           String>
@@ -1356,6 +1493,9 @@ class $$SeriesTableTableFilterComposer
 
   ColumnFilters<bool> get isWatched => $composableBuilder(
       column: $table.isWatched, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
 }
 
 class $$SeriesTableTableOrderingComposer
@@ -1372,6 +1512,9 @@ class $$SeriesTableTableOrderingComposer
 
   ColumnOrderings<int> get tmdbId => $composableBuilder(
       column: $table.tmdbId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get posterUrl => $composableBuilder(
+      column: $table.posterUrl, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get genres => $composableBuilder(
       column: $table.genres, builder: (column) => ColumnOrderings(column));
@@ -1395,6 +1538,9 @@ class $$SeriesTableTableOrderingComposer
 
   ColumnOrderings<bool> get isWatched => $composableBuilder(
       column: $table.isWatched, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
 }
 
 class $$SeriesTableTableAnnotationComposer
@@ -1411,6 +1557,9 @@ class $$SeriesTableTableAnnotationComposer
 
   GeneratedColumn<int> get tmdbId =>
       $composableBuilder(column: $table.tmdbId, builder: (column) => column);
+
+  GeneratedColumn<String> get posterUrl =>
+      $composableBuilder(column: $table.posterUrl, builder: (column) => column);
 
   GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String> get genres =>
       $composableBuilder(column: $table.genres, builder: (column) => column);
@@ -1433,6 +1582,9 @@ class $$SeriesTableTableAnnotationComposer
 
   GeneratedColumn<bool> get isWatched =>
       $composableBuilder(column: $table.isWatched, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
 }
 
 class $$SeriesTableTableTableManager extends RootTableManager<
@@ -1463,6 +1615,7 @@ class $$SeriesTableTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<int> id = const Value.absent(),
             Value<int> tmdbId = const Value.absent(),
+            Value<String?> posterUrl = const Value.absent(),
             Value<List<SeriesGenreDto>?> genres = const Value.absent(),
             Value<DateTime?> premiereDate = const Value.absent(),
             Value<String?> title = const Value.absent(),
@@ -1470,10 +1623,12 @@ class $$SeriesTableTableTableManager extends RootTableManager<
             Value<int?> userRating = const Value.absent(),
             Value<bool?> isInWatchlist = const Value.absent(),
             Value<bool?> isWatched = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
           }) =>
               SeriesTableCompanion(
             id: id,
             tmdbId: tmdbId,
+            posterUrl: posterUrl,
             genres: genres,
             premiereDate: premiereDate,
             title: title,
@@ -1481,10 +1636,12 @@ class $$SeriesTableTableTableManager extends RootTableManager<
             userRating: userRating,
             isInWatchlist: isInWatchlist,
             isWatched: isWatched,
+            createdAt: createdAt,
           ),
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
             required int tmdbId,
+            Value<String?> posterUrl = const Value.absent(),
             Value<List<SeriesGenreDto>?> genres = const Value.absent(),
             Value<DateTime?> premiereDate = const Value.absent(),
             Value<String?> title = const Value.absent(),
@@ -1492,10 +1649,12 @@ class $$SeriesTableTableTableManager extends RootTableManager<
             Value<int?> userRating = const Value.absent(),
             Value<bool?> isInWatchlist = const Value.absent(),
             Value<bool?> isWatched = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
           }) =>
               SeriesTableCompanion.insert(
             id: id,
             tmdbId: tmdbId,
+            posterUrl: posterUrl,
             genres: genres,
             premiereDate: premiereDate,
             title: title,
@@ -1503,6 +1662,7 @@ class $$SeriesTableTableTableManager extends RootTableManager<
             userRating: userRating,
             isInWatchlist: isInWatchlist,
             isWatched: isWatched,
+            createdAt: createdAt,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

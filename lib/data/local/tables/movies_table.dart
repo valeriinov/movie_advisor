@@ -8,6 +8,8 @@ class MoviesTable extends Table {
 
   IntColumn get tmdbId => integer().unique()();
 
+  TextColumn get posterUrl => text().nullable()();
+
   TextColumn get genres => text().map(movieGenresConverter).nullable()();
 
   DateTimeColumn get premiereDate => dateTime().nullable()();
