@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 
+import '../../common/constants/db_constants.dart';
 import '../dto/movie/movie_short_data_dto.dart';
 import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
@@ -14,25 +15,21 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
       : _database = database;
 
   @override
-  Future<MoviesShortResponseDataDto> getWatchedMovies({required int page}) async{
-    const int pageSize = 20;
-    final int offset = (page - 1) * pageSize;
+  Future<MoviesShortResponseDataDto> getWatchedMovies(
+      {required int page}) async {
+    final int offset = _calculateOffset(page);
 
     final moviesQuery = (_database.select(_database.moviesTable)
       ..where((tbl) => tbl.isWatched.equals(true))
-      ..limit(pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset));
 
     final movies = await moviesQuery.get();
 
-    final countExp = _database.moviesTable.id.count();
-    final totalCountQuery = _database.selectOnly(_database.moviesTable)
-      ..addColumns([countExp])
-      ..where(_database.moviesTable.isWatched.equals(true));
-
-    final totalCountResult = await totalCountQuery.map((row) => row.read(countExp)).getSingle();
-    final totalCount = totalCountResult ?? 0;
-
-    final totalPages = (totalCount / pageSize).ceil();
+    final totalPages = await _calculateTotalPages(
+      countExp: _database.moviesTable.id.count(),
+      predicate: _database.moviesTable.isWatched.equals(true),
+      tableState: _database.selectOnly(_database.moviesTable),
+    );
 
     return MoviesShortResponseDataDto(
       page: page,
@@ -42,21 +39,107 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }
 
   @override
-  Future<MoviesShortResponseDataDto> getWatchlistMovies({required int page}) {
-    // TODO: implement getWatchlistMovies
-    throw UnimplementedError();
+  Future<MoviesShortResponseDataDto> getWatchlistMovies(
+      {required int page}) async {
+    final int offset = _calculateOffset(page);
+
+    final moviesQuery = (_database.select(_database.moviesTable)
+      ..where((tbl) => tbl.isInWatchlist.equals(true))
+      ..limit(DbConstants.pageSize, offset: offset));
+
+    final movies = await moviesQuery.get();
+
+    final totalPages = await _calculateTotalPages(
+      countExp: _database.moviesTable.id.count(),
+      predicate: _database.moviesTable.isInWatchlist.equals(true),
+      tableState: _database.selectOnly(_database.moviesTable),
+    );
+
+    return MoviesShortResponseDataDto(
+      page: page,
+      results: movies.map((movie) => movie.toDto()).toList(),
+      totalPages: totalPages,
+    );
   }
 
   @override
-  Future<SeriesShortResponseDataDto> getWatchedSeries({required int page}) {
-    // TODO: implement getWatchedSeries
-    throw UnimplementedError();
+  Future<SeriesShortResponseDataDto> getWatchedSeries(
+      {required int page}) async {
+    final int offset = _calculateOffset(page);
+
+    final seriesQuery = (_database.select(_database.seriesTable)
+      ..where((tbl) => tbl.isWatched.equals(true))
+      ..limit(DbConstants.pageSize, offset: offset));
+
+    final series = await seriesQuery.get();
+
+    final totalPages = await _calculateTotalPages(
+      countExp: _database.seriesTable.id.count(),
+      predicate: _database.seriesTable.isWatched.equals(true),
+      tableState: _database.selectOnly(_database.seriesTable),
+    );
+
+    return SeriesShortResponseDataDto(
+      page: page,
+      results: series.map((series) => series.toDto()).toList(),
+      totalPages: totalPages,
+    );
   }
 
   @override
-  Future<SeriesShortResponseDataDto> getWatchlistSeries({required int page}) {
-    // TODO: implement getWatchlistSeries
-    throw UnimplementedError();
+  Future<SeriesShortResponseDataDto> getWatchlistSeries(
+      {required int page}) async {
+    final int offset = _calculateOffset(page);
+
+    final seriesQuery = (_database.select(_database.seriesTable)
+      ..where((tbl) => tbl.isInWatchlist.equals(true))
+      ..limit(DbConstants.pageSize, offset: offset));
+
+    final series = await seriesQuery.get();
+
+    final totalPages = await _calculateTotalPages(
+      countExp: _database.seriesTable.id.count(),
+      predicate: _database.seriesTable.isInWatchlist.equals(true),
+      tableState: _database.selectOnly(_database.seriesTable),
+    );
+
+    return SeriesShortResponseDataDto(
+      page: page,
+      results: series.map((series) => series.toDto()).toList(),
+      totalPages: totalPages,
+    );
+  }
+
+  int _calculateOffset(int page) {
+    return (page - 1) * DbConstants.pageSize;
+  }
+
+  Future<int> _calculateTotalPages<T extends HasResultSet, R>({
+    required Expression<int> countExp,
+    required Expression<bool> predicate,
+    required JoinedSelectStatement<T, R> tableState,
+  }) async {
+    final totalCount = await _fetchTotalCount(
+      countExp: countExp,
+      predicate: predicate,
+      tableState: tableState,
+    );
+
+    return (totalCount / DbConstants.pageSize).ceil();
+  }
+
+  Future<int> _fetchTotalCount<T extends HasResultSet, R>({
+    required Expression<int> countExp,
+    required Expression<bool> predicate,
+    required JoinedSelectStatement<T, R> tableState,
+  }) async {
+    final totalCountResult = await (tableState
+          ..addColumns([countExp])
+          ..where(predicate))
+        .map((row) => row.read(countExp))
+        .getSingleOrNull();
+
+    return totalCountResult ?? 0;
   }
 
   @override
