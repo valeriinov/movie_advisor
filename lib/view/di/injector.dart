@@ -25,6 +25,7 @@ import '../../data/repositories/details/details_remote_data_source.dart';
 import '../../data/repositories/details/impl_details_repository.dart';
 import '../../data/repositories/home/home_remote_data_source.dart';
 import '../../data/repositories/home/impl_home_repository.dart';
+import '../../data/repositories/media_local_data_source.dart';
 import '../../data/repositories/search/impl_search_repository.dart';
 import '../../data/repositories/search/search_remote_data_source.dart';
 import '../../data/repositories/settings_provider.dart';
@@ -32,9 +33,12 @@ import '../../data/repositories/watch/impl_watch_repository.dart';
 import '../../data/repositories/watch/watch_local_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
+import '../../data/sources/impl_media_local_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
 import '../../data/sources/impl_watch_local_data_source.dart';
+import '../../data/utils/media_remote_local_merger/impl_media_merger.dart';
+import '../../data/utils/media_remote_local_merger/media_merger.dart';
 import '../../domain/repositories/details_repository.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../../domain/repositories/search_repository.dart';
@@ -123,6 +127,11 @@ final seriesMapperPr = Provider<AppSeriesMapper>(
   ),
 );
 
+final mediaMergerPr = Provider<MediaMerger>((_) => ImplMediaMerger());
+final mediaLocalDataSourcePr = Provider<MediaLocalDataSource>(
+  (ref) => ImplMediaLocalDataSource(database: ref.read(localDatabasePr)),
+);
+
 // HOME
 final homeServicePr = Provider<HomeService>((ref) => HomeService(
       mediaApiClient: ref.read(mediaApiClientPr),
@@ -133,6 +142,8 @@ final homeRemoteDataSourcePr = Provider<HomeRemoteDataSource>(
 );
 final homeRepositoryPr = Provider<HomeRepository>((ref) => ImplHomeRepository(
       dataSource: ref.read(homeRemoteDataSourcePr),
+      localDataSource: ref.read(mediaLocalDataSourcePr),
+      mediaMerger: ref.read(mediaMergerPr),
       moviesMapper: ref.read(moviesMapperPr),
       seriesMapper: ref.read(seriesMapperPr),
     ));
@@ -157,6 +168,8 @@ final searchMapperPr = Provider<AppSearchMapper>((_) => AppSearchMapper());
 final searchRepositoryPr =
     Provider<SearchRepository>((ref) => ImplSearchRepository(
           dataSource: ref.read(searchRemoteDataSourcePr),
+          localDataSource: ref.read(mediaLocalDataSourcePr),
+          mediaMerger: ref.read(mediaMergerPr),
           searchMapper: ref.read(searchMapperPr),
           moviesMapper: ref.read(moviesMapperPr),
           seriesMapper: ref.read(seriesMapperPr),
@@ -182,6 +195,8 @@ final detailsMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
 final detailsRepositoryPr =
     Provider<DetailsRepository>((ref) => ImplDetailsRepository(
           dataSource: ref.read(detailsRemoteDataSourcePr),
+          localDataSource: ref.read(mediaLocalDataSourcePr),
+          mediaMerger: ref.read(mediaMergerPr),
           moviesMapper: ref.read(moviesMapperPr),
           seriesMapper: ref.read(seriesMapperPr),
         ));

@@ -6,6 +6,7 @@ import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../dto/series/series_short_response_data_dto.dart';
 import '../local/app_local_database.dart';
+import '../local/utils/ext/media_table_mapper.dart';
 import '../repositories/watch/watch_local_data_source.dart';
 
 class ImplWatchLocalDataSource implements WatchLocalDataSource {
@@ -172,36 +173,40 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   Future<void> addToWatchedMovie(MovieShortDataDto data) {
     final preparedData = data.copyWith(isWatched: true);
 
-    return _database
-        .into(_database.moviesTable)
-        .insertOnConflictUpdate(preparedData.toTableData());
+    return _database.into(_database.moviesTable).insert(
+          preparedData.toTableData(),
+          mode: InsertMode.insertOrReplace,
+        );
   }
 
   @override
   Future<void> addToWatchedSeries(SeriesShortDataDto data) {
     final preparedData = data.copyWith(isWatched: true);
 
-    return _database
-        .into(_database.seriesTable)
-        .insertOnConflictUpdate(preparedData.toTableData());
+    return _database.into(_database.seriesTable).insert(
+          preparedData.toTableData(),
+          mode: InsertMode.insertOrReplace,
+        );
   }
 
   @override
   Future<void> addToWatchlistMovie(MovieShortDataDto data) {
     final preparedData = data.copyWith(isInWatchlist: true);
 
-    return _database
-        .into(_database.moviesTable)
-        .insertOnConflictUpdate(preparedData.toTableData());
+    return _database.into(_database.moviesTable).insert(
+          preparedData.toTableData(),
+          mode: InsertMode.insertOrReplace,
+        );
   }
 
   @override
   Future<void> addToWatchlistSeries(SeriesShortDataDto data) {
     final preparedData = data.copyWith(isInWatchlist: true);
 
-    return _database
-        .into(_database.seriesTable)
-        .insertOnConflictUpdate(preparedData.toTableData());
+    return _database.into(_database.seriesTable).insert(
+          preparedData.toTableData(),
+          mode: InsertMode.insertOrReplace,
+        );
   }
 
   @override
@@ -274,69 +279,5 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
           ..where((tbl) => tbl.tmdbId.equals(id))
           ..where((tbl) => tbl.isWatched.equals(false)))
         .go();
-  }
-}
-
-extension _MoviesMapper on MoviesTableData {
-  MovieShortDataDto toDto() {
-    return MovieShortDataDto(
-      id: id,
-      posterUrl: posterUrl,
-      genres: genres,
-      premiereDate: premiereDate,
-      title: title,
-      tmdbRating: tmdbRating,
-      userRating: userRating,
-      isInWatchlist: isInWatchlist,
-      isWatched: isWatched,
-    );
-  }
-}
-
-extension _SeriesMapper on SeriesTableData {
-  SeriesShortDataDto toDto() {
-    return SeriesShortDataDto(
-      id: id,
-      posterUrl: posterUrl,
-      genres: genres,
-      premiereDate: premiereDate,
-      title: title,
-      tmdbRating: tmdbRating,
-      userRating: userRating,
-      isInWatchlist: isInWatchlist,
-      isWatched: isWatched,
-    );
-  }
-}
-
-extension _MoviesTableMapper on MovieShortDataDto {
-  MoviesTableCompanion toTableData() {
-    return MoviesTableCompanion(
-      tmdbId: Value(id!),
-      posterUrl: Value(posterUrl),
-      genres: Value(genres),
-      premiereDate: Value(premiereDate),
-      title: Value(title),
-      tmdbRating: Value(tmdbRating),
-      userRating: Value(userRating),
-      isInWatchlist: Value(isInWatchlist),
-      isWatched: Value(isWatched),
-    );
-  }
-}
-
-extension _SeriesTableMapper on SeriesShortDataDto {
-  SeriesTableCompanion toTableData() {
-    return SeriesTableCompanion(
-      tmdbId: Value(id!),
-      posterUrl: Value(posterUrl),
-      genres: Value(genres),
-      premiereDate: Value(premiereDate),
-      title: Value(title),
-      tmdbRating: Value(tmdbRating),
-      userRating: Value(userRating),
-      isInWatchlist: Value(isInWatchlist),
-      isWatched: Value(isWatched),
-    );
   }
 }
