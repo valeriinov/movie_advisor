@@ -1,10 +1,14 @@
+import '../../common/utils/ext/int/pagination_handler.dart';
 import '../../domain/entities/movie/movie_data.dart';
 import '../../domain/entities/movie/movie_genre.dart';
 import '../../domain/entities/movie/movie_short_data.dart';
+import '../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../dto/movie/movie_data_dto.dart';
 import '../dto/movie/movie_genre_dto.dart';
 import '../dto/movie/movie_short_data_dto.dart';
+import '../dto/movie/movies_response_data_dto.dart';
+import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/rating/rating_data_dto.dart';
 import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
@@ -19,6 +23,23 @@ final class AppMoviesMapper extends AppMapper {
       required AppCastMapper castMapper})
       : _ratingMapper = ratingMapper,
         _castMapper = castMapper;
+
+  PaginatedMovies mapMoviesShortResponseDataToDomain(
+      MoviesShortResponseDataDto dto) {
+    return PaginatedMovies(
+      items: mapMovieShortDataListDtoToDomain(dto.results ?? []),
+      currentPage: dto.page ?? 1,
+      isLastPage: dto.page.isLastPage(dto.totalPages),
+    );
+  }
+
+  PaginatedMovies mapMoviesResponseDataToDomain(MoviesResponseDataDto dto) {
+    return PaginatedMovies(
+      items: mapMovieDataListDtoToShortDomain(dto.results ?? []),
+      currentPage: dto.page ?? 1,
+      isLastPage: dto.page.isLastPage(dto.totalPages),
+    );
+  }
 
   List<MovieData> mapMovieDataListDtoToDomain(List<MovieDataDto> dtos) {
     return dtos.map(mapMovieDataDtoToDomain).toList();
@@ -67,10 +88,10 @@ final class AppMoviesMapper extends AppMapper {
 
   List<MovieShortData> mapMovieShortDataListDtoToDomain(
       List<MovieShortDataDto> dtos) {
-    return dtos.map(_mapMovieShortDataDtoToDomain).toList();
+    return dtos.map(mapMovieShortDataDtoToDomain).toList();
   }
 
-  MovieShortData _mapMovieShortDataDtoToDomain(MovieShortDataDto dto) {
+  MovieShortData mapMovieShortDataDtoToDomain(MovieShortDataDto dto) {
     return MovieShortData(
       id: dto.id ?? -1,
       posterUrl: dto.posterUrl ?? '',

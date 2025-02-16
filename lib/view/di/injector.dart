@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../data/local/app_local_database.dart';
 import '../../data/mappers/app_cast_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
-import '../../data/mappers/app_paginated_media_mapper.dart';
 import '../../data/mappers/app_rating_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
 import '../../data/mappers/app_series_mapper.dart';
@@ -123,12 +122,6 @@ final seriesMapperPr = Provider<AppSeriesMapper>(
     castMapper: ref.read(castMapperPr),
   ),
 );
-final paginatedMediaMapperPr = Provider<AppPaginatedMediaMapper>(
-  (ref) => AppPaginatedMediaMapper(
-    moviesMapper: ref.read(moviesMapperPr),
-    seriesMapper: ref.read(seriesMapperPr),
-  ),
-);
 
 // HOME
 final homeServicePr = Provider<HomeService>((ref) => HomeService(
@@ -140,7 +133,8 @@ final homeRemoteDataSourcePr = Provider<HomeRemoteDataSource>(
 );
 final homeRepositoryPr = Provider<HomeRepository>((ref) => ImplHomeRepository(
       dataSource: ref.read(homeRemoteDataSourcePr),
-      mapper: ref.read(paginatedMediaMapperPr),
+      moviesMapper: ref.read(moviesMapperPr),
+      seriesMapper: ref.read(seriesMapperPr),
     ));
 final homeMoviesUseCasePr =
     Provider<HomeMoviesUseCase>((ref) => HomeMoviesUseCase(
@@ -164,7 +158,8 @@ final searchRepositoryPr =
     Provider<SearchRepository>((ref) => ImplSearchRepository(
           dataSource: ref.read(searchRemoteDataSourcePr),
           searchMapper: ref.read(searchMapperPr),
-          mediaMapper: ref.read(paginatedMediaMapperPr),
+          moviesMapper: ref.read(moviesMapperPr),
+          seriesMapper: ref.read(seriesMapperPr),
         ));
 final searchMoviesUseCasePr =
     Provider<SearchMoviesUseCase>((ref) => SearchMoviesUseCase(

@@ -1,3 +1,5 @@
+import '../../common/utils/ext/int/pagination_handler.dart';
+import '../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../../domain/entities/series/series_data.dart';
 import '../../domain/entities/series/series_genre.dart';
@@ -5,7 +7,9 @@ import '../../domain/entities/series/series_short_data.dart';
 import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
+import '../dto/series/series_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
+import '../dto/series/series_short_response_data_dto.dart';
 import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
 import 'app_rating_mapper.dart';
@@ -19,6 +23,23 @@ final class AppSeriesMapper extends AppMapper {
       required AppCastMapper castMapper})
       : _ratingMapper = ratingMapper,
         _castMapper = castMapper;
+
+  PaginatedSeries mapSeriesShortResponseDataToDomain(
+      SeriesShortResponseDataDto dto) {
+    return PaginatedSeries(
+      items: mapSeriesShortDataListDtoToDomain(dto.results ?? []),
+      currentPage: dto.page ?? 1,
+      isLastPage: dto.page.isLastPage(dto.totalPages),
+    );
+  }
+
+  PaginatedSeries mapSeriesResponseDataToDomain(SeriesResponseDataDto dto) {
+    return PaginatedSeries(
+      items: mapSeriesDataListDtoToShortDomain(dto.results ?? []),
+      currentPage: dto.page ?? 1,
+      isLastPage: dto.page.isLastPage(dto.totalPages),
+    );
+  }
 
   List<SeriesData> mapSeriesDataListDtoToDomain(List<SeriesDataDto> dtos) {
     return dtos.map(mapSeriesDataDtoToDomain).toList();
@@ -67,10 +88,10 @@ final class AppSeriesMapper extends AppMapper {
 
   List<SeriesShortData> mapSeriesShortDataListDtoToDomain(
       List<SeriesShortDataDto> dtos) {
-    return dtos.map(_mapSeriesShortDataDtoToDomain).toList();
+    return dtos.map(mapSeriesShortDataDtoToDomain).toList();
   }
 
-  SeriesShortData _mapSeriesShortDataDtoToDomain(SeriesShortDataDto dto) {
+  SeriesShortData mapSeriesShortDataDtoToDomain(SeriesShortDataDto dto) {
     return SeriesShortData(
       id: dto.id ?? -1,
       posterUrl: dto.posterUrl ?? '',

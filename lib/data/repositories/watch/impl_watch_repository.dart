@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 
+import '../../../domain/entities/failure.dart';
 import '../../../domain/entities/movie/movie_short_data.dart';
 import '../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../domain/entities/result.dart';
@@ -24,38 +27,72 @@ class ImplWatchRepository implements WatchRepository {
 
   @override
   Stream<Result<MovieShortData>> watchChangesMovies() {
-    // TODO: implement watchChangesMovies
-    throw UnimplementedError();
+    return _dataSource.watchChangesMovies().transform(
+          StreamTransformer.fromHandlers(
+            handleData: (data, sink) => sink
+                .add(Right(_moviesMapper.mapMovieShortDataDtoToDomain(data))),
+            handleError: (error, _, sink) =>
+                sink.add(Left(Failure(message: error.toString()))),
+          ),
+        );
   }
 
   @override
   Stream<Result<SeriesShortData>> watchChangesSeries() {
-    // TODO: implement watchChangesSeries
-    throw UnimplementedError();
+    return _dataSource.watchChangesSeries().transform(
+          StreamTransformer.fromHandlers(
+            handleData: (data, sink) => sink
+                .add(Right(_seriesMapper.mapSeriesShortDataDtoToDomain(data))),
+            handleError: (error, _, sink) =>
+                sink.add(Left(Failure(message: error.toString()))),
+          ),
+        );
   }
 
   @override
-  Future<Result<PaginatedMovies>> getWatchlistMovies({required int page}) async{
-    // TODO: implement getWatchlistMovies
-    throw UnimplementedError();
+  Future<Result<PaginatedMovies>> getWatchlistMovies(
+      {required int page}) async {
+    try {
+      final result = await _dataSource.getWatchlistMovies(page: page);
+
+      return Right(_moviesMapper.mapMoviesShortResponseDataToDomain(result));
+    } catch (e) {
+      return Left(_moviesMapper.getException(e));
+    }
   }
 
   @override
-  Future<Result<PaginatedMovies>> getWatchedMovies({required int page}) async{
-    // TODO: implement getWatchedMovies
-    throw UnimplementedError();
+  Future<Result<PaginatedMovies>> getWatchedMovies({required int page}) async {
+    try {
+      final result = await _dataSource.getWatchedMovies(page: page);
+
+      return Right(_moviesMapper.mapMoviesShortResponseDataToDomain(result));
+    } catch (e) {
+      return Left(_moviesMapper.getException(e));
+    }
   }
 
   @override
-  Future<Result<PaginatedSeries>> getWatchlistSeries({required int page}) async{
-    // TODO: implement getWatchlistSeries
-    throw UnimplementedError();
+  Future<Result<PaginatedSeries>> getWatchlistSeries(
+      {required int page}) async {
+    try {
+      final result = await _dataSource.getWatchlistSeries(page: page);
+
+      return Right(_seriesMapper.mapSeriesShortResponseDataToDomain(result));
+    } catch (e) {
+      return Left(_seriesMapper.getException(e));
+    }
   }
 
   @override
-  Future<Result<PaginatedSeries>> getWatchedSeries({required int page}) async{
-    // TODO: implement getWatchedSeries
-    throw UnimplementedError();
+  Future<Result<PaginatedSeries>> getWatchedSeries({required int page}) async {
+    try {
+      final result = await _dataSource.getWatchedSeries(page: page);
+
+      return Right(_seriesMapper.mapSeriesShortResponseDataToDomain(result));
+    } catch (e) {
+      return Left(_seriesMapper.getException(e));
+    }
   }
 
   @override

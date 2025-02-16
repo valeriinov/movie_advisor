@@ -4,22 +4,26 @@ import '../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../domain/entities/result.dart';
 import '../../../domain/entities/search/search_filter_data.dart';
 import '../../../domain/repositories/search_repository.dart';
-import '../../mappers/app_paginated_media_mapper.dart';
+import '../../mappers/app_movies_mapper.dart';
 import '../../mappers/app_search_mapper.dart';
+import '../../mappers/app_series_mapper.dart';
 import 'search_remote_data_source.dart';
 
 class ImplSearchRepository implements SearchRepository {
   final SearchRemoteDataSource _dataSource;
   final AppSearchMapper _searchMapper;
-  final AppPaginatedMediaMapper _mediaMapper;
+  final AppMoviesMapper _moviesMapper;
+  final AppSeriesMapper _seriesMapper;
 
   ImplSearchRepository(
       {required SearchRemoteDataSource dataSource,
       required AppSearchMapper searchMapper,
-      required AppPaginatedMediaMapper mediaMapper})
+      required AppMoviesMapper moviesMapper,
+      required AppSeriesMapper seriesMapper})
       : _dataSource = dataSource,
         _searchMapper = searchMapper,
-        _mediaMapper = mediaMapper;
+        _moviesMapper = moviesMapper,
+        _seriesMapper = seriesMapper;
 
   @override
   Future<Result<PaginatedMovies>> searchMovies(SearchFilterData filter,
@@ -30,7 +34,7 @@ class ImplSearchRepository implements SearchRepository {
         page: page,
       );
 
-      return Right(_mediaMapper.mapMoviesResponseDataToDomain(result));
+      return Right(_moviesMapper.mapMoviesResponseDataToDomain(result));
     } catch (e) {
       return Left(_searchMapper.getException(e));
     }
@@ -45,7 +49,7 @@ class ImplSearchRepository implements SearchRepository {
         page: page,
       );
 
-      return Right(_mediaMapper.mapSeriesResponseDataToDomain(result));
+      return Right(_seriesMapper.mapSeriesResponseDataToDomain(result));
     } catch (e) {
       return Left(_searchMapper.getException(e));
     }
