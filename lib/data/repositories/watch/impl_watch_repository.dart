@@ -23,6 +23,18 @@ class ImplWatchRepository implements WatchRepository {
         _seriesMapper = seriesMapper;
 
   @override
+  Stream<Result<MovieShortData>> watchChangesMovies() {
+    // TODO: implement watchChangesMovies
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<Result<SeriesShortData>> watchChangesSeries() {
+    // TODO: implement watchChangesSeries
+    throw UnimplementedError();
+  }
+
+  @override
   Future<Result<PaginatedMovies>> getWatchlistMovies({required int page}) async{
     // TODO: implement getWatchlistMovies
     throw UnimplementedError();

@@ -4,6 +4,10 @@ import '../entities/result.dart';
 import '../entities/series/series_short_data.dart';
 
 abstract interface class WatchRepository {
+  Stream<Result<MovieShortData>> watchChangesMovies();
+
+  Stream<Result<SeriesShortData>> watchChangesSeries();
+
   Future<Result<PaginatedMovies>> getWatchlistMovies({required int page});
 
   Future<Result<PaginatedMovies>> getWatchedMovies({required int page});

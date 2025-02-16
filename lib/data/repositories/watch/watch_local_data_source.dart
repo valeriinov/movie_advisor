@@ -4,6 +4,10 @@ import '../../dto/series/series_short_data_dto.dart';
 import '../../dto/series/series_short_response_data_dto.dart';
 
 abstract interface class WatchLocalDataSource {
+  Stream<MovieShortDataDto> watchChangesMovies();
+
+  Stream<SeriesShortDataDto> watchChangesSeries();
+
   Future<MoviesShortResponseDataDto> getWatchlistMovies({required int page});
 
   Future<MoviesShortResponseDataDto> getWatchedMovies({required int page});

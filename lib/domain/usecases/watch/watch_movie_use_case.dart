@@ -11,6 +11,11 @@ class WatchMovieUseCase implements WatchUseCase<MovieShortData> {
       : _repository = repository;
 
   @override
+  Stream<Result<MovieShortData>> watchChanges() {
+    return _repository.watchChangesMovies();
+  }
+
+  @override
   Future<Result<PaginatedMovies>> getWatchlist({required int page}) {
     return _repository.getWatchlistMovies(page: page);
   }

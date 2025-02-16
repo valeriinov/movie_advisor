@@ -3,6 +3,8 @@ import '../../entities/pagination/list_with_pagination_data.dart';
 import '../../entities/result.dart';
 
 abstract interface class WatchUseCase<T extends MediaShortData> {
+  Stream<Result<T>> watchChanges();
+
   Future<Result<ListWithPaginationData<T>>> getWatchlist({required int page});
 
   Future<Result<ListWithPaginationData<T>>> getWatched({required int page});

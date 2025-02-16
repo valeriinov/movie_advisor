@@ -15,6 +15,32 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
       : _database = database;
 
   @override
+  Stream<MovieShortDataDto> watchChangesMovies() {
+    final query = _database.select(_database.moviesTable);
+
+    final stream = query.watch();
+
+    return stream.asyncExpand(_mapMovieRows);
+  }
+
+  Stream<MovieShortDataDto> _mapMovieRows(List<MoviesTableData> movies) {
+    return Stream.fromIterable(movies.map((movie) => movie.toDto()));
+  }
+
+  @override
+  Stream<SeriesShortDataDto> watchChangesSeries() {
+    final query = _database.select(_database.seriesTable);
+
+    final stream = query.watch();
+
+    return stream.asyncExpand(_mapSeriesRows);
+  }
+
+  Stream<SeriesShortDataDto> _mapSeriesRows(List<SeriesTableData> seriesList) {
+    return Stream.fromIterable(seriesList.map((series) => series.toDto()));
+  }
+
+  @override
   Future<MoviesShortResponseDataDto> getWatchedMovies(
       {required int page}) async {
     final int offset = _calculateOffset(page);

@@ -11,6 +11,11 @@ class WatchSeriesUseCase implements WatchUseCase<SeriesShortData> {
       : _repository = repository;
 
   @override
+  Stream<Result<SeriesShortData>> watchChanges() {
+    return _repository.watchChangesSeries();
+  }
+
+  @override
   Future<Result<PaginatedSeries>> getWatchlist({required int page}) {
     return _repository.getWatchlistSeries(page: page);
   }
