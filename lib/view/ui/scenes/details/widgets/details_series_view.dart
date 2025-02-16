@@ -47,8 +47,8 @@ class DetailsSeriesView extends HookConsumerWidget {
               title: LocaleKeys.detailsMovieScreenTitle.tr(),
               isInWatchlist: data.isInWatchlist,
               isWatched: data.isWatched,
-              // TODO: Implement onWatchlistTap
-              onWatchlistTap: isSkeletonVisible ? null : () {},
+              onWatchlistTap:
+                  isSkeletonVisible ? null : () => _onWatchlistTap(vsp),
               // TODO: Implement onWatchedTap
               onWatchedTap: isSkeletonVisible ? null : () {},
             ),
@@ -68,6 +68,16 @@ class DetailsSeriesView extends HookConsumerWidget {
                 : null,
           );
         });
+  }
+
+  void _onWatchlistTap(DetailsSeriesVSP vsp) {
+    final isInWatchlist = vsp.selectRead((s) => s.data.isInWatchlist);
+
+    if (isInWatchlist) {
+      vsp.viewModel.removeFromWatchlist();
+    } else {
+      vsp.viewModel.addToWatchlist();
+    }
   }
 
   void _onTabSelect(DetailsSeriesVSP vsp, int index) {

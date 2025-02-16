@@ -17,7 +17,12 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
   @override
   Stream<MovieShortDataDto> watchChangesMovies() {
-    final query = _database.select(_database.moviesTable);
+    final query = _database.select(_database.moviesTable)
+      ..orderBy([
+        (tbl) =>
+            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.desc)
+      ])
+      ..limit(1);
 
     final stream = query.watch();
 
@@ -30,7 +35,12 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
   @override
   Stream<SeriesShortDataDto> watchChangesSeries() {
-    final query = _database.select(_database.seriesTable);
+    final query = _database.select(_database.seriesTable)
+      ..orderBy([
+        (tbl) =>
+            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.desc)
+      ])
+      ..limit(1);
 
     final stream = query.watch();
 

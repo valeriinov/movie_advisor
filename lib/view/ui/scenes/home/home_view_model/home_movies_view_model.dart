@@ -20,8 +20,17 @@ final class HomeMoviesViewModel extends _HomeViewModel<MovieShortData> {
   @override
   HomeMoviesState build() {
     _homeUseCase = ref.read(homeMoviesUseCasePr);
+    _watchUseCase = ref.read(watchMoviesUseCasePr);
 
-    ref.onDispose(cancelSafeOperations);
+    _watchChangesSubscription = _watchUseCase.watchChanges().listen((event) {
+      print('[CHANGED] $event'); // TODO: Implement changes handling
+      });
+
+    ref.onDispose((){
+      cancelSafeOperations();
+      _watchChangesSubscription.cancel();
+    });
+
     scheduleCall(loadInitialData);
 
     return HomeMoviesState();

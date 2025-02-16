@@ -22,7 +22,7 @@ final class DetailsMovieViewModel
   @override
   DetailsMovieState build(arg) {
     _detailsUseCase = ref.read(detailsMovieUseCasePr);
-    _watchUseCase = ref.read(watchMovieUseCasePr);
+    _watchUseCase = ref.read(watchMoviesUseCasePr);
 
     ref.onDispose(cancelSafeOperations);
     scheduleCall(loadInitialData);

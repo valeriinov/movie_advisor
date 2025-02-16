@@ -48,6 +48,7 @@ extension MoviesTableMapper on MovieShortDataDto {
       userRating: Value(userRating),
       isInWatchlist: Value(isInWatchlist),
       isWatched: Value(isWatched),
+      updatedAt: Value(DateTime.now()),
     );
   }
 }
@@ -64,6 +65,7 @@ extension SeriesTableMapper on SeriesShortDataDto {
       userRating: Value(userRating),
       isInWatchlist: Value(isInWatchlist),
       isWatched: Value(isWatched),
+      updatedAt: Value(DateTime.now()),
     );
   }
 }

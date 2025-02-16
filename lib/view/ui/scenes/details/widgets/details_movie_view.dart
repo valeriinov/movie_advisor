@@ -47,7 +47,6 @@ class DetailsMovieView extends HookConsumerWidget {
               title: LocaleKeys.detailsMovieScreenTitle.tr(),
               isInWatchlist: data.isInWatchlist,
               isWatched: data.isWatched,
-              // TODO: Implement onWatchlistTap
               onWatchlistTap:
                   isSkeletonVisible ? null : () => _onWatchlistTap(vsp),
               // TODO: Implement onWatchedTap

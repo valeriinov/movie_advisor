@@ -25,6 +25,8 @@ class MoviesTable extends Table {
   BoolColumn get isWatched => boolean().nullable()();
 
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+
+  DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
 }
 
 final TypeConverter<List<MovieGenreDto>, String> movieGenresConverter =

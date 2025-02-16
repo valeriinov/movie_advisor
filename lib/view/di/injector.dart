@@ -219,7 +219,7 @@ final watchRepositoryPr =
           moviesMapper: ref.read(moviesMapperPr),
           seriesMapper: ref.read(seriesMapperPr),
         ));
-final watchMovieUseCasePr =
+final watchMoviesUseCasePr =
     Provider<WatchMovieUseCase>((ref) => WatchMovieUseCase(
           repository: ref.read(watchRepositoryPr),
         ));
