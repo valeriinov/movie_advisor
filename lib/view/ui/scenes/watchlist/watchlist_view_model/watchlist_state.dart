@@ -1,6 +1,8 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../../../../domain/entities/mappable_entity.dart';
+import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
+import '../../../base/media_load_info.dart';
 import '../../../base/view_model/base_state.dart';
 
 part 'watchlist_state.mapper.dart';
@@ -10,13 +12,37 @@ part 'watchlist_state.mapper.dart';
 /// Represents the state of a view model, extending [BaseState] with a [WatchlistStatus].
 /// Manages the current status for reactive updates.
 @mappableEntity
-final class WatchlistState extends BaseState<WatchlistStatus> with WatchlistStateMappable {
+final class WatchlistState<T> extends BaseState<WatchlistStatus>
+    with WatchlistStateMappable<T> {
+  final MediaLoadInfo<T> watchlist;
+
   @override
   final WatchlistStatus status;
 
-  const WatchlistState({
+  WatchlistState({
+    MediaLoadInfo<T>? watchlist,
     this.status = const WatchlistBaseStatus(),
-  });
+  }) : watchlist = watchlist ?? MediaLoadInfo<T>();
+
+  WatchlistState<T> copyWithUpdWatchlist({
+    WatchlistStatus? status,
+    bool? isInitialized,
+    bool isNextPageLoading = false,
+    bool isNewPageLoaded = false,
+    ListWithPaginationData<T>? data,
+  }) {
+    final updatedData = watchlist.copyWithHandledData(
+      isInitialized: isInitialized,
+      isNextPageLoading: isNextPageLoading,
+      isNewPageLoaded: isNewPageLoaded,
+      data: data,
+    );
+
+    return copyWith(
+      status: status ?? this.status,
+      watchlist: updatedData,
+    );
+  }
 }
 
 /// {@category StateManagement}
@@ -24,8 +50,8 @@ final class WatchlistState extends BaseState<WatchlistStatus> with WatchlistStat
 /// A sealed class representing the possible statuses of a [WatchlistState].
 /// Provides properties for loading, initialization, and error handling.
 sealed class WatchlistStatus extends BaseStatus {
-const WatchlistStatus(
-{super.isLoading, super.errorMessage, super.isInitialized});
+  const WatchlistStatus(
+      {super.isLoading, super.errorMessage, super.isInitialized});
 }
 
 /// {@category StateManagement}
@@ -34,9 +60,9 @@ const WatchlistStatus(
 /// Used before it has completed its setup.
 @mappableEntity
 final class WatchlistBaseStatus extends WatchlistStatus
-with WatchlistBaseStatusMappable {
-const WatchlistBaseStatus(
-{super.isLoading, super.errorMessage, super.isInitialized});
+    with WatchlistBaseStatusMappable {
+  const WatchlistBaseStatus(
+      {super.isLoading, super.errorMessage, super.isInitialized});
 }
 
 /// {@category StateManagement}
@@ -45,7 +71,7 @@ const WatchlistBaseStatus(
 /// Indicates that it is ready for interaction with [isInitialized] set to `true`.
 @mappableEntity
 final class WatchlistBaseInitStatus extends WatchlistStatus
-with WatchlistBaseInitStatusMappable {
-const WatchlistBaseInitStatus(
-{super.isLoading, super.errorMessage, super.isInitialized = true});
+    with WatchlistBaseInitStatusMappable {
+  const WatchlistBaseInitStatus(
+      {super.isLoading, super.errorMessage, super.isInitialized = true});
 }
