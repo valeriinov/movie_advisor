@@ -129,7 +129,10 @@ final seriesMapperPr = Provider<AppSeriesMapper>(
 
 final mediaMergerPr = Provider<MediaMerger>((_) => ImplMediaMerger());
 final mediaLocalDataSourcePr = Provider<MediaLocalDataSource>(
-  (ref) => ImplMediaLocalDataSource(database: ref.read(localDatabasePr)),
+  (ref) => ImplMediaLocalDataSource(
+    database: ref.read(localDatabasePr),
+    mediaMerger: ref.read(mediaMergerPr),
+  ),
 );
 
 // HOME
@@ -143,7 +146,6 @@ final homeRemoteDataSourcePr = Provider<HomeRemoteDataSource>(
 final homeRepositoryPr = Provider<HomeRepository>((ref) => ImplHomeRepository(
       dataSource: ref.read(homeRemoteDataSourcePr),
       localDataSource: ref.read(mediaLocalDataSourcePr),
-      mediaMerger: ref.read(mediaMergerPr),
       moviesMapper: ref.read(moviesMapperPr),
       seriesMapper: ref.read(seriesMapperPr),
     ));
@@ -169,7 +171,6 @@ final searchRepositoryPr =
     Provider<SearchRepository>((ref) => ImplSearchRepository(
           dataSource: ref.read(searchRemoteDataSourcePr),
           localDataSource: ref.read(mediaLocalDataSourcePr),
-          mediaMerger: ref.read(mediaMergerPr),
           searchMapper: ref.read(searchMapperPr),
           moviesMapper: ref.read(moviesMapperPr),
           seriesMapper: ref.read(seriesMapperPr),
@@ -196,7 +197,6 @@ final detailsRepositoryPr =
     Provider<DetailsRepository>((ref) => ImplDetailsRepository(
           dataSource: ref.read(detailsRemoteDataSourcePr),
           localDataSource: ref.read(mediaLocalDataSourcePr),
-          mediaMerger: ref.read(mediaMergerPr),
           moviesMapper: ref.read(moviesMapperPr),
           seriesMapper: ref.read(seriesMapperPr),
         ));
