@@ -9,7 +9,7 @@ import '../../../resources/app_images.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/base_theme/durations/base_durations_ext.dart';
 import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/empty_search_container.dart';
+import '../../../widgets/empty_list_container.dart';
 import '../../../widgets/next_page_loader.dart';
 import '../../../widgets/sliver_fill_loader.dart';
 import '../../../widgets/sliver_refresh_indicator.dart';
@@ -69,7 +69,7 @@ class SearchScreenContent extends StatelessWidget {
         SliverRefreshIndicator(
           onRefresh: onRefresh,
         ),
-        EmptySearchContainer(
+        EmptyListContainer(
           imagePath: AppImages.emptyResultImage,
           title: LocaleKeys.emptySearchTitle.tr(),
           subtitle: LocaleKeys.emptySearchSubtitle.tr(),

@@ -221,73 +221,43 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
   @override
   Future<void> removeFromWatchedMovie(int id) async {
-    final deletedRows = await _deleteMovieIfNotInWatchlist(id);
-
-    if (deletedRows > 0) return;
-
     await (_database.update(_database.moviesTable)
           ..where((tbl) => tbl.tmdbId.equals(id)))
-        .write(MoviesTableCompanion(isWatched: Value(false)));
-  }
-
-  Future<int> _deleteMovieIfNotInWatchlist(int id) async {
-    return await (_database.delete(_database.moviesTable)
-          ..where((tbl) => tbl.tmdbId.equals(id))
-          ..where((tbl) => tbl.isInWatchlist.equals(false)))
-        .go();
+        .write(MoviesTableCompanion(
+      userRating: Value(0),
+      isWatched: Value(false),
+      updatedAt: Value(DateTime.now()),
+    ));
   }
 
   @override
   Future<void> removeFromWatchedSeries(int id) async {
-    final deletedRows = await _deleteSeriesIfNotInWatchlist(id);
-
-    if (deletedRows > 0) return;
-
     await (_database.update(_database.seriesTable)
           ..where((tbl) => tbl.tmdbId.equals(id)))
-        .write(SeriesTableCompanion(isWatched: Value(false)));
-  }
-
-  Future<int> _deleteSeriesIfNotInWatchlist(int id) async {
-    return await (_database.delete(_database.seriesTable)
-          ..where((tbl) => tbl.tmdbId.equals(id))
-          ..where((tbl) => tbl.isInWatchlist.equals(false)))
-        .go();
+        .write(SeriesTableCompanion(
+      userRating: Value(0),
+      isWatched: Value(false),
+      updatedAt: Value(DateTime.now()),
+    ));
   }
 
   @override
   Future<void> removeFromWatchlistMovie(int id) async {
-    final deletedRows = await _deleteMovieIfNotWatched(id);
-
-    if (deletedRows > 0) return;
-
     await (_database.update(_database.moviesTable)
           ..where((tbl) => tbl.tmdbId.equals(id)))
-        .write(MoviesTableCompanion(isInWatchlist: Value(false)));
-  }
-
-  Future<int> _deleteMovieIfNotWatched(int id) async {
-    return await (_database.delete(_database.moviesTable)
-          ..where((tbl) => tbl.tmdbId.equals(id))
-          ..where((tbl) => tbl.isWatched.equals(false)))
-        .go();
+        .write(MoviesTableCompanion(
+      isInWatchlist: Value(false),
+      updatedAt: Value(DateTime.now()),
+    ));
   }
 
   @override
   Future<void> removeFromWatchlistSeries(int id) async {
-    final deletedRows = await _deleteSeriesIfNotWatched(id);
-
-    if (deletedRows > 0) return;
-
     await (_database.update(_database.seriesTable)
           ..where((tbl) => tbl.tmdbId.equals(id)))
-        .write(SeriesTableCompanion(isInWatchlist: Value(false)));
-  }
-
-  Future<int> _deleteSeriesIfNotWatched(int id) async {
-    return await (_database.delete(_database.seriesTable)
-          ..where((tbl) => tbl.tmdbId.equals(id))
-          ..where((tbl) => tbl.isWatched.equals(false)))
-        .go();
+        .write(SeriesTableCompanion(
+      isInWatchlist: Value(false),
+      updatedAt: Value(DateTime.now()),
+    ));
   }
 }
