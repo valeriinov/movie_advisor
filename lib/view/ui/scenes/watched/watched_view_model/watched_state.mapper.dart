@@ -13,81 +13,103 @@ class WatchedStateMapper extends ClassMapperBase<WatchedState> {
   static WatchedStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = WatchedStateMapper._());
+      MediaLoadInfoMapper.ensureInitialized();
     }
     return _instance!;
   }
 
   @override
   final String id = 'WatchedState';
+  @override
+  Function get typeFactory => <T>(f) => f<WatchedState<T>>();
 
+  static MediaLoadInfo<dynamic> _$watched(WatchedState v) => v.watched;
+  static dynamic _arg$watched<T>(f) => f<MediaLoadInfo<T>>();
+  static const Field<WatchedState, MediaLoadInfo<dynamic>> _f$watched =
+      Field('watched', _$watched, opt: true, arg: _arg$watched);
   static WatchedStatus _$status(WatchedState v) => v.status;
   static const Field<WatchedState, WatchedStatus> _f$status =
       Field('status', _$status, opt: true, def: const WatchedBaseStatus());
 
   @override
   final MappableFields<WatchedState> fields = const {
+    #watched: _f$watched,
     #status: _f$status,
   };
 
-  static WatchedState _instantiate(DecodingData data) {
-    return WatchedState(status: data.dec(_f$status));
+  static WatchedState<T> _instantiate<T>(DecodingData data) {
+    return WatchedState(
+        watched: data.dec(_f$watched), status: data.dec(_f$status));
   }
 
   @override
   final Function instantiate = _instantiate;
 }
 
-mixin WatchedStateMappable {
-  WatchedStateCopyWith<WatchedState, WatchedState, WatchedState> get copyWith =>
-      _WatchedStateCopyWithImpl(this as WatchedState, $identity, $identity);
+mixin WatchedStateMappable<T> {
+  WatchedStateCopyWith<WatchedState<T>, WatchedState<T>, WatchedState<T>, T>
+      get copyWith => _WatchedStateCopyWithImpl(
+          this as WatchedState<T>, $identity, $identity);
   @override
   String toString() {
     return WatchedStateMapper.ensureInitialized()
-        .stringifyValue(this as WatchedState);
+        .stringifyValue(this as WatchedState<T>);
   }
 
   @override
   bool operator ==(Object other) {
     return WatchedStateMapper.ensureInitialized()
-        .equalsValue(this as WatchedState, other);
+        .equalsValue(this as WatchedState<T>, other);
   }
 
   @override
   int get hashCode {
     return WatchedStateMapper.ensureInitialized()
-        .hashValue(this as WatchedState);
+        .hashValue(this as WatchedState<T>);
   }
 }
 
-extension WatchedStateValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, WatchedState, $Out> {
-  WatchedStateCopyWith<$R, WatchedState, $Out> get $asWatchedState =>
+extension WatchedStateValueCopy<$R, $Out, T>
+    on ObjectCopyWith<$R, WatchedState<T>, $Out> {
+  WatchedStateCopyWith<$R, WatchedState<T>, $Out, T> get $asWatchedState =>
       $base.as((v, t, t2) => _WatchedStateCopyWithImpl(v, t, t2));
 }
 
-abstract class WatchedStateCopyWith<$R, $In extends WatchedState, $Out>
+abstract class WatchedStateCopyWith<$R, $In extends WatchedState<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({WatchedStatus? status});
-  WatchedStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+      get watched;
+  $R call({MediaLoadInfo<T>? watched, WatchedStatus? status});
+  WatchedStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
 }
 
-class _WatchedStateCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, WatchedState, $Out>
-    implements WatchedStateCopyWith<$R, WatchedState, $Out> {
+class _WatchedStateCopyWithImpl<$R, $Out, T>
+    extends ClassCopyWithBase<$R, WatchedState<T>, $Out>
+    implements WatchedStateCopyWith<$R, WatchedState<T>, $Out, T> {
   _WatchedStateCopyWithImpl(super.value, super.then, super.then2);
 
   @override
   late final ClassMapperBase<WatchedState> $mapper =
       WatchedStateMapper.ensureInitialized();
   @override
-  $R call({WatchedStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+      get watched => ($value.watched as MediaLoadInfo<T>)
+          .copyWith
+          .$chain((v) => call(watched: v));
   @override
-  WatchedState $make(CopyWithData data) =>
-      WatchedState(status: data.get(#status, or: $value.status));
+  $R call({Object? watched = $none, WatchedStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (watched != $none) #watched: watched,
+        if (status != null) #status: status
+      }));
+  @override
+  WatchedState<T> $make(CopyWithData data) => WatchedState(
+      watched: data.get(#watched, or: $value.watched),
+      status: data.get(#status, or: $value.status));
 
   @override
-  WatchedStateCopyWith<$R2, WatchedState, $Out2> $chain<$R2, $Out2>(
+  WatchedStateCopyWith<$R2, WatchedState<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
       _WatchedStateCopyWithImpl($value, $cast, t);
 }
