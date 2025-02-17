@@ -26,7 +26,7 @@ final class HomeSeriesViewModel extends _HomeViewModel<SeriesShortData> {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen((event) {
-      print('[CHANGED] $event'); // TODO: Implement changes handling
+      print('[CHANGED HOME] $event'); // TODO: Implement changes handling
     });
 
     ref.onDispose(() {

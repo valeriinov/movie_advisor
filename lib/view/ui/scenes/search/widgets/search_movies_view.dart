@@ -4,10 +4,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../../di/injector.dart';
+import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/filter_view_model/filter_state.dart';
 import '../../../base/filter_view_model/filter_view_model.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../navigation/routes/details_route.dart';
 import '../search_view_model/search_view_model.dart';
 import 'search_screen_content.dart';
 
@@ -49,6 +51,7 @@ class SearchMoviesView extends HookConsumerWidget {
       isLoading: isLoading,
       filter: filter,
       results: results,
+      onItemSelect: (id) => _goToDetails(context, id),
     );
   }
 
@@ -109,5 +112,9 @@ class SearchMoviesView extends HookConsumerWidget {
     if (next.isUpdate(prev, (s) => s?.filter)) {
       vsp.viewModel.loadByFilter(next.filter);
     }
+  }
+
+  void _goToDetails(BuildContext context, int id) {
+    DetailsRoute(id: id, contentMode: ContentMode.movies).push(context);
   }
 }

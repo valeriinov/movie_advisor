@@ -1,12 +1,16 @@
+import 'dart:async';
+
 import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/search/search_filter_data.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../../../domain/usecases/search/search_use_case.dart';
+import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/content_mode_view_model/content_mode_state.dart';
@@ -31,9 +35,11 @@ final searchFilterViewModelPr =
   FilterViewModel.new,
 );
 
-abstract base class _SearchViewModel<T>
+abstract base class _SearchViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<SearchState<T>> with SafeOperationsMixin {
   late final SearchUseCase<T> _searchUseCase;
+  late final WatchUseCase<T> _watchUseCase;
+  late final StreamSubscription<Result<T>> _watchChangesSubscription;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _searchOperation;
 
   Future<void> loadByFilter(SearchFilterData filter, {bool showLoader = true}) {
