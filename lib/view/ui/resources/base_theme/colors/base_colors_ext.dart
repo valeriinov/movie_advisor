@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 part 'base_colors.dart';
-
 part 'base_colors_ext.tailor.dart';
 
 abstract final class BaseColorsFactory {
@@ -80,6 +78,15 @@ abstract final class BaseColorsFactory {
         tabUnderSelect: _BaseColors.tabUnderSelect,
         infoCardRating: _BaseColors.infoCardRating,
         backdropRatingBg: _BaseColors.backdropRatingBg,
+        botSheetBg: _BaseColors.botSheetBg,
+        botSheetFg: _BaseColors.botSheetFg,
+        botSheetIcon: _BaseColors.botSheetIcon,
+        botSheetBarrier: _BaseColors.botSheetBarrier,
+        sliderVal: _BaseColors.sliderVal,
+        sliderTrackFg: _BaseColors.sliderTrackFg,
+        sliderTrackBg: _BaseColors.sliderTrackBg,
+        sliderThumbFill: _BaseColors.sliderThumbFill,
+        removeRateBtn: _BaseColors.removeRateBtn,
       );
 }
 
@@ -390,6 +397,42 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color backdropRatingBg;
 
+  /// Bottom sheet background color.
+  @override
+  final Color botSheetBg;
+
+  /// Bottom sheet foreground color.
+  @override
+  final Color botSheetFg;
+
+  /// Bottom sheet icon color.
+  @override
+  final Color botSheetIcon;
+
+  /// Slider track foreground color.
+  @override
+  final Color botSheetBarrier;
+
+  /// Slider track foreground color.
+  @override
+  final Color sliderVal;
+
+  /// Slider track foreground color.
+  @override
+  final Color sliderTrackFg;
+
+  /// Slider track background color.
+  @override
+  final Color sliderTrackBg;
+
+  /// Slider thumb fill color.
+  @override
+  final Color sliderThumbFill;
+
+  /// Remove rate button color.
+  @override
+  final Color removeRateBtn;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -467,5 +510,14 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.tabUnderSelect,
     required this.infoCardRating,
     required this.backdropRatingBg,
+    required this.botSheetBg,
+    required this.botSheetFg,
+    required this.botSheetIcon,
+    required this.botSheetBarrier,
+    required this.sliderVal,
+    required this.sliderTrackFg,
+    required this.sliderTrackBg,
+    required this.sliderThumbFill,
+    required this.removeRateBtn,
   });
 }

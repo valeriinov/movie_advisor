@@ -50,5 +50,9 @@
   "detailsMovieScreenTitle": "Деталі фільму",
   "detailsSeriesScreenTitle": "Деталі серіалу",
   "detailsAboutTab": "Про",
-  "detailsCastTab": "Актори"
+  "detailsCastTab": "Актори",
+  "rateMovieTitle": "Вже дивилися цей фільм?\nОцініть його.",
+  "rateSeriesTitle": "Вже дивилися цей серіал?\nОцініть його.",
+  "rateButton": "ОЦІНИТИ",
+  "removeFromWatchedButton": "Видалити з переглянутих"
 }

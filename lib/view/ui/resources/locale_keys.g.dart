@@ -55,5 +55,9 @@ abstract class  LocaleKeys {
   static const detailsSeriesScreenTitle = 'detailsSeriesScreenTitle';
   static const detailsAboutTab = 'detailsAboutTab';
   static const detailsCastTab = 'detailsCastTab';
+  static const rateMovieTitle = 'rateMovieTitle';
+  static const rateSeriesTitle = 'rateSeriesTitle';
+  static const rateButton = 'rateButton';
+  static const removeFromWatchedButton = 'removeFromWatchedButton';
 
 }

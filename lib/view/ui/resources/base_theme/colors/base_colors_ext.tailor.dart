@@ -81,6 +81,15 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get tabUnderSelect;
   Color get infoCardRating;
   Color get backdropRatingBg;
+  Color get botSheetBg;
+  Color get botSheetFg;
+  Color get botSheetIcon;
+  Color get botSheetBarrier;
+  Color get sliderVal;
+  Color get sliderTrackFg;
+  Color get sliderTrackBg;
+  Color get sliderThumbFill;
+  Color get removeRateBtn;
 
   @override
   BaseColors copyWith({
@@ -156,6 +165,15 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? tabUnderSelect,
     Color? infoCardRating,
     Color? backdropRatingBg,
+    Color? botSheetBg,
+    Color? botSheetFg,
+    Color? botSheetIcon,
+    Color? botSheetBarrier,
+    Color? sliderVal,
+    Color? sliderTrackFg,
+    Color? sliderTrackBg,
+    Color? sliderThumbFill,
+    Color? removeRateBtn,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -232,6 +250,15 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       tabUnderSelect: tabUnderSelect ?? this.tabUnderSelect,
       infoCardRating: infoCardRating ?? this.infoCardRating,
       backdropRatingBg: backdropRatingBg ?? this.backdropRatingBg,
+      botSheetBg: botSheetBg ?? this.botSheetBg,
+      botSheetFg: botSheetFg ?? this.botSheetFg,
+      botSheetIcon: botSheetIcon ?? this.botSheetIcon,
+      botSheetBarrier: botSheetBarrier ?? this.botSheetBarrier,
+      sliderVal: sliderVal ?? this.sliderVal,
+      sliderTrackFg: sliderTrackFg ?? this.sliderTrackFg,
+      sliderTrackBg: sliderTrackBg ?? this.sliderTrackBg,
+      sliderThumbFill: sliderThumbFill ?? this.sliderThumbFill,
+      removeRateBtn: removeRateBtn ?? this.removeRateBtn,
     );
   }
 
@@ -340,6 +367,15 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       infoCardRating: Color.lerp(infoCardRating, other.infoCardRating, t)!,
       backdropRatingBg:
           Color.lerp(backdropRatingBg, other.backdropRatingBg, t)!,
+      botSheetBg: Color.lerp(botSheetBg, other.botSheetBg, t)!,
+      botSheetFg: Color.lerp(botSheetFg, other.botSheetFg, t)!,
+      botSheetIcon: Color.lerp(botSheetIcon, other.botSheetIcon, t)!,
+      botSheetBarrier: Color.lerp(botSheetBarrier, other.botSheetBarrier, t)!,
+      sliderVal: Color.lerp(sliderVal, other.sliderVal, t)!,
+      sliderTrackFg: Color.lerp(sliderTrackFg, other.sliderTrackFg, t)!,
+      sliderTrackBg: Color.lerp(sliderTrackBg, other.sliderTrackBg, t)!,
+      sliderThumbFill: Color.lerp(sliderThumbFill, other.sliderThumbFill, t)!,
+      removeRateBtn: Color.lerp(removeRateBtn, other.removeRateBtn, t)!,
     );
   }
 
@@ -463,7 +499,16 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur) &&
             const DeepCollectionEquality().equals(tabUnderSelect, other.tabUnderSelect) &&
             const DeepCollectionEquality().equals(infoCardRating, other.infoCardRating) &&
-            const DeepCollectionEquality().equals(backdropRatingBg, other.backdropRatingBg));
+            const DeepCollectionEquality().equals(backdropRatingBg, other.backdropRatingBg) &&
+            const DeepCollectionEquality().equals(botSheetBg, other.botSheetBg) &&
+            const DeepCollectionEquality().equals(botSheetFg, other.botSheetFg) &&
+            const DeepCollectionEquality().equals(botSheetIcon, other.botSheetIcon) &&
+            const DeepCollectionEquality().equals(botSheetBarrier, other.botSheetBarrier) &&
+            const DeepCollectionEquality().equals(sliderVal, other.sliderVal) &&
+            const DeepCollectionEquality().equals(sliderTrackFg, other.sliderTrackFg) &&
+            const DeepCollectionEquality().equals(sliderTrackBg, other.sliderTrackBg) &&
+            const DeepCollectionEquality().equals(sliderThumbFill, other.sliderThumbFill) &&
+            const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn));
   }
 
   @override
@@ -542,6 +587,15 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(tabUnderSelect),
       const DeepCollectionEquality().hash(infoCardRating),
       const DeepCollectionEquality().hash(backdropRatingBg),
+      const DeepCollectionEquality().hash(botSheetBg),
+      const DeepCollectionEquality().hash(botSheetFg),
+      const DeepCollectionEquality().hash(botSheetIcon),
+      const DeepCollectionEquality().hash(botSheetBarrier),
+      const DeepCollectionEquality().hash(sliderVal),
+      const DeepCollectionEquality().hash(sliderTrackFg),
+      const DeepCollectionEquality().hash(sliderTrackBg),
+      const DeepCollectionEquality().hash(sliderThumbFill),
+      const DeepCollectionEquality().hash(removeRateBtn),
     ]);
   }
 }

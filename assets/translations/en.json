@@ -50,5 +50,9 @@
   "detailsMovieScreenTitle": "Movie Details",
   "detailsSeriesScreenTitle": "Series Details",
   "detailsAboutTab": "About",
-  "detailsCastTab": "Cast"
+  "detailsCastTab": "Cast",
+  "rateMovieTitle": "Have you seen this movie?\nRate it.",
+  "rateSeriesTitle": "Have you seen this series?\nRate it.",
+  "rateButton": "RATE",
+  "removeFromWatchedButton": "Remove from watched"
 }

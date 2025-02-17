@@ -57,4 +57,34 @@ abstract final class _BaseComponentsStyles {
         fontSize: 14,
         color: color,
       );
+
+  // Bottom sheet
+  static const double botSheetBorderRadius = 28.0;
+  static const double botSheetContPadding = 16.0;
+  static const double botSheetMinHeight = 250;
+
+  static const ShapeBorder botSheetShape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(botSheetBorderRadius),
+      topRight: Radius.circular(botSheetBorderRadius),
+    ),
+  );
+
+  static TextStyle botSheetTitleTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w400,
+        fontSize: 18,
+        color: color,
+      );
+
+  // Slider
+  static const double sliderThumbRadius = 16.0;
+  static const double sliderTrackHeight = 12.0;
+
+  static TextStyle sliderValTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w400,
+        fontSize: 32,
+        color: color,
+      );
 }

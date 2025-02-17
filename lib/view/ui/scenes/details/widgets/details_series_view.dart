@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/blurred_bottom_sheet.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../details_view_model/details_view_model.dart';
@@ -13,6 +14,7 @@ import '../model/details_tab.dart';
 import 'details_app_bar.dart';
 import 'details_content_skeleton.dart';
 import 'details_screen_content.dart';
+import 'rate_bottom_sheet.dart';
 
 class DetailsSeriesView extends HookConsumerWidget {
   final int id;
@@ -49,8 +51,8 @@ class DetailsSeriesView extends HookConsumerWidget {
               isWatched: data.isWatched,
               onWatchlistTap:
                   isSkeletonVisible ? null : () => _onWatchlistTap(vsp),
-              // TODO: Implement onWatchedTap
-              onWatchedTap: isSkeletonVisible ? null : () {},
+              onWatchedTap:
+                  isSkeletonVisible ? null : () => _onWatchedTap(context, vsp),
             ),
             body: isSkeletonVisible
                 ? DetailsContentSkeleton()
@@ -84,5 +86,21 @@ class DetailsSeriesView extends HookConsumerWidget {
     final tab = DetailsTab.fromIndex(index);
 
     vsp.viewModel.updateCurrentTab(tab);
+  }
+
+  void _onWatchedTap(BuildContext context, DetailsSeriesVSP vsp) {
+    final isWatched = vsp.selectRead((s) => s.data.isWatched);
+    final initRate = vsp.selectRead((s) => s.data.userRating);
+
+    showBlurredBottomSheet(
+      isDismissible: false,
+      context: context,
+      child: RateBottomSheet(
+        title: LocaleKeys.rateSeriesTitle.tr(),
+        initRate: initRate,
+        onRate: (rate) => vsp.viewModel.addToWatched(rate),
+        removeRate: isWatched ? () => vsp.viewModel.removeFromWatched() : null,
+      ),
+    );
   }
 }
