@@ -5,12 +5,12 @@ import '../resources/base_theme/components/base_components_styles_ext.dart';
 import '../resources/base_theme/dimens/base_dimens_ext.dart';
 import 'image_with_loader.dart';
 
-class EmptySearchContainer extends StatelessWidget {
+class EmptyListContainer extends StatelessWidget {
   final String imagePath;
   final String title;
   final String subtitle;
 
-  const EmptySearchContainer({
+  const EmptyListContainer({
     super.key,
     required this.imagePath,
     required this.title,

@@ -54,5 +54,15 @@
   "rateMovieTitle": "Вже дивилися цей фільм?\nОцініть його.",
   "rateSeriesTitle": "Вже дивилися цей серіал?\nОцініть його.",
   "rateButton": "ОЦІНИТИ",
-  "removeFromWatchedButton": "Видалити з переглянутих"
+  "removeFromWatchedButton": "Видалити з переглянутих",
+  "watchlistMoviesScreenTitle": "Обрані фільми",
+  "watchlistSeriesScreenTitle": "Обрані серіали",
+  "emptyWatchlistMoviesTitle": "Тут ще немає фільмів!",
+  "emptyWatchlistMoviesSubtitle": "Фільми, які ви додасте до обраних, з'являться тут.",
+  "emptyWatchlistSeriesTitle": "Тут ще немає серіалів!",
+  "emptyWatchlistSeriesSubtitle": "Серіали, які ви додасте до обраних, з'являться тут.",
+  "emptyWatchedMoviesTitle": "Тут ще немає фільмів!",
+  "emptyWatchedMoviesSubtitle": "Фільми, які ви додасте до переглянутих, з'являться тут.",
+  "emptyWatchedSeriesTitle": "Тут ще немає серіалів!",
+  "emptyWatchedSeriesSubtitle": "Серіали, які ви додасте до переглянутих, з'являться тут."
 }

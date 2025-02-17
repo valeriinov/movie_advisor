@@ -7,7 +7,7 @@ import '../../app_local_database.dart';
 extension MoviesMapper on MoviesTableData {
   MovieShortDataDto toDto() {
     return MovieShortDataDto(
-      id: id,
+      id: tmdbId,
       posterUrl: posterUrl,
       genres: genres,
       premiereDate: premiereDate,
@@ -23,7 +23,7 @@ extension MoviesMapper on MoviesTableData {
 extension SeriesMapper on SeriesTableData {
   SeriesShortDataDto toDto() {
     return SeriesShortDataDto(
-      id: id,
+      id: tmdbId,
       posterUrl: posterUrl,
       genres: genres,
       premiereDate: premiereDate,

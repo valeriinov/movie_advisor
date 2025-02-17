@@ -59,5 +59,15 @@ abstract class  LocaleKeys {
   static const rateSeriesTitle = 'rateSeriesTitle';
   static const rateButton = 'rateButton';
   static const removeFromWatchedButton = 'removeFromWatchedButton';
+  static const watchlistMoviesScreenTitle = 'watchlistMoviesScreenTitle';
+  static const watchlistSeriesScreenTitle = 'watchlistSeriesScreenTitle';
+  static const emptyWatchlistMoviesTitle = 'emptyWatchlistMoviesTitle';
+  static const emptyWatchlistMoviesSubtitle = 'emptyWatchlistMoviesSubtitle';
+  static const emptyWatchlistSeriesTitle = 'emptyWatchlistSeriesTitle';
+  static const emptyWatchlistSeriesSubtitle = 'emptyWatchlistSeriesSubtitle';
+  static const emptyWatchedMoviesTitle = 'emptyWatchedMoviesTitle';
+  static const emptyWatchedMoviesSubtitle = 'emptyWatchedMoviesSubtitle';
+  static const emptyWatchedSeriesTitle = 'emptyWatchedSeriesTitle';
+  static const emptyWatchedSeriesSubtitle = 'emptyWatchedSeriesSubtitle';
 
 }

@@ -3,7 +3,7 @@ part of 'watchlist_view_model.dart';
 typedef WatchlistSeriesState = WatchlistState<SeriesShortData>;
 
 typedef WatchlistSeriesVSP
-    = ASP<WatchlistMoviesViewModel, WatchlistMoviesState>;
+    = ASP<WatchlistSeriesViewModel, WatchlistSeriesState>;
 
 /// {@category StateManagement}
 ///

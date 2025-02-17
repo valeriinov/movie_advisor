@@ -54,5 +54,15 @@
   "rateMovieTitle": "Have you seen this movie?\nRate it.",
   "rateSeriesTitle": "Have you seen this series?\nRate it.",
   "rateButton": "RATE",
-  "removeFromWatchedButton": "Remove from watched"
+  "removeFromWatchedButton": "Remove from watched",
+  "watchlistMoviesScreenTitle": "Watchlist Movies",
+  "watchlistSeriesScreenTitle": "Watchlist Series",
+  "emptyWatchlistMoviesTitle": "There are no movies here yet!",
+  "emptyWatchlistMoviesSubtitle": "Movies you add to watchlist will appear here.",
+  "emptyWatchlistSeriesTitle": "There are no series here yet!",
+  "emptyWatchlistSeriesSubtitle": "Series you add to watchlist will appear here.",
+  "emptyWatchedMoviesTitle": "There are no movies here yet!",
+  "emptyWatchedMoviesSubtitle": "Movies you mark as watched will appear here.",
+  "emptyWatchedSeriesTitle": "There are no series here yet!",
+  "emptyWatchedSeriesSubtitle": "Series you mark as watched will appear here."
 }

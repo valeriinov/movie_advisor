@@ -40,7 +40,7 @@ abstract base class _WatchlistViewModel<T extends MediaShortData>
 
     final watchlistData = state.watchlist.mediaData;
 
-    final resultsItems = watchlistData.items.updateItemInList(item);
+    final resultsItems = watchlistData.items.handleWatchlistItem(item);
 
     state = state.copyWith(
       watchlist: state.watchlist
