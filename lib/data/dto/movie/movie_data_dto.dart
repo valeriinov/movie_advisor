@@ -1,6 +1,8 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
-import '../../../common/utils/date_mapper_hook.dart';
+import '../../utils/date_mapper_hook.dart';
+import '../../utils/genres_hook.dart';
+import '../cast/credits_data_dto.dart';
 import 'movie_genre_dto.dart';
 
 part 'movie_data_dto.mapper.dart';
@@ -11,6 +13,8 @@ class MovieDataDto with MovieDataDtoMappable {
   final String? backdropPath;
   @MappableField(key: 'genre_ids')
   final List<MovieGenreDto>? genres;
+  @MappableField(key: 'genres', hook: MovieGenresHook())
+  final List<MovieGenreDto>? genresAlt;
   final String? originalLanguage;
   final String? originalTitle;
   final String? overview;
@@ -21,6 +25,7 @@ class MovieDataDto with MovieDataDtoMappable {
   final String? title;
   final double? voteAverage;
   final int? voteCount;
+  final CreditsDataDto? credits;
   final int? userRating;
   final bool? isInWatchlist;
   final bool? isWatched;
@@ -29,6 +34,7 @@ class MovieDataDto with MovieDataDtoMappable {
     this.id,
     this.backdropPath,
     this.genres,
+    this.genresAlt,
     this.originalLanguage,
     this.originalTitle,
     this.overview,
@@ -38,6 +44,7 @@ class MovieDataDto with MovieDataDtoMappable {
     this.title,
     this.voteAverage,
     this.voteCount,
+    this.credits,
     this.userRating,
     this.isInWatchlist,
     this.isWatched,

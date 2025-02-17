@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/ext/media_short_list_manager.dart';
+import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../../../domain/usecases/home/home_use_case.dart';
+import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/content_mode_view_model/content_mode_state.dart';
@@ -13,7 +18,6 @@ import '../../../base/content_mode_view_model/content_mode_view_model.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
-
 import '../model/media_tab.dart';
 import 'home_state.dart';
 
@@ -26,10 +30,32 @@ final homeContModeViewModelPr = AutoDisposeNotifierProvider.family<
   ContentModeViewModel.new,
 );
 
-abstract base class _HomeViewModel<T> extends AutoDisposeNotifier<HomeState<T>>
+abstract base class _HomeViewModel<T extends MediaShortData>
+    extends AutoDisposeNotifier<HomeState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final HomeUseCase<T> _homeUseCase;
+  late final WatchUseCase<T> _watchUseCase;
+  late final StreamSubscription<Result<T>> _watchChangesSubscription;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _loadTabOperation;
+
+  void _handleWatchChanges(Result<T> event) {
+    final item = event.fold((_) => null, (value) => value);
+
+    if (item == null) return;
+
+    final sugData = state.sugCont.mediaData;
+    final tabData = state.tabCont.mediaData;
+
+    final sugItems = sugData.items.updateItemInList(item);
+    final tabItems = tabData.items.updateItemInList(item);
+
+    state = state.copyWith(
+      sugCont:
+          state.sugCont.copyWith(mediaData: sugData.copyWith(items: sugItems)),
+      tabCont:
+          state.tabCont.copyWith(mediaData: tabData.copyWith(items: tabItems)),
+    );
+  }
 
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(HomeBaseStatus(isLoading: showLoader));

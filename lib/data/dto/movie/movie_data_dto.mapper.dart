@@ -14,6 +14,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MovieDataDtoMapper._());
       MovieGenreDtoMapper.ensureInitialized();
+      CreditsDataDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -29,6 +30,10 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static List<MovieGenreDto>? _$genres(MovieDataDto v) => v.genres;
   static const Field<MovieDataDto, List<MovieGenreDto>> _f$genres =
       Field('genres', _$genres, key: 'genre_ids', opt: true);
+  static List<MovieGenreDto>? _$genresAlt(MovieDataDto v) => v.genresAlt;
+  static const Field<MovieDataDto, List<MovieGenreDto>> _f$genresAlt = Field(
+      'genresAlt', _$genresAlt,
+      key: 'genres', opt: true, hook: MovieGenresHook());
   static String? _$originalLanguage(MovieDataDto v) => v.originalLanguage;
   static const Field<MovieDataDto, String> _f$originalLanguage = Field(
       'originalLanguage', _$originalLanguage,
@@ -58,6 +63,9 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static int? _$voteCount(MovieDataDto v) => v.voteCount;
   static const Field<MovieDataDto, int> _f$voteCount =
       Field('voteCount', _$voteCount, key: 'vote_count', opt: true);
+  static CreditsDataDto? _$credits(MovieDataDto v) => v.credits;
+  static const Field<MovieDataDto, CreditsDataDto> _f$credits =
+      Field('credits', _$credits, opt: true);
   static int? _$userRating(MovieDataDto v) => v.userRating;
   static const Field<MovieDataDto, int> _f$userRating =
       Field('userRating', _$userRating, key: 'user_rating', opt: true);
@@ -74,6 +82,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
     #id: _f$id,
     #backdropPath: _f$backdropPath,
     #genres: _f$genres,
+    #genresAlt: _f$genresAlt,
     #originalLanguage: _f$originalLanguage,
     #originalTitle: _f$originalTitle,
     #overview: _f$overview,
@@ -83,6 +92,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
     #title: _f$title,
     #voteAverage: _f$voteAverage,
     #voteCount: _f$voteCount,
+    #credits: _f$credits,
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
@@ -95,6 +105,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
         id: data.dec(_f$id),
         backdropPath: data.dec(_f$backdropPath),
         genres: data.dec(_f$genres),
+        genresAlt: data.dec(_f$genresAlt),
         originalLanguage: data.dec(_f$originalLanguage),
         originalTitle: data.dec(_f$originalTitle),
         overview: data.dec(_f$overview),
@@ -104,6 +115,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
         title: data.dec(_f$title),
         voteAverage: data.dec(_f$voteAverage),
         voteCount: data.dec(_f$voteCount),
+        credits: data.dec(_f$credits),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
         isWatched: data.dec(_f$isWatched));
@@ -163,10 +175,14 @@ abstract class MovieDataDtoCopyWith<$R, $In extends MovieDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, MovieGenreDto,
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genres;
+  ListCopyWith<$R, MovieGenreDto,
+      ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genresAlt;
+  CreditsDataDtoCopyWith<$R, CreditsDataDto, CreditsDataDto>? get credits;
   $R call(
       {int? id,
       String? backdropPath,
       List<MovieGenreDto>? genres,
+      List<MovieGenreDto>? genresAlt,
       String? originalLanguage,
       String? originalTitle,
       String? overview,
@@ -176,6 +192,7 @@ abstract class MovieDataDtoCopyWith<$R, $In extends MovieDataDto, $Out>
       String? title,
       double? voteAverage,
       int? voteCount,
+      CreditsDataDto? credits,
       int? userRating,
       bool? isInWatchlist,
       bool? isWatched});
@@ -198,10 +215,23 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
               (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v))
           : null;
   @override
+  ListCopyWith<$R, MovieGenreDto,
+          ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>?
+      get genresAlt => $value.genresAlt != null
+          ? ListCopyWith(
+              $value.genresAlt!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(genresAlt: v))
+          : null;
+  @override
+  CreditsDataDtoCopyWith<$R, CreditsDataDto, CreditsDataDto>? get credits =>
+      $value.credits?.copyWith.$chain((v) => call(credits: v));
+  @override
   $R call(
           {Object? id = $none,
           Object? backdropPath = $none,
           Object? genres = $none,
+          Object? genresAlt = $none,
           Object? originalLanguage = $none,
           Object? originalTitle = $none,
           Object? overview = $none,
@@ -211,6 +241,7 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
           Object? title = $none,
           Object? voteAverage = $none,
           Object? voteCount = $none,
+          Object? credits = $none,
           Object? userRating = $none,
           Object? isInWatchlist = $none,
           Object? isWatched = $none}) =>
@@ -218,6 +249,7 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
         if (id != $none) #id: id,
         if (backdropPath != $none) #backdropPath: backdropPath,
         if (genres != $none) #genres: genres,
+        if (genresAlt != $none) #genresAlt: genresAlt,
         if (originalLanguage != $none) #originalLanguage: originalLanguage,
         if (originalTitle != $none) #originalTitle: originalTitle,
         if (overview != $none) #overview: overview,
@@ -227,6 +259,7 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
         if (title != $none) #title: title,
         if (voteAverage != $none) #voteAverage: voteAverage,
         if (voteCount != $none) #voteCount: voteCount,
+        if (credits != $none) #credits: credits,
         if (userRating != $none) #userRating: userRating,
         if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
         if (isWatched != $none) #isWatched: isWatched
@@ -236,6 +269,7 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       backdropPath: data.get(#backdropPath, or: $value.backdropPath),
       genres: data.get(#genres, or: $value.genres),
+      genresAlt: data.get(#genresAlt, or: $value.genresAlt),
       originalLanguage:
           data.get(#originalLanguage, or: $value.originalLanguage),
       originalTitle: data.get(#originalTitle, or: $value.originalTitle),
@@ -246,6 +280,7 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
       title: data.get(#title, or: $value.title),
       voteAverage: data.get(#voteAverage, or: $value.voteAverage),
       voteCount: data.get(#voteCount, or: $value.voteCount),
+      credits: data.get(#credits, or: $value.credits),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
       isWatched: data.get(#isWatched, or: $value.isWatched));

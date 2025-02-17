@@ -46,5 +46,13 @@
   "topRatedTab": "Top rated",
   "searchScreenTitle": "Search",
   "emptySearchTitle": "Sorry, No Results Found For Your Search :(",
-  "emptySearchSubtitle": "Try searching by title, genre, year, or other filters."
+  "emptySearchSubtitle": "Try searching by title, genre, year, or other filters.",
+  "detailsMovieScreenTitle": "Movie Details",
+  "detailsSeriesScreenTitle": "Series Details",
+  "detailsAboutTab": "About",
+  "detailsCastTab": "Cast",
+  "rateMovieTitle": "Have you seen this movie?\nRate it.",
+  "rateSeriesTitle": "Have you seen this series?\nRate it.",
+  "rateButton": "RATE",
+  "removeFromWatchedButton": "Remove from watched"
 }

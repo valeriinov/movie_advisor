@@ -4,33 +4,44 @@ import '../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../domain/entities/result.dart';
 import '../../../domain/entities/search/search_filter_data.dart';
 import '../../../domain/repositories/search_repository.dart';
-import '../../mappers/app_paginated_media_mapper.dart';
+import '../../mappers/app_movies_mapper.dart';
 import '../../mappers/app_search_mapper.dart';
+import '../../mappers/app_series_mapper.dart';
+import '../media_local_data_source.dart';
 import 'search_remote_data_source.dart';
 
 class ImplSearchRepository implements SearchRepository {
   final SearchRemoteDataSource _dataSource;
+  final MediaLocalDataSource _localDataSource;
   final AppSearchMapper _searchMapper;
-  final AppPaginatedMediaMapper _mediaMapper;
+  final AppMoviesMapper _moviesMapper;
+  final AppSeriesMapper _seriesMapper;
 
   ImplSearchRepository(
       {required SearchRemoteDataSource dataSource,
+      required MediaLocalDataSource localDataSource,
       required AppSearchMapper searchMapper,
-      required AppPaginatedMediaMapper mediaMapper})
+      required AppMoviesMapper moviesMapper,
+      required AppSeriesMapper seriesMapper})
       : _dataSource = dataSource,
+        _localDataSource = localDataSource,
         _searchMapper = searchMapper,
-        _mediaMapper = mediaMapper;
+        _moviesMapper = moviesMapper,
+        _seriesMapper = seriesMapper;
 
   @override
   Future<Result<PaginatedMovies>> searchMovies(SearchFilterData filter,
       {required int page}) async {
     try {
-      final result = await _dataSource.searchMovies(
+      final response = await _dataSource.searchMovies(
         _searchMapper.mapSearchFilterDataToDto(filter),
         page: page,
       );
 
-      return Right(_mediaMapper.mapMoviesResponseDataToDomain(result));
+      final result =
+          await _localDataSource.addLocalDataToMoviesResponse(response);
+
+      return Right(_moviesMapper.mapMoviesResponseDataToDomain(result));
     } catch (e) {
       return Left(_searchMapper.getException(e));
     }
@@ -40,12 +51,15 @@ class ImplSearchRepository implements SearchRepository {
   Future<Result<PaginatedSeries>> searchSeries(SearchFilterData filter,
       {required int page}) async {
     try {
-      final result = await _dataSource.searchSeries(
+      final response = await _dataSource.searchSeries(
         _searchMapper.mapSearchFilterDataToDto(filter),
         page: page,
       );
 
-      return Right(_mediaMapper.mapSeriesResponseDataToDomain(result));
+      final result =
+          await _localDataSource.addLocalDataToSeriesResponse(response);
+
+      return Right(_seriesMapper.mapSeriesResponseDataToDomain(result));
     } catch (e) {
       return Left(_searchMapper.getException(e));
     }

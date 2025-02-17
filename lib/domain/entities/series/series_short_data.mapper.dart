@@ -30,7 +30,7 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
   static List<SeriesGenre> _$genres(SeriesShortData v) => v.genres;
   static const Field<SeriesShortData, List<SeriesGenre>> _f$genres =
       Field('genres', _$genres);
-  static DateTime _$premiereDate(SeriesShortData v) => v.premiereDate;
+  static DateTime? _$premiereDate(SeriesShortData v) => v.premiereDate;
   static const Field<SeriesShortData, DateTime> _f$premiereDate =
       Field('premiereDate', _$premiereDate);
   static String _$title(SeriesShortData v) => v.title;
@@ -149,7 +149,7 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
           {int? id,
           String? posterUrl,
           List<SeriesGenre>? genres,
-          DateTime? premiereDate,
+          Object? premiereDate = $none,
           String? title,
           TMDBRating? tmdbRating,
           int? userRating,
@@ -159,7 +159,7 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
         if (id != null) #id: id,
         if (posterUrl != null) #posterUrl: posterUrl,
         if (genres != null) #genres: genres,
-        if (premiereDate != null) #premiereDate: premiereDate,
+        if (premiereDate != $none) #premiereDate: premiereDate,
         if (title != null) #title: title,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
         if (userRating != null) #userRating: userRating,

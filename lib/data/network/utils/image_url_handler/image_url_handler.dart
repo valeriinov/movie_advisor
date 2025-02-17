@@ -2,7 +2,11 @@ import '../../../dto/movie/movie_data_dto.dart';
 import '../../../dto/series/series_data_dto.dart';
 
 abstract interface class ImageUrlHandler {
-  List<MovieDataDto> handleMoviesImages(List<MovieDataDto> movies);
+  MovieDataDto handleMovieImages(MovieDataDto movie);
 
-  List<SeriesDataDto> handleSeriesImages(List<SeriesDataDto> series);
+  SeriesDataDto handleSeriesImages(SeriesDataDto series);
+
+  List<MovieDataDto> handleMoviesListImages(List<MovieDataDto> movies);
+
+  List<SeriesDataDto> handleSeriesListImages(List<SeriesDataDto> series);
 }

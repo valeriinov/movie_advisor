@@ -21,8 +21,15 @@ final class SearchSeriesViewModel extends _SearchViewModel<SeriesShortData> {
   @override
   SearchSeriesState build() {
     _searchUseCase = ref.read(searchSeriesUseCasePr);
+    _watchUseCase = ref.read(watchSeriesUseCasePr);
 
-    ref.onDispose(cancelSafeOperations);
+    _watchChangesSubscription =
+        _watchUseCase.watchChanges().listen(_handleWatchChanges);
+
+    ref.onDispose(() {
+      cancelSafeOperations();
+      _watchChangesSubscription.cancel();
+    });
 
     return SearchSeriesState();
   }

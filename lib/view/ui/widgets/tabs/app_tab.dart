@@ -20,24 +20,27 @@ class AppTab extends StatelessWidget {
     final colors = context.baseColors;
     final style = isSelected ? context.labelLarge : context.bodyMedium;
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
-      child: Padding(
-        padding: 12.insHor(),
-        child: IntrinsicWidth(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(title, style: style).paddingOnly(top: 7),
-              if (isSelected)
-                Divider(
-                  thickness: 4,
-                  height: 4,
-                  color: colors.tabUnderSelect,
-                )
-            ],
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: 12.insHor(),
+          child: IntrinsicWidth(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title, style: style).paddingOnly(top: 7),
+                if (isSelected)
+                  Divider(
+                    thickness: 4,
+                    height: 4,
+                    color: colors.tabUnderSelect,
+                  )
+              ],
+            ),
           ),
         ),
       ),

@@ -21,7 +21,7 @@ sealed class Rating{
 final class TMDBRating extends Rating with TMDBRatingMappable {
   const TMDBRating({
     super.popularity,
-    required super.voteAverage,
-    required super.voteCount,
+    super.voteAverage = 0,
+    super.voteCount = 0,
   });
 }

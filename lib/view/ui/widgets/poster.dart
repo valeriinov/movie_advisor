@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_utils/flutter_utils.dart';
 
 import '../resources/base_theme/components/base_components_styles_ext.dart';
 import 'image_with_placeholder.dart';
@@ -7,12 +8,14 @@ class Poster extends StatelessWidget {
   final String url;
   final Size? size;
   final VoidCallback? onTap;
+  final bool transparentPlaceholder;
 
   const Poster({
     super.key,
     required this.url,
     this.size,
     this.onTap,
+    this.transparentPlaceholder = false,
   });
 
   @override
@@ -30,6 +33,9 @@ class Poster extends StatelessWidget {
             width: imgSize.width,
             height: imgSize.height,
             child: ImageWithPlaceholder(
+              placeholderProvider: transparentPlaceholder
+                  ? MemoryImage(PlaceholderImageGenerator.generateImageBytes())
+                  : null,
               imagePath: url,
               cacheWidth: imgSize.width.toInt(),
               cacheHeight: imgSize.height.toInt(),

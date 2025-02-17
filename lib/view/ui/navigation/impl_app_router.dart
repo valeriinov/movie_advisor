@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'app_router.dart';
 import 'app_routes.dart';
 import '../scenes/nav_menu/nav_menu_screen.dart';
+import 'routes/details_route.dart';
 import 'utils/extended_shell_branch.dart';
 import 'routes/home_routes.dart';
 import 'routes/watchlist_routes.dart';
@@ -59,6 +60,7 @@ final class ImplAppRouter implements AppRouter {
               ),
             ],
           ),
+          $detailsRoute,
         ]);
   }
 }

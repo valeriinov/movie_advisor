@@ -15,6 +15,7 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
       MapperContainer.globals.use(_instance = MovieDataMapper._());
       MediaDataMapper.ensureInitialized();
       TMDBRatingMapper.ensureInitialized();
+      CastDataMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -23,45 +24,50 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
   final String id = 'MovieData';
 
   static int _$id(MovieData v) => v.id;
-  static const Field<MovieData, int> _f$id = Field('id', _$id);
+  static const Field<MovieData, int> _f$id =
+      Field('id', _$id, opt: true, def: -1);
   static String _$backdropUrl(MovieData v) => v.backdropUrl;
   static const Field<MovieData, String> _f$backdropUrl =
-      Field('backdropUrl', _$backdropUrl);
+      Field('backdropUrl', _$backdropUrl, opt: true, def: '');
   static String _$posterUrl(MovieData v) => v.posterUrl;
   static const Field<MovieData, String> _f$posterUrl =
-      Field('posterUrl', _$posterUrl);
+      Field('posterUrl', _$posterUrl, opt: true, def: '');
   static List<MovieGenre> _$genres(MovieData v) => v.genres;
   static const Field<MovieData, List<MovieGenre>> _f$genres =
-      Field('genres', _$genres);
+      Field('genres', _$genres, opt: true, def: const []);
   static List<String> _$originCountry(MovieData v) => v.originCountry;
   static const Field<MovieData, List<String>> _f$originCountry =
-      Field('originCountry', _$originCountry);
+      Field('originCountry', _$originCountry, opt: true, def: const []);
   static String _$originalLanguage(MovieData v) => v.originalLanguage;
   static const Field<MovieData, String> _f$originalLanguage =
-      Field('originalLanguage', _$originalLanguage);
+      Field('originalLanguage', _$originalLanguage, opt: true, def: '');
   static String _$originalTitle(MovieData v) => v.originalTitle;
   static const Field<MovieData, String> _f$originalTitle =
-      Field('originalTitle', _$originalTitle);
-  static DateTime _$premiereDate(MovieData v) => v.premiereDate;
+      Field('originalTitle', _$originalTitle, opt: true, def: '');
+  static DateTime? _$premiereDate(MovieData v) => v.premiereDate;
   static const Field<MovieData, DateTime> _f$premiereDate =
-      Field('premiereDate', _$premiereDate);
+      Field('premiereDate', _$premiereDate, opt: true);
   static String _$title(MovieData v) => v.title;
-  static const Field<MovieData, String> _f$title = Field('title', _$title);
+  static const Field<MovieData, String> _f$title =
+      Field('title', _$title, opt: true, def: '');
   static String _$overview(MovieData v) => v.overview;
   static const Field<MovieData, String> _f$overview =
-      Field('overview', _$overview);
+      Field('overview', _$overview, opt: true, def: '');
   static TMDBRating _$tmdbRating(MovieData v) => v.tmdbRating;
   static const Field<MovieData, TMDBRating> _f$tmdbRating =
-      Field('tmdbRating', _$tmdbRating);
+      Field('tmdbRating', _$tmdbRating, opt: true, def: const TMDBRating());
+  static List<CastData> _$cast(MovieData v) => v.cast;
+  static const Field<MovieData, List<CastData>> _f$cast =
+      Field('cast', _$cast, opt: true, def: const []);
   static int _$userRating(MovieData v) => v.userRating;
   static const Field<MovieData, int> _f$userRating =
-      Field('userRating', _$userRating);
+      Field('userRating', _$userRating, opt: true, def: 0);
   static bool _$isInWatchlist(MovieData v) => v.isInWatchlist;
   static const Field<MovieData, bool> _f$isInWatchlist =
-      Field('isInWatchlist', _$isInWatchlist);
+      Field('isInWatchlist', _$isInWatchlist, opt: true, def: false);
   static bool _$isWatched(MovieData v) => v.isWatched;
   static const Field<MovieData, bool> _f$isWatched =
-      Field('isWatched', _$isWatched);
+      Field('isWatched', _$isWatched, opt: true, def: false);
 
   @override
   final MappableFields<MovieData> fields = const {
@@ -76,6 +82,7 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
     #title: _f$title,
     #overview: _f$overview,
     #tmdbRating: _f$tmdbRating,
+    #cast: _f$cast,
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
@@ -94,6 +101,7 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
         title: data.dec(_f$title),
         overview: data.dec(_f$overview),
         tmdbRating: data.dec(_f$tmdbRating),
+        cast: data.dec(_f$cast),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
         isWatched: data.dec(_f$isWatched));
@@ -139,6 +147,8 @@ abstract class MovieDataCopyWith<$R, $In extends MovieData, $Out>
   @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
   @override
+  ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>> get cast;
+  @override
   $R call(
       {int? id,
       String? backdropUrl,
@@ -151,6 +161,7 @@ abstract class MovieDataCopyWith<$R, $In extends MovieData, $Out>
       String? title,
       String? overview,
       TMDBRating? tmdbRating,
+      List<CastData>? cast,
       int? userRating,
       bool? isInWatchlist,
       bool? isWatched});
@@ -179,6 +190,10 @@ class _MovieDataCopyWithImpl<$R, $Out>
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating =>
       $value.tmdbRating.copyWith.$chain((v) => call(tmdbRating: v));
   @override
+  ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>>
+      get cast => ListCopyWith(
+          $value.cast, (v, t) => v.copyWith.$chain(t), (v) => call(cast: v));
+  @override
   $R call(
           {int? id,
           String? backdropUrl,
@@ -187,10 +202,11 @@ class _MovieDataCopyWithImpl<$R, $Out>
           List<String>? originCountry,
           String? originalLanguage,
           String? originalTitle,
-          DateTime? premiereDate,
+          Object? premiereDate = $none,
           String? title,
           String? overview,
           TMDBRating? tmdbRating,
+          List<CastData>? cast,
           int? userRating,
           bool? isInWatchlist,
           bool? isWatched}) =>
@@ -202,10 +218,11 @@ class _MovieDataCopyWithImpl<$R, $Out>
         if (originCountry != null) #originCountry: originCountry,
         if (originalLanguage != null) #originalLanguage: originalLanguage,
         if (originalTitle != null) #originalTitle: originalTitle,
-        if (premiereDate != null) #premiereDate: premiereDate,
+        if (premiereDate != $none) #premiereDate: premiereDate,
         if (title != null) #title: title,
         if (overview != null) #overview: overview,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
+        if (cast != null) #cast: cast,
         if (userRating != null) #userRating: userRating,
         if (isInWatchlist != null) #isInWatchlist: isInWatchlist,
         if (isWatched != null) #isWatched: isWatched
@@ -224,6 +241,7 @@ class _MovieDataCopyWithImpl<$R, $Out>
       title: data.get(#title, or: $value.title),
       overview: data.get(#overview, or: $value.overview),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
+      cast: data.get(#cast, or: $value.cast),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
       isWatched: data.get(#isWatched, or: $value.isWatched));

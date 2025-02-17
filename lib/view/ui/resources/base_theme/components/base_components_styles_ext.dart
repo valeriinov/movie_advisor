@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../app_fonts.dart';
@@ -36,10 +35,26 @@ abstract final class BaseComponentsStylesFactory {
         colors.infoCardRating,
       ),
       emptyListTitleTextStyle: _BaseComponentsStyles.emptyListTitleTextStyle(
-        colors.emptyListTitle,
+        colors.textThemePrim,
       ),
-      emptyListSubtitleTextStyle: _BaseComponentsStyles.emptyListSubtitleTextStyle(
-        colors.emptyListSubtitle,
+      emptyListSubtitleTextStyle:
+          _BaseComponentsStyles.emptyListSubtitleTextStyle(
+        colors.textThemeSec,
+      ),
+      detailsPropsTextStyle: _BaseComponentsStyles.detailsPropsTextStyle(
+        colors.textThemeSec,
+      ),
+      botSheetBorderRadius: _BaseComponentsStyles.botSheetBorderRadius,
+      botSheetContPadding: _BaseComponentsStyles.botSheetContPadding,
+      botSheetMinHeight: _BaseComponentsStyles.botSheetMinHeight,
+      botSheetShape: _BaseComponentsStyles.botSheetShape,
+      botSheetTitleTextStyle: _BaseComponentsStyles.botSheetTitleTextStyle(
+        colors.botSheetFg,
+      ),
+      sliderThumbRadius: _BaseComponentsStyles.sliderThumbRadius,
+      sliderTrackHeight: _BaseComponentsStyles.sliderTrackHeight,
+      sliderValTextStyle: _BaseComponentsStyles.sliderValTextStyle(
+        colors.sliderVal,
       ),
     );
   }
@@ -100,6 +115,41 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final TextStyle emptyListSubtitleTextStyle;
 
+  /// TextStyle of the details properties.
+  @override
+  final TextStyle detailsPropsTextStyle;
+
+  /// BorderRadius of the bottom sheet.
+  @override
+  final double botSheetBorderRadius;
+
+  /// Padding of the content in the bottom sheet.
+  @override
+  final double botSheetContPadding;
+
+  @override
+  final double botSheetMinHeight;
+
+  /// ShapeBorder of the bottom sheet.
+  @override
+  final ShapeBorder botSheetShape;
+
+  /// TextStyle of the title in the bottom sheet.
+  @override
+  final TextStyle botSheetTitleTextStyle;
+
+  /// Radius of the thumb of the slider.
+  @override
+  final double sliderThumbRadius;
+
+  /// Height of the track of the slider.
+  @override
+  final double sliderTrackHeight;
+
+  /// TextStyle of the value in the slider.
+  @override
+  final TextStyle sliderValTextStyle;
+
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
     required this.cardPrimShape,
@@ -114,5 +164,14 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.infoCardRatingTextStyle,
     required this.emptyListTitleTextStyle,
     required this.emptyListSubtitleTextStyle,
+    required this.detailsPropsTextStyle,
+    required this.botSheetBorderRadius,
+    required this.botSheetContPadding,
+    required this.botSheetMinHeight,
+    required this.botSheetShape,
+    required this.botSheetTitleTextStyle,
+    required this.sliderThumbRadius,
+    required this.sliderTrackHeight,
+    required this.sliderValTextStyle,
   });
 }

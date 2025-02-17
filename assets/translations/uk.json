@@ -46,5 +46,13 @@
   "topRatedTab": "Топові",
   "searchScreenTitle": "Пошук",
   "emptySearchTitle": "Вибачте, Результатів За Вашим Запитом Не Знайдено :(",
-  "emptySearchSubtitle": "Спробуйте шукати за назвою, жанром, роком або іншими фільтрами."
+  "emptySearchSubtitle": "Спробуйте шукати за назвою, жанром, роком або іншими фільтрами.",
+  "detailsMovieScreenTitle": "Деталі фільму",
+  "detailsSeriesScreenTitle": "Деталі серіалу",
+  "detailsAboutTab": "Про",
+  "detailsCastTab": "Актори",
+  "rateMovieTitle": "Вже дивилися цей фільм?\nОцініть його.",
+  "rateSeriesTitle": "Вже дивилися цей серіал?\nОцініть його.",
+  "rateButton": "ОЦІНИТИ",
+  "removeFromWatchedButton": "Видалити з переглянутих"
 }

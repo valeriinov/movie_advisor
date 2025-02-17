@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 part 'base_colors.dart';
-
 part 'base_colors_ext.tailor.dart';
 
 abstract final class BaseColorsFactory {
@@ -13,6 +11,7 @@ abstract final class BaseColorsFactory {
         splashColor: _BaseColors.splashColor,
         highlightColor: _BaseColors.highlightColor,
         textThemePrim: _BaseColors.textThemePrim,
+        textThemeSec: _BaseColors.textThemeSec,
         btnElevPrimFg: _BaseColors.btnElevPrimFg,
         btnElevPrimBg: _BaseColors.btnElevPrimBg,
         btnElevPrimFgPress: _BaseColors.btnElevPrimFgPress,
@@ -78,8 +77,16 @@ abstract final class BaseColorsFactory {
         suggestNumBlur: _BaseColors.suggestNumBlur,
         tabUnderSelect: _BaseColors.tabUnderSelect,
         infoCardRating: _BaseColors.infoCardRating,
-        emptyListTitle: _BaseColors.emptyListTitle,
-        emptyListSubtitle: _BaseColors.emptyListSubtitle,
+        backdropRatingBg: _BaseColors.backdropRatingBg,
+        botSheetBg: _BaseColors.botSheetBg,
+        botSheetFg: _BaseColors.botSheetFg,
+        botSheetIcon: _BaseColors.botSheetIcon,
+        botSheetBarrier: _BaseColors.botSheetBarrier,
+        sliderVal: _BaseColors.sliderVal,
+        sliderTrackFg: _BaseColors.sliderTrackFg,
+        sliderTrackBg: _BaseColors.sliderTrackBg,
+        sliderThumbFill: _BaseColors.sliderThumbFill,
+        removeRateBtn: _BaseColors.removeRateBtn,
       );
 }
 
@@ -107,6 +114,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Primary text color for the theme.
   @override
   final Color textThemePrim;
+
+  /// Secondary text color for the theme.
+  @override
+  final Color textThemeSec;
 
   // BUTTONS
 
@@ -382,13 +393,45 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color infoCardRating;
 
-  /// Empty list title color.
+  /// Backdrop rating background color.
   @override
-  final Color emptyListTitle;
+  final Color backdropRatingBg;
 
-  /// Empty list subtitle color.
+  /// Bottom sheet background color.
   @override
-  final Color emptyListSubtitle;
+  final Color botSheetBg;
+
+  /// Bottom sheet foreground color.
+  @override
+  final Color botSheetFg;
+
+  /// Bottom sheet icon color.
+  @override
+  final Color botSheetIcon;
+
+  /// Slider track foreground color.
+  @override
+  final Color botSheetBarrier;
+
+  /// Slider track foreground color.
+  @override
+  final Color sliderVal;
+
+  /// Slider track foreground color.
+  @override
+  final Color sliderTrackFg;
+
+  /// Slider track background color.
+  @override
+  final Color sliderTrackBg;
+
+  /// Slider thumb fill color.
+  @override
+  final Color sliderThumbFill;
+
+  /// Remove rate button color.
+  @override
+  final Color removeRateBtn;
 
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
@@ -400,6 +443,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.splashColor,
     required this.highlightColor,
     required this.textThemePrim,
+    required this.textThemeSec,
     required this.btnElevPrimFg,
     required this.btnElevPrimBg,
     required this.btnElevPrimFgPress,
@@ -465,7 +509,15 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.suggestNumBlur,
     required this.tabUnderSelect,
     required this.infoCardRating,
-    required this.emptyListTitle,
-    required this.emptyListSubtitle,
+    required this.backdropRatingBg,
+    required this.botSheetBg,
+    required this.botSheetFg,
+    required this.botSheetIcon,
+    required this.botSheetBarrier,
+    required this.sliderVal,
+    required this.sliderTrackFg,
+    required this.sliderTrackBg,
+    required this.sliderThumbFill,
+    required this.removeRateBtn,
   });
 }

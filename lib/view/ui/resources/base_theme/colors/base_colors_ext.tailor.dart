@@ -14,6 +14,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get highlightColor;
   Color get scaffoldBg;
   Color get textThemePrim;
+  Color get textThemeSec;
   Color get btnElevPrimFg;
   Color get btnElevPrimBg;
   Color get btnElevPrimFgPress;
@@ -79,8 +80,16 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get suggestNumBlur;
   Color get tabUnderSelect;
   Color get infoCardRating;
-  Color get emptyListTitle;
-  Color get emptyListSubtitle;
+  Color get backdropRatingBg;
+  Color get botSheetBg;
+  Color get botSheetFg;
+  Color get botSheetIcon;
+  Color get botSheetBarrier;
+  Color get sliderVal;
+  Color get sliderTrackFg;
+  Color get sliderTrackBg;
+  Color get sliderThumbFill;
+  Color get removeRateBtn;
 
   @override
   BaseColors copyWith({
@@ -89,6 +98,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? highlightColor,
     Color? scaffoldBg,
     Color? textThemePrim,
+    Color? textThemeSec,
     Color? btnElevPrimFg,
     Color? btnElevPrimBg,
     Color? btnElevPrimFgPress,
@@ -154,8 +164,16 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? suggestNumBlur,
     Color? tabUnderSelect,
     Color? infoCardRating,
-    Color? emptyListTitle,
-    Color? emptyListSubtitle,
+    Color? backdropRatingBg,
+    Color? botSheetBg,
+    Color? botSheetFg,
+    Color? botSheetIcon,
+    Color? botSheetBarrier,
+    Color? sliderVal,
+    Color? sliderTrackFg,
+    Color? sliderTrackBg,
+    Color? sliderThumbFill,
+    Color? removeRateBtn,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -163,6 +181,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       highlightColor: highlightColor ?? this.highlightColor,
       scaffoldBg: scaffoldBg ?? this.scaffoldBg,
       textThemePrim: textThemePrim ?? this.textThemePrim,
+      textThemeSec: textThemeSec ?? this.textThemeSec,
       btnElevPrimFg: btnElevPrimFg ?? this.btnElevPrimFg,
       btnElevPrimBg: btnElevPrimBg ?? this.btnElevPrimBg,
       btnElevPrimFgPress: btnElevPrimFgPress ?? this.btnElevPrimFgPress,
@@ -230,8 +249,16 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumBlur: suggestNumBlur ?? this.suggestNumBlur,
       tabUnderSelect: tabUnderSelect ?? this.tabUnderSelect,
       infoCardRating: infoCardRating ?? this.infoCardRating,
-      emptyListTitle: emptyListTitle ?? this.emptyListTitle,
-      emptyListSubtitle: emptyListSubtitle ?? this.emptyListSubtitle,
+      backdropRatingBg: backdropRatingBg ?? this.backdropRatingBg,
+      botSheetBg: botSheetBg ?? this.botSheetBg,
+      botSheetFg: botSheetFg ?? this.botSheetFg,
+      botSheetIcon: botSheetIcon ?? this.botSheetIcon,
+      botSheetBarrier: botSheetBarrier ?? this.botSheetBarrier,
+      sliderVal: sliderVal ?? this.sliderVal,
+      sliderTrackFg: sliderTrackFg ?? this.sliderTrackFg,
+      sliderTrackBg: sliderTrackBg ?? this.sliderTrackBg,
+      sliderThumbFill: sliderThumbFill ?? this.sliderThumbFill,
+      removeRateBtn: removeRateBtn ?? this.removeRateBtn,
     );
   }
 
@@ -244,6 +271,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       highlightColor: Color.lerp(highlightColor, other.highlightColor, t)!,
       scaffoldBg: Color.lerp(scaffoldBg, other.scaffoldBg, t)!,
       textThemePrim: Color.lerp(textThemePrim, other.textThemePrim, t)!,
+      textThemeSec: Color.lerp(textThemeSec, other.textThemeSec, t)!,
       btnElevPrimFg: Color.lerp(btnElevPrimFg, other.btnElevPrimFg, t)!,
       btnElevPrimBg: Color.lerp(btnElevPrimBg, other.btnElevPrimBg, t)!,
       btnElevPrimFgPress:
@@ -337,9 +365,17 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumBlur: Color.lerp(suggestNumBlur, other.suggestNumBlur, t)!,
       tabUnderSelect: Color.lerp(tabUnderSelect, other.tabUnderSelect, t)!,
       infoCardRating: Color.lerp(infoCardRating, other.infoCardRating, t)!,
-      emptyListTitle: Color.lerp(emptyListTitle, other.emptyListTitle, t)!,
-      emptyListSubtitle:
-          Color.lerp(emptyListSubtitle, other.emptyListSubtitle, t)!,
+      backdropRatingBg:
+          Color.lerp(backdropRatingBg, other.backdropRatingBg, t)!,
+      botSheetBg: Color.lerp(botSheetBg, other.botSheetBg, t)!,
+      botSheetFg: Color.lerp(botSheetFg, other.botSheetFg, t)!,
+      botSheetIcon: Color.lerp(botSheetIcon, other.botSheetIcon, t)!,
+      botSheetBarrier: Color.lerp(botSheetBarrier, other.botSheetBarrier, t)!,
+      sliderVal: Color.lerp(sliderVal, other.sliderVal, t)!,
+      sliderTrackFg: Color.lerp(sliderTrackFg, other.sliderTrackFg, t)!,
+      sliderTrackBg: Color.lerp(sliderTrackBg, other.sliderTrackBg, t)!,
+      sliderThumbFill: Color.lerp(sliderThumbFill, other.sliderThumbFill, t)!,
+      removeRateBtn: Color.lerp(removeRateBtn, other.removeRateBtn, t)!,
     );
   }
 
@@ -357,6 +393,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(scaffoldBg, other.scaffoldBg) &&
             const DeepCollectionEquality()
                 .equals(textThemePrim, other.textThemePrim) &&
+            const DeepCollectionEquality()
+                .equals(textThemeSec, other.textThemeSec) &&
             const DeepCollectionEquality()
                 .equals(btnElevPrimFg, other.btnElevPrimFg) &&
             const DeepCollectionEquality()
@@ -437,8 +475,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(txtFldPrimFill, other.txtFldPrimFill) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimInput, other.txtFldPrimInput) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
+            const DeepCollectionEquality().equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
             const DeepCollectionEquality().equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
             const DeepCollectionEquality().equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
             const DeepCollectionEquality().equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
@@ -462,8 +499,16 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur) &&
             const DeepCollectionEquality().equals(tabUnderSelect, other.tabUnderSelect) &&
             const DeepCollectionEquality().equals(infoCardRating, other.infoCardRating) &&
-            const DeepCollectionEquality().equals(emptyListTitle, other.emptyListTitle) &&
-            const DeepCollectionEquality().equals(emptyListSubtitle, other.emptyListSubtitle));
+            const DeepCollectionEquality().equals(backdropRatingBg, other.backdropRatingBg) &&
+            const DeepCollectionEquality().equals(botSheetBg, other.botSheetBg) &&
+            const DeepCollectionEquality().equals(botSheetFg, other.botSheetFg) &&
+            const DeepCollectionEquality().equals(botSheetIcon, other.botSheetIcon) &&
+            const DeepCollectionEquality().equals(botSheetBarrier, other.botSheetBarrier) &&
+            const DeepCollectionEquality().equals(sliderVal, other.sliderVal) &&
+            const DeepCollectionEquality().equals(sliderTrackFg, other.sliderTrackFg) &&
+            const DeepCollectionEquality().equals(sliderTrackBg, other.sliderTrackBg) &&
+            const DeepCollectionEquality().equals(sliderThumbFill, other.sliderThumbFill) &&
+            const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn));
   }
 
   @override
@@ -475,6 +520,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(highlightColor),
       const DeepCollectionEquality().hash(scaffoldBg),
       const DeepCollectionEquality().hash(textThemePrim),
+      const DeepCollectionEquality().hash(textThemeSec),
       const DeepCollectionEquality().hash(btnElevPrimFg),
       const DeepCollectionEquality().hash(btnElevPrimBg),
       const DeepCollectionEquality().hash(btnElevPrimFgPress),
@@ -540,8 +586,16 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(suggestNumBlur),
       const DeepCollectionEquality().hash(tabUnderSelect),
       const DeepCollectionEquality().hash(infoCardRating),
-      const DeepCollectionEquality().hash(emptyListTitle),
-      const DeepCollectionEquality().hash(emptyListSubtitle),
+      const DeepCollectionEquality().hash(backdropRatingBg),
+      const DeepCollectionEquality().hash(botSheetBg),
+      const DeepCollectionEquality().hash(botSheetFg),
+      const DeepCollectionEquality().hash(botSheetIcon),
+      const DeepCollectionEquality().hash(botSheetBarrier),
+      const DeepCollectionEquality().hash(sliderVal),
+      const DeepCollectionEquality().hash(sliderTrackFg),
+      const DeepCollectionEquality().hash(sliderTrackBg),
+      const DeepCollectionEquality().hash(sliderThumbFill),
+      const DeepCollectionEquality().hash(removeRateBtn),
     ]);
   }
 }

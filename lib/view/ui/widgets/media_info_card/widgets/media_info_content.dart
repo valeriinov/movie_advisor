@@ -3,13 +3,10 @@ import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../../../../common/utils/ext/double/to_rating.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
-import '../../../../../domain/entities/movie/movie_short_data.dart';
-import '../../../../../domain/entities/series/series_short_data.dart';
-import '../../../resources/app_date_formats.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/base_theme/components/base_components_styles_ext.dart';
-import '../../../resources/ext/movie_genre_desc.dart';
-import '../../../resources/ext/series_genre_desc.dart';
+import '../../../resources/ext/media_date_str.dart';
+import '../../../resources/ext/media_genres_str.dart';
 import 'media_info_tile.dart';
 
 class MediaInfoContent extends StatelessWidget {
@@ -21,7 +18,6 @@ class MediaInfoContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final styles = context.baseComponentsStyles;
     final voteAverage = itemData.tmdbRating.voteAverage;
-    final year = AppDateFormats.yearFormat(itemData.premiereDate);
 
     return Expanded(
       child: Padding(
@@ -45,24 +41,16 @@ class MediaInfoContent extends StatelessWidget {
             5.gapVert(),
             MediaInfoTile(
               iconPath: AppImages.genreIcon,
-              description: _getGenres(),
+              description: itemData.getGenresStr(),
             ),
             5.gapVert(),
             MediaInfoTile(
               iconPath: AppImages.dateIcon,
-              description: year,
+              description: itemData.getPremiereYearStr(),
             ),
           ],
         ),
       ),
     );
-  }
-
-  String _getGenres() {
-    return switch (itemData) {
-      MovieShortData(genres: final g) => g.map((e) => e.desc).join(', '),
-      SeriesShortData(genres: final g) => g.map((e) => e.desc).join(', '),
-      _ => ''
-    };
   }
 }

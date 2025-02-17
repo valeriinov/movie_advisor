@@ -44,6 +44,11 @@ class ImageWithPlaceholder extends StatelessWidget {
   /// The fit type for the placeholder image in case of an error.
   final BoxFit? placeholderFit;
 
+  /// Custom [ImageProvider] for the placeholder image.
+  ///
+  /// If not provided, the default placeholder image is used.
+  final ImageProvider? placeholderProvider;
+
   /// The width used for image caching.
   final int? cacheWidth;
 
@@ -56,6 +61,7 @@ class ImageWithPlaceholder extends StatelessWidget {
     this.placeholderFit = BoxFit.cover,
     this.imageProvider,
     this.imagePath,
+    this.placeholderProvider,
     this.cacheWidth,
     this.cacheHeight,
   });
@@ -67,7 +73,8 @@ class ImageWithPlaceholder extends StatelessWidget {
             cacheWidth: cacheWidth, cacheHeight: cacheHeight);
 
     return FadeInImage(
-      placeholder: const AssetImage(AppImages.placeholderImage),
+      placeholder:
+          placeholderProvider ?? const AssetImage(AppImages.placeholderImage),
       image: image,
       imageErrorBuilder: (_, __, ___) => Image(
         image: image,

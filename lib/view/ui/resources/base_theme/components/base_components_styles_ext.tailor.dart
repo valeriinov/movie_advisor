@@ -23,6 +23,15 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get infoCardRatingTextStyle;
   TextStyle get emptyListTitleTextStyle;
   TextStyle get emptyListSubtitleTextStyle;
+  TextStyle get detailsPropsTextStyle;
+  double get botSheetBorderRadius;
+  double get botSheetContPadding;
+  double get botSheetMinHeight;
+  ShapeBorder get botSheetShape;
+  TextStyle get botSheetTitleTextStyle;
+  double get sliderThumbRadius;
+  double get sliderTrackHeight;
+  TextStyle get sliderValTextStyle;
 
   @override
   BaseComponentsStyles copyWith({
@@ -39,6 +48,15 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? infoCardRatingTextStyle,
     TextStyle? emptyListTitleTextStyle,
     TextStyle? emptyListSubtitleTextStyle,
+    TextStyle? detailsPropsTextStyle,
+    double? botSheetBorderRadius,
+    double? botSheetContPadding,
+    double? botSheetMinHeight,
+    ShapeBorder? botSheetShape,
+    TextStyle? botSheetTitleTextStyle,
+    double? sliderThumbRadius,
+    double? sliderTrackHeight,
+    TextStyle? sliderValTextStyle,
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
@@ -59,6 +77,17 @@ mixin _$BaseComponentsStylesTailorMixin
           emptyListTitleTextStyle ?? this.emptyListTitleTextStyle,
       emptyListSubtitleTextStyle:
           emptyListSubtitleTextStyle ?? this.emptyListSubtitleTextStyle,
+      detailsPropsTextStyle:
+          detailsPropsTextStyle ?? this.detailsPropsTextStyle,
+      botSheetBorderRadius: botSheetBorderRadius ?? this.botSheetBorderRadius,
+      botSheetContPadding: botSheetContPadding ?? this.botSheetContPadding,
+      botSheetMinHeight: botSheetMinHeight ?? this.botSheetMinHeight,
+      botSheetShape: botSheetShape ?? this.botSheetShape,
+      botSheetTitleTextStyle:
+          botSheetTitleTextStyle ?? this.botSheetTitleTextStyle,
+      sliderThumbRadius: sliderThumbRadius ?? this.sliderThumbRadius,
+      sliderTrackHeight: sliderTrackHeight ?? this.sliderTrackHeight,
+      sliderValTextStyle: sliderValTextStyle ?? this.sliderValTextStyle,
     );
   }
 
@@ -89,6 +118,20 @@ mixin _$BaseComponentsStylesTailorMixin
           emptyListTitleTextStyle, other.emptyListTitleTextStyle, t)!,
       emptyListSubtitleTextStyle: TextStyle.lerp(
           emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle, t)!,
+      detailsPropsTextStyle: TextStyle.lerp(
+          detailsPropsTextStyle, other.detailsPropsTextStyle, t)!,
+      botSheetBorderRadius:
+          t < 0.5 ? botSheetBorderRadius : other.botSheetBorderRadius,
+      botSheetContPadding:
+          t < 0.5 ? botSheetContPadding : other.botSheetContPadding,
+      botSheetMinHeight: t < 0.5 ? botSheetMinHeight : other.botSheetMinHeight,
+      botSheetShape: t < 0.5 ? botSheetShape : other.botSheetShape,
+      botSheetTitleTextStyle: TextStyle.lerp(
+          botSheetTitleTextStyle, other.botSheetTitleTextStyle, t)!,
+      sliderThumbRadius: t < 0.5 ? sliderThumbRadius : other.sliderThumbRadius,
+      sliderTrackHeight: t < 0.5 ? sliderTrackHeight : other.sliderTrackHeight,
+      sliderValTextStyle:
+          TextStyle.lerp(sliderValTextStyle, other.sliderValTextStyle, t)!,
     );
   }
 
@@ -122,12 +165,30 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality().equals(
                 emptyListTitleTextStyle, other.emptyListTitleTextStyle) &&
             const DeepCollectionEquality().equals(
-                emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle));
+                emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(detailsPropsTextStyle, other.detailsPropsTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(botSheetBorderRadius, other.botSheetBorderRadius) &&
+            const DeepCollectionEquality()
+                .equals(botSheetContPadding, other.botSheetContPadding) &&
+            const DeepCollectionEquality()
+                .equals(botSheetMinHeight, other.botSheetMinHeight) &&
+            const DeepCollectionEquality()
+                .equals(botSheetShape, other.botSheetShape) &&
+            const DeepCollectionEquality()
+                .equals(botSheetTitleTextStyle, other.botSheetTitleTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(sliderThumbRadius, other.sliderThumbRadius) &&
+            const DeepCollectionEquality()
+                .equals(sliderTrackHeight, other.sliderTrackHeight) &&
+            const DeepCollectionEquality()
+                .equals(sliderValTextStyle, other.sliderValTextStyle));
   }
 
   @override
   int get hashCode {
-    return Object.hash(
+    return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(cardPrimBorderRadius),
       const DeepCollectionEquality().hash(cardPrimShape),
@@ -142,7 +203,16 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(infoCardRatingTextStyle),
       const DeepCollectionEquality().hash(emptyListTitleTextStyle),
       const DeepCollectionEquality().hash(emptyListSubtitleTextStyle),
-    );
+      const DeepCollectionEquality().hash(detailsPropsTextStyle),
+      const DeepCollectionEquality().hash(botSheetBorderRadius),
+      const DeepCollectionEquality().hash(botSheetContPadding),
+      const DeepCollectionEquality().hash(botSheetMinHeight),
+      const DeepCollectionEquality().hash(botSheetShape),
+      const DeepCollectionEquality().hash(botSheetTitleTextStyle),
+      const DeepCollectionEquality().hash(sliderThumbRadius),
+      const DeepCollectionEquality().hash(sliderTrackHeight),
+      const DeepCollectionEquality().hash(sliderValTextStyle),
+    ]);
   }
 }
 

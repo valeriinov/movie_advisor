@@ -21,8 +21,15 @@ final class SearchMoviesViewModel extends _SearchViewModel<MovieShortData> {
   @override
   SearchMoviesState build() {
     _searchUseCase = ref.read(searchMoviesUseCasePr);
+    _watchUseCase = ref.read(watchMoviesUseCasePr);
 
-    ref.onDispose(cancelSafeOperations);
+    _watchChangesSubscription =
+        _watchUseCase.watchChanges().listen(_handleWatchChanges);
+
+    ref.onDispose(() {
+      cancelSafeOperations();
+      _watchChangesSubscription.cancel();
+    });
 
     return SearchMoviesState();
   }

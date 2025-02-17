@@ -10,6 +10,7 @@ abstract final class _BaseColors {
 
   // Text
   static const textThemePrim = Color(0xFFFFFFFF);
+  static const textThemeSec = Color(0xFF92929D);
 
   // Buttons
   static const btnElevPrimFg = Color(0xFFFFFFFF);
@@ -102,7 +103,17 @@ abstract final class _BaseColors {
   static const tabUnderSelect = Color(0xFF3A3F47);
 
   static const infoCardRating = Color(0xFFFF8700);
+  static final backdropRatingBg = Color(0xFF252836).withValues(alpha: 0.32);
 
-  static const emptyListTitle = Color(0xFFFFFFFF);
-  static const emptyListSubtitle = Color(0xFF92929D);
+  static const botSheetBg = Color(0xFFFFFFFF);
+  static const botSheetFg = Color(0xFF4E4B66);
+  static const botSheetIcon = Color(0xFFA0A3BD);
+  static final botSheetBarrier = Color(0xFF14142B).withValues(alpha: 0.3);
+
+  static const sliderVal = Color(0xFF4E4B66);
+  static const sliderTrackFg = Color(0xFFFF8700);
+  static const sliderTrackBg = Color(0xFFD9DBE9);
+  static const sliderThumbFill = Color(0xFFF7F7FC);
+
+  static const removeRateBtn = Color(0xFF6f1919);
 }

@@ -36,7 +36,7 @@ dependencies:
   flutter_utils:
     git:
       url: https://github.com/valeriinov/flutter_utils.git
-      ref: v1.0.0
+      ref: 1.1.0
   dart_mappable: ^4.3.0
   dartz: ^0.10.1
   dio: ^5.7.0
@@ -63,6 +63,8 @@ dependencies:
   hooks_riverpod: ^2.6.1
   flutter_svg: ^2.0.17
   sliver_tools: ^0.2.12
+  drift: ^2.25.1
+  drift_flutter: ^0.2.4
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +86,7 @@ dev_dependencies:
       path: packages/class_namer
       ref: main
   flutter_flavorizr: ^2.2.3
+  drift_dev: ^2.25.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

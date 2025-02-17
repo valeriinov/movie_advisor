@@ -23,8 +23,16 @@ final class HomeSeriesViewModel extends _HomeViewModel<SeriesShortData> {
   @override
   HomeSeriesState build() {
     _homeUseCase = ref.read(homeSeriesUseCasePr);
+    _watchUseCase = ref.read(watchSeriesUseCasePr);
 
-    ref.onDispose(cancelSafeOperations);
+    _watchChangesSubscription =
+        _watchUseCase.watchChanges().listen(_handleWatchChanges);
+
+    ref.onDispose(() {
+      cancelSafeOperations();
+      _watchChangesSubscription.cancel();
+    });
+
     scheduleCall(loadInitialData);
 
     return HomeSeriesState();

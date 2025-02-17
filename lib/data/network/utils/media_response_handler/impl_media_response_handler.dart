@@ -13,7 +13,8 @@ class ImpMediaResponseHandler implements MediaResponseHandler {
   @override
   MoviesResponseDataDto handleMoviesResponse(NetResponse response) {
     final rawDto = MoviesResponseDataDto.fromJson(response.data);
-    final results = _imageUrlHandler.handleMoviesImages(rawDto.results ?? []);
+    final results =
+        _imageUrlHandler.handleMoviesListImages(rawDto.results ?? []);
 
     return rawDto.copyWith(results: results);
   }
@@ -21,7 +22,8 @@ class ImpMediaResponseHandler implements MediaResponseHandler {
   @override
   SeriesResponseDataDto handleSeriesResponse(NetResponse response) {
     final rawDto = SeriesResponseDataDto.fromJson(response.data);
-    final results = _imageUrlHandler.handleSeriesImages(rawDto.results ?? []);
+    final results =
+        _imageUrlHandler.handleSeriesListImages(rawDto.results ?? []);
 
     return rawDto.copyWith(results: results);
   }

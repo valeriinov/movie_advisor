@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_utils/flutter_utils.dart';
 
+import '../widgets/app_thumb_shape.dart';
 import 'app_fonts.dart';
 import 'base_theme/buttons/base_buttons_styles_ext.dart';
 import 'base_theme/colors/base_colors_ext.dart';
@@ -57,6 +59,8 @@ class AppTheme {
       primaryIconTheme: _createIconTheme(colors),
       inputDecorationTheme: _createInputDecorationTheme(colors, inputsStyles),
       dialogTheme: _createDialogTheme(colors, dialogsStyles),
+      bottomSheetTheme: _createBottomSheetTheme(colors, componentsStyles),
+      sliderTheme: _createSliderTheme(colors, componentsStyles),
       progressIndicatorTheme: _createProgressIndicatorTheme(colors),
       extensions: [
         colors,
@@ -169,6 +173,34 @@ class AppTheme {
       contentTextStyle: styles.dlgPrimContTextStyle,
       actionsPadding: styles.dlgPrimActPadding,
       insetPadding: styles.dlgPrimInsPadding,
+    );
+  }
+
+  BottomSheetThemeData _createBottomSheetTheme(
+      BaseColors colors, BaseComponentsStyles styles) {
+    return BottomSheetThemeData(
+      backgroundColor: colors.botSheetBg,
+      shape: styles.botSheetShape,
+    );
+  }
+
+  SliderThemeData _createSliderTheme(
+      BaseColors colors, BaseComponentsStyles styles) {
+    return SliderThemeData(
+      thumbSize: WidgetStateResolver(
+        defaultValue: Size.fromRadius(styles.sliderThumbRadius),
+      ),
+      thumbShape: AppThumbShape(
+        thumbRadius: styles.sliderThumbRadius,
+        borderWidth: 2,
+        borderColor: colors.sliderTrackFg,
+        fillColor: colors.sliderThumbFill,
+      ),
+      trackHeight: styles.sliderTrackHeight,
+      activeTrackColor: colors.sliderTrackFg,
+      inactiveTrackColor: colors.sliderTrackBg,
+      thumbColor: colors.sliderThumbFill,
+      valueIndicatorColor: colors.sliderVal,
     );
   }
 

@@ -1,12 +1,46 @@
+import '../../common/utils/ext/int/pagination_handler.dart';
 import '../../domain/entities/movie/movie_data.dart';
 import '../../domain/entities/movie/movie_genre.dart';
 import '../../domain/entities/movie/movie_short_data.dart';
+import '../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../dto/movie/movie_data_dto.dart';
 import '../dto/movie/movie_genre_dto.dart';
+import '../dto/movie/movie_short_data_dto.dart';
+import '../dto/movie/movies_response_data_dto.dart';
+import '../dto/movie/movies_short_response_data_dto.dart';
+import '../dto/rating/rating_data_dto.dart';
+import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
+import 'app_rating_mapper.dart';
 
 final class AppMoviesMapper extends AppMapper {
+  final AppRatingMapper _ratingMapper;
+  final AppCastMapper _castMapper;
+
+  AppMoviesMapper(
+      {required AppRatingMapper ratingMapper,
+      required AppCastMapper castMapper})
+      : _ratingMapper = ratingMapper,
+        _castMapper = castMapper;
+
+  PaginatedMovies mapMoviesShortResponseDataToDomain(
+      MoviesShortResponseDataDto dto) {
+    return PaginatedMovies(
+      items: mapMovieShortDataListDtoToDomain(dto.results ?? []),
+      currentPage: dto.page ?? 1,
+      isLastPage: dto.page.isLastPage(dto.totalPages),
+    );
+  }
+
+  PaginatedMovies mapMoviesResponseDataToDomain(MoviesResponseDataDto dto) {
+    return PaginatedMovies(
+      items: mapMovieDataListDtoToShortDomain(dto.results ?? []),
+      currentPage: dto.page ?? 1,
+      isLastPage: dto.page.isLastPage(dto.totalPages),
+    );
+  }
+
   List<MovieData> mapMovieDataListDtoToDomain(List<MovieDataDto> dtos) {
     return dtos.map(mapMovieDataDtoToDomain).toList();
   }
@@ -16,14 +50,36 @@ final class AppMoviesMapper extends AppMapper {
       id: dto.id ?? -1,
       backdropUrl: dto.backdropPath ?? '',
       posterUrl: dto.posterPath ?? '',
-      genres: _mapMovieGenresDtoToDomain(dto.genres),
+      genres: _mapMovieGenresDtoToDomain(dto.genres ?? dto.genresAlt),
       originCountry: [],
       originalLanguage: dto.originalLanguage ?? '',
       originalTitle: dto.originalTitle ?? '',
-      premiereDate: dto.releaseDate ?? DateTime.now(),
+      premiereDate: dto.releaseDate,
       title: dto.title ?? '',
       overview: dto.overview ?? '',
-      tmdbRating: _mapMovieDataDtoToTMDBRating(dto),
+      tmdbRating: _ratingMapper.mapMovieDataDtoToTMDBRating(dto),
+      cast: dto.credits != null
+          ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
+          : [],
+      userRating: dto.userRating ?? 0,
+      isInWatchlist: dto.isInWatchlist ?? false,
+      isWatched: dto.isWatched ?? false,
+    );
+  }
+
+  List<MovieShortData> mapMovieDataListDtoToShortDomain(
+      List<MovieDataDto> dtos) {
+    return dtos.map(_mapMovieDataDtoToShortDomain).toList();
+  }
+
+  MovieShortData _mapMovieDataDtoToShortDomain(MovieDataDto dto) {
+    return MovieShortData(
+      id: dto.id ?? -1,
+      posterUrl: dto.posterPath ?? '',
+      genres: _mapMovieGenresDtoToDomain(dto.genres),
+      premiereDate: dto.releaseDate,
+      title: dto.title ?? '',
+      tmdbRating: _ratingMapper.mapMovieDataDtoToTMDBRating(dto),
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
@@ -31,18 +87,18 @@ final class AppMoviesMapper extends AppMapper {
   }
 
   List<MovieShortData> mapMovieShortDataListDtoToDomain(
-      List<MovieDataDto> dtos) {
-    return dtos.map(_mapMovieShortDataDtoToDomain).toList();
+      List<MovieShortDataDto> dtos) {
+    return dtos.map(mapMovieShortDataDtoToDomain).toList();
   }
 
-  MovieShortData _mapMovieShortDataDtoToDomain(MovieDataDto dto) {
+  MovieShortData mapMovieShortDataDtoToDomain(MovieShortDataDto dto) {
     return MovieShortData(
       id: dto.id ?? -1,
-      posterUrl: dto.posterPath ?? '',
+      posterUrl: dto.posterUrl ?? '',
       genres: _mapMovieGenresDtoToDomain(dto.genres),
-      premiereDate: dto.releaseDate ?? DateTime.now(),
+      premiereDate: dto.premiereDate,
       title: dto.title ?? '',
-      tmdbRating: _mapMovieDataDtoToTMDBRating(dto),
+      tmdbRating: _ratingMapper.mapRatingDtoToTMDBRating(dto.tmdbRating),
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
@@ -60,31 +116,25 @@ final class AppMoviesMapper extends AppMapper {
     );
   }
 
-  TMDBRating _mapMovieDataDtoToTMDBRating(MovieDataDto dto) {
-    return TMDBRating(
-      popularity: dto.popularity,
-      voteAverage: dto.voteAverage ?? 0,
-      voteCount: dto.voteCount ?? 0,
-    );
-  }
-
-  MovieDataDto mapMovieDataToDto(MovieData data) {
-    return MovieDataDto(
+  MovieShortDataDto mapMovieShortDataToDto(MovieShortData data) {
+    return MovieShortDataDto(
       id: data.id,
-      backdropPath: data.backdropUrl,
-      posterPath: data.posterUrl,
+      posterUrl: data.posterUrl,
       genres: _mapMovieGenresToDto(data.genres),
-      originalLanguage: data.originalLanguage,
-      originalTitle: data.originalTitle,
-      releaseDate: data.premiereDate,
+      premiereDate: data.premiereDate,
       title: data.title,
-      overview: data.overview,
-      popularity: data.tmdbRating.popularity,
-      voteAverage: data.tmdbRating.voteAverage,
-      voteCount: data.tmdbRating.voteCount,
+      tmdbRating: _mapRatingToDto(data.tmdbRating),
       userRating: data.userRating,
       isInWatchlist: data.isInWatchlist,
       isWatched: data.isWatched,
+    );
+  }
+
+  RatingDataDto _mapRatingToDto(Rating rating) {
+    return RatingDataDto(
+      popularity: rating.popularity,
+      voteAverage: rating.voteAverage,
+      voteCount: rating.voteCount,
     );
   }
 
