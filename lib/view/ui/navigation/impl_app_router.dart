@@ -50,12 +50,15 @@ final class ImplAppRouter implements AppRouter {
                 routes: [$homeRoute],
               ),
               ExtendedShellBranch(
+                saveState: false,
                 routes: [$watchlistRoute],
               ),
               ExtendedShellBranch(
+                saveState: false,
                 routes: [$watchedRoute],
               ),
               ExtendedShellBranch(
+                saveState: false,
                 routes: [$moreRoute],
               ),
             ],

@@ -57,6 +57,8 @@
   "removeFromWatchedButton": "Видалити з переглянутих",
   "watchlistMoviesScreenTitle": "Обрані фільми",
   "watchlistSeriesScreenTitle": "Обрані серіали",
+  "watchedMoviesScreenTitle": "Переглянуті фільми",
+  "watchedSeriesScreenTitle": "Переглянуті серіали",
   "emptyWatchlistMoviesTitle": "Тут ще немає фільмів!",
   "emptyWatchlistMoviesSubtitle": "Фільми, які ви додасте до обраних, з'являться тут.",
   "emptyWatchlistSeriesTitle": "Тут ще немає серіалів!",

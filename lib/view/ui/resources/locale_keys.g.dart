@@ -61,6 +61,8 @@ abstract class  LocaleKeys {
   static const removeFromWatchedButton = 'removeFromWatchedButton';
   static const watchlistMoviesScreenTitle = 'watchlistMoviesScreenTitle';
   static const watchlistSeriesScreenTitle = 'watchlistSeriesScreenTitle';
+  static const watchedMoviesScreenTitle = 'watchedMoviesScreenTitle';
+  static const watchedSeriesScreenTitle = 'watchedSeriesScreenTitle';
   static const emptyWatchlistMoviesTitle = 'emptyWatchlistMoviesTitle';
   static const emptyWatchlistMoviesSubtitle = 'emptyWatchlistMoviesSubtitle';
   static const emptyWatchlistSeriesTitle = 'emptyWatchlistSeriesTitle';

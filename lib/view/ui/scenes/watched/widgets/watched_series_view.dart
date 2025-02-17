@@ -14,16 +14,16 @@ import '../../../widgets/scroll_top_listener.dart';
 import '../../../widgets/watch_shared/watch_app_bar.dart';
 import '../../../widgets/watch_shared/watch_content_skeleton.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
-import '../watchlist_view_model/watchlist_view_model.dart';
+import '../watched_view_model/watched_view_model.dart';
 
-class WatchlistMoviesView extends HookConsumerWidget {
+class WatchedSeriesView extends HookConsumerWidget {
   final VoidCallback toggleContentMode;
 
-  const WatchlistMoviesView({super.key, required this.toggleContentMode});
+  const WatchedSeriesView({super.key, required this.toggleContentMode});
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(watchlistMoviesViewModelPr);
+    final vsp = ref.vspFromADProvider(watchedSeriesViewModelPr);
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;
@@ -42,14 +42,14 @@ class WatchlistMoviesView extends HookConsumerWidget {
       return paginationCtrl.dispose;
     }, []);
 
-    final watchlist = vsp.selectWatch((s) => s.watchlist);
+    final watched = vsp.selectWatch((s) => s.watched);
 
     return ScrollTopListener(
         scrollController: scrollController,
         builder: (_, isFabVisible) {
           return Scaffold(
             appBar: WatchAppBar(
-              title: LocaleKeys.watchlistMoviesScreenTitle.tr(),
+              title: LocaleKeys.watchedSeriesScreenTitle.tr(),
               // TODO: Add modal bottom sheet
               onMoreTap: toggleContentMode,
             ),
@@ -58,10 +58,10 @@ class WatchlistMoviesView extends HookConsumerWidget {
                 : WatchScreenContent(
                     isLoading: isLoading,
                     isInitialized: isInitialized,
-                    watchlist: watchlist,
-                    emptyListTitle: LocaleKeys.emptyWatchlistMoviesTitle.tr(),
+                    watchlist: watched,
+                    emptyListTitle: LocaleKeys.emptyWatchedSeriesTitle.tr(),
                     emptyListSubtitle:
-                        LocaleKeys.emptyWatchlistMoviesSubtitle.tr(),
+                        LocaleKeys.emptyWatchedSeriesSubtitle.tr(),
                     scrollController: scrollController,
                     onItemSelect: (id) => _goToDetails(context, id),
                     onRefresh: !isLoading
@@ -76,7 +76,7 @@ class WatchlistMoviesView extends HookConsumerWidget {
   }
 
   AppScrollPaginationController _initPaginationController(
-    WatchlistMoviesVSP vsp,
+    WatchedSeriesVSP vsp,
     ScrollController scrollController,
   ) {
     final paginationCtrl =
@@ -90,8 +90,8 @@ class WatchlistMoviesView extends HookConsumerWidget {
     return paginationCtrl;
   }
 
-  AppPaginationState _getPaginationState(WatchlistMoviesVSP vsp) {
-    final loadInfo = vsp.selectRead((s) => s.watchlist);
+  AppPaginationState _getPaginationState(WatchedSeriesVSP vsp) {
+    final loadInfo = vsp.selectRead((s) => s.watched);
 
     return AppPaginationState(
       currentPage: loadInfo.mediaData.currentPage,
@@ -101,6 +101,6 @@ class WatchlistMoviesView extends HookConsumerWidget {
   }
 
   void _goToDetails(BuildContext context, int id) {
-    DetailsRoute(id: id, contentMode: ContentMode.movies).push(context);
+    DetailsRoute(id: id, contentMode: ContentMode.series).push(context);
   }
 }

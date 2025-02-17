@@ -31,7 +31,7 @@ class WatchlistSeriesView extends HookConsumerWidget {
 
     vsp.handleState(listener: (prev, next) {
       ref.baseStatusHandler
-          .handleStatus(prev, next, handleLoadingState: () => isInitialized);
+          .handleStatus(prev, next, handleLoadingState: () => false);
     });
 
     final scrollController = useScrollController();
