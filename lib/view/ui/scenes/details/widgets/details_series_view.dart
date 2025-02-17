@@ -46,7 +46,7 @@ class DetailsSeriesView extends HookConsumerWidget {
         builder: (_, isFabVisible) {
           return Scaffold(
             appBar: DetailsAppBar(
-              title: LocaleKeys.detailsMovieScreenTitle.tr(),
+              title: LocaleKeys.detailsSeriesScreenTitle.tr(),
               isInWatchlist: data.isInWatchlist,
               isWatched: data.isWatched,
               onWatchlistTap:
