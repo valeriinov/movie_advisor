@@ -126,7 +126,7 @@ class RateBottomSheet extends HookWidget {
             final colors = context.baseColors;
 
             return Padding(
-              padding: EdgeInsets.only(bottom: dimens.spLarge),
+              padding: EdgeInsets.only(bottom: dimens.spMedium),
               child: TextButton(
                 style: TextButton.styleFrom(
                   foregroundColor: colors.removeRateBtn,

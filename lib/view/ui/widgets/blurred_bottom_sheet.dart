@@ -49,7 +49,7 @@ Future<void> Function({
               minHeight: styles.botSheetMinHeight,
               minWidth: double.infinity,
             ),
-            child: child,
+            child: SafeArea(child: child),
           ),
         ),
       ),
