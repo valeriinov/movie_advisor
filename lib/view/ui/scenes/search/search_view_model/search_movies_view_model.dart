@@ -23,11 +23,10 @@ final class SearchMoviesViewModel extends _SearchViewModel<MovieShortData> {
     _searchUseCase = ref.read(searchMoviesUseCasePr);
     _watchUseCase = ref.read(watchMoviesUseCasePr);
 
-    _watchChangesSubscription = _watchUseCase.watchChanges().listen((event) {
-      print('[CHANGED SEARCH] $event'); // TODO: Implement changes handling
-    });
+    _watchChangesSubscription =
+        _watchUseCase.watchChanges().listen(_handleWatchChanges);
 
-    ref.onDispose((){
+    ref.onDispose(() {
       cancelSafeOperations();
       _watchChangesSubscription.cancel();
     });

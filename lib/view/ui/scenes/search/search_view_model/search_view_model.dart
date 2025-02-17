@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/ext/media_short_list_manager.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
@@ -22,7 +23,6 @@ import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import 'search_state.dart';
 
 part 'search_movies_view_model.dart';
-
 part 'search_series_view_model.dart';
 
 final searchContModeViewModelPr = AutoDisposeNotifierProvider.family<
@@ -41,6 +41,21 @@ abstract base class _SearchViewModel<T extends MediaShortData>
   late final WatchUseCase<T> _watchUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _searchOperation;
+
+  void _handleWatchChanges(Result<T> event) {
+    final item = event.fold((_) => null, (value) => value);
+
+    if (item == null) return;
+
+    final resultsData = state.results.mediaData;
+
+    final resultsItems = resultsData.items.updateItemInList(item);
+
+    state = state.copyWith(
+      results: state.results
+          .copyWith(mediaData: resultsData.copyWith(items: resultsItems)),
+    );
+  }
 
   Future<void> loadByFilter(SearchFilterData filter, {bool showLoader = true}) {
     _updateStatus(SearchBaseInitStatus(isLoading: showLoader));

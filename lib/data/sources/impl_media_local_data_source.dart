@@ -7,7 +7,8 @@ import '../dto/series/series_short_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../local/utils/ext/media_table_mapper.dart';
 import '../repositories/media_local_data_source.dart';
-import '../utils/media_remote_local_merger/media_merger.dart';
+import '../utils/media_merger/media_merger.dart';
+
 
 class ImplMediaLocalDataSource implements MediaLocalDataSource {
   final AppLocalDatabase _database;

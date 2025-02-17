@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/ext/media_short_list_manager.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
@@ -36,6 +37,25 @@ abstract base class _HomeViewModel<T extends MediaShortData>
   late final WatchUseCase<T> _watchUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _loadTabOperation;
+
+  void _handleWatchChanges(Result<T> event) {
+    final item = event.fold((_) => null, (value) => value);
+
+    if (item == null) return;
+
+    final sugData = state.sugCont.mediaData;
+    final tabData = state.tabCont.mediaData;
+
+    final sugItems = sugData.items.updateItemInList(item);
+    final tabItems = tabData.items.updateItemInList(item);
+
+    state = state.copyWith(
+      sugCont:
+          state.sugCont.copyWith(mediaData: sugData.copyWith(items: sugItems)),
+      tabCont:
+          state.tabCont.copyWith(mediaData: tabData.copyWith(items: tabItems)),
+    );
+  }
 
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(HomeBaseStatus(isLoading: showLoader));

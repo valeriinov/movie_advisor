@@ -22,11 +22,10 @@ final class HomeMoviesViewModel extends _HomeViewModel<MovieShortData> {
     _homeUseCase = ref.read(homeMoviesUseCasePr);
     _watchUseCase = ref.read(watchMoviesUseCasePr);
 
-    _watchChangesSubscription = _watchUseCase.watchChanges().listen((event) {
-      print('[CHANGED HOME] $event'); // TODO: Implement changes handling
-      });
+    _watchChangesSubscription =
+        _watchUseCase.watchChanges().listen(_handleWatchChanges);
 
-    ref.onDispose((){
+    ref.onDispose(() {
       cancelSafeOperations();
       _watchChangesSubscription.cancel();
     });
