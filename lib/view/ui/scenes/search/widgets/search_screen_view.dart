@@ -70,7 +70,7 @@ class SearchScreenView extends HookConsumerWidget {
       isDismissible: false,
       useRootNavigator: true,
       context: context,
-      child: SearchFilterBottomSheet(),
+      child: SearchFilterBottomSheet(initContentMode: initContentMode),
     );
   }
 }

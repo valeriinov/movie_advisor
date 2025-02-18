@@ -7,12 +7,14 @@ import '../../../widgets/filter_bottom_sheet.dart';
 import '../search_view_model/search_view_model.dart';
 
 class SearchFilterBottomSheet extends ConsumerWidget {
-  const SearchFilterBottomSheet({super.key});
+  final ContentMode initContentMode;
+
+  const SearchFilterBottomSheet({super.key, required this.initContentMode});
 
   @override
   Widget build(context, ref) {
     final vspContMode = ref.vspFromADFProvider(
-      searchContModeViewModelPr(ContentMode.movies),
+      searchContModeViewModelPr(initContentMode),
     );
 
     final contentMode = vspContMode.selectWatch((s) => s.mode);
