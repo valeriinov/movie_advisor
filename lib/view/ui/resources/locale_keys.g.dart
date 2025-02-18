@@ -80,5 +80,8 @@ abstract class  LocaleKeys {
   static const aboutUsTile = 'aboutUsTile';
   static const privacyPolicyTile = 'privacyPolicyTile';
   static const termsAndConditionsTile = 'termsAndConditionsTile';
+  static const aboutUsScreenTitle = 'aboutUsScreenTitle';
+  static const aboutUsDescription = 'aboutUsDescription';
+  static const aboutUsTMDBAttribution = 'aboutUsTMDBAttribution';
 
 }

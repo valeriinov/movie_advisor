@@ -14,6 +14,7 @@ abstract final class AppImages {
   static const infoIcon = "${_imgPath}info_icon.svg";
   static const addWatchlistIcon = "${_imgPath}add_watchlist_icon.svg";
   static const privacyIcon = "${_imgPath}privacy_icon.svg";
+  static const tmbdLogo = "${_imgPath}tmbd_logo.svg";
   static const searchIcon = "${_imgPath}search_icon.svg";
   static const moreHorIcon = "${_imgPath}more_hor_icon.svg";
   static const homeIcon = "${_imgPath}home_icon.svg";

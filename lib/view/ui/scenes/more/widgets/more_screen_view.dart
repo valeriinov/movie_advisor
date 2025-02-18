@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../navigation/routes/more_routes.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/app_official_recources_urls.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
@@ -43,7 +44,7 @@ class MoreScreenView extends ConsumerWidget {
               ListTile(
                 title: Text(LocaleKeys.aboutUsTile.tr()),
                 leading: AppSvgAsset(path: AppImages.infoIcon),
-                onTap: () {},
+                onTap: () => AboutUsRoute().go(context),
               ),
               ListTile(
                 title: Text(LocaleKeys.privacyPolicyTile.tr()),
