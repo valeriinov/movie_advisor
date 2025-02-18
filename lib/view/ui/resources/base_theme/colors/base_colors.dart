@@ -93,6 +93,9 @@ abstract final class _BaseColors {
   static const listTilePrimTitle = Color(0xFFE0E0E0);
   static const listTilePrimSubtitle = Color(0xFFE0E0E0);
 
+  static const listTileSecTitle = Color(0xFF4E4B66);
+  static const listTileSecSubtitle = Color(0xFF595575);
+
   static const avatarPrimBg = Color(0xFF6200EA);
   static const avatarPrimFg = Color(0xFFFFFFFF);
 

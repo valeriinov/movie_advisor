@@ -66,5 +66,8 @@
   "emptyWatchedMoviesTitle": "There are no movies here yet!",
   "emptyWatchedMoviesSubtitle": "Movies you mark as watched will appear here.",
   "emptyWatchedSeriesTitle": "There are no series here yet!",
-  "emptyWatchedSeriesSubtitle": "Series you mark as watched will appear here."
+  "emptyWatchedSeriesSubtitle": "Series you mark as watched will appear here.",
+  "contentTypeMenu": "Content type",
+  "movie": "Movie",
+  "series": "Series"
 }

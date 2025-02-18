@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 part 'base_colors.dart';
+
 part 'base_colors_ext.tailor.dart';
 
 abstract final class BaseColorsFactory {
@@ -70,6 +71,8 @@ abstract final class BaseColorsFactory {
         cardPrimShadow: _BaseColors.cardPrimShadow,
         listTilePrimTitle: _BaseColors.listTilePrimTitle,
         listTilePrimSubtitle: _BaseColors.listTilePrimSubtitle,
+        listTileSecTitle: _BaseColors.listTileSecTitle,
+        listTileSecSubtitle: _BaseColors.listTileSecSubtitle,
         avatarPrimBg: _BaseColors.avatarPrimBg,
         avatarPrimFg: _BaseColors.avatarPrimFg,
         suggestNumFill: _BaseColors.suggestNumFill,
@@ -365,6 +368,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color listTilePrimSubtitle;
 
+  /// ListTile secondary title color.
+  @override
+  final Color listTileSecTitle;
+
+  /// ListTile secondary subtitle color.
+  @override
+  final Color listTileSecSubtitle;
+
   /// Avatar primary background color.
   @override
   final Color avatarPrimBg;
@@ -502,6 +513,8 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.cardPrimShadow,
     required this.listTilePrimTitle,
     required this.listTilePrimSubtitle,
+    required this.listTileSecTitle,
+    required this.listTileSecSubtitle,
     required this.avatarPrimBg,
     required this.avatarPrimFg,
     required this.suggestNumFill,

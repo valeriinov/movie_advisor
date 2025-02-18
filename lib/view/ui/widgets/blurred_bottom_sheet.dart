@@ -12,12 +12,14 @@ Future<void> Function({
   bool hasBlur,
   bool enableDrag,
   bool isDismissible,
+  bool useRootNavigator,
 }) showBlurredBottomSheet = ({
   required BuildContext context,
   required Widget child,
   bool hasBlur = true,
   bool enableDrag = true,
   bool isDismissible = true,
+  bool useRootNavigator = false,
 }) {
   final colors = context.baseColors;
   final styles = context.baseComponentsStyles;
@@ -30,6 +32,7 @@ Future<void> Function({
     barrierColor: colors.botSheetBarrier,
     elevation: 0,
     useSafeArea: true,
+    useRootNavigator: useRootNavigator,
     enableDrag: enableDrag,
     isDismissible: isDismissible,
     builder: (context) => GestureDetector(

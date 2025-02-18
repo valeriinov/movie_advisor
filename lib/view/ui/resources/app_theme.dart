@@ -131,8 +131,10 @@ class AppTheme {
 
   ListTileThemeData _createListTileTheme(BaseComponentsStyles styles) {
     return ListTileThemeData(
-        titleTextStyle: styles.listTilePrimTitleTextStyle,
-        subtitleTextStyle: styles.listTilePrimSubtTextStyle);
+      horizontalTitleGap: styles.horizontalTitleGap,
+      titleTextStyle: styles.listTilePrimTitleTextStyle,
+      subtitleTextStyle: styles.listTilePrimSubtTextStyle,
+    );
   }
 
   CardTheme _createCardTheme(BaseColors colors, BaseComponentsStyles styles) {

@@ -71,5 +71,8 @@ abstract class  LocaleKeys {
   static const emptyWatchedMoviesSubtitle = 'emptyWatchedMoviesSubtitle';
   static const emptyWatchedSeriesTitle = 'emptyWatchedSeriesTitle';
   static const emptyWatchedSeriesSubtitle = 'emptyWatchedSeriesSubtitle';
+  static const contentTypeMenu = 'contentTypeMenu';
+  static const movie = 'movie';
+  static const series = 'series';
 
 }

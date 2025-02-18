@@ -66,5 +66,8 @@
   "emptyWatchedMoviesTitle": "Тут ще немає фільмів!",
   "emptyWatchedMoviesSubtitle": "Фільми, які ви додасте до переглянутих, з'являться тут.",
   "emptyWatchedSeriesTitle": "Тут ще немає серіалів!",
-  "emptyWatchedSeriesSubtitle": "Серіали, які ви додасте до переглянутих, з'являться тут."
+  "emptyWatchedSeriesSubtitle": "Серіали, які ви додасте до переглянутих, з'являться тут.",
+  "contentTypeMenu": "Тип контенту",
+  "movie": "Фільм",
+  "series": "Серіал"
 }
