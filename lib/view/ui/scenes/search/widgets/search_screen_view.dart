@@ -8,10 +8,12 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/floating_search_bar.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/blurred_bottom_sheet.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../search_view_model/search_view_model.dart';
 import 'search_content_switcher.dart';
+import 'search_filter_bottom_sheet.dart';
 
 class SearchScreenView extends HookConsumerWidget {
   final ContentMode initContentMode;
@@ -43,8 +45,7 @@ class SearchScreenView extends HookConsumerWidget {
               slivers: [
                 FloatingSearchBar(
                   onSearch: vspFilter.viewModel.updateSearchQuery,
-                  // TODO: Add modal bottom sheet
-                  onMoreTap: vspContMode.viewModel.toggleMode,
+                  onMoreTap: () => _onMoreTap(context),
                   textController: searchFieldController,
                 ),
                 SearchContentSwitcher(
@@ -58,5 +59,14 @@ class SearchScreenView extends HookConsumerWidget {
                 : null,
           );
         });
+  }
+
+  void _onMoreTap(BuildContext context) {
+    showBlurredBottomSheet(
+      isDismissible: false,
+      useRootNavigator: true,
+      context: context,
+      child: SearchFilterBottomSheet(),
+    );
   }
 }
