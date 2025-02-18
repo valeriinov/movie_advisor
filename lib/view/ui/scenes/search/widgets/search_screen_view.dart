@@ -38,7 +38,11 @@ class SearchScreenView extends HookConsumerWidget {
           return Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: MainAppBar(
-              title: Text(LocaleKeys.searchScreenTitle.tr()),
+              title: Text(
+                contMode.isMovies
+                    ? LocaleKeys.searchScreenMoviesTitle.tr()
+                    : LocaleKeys.searchScreenSeriesTitle.tr(),
+              ),
             ),
             body: CustomScrollView(
               controller: scrollController,
