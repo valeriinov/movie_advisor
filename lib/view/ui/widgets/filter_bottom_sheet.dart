@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/ext/flutter_ext/widget/gap_creator.dart';
-import 'package:flutter_utils/ext/flutter_ext/widget/wrap_widget.dart';
 
 import '../base/content_mode_view_model/content_mode.dart';
 import '../resources/base_theme/components/base_components_styles_ext.dart';
@@ -73,7 +72,7 @@ class FilterBottomSheet extends StatelessWidget {
               title: Text(
                 LocaleKeys.movie.tr(),
                 style: contentMode.isMovies ? selectedTitleStyle : titleStyle,
-              ).paddingOnly(top: 2),
+              ),
               value: ContentMode.movies,
               groupValue: contentMode,
               selected: contentMode.isMovies,
@@ -83,7 +82,7 @@ class FilterBottomSheet extends StatelessWidget {
               title: Text(
                 LocaleKeys.series.tr(),
                 style: contentMode.isSeries ? selectedTitleStyle : titleStyle,
-              ).paddingOnly(top: 2),
+              ),
               value: ContentMode.series,
               groupValue: contentMode,
               selected: contentMode.isSeries,
