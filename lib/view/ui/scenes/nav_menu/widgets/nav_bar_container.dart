@@ -28,7 +28,7 @@ class NavBarContainer extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: colors.botNavBarDivider),
+            top: BorderSide(color: colors.navBarDivider),
           ),
         ),
         child: BottomNavigationBar(

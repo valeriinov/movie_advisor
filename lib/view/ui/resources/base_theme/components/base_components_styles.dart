@@ -13,8 +13,13 @@ abstract final class _BaseComponentsStyles {
 
   static double horizontalTitleGap = 12;
 
-  static TextStyle listTilePrimTitleTextStyle(Color color) =>
-      TextStyle(color: color);
+  static TextStyle listTilePrimTitleTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
+        height: 1.5,
+        color: color,
+      );
 
   static TextStyle listTilePrimSubtTextStyle(Color color) =>
       TextStyle(color: color);

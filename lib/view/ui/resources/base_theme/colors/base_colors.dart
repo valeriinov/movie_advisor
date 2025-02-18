@@ -63,7 +63,8 @@ abstract final class _BaseColors {
   static const botNavBarBg = Color(0xFF242A32);
   static const botNavBarFgSelect = Color(0xFF0296E5);
   static const botNavBarFgUnselect = Color(0xFF67686D);
-  static const botNavBarDivider = Color(0xFF0296E5);
+
+  static const navBarDivider = Color(0xFF0296E5);
 
   // Inputs
   static const txtFldPrimFill = Color(0xFF3a3f47);
@@ -90,8 +91,8 @@ abstract final class _BaseColors {
   static const cardPrimBorder = Color(0xFFE0E0E0);
   static const cardPrimShadow = Color(0xFFE0E0E0);
 
-  static const listTilePrimTitle = Color(0xFFE0E0E0);
-  static const listTilePrimSubtitle = Color(0xFFE0E0E0);
+  static const listTilePrimTitle = Color(0xFF92929D);
+  static const listTilePrimSubtitle = Color(0xFF9b9ca7);
 
   static const listTileSecTitle = Color(0xFF4E4B66);
   static const listTileSecSubtitle = Color(0xFF595575);
