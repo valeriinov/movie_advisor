@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
@@ -71,17 +72,33 @@ class ImageWithPlaceholder extends StatelessWidget {
     final image = imageProvider ??
         imagePath.createImageProviderFromPath(
             cacheWidth: cacheWidth, cacheHeight: cacheHeight);
+    final placeholder =
+        placeholderProvider ?? const AssetImage(AppImages.placeholderImage);
 
-    return FadeInImage(
-      placeholder:
-          placeholderProvider ?? const AssetImage(AppImages.placeholderImage),
+    return ExtendedImage(
       image: image,
-      imageErrorBuilder: (_, __, ___) => Image(
-        image: image,
-        fit: fit,
-      ),
       fit: fit,
-      placeholderFit: placeholderFit,
+      loadStateChanged: (state) => _handleLoadState(state, placeholder),
     );
+  }
+
+  Widget? _handleLoadState(
+    ExtendedImageState state,
+    ImageProvider placeholder,
+  ) {
+    return switch (state.extendedImageLoadState) {
+      LoadState.loading => Image(
+          image: placeholder,
+          fit: placeholderFit ?? fit,
+        ),
+      LoadState.completed => ExtendedRawImage(
+          image: state.extendedImageInfo?.image,
+          fit: fit,
+        ),
+      LoadState.failed => Image(
+          image: placeholder,
+          fit: placeholderFit ?? fit,
+        ),
+    };
   }
 }
