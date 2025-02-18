@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/app_images.dart';
+import '../../../resources/app_official_recources_urls.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_svg_asset.dart';
@@ -27,6 +28,8 @@ class MoreScreenView extends ConsumerWidget {
       ref.baseStatusHandler.handleStatus(prev, next);
     });
 
+    final urlLauncher = ref.urlLauncher;
+
     return Scaffold(
       appBar: MoreAppBar(),
       body: CustomScrollView(
@@ -45,12 +48,14 @@ class MoreScreenView extends ConsumerWidget {
               ListTile(
                 title: Text(LocaleKeys.privacyPolicyTile.tr()),
                 leading: AppSvgAsset(path: AppImages.privacyIcon),
-                onTap: () {},
+                onTap: () => urlLauncher
+                    .openUrl(AppOfficialResourcesUrls.privacyPolicyUrl),
               ),
               ListTile(
                 title: Text(LocaleKeys.termsAndConditionsTile.tr()),
                 leading: AppSvgAsset(path: AppImages.termsIcon),
-                onTap: () {},
+                onTap: () => urlLauncher
+                    .openUrl(AppOfficialResourcesUrls.termsAndConditionsUrl),
               ),
             ].addSeparators(context, (_, __) => dimens.spSmall.gapVert()),
           ),

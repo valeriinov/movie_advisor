@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../common/adapters/url_launcher_adapter/impl_url_launcher_adapter.dart';
+import '../../common/adapters/url_launcher_adapter/url_launcher_adapter.dart';
 import '../../data/local/app_local_database.dart';
 import '../../data/mappers/app_cast_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
@@ -135,6 +137,10 @@ final mediaLocalDataSourcePr = Provider<MediaLocalDataSource>(
   ),
 );
 
+final urlLauncherPr = Provider<UrlLauncherAdapter>(
+  (_) => ImplUrlLauncherAdapter(),
+);
+
 // HOME
 final homeServicePr = Provider<HomeService>((ref) => HomeService(
       mediaApiClient: ref.read(mediaApiClientPr),
@@ -253,6 +259,11 @@ extension CoreProvider on WidgetRef {
   ///
   /// Used for managing loading indicators and error dialogs based on app state.
   BaseStatusHandler get baseStatusHandler => read(baseStatusHandlerPr);
+
+  /// Provides access to the url launcher.
+  ///
+  /// Used for opening URLs in the in-app web view.
+  UrlLauncherAdapter get urlLauncher => read(urlLauncherPr);
 }
 
 /// A widget that initializes the dependency injection system for the application.
