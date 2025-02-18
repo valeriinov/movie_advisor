@@ -1,4 +1,5 @@
 {
+  "appName": "Movie Advisor",
   "homeNavTab": "Головна",
   "watchlistNavTab": "Обране",
   "watchedNavTab": "Переглянуті",
@@ -71,5 +72,11 @@
   "emptyWatchedSeriesSubtitle": "Серіали, які ви додасте до переглянутих, з'являться тут.",
   "contentTypeMenu": "Тип контенту",
   "movie": "Фільм",
-  "series": "Серіал"
+  "series": "Серіал",
+  "aboutUsTile": "Про нас",
+  "privacyPolicyTile": "Політика конфіденційності",
+  "termsAndConditionsTile": "Умови та положення",
+  "aboutUsScreenTitle": "Про нас",
+  "aboutUsDescription": "Ми – команда кіноманів, які люблять дивитися фільми та серіали. Ми створили цей застосунок, щоб допомогти вам знайти найкращі фільми та серіали для перегляду. Сподіваємось, вам сподобається!",
+  "aboutUsTMDBAttribution": "Цей продукт використовує TMDB API, але не схвалений і не сертифікований TMDB."
 }

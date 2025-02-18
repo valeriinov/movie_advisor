@@ -14,4 +14,7 @@ abstract final class AppRoutes {
 
   // Home/Search
   static const String search = 'search';
+
+  // More/About Us
+  static const String aboutUs = 'about-us';
 }

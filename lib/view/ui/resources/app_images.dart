@@ -11,10 +11,14 @@
 abstract final class AppImages {
   static const _imgPath = "assets/images/";
 
+  static const infoIcon = "${_imgPath}info_icon.svg";
   static const addWatchlistIcon = "${_imgPath}add_watchlist_icon.svg";
+  static const privacyIcon = "${_imgPath}privacy_icon.svg";
+  static const tmbdLogo = "${_imgPath}tmbd_logo.svg";
   static const searchIcon = "${_imgPath}search_icon.svg";
   static const moreHorIcon = "${_imgPath}more_hor_icon.svg";
   static const homeIcon = "${_imgPath}home_icon.svg";
+  static const termsIcon = "${_imgPath}terms_icon.svg";
   static const addWatchlistFillIcon = "${_imgPath}add_watchlist_fill_icon.svg";
   static const starIcon = "${_imgPath}star_icon.svg";
   static const placeholderImage = "${_imgPath}placeholder_image.png";

@@ -1,4 +1,5 @@
 {
+  "appName": "Movie Advisor",
   "homeNavTab": "Home",
   "watchlistNavTab": "Watchlist",
   "watchedNavTab": "Watched",
@@ -71,5 +72,11 @@
   "emptyWatchedSeriesSubtitle": "Series you mark as watched will appear here.",
   "contentTypeMenu": "Content type",
   "movie": "Movie",
-  "series": "Series"
+  "series": "Series",
+  "aboutUsTile": "About Us",
+  "privacyPolicyTile": "Privacy Policy",
+  "termsAndConditionsTile": "Terms & Conditions",
+  "aboutUsScreenTitle": "About Us",
+  "aboutUsDescription": "We are a team of movie enthusiasts who love to watch movies and series. We created this app to help you find the best movies and series to watch. We hope you enjoy it!",
+  "aboutUsTMDBAttribution": "This product uses the TMDB API but is not endorsed or certified by TMDB."
 }
