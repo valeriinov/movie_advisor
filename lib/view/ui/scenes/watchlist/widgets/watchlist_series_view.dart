@@ -9,17 +9,17 @@ import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/blurred_bottom_sheet.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../../../widgets/watch_shared/watch_app_bar.dart';
 import '../../../widgets/watch_shared/watch_content_skeleton.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
 import '../watchlist_view_model/watchlist_view_model.dart';
+import 'watchlist_filter_bottom_sheet.dart';
 
 class WatchlistSeriesView extends HookConsumerWidget {
-  final VoidCallback toggleContentMode;
-
-  const WatchlistSeriesView({super.key, required this.toggleContentMode});
+  const WatchlistSeriesView({super.key});
 
   @override
   Widget build(context, ref) {
@@ -50,8 +50,7 @@ class WatchlistSeriesView extends HookConsumerWidget {
           return Scaffold(
             appBar: WatchAppBar(
               title: LocaleKeys.watchlistSeriesScreenTitle.tr(),
-              // TODO: Add modal bottom sheet
-              onMoreTap: toggleContentMode,
+              onMoreTap: () => _onMoreTap(context),
             ),
             body: isSkeletonVisible
                 ? WatchContentSkeleton()
@@ -97,6 +96,15 @@ class WatchlistSeriesView extends HookConsumerWidget {
       currentPage: loadInfo.mediaData.currentPage,
       isLoading: loadInfo.isNextPageLoading,
       isLastPage: loadInfo.mediaData.isLastPage,
+    );
+  }
+
+  void _onMoreTap(BuildContext context) {
+    showBlurredBottomSheet(
+      isDismissible: false,
+      useRootNavigator: true,
+      context: context,
+      child: WatchlistFilterBottomSheet(),
     );
   }
 
