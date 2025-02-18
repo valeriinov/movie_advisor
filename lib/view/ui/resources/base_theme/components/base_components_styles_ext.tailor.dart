@@ -12,8 +12,13 @@ mixin _$BaseComponentsStylesTailorMixin
     on ThemeExtension<BaseComponentsStyles> {
   double get cardPrimBorderRadius;
   ShapeBorder get cardPrimShape;
+  double get horizontalTitleGap;
   TextStyle get listTilePrimTitleTextStyle;
   TextStyle get listTilePrimSubtTextStyle;
+  TextStyle get listTileSecTitleTextStyle;
+  TextStyle get listTileSecSubtTextStyle;
+  TextStyle get listTileSecTitleTextStyleSelect;
+  TextStyle get listTileSecSubtTextStyleSelect;
   TextStyle get avatarPrimTextStyle;
   double get posterBorderRadius;
   double get backdrBorderRadius;
@@ -37,8 +42,13 @@ mixin _$BaseComponentsStylesTailorMixin
   BaseComponentsStyles copyWith({
     double? cardPrimBorderRadius,
     ShapeBorder? cardPrimShape,
+    double? horizontalTitleGap,
     TextStyle? listTilePrimTitleTextStyle,
     TextStyle? listTilePrimSubtTextStyle,
+    TextStyle? listTileSecTitleTextStyle,
+    TextStyle? listTileSecSubtTextStyle,
+    TextStyle? listTileSecTitleTextStyleSelect,
+    TextStyle? listTileSecSubtTextStyleSelect,
     TextStyle? avatarPrimTextStyle,
     double? posterBorderRadius,
     double? backdrBorderRadius,
@@ -61,10 +71,19 @@ mixin _$BaseComponentsStylesTailorMixin
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
       cardPrimShape: cardPrimShape ?? this.cardPrimShape,
+      horizontalTitleGap: horizontalTitleGap ?? this.horizontalTitleGap,
       listTilePrimTitleTextStyle:
           listTilePrimTitleTextStyle ?? this.listTilePrimTitleTextStyle,
       listTilePrimSubtTextStyle:
           listTilePrimSubtTextStyle ?? this.listTilePrimSubtTextStyle,
+      listTileSecTitleTextStyle:
+          listTileSecTitleTextStyle ?? this.listTileSecTitleTextStyle,
+      listTileSecSubtTextStyle:
+          listTileSecSubtTextStyle ?? this.listTileSecSubtTextStyle,
+      listTileSecTitleTextStyleSelect: listTileSecTitleTextStyleSelect ??
+          this.listTileSecTitleTextStyleSelect,
+      listTileSecSubtTextStyleSelect:
+          listTileSecSubtTextStyleSelect ?? this.listTileSecSubtTextStyleSelect,
       avatarPrimTextStyle: avatarPrimTextStyle ?? this.avatarPrimTextStyle,
       posterBorderRadius: posterBorderRadius ?? this.posterBorderRadius,
       backdrBorderRadius: backdrBorderRadius ?? this.backdrBorderRadius,
@@ -99,10 +118,24 @@ mixin _$BaseComponentsStylesTailorMixin
       cardPrimBorderRadius:
           t < 0.5 ? cardPrimBorderRadius : other.cardPrimBorderRadius,
       cardPrimShape: t < 0.5 ? cardPrimShape : other.cardPrimShape,
+      horizontalTitleGap:
+          t < 0.5 ? horizontalTitleGap : other.horizontalTitleGap,
       listTilePrimTitleTextStyle: TextStyle.lerp(
           listTilePrimTitleTextStyle, other.listTilePrimTitleTextStyle, t)!,
       listTilePrimSubtTextStyle: TextStyle.lerp(
           listTilePrimSubtTextStyle, other.listTilePrimSubtTextStyle, t)!,
+      listTileSecTitleTextStyle: TextStyle.lerp(
+          listTileSecTitleTextStyle, other.listTileSecTitleTextStyle, t)!,
+      listTileSecSubtTextStyle: TextStyle.lerp(
+          listTileSecSubtTextStyle, other.listTileSecSubtTextStyle, t)!,
+      listTileSecTitleTextStyleSelect: TextStyle.lerp(
+          listTileSecTitleTextStyleSelect,
+          other.listTileSecTitleTextStyleSelect,
+          t)!,
+      listTileSecSubtTextStyleSelect: TextStyle.lerp(
+          listTileSecSubtTextStyleSelect,
+          other.listTileSecSubtTextStyleSelect,
+          t)!,
       avatarPrimTextStyle:
           TextStyle.lerp(avatarPrimTextStyle, other.avatarPrimTextStyle, t)!,
       posterBorderRadius:
@@ -144,10 +177,22 @@ mixin _$BaseComponentsStylesTailorMixin
                 .equals(cardPrimBorderRadius, other.cardPrimBorderRadius) &&
             const DeepCollectionEquality()
                 .equals(cardPrimShape, other.cardPrimShape) &&
+            const DeepCollectionEquality()
+                .equals(horizontalTitleGap, other.horizontalTitleGap) &&
             const DeepCollectionEquality().equals(
                 listTilePrimTitleTextStyle, other.listTilePrimTitleTextStyle) &&
             const DeepCollectionEquality().equals(
                 listTilePrimSubtTextStyle, other.listTilePrimSubtTextStyle) &&
+            const DeepCollectionEquality().equals(
+                listTileSecTitleTextStyle, other.listTileSecTitleTextStyle) &&
+            const DeepCollectionEquality().equals(
+                listTileSecSubtTextStyle, other.listTileSecSubtTextStyle) &&
+            const DeepCollectionEquality().equals(
+                listTileSecTitleTextStyleSelect,
+                other.listTileSecTitleTextStyleSelect) &&
+            const DeepCollectionEquality().equals(
+                listTileSecSubtTextStyleSelect,
+                other.listTileSecSubtTextStyleSelect) &&
             const DeepCollectionEquality()
                 .equals(avatarPrimTextStyle, other.avatarPrimTextStyle) &&
             const DeepCollectionEquality()
@@ -178,12 +223,9 @@ mixin _$BaseComponentsStylesTailorMixin
                 .equals(botSheetShape, other.botSheetShape) &&
             const DeepCollectionEquality()
                 .equals(botSheetTitleTextStyle, other.botSheetTitleTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(sliderThumbRadius, other.sliderThumbRadius) &&
-            const DeepCollectionEquality()
-                .equals(sliderTrackHeight, other.sliderTrackHeight) &&
-            const DeepCollectionEquality()
-                .equals(sliderValTextStyle, other.sliderValTextStyle));
+            const DeepCollectionEquality().equals(sliderThumbRadius, other.sliderThumbRadius) &&
+            const DeepCollectionEquality().equals(sliderTrackHeight, other.sliderTrackHeight) &&
+            const DeepCollectionEquality().equals(sliderValTextStyle, other.sliderValTextStyle));
   }
 
   @override
@@ -192,8 +234,13 @@ mixin _$BaseComponentsStylesTailorMixin
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(cardPrimBorderRadius),
       const DeepCollectionEquality().hash(cardPrimShape),
+      const DeepCollectionEquality().hash(horizontalTitleGap),
       const DeepCollectionEquality().hash(listTilePrimTitleTextStyle),
       const DeepCollectionEquality().hash(listTilePrimSubtTextStyle),
+      const DeepCollectionEquality().hash(listTileSecTitleTextStyle),
+      const DeepCollectionEquality().hash(listTileSecSubtTextStyle),
+      const DeepCollectionEquality().hash(listTileSecTitleTextStyleSelect),
+      const DeepCollectionEquality().hash(listTileSecSubtTextStyleSelect),
       const DeepCollectionEquality().hash(avatarPrimTextStyle),
       const DeepCollectionEquality().hash(posterBorderRadius),
       const DeepCollectionEquality().hash(backdrBorderRadius),

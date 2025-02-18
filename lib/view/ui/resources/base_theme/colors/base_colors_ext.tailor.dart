@@ -73,6 +73,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get cardPrimShadow;
   Color get listTilePrimTitle;
   Color get listTilePrimSubtitle;
+  Color get listTileSecTitle;
+  Color get listTileSecSubtitle;
   Color get avatarPrimBg;
   Color get avatarPrimFg;
   Color get suggestNumFill;
@@ -157,6 +159,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? cardPrimShadow,
     Color? listTilePrimTitle,
     Color? listTilePrimSubtitle,
+    Color? listTileSecTitle,
+    Color? listTileSecSubtitle,
     Color? avatarPrimBg,
     Color? avatarPrimFg,
     Color? suggestNumFill,
@@ -242,6 +246,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       cardPrimShadow: cardPrimShadow ?? this.cardPrimShadow,
       listTilePrimTitle: listTilePrimTitle ?? this.listTilePrimTitle,
       listTilePrimSubtitle: listTilePrimSubtitle ?? this.listTilePrimSubtitle,
+      listTileSecTitle: listTileSecTitle ?? this.listTileSecTitle,
+      listTileSecSubtitle: listTileSecSubtitle ?? this.listTileSecSubtitle,
       avatarPrimBg: avatarPrimBg ?? this.avatarPrimBg,
       avatarPrimFg: avatarPrimFg ?? this.avatarPrimFg,
       suggestNumFill: suggestNumFill ?? this.suggestNumFill,
@@ -357,6 +363,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
           Color.lerp(listTilePrimTitle, other.listTilePrimTitle, t)!,
       listTilePrimSubtitle:
           Color.lerp(listTilePrimSubtitle, other.listTilePrimSubtitle, t)!,
+      listTileSecTitle:
+          Color.lerp(listTileSecTitle, other.listTileSecTitle, t)!,
+      listTileSecSubtitle:
+          Color.lerp(listTileSecSubtitle, other.listTileSecSubtitle, t)!,
       avatarPrimBg: Color.lerp(avatarPrimBg, other.avatarPrimBg, t)!,
       avatarPrimFg: Color.lerp(avatarPrimFg, other.avatarPrimFg, t)!,
       suggestNumFill: Color.lerp(suggestNumFill, other.suggestNumFill, t)!,
@@ -492,6 +502,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(cardPrimShadow, other.cardPrimShadow) &&
             const DeepCollectionEquality().equals(listTilePrimTitle, other.listTilePrimTitle) &&
             const DeepCollectionEquality().equals(listTilePrimSubtitle, other.listTilePrimSubtitle) &&
+            const DeepCollectionEquality().equals(listTileSecTitle, other.listTileSecTitle) &&
+            const DeepCollectionEquality().equals(listTileSecSubtitle, other.listTileSecSubtitle) &&
             const DeepCollectionEquality().equals(avatarPrimBg, other.avatarPrimBg) &&
             const DeepCollectionEquality().equals(avatarPrimFg, other.avatarPrimFg) &&
             const DeepCollectionEquality().equals(suggestNumFill, other.suggestNumFill) &&
@@ -579,6 +591,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(cardPrimShadow),
       const DeepCollectionEquality().hash(listTilePrimTitle),
       const DeepCollectionEquality().hash(listTilePrimSubtitle),
+      const DeepCollectionEquality().hash(listTileSecTitle),
+      const DeepCollectionEquality().hash(listTileSecSubtitle),
       const DeepCollectionEquality().hash(avatarPrimBg),
       const DeepCollectionEquality().hash(avatarPrimFg),
       const DeepCollectionEquality().hash(suggestNumFill),

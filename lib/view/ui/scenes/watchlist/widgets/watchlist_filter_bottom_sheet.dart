@@ -3,12 +3,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../widgets/filter_bottom_sheet.dart';
 import '../watchlist_view_model/watchlist_view_model.dart';
-import 'watchlist_movies_view.dart';
-import 'watchlist_series_view.dart';
 
-class WatchlistScreenView extends ConsumerWidget {
-  const WatchlistScreenView({super.key});
+class WatchlistFilterBottomSheet extends ConsumerWidget {
+  const WatchlistFilterBottomSheet({super.key});
 
   @override
   Widget build(context, ref) {
@@ -18,6 +17,9 @@ class WatchlistScreenView extends ConsumerWidget {
 
     final contentMode = vspContMode.selectWatch((s) => s.mode);
 
-    return contentMode.isMovies ? WatchlistMoviesView() : WatchlistSeriesView();
+    return FilterBottomSheet(
+      contentMode: contentMode,
+      toggleContentMode: vspContMode.viewModel.toggleMode,
+    );
   }
 }

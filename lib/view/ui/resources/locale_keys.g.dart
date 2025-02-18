@@ -43,12 +43,14 @@ abstract class  LocaleKeys {
   static const genreSerWarPolitics = 'genreSerWarPolitics';
   static const genreSerWestern = 'genreSerWestern';
   static const searchHint = 'searchHint';
-  static const homeScreenTitle = 'homeScreenTitle';
+  static const homeScreenMoviesTitle = 'homeScreenMoviesTitle';
+  static const homeScreenSeriesTitle = 'homeScreenSeriesTitle';
   static const nowPlayingTab = 'nowPlayingTab';
   static const upcomingTab = 'upcomingTab';
   static const popularTab = 'popularTab';
   static const topRatedTab = 'topRatedTab';
-  static const searchScreenTitle = 'searchScreenTitle';
+  static const searchScreenMoviesTitle = 'searchScreenMoviesTitle';
+  static const searchScreenSeriesTitle = 'searchScreenSeriesTitle';
   static const emptySearchTitle = 'emptySearchTitle';
   static const emptySearchSubtitle = 'emptySearchSubtitle';
   static const detailsMovieScreenTitle = 'detailsMovieScreenTitle';
@@ -71,5 +73,8 @@ abstract class  LocaleKeys {
   static const emptyWatchedMoviesSubtitle = 'emptyWatchedMoviesSubtitle';
   static const emptyWatchedSeriesTitle = 'emptyWatchedSeriesTitle';
   static const emptyWatchedSeriesSubtitle = 'emptyWatchedSeriesSubtitle';
+  static const contentTypeMenu = 'contentTypeMenu';
+  static const movie = 'movie';
+  static const series = 'series';
 
 }

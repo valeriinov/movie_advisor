@@ -17,10 +17,7 @@ class WatchedScreenView extends ConsumerWidget {
     );
 
     final contentMode = vspContMode.selectWatch((s) => s.mode);
-    final toggleMode = vspContMode.viewModel.toggleMode;
 
-    return contentMode.isMovies
-        ? WatchedMoviesView(toggleContentMode: toggleMode)
-        : WatchedSeriesView(toggleContentMode: toggleMode);
+    return contentMode.isMovies ? WatchedMoviesView() : WatchedSeriesView();
   }
 }

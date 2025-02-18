@@ -5,7 +5,6 @@ import '../../app_fonts.dart';
 import '../colors/base_colors_ext.dart';
 
 part 'base_components_styles.dart';
-
 part 'base_components_styles_ext.tailor.dart';
 
 abstract final class BaseComponentsStylesFactory {
@@ -15,6 +14,7 @@ abstract final class BaseComponentsStylesFactory {
       cardPrimShape: _BaseComponentsStyles.cardPrimShape(
         borderColor: colors.cardPrimBorder,
       ),
+      horizontalTitleGap: _BaseComponentsStyles.horizontalTitleGap,
       listTilePrimTitleTextStyle:
           _BaseComponentsStyles.listTilePrimTitleTextStyle(
         colors.listTilePrimTitle,
@@ -22,6 +22,21 @@ abstract final class BaseComponentsStylesFactory {
       listTilePrimSubtTextStyle:
           _BaseComponentsStyles.listTilePrimSubtTextStyle(
         colors.listTilePrimSubtitle,
+      ),
+      listTileSecTitleTextStyle:
+          _BaseComponentsStyles.listTileSecTitleTextStyle(
+        colors.listTileSecTitle,
+      ),
+      listTileSecSubtTextStyle: _BaseComponentsStyles.listTileSecSubtTextStyle(
+        colors.listTileSecSubtitle,
+      ),
+      listTileSecTitleTextStyleSelect:
+          _BaseComponentsStyles.listTileSecTitleTextStyleSelect(
+        colors.listTileSecTitle,
+      ),
+      listTileSecSubtTextStyleSelect:
+          _BaseComponentsStyles.listTileSecSubtTextStyleSelect(
+        colors.listTileSecSubtitle,
       ),
       avatarPrimTextStyle: _BaseComponentsStyles.avatarPrimTextStyle(
         colors.avatarPrimFg,
@@ -71,6 +86,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final ShapeBorder cardPrimShape;
 
+  /// Horizontal gap of the title in the ListTile.
+  @override
+  final double horizontalTitleGap;
+
   /// Primary TextStyle of the ListTile title.
   @override
   final TextStyle listTilePrimTitleTextStyle;
@@ -78,6 +97,22 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   /// Primary TextStyle of the ListTile subtitle.
   @override
   final TextStyle listTilePrimSubtTextStyle;
+
+  /// Secondary TextStyle of the ListTile title.
+  @override
+  final TextStyle listTileSecTitleTextStyle;
+
+  /// Secondary TextStyle of the ListTile subtitle.
+  @override
+  final TextStyle listTileSecSubtTextStyle;
+
+  /// Secondary TextStyle of the ListTile title when selected.
+  @override
+  final TextStyle listTileSecTitleTextStyleSelect;
+
+  /// Secondary TextStyle of the ListTile subtitle when selected.
+  @override
+  final TextStyle listTileSecSubtTextStyleSelect;
 
   /// Primary TextStyle of the avatar.
   @override
@@ -153,8 +188,13 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
     required this.cardPrimShape,
+    required this.horizontalTitleGap,
     required this.listTilePrimTitleTextStyle,
     required this.listTilePrimSubtTextStyle,
+    required this.listTileSecTitleTextStyle,
+    required this.listTileSecSubtTextStyle,
+    required this.listTileSecTitleTextStyleSelect,
+    required this.listTileSecSubtTextStyleSelect,
     required this.avatarPrimTextStyle,
     required this.posterBorderRadius,
     required this.backdrBorderRadius,

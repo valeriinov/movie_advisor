@@ -11,11 +11,40 @@ abstract final class _BaseComponentsStyles {
             : BorderSide.none,
       );
 
+  static double horizontalTitleGap = 12;
+
   static TextStyle listTilePrimTitleTextStyle(Color color) =>
       TextStyle(color: color);
 
   static TextStyle listTilePrimSubtTextStyle(Color color) =>
       TextStyle(color: color);
+
+  static TextStyle listTileSecTitleTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+        color: color,
+      );
+
+  static TextStyle listTileSecSubtTextStyle(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w400,
+        fontSize: 14,
+        color: color,
+      );
+
+  static TextStyle listTileSecTitleTextStyleSelect(Color color) => TextStyle(
+        fontFamily: AppFonts.montserrat,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
+        color: color,
+      );
+
+  static TextStyle listTileSecSubtTextStyleSelect(Color color) => TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 14,
+        color: color,
+      );
 
   static TextStyle avatarPrimTextStyle(Color color) => TextStyle(color: color);
 
