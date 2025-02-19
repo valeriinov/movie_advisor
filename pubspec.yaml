@@ -30,7 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
   theme_tailor_annotation: ^3.0.1
   intl: any
   flutter_utils:
@@ -52,7 +51,6 @@ dependencies:
   async: any
   skeletonizer: ^1.4.3
   flutter_hooks: ^0.20.5
-  extended_masked_text: ^3.0.1
   class_namer_annotation:
     git:
       url: https://github.com/valeriinov/class_namer.git
