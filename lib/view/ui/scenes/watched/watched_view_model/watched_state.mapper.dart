@@ -77,8 +77,7 @@ extension WatchedStateValueCopy<$R, $Out, T>
 
 abstract class WatchedStateCopyWith<$R, $In extends WatchedState<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
-      get watched;
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T> get watched;
   $R call({MediaLoadInfo<T>? watched, WatchedStatus? status});
   WatchedStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
@@ -93,7 +92,7 @@ class _WatchedStateCopyWithImpl<$R, $Out, T>
   late final ClassMapperBase<WatchedState> $mapper =
       WatchedStateMapper.ensureInitialized();
   @override
-  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
       get watched => ($value.watched as MediaLoadInfo<T>)
           .copyWith
           .$chain((v) => call(watched: v));

@@ -77,8 +77,7 @@ extension SearchStateValueCopy<$R, $Out, T>
 
 abstract class SearchStateCopyWith<$R, $In extends SearchState<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
-      get results;
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T> get results;
   $R call({MediaLoadInfo<T>? results, SearchStatus? status});
   SearchStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
@@ -93,7 +92,7 @@ class _SearchStateCopyWithImpl<$R, $Out, T>
   late final ClassMapperBase<SearchState> $mapper =
       SearchStateMapper.ensureInitialized();
   @override
-  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
       get results => ($value.results as MediaLoadInfo<T>)
           .copyWith
           .$chain((v) => call(results: v));

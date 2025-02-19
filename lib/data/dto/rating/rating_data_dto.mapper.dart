@@ -25,10 +25,10 @@ class RatingDataDtoMapper extends ClassMapperBase<RatingDataDto> {
       Field('popularity', _$popularity, opt: true);
   static double? _$voteAverage(RatingDataDto v) => v.voteAverage;
   static const Field<RatingDataDto, double> _f$voteAverage =
-      Field('voteAverage', _$voteAverage, key: 'vote_average', opt: true);
+      Field('voteAverage', _$voteAverage, key: r'vote_average', opt: true);
   static int? _$voteCount(RatingDataDto v) => v.voteCount;
   static const Field<RatingDataDto, int> _f$voteCount =
-      Field('voteCount', _$voteCount, key: 'vote_count', opt: true);
+      Field('voteCount', _$voteCount, key: r'vote_count', opt: true);
 
   @override
   final MappableFields<RatingDataDto> fields = const {
