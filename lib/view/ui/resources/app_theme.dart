@@ -43,6 +43,7 @@ class AppTheme {
       highlightColor: colors.highlightColor,
       fontFamily: AppFonts.roboto,
       scaffoldBackgroundColor: colors.scaffoldBg,
+      pageTransitionsTheme: _createPageTransitionsTheme(colors),
       textTheme: textStyles.createTextTheme(),
       appBarTheme: _createAppBarTheme(colors, navBarsStyles),
       bottomNavigationBarTheme:
@@ -74,6 +75,26 @@ class AppTheme {
         BaseDurationsFactory.createDurations(),
       ],
     );
+  }
+
+  PageTransitionsTheme _createPageTransitionsTheme(BaseColors colors) {
+    return PageTransitionsTheme(
+      builders: {
+        for (final platform in TargetPlatform.values)
+          platform: _resolvePageTransitionsBuilder(platform, colors),
+      },
+    );
+  }
+
+  PageTransitionsBuilder _resolvePageTransitionsBuilder(
+    TargetPlatform platform,
+    BaseColors colors,
+  ) {
+    return platform.isIOS
+        ? const CupertinoPageTransitionsBuilder()
+        : FadeForwardsPageTransitionsBuilder(
+            backgroundColor: colors.scaffoldBg,
+          );
   }
 
   AppBarTheme _createAppBarTheme(BaseColors colors, BaseNavBarsStyles styles) {

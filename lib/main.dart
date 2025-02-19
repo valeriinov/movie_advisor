@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'common/app_locales.dart';
@@ -47,6 +48,7 @@ class MyApp extends ConsumerWidget {
       locale: context.locale,
       routerConfig: routerProvider.routerConfig,
       theme: themeProvider.theme,
+      builder: FToastBuilder(),
     );
   }
 

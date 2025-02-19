@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../resources/base_theme/dialogs/base_dialogs_styles_ext.dart';
+import '../../resources/locale_keys.g.dart';
 
 class QuestionDialog extends StatelessWidget {
   final Widget? title;
@@ -29,7 +31,7 @@ class QuestionDialog extends StatelessWidget {
     return AlertDialog(
       title: title ??
           Text(
-            titleText ?? 'App Name', // TODO: Change to correct dialog title
+            titleText ?? LocaleKeys.appName.tr(),
             textAlign: TextAlign.center,
           ),
       content: SizedBox(
@@ -56,7 +58,7 @@ class QuestionDialog extends StatelessWidget {
               onCancelButtonPressed?.call();
             },
             child: Text(
-              cancelButtonTitle ?? 'Cancel', // TODO: Localize cancel button
+              cancelButtonTitle ?? LocaleKeys.dialogCancelButton.tr(),
               style: styles.dlgPrimBtnTextStyle,
             ),
           ),
@@ -69,7 +71,7 @@ class QuestionDialog extends StatelessWidget {
               onOkButtonPressed?.call();
             },
             child: Text(
-              okButtonTitle ?? 'OK', // TODO: Localize OK button
+              okButtonTitle ?? LocaleKeys.dialogOkButton.tr(),
               style: styles.dlgPrimBtnTextStyle,
             ),
           ),

@@ -83,5 +83,28 @@ abstract class  LocaleKeys {
   static const aboutUsScreenTitle = 'aboutUsScreenTitle';
   static const aboutUsDescription = 'aboutUsDescription';
   static const aboutUsTMDBAttribution = 'aboutUsTMDBAttribution';
+  static const addedToWatchlist = 'addedToWatchlist';
+  static const removedFromWatchlist = 'removedFromWatchlist';
+  static const addedToWatched = 'addedToWatched';
+  static const removedFromWatched = 'removedFromWatched';
+  static const dialogOkButton = 'dialogOkButton';
+  static const dialogCancelButton = 'dialogCancelButton';
+  static const unexpectedErrorDesc = 'unexpectedErrorDesc';
+  static const timeoutErrorDesc = 'timeoutErrorDesc';
+  static const connectionErrorDesc = 'connectionErrorDesc';
+  static const serverErrorDesc = 'serverErrorDesc';
+  static const unauthorizedErrorDesc = 'unauthorizedErrorDesc';
+  static const badRequestErrorDesc = 'badRequestErrorDesc';
+  static const notFoundErrorDesc = 'notFoundErrorDesc';
+  static const keyboardCloseButton = 'keyboardCloseButton';
+  static const keyboardDoneButton = 'keyboardDoneButton';
+  static const invalidNameError = 'invalidNameError';
+  static const invalidEmailError = 'invalidEmailError';
+  static const invalidPassError = 'invalidPassError';
+  static const invalidConfirmPassError = 'invalidConfirmPassError';
+  static const nameFieldHint = 'nameFieldHint';
+  static const emailFieldHint = 'emailFieldHint';
+  static const passFieldHint = 'passFieldHint';
+  static const confirmPassFieldHint = 'confirmPassFieldHint';
 
 }

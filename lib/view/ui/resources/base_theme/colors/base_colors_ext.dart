@@ -65,6 +65,10 @@ abstract final class BaseColorsFactory {
         dlgPrimTitle: _BaseColors.dlgPrimTitle,
         dlgPrimCont: _BaseColors.dlgPrimCont,
         dlgPrimBtnFg: _BaseColors.dlgPrimBtnFg,
+        toastSuccessBg: _BaseColors.toastSuccessBg,
+        toastInfoBg: _BaseColors.toastInfoBg,
+        toastErrorBg: _BaseColors.toastErrorBg,
+        toastFg: _BaseColors.toastFg,
         cardPrimBg: _BaseColors.cardPrimBg,
         cardPrimSurfTint: _BaseColors.cardPrimSurfTint,
         cardPrimBorder: _BaseColors.cardPrimBorder,
@@ -342,6 +346,22 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color dlgPrimBtnFg;
 
+  /// Toast success background color.
+  @override
+  final Color toastSuccessBg;
+
+  /// Toast info background color.
+  @override
+  final Color toastInfoBg;
+
+  /// Toast error background color.
+  @override
+  final Color toastErrorBg;
+
+  /// Toast foreground color.
+  @override
+  final Color toastFg;
+
   // COMPONENTS
 
   /// Card primary background color.
@@ -507,6 +527,10 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.dlgPrimTitle,
     required this.dlgPrimCont,
     required this.dlgPrimBtnFg,
+    required this.toastSuccessBg,
+    required this.toastInfoBg,
+    required this.toastErrorBg,
+    required this.toastFg,
     required this.cardPrimBg,
     required this.cardPrimSurfTint,
     required this.cardPrimBorder,

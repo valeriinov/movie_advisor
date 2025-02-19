@@ -15,6 +15,12 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
   EdgeInsets get dlgPrimActPadding;
   EdgeInsets get dlgPrimInsPadding;
   ShapeBorder get dlgPrimShape;
+  double get toastBorderRadius;
+  double get toastBotMargin;
+  double get toastHorMargin;
+  double get toastMinHeight;
+  EdgeInsets get toastContPadding;
+  TextStyle get toastTextStyle;
 
   @override
   BaseDialogsStyles copyWith({
@@ -24,6 +30,12 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
     EdgeInsets? dlgPrimActPadding,
     EdgeInsets? dlgPrimInsPadding,
     ShapeBorder? dlgPrimShape,
+    double? toastBorderRadius,
+    double? toastBotMargin,
+    double? toastHorMargin,
+    double? toastMinHeight,
+    EdgeInsets? toastContPadding,
+    TextStyle? toastTextStyle,
   }) {
     return BaseDialogsStyles(
       dlgPrimTitleTextStyle:
@@ -33,6 +45,12 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
       dlgPrimActPadding: dlgPrimActPadding ?? this.dlgPrimActPadding,
       dlgPrimInsPadding: dlgPrimInsPadding ?? this.dlgPrimInsPadding,
       dlgPrimShape: dlgPrimShape ?? this.dlgPrimShape,
+      toastBorderRadius: toastBorderRadius ?? this.toastBorderRadius,
+      toastBotMargin: toastBotMargin ?? this.toastBotMargin,
+      toastHorMargin: toastHorMargin ?? this.toastHorMargin,
+      toastMinHeight: toastMinHeight ?? this.toastMinHeight,
+      toastContPadding: toastContPadding ?? this.toastContPadding,
+      toastTextStyle: toastTextStyle ?? this.toastTextStyle,
     );
   }
 
@@ -50,6 +68,12 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
       dlgPrimActPadding: t < 0.5 ? dlgPrimActPadding : other.dlgPrimActPadding,
       dlgPrimInsPadding: t < 0.5 ? dlgPrimInsPadding : other.dlgPrimInsPadding,
       dlgPrimShape: t < 0.5 ? dlgPrimShape : other.dlgPrimShape,
+      toastBorderRadius: t < 0.5 ? toastBorderRadius : other.toastBorderRadius,
+      toastBotMargin: t < 0.5 ? toastBotMargin : other.toastBotMargin,
+      toastHorMargin: t < 0.5 ? toastHorMargin : other.toastHorMargin,
+      toastMinHeight: t < 0.5 ? toastMinHeight : other.toastMinHeight,
+      toastContPadding: t < 0.5 ? toastContPadding : other.toastContPadding,
+      toastTextStyle: TextStyle.lerp(toastTextStyle, other.toastTextStyle, t)!,
     );
   }
 
@@ -69,7 +93,19 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
             const DeepCollectionEquality()
                 .equals(dlgPrimInsPadding, other.dlgPrimInsPadding) &&
             const DeepCollectionEquality()
-                .equals(dlgPrimShape, other.dlgPrimShape));
+                .equals(dlgPrimShape, other.dlgPrimShape) &&
+            const DeepCollectionEquality()
+                .equals(toastBorderRadius, other.toastBorderRadius) &&
+            const DeepCollectionEquality()
+                .equals(toastBotMargin, other.toastBotMargin) &&
+            const DeepCollectionEquality()
+                .equals(toastHorMargin, other.toastHorMargin) &&
+            const DeepCollectionEquality()
+                .equals(toastMinHeight, other.toastMinHeight) &&
+            const DeepCollectionEquality()
+                .equals(toastContPadding, other.toastContPadding) &&
+            const DeepCollectionEquality()
+                .equals(toastTextStyle, other.toastTextStyle));
   }
 
   @override
@@ -82,6 +118,12 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
       const DeepCollectionEquality().hash(dlgPrimActPadding),
       const DeepCollectionEquality().hash(dlgPrimInsPadding),
       const DeepCollectionEquality().hash(dlgPrimShape),
+      const DeepCollectionEquality().hash(toastBorderRadius),
+      const DeepCollectionEquality().hash(toastBotMargin),
+      const DeepCollectionEquality().hash(toastHorMargin),
+      const DeepCollectionEquality().hash(toastMinHeight),
+      const DeepCollectionEquality().hash(toastContPadding),
+      const DeepCollectionEquality().hash(toastTextStyle),
     );
   }
 }

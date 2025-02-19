@@ -67,6 +67,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get dlgPrimTitle;
   Color get dlgPrimCont;
   Color get dlgPrimBtnFg;
+  Color get toastSuccessBg;
+  Color get toastInfoBg;
+  Color get toastErrorBg;
+  Color get toastFg;
   Color get cardPrimBg;
   Color get cardPrimSurfTint;
   Color get cardPrimBorder;
@@ -153,6 +157,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? dlgPrimTitle,
     Color? dlgPrimCont,
     Color? dlgPrimBtnFg,
+    Color? toastSuccessBg,
+    Color? toastInfoBg,
+    Color? toastErrorBg,
+    Color? toastFg,
     Color? cardPrimBg,
     Color? cardPrimSurfTint,
     Color? cardPrimBorder,
@@ -240,6 +248,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       dlgPrimTitle: dlgPrimTitle ?? this.dlgPrimTitle,
       dlgPrimCont: dlgPrimCont ?? this.dlgPrimCont,
       dlgPrimBtnFg: dlgPrimBtnFg ?? this.dlgPrimBtnFg,
+      toastSuccessBg: toastSuccessBg ?? this.toastSuccessBg,
+      toastInfoBg: toastInfoBg ?? this.toastInfoBg,
+      toastErrorBg: toastErrorBg ?? this.toastErrorBg,
+      toastFg: toastFg ?? this.toastFg,
       cardPrimBg: cardPrimBg ?? this.cardPrimBg,
       cardPrimSurfTint: cardPrimSurfTint ?? this.cardPrimSurfTint,
       cardPrimBorder: cardPrimBorder ?? this.cardPrimBorder,
@@ -353,6 +365,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       dlgPrimTitle: Color.lerp(dlgPrimTitle, other.dlgPrimTitle, t)!,
       dlgPrimCont: Color.lerp(dlgPrimCont, other.dlgPrimCont, t)!,
       dlgPrimBtnFg: Color.lerp(dlgPrimBtnFg, other.dlgPrimBtnFg, t)!,
+      toastSuccessBg: Color.lerp(toastSuccessBg, other.toastSuccessBg, t)!,
+      toastInfoBg: Color.lerp(toastInfoBg, other.toastInfoBg, t)!,
+      toastErrorBg: Color.lerp(toastErrorBg, other.toastErrorBg, t)!,
+      toastFg: Color.lerp(toastFg, other.toastFg, t)!,
       cardPrimBg: Color.lerp(cardPrimBg, other.cardPrimBg, t)!,
       cardPrimSurfTint:
           Color.lerp(cardPrimSurfTint, other.cardPrimSurfTint, t)!,
@@ -495,6 +511,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(dlgPrimTitle, other.dlgPrimTitle) &&
             const DeepCollectionEquality().equals(dlgPrimCont, other.dlgPrimCont) &&
             const DeepCollectionEquality().equals(dlgPrimBtnFg, other.dlgPrimBtnFg) &&
+            const DeepCollectionEquality().equals(toastSuccessBg, other.toastSuccessBg) &&
+            const DeepCollectionEquality().equals(toastInfoBg, other.toastInfoBg) &&
+            const DeepCollectionEquality().equals(toastErrorBg, other.toastErrorBg) &&
+            const DeepCollectionEquality().equals(toastFg, other.toastFg) &&
             const DeepCollectionEquality().equals(cardPrimBg, other.cardPrimBg) &&
             const DeepCollectionEquality().equals(cardPrimSurfTint, other.cardPrimSurfTint) &&
             const DeepCollectionEquality().equals(cardPrimBorder, other.cardPrimBorder) &&
@@ -584,6 +604,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(dlgPrimTitle),
       const DeepCollectionEquality().hash(dlgPrimCont),
       const DeepCollectionEquality().hash(dlgPrimBtnFg),
+      const DeepCollectionEquality().hash(toastSuccessBg),
+      const DeepCollectionEquality().hash(toastInfoBg),
+      const DeepCollectionEquality().hash(toastErrorBg),
+      const DeepCollectionEquality().hash(toastFg),
       const DeepCollectionEquality().hash(cardPrimBg),
       const DeepCollectionEquality().hash(cardPrimSurfTint),
       const DeepCollectionEquality().hash(cardPrimBorder),

@@ -85,6 +85,11 @@ abstract final class _BaseColors {
   static const dlgPrimCont = Color(0xFF000000);
   static const dlgPrimBtnFg = Color(0xFF6200EA);
 
+  static const toastSuccessBg = Color(0xFFD6FFD3);
+  static const toastInfoBg = Color(0xFFD9EEFF);
+  static const toastErrorBg = Color(0xFFFFD9EF);
+  static const toastFg = Color(0xFF041C29);
+
   // Components
   static const cardPrimBg = Color(0xFFFFFFFF);
   static const cardPrimSurfTint = Colors.transparent;

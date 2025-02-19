@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../../resources/locale_keys.g.dart';
 
 /// {@category Widgets}
 ///
@@ -22,7 +25,7 @@ class KeyboardActionButton extends StatelessWidget {
     return TextButton(
       onPressed: onButtonPressed,
       child: Text(
-        buttonText ?? 'Done', // TODO Localize the button,
+        buttonText ?? LocaleKeys.keyboardDoneButton.tr(),
         style:
             const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
       ),

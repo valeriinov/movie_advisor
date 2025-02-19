@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'base/view_model/base_state.dart';
 import 'base/view_model/base_status_handler.dart';
 import 'base/view_model/ext/state_comparator.dart';
-import 'widgets/dialogs/error_dialog/error_dialog_manager.dart';
 import 'widgets/dialogs/loading_dialog/loading_dialog_manager.dart';
+import 'widgets/dialogs/toasts/toast_manager.dart';
 
 class ImplBaseStatusHandler implements BaseStatusHandler {
   final LoadingDialogManager _loadingDialogManager;
-  final ErrorDialogManager _errorDialogManager;
+  final ToastManager _toastManager;
 
   ImplBaseStatusHandler({
     required LoadingDialogManager loadingDialogManager,
-    required ErrorDialogManager errorDialogManager,
+    required ToastManager toastManager,
   })  : _loadingDialogManager = loadingDialogManager,
-        _errorDialogManager = errorDialogManager;
+        _toastManager = toastManager;
 
   @override
   Future<void> handleStatus(
@@ -27,7 +27,7 @@ class ImplBaseStatusHandler implements BaseStatusHandler {
 
     if (next.status.hasError) {
       await _toggleShowLoading(false);
-      await _errorDialogManager.showErrorDialog(next.status.errorMessage!);
+      _toastManager.showErrorToast(next.status.errorMessage!);
     } else if (handleLoadingState?.call() ?? true) {
       _toggleShowLoading(next.status.isLoading,
           loadingDialogBuilder: loadingDialogBuilder);

@@ -57,3 +57,31 @@ final class DetailsBaseInitStatus extends DetailsStatus
   const DetailsBaseInitStatus(
       {super.isLoading, super.errorMessage, super.isInitialized = true});
 }
+
+@mappableEntity
+final class AddedToWatchlistStatus extends DetailsStatus
+    with AddedToWatchlistStatusMappable {
+  const AddedToWatchlistStatus(
+      {super.isLoading, super.errorMessage, super.isInitialized = true});
+}
+
+@mappableEntity
+final class AddedToWatchedStatus extends DetailsStatus
+    with AddedToWatchedStatusMappable {
+  const AddedToWatchedStatus(
+      {super.isLoading, super.errorMessage, super.isInitialized = true});
+}
+
+@mappableEntity
+final class RemovedFromWatchlistStatus extends DetailsStatus
+    with RemovedFromWatchlistStatusMappable {
+  const RemovedFromWatchlistStatus(
+      {super.isLoading, super.errorMessage, super.isInitialized = true});
+}
+
+@mappableEntity
+final class RemovedFromWatchedStatus extends DetailsStatus
+    with RemovedFromWatchedStatusMappable {
+  const RemovedFromWatchedStatus(
+      {super.isLoading, super.errorMessage, super.isInitialized = true});
+}
