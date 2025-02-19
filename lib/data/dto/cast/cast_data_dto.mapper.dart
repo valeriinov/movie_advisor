@@ -24,10 +24,10 @@ class CastDataDtoMapper extends ClassMapperBase<CastDataDto> {
   static const Field<CastDataDto, int> _f$id = Field('id', _$id, opt: true);
   static String? _$originalName(CastDataDto v) => v.originalName;
   static const Field<CastDataDto, String> _f$originalName =
-      Field('originalName', _$originalName, key: 'original_name', opt: true);
+      Field('originalName', _$originalName, key: r'original_name', opt: true);
   static String? _$profilePath(CastDataDto v) => v.profilePath;
   static const Field<CastDataDto, String> _f$profilePath =
-      Field('profilePath', _$profilePath, key: 'profile_path', opt: true);
+      Field('profilePath', _$profilePath, key: r'profile_path', opt: true);
   static String? _$name(CastDataDto v) => v.name;
   static const Field<CastDataDto, String> _f$name =
       Field('name', _$name, opt: true);

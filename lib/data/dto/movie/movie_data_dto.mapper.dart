@@ -26,21 +26,22 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static const Field<MovieDataDto, int> _f$id = Field('id', _$id, opt: true);
   static String? _$backdropPath(MovieDataDto v) => v.backdropPath;
   static const Field<MovieDataDto, String> _f$backdropPath =
-      Field('backdropPath', _$backdropPath, key: 'backdrop_path', opt: true);
+      Field('backdropPath', _$backdropPath, key: r'backdrop_path', opt: true);
   static List<MovieGenreDto>? _$genres(MovieDataDto v) => v.genres;
   static const Field<MovieDataDto, List<MovieGenreDto>> _f$genres =
-      Field('genres', _$genres, key: 'genre_ids', opt: true);
+      Field('genres', _$genres, key: r'genre_ids', opt: true);
   static List<MovieGenreDto>? _$genresAlt(MovieDataDto v) => v.genresAlt;
   static const Field<MovieDataDto, List<MovieGenreDto>> _f$genresAlt = Field(
       'genresAlt', _$genresAlt,
-      key: 'genres', opt: true, hook: MovieGenresHook());
+      key: r'genres', opt: true, hook: MovieGenresHook());
   static String? _$originalLanguage(MovieDataDto v) => v.originalLanguage;
   static const Field<MovieDataDto, String> _f$originalLanguage = Field(
       'originalLanguage', _$originalLanguage,
-      key: 'original_language', opt: true);
+      key: r'original_language', opt: true);
   static String? _$originalTitle(MovieDataDto v) => v.originalTitle;
-  static const Field<MovieDataDto, String> _f$originalTitle =
-      Field('originalTitle', _$originalTitle, key: 'original_title', opt: true);
+  static const Field<MovieDataDto, String> _f$originalTitle = Field(
+      'originalTitle', _$originalTitle,
+      key: r'original_title', opt: true);
   static String? _$overview(MovieDataDto v) => v.overview;
   static const Field<MovieDataDto, String> _f$overview =
       Field('overview', _$overview, opt: true);
@@ -49,33 +50,33 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
       Field('popularity', _$popularity, opt: true);
   static String? _$posterPath(MovieDataDto v) => v.posterPath;
   static const Field<MovieDataDto, String> _f$posterPath =
-      Field('posterPath', _$posterPath, key: 'poster_path', opt: true);
+      Field('posterPath', _$posterPath, key: r'poster_path', opt: true);
   static DateTime? _$releaseDate(MovieDataDto v) => v.releaseDate;
   static const Field<MovieDataDto, DateTime> _f$releaseDate = Field(
       'releaseDate', _$releaseDate,
-      key: 'release_date', opt: true, hook: DateMapperHook());
+      key: r'release_date', opt: true, hook: DateMapperHook());
   static String? _$title(MovieDataDto v) => v.title;
   static const Field<MovieDataDto, String> _f$title =
       Field('title', _$title, opt: true);
   static double? _$voteAverage(MovieDataDto v) => v.voteAverage;
   static const Field<MovieDataDto, double> _f$voteAverage =
-      Field('voteAverage', _$voteAverage, key: 'vote_average', opt: true);
+      Field('voteAverage', _$voteAverage, key: r'vote_average', opt: true);
   static int? _$voteCount(MovieDataDto v) => v.voteCount;
   static const Field<MovieDataDto, int> _f$voteCount =
-      Field('voteCount', _$voteCount, key: 'vote_count', opt: true);
+      Field('voteCount', _$voteCount, key: r'vote_count', opt: true);
   static CreditsDataDto? _$credits(MovieDataDto v) => v.credits;
   static const Field<MovieDataDto, CreditsDataDto> _f$credits =
       Field('credits', _$credits, opt: true);
   static int? _$userRating(MovieDataDto v) => v.userRating;
   static const Field<MovieDataDto, int> _f$userRating =
-      Field('userRating', _$userRating, key: 'user_rating', opt: true);
+      Field('userRating', _$userRating, key: r'user_rating', opt: true);
   static bool? _$isInWatchlist(MovieDataDto v) => v.isInWatchlist;
   static const Field<MovieDataDto, bool> _f$isInWatchlist = Field(
       'isInWatchlist', _$isInWatchlist,
-      key: 'is_in_watchlist', opt: true);
+      key: r'is_in_watchlist', opt: true);
   static bool? _$isWatched(MovieDataDto v) => v.isWatched;
   static const Field<MovieDataDto, bool> _f$isWatched =
-      Field('isWatched', _$isWatched, key: 'is_watched', opt: true);
+      Field('isWatched', _$isWatched, key: r'is_watched', opt: true);
 
   @override
   final MappableFields<MovieDataDto> fields = const {

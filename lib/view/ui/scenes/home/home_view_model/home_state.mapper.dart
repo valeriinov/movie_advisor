@@ -87,10 +87,8 @@ extension HomeStateValueCopy<$R, $Out, T>
 
 abstract class HomeStateCopyWith<$R, $In extends HomeState<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
-      get sugCont;
-  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
-      get tabCont;
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T> get sugCont;
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T> get tabCont;
   $R call(
       {MediaTab? currentTab,
       MediaLoadInfo<T>? sugCont,
@@ -108,12 +106,12 @@ class _HomeStateCopyWithImpl<$R, $Out, T>
   late final ClassMapperBase<HomeState> $mapper =
       HomeStateMapper.ensureInitialized();
   @override
-  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
       get sugCont => ($value.sugCont as MediaLoadInfo<T>)
           .copyWith
           .$chain((v) => call(sugCont: v));
   @override
-  MediaLoadInfoCopyWith<$R, MediaLoadInfo<dynamic>, MediaLoadInfo<T>, T>
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
       get tabCont => ($value.tabCont as MediaLoadInfo<T>)
           .copyWith
           .$chain((v) => call(tabCont: v));

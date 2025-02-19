@@ -27,29 +27,29 @@ class SeriesShortDataDtoMapper extends ClassMapperBase<SeriesShortDataDto> {
       Field('id', _$id, opt: true);
   static String? _$posterUrl(SeriesShortDataDto v) => v.posterUrl;
   static const Field<SeriesShortDataDto, String> _f$posterUrl =
-      Field('posterUrl', _$posterUrl, key: 'poster_url', opt: true);
+      Field('posterUrl', _$posterUrl, key: r'poster_url', opt: true);
   static List<SeriesGenreDto>? _$genres(SeriesShortDataDto v) => v.genres;
   static const Field<SeriesShortDataDto, List<SeriesGenreDto>> _f$genres =
       Field('genres', _$genres, opt: true);
   static DateTime? _$premiereDate(SeriesShortDataDto v) => v.premiereDate;
   static const Field<SeriesShortDataDto, DateTime> _f$premiereDate =
-      Field('premiereDate', _$premiereDate, key: 'premiere_date', opt: true);
+      Field('premiereDate', _$premiereDate, key: r'premiere_date', opt: true);
   static String? _$title(SeriesShortDataDto v) => v.title;
   static const Field<SeriesShortDataDto, String> _f$title =
       Field('title', _$title, opt: true);
   static RatingDataDto? _$tmdbRating(SeriesShortDataDto v) => v.tmdbRating;
   static const Field<SeriesShortDataDto, RatingDataDto> _f$tmdbRating =
-      Field('tmdbRating', _$tmdbRating, key: 'tmdb_rating', opt: true);
+      Field('tmdbRating', _$tmdbRating, key: r'tmdb_rating', opt: true);
   static int? _$userRating(SeriesShortDataDto v) => v.userRating;
   static const Field<SeriesShortDataDto, int> _f$userRating =
-      Field('userRating', _$userRating, key: 'user_rating', opt: true);
+      Field('userRating', _$userRating, key: r'user_rating', opt: true);
   static bool? _$isInWatchlist(SeriesShortDataDto v) => v.isInWatchlist;
   static const Field<SeriesShortDataDto, bool> _f$isInWatchlist = Field(
       'isInWatchlist', _$isInWatchlist,
-      key: 'is_in_watchlist', opt: true);
+      key: r'is_in_watchlist', opt: true);
   static bool? _$isWatched(SeriesShortDataDto v) => v.isWatched;
   static const Field<SeriesShortDataDto, bool> _f$isWatched =
-      Field('isWatched', _$isWatched, key: 'is_watched', opt: true);
+      Field('isWatched', _$isWatched, key: r'is_watched', opt: true);
 
   @override
   final MappableFields<SeriesShortDataDto> fields = const {

@@ -30,7 +30,7 @@ class MoviesResponseDataDtoMapper
       Field('results', _$results, opt: true);
   static int? _$totalPages(MoviesResponseDataDto v) => v.totalPages;
   static const Field<MoviesResponseDataDto, int> _f$totalPages =
-      Field('totalPages', _$totalPages, key: 'total_pages', opt: true);
+      Field('totalPages', _$totalPages, key: r'total_pages', opt: true);
 
   @override
   final MappableFields<MoviesResponseDataDto> fields = const {

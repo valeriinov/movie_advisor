@@ -26,24 +26,25 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static const Field<SeriesDataDto, int> _f$id = Field('id', _$id, opt: true);
   static String? _$backdropPath(SeriesDataDto v) => v.backdropPath;
   static const Field<SeriesDataDto, String> _f$backdropPath =
-      Field('backdropPath', _$backdropPath, key: 'backdrop_path', opt: true);
+      Field('backdropPath', _$backdropPath, key: r'backdrop_path', opt: true);
   static List<SeriesGenreDto>? _$genres(SeriesDataDto v) => v.genres;
   static const Field<SeriesDataDto, List<SeriesGenreDto>> _f$genres =
-      Field('genres', _$genres, key: 'genre_ids', opt: true);
+      Field('genres', _$genres, key: r'genre_ids', opt: true);
   static List<SeriesGenreDto>? _$genresAlt(SeriesDataDto v) => v.genresAlt;
   static const Field<SeriesDataDto, List<SeriesGenreDto>> _f$genresAlt = Field(
       'genresAlt', _$genresAlt,
-      key: 'genres', opt: true, hook: SeriesGenreHook());
+      key: r'genres', opt: true, hook: SeriesGenreHook());
   static List<String>? _$originCountry(SeriesDataDto v) => v.originCountry;
-  static const Field<SeriesDataDto, List<String>> _f$originCountry =
-      Field('originCountry', _$originCountry, key: 'origin_country', opt: true);
+  static const Field<SeriesDataDto, List<String>> _f$originCountry = Field(
+      'originCountry', _$originCountry,
+      key: r'origin_country', opt: true);
   static String? _$originalLanguage(SeriesDataDto v) => v.originalLanguage;
   static const Field<SeriesDataDto, String> _f$originalLanguage = Field(
       'originalLanguage', _$originalLanguage,
-      key: 'original_language', opt: true);
+      key: r'original_language', opt: true);
   static String? _$originalName(SeriesDataDto v) => v.originalName;
   static const Field<SeriesDataDto, String> _f$originalName =
-      Field('originalName', _$originalName, key: 'original_name', opt: true);
+      Field('originalName', _$originalName, key: r'original_name', opt: true);
   static String? _$overview(SeriesDataDto v) => v.overview;
   static const Field<SeriesDataDto, String> _f$overview =
       Field('overview', _$overview, opt: true);
@@ -52,33 +53,33 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
       Field('popularity', _$popularity, opt: true);
   static String? _$posterPath(SeriesDataDto v) => v.posterPath;
   static const Field<SeriesDataDto, String> _f$posterPath =
-      Field('posterPath', _$posterPath, key: 'poster_path', opt: true);
+      Field('posterPath', _$posterPath, key: r'poster_path', opt: true);
   static DateTime? _$firstAirDate(SeriesDataDto v) => v.firstAirDate;
   static const Field<SeriesDataDto, DateTime> _f$firstAirDate = Field(
       'firstAirDate', _$firstAirDate,
-      key: 'first_air_date', opt: true, hook: DateMapperHook());
+      key: r'first_air_date', opt: true, hook: DateMapperHook());
   static String? _$name(SeriesDataDto v) => v.name;
   static const Field<SeriesDataDto, String> _f$name =
       Field('name', _$name, opt: true);
   static double? _$voteAverage(SeriesDataDto v) => v.voteAverage;
   static const Field<SeriesDataDto, double> _f$voteAverage =
-      Field('voteAverage', _$voteAverage, key: 'vote_average', opt: true);
+      Field('voteAverage', _$voteAverage, key: r'vote_average', opt: true);
   static int? _$voteCount(SeriesDataDto v) => v.voteCount;
   static const Field<SeriesDataDto, int> _f$voteCount =
-      Field('voteCount', _$voteCount, key: 'vote_count', opt: true);
+      Field('voteCount', _$voteCount, key: r'vote_count', opt: true);
   static CreditsDataDto? _$credits(SeriesDataDto v) => v.credits;
   static const Field<SeriesDataDto, CreditsDataDto> _f$credits =
       Field('credits', _$credits, opt: true);
   static int? _$userRating(SeriesDataDto v) => v.userRating;
   static const Field<SeriesDataDto, int> _f$userRating =
-      Field('userRating', _$userRating, key: 'user_rating', opt: true);
+      Field('userRating', _$userRating, key: r'user_rating', opt: true);
   static bool? _$isInWatchlist(SeriesDataDto v) => v.isInWatchlist;
   static const Field<SeriesDataDto, bool> _f$isInWatchlist = Field(
       'isInWatchlist', _$isInWatchlist,
-      key: 'is_in_watchlist', opt: true);
+      key: r'is_in_watchlist', opt: true);
   static bool? _$isWatched(SeriesDataDto v) => v.isWatched;
   static const Field<SeriesDataDto, bool> _f$isWatched =
-      Field('isWatched', _$isWatched, key: 'is_watched', opt: true);
+      Field('isWatched', _$isWatched, key: r'is_watched', opt: true);
 
   @override
   final MappableFields<SeriesDataDto> fields = const {

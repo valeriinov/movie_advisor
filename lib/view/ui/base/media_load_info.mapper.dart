@@ -85,7 +85,7 @@ extension MediaLoadInfoValueCopy<$R, $Out, T>
 
 abstract class MediaLoadInfoCopyWith<$R, $In extends MediaLoadInfo<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListWithPaginationDataCopyWith<$R, ListWithPaginationData<dynamic>,
+  ListWithPaginationDataCopyWith<$R, ListWithPaginationData<T>,
       ListWithPaginationData<T>, T> get mediaData;
   $R call(
       {bool? isInitialized,
@@ -104,7 +104,7 @@ class _MediaLoadInfoCopyWithImpl<$R, $Out, T>
   late final ClassMapperBase<MediaLoadInfo> $mapper =
       MediaLoadInfoMapper.ensureInitialized();
   @override
-  ListWithPaginationDataCopyWith<$R, ListWithPaginationData<dynamic>,
+  ListWithPaginationDataCopyWith<$R, ListWithPaginationData<T>,
           ListWithPaginationData<T>, T>
       get mediaData => ($value.mediaData as ListWithPaginationData<T>)
           .copyWith
