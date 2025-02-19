@@ -91,7 +91,7 @@ dev_dependencies:
   theme_tailor: ^3.0.1
   build_runner: ^2.4.15
   dart_mappable_builder: ^4.4.0
-  go_router_builder: any
+  go_router_builder: ^2.8.0
   build_verify: any
   flutter_flavorizr: ^2.2.3
   drift_dev: ^2.25.2
