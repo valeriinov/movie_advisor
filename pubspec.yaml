@@ -78,6 +78,10 @@ dependencies:
 dependency_overrides:
   # flutter_native_splash conflict
   archive: any
+  # dart_mappable_builder conflict
+  source_gen: any
+  # dart_mappable_builder conflict
+  analyzer: any
 
 
 dev_dependencies:
@@ -86,7 +90,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   theme_tailor: ^3.0.1
   build_runner: ^2.4.15
-  dart_mappable_builder: ^4.3.0
+  dart_mappable_builder: ^4.4.0
   go_router_builder: any
   build_verify: any
   flutter_flavorizr: ^2.2.3
