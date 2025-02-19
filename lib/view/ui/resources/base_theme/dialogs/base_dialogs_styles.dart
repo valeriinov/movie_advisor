@@ -21,14 +21,14 @@ abstract final class _BaseDialogsStyles {
   static const double toastBorderRadius = 12.0;
   static const double toastBotMargin = 35.0;
   static const double toastHorMargin = 12.0;
-  static const double toastMinHeight = 45.0;
-  static const EdgeInsets toastContPadding = EdgeInsets.fromLTRB(17, 12, 15, 12);
+  static const double toastMinHeight = 40.0;
+  static const EdgeInsets toastContPadding = EdgeInsets.fromLTRB(13, 8, 11, 8);
 
   static TextStyle toastTextStyle(Color color) => TextStyle(
         fontFamily: AppFonts.roboto,
-        fontSize: 17,
+        fontSize: 14,
         fontWeight: FontWeight.w400,
-        height: 22.4 / 17,
+        height: 22.4 / 14,
         color: color,
       );
 }

@@ -39,7 +39,7 @@ class BaseInfoToast extends StatelessWidget {
             children: [
               Expanded(
                   child: Text(content, style: styles.toastTextStyle)
-                      .paddingOnly(right: 10, top: 2)),
+                      .paddingOnly(right: 10, top: 3)),
               AppSvgAsset(path: iconPath, height: 28, width: 28),
             ],
           )),
