@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions_item.dart';
 
+import '../../../resources/locale_keys.g.dart';
 import '../widgets/keyboard_action_button.dart';
 
 /// {@category Utils}
@@ -41,7 +43,7 @@ abstract final class KeyboardActionsCreator {
         if (onButtonPressed != null)
           (_) => KeyboardActionButton(
                 onButtonPressed: onButtonPressed,
-                buttonText: buttonText ?? 'Close', // TODO: Localize the button
+                buttonText: buttonText ?? LocaleKeys.keyboardCloseButton.tr(),
               ),
       ],
     );

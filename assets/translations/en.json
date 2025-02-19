@@ -91,5 +91,15 @@
   "serverErrorDesc": "Server error. Try again later.",
   "unauthorizedErrorDesc": "Unauthorized access.",
   "badRequestErrorDesc": "Invalid request.",
-  "notFoundErrorDesc": "Requested resource not found."
+  "notFoundErrorDesc": "Requested resource not found.",
+  "keyboardCloseButton": "Close",
+  "keyboardDoneButton": "Done",
+  "invalidNameError": "Name must be at least two characters long",
+  "invalidEmailError": "Invalid email address",
+  "invalidPassError": "Min 8 chars with a digit, upper & lower case",
+  "invalidConfirmPassError": "Password does not match the confirmation",
+  "nameFieldHint": "Name",
+  "emailFieldHint": "Email",
+  "passFieldHint": "Password",
+  "confirmPassFieldHint": "Confirm Password"
 }

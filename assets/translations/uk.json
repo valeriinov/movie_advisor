@@ -91,5 +91,15 @@
   "serverErrorDesc": "Помилка сервера. Спробуйте пізніше.",
   "unauthorizedErrorDesc": "Неавторизований доступ.",
   "badRequestErrorDesc": "Некоректний запит.",
-  "notFoundErrorDesc": "Ресурс не знайдено."
+  "notFoundErrorDesc": "Ресурс не знайдено.",
+  "keyboardCloseButton": "Закрити",
+  "keyboardDoneButton": "Готово",
+  "invalidNameError": "Ім'я має містити щонайменше два символи.",
+  "invalidEmailError": "Некоректна електронна адреса.",
+  "invalidPassError": "Мінімум 8 символів, цифра, велика і мала літера.",
+  "invalidConfirmPassError": "Пароль не збігається з підтвердженням.",
+  "nameFieldHint": "Ім'я",
+  "emailFieldHint": "Електронна пошта",
+  "passFieldHint": "Пароль",
+  "confirmPassFieldHint": "Підтвердьте пароль"
 }

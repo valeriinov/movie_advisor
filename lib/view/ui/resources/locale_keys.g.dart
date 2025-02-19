@@ -96,5 +96,15 @@ abstract class  LocaleKeys {
   static const unauthorizedErrorDesc = 'unauthorizedErrorDesc';
   static const badRequestErrorDesc = 'badRequestErrorDesc';
   static const notFoundErrorDesc = 'notFoundErrorDesc';
+  static const keyboardCloseButton = 'keyboardCloseButton';
+  static const keyboardDoneButton = 'keyboardDoneButton';
+  static const invalidNameError = 'invalidNameError';
+  static const invalidEmailError = 'invalidEmailError';
+  static const invalidPassError = 'invalidPassError';
+  static const invalidConfirmPassError = 'invalidConfirmPassError';
+  static const nameFieldHint = 'nameFieldHint';
+  static const emailFieldHint = 'emailFieldHint';
+  static const passFieldHint = 'passFieldHint';
+  static const confirmPassFieldHint = 'confirmPassFieldHint';
 
 }
