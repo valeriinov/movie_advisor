@@ -40,7 +40,7 @@ dependencies:
   keyboard_actions: ^4.2.0
   flutter_form_builder: ^9.7.0
   flutter_hooks: ^0.20.5
-  flutter_native_splash: ^2.4.4
+  flutter_native_splash: ^2.4.5
   easy_localization: ^3.0.7+1
   flutter_svg: ^2.0.17
   sliver_tools: ^0.2.12
@@ -74,6 +74,10 @@ dependencies:
   # Local storage
   drift: ^2.25.1
   drift_flutter: ^0.2.4
+
+dependency_overrides:
+  # flutter_native_splash conflict
+  archive: any
 
 
 dev_dependencies:
