@@ -30,62 +30,73 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # UI
   theme_tailor_annotation: ^3.0.1
+  skeletonizer: ^1.4.3
+  flutter_animate: ^4.5.2
+  extended_image: ^9.1.0
+  go_router: ^14.7.1
+  keyboard_actions: ^4.2.0
+  flutter_form_builder: ^9.7.0
+  flutter_hooks: ^0.20.5
+  flutter_native_splash: ^2.4.4
+  easy_localization: ^3.0.7+1
+  flutter_svg: ^2.0.17
+  sliver_tools: ^0.2.12
+  url_launcher: ^6.3.1
+  fluttertoast: ^8.2.12
+
+  # General
   intl: any
+  collection: any
+  async: any
   flutter_utils:
     git:
       url: https://github.com/valeriinov/flutter_utils.git
       ref: 1.1.0
+
+  # Architecture
+  hooks_riverpod: ^2.6.1
   dart_mappable: ^4.3.0
   dartz: ^0.10.1
-  dio: ^5.7.0
-  pretty_dio_logger: ^1.4.0
-  extended_image: ^9.1.0
-  flutter_animate: ^4.5.2
-  go_router: ^14.7.1
-  flutter_dotenv: ^5.2.1
-  keyboard_actions: ^4.2.0
-  flutter_form_builder: ^9.7.0
-  collection: any
-  async: any
-  skeletonizer: ^1.4.3
-  flutter_hooks: ^0.20.5
   class_namer_annotation:
     git:
       url: https://github.com/valeriinov/class_namer.git
       path: packages/class_namer_annotation
       ref: main
-  flutter_native_splash: ^2.4.4
-  easy_localization: ^3.0.7+1
-  hooks_riverpod: ^2.6.1
-  flutter_svg: ^2.0.17
-  sliver_tools: ^0.2.12
+
+  # Network
+  dio: ^5.7.0
+  pretty_dio_logger: ^1.4.0
+  flutter_dotenv: ^5.2.1
+
+  # Local storage
   drift: ^2.25.1
   drift_flutter: ^0.2.4
-  url_launcher: ^6.3.1
-  fluttertoast: ^8.2.12
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  proj_gen_init_cli:
-    git:
-      url: https://github.com/valeriinov/flutter_start_project.git
-      path: proj_gen_init_cli
-      ref: main
   theme_tailor: ^3.0.1
   build_runner: ^2.4.14
   dart_mappable_builder: ^4.3.0
   go_router_builder: any
   build_verify: any
+  flutter_flavorizr: ^2.2.3
+  drift_dev: ^2.25.2
+  proj_gen_init_cli:
+    git:
+      url: https://github.com/valeriinov/flutter_start_project.git
+      path: proj_gen_init_cli
+      ref: main
   class_namer:
     git:
       url: https://github.com/valeriinov/class_namer.git
       path: packages/class_namer
       ref: main
-  flutter_flavorizr: ^2.2.3
-  drift_dev: ^2.25.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -177,6 +188,10 @@ flutter:
     - dev.env
     - prod.env
 
+# To use scripts:
+# 1. Install rps: dart pub global activate rps
+# 2. Use your custom command: rps gen
+# You can also provide additional arguments: rps gen --verbose
 scripts:
   gen: dart run build_runner build --delete-conflicting-outputs
   aabDev: flutter build appbundle --flavor dev -t lib/main_dev.dart
