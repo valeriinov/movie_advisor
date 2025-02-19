@@ -67,7 +67,7 @@ dependencies:
       ref: main
 
   # Network
-  dio: ^5.7.0
+  dio: ^5.8.0+1
   pretty_dio_logger: ^1.4.0
   flutter_dotenv: ^5.2.1
 
