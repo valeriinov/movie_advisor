@@ -58,7 +58,7 @@ dependencies:
 
   # Architecture
   hooks_riverpod: ^2.6.1
-  dart_mappable: ^4.3.0
+  dart_mappable: ^4.4.0
   dartz: ^0.10.1
   class_namer_annotation:
     git:
