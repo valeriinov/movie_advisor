@@ -84,5 +84,12 @@
   "addedToWatched": "Додано до переглянутих",
   "removedFromWatched": "Видалено з переглянутих",
   "dialogOkButton": "OK",
-  "dialogCancelButton": "СКАСУВАТИ"
+  "dialogCancelButton": "СКАСУВАТИ",
+  "unexpectedErrorDesc": "Щось пішло не так.",
+  "timeoutErrorDesc": "Час очікування вийшов.",
+  "connectionErrorDesc": "Немає підключення до інтернету.",
+  "serverErrorDesc": "Помилка сервера. Спробуйте пізніше.",
+  "unauthorizedErrorDesc": "Неавторизований доступ.",
+  "badRequestErrorDesc": "Некоректний запит.",
+  "notFoundErrorDesc": "Ресурс не знайдено."
 }

@@ -89,5 +89,12 @@ abstract class  LocaleKeys {
   static const removedFromWatched = 'removedFromWatched';
   static const dialogOkButton = 'dialogOkButton';
   static const dialogCancelButton = 'dialogCancelButton';
+  static const unexpectedErrorDesc = 'unexpectedErrorDesc';
+  static const timeoutErrorDesc = 'timeoutErrorDesc';
+  static const connectionErrorDesc = 'connectionErrorDesc';
+  static const serverErrorDesc = 'serverErrorDesc';
+  static const unauthorizedErrorDesc = 'unauthorizedErrorDesc';
+  static const badRequestErrorDesc = 'badRequestErrorDesc';
+  static const notFoundErrorDesc = 'notFoundErrorDesc';
 
 }

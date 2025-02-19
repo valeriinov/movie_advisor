@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../domain/entities/failure.dart';
+import '../../view/ui/resources/locale_keys.g.dart';
 import '../dto/app_exception.dart';
 
 /// {@category Mappers}
@@ -20,9 +22,7 @@ base class AppMapper {
   Failure getException(Object error) {
     if (error is! AppException) return _handleUnexpectedError(error);
 
-    final failure = switch (error) {
-      _ => Failure(message: error.message) // TODO: Add cases for exceptions
-    };
+    final failure = switch (error) { _ => Failure(message: error.message) };
 
     _logException(error.error, failure.message);
 
@@ -30,7 +30,7 @@ base class AppMapper {
   }
 
   Failure _handleUnexpectedError(Object error) {
-    final message = 'Unexpected Error'; // TODO: Add the message for the error
+    final message = LocaleKeys.unexpectedErrorDesc.tr();
 
     _logException(error, message);
 

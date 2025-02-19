@@ -84,5 +84,12 @@
   "addedToWatched": "Added to watched",
   "removedFromWatched": "Removed from watched",
   "dialogOkButton": "OK",
-  "dialogCancelButton": "CANCEL"
+  "dialogCancelButton": "CANCEL",
+  "unexpectedErrorDesc": "Something went wrong.",
+  "timeoutErrorDesc": "Request timed out.",
+  "connectionErrorDesc": "No internet connection.",
+  "serverErrorDesc": "Server error. Try again later.",
+  "unauthorizedErrorDesc": "Unauthorized access.",
+  "badRequestErrorDesc": "Invalid request.",
+  "notFoundErrorDesc": "Requested resource not found."
 }
