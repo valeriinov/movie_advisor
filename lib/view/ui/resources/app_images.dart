@@ -14,9 +14,11 @@ abstract final class AppImages {
   static const infoIcon = "${_imgPath}info_icon.svg";
   static const addWatchlistIcon = "${_imgPath}add_watchlist_icon.svg";
   static const privacyIcon = "${_imgPath}privacy_icon.svg";
+  static const toastErrorIcon = "${_imgPath}toast_error_icon.svg";
   static const tmbdLogo = "${_imgPath}tmbd_logo.svg";
   static const searchIcon = "${_imgPath}search_icon.svg";
   static const moreHorIcon = "${_imgPath}more_hor_icon.svg";
+  static const toastInfoIcon = "${_imgPath}toast_info_icon.svg";
   static const homeIcon = "${_imgPath}home_icon.svg";
   static const termsIcon = "${_imgPath}terms_icon.svg";
   static const addWatchlistFillIcon = "${_imgPath}add_watchlist_fill_icon.svg";
@@ -24,6 +26,7 @@ abstract final class AppImages {
   static const placeholderImage = "${_imgPath}placeholder_image.png";
   static const emptyResultImage = "${_imgPath}empty_result_image.png";
   static const watchedIcon = "${_imgPath}watched_icon.svg";
+  static const toastSuccessIcon = "${_imgPath}toast_success_icon.svg";
   static const addWatchedFillIcon = "${_imgPath}add_watched_fill_icon.svg";
   static const emptyListImage = "${_imgPath}empty_list_image.png";
   static const genreIcon = "${_imgPath}genre_icon.svg";

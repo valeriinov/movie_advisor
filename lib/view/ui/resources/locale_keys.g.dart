@@ -83,5 +83,9 @@ abstract class  LocaleKeys {
   static const aboutUsScreenTitle = 'aboutUsScreenTitle';
   static const aboutUsDescription = 'aboutUsDescription';
   static const aboutUsTMDBAttribution = 'aboutUsTMDBAttribution';
+  static const addedToWatchlist = 'addedToWatchlist';
+  static const removedFromWatchlist = 'removedFromWatchlist';
+  static const addedToWatched = 'addedToWatched';
+  static const removedFromWatched = 'removedFromWatched';
 
 }

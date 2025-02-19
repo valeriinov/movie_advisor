@@ -66,6 +66,7 @@ dependencies:
   drift: ^2.25.1
   drift_flutter: ^0.2.4
   url_launcher: ^6.3.1
+  fluttertoast: ^8.2.12
 
 dev_dependencies:
   flutter_test:

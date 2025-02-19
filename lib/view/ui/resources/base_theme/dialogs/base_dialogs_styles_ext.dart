@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
+import '../../app_fonts.dart';
 import '../colors/base_colors_ext.dart';
 
 part 'base_dialogs_styles.dart';
@@ -23,6 +24,12 @@ abstract final class BaseDialogsStylesFactory {
       dlgPrimActPadding: _BaseDialogsStyles.dlgPrimActPadding,
       dlgPrimInsPadding: _BaseDialogsStyles.dlgPrimInsPadding,
       dlgPrimShape: _BaseDialogsStyles.dlgPrimShape,
+      toastBorderRadius: _BaseDialogsStyles.toastBorderRadius,
+      toastBotMargin: _BaseDialogsStyles.toastBotMargin,
+      toastHorMargin: _BaseDialogsStyles.toastHorMargin,
+      toastMinHeight: _BaseDialogsStyles.toastMinHeight,
+      toastContPadding: _BaseDialogsStyles.toastContPadding,
+      toastTextStyle: _BaseDialogsStyles.toastTextStyle(colors.toastFg),
     );
   }
 }
@@ -54,6 +61,30 @@ class BaseDialogsStyles extends ThemeExtension<BaseDialogsStyles>
   @override
   final ShapeBorder dlgPrimShape;
 
+  /// BorderRadius of the toast
+  @override
+  final double toastBorderRadius;
+
+  /// Bottom margin of the toast
+  @override
+  final double toastBotMargin;
+
+  /// Horizontal margin of the toast
+  @override
+  final double toastHorMargin;
+
+  /// Minimum height of the toast
+  @override
+  final double toastMinHeight;
+
+  /// Padding of the toast content
+  @override
+  final EdgeInsets toastContPadding;
+
+  /// TextStyle of the toast
+  @override
+  final TextStyle toastTextStyle;
+
   BaseDialogsStyles({
     required this.dlgPrimTitleTextStyle,
     required this.dlgPrimContTextStyle,
@@ -61,5 +92,11 @@ class BaseDialogsStyles extends ThemeExtension<BaseDialogsStyles>
     required this.dlgPrimActPadding,
     required this.dlgPrimInsPadding,
     required this.dlgPrimShape,
+    required this.toastBorderRadius,
+    required this.toastBotMargin,
+    required this.toastHorMargin,
+    required this.toastMinHeight,
+    required this.toastContPadding,
+    required this.toastTextStyle,
   });
 }

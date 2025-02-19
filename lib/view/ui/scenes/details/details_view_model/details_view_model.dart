@@ -61,7 +61,7 @@ abstract base class _DetailsViewModel<T extends MediaData,
       () => _watchUseCase.addToWatchlist(state.data.toShortData()),
       onResult: (r) => _handleResult(r, () {
         state = state.copyWith(
-          status: DetailsBaseInitStatus(),
+          status: AddedToWatchlistStatus(),
           data: state.data.copyWith(isInWatchlist: true) as T,
         );
       }),
@@ -78,7 +78,7 @@ abstract base class _DetailsViewModel<T extends MediaData,
       () => _watchUseCase.addToWatched(data.toShortData()),
       onResult: (r) => _handleResult(r, () {
         state = state.copyWith(
-          status: DetailsBaseInitStatus(),
+          status: AddedToWatchedStatus(),
           data: data,
         );
       }),
@@ -92,7 +92,7 @@ abstract base class _DetailsViewModel<T extends MediaData,
       () => _watchUseCase.removeFromWatchlist(state.data.id),
       onResult: (r) => _handleResult(r, () {
         state = state.copyWith(
-          status: DetailsBaseInitStatus(),
+          status: RemovedFromWatchlistStatus(),
           data: state.data.copyWith(isInWatchlist: false) as T,
         );
       }),
@@ -106,7 +106,7 @@ abstract base class _DetailsViewModel<T extends MediaData,
       () => _watchUseCase.removeFromWatched(state.data.id),
       onResult: (r) => _handleResult(r, () {
         state = state.copyWith(
-          status: DetailsBaseInitStatus(),
+          status: RemovedFromWatchedStatus(),
           data: state.data.copyWith(userRating: 0, isWatched: false) as T,
         );
       }),

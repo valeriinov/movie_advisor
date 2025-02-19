@@ -78,5 +78,9 @@
   "termsAndConditionsTile": "Умови та положення",
   "aboutUsScreenTitle": "Про нас",
   "aboutUsDescription": "Ми – команда кіноманів, які люблять дивитися фільми та серіали. Ми створили цей застосунок, щоб допомогти вам знайти найкращі фільми та серіали для перегляду. Сподіваємось, вам сподобається!",
-  "aboutUsTMDBAttribution": "Цей продукт використовує TMDB API, але не схвалений і не сертифікований TMDB."
+  "aboutUsTMDBAttribution": "Цей продукт використовує TMDB API, але не схвалений і не сертифікований TMDB.",
+  "addedToWatchlist": "Додано до обраного",
+  "removedFromWatchlist": "Видалено з обраного",
+  "addedToWatched": "Додано до переглянутих",
+  "removedFromWatched": "Видалено з переглянутих"
 }

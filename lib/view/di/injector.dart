@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/adapters/url_launcher_adapter/impl_url_launcher_adapter.dart';
@@ -58,8 +59,8 @@ import '../ui/impl_base_status_handler.dart';
 import '../ui/navigation/app_router.dart';
 import '../ui/navigation/impl_app_router.dart';
 import '../ui/resources/app_theme.dart';
-import '../ui/widgets/dialogs/error_dialog/error_dialog_manager.dart';
 import '../ui/widgets/dialogs/loading_dialog/loading_dialog_manager.dart';
+import '../ui/widgets/dialogs/toasts/toast_manager.dart';
 
 // CORE
 final appRouterPr = Provider<AppRouter>(
@@ -68,14 +69,20 @@ final appRouterPr = Provider<AppRouter>(
 
 final appThemePr = Provider<AppTheme>((_) => AppTheme());
 
+final toastManagerPr = Provider<ToastManager>((ref) {
+  final rootNavKey = ref.read(appRouterPr).rootNavKey;
+
+  return ToastManager(rootNavigatorKey: rootNavKey, fToast: FToast());
+});
+
 final baseStatusHandlerPr = Provider<BaseStatusHandler>((ref) {
   final rootNavKey = ref.read(appRouterPr).rootNavKey;
   final loadingManager = LoadingDialogManager(rootNavKey: rootNavKey);
-  final errorManager = ErrorDialogManager(rootNavKey: rootNavKey);
+  final toastManager = ref.read(toastManagerPr);
 
   return ImplBaseStatusHandler(
     loadingDialogManager: loadingManager,
-    errorDialogManager: errorManager,
+    toastManager: toastManager,
   );
 });
 
@@ -264,6 +271,11 @@ extension CoreProvider on WidgetRef {
   ///
   /// Used for opening URLs in the in-app web view.
   UrlLauncherAdapter get urlLauncher => read(urlLauncherPr);
+
+  /// Provides access to the toast manager.
+  ///
+  /// Used for showing success and error toasts.
+  ToastManager get toastManager => read(toastManagerPr);
 }
 
 /// A widget that initializes the dependency injection system for the application.

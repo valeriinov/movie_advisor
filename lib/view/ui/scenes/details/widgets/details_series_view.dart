@@ -4,11 +4,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../di/injector.dart';
+import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/blurred_bottom_sheet.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
+import '../details_view_model/details_state.dart';
 import '../details_view_model/details_view_model.dart';
 import '../model/details_tab.dart';
 import 'details_app_bar.dart';
@@ -31,10 +33,9 @@ class DetailsSeriesView extends HookConsumerWidget {
     final isInitialized = vsp.isInitialized;
     final isSkeletonVisible = isLoading && !isInitialized;
 
-    vsp.handleState(listener: (prev, next) {
-      ref.baseStatusHandler
-          .handleStatus(prev, next, handleLoadingState: () => isInitialized);
-    });
+    vsp.handleState(
+      listener: (prev, next) => _handleStatus(prev, next, ref, isInitialized),
+    );
 
     final data = vsp.selectWatch((s) => s.data);
     final currentTab = vsp.selectWatch((s) => s.currentTab);
@@ -70,6 +71,32 @@ class DetailsSeriesView extends HookConsumerWidget {
                 : null,
           );
         });
+  }
+
+  void _handleStatus(
+    DetailsSeriesState? prev,
+    DetailsSeriesState next,
+    WidgetRef ref,
+    bool isInitialized,
+  ) {
+    if (!next.isUpdate(prev, (s) => s?.status)) return;
+
+    ref.baseStatusHandler
+        .handleStatus(prev, next, handleLoadingState: () => isInitialized);
+
+    final toastManager = ref.toastManager;
+
+    return switch (next.status) {
+      AddedToWatchlistStatus() =>
+        toastManager.showSuccessToast(LocaleKeys.addedToWatchlist.tr()),
+      AddedToWatchedStatus() =>
+        toastManager.showSuccessToast(LocaleKeys.addedToWatched.tr()),
+      RemovedFromWatchlistStatus() =>
+        toastManager.showInfoToast(LocaleKeys.removedFromWatchlist.tr()),
+      RemovedFromWatchedStatus() =>
+        toastManager.showInfoToast(LocaleKeys.removedFromWatched.tr()),
+      _ => null,
+    };
   }
 
   void _onWatchlistTap(DetailsSeriesVSP vsp) {
