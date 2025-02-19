@@ -82,5 +82,7 @@
   "addedToWatchlist": "Added to watchlist",
   "removedFromWatchlist": "Removed from watchlist",
   "addedToWatched": "Added to watched",
-  "removedFromWatched": "Removed from watched"
+  "removedFromWatched": "Removed from watched",
+  "dialogOkButton": "OK",
+  "dialogCancelButton": "CANCEL"
 }

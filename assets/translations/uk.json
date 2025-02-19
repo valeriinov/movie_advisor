@@ -82,5 +82,7 @@
   "addedToWatchlist": "Додано до обраного",
   "removedFromWatchlist": "Видалено з обраного",
   "addedToWatched": "Додано до переглянутих",
-  "removedFromWatched": "Видалено з переглянутих"
+  "removedFromWatched": "Видалено з переглянутих",
+  "dialogOkButton": "OK",
+  "dialogCancelButton": "СКАСУВАТИ"
 }

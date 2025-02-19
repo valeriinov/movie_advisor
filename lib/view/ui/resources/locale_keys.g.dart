@@ -87,5 +87,7 @@ abstract class  LocaleKeys {
   static const removedFromWatchlist = 'removedFromWatchlist';
   static const addedToWatched = 'addedToWatched';
   static const removedFromWatched = 'removedFromWatched';
+  static const dialogOkButton = 'dialogOkButton';
+  static const dialogCancelButton = 'dialogCancelButton';
 
 }
