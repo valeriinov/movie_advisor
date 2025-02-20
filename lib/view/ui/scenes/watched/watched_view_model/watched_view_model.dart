@@ -23,11 +23,17 @@ part 'watched_movies_view_model.dart';
 part 'watched_series_view_model.dart';
 
 final watchedContModeViewModelPr = AutoDisposeNotifierProvider.family<
-    ContentModeViewModel, ContentModeState, ContentMode>(
-  ContentModeViewModel.new,
-);
+  ContentModeViewModel,
+  ContentModeState,
+  ContentMode
+>(ContentModeViewModel.new);
 
-abstract base class _WatchedViewModel<T extends MediaShortData>
+typedef WatchedVSP = ASP<WatchedViewModel, WatchedState>;
+
+typedef WatchedVMProvider<T extends MediaShortData> =
+    AutoDisposeNotifierProvider<WatchedViewModel<T>, WatchedState<T>>;
+
+abstract base class WatchedViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<WatchedState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final WatchUseCase<T> _watchUseCase;
@@ -43,8 +49,9 @@ abstract base class _WatchedViewModel<T extends MediaShortData>
     final resultsItems = watchedData.items.handleWatchedItem(item);
 
     state = state.copyWith(
-      watched: state.watched
-          .copyWith(mediaData: watchedData.copyWith(items: resultsItems)),
+      watched: state.watched.copyWith(
+        mediaData: watchedData.copyWith(items: resultsItems),
+      ),
     );
   }
 
@@ -60,29 +67,35 @@ abstract base class _WatchedViewModel<T extends MediaShortData>
     return _loadWatched(page: page, isNewPageLoaded: true);
   }
 
-  Future<void> _loadWatched(
-      {int page = 1, bool isNewPageLoaded = false}) async {
+  Future<void> _loadWatched({
+    int page = 1,
+    bool isNewPageLoaded = false,
+  }) async {
     return safeCall(
       () => _watchUseCase.getWatched(page: page),
-      onResult: (result) => _handleWatchedResult(
-        result,
-        isNewPageLoaded: isNewPageLoaded,
-      ),
+      onResult:
+          (result) =>
+              _handleWatchedResult(result, isNewPageLoaded: isNewPageLoaded),
     );
   }
 
-  void _handleWatchedResult(Result<ListWithPaginationData<T>>? result,
-      {required bool isNewPageLoaded}) {
-    result?.fold((error) {
-      _updateStatus(WatchedBaseInitStatus(errorMessage: error.message));
-    }, (data) {
-      state = state.copyWithUpdWatched(
-        status: WatchedBaseInitStatus(),
-        isNewPageLoaded: isNewPageLoaded,
-        isInitialized: true,
-        data: data,
-      );
-    });
+  void _handleWatchedResult(
+    Result<ListWithPaginationData<T>>? result, {
+    required bool isNewPageLoaded,
+  }) {
+    result?.fold(
+      (error) {
+        _updateStatus(WatchedBaseInitStatus(errorMessage: error.message));
+      },
+      (data) {
+        state = state.copyWithUpdWatched(
+          status: WatchedBaseInitStatus(),
+          isNewPageLoaded: isNewPageLoaded,
+          isInitialized: true,
+          data: data,
+        );
+      },
+    );
   }
 
   void _updateStatus(WatchedStatus status) {

@@ -16,7 +16,7 @@ final watchedMoviesViewModelPr =
 /// A view model for managing `watched_movies`-specific logic and state.
 ///
 /// This class is responsible for coordinating `watched_movies` behavior and interacting with the UI.
-final class WatchedMoviesViewModel extends _WatchedViewModel<MovieShortData> {
+final class WatchedMoviesViewModel extends WatchedViewModel<MovieShortData> {
   @override
   WatchedMoviesState build() {
     _watchUseCase = ref.read(watchMoviesUseCasePr);

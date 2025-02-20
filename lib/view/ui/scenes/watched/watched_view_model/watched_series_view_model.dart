@@ -16,7 +16,7 @@ final watchedSeriesViewModelPr =
 /// A view model for managing `watched_series`-specific logic and state.
 ///
 /// This class is responsible for coordinating `watched_series` behavior and interacting with the UI.
-final class WatchedSeriesViewModel extends _WatchedViewModel<SeriesShortData> {
+final class WatchedSeriesViewModel extends WatchedViewModel<SeriesShortData> {
   @override
   WatchedSeriesState build() {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
