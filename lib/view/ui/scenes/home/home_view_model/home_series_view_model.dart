@@ -1,7 +1,13 @@
 part of 'home_view_model.dart';
 
+/// {@category StateManagement}
+///
+/// A type alias for [HomeState] with [SeriesShortData].
 typedef HomeSeriesState = HomeState<SeriesShortData>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [HomeSeriesViewModel] and [HomeSeriesState].
 typedef HomeSeriesVSP = ASP<HomeSeriesViewModel, HomeSeriesState>;
 
 /// {@category StateManagement}

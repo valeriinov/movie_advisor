@@ -31,14 +31,28 @@ final homeContModeViewModelPr = AutoDisposeNotifierProvider.family<
   ContentMode
 >(ContentModeViewModel.new);
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [HomeViewModel] and [HomeState].
 typedef HomeVSP = ASP<HomeViewModel, HomeState>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [AutoDisposeNotifierProvider] used to
+/// provide an instance of [HomeViewModel].
+///
+/// The [T] parameter represents the [MediaShortData] type.
 typedef HomeVMProvider<T extends MediaShortData> =
     AutoDisposeNotifierProvider<HomeViewModel<T>, HomeState<T>>;
 
 typedef _TabAction<T extends MediaShortData> =
     Future<Result<ListWithPaginationData<T>>> Function({int page});
 
+/// {@category StateManagement}
+///
+/// A base view model for managing `home`-specific logic and state.
+///
+/// This class is responsible for coordinating `home` behavior and interacting with the UI.
 abstract base class HomeViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<HomeState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {

@@ -37,11 +37,25 @@ final searchFilterViewModelPr =
       FilterViewModel.new,
     );
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [SearchViewModel] and [SearchState].
 typedef SearchVSP = ASP<SearchViewModel, SearchState>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [AutoDisposeNotifierProvider] used to
+/// provide an instance of [SearchViewModel].
+///
+/// The [T] parameter represents the [MediaShortData] type.
 typedef SearchVMProvider<T extends MediaShortData> =
     AutoDisposeNotifierProvider<SearchViewModel<T>, SearchState<T>>;
 
+/// {@category StateManagement}
+///
+/// A base view model for managing `search`-specific logic and state.
+///
+/// This class is responsible for coordinating `search` behavior and interacting with the UI.
 abstract base class SearchViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<SearchState<T>>
     with SafeOperationsMixin {

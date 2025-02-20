@@ -1,7 +1,13 @@
 part of 'search_view_model.dart';
 
+/// {@category StateManagement}
+///
+/// A type alias for [SearchState] with [MovieShortData].
 typedef SearchMoviesState = SearchState<MovieShortData>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [SearchMoviesViewModel] and [SearchMoviesState].
 typedef SearchMoviesVSP = ASP<SearchMoviesViewModel, SearchMoviesState>;
 
 /// {@category StateManagement}
@@ -9,8 +15,8 @@ typedef SearchMoviesVSP = ASP<SearchMoviesViewModel, SearchMoviesState>;
 /// A provider for the [SearchMoviesViewModel] class.
 final searchMoviesViewModelPr =
     AutoDisposeNotifierProvider<SearchMoviesViewModel, SearchMoviesState>(
-  SearchMoviesViewModel.new,
-);
+      SearchMoviesViewModel.new,
+    );
 
 /// {@category StateManagement}
 ///
@@ -23,8 +29,9 @@ final class SearchMoviesViewModel extends SearchViewModel<MovieShortData> {
     _searchUseCase = ref.read(searchMoviesUseCasePr);
     _watchUseCase = ref.read(watchMoviesUseCasePr);
 
-    _watchChangesSubscription =
-        _watchUseCase.watchChanges().listen(_handleWatchChanges);
+    _watchChangesSubscription = _watchUseCase.watchChanges().listen(
+      _handleWatchChanges,
+    );
 
     ref.onDispose(() {
       cancelSafeOperations();

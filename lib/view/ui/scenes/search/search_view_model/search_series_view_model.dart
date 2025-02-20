@@ -1,7 +1,13 @@
 part of 'search_view_model.dart';
 
+/// {@category StateManagement}
+///
+/// A type alias for [SearchState] with [SeriesShortData].
 typedef SearchSeriesState = SearchState<SeriesShortData>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [SearchSeriesViewModel] and [SearchSeriesState].
 typedef SearchSeriesVSP = ASP<SearchSeriesViewModel, SearchSeriesState>;
 
 /// {@category StateManagement}
@@ -9,8 +15,8 @@ typedef SearchSeriesVSP = ASP<SearchSeriesViewModel, SearchSeriesState>;
 /// A provider for the [SearchSeriesViewModel] class.
 final searchSeriesViewModelPr =
     AutoDisposeNotifierProvider<SearchSeriesViewModel, SearchSeriesState>(
-  SearchSeriesViewModel.new,
-);
+      SearchSeriesViewModel.new,
+    );
 
 /// {@category StateManagement}
 ///
@@ -23,8 +29,9 @@ final class SearchSeriesViewModel extends SearchViewModel<SeriesShortData> {
     _searchUseCase = ref.read(searchSeriesUseCasePr);
     _watchUseCase = ref.read(watchSeriesUseCasePr);
 
-    _watchChangesSubscription =
-        _watchUseCase.watchChanges().listen(_handleWatchChanges);
+    _watchChangesSubscription = _watchUseCase.watchChanges().listen(
+      _handleWatchChanges,
+    );
 
     ref.onDispose(() {
       cancelSafeOperations();

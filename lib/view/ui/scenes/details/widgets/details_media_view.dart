@@ -125,7 +125,7 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
     };
   }
 
-  void _onWatchlistTap(DetailsVSP vsp) {
+  void _onWatchlistTap(DetailsAFSP vsp) {
     final isInWatchlist = vsp.selectRead((s) => s.data.isInWatchlist);
 
     if (isInWatchlist) {
@@ -135,13 +135,13 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
     }
   }
 
-  void _onTabSelect(DetailsVSP vsp, int index) {
+  void _onTabSelect(DetailsAFSP vsp, int index) {
     final tab = DetailsTab.fromIndex(index);
 
     vsp.viewModel.updateCurrentTab(tab);
   }
 
-  void _onWatchedTap(BuildContext context, DetailsVSP vsp) {
+  void _onWatchedTap(BuildContext context, DetailsAFSP vsp) {
     final isWatched = vsp.selectRead((s) => s.data.isWatched);
     final initRate = vsp.selectRead((s) => s.data.userRating);
 

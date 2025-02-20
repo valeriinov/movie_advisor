@@ -1,7 +1,13 @@
 part of 'details_view_model.dart';
 
+/// {@category StateManagement}
+///
+/// A type alias for [DetailsState] with [SeriesData].
 typedef DetailsSeriesState = DetailsState<SeriesData>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [AFSP] with [DetailsSeriesViewModel], [DetailsSeriesState], and an integer ID.
 typedef DetailsSeriesVSP =
     AFSP<DetailsSeriesViewModel, DetailsSeriesState, int>;
 

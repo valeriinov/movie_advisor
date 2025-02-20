@@ -28,11 +28,25 @@ final watchedContModeViewModelPr = AutoDisposeNotifierProvider.family<
   ContentMode
 >(ContentModeViewModel.new);
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [WatchedViewModel] and [WatchedState].
 typedef WatchedVSP = ASP<WatchedViewModel, WatchedState>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [AutoDisposeNotifierProvider] used to provide an instance of [WatchedViewModel].
+///
+/// The [T] parameter represents the [MediaShortData] type.
 typedef WatchedVMProvider<T extends MediaShortData> =
     AutoDisposeNotifierProvider<WatchedViewModel<T>, WatchedState<T>>;
 
+
+/// {@category StateManagement}
+///
+/// A base view model for managing `watched`-specific logic and state.
+///
+/// This class is responsible for coordinating `watched` behavior and interacting with the UI.
 abstract base class WatchedViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<WatchedState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {

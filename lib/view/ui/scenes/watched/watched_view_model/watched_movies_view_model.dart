@@ -1,7 +1,13 @@
 part of 'watched_view_model.dart';
 
+/// {@category StateManagement}
+///
+/// A type alias for [WatchedState] with [MovieShortData].
 typedef WatchedMoviesState = WatchedState<MovieShortData>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [WatchedMoviesViewModel] and [WatchedMoviesState].
 typedef WatchedMoviesVSP = ASP<WatchedMoviesViewModel, WatchedMoviesState>;
 
 /// {@category StateManagement}
@@ -9,7 +15,8 @@ typedef WatchedMoviesVSP = ASP<WatchedMoviesViewModel, WatchedMoviesState>;
 /// A provider for the [WatchedMoviesViewModel] class.
 final watchedMoviesViewModelPr =
     AutoDisposeNotifierProvider<WatchedMoviesViewModel, WatchedMoviesState>(
-        WatchedMoviesViewModel.new);
+      WatchedMoviesViewModel.new,
+    );
 
 /// {@category StateManagement}
 ///
@@ -21,8 +28,9 @@ final class WatchedMoviesViewModel extends WatchedViewModel<MovieShortData> {
   WatchedMoviesState build() {
     _watchUseCase = ref.read(watchMoviesUseCasePr);
 
-    _watchChangesSubscription =
-        _watchUseCase.watchChanges().listen(_handleWatchChanges);
+    _watchChangesSubscription = _watchUseCase.watchChanges().listen(
+      _handleWatchChanges,
+    );
 
     ref.onDispose(() {
       cancelSafeOperations();

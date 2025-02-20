@@ -1,7 +1,13 @@
 part of 'watched_view_model.dart';
 
+/// {@category StateManagement}
+///
+/// A type alias for [WatchedState] with [SeriesShortData].
 typedef WatchedSeriesState = WatchedState<SeriesShortData>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [WatchedSeriesViewModel] and [WatchedSeriesState].
 typedef WatchedSeriesVSP = ASP<WatchedSeriesViewModel, WatchedSeriesState>;
 
 /// {@category StateManagement}
@@ -9,7 +15,8 @@ typedef WatchedSeriesVSP = ASP<WatchedSeriesViewModel, WatchedSeriesState>;
 /// A provider for the [WatchedSeriesViewModel] class.
 final watchedSeriesViewModelPr =
     AutoDisposeNotifierProvider<WatchedSeriesViewModel, WatchedSeriesState>(
-        WatchedSeriesViewModel.new);
+      WatchedSeriesViewModel.new,
+    );
 
 /// {@category StateManagement}
 ///
@@ -21,8 +28,9 @@ final class WatchedSeriesViewModel extends WatchedViewModel<SeriesShortData> {
   WatchedSeriesState build() {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
 
-    _watchChangesSubscription =
-        _watchUseCase.watchChanges().listen(_handleWatchChanges);
+    _watchChangesSubscription = _watchUseCase.watchChanges().listen(
+      _handleWatchChanges,
+    );
 
     ref.onDispose(() {
       cancelSafeOperations();

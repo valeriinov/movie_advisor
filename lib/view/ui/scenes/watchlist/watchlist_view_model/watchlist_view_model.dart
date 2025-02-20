@@ -28,11 +28,24 @@ final watchlistContModeViewModelPr = AutoDisposeNotifierProvider.family<
   ContentMode
 >(ContentModeViewModel.new);
 
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [WatchlistViewModel] and [WatchlistState].
 typedef WatchlistVSP = ASP<WatchlistViewModel, WatchlistState>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [AutoDisposeNotifierProvider] used to provide an instance of [WatchlistViewModel].
+///
+/// The [T] parameter represents the [MediaShortData] type.
 typedef WatchlistVMProvider<T extends MediaShortData> =
     AutoDisposeNotifierProvider<WatchlistViewModel<T>, WatchlistState<T>>;
 
+/// {@category StateManagement}
+///
+/// A base view model for managing `watchlist`-specific logic and state.
+///
+/// This class is responsible for coordinating `watchlist` behavior and interacting with the UI.
 abstract base class WatchlistViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<WatchlistState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {

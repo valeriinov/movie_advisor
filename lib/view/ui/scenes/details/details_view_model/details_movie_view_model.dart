@@ -1,16 +1,23 @@
 part of 'details_view_model.dart';
 
+/// {@category StateManagement}
+///
+/// A type alias for [DetailsState] with [MovieData].
 typedef DetailsMovieState = DetailsState<MovieData>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [AFSP] with [DetailsMovieViewModel], [DetailsMovieState], and an integer ID.
 typedef DetailsMovieVSP = AFSP<DetailsMovieViewModel, DetailsMovieState, int>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [DetailsMovieViewModel] class.
 final detailsMovieViewModelPr = AutoDisposeNotifierProvider.family<
-    DetailsMovieViewModel, DetailsMovieState, int>(
-  DetailsMovieViewModel.new,
-);
+  DetailsMovieViewModel,
+  DetailsMovieState,
+  int
+>(DetailsMovieViewModel.new);
 
 /// {@category StateManagement}
 ///
@@ -28,10 +35,7 @@ final class DetailsMovieViewModel
     scheduleCall(loadInitialData);
 
     return DetailsMovieState(
-      data: MovieData(
-        id: arg,
-        premiereDate: DateTime.now(),
-      ),
+      data: MovieData(id: arg, premiereDate: DateTime.now()),
     );
   }
 }

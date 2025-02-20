@@ -22,8 +22,19 @@ part 'details_movie_view_model.dart';
 
 part 'details_series_view_model.dart';
 
-typedef DetailsVSP = AFSP<DetailsViewModel, DetailsState, int>;
+/// {@category StateManagement}
+///
+/// A type alias for [AFSP] with [DetailsViewModel], [DetailsState], and an integer ID.
+typedef DetailsAFSP = AFSP<DetailsViewModel, DetailsState, int>;
 
+/// {@category StateManagement}
+///
+/// A type alias for [AutoDisposeNotifierProviderFamily] used to
+/// provide an instance of [DetailsViewModel].
+///
+/// The [T] parameter represents the [MediaData] type.
+/// The [S] parameter represents the [MediaShortData] type.
+/// The integer parameter is the media item ID.
 typedef DetailsVMProvider<T extends MediaData, S extends MediaShortData> =
     AutoDisposeNotifierProviderFamily<
       DetailsViewModel<T, S>,
@@ -33,7 +44,7 @@ typedef DetailsVMProvider<T extends MediaData, S extends MediaShortData> =
 
 /// {@category StateManagement}
 ///
-/// A view model for managing `details`-specific logic and state.
+/// A base view model for managing `details`-specific logic and state.
 ///
 /// This class is responsible for coordinating `details` behavior and interacting with the UI.
 abstract base class DetailsViewModel<
