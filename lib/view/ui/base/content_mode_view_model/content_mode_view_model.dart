@@ -1,12 +1,18 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'content_mode.dart';
 import '../../base/view_model/ext/vm_state_provider_creator.dart';
+import 'content_mode.dart';
 import 'content_mode_state.dart';
 
-typedef ContentModeAFSP
-    = AFSP<ContentModeViewModel, ContentModeState, ContentMode>;
+/// {@category StateManagement}
+///
+/// A type alias for [AFSP] with [ContentModeViewModel], [ContentModeState], and [ContentMode].
+typedef ContentModeAFSP =
+    AFSP<ContentModeViewModel, ContentModeState, ContentMode>;
 
+/// {@category StateManagement}
+///
+/// A view model for managing the [ContentMode] state.
 class ContentModeViewModel
     extends AutoDisposeFamilyNotifier<ContentModeState, ContentMode> {
   @override
@@ -14,6 +20,7 @@ class ContentModeViewModel
     return ContentModeState(mode: arg);
   }
 
+  /// Toggles the content mode between [ContentMode.movies] and [ContentMode.series].
   toggleMode() {
     final contentMode =
         state.mode.isMovies ? ContentMode.series : ContentMode.movies;
