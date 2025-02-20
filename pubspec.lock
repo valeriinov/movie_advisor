@@ -492,11 +492,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "1.1.0"
-      resolved-ref: "9b068ddff120c2336e9b1641c1cb534a0b3d33f8"
+      ref: "1.2.0"
+      resolved-ref: e51f60ec6ac59b94a5e35bcfdf39a92ff66460bc
       url: "https://github.com/valeriinov/flutter_utils.git"
     source: git
-    version: "1.1.0"
+    version: "1.2.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

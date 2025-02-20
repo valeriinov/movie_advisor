@@ -55,7 +55,7 @@ dependencies:
   flutter_utils:
     git:
       url: https://github.com/valeriinov/flutter_utils.git
-      ref: 1.1.0
+      ref: 1.2.0
 
   # Architecture
   hooks_riverpod: ^2.6.1
