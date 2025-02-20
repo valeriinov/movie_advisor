@@ -17,7 +17,7 @@ final searchSeriesViewModelPr =
 /// A view model for managing `search-series`-specific logic and state.
 ///
 /// This class is responsible for coordinating `search-series` behavior and interacting with the UI.
-final class SearchSeriesViewModel extends _SearchViewModel<SeriesShortData> {
+final class SearchSeriesViewModel extends SearchViewModel<SeriesShortData> {
   @override
   SearchSeriesState build() {
     _searchUseCase = ref.read(searchSeriesUseCasePr);

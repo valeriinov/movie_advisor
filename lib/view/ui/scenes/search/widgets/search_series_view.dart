@@ -1,129 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../di/injector.dart';
+import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
-import '../../../base/filter_view_model/filter_state.dart';
-import '../../../base/filter_view_model/filter_view_model.dart';
-import '../../../base/view_model/ext/state_comparator.dart';
-import '../../../base/view_model/ext/vm_state_provider_creator.dart';
-import '../../../navigation/routes/details_route.dart';
 import '../search_view_model/search_view_model.dart';
-import 'search_screen_content.dart';
+import 'search_media_view.dart';
 
-class SearchSeriesView extends HookConsumerWidget {
+class SearchSeriesView extends StatelessWidget {
   final ScrollController scrollController;
 
   const SearchSeriesView({super.key, required this.scrollController});
 
   @override
-  Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(searchSeriesViewModelPr);
-    final vspFilter = ref.vspFromADProvider(searchFilterViewModelPr);
-
-    useEffect(() {
-      _scheduleInitialDataLoad(context, vspFilter, vsp);
-
-      final paginationCtrl = _initPaginationController(vspFilter, vsp);
-      return paginationCtrl.dispose;
-    }, []);
-
-    vspFilter.handleState(
-      listener: (prev, next) => _handleFilterUpdate(prev, next, vsp),
-    );
-
-    vsp.handleState(
-      listener: (prev, next) {
-        ref.baseStatusHandler.handleStatus(
-          prev,
-          next,
-          handleLoadingState: () => false,
-        );
-      },
-    );
-
-    final isLoading = vsp.isLoading;
-    final results = vsp.selectWatch((s) => s.results);
-    final filter = vspFilter.selectWatch((s) => s.filter);
-
-    return SearchScreenContent(
-      onRefresh: !isLoading ? () => _onRefresh(vspFilter, vsp) : null,
-      isLoading: isLoading,
-      filter: filter,
-      results: results,
-      onItemSelect: (id) => _goToDetails(context, id),
-    );
-  }
-
-  Future<void> _onRefresh(FilterVSP vspFilter, SearchSeriesVSP vsp) {
-    final filter = vspFilter.selectRead((s) => s.filter);
-
-    return vsp.viewModel.loadByFilter(filter, showLoader: false);
-  }
-
-  void _scheduleInitialDataLoad(
-    BuildContext context,
-    FilterVSP vspFilter,
-    SearchSeriesVSP vsp,
-  ) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!context.mounted) return;
-
-      _handleInitialDataLoading(vspFilter, vsp);
-    });
-  }
-
-  void _handleInitialDataLoading(FilterVSP vspFilter, SearchSeriesVSP vsp) {
-    final filter = vspFilter.selectRead((s) => s.filter);
-
-    if (!filter.isDefault) {
-      vsp.viewModel.loadByFilter(filter);
-    }
-  }
-
-  ScrollPaginationController _initPaginationController(
-    FilterVSP vspFilter,
-    SearchSeriesVSP vsp,
-  ) {
-    final paginationCtrl = ScrollPaginationController(
+  Widget build(BuildContext context) {
+    return SearchMediaView<SeriesShortData>(
       scrollController: scrollController,
+      provider: searchSeriesViewModelPr,
+      contentMode: ContentMode.series,
     );
-
-    paginationCtrl.init(
-      getPaginationState: () => _getPaginationState(vsp),
-      loadNextPage: (page) {
-        final filter = vspFilter.selectRead((s) => s.filter);
-
-        vsp.viewModel.loadNextPage(filter, page);
-      },
-    );
-
-    return paginationCtrl;
-  }
-
-  PaginationState _getPaginationState(SearchSeriesVSP vsp) {
-    final loadInfo = vsp.selectRead((s) => s.results);
-
-    return PaginationState(
-      currentPage: loadInfo.mediaData.currentPage,
-      isLoading: loadInfo.isNextPageLoading,
-      isLastPage: loadInfo.mediaData.isLastPage,
-    );
-  }
-
-  void _handleFilterUpdate(
-    FilterState? prev,
-    FilterState next,
-    SearchSeriesVSP vsp,
-  ) {
-    if (next.isUpdate(prev, (s) => s?.filter)) {
-      vsp.viewModel.loadByFilter(next.filter);
-    }
-  }
-
-  void _goToDetails(BuildContext context, int id) {
-    DetailsRoute(id: id, contentMode: ContentMode.series).push(context);
   }
 }

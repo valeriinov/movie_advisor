@@ -17,7 +17,7 @@ final searchMoviesViewModelPr =
 /// A view model for managing `search-movies`-specific logic and state.
 ///
 /// This class is responsible for coordinating `search-movies` behavior and interacting with the UI.
-final class SearchMoviesViewModel extends _SearchViewModel<MovieShortData> {
+final class SearchMoviesViewModel extends SearchViewModel<MovieShortData> {
   @override
   SearchMoviesState build() {
     _searchUseCase = ref.read(searchMoviesUseCasePr);
