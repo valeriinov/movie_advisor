@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/filter_view_model/filter_state.dart';
@@ -16,10 +16,7 @@ import 'search_screen_content.dart';
 class SearchMoviesView extends HookConsumerWidget {
   final ScrollController scrollController;
 
-  const SearchMoviesView({
-    super.key,
-    required this.scrollController,
-  });
+  const SearchMoviesView({super.key, required this.scrollController});
 
   @override
   Widget build(context, ref) {
@@ -37,10 +34,15 @@ class SearchMoviesView extends HookConsumerWidget {
       listener: (prev, next) => _handleFilterUpdate(prev, next, vsp),
     );
 
-    vsp.handleState(listener: (prev, next) {
-      ref.baseStatusHandler
-          .handleStatus(prev, next, handleLoadingState: () => false);
-    });
+    vsp.handleState(
+      listener: (prev, next) {
+        ref.baseStatusHandler.handleStatus(
+          prev,
+          next,
+          handleLoadingState: () => false,
+        );
+      },
+    );
 
     final isLoading = vsp.isLoading;
     final results = vsp.selectWatch((s) => s.results);
@@ -62,7 +64,10 @@ class SearchMoviesView extends HookConsumerWidget {
   }
 
   void _scheduleInitialDataLoad(
-      BuildContext context, FilterVSP vspFilter, SearchMoviesVSP vsp) {
+    BuildContext context,
+    FilterVSP vspFilter,
+    SearchMoviesVSP vsp,
+  ) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!context.mounted) return;
 
@@ -78,12 +83,13 @@ class SearchMoviesView extends HookConsumerWidget {
     }
   }
 
-  AppScrollPaginationController _initPaginationController(
+  ScrollPaginationController _initPaginationController(
     FilterVSP vspFilter,
     SearchMoviesVSP vsp,
   ) {
-    final paginationCtrl =
-        AppScrollPaginationController(scrollController: scrollController);
+    final paginationCtrl = ScrollPaginationController(
+      scrollController: scrollController,
+    );
 
     paginationCtrl.init(
       getPaginationState: () => _getPaginationState(vsp),
@@ -97,10 +103,10 @@ class SearchMoviesView extends HookConsumerWidget {
     return paginationCtrl;
   }
 
-  AppPaginationState _getPaginationState(SearchMoviesVSP vsp) {
+  PaginationState _getPaginationState(SearchMoviesVSP vsp) {
     final loadInfo = vsp.selectRead((s) => s.results);
 
-    return AppPaginationState(
+    return PaginationState(
       currentPage: loadInfo.mediaData.currentPage,
       isLoading: loadInfo.isNextPageLoading,
       isLastPage: loadInfo.mediaData.isLastPage,
@@ -108,7 +114,10 @@ class SearchMoviesView extends HookConsumerWidget {
   }
 
   void _handleFilterUpdate(
-      FilterState? prev, FilterState next, SearchMoviesVSP vsp) {
+    FilterState? prev,
+    FilterState next,
+    SearchMoviesVSP vsp,
+  ) {
     if (next.isUpdate(prev, (s) => s?.filter)) {
       vsp.viewModel.loadByFilter(next.filter);
     }

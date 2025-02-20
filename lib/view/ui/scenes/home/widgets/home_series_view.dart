@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
@@ -26,19 +26,26 @@ class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
     final isInitialized = vsp.isInitialized;
     final isSkeletonVisible = isLoading && !isInitialized;
 
-    vsp.handleState(listener: (prev, next) {
-      ref.baseStatusHandler
-          .handleStatus(prev, next, handleLoadingState: () => isInitialized);
-    });
+    vsp.handleState(
+      listener: (prev, next) {
+        ref.baseStatusHandler.handleStatus(
+          prev,
+          next,
+          handleLoadingState: () => isInitialized,
+        );
+      },
+    );
 
     final currentTab = vsp.selectWatch((s) => s.currentTab);
     final tabContent = vsp.selectWatch((s) => s.tabCont);
-    final suggestionsContent =
-        vsp.selectWatch((s) => s.sugCont.mediaData.items);
+    final suggestionsContent = vsp.selectWatch(
+      (s) => s.sugCont.mediaData.items,
+    );
 
     useEffect(() {
-      final paginationCtrl =
-          AppScrollPaginationController(scrollController: scrollController);
+      final paginationCtrl = ScrollPaginationController(
+        scrollController: scrollController,
+      );
 
       paginationCtrl.init(
         getPaginationState: () => _getPaginationState(vsp),
@@ -59,23 +66,24 @@ class HomeSeriesView extends HookConsumerWidget with JumpToTabStartPosition {
     return isSkeletonVisible
         ? HomeContentSkeleton()
         : HomeScreenContent(
-            onRefresh: !isLoading
-                ? () => vsp.viewModel.loadInitialData(showLoader: false)
-                : null,
-            isSkeletonVisible: isSkeletonVisible,
-            suggestionsContent: suggestionsContent,
-            currentTab: currentTab,
-            tabContent: tabContent,
-            onTabSelect: (index) => _onTabSelect(vsp, index),
-            onSuggestionItemSelect: (id) => _goToDetails(context, id),
-            onTabItemSelect: (id) => _goToDetails(context, id),
-          );
+          onRefresh:
+              !isLoading
+                  ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                  : null,
+          isSkeletonVisible: isSkeletonVisible,
+          suggestionsContent: suggestionsContent,
+          currentTab: currentTab,
+          tabContent: tabContent,
+          onTabSelect: (index) => _onTabSelect(vsp, index),
+          onSuggestionItemSelect: (id) => _goToDetails(context, id),
+          onTabItemSelect: (id) => _goToDetails(context, id),
+        );
   }
 
-  AppPaginationState _getPaginationState(HomeSeriesVSP vsp) {
+  PaginationState _getPaginationState(HomeSeriesVSP vsp) {
     final loadInfo = vsp.selectRead((s) => s.tabCont);
 
-    return AppPaginationState(
+    return PaginationState(
       currentPage: loadInfo.mediaData.currentPage,
       isLoading: loadInfo.isNextPageLoading,
       isLastPage: loadInfo.mediaData.isLastPage,

@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../common/utils/scroll_pagination_controller.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
@@ -29,10 +29,15 @@ class WatchedMoviesView extends HookConsumerWidget {
     final isInitialized = vsp.isInitialized;
     final isSkeletonVisible = isLoading && !isInitialized;
 
-    vsp.handleState(listener: (prev, next) {
-      ref.baseStatusHandler
-          .handleStatus(prev, next, handleLoadingState: () => false);
-    });
+    vsp.handleState(
+      listener: (prev, next) {
+        ref.baseStatusHandler.handleStatus(
+          prev,
+          next,
+          handleLoadingState: () => false,
+        );
+      },
+    );
 
     final scrollController = useScrollController();
 
@@ -45,16 +50,17 @@ class WatchedMoviesView extends HookConsumerWidget {
     final watched = vsp.selectWatch((s) => s.watched);
 
     return ScrollTopListener(
-        scrollController: scrollController,
-        builder: (_, isFabVisible) {
-          return Scaffold(
-            appBar: WatchAppBar(
-              title: LocaleKeys.watchedMoviesScreenTitle.tr(),
-              onMoreTap: () => _onMoreTap(context),
-            ),
-            body: isSkeletonVisible
-                ? WatchContentSkeleton()
-                : WatchScreenContent(
+      scrollController: scrollController,
+      builder: (_, isFabVisible) {
+        return Scaffold(
+          appBar: WatchAppBar(
+            title: LocaleKeys.watchedMoviesScreenTitle.tr(),
+            onMoreTap: () => _onMoreTap(context),
+          ),
+          body:
+              isSkeletonVisible
+                  ? WatchContentSkeleton()
+                  : WatchScreenContent(
                     isLoading: isLoading,
                     isInitialized: isInitialized,
                     watchlist: watched,
@@ -63,23 +69,28 @@ class WatchedMoviesView extends HookConsumerWidget {
                         LocaleKeys.emptyWatchedMoviesSubtitle.tr(),
                     scrollController: scrollController,
                     onItemSelect: (id) => _goToDetails(context, id),
-                    onRefresh: !isLoading
-                        ? () => vsp.viewModel.loadInitialData(showLoader: false)
-                        : null,
+                    onRefresh:
+                        !isLoading
+                            ? () =>
+                                vsp.viewModel.loadInitialData(showLoader: false)
+                            : null,
                   ),
-            floatingActionButton: isFabVisible
-                ? ScrollTopFab(scrollController: scrollController)
-                : null,
-          );
-        });
+          floatingActionButton:
+              isFabVisible
+                  ? ScrollTopFab(scrollController: scrollController)
+                  : null,
+        );
+      },
+    );
   }
 
-  AppScrollPaginationController _initPaginationController(
+  ScrollPaginationController _initPaginationController(
     WatchedMoviesVSP vsp,
     ScrollController scrollController,
   ) {
-    final paginationCtrl =
-        AppScrollPaginationController(scrollController: scrollController);
+    final paginationCtrl = ScrollPaginationController(
+      scrollController: scrollController,
+    );
 
     paginationCtrl.init(
       getPaginationState: () => _getPaginationState(vsp),
@@ -89,10 +100,10 @@ class WatchedMoviesView extends HookConsumerWidget {
     return paginationCtrl;
   }
 
-  AppPaginationState _getPaginationState(WatchedMoviesVSP vsp) {
+  PaginationState _getPaginationState(WatchedMoviesVSP vsp) {
     final loadInfo = vsp.selectRead((s) => s.watched);
 
-    return AppPaginationState(
+    return PaginationState(
       currentPage: loadInfo.mediaData.currentPage,
       isLoading: loadInfo.isNextPageLoading,
       isLastPage: loadInfo.mediaData.isLastPage,
