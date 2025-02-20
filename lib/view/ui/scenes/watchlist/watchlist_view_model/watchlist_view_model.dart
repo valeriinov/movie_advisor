@@ -23,11 +23,30 @@ part 'watchlist_movies_view_model.dart';
 part 'watchlist_series_view_model.dart';
 
 final watchlistContModeViewModelPr = AutoDisposeNotifierProvider.family<
-    ContentModeViewModel, ContentModeState, ContentMode>(
-  ContentModeViewModel.new,
-);
+  ContentModeViewModel,
+  ContentModeState,
+  ContentMode
+>(ContentModeViewModel.new);
 
-abstract base class _WatchlistViewModel<T extends MediaShortData>
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [WatchlistViewModel] and [WatchlistState].
+typedef WatchlistVSP = ASP<WatchlistViewModel, WatchlistState>;
+
+/// {@category StateManagement}
+///
+/// A type alias for [AutoDisposeNotifierProvider] used to provide an instance of [WatchlistViewModel].
+///
+/// The [T] parameter represents the [MediaShortData] type.
+typedef WatchlistVMProvider<T extends MediaShortData> =
+    AutoDisposeNotifierProvider<WatchlistViewModel<T>, WatchlistState<T>>;
+
+/// {@category StateManagement}
+///
+/// A base view model for managing `watchlist`-specific logic and state.
+///
+/// This class is responsible for coordinating `watchlist` behavior and interacting with the UI.
+abstract base class WatchlistViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<WatchlistState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final WatchUseCase<T> _watchUseCase;
@@ -43,8 +62,9 @@ abstract base class _WatchlistViewModel<T extends MediaShortData>
     final resultsItems = watchlistData.items.handleWatchlistItem(item);
 
     state = state.copyWith(
-      watchlist: state.watchlist
-          .copyWith(mediaData: watchlistData.copyWith(items: resultsItems)),
+      watchlist: state.watchlist.copyWith(
+        mediaData: watchlistData.copyWith(items: resultsItems),
+      ),
     );
   }
 
@@ -60,29 +80,35 @@ abstract base class _WatchlistViewModel<T extends MediaShortData>
     return _loadWatchlist(page: page, isNewPageLoaded: true);
   }
 
-  Future<void> _loadWatchlist(
-      {int page = 1, bool isNewPageLoaded = false}) async {
+  Future<void> _loadWatchlist({
+    int page = 1,
+    bool isNewPageLoaded = false,
+  }) async {
     return safeCall(
       () => _watchUseCase.getWatchlist(page: page),
-      onResult: (result) => _handleWatchlistResult(
-        result,
-        isNewPageLoaded: isNewPageLoaded,
-      ),
+      onResult:
+          (result) =>
+              _handleWatchlistResult(result, isNewPageLoaded: isNewPageLoaded),
     );
   }
 
-  void _handleWatchlistResult(Result<ListWithPaginationData<T>>? result,
-      {required bool isNewPageLoaded}) {
-    result?.fold((error) {
-      _updateStatus(WatchlistBaseInitStatus(errorMessage: error.message));
-    }, (data) {
-      state = state.copyWithUpdWatchlist(
-        status: WatchlistBaseInitStatus(),
-        isNewPageLoaded: isNewPageLoaded,
-        isInitialized: true,
-        data: data,
-      );
-    });
+  void _handleWatchlistResult(
+    Result<ListWithPaginationData<T>>? result, {
+    required bool isNewPageLoaded,
+  }) {
+    result?.fold(
+      (error) {
+        _updateStatus(WatchlistBaseInitStatus(errorMessage: error.message));
+      },
+      (data) {
+        state = state.copyWithUpdWatchlist(
+          status: WatchlistBaseInitStatus(),
+          isNewPageLoaded: isNewPageLoaded,
+          isInitialized: true,
+          data: data,
+        );
+      },
+    );
   }
 
   void _updateStatus(WatchlistStatus status) {

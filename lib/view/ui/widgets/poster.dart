@@ -33,9 +33,10 @@ class Poster extends StatelessWidget {
             width: imgSize.width,
             height: imgSize.height,
             child: ImageWithPlaceholder(
-              placeholderProvider: transparentPlaceholder
-                  ? MemoryImage(PlaceholderImageGenerator.generateImageBytes())
-                  : null,
+              placeholder:
+                  transparentPlaceholder
+                      ? PlaceholderImageGenerator.generate()
+                      : null,
               imagePath: url,
               cacheWidth: imgSize.width.toInt(),
               cacheHeight: imgSize.height.toInt(),
@@ -46,10 +47,7 @@ class Poster extends StatelessWidget {
           Positioned.fill(
             child: Material(
               color: Colors.transparent,
-              child: InkWell(
-                borderRadius: borderRadius,
-                onTap: onTap,
-              ),
+              child: InkWell(borderRadius: borderRadius, onTap: onTap),
             ),
           ),
       ],

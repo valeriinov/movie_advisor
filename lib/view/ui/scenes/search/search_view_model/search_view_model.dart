@@ -23,20 +23,42 @@ import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import 'search_state.dart';
 
 part 'search_movies_view_model.dart';
+
 part 'search_series_view_model.dart';
 
 final searchContModeViewModelPr = AutoDisposeNotifierProvider.family<
-    ContentModeViewModel, ContentModeState, ContentMode>(
-  ContentModeViewModel.new,
-);
+  ContentModeViewModel,
+  ContentModeState,
+  ContentMode
+>(ContentModeViewModel.new);
 
 final searchFilterViewModelPr =
     AutoDisposeNotifierProvider<FilterViewModel, FilterState>(
-  FilterViewModel.new,
-);
+      FilterViewModel.new,
+    );
 
-abstract base class _SearchViewModel<T extends MediaShortData>
-    extends AutoDisposeNotifier<SearchState<T>> with SafeOperationsMixin {
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [SearchViewModel] and [SearchState].
+typedef SearchVSP = ASP<SearchViewModel, SearchState>;
+
+/// {@category StateManagement}
+///
+/// A type alias for [AutoDisposeNotifierProvider] used to
+/// provide an instance of [SearchViewModel].
+///
+/// The [T] parameter represents the [MediaShortData] type.
+typedef SearchVMProvider<T extends MediaShortData> =
+    AutoDisposeNotifierProvider<SearchViewModel<T>, SearchState<T>>;
+
+/// {@category StateManagement}
+///
+/// A base view model for managing `search`-specific logic and state.
+///
+/// This class is responsible for coordinating `search` behavior and interacting with the UI.
+abstract base class SearchViewModel<T extends MediaShortData>
+    extends AutoDisposeNotifier<SearchState<T>>
+    with SafeOperationsMixin {
   late final SearchUseCase<T> _searchUseCase;
   late final WatchUseCase<T> _watchUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
@@ -52,8 +74,9 @@ abstract base class _SearchViewModel<T extends MediaShortData>
     final resultsItems = resultsData.items.updateItemInList(item);
 
     state = state.copyWith(
-      results: state.results
-          .copyWith(mediaData: resultsData.copyWith(items: resultsItems)),
+      results: state.results.copyWith(
+        mediaData: resultsData.copyWith(items: resultsItems),
+      ),
     );
   }
 
@@ -69,8 +92,11 @@ abstract base class _SearchViewModel<T extends MediaShortData>
     return _loadSearchResult(filter, page: page, isNewPageLoaded: true);
   }
 
-  Future<void> _loadSearchResult(SearchFilterData filter,
-      {int page = 1, bool isNewPageLoaded = false}) async {
+  Future<void> _loadSearchResult(
+    SearchFilterData filter, {
+    int page = 1,
+    bool isNewPageLoaded = false,
+  }) async {
     return safeCall(
       () async {
         _searchOperation?.cancel();
@@ -81,14 +107,15 @@ abstract base class _SearchViewModel<T extends MediaShortData>
 
         return _searchOperation?.valueOrCancellation();
       },
-      onResult: (result) => _handleMediaResult(result, (data) {
-        state = state.copyWithUpdResults(
-          status: SearchBaseInitStatus(),
-          isNewPageLoaded: isNewPageLoaded,
-          isInitialized: true,
-          data: data,
-        );
-      }),
+      onResult:
+          (result) => _handleMediaResult(result, (data) {
+            state = state.copyWithUpdResults(
+              status: SearchBaseInitStatus(),
+              isNewPageLoaded: isNewPageLoaded,
+              isInitialized: true,
+              data: data,
+            );
+          }),
     );
   }
 

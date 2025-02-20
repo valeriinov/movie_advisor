@@ -26,11 +26,34 @@ part 'home_movies_view_model.dart';
 part 'home_series_view_model.dart';
 
 final homeContModeViewModelPr = AutoDisposeNotifierProvider.family<
-    ContentModeViewModel, ContentModeState, ContentMode>(
-  ContentModeViewModel.new,
-);
+  ContentModeViewModel,
+  ContentModeState,
+  ContentMode
+>(ContentModeViewModel.new);
 
-abstract base class _HomeViewModel<T extends MediaShortData>
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [HomeViewModel] and [HomeState].
+typedef HomeVSP = ASP<HomeViewModel, HomeState>;
+
+/// {@category StateManagement}
+///
+/// A type alias for [AutoDisposeNotifierProvider] used to
+/// provide an instance of [HomeViewModel].
+///
+/// The [T] parameter represents the [MediaShortData] type.
+typedef HomeVMProvider<T extends MediaShortData> =
+    AutoDisposeNotifierProvider<HomeViewModel<T>, HomeState<T>>;
+
+typedef _TabAction<T extends MediaShortData> =
+    Future<Result<ListWithPaginationData<T>>> Function({int page});
+
+/// {@category StateManagement}
+///
+/// A base view model for managing `home`-specific logic and state.
+///
+/// This class is responsible for coordinating `home` behavior and interacting with the UI.
+abstract base class HomeViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<HomeState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final HomeUseCase<T> _homeUseCase;
@@ -50,10 +73,12 @@ abstract base class _HomeViewModel<T extends MediaShortData>
     final tabItems = tabData.items.updateItemInList(item);
 
     state = state.copyWith(
-      sugCont:
-          state.sugCont.copyWith(mediaData: sugData.copyWith(items: sugItems)),
-      tabCont:
-          state.tabCont.copyWith(mediaData: tabData.copyWith(items: tabItems)),
+      sugCont: state.sugCont.copyWith(
+        mediaData: sugData.copyWith(items: sugItems),
+      ),
+      tabCont: state.tabCont.copyWith(
+        mediaData: tabData.copyWith(items: tabItems),
+      ),
     );
   }
 
@@ -62,12 +87,10 @@ abstract base class _HomeViewModel<T extends MediaShortData>
 
     await safeCall(
       _homeUseCase.getSuggested,
-      onResult: (result) => _handleMediaResult(result, (data) {
-        state = state.copyWithUpdSugCont(
-          isInitialized: true,
-          data: data,
-        );
-      }),
+      onResult:
+          (result) => _handleMediaResult(result, (data) {
+            state = state.copyWithUpdSugCont(isInitialized: true, data: data);
+          }),
     );
 
     await _loadTabCont();
@@ -92,8 +115,10 @@ abstract base class _HomeViewModel<T extends MediaShortData>
     return _loadTabCont(page: page, isNewPageLoaded: true);
   }
 
-  Future<void> _loadTabCont(
-      {int page = 1, bool isNewPageLoaded = false}) async {
+  Future<void> _loadTabCont({
+    int page = 1,
+    bool isNewPageLoaded = false,
+  }) async {
     final action = _getTabAction();
 
     return safeCall(
@@ -104,19 +129,19 @@ abstract base class _HomeViewModel<T extends MediaShortData>
 
         return _loadTabOperation?.valueOrCancellation();
       },
-      onResult: (result) => _handleMediaResult(result, (data) {
-        state = state.copyWithUpdTabCont(
-          status: HomeBaseInitStatus(),
-          isNewPageLoaded: isNewPageLoaded,
-          isInitialized: true,
-          data: data,
-        );
-      }),
+      onResult:
+          (result) => _handleMediaResult(result, (data) {
+            state = state.copyWithUpdTabCont(
+              status: HomeBaseInitStatus(),
+              isNewPageLoaded: isNewPageLoaded,
+              isInitialized: true,
+              data: data,
+            );
+          }),
     );
   }
 
-  Future<Result<ListWithPaginationData<T>>> Function({int page})
-      _getTabAction() {
+  _TabAction<T> _getTabAction() {
     return switch (state.currentTab) {
       MediaTab.nowPlaying => _homeUseCase.getNowPlaying,
       MediaTab.upcoming => _homeUseCase.getUpcoming,

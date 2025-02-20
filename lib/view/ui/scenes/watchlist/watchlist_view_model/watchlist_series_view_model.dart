@@ -1,16 +1,23 @@
 part of 'watchlist_view_model.dart';
 
+/// {@category StateManagement}
+///
+/// A type alias for [WatchlistState] with [SeriesShortData].
 typedef WatchlistSeriesState = WatchlistState<SeriesShortData>;
 
-typedef WatchlistSeriesVSP
-    = ASP<WatchlistSeriesViewModel, WatchlistSeriesState>;
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [WatchlistSeriesViewModel] and [WatchlistSeriesState].
+typedef WatchlistSeriesVSP =
+    ASP<WatchlistSeriesViewModel, WatchlistSeriesState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [WatchlistSeriesViewModel] class.
 final watchlistSeriesViewModelPr =
     AutoDisposeNotifierProvider<WatchlistSeriesViewModel, WatchlistSeriesState>(
-        WatchlistSeriesViewModel.new);
+      WatchlistSeriesViewModel.new,
+    );
 
 /// {@category StateManagement}
 ///
@@ -18,13 +25,14 @@ final watchlistSeriesViewModelPr =
 ///
 /// This class is responsible for coordinating `watchlist_series` behavior and interacting with the UI.
 final class WatchlistSeriesViewModel
-    extends _WatchlistViewModel<SeriesShortData> {
+    extends WatchlistViewModel<SeriesShortData> {
   @override
   WatchlistSeriesState build() {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
 
-    _watchChangesSubscription =
-        _watchUseCase.watchChanges().listen(_handleWatchChanges);
+    _watchChangesSubscription = _watchUseCase.watchChanges().listen(
+      _handleWatchChanges,
+    );
 
     ref.onDispose(() {
       cancelSafeOperations();
