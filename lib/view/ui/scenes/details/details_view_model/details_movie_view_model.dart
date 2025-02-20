@@ -18,7 +18,7 @@ final detailsMovieViewModelPr = AutoDisposeNotifierProvider.family<
 ///
 /// This class is responsible for coordinating `details_movie` behavior and interacting with the UI.
 final class DetailsMovieViewModel
-    extends _DetailsViewModel<MovieData, MovieShortData> {
+    extends DetailsViewModel<MovieData, MovieShortData> {
   @override
   DetailsMovieState build(arg) {
     _detailsUseCase = ref.read(detailsMovieUseCasePr);

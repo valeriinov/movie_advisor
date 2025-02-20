@@ -22,13 +22,24 @@ part 'details_movie_view_model.dart';
 
 part 'details_series_view_model.dart';
 
+typedef DetailsVSP = AFSP<DetailsViewModel, DetailsState, int>;
+
+typedef DetailsVMProvider<T extends MediaData, S extends MediaShortData> =
+    AutoDisposeNotifierProviderFamily<
+      DetailsViewModel<T, S>,
+      DetailsState<T>,
+      int
+    >;
+
 /// {@category StateManagement}
 ///
 /// A view model for managing `details`-specific logic and state.
 ///
 /// This class is responsible for coordinating `details` behavior and interacting with the UI.
-abstract base class _DetailsViewModel<T extends MediaData,
-        S extends MediaShortData>
+abstract base class DetailsViewModel<
+  T extends MediaData,
+  S extends MediaShortData
+>
     extends AutoDisposeFamilyNotifier<DetailsState<T>, int>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final DetailsUseCase<T> _detailsUseCase;
@@ -44,14 +55,14 @@ abstract base class _DetailsViewModel<T extends MediaData,
   }
 
   void _handleDetailsResult(Result<T>? result) {
-    result?.fold((error) {
-      _updateStatus(DetailsBaseInitStatus(errorMessage: error.message));
-    }, (data) {
-      state = state.copyWith(
-        status: DetailsBaseInitStatus(),
-        data: data,
-      );
-    });
+    result?.fold(
+      (error) {
+        _updateStatus(DetailsBaseInitStatus(errorMessage: error.message));
+      },
+      (data) {
+        state = state.copyWith(status: DetailsBaseInitStatus(), data: data);
+      },
+    );
   }
 
   Future<void> addToWatchlist() async {
@@ -59,12 +70,13 @@ abstract base class _DetailsViewModel<T extends MediaData,
 
     await safeCall(
       () => _watchUseCase.addToWatchlist(state.data.toShortData()),
-      onResult: (r) => _handleResult(r, () {
-        state = state.copyWith(
-          status: AddedToWatchlistStatus(),
-          data: state.data.copyWith(isInWatchlist: true) as T,
-        );
-      }),
+      onResult:
+          (r) => _handleResult(r, () {
+            state = state.copyWith(
+              status: AddedToWatchlistStatus(),
+              data: state.data.copyWith(isInWatchlist: true) as T,
+            );
+          }),
     );
   }
 
@@ -76,12 +88,10 @@ abstract base class _DetailsViewModel<T extends MediaData,
 
     await safeCall(
       () => _watchUseCase.addToWatched(data.toShortData()),
-      onResult: (r) => _handleResult(r, () {
-        state = state.copyWith(
-          status: AddedToWatchedStatus(),
-          data: data,
-        );
-      }),
+      onResult:
+          (r) => _handleResult(r, () {
+            state = state.copyWith(status: AddedToWatchedStatus(), data: data);
+          }),
     );
   }
 
@@ -90,12 +100,13 @@ abstract base class _DetailsViewModel<T extends MediaData,
 
     await safeCall(
       () => _watchUseCase.removeFromWatchlist(state.data.id),
-      onResult: (r) => _handleResult(r, () {
-        state = state.copyWith(
-          status: RemovedFromWatchlistStatus(),
-          data: state.data.copyWith(isInWatchlist: false) as T,
-        );
-      }),
+      onResult:
+          (r) => _handleResult(r, () {
+            state = state.copyWith(
+              status: RemovedFromWatchlistStatus(),
+              data: state.data.copyWith(isInWatchlist: false) as T,
+            );
+          }),
     );
   }
 
@@ -104,12 +115,13 @@ abstract base class _DetailsViewModel<T extends MediaData,
 
     await safeCall(
       () => _watchUseCase.removeFromWatched(state.data.id),
-      onResult: (r) => _handleResult(r, () {
-        state = state.copyWith(
-          status: RemovedFromWatchedStatus(),
-          data: state.data.copyWith(userRating: 0, isWatched: false) as T,
-        );
-      }),
+      onResult:
+          (r) => _handleResult(r, () {
+            state = state.copyWith(
+              status: RemovedFromWatchedStatus(),
+              data: state.data.copyWith(userRating: 0, isWatched: false) as T,
+            );
+          }),
     );
   }
 
@@ -133,29 +145,30 @@ abstract base class _DetailsViewModel<T extends MediaData,
 extension _MediaToShortMapper on MediaData {
   S toShortData<S extends MediaShortData>() {
     return switch (this) {
-      MovieData d => MovieShortData(
-          id: d.id,
-          posterUrl: d.posterUrl,
-          genres: d.genres,
-          premiereDate: d.premiereDate,
-          title: d.title,
-          tmdbRating: d.tmdbRating,
-          userRating: d.userRating,
-          isInWatchlist: d.isInWatchlist,
-          isWatched: d.isWatched,
-        ),
-      SeriesData d => SeriesShortData(
-          id: d.id,
-          posterUrl: d.posterUrl,
-          genres: d.genres,
-          premiereDate: d.premiereDate,
-          title: d.title,
-          tmdbRating: d.tmdbRating,
-          userRating: d.userRating,
-          isInWatchlist: d.isInWatchlist,
-          isWatched: d.isWatched,
-        ),
-      _ => throw Exception('Unknown media type')
-    } as S;
+          MovieData d => MovieShortData(
+            id: d.id,
+            posterUrl: d.posterUrl,
+            genres: d.genres,
+            premiereDate: d.premiereDate,
+            title: d.title,
+            tmdbRating: d.tmdbRating,
+            userRating: d.userRating,
+            isInWatchlist: d.isInWatchlist,
+            isWatched: d.isWatched,
+          ),
+          SeriesData d => SeriesShortData(
+            id: d.id,
+            posterUrl: d.posterUrl,
+            genres: d.genres,
+            premiereDate: d.premiereDate,
+            title: d.title,
+            tmdbRating: d.tmdbRating,
+            userRating: d.userRating,
+            isInWatchlist: d.isInWatchlist,
+            isWatched: d.isWatched,
+          ),
+          _ => throw Exception('Unknown media type'),
+        }
+        as S;
   }
 }
