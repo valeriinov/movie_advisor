@@ -62,15 +62,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
-  bricks_info:
-    dependency: transitive
-    description:
-      path: bricks_info
-      ref: main
-      resolved-ref: "9e8bf189b3900c1ab53ec7f98b18eeaa5ea87b09"
-      url: "https://github.com/valeriinov/flutter_start_project.git"
-    source: git
-    version: "0.0.1"
   build:
     dependency: transitive
     description:
@@ -854,15 +845,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
-  proj_gen_init_cli:
-    dependency: "direct dev"
-    description:
-      path: proj_gen_init_cli
-      ref: main
-      resolved-ref: "9e8bf189b3900c1ab53ec7f98b18eeaa5ea87b09"
-      url: "https://github.com/valeriinov/flutter_start_project.git"
-    source: git
-    version: "1.0.0"
   pub_semver:
     dependency: transitive
     description:

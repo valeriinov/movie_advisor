@@ -92,11 +92,6 @@ dev_dependencies:
   build_verify: ^3.1.0
   flutter_flavorizr: ^2.2.3
   drift_dev: ^2.25.2
-  proj_gen_init_cli:
-    git:
-      url: https://github.com/valeriinov/flutter_start_project.git
-      path: proj_gen_init_cli
-      ref: main
   class_namer:
     git:
       url: https://github.com/valeriinov/class_namer.git
