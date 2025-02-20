@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
@@ -9,7 +8,6 @@ import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
-import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/blurred_bottom_sheet.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
@@ -22,11 +20,17 @@ import 'watched_filter_bottom_sheet.dart';
 class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
   final WatchedVMProvider<T> provider;
   final ContentMode contentMode;
+  final String screenTitle;
+  final String emptyListTitle;
+  final String emptyListSubtitle;
 
   const WatchedMediaView({
     super.key,
     required this.provider,
     required this.contentMode,
+    required this.screenTitle,
+    required this.emptyListTitle,
+    required this.emptyListSubtitle,
   });
 
   @override
@@ -62,7 +66,7 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
       builder: (_, isFabVisible) {
         return Scaffold(
           appBar: WatchAppBar(
-            title: LocaleKeys.watchedMoviesScreenTitle.tr(),
+            title: screenTitle,
             onMoreTap: () => _onMoreTap(context),
           ),
           body:
@@ -72,9 +76,8 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
                     isLoading: isLoading,
                     isInitialized: isInitialized,
                     watchlist: watched,
-                    emptyListTitle: LocaleKeys.emptyWatchedMoviesTitle.tr(),
-                    emptyListSubtitle:
-                        LocaleKeys.emptyWatchedMoviesSubtitle.tr(),
+                    emptyListTitle: emptyListTitle,
+                    emptyListSubtitle: emptyListSubtitle,
                     scrollController: scrollController,
                     onItemSelect: (id) => _goToDetails(context, id),
                     onRefresh:
