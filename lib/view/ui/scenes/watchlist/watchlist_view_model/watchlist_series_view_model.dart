@@ -18,7 +18,7 @@ final watchlistSeriesViewModelPr =
 ///
 /// This class is responsible for coordinating `watchlist_series` behavior and interacting with the UI.
 final class WatchlistSeriesViewModel
-    extends _WatchlistViewModel<SeriesShortData> {
+    extends WatchlistViewModel<SeriesShortData> {
   @override
   WatchlistSeriesState build() {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
