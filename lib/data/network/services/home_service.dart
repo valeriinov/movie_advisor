@@ -59,7 +59,9 @@ class HomeService {
     MovieRateFilterDataDto filter,
     int page,
   ) async {
-    final queryParams = _buildMoviesQueryParams(filter, page);
+    final genreIdsStr = _buildMoviesGenreIdsStr(filter.targetGenres);
+
+    final queryParams = _buildQueryParams(genreIdsStr, page);
 
     final result = await _mediaApiClient.get(
       '/discover/movie',
@@ -69,28 +71,9 @@ class HomeService {
     return _responseHandler.handleMoviesResponse(result);
   }
 
-  Map<String, dynamic> _buildMoviesQueryParams(
-    MovieRateFilterDataDto filter,
-    int page,
-  ) {
-    final params = {
-      'sort_by': 'popularity.desc',
-      'vote_average.gte': '${DbConstants.minTargetTmdbRate}',
-      'vote_count.gte': '${DbConstants.minTmdbVoteCount}',
-      'page': page,
-    };
-
-    final targetGenres = filter.targetGenres;
-
-    if (targetGenres.isNotNullAndNotEmpty) {
-      final genreIds = targetGenres!
-          .map((genre) => genre.toValue().toString())
-          .join('|');
-
-      params['with_genres'] = genreIds;
-    }
-
-    return params;
+  String _buildMoviesGenreIdsStr(List<MovieGenreDto>? targetGenres) {
+    return targetGenres?.map((genre) => genre.toValue().toString()).join('|') ??
+        '';
   }
 
   List<MovieDataDto> _filterMovies(
@@ -184,7 +167,9 @@ class HomeService {
     SeriesRateFilterDataDto filter,
     int page,
   ) async {
-    final queryParams = _buildSeriesQueryParams(filter, page);
+    final genreIdsStr = _buildSeriesGenreIdsStr(filter.targetGenres);
+
+    final queryParams = _buildQueryParams(genreIdsStr, page);
 
     final result = await _mediaApiClient.get(
       '/discover/tv',
@@ -194,25 +179,21 @@ class HomeService {
     return _responseHandler.handleSeriesResponse(result);
   }
 
-  Map<String, dynamic> _buildSeriesQueryParams(
-    SeriesRateFilterDataDto filter,
-    int page,
-  ) {
+  String _buildSeriesGenreIdsStr(List<SeriesGenreDto>? targetGenres) {
+    return targetGenres?.map((genre) => genre.toValue().toString()).join('|') ??
+        '';
+  }
+
+  Map<String, dynamic> _buildQueryParams(String genreIdsStr, int page) {
     final params = {
       'sort_by': 'popularity.desc',
       'vote_average.gte': '${DbConstants.minTargetTmdbRate}',
-      'vote_count.gte': '100',
+      'vote_count.gte': '${DbConstants.minTmdbVoteCount}',
       'page': page,
     };
 
-    final targetGenres = filter.targetGenres;
-
-    if (targetGenres.isNotNullAndNotEmpty) {
-      final genreIds = targetGenres!
-          .map((genre) => genre.toValue().toString())
-          .join('|');
-
-      params['with_genres'] = genreIds;
+    if (genreIdsStr.isNotEmpty) {
+      params['with_genres'] = genreIdsStr;
     }
 
     return params;
