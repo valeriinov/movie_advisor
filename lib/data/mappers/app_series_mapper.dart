@@ -18,14 +18,15 @@ final class AppSeriesMapper extends AppMapper {
   final AppRatingMapper _ratingMapper;
   final AppCastMapper _castMapper;
 
-  AppSeriesMapper(
-      {required AppRatingMapper ratingMapper,
-      required AppCastMapper castMapper})
-      : _ratingMapper = ratingMapper,
-        _castMapper = castMapper;
+  AppSeriesMapper({
+    required AppRatingMapper ratingMapper,
+    required AppCastMapper castMapper,
+  }) : _ratingMapper = ratingMapper,
+       _castMapper = castMapper;
 
   PaginatedSeries mapSeriesShortResponseDataToDomain(
-      SeriesShortResponseDataDto dto) {
+    SeriesShortResponseDataDto dto,
+  ) {
     return PaginatedSeries(
       items: mapSeriesShortDataListDtoToDomain(dto.results ?? []),
       currentPage: dto.page ?? 1,
@@ -58,9 +59,10 @@ final class AppSeriesMapper extends AppMapper {
       title: dto.name ?? '',
       overview: dto.overview ?? '',
       tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
-      cast: dto.credits != null
-          ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
-          : [],
+      cast:
+          dto.credits != null
+              ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
+              : [],
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
@@ -68,7 +70,8 @@ final class AppSeriesMapper extends AppMapper {
   }
 
   List<SeriesShortData> mapSeriesDataListDtoToShortDomain(
-      List<SeriesDataDto> dtos) {
+    List<SeriesDataDto> dtos,
+  ) {
     return dtos.map(_mapSeriesDataDtoToShortDomain).toList();
   }
 
@@ -77,6 +80,7 @@ final class AppSeriesMapper extends AppMapper {
       id: dto.id ?? -1,
       posterUrl: dto.posterPath ?? '',
       genres: _mapSeriesGenresDtoToDomain(dto.genres),
+      originCountry: dto.originCountry ?? [],
       premiereDate: dto.firstAirDate,
       title: dto.name ?? '',
       tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
@@ -87,7 +91,8 @@ final class AppSeriesMapper extends AppMapper {
   }
 
   List<SeriesShortData> mapSeriesShortDataListDtoToDomain(
-      List<SeriesShortDataDto> dtos) {
+    List<SeriesShortDataDto> dtos,
+  ) {
     return dtos.map(mapSeriesShortDataDtoToDomain).toList();
   }
 
@@ -96,6 +101,7 @@ final class AppSeriesMapper extends AppMapper {
       id: dto.id ?? -1,
       posterUrl: dto.posterUrl ?? '',
       genres: _mapSeriesGenresDtoToDomain(dto.genres),
+      originCountry: dto.originCountry ?? [],
       premiereDate: dto.premiereDate,
       title: dto.title ?? '',
       tmdbRating: _ratingMapper.mapRatingDtoToTMDBRating(dto.tmdbRating),
@@ -121,6 +127,7 @@ final class AppSeriesMapper extends AppMapper {
       id: data.id,
       posterUrl: data.posterUrl,
       genres: _mapSeriesGenresToDto(data.genres),
+      originCountry: data.originCountry,
       premiereDate: data.premiereDate,
       title: data.title,
       tmdbRating: _mapRatingToDto(data.tmdbRating),

@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 import '../../dto/series/series_genre_dto.dart';
+import '../utils/origin_country_converter.dart';
 import '../utils/rating_converter.dart';
 
 class SeriesTable extends Table {
@@ -11,6 +12,8 @@ class SeriesTable extends Table {
   TextColumn get posterUrl => text().nullable()();
 
   TextColumn get genres => text().map(seriesGenresConverter).nullable()();
+
+  TextColumn get originCountry => text().map(countryConverter).nullable()();
 
   DateTimeColumn get premiereDate => dateTime().nullable()();
 
@@ -31,8 +34,10 @@ class SeriesTable extends Table {
 
 final TypeConverter<List<SeriesGenreDto>, String> seriesGenresConverter =
     TypeConverter.json2(
-  fromJson: (json) => (json as List<dynamic>)
-      .map((e) => SeriesGenreDtoMapper.fromValue(e))
-      .toList(),
-  toJson: (services) => services.map((e) => e.toValue()).toList(),
-);
+      fromJson:
+          (json) =>
+              (json as List<dynamic>)
+                  .map((e) => SeriesGenreDtoMapper.fromValue(e))
+                  .toList(),
+      toJson: (services) => services.map((e) => e.toValue()).toList(),
+    );

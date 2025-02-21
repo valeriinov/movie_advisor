@@ -1,4 +1,6 @@
+import '../dto/movie/movie_rate_filter_data_dto.dart';
 import '../dto/movie/movies_response_data_dto.dart';
+import '../dto/series/series_rate_filter_data_dto.dart';
 import '../dto/series/series_response_data_dto.dart';
 import '../network/services/home_service.dart';
 import '../repositories/home/home_remote_data_source.dart';
@@ -9,8 +11,10 @@ class ImplHomeRemoteDataSource implements HomeRemoteDataSource {
   ImplHomeRemoteDataSource({required HomeService service}) : _service = service;
 
   @override
-  Future<MoviesResponseDataDto> getSuggestedMovies() {
-    return _service.getSuggestedMovies();
+  Future<MoviesResponseDataDto> getSuggestedMovies(
+    MovieRateFilterDataDto filter,
+  ) {
+    return _service.getSuggestedMovies(filter);
   }
 
   @override
@@ -34,8 +38,10 @@ class ImplHomeRemoteDataSource implements HomeRemoteDataSource {
   }
 
   @override
-  Future<SeriesResponseDataDto> getSuggestedSeries() {
-    return _service.getSuggestedSeries();
+  Future<SeriesResponseDataDto> getSuggestedSeries(
+    SeriesRateFilterDataDto filter,
+  ) {
+    return _service.getSuggestedSeries(filter);
   }
 
   @override

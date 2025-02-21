@@ -18,14 +18,15 @@ final class AppMoviesMapper extends AppMapper {
   final AppRatingMapper _ratingMapper;
   final AppCastMapper _castMapper;
 
-  AppMoviesMapper(
-      {required AppRatingMapper ratingMapper,
-      required AppCastMapper castMapper})
-      : _ratingMapper = ratingMapper,
-        _castMapper = castMapper;
+  AppMoviesMapper({
+    required AppRatingMapper ratingMapper,
+    required AppCastMapper castMapper,
+  }) : _ratingMapper = ratingMapper,
+       _castMapper = castMapper;
 
   PaginatedMovies mapMoviesShortResponseDataToDomain(
-      MoviesShortResponseDataDto dto) {
+    MoviesShortResponseDataDto dto,
+  ) {
     return PaginatedMovies(
       items: mapMovieShortDataListDtoToDomain(dto.results ?? []),
       currentPage: dto.page ?? 1,
@@ -51,16 +52,17 @@ final class AppMoviesMapper extends AppMapper {
       backdropUrl: dto.backdropPath ?? '',
       posterUrl: dto.posterPath ?? '',
       genres: _mapMovieGenresDtoToDomain(dto.genres ?? dto.genresAlt),
-      originCountry: [],
+      originCountry: dto.originCountry ?? [],
       originalLanguage: dto.originalLanguage ?? '',
       originalTitle: dto.originalTitle ?? '',
       premiereDate: dto.releaseDate,
       title: dto.title ?? '',
       overview: dto.overview ?? '',
       tmdbRating: _ratingMapper.mapMovieDataDtoToTMDBRating(dto),
-      cast: dto.credits != null
-          ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
-          : [],
+      cast:
+          dto.credits != null
+              ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
+              : [],
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
@@ -68,7 +70,8 @@ final class AppMoviesMapper extends AppMapper {
   }
 
   List<MovieShortData> mapMovieDataListDtoToShortDomain(
-      List<MovieDataDto> dtos) {
+    List<MovieDataDto> dtos,
+  ) {
     return dtos.map(_mapMovieDataDtoToShortDomain).toList();
   }
 
@@ -77,6 +80,7 @@ final class AppMoviesMapper extends AppMapper {
       id: dto.id ?? -1,
       posterUrl: dto.posterPath ?? '',
       genres: _mapMovieGenresDtoToDomain(dto.genres),
+      originCountry: dto.originCountry ?? [],
       premiereDate: dto.releaseDate,
       title: dto.title ?? '',
       tmdbRating: _ratingMapper.mapMovieDataDtoToTMDBRating(dto),
@@ -87,7 +91,8 @@ final class AppMoviesMapper extends AppMapper {
   }
 
   List<MovieShortData> mapMovieShortDataListDtoToDomain(
-      List<MovieShortDataDto> dtos) {
+    List<MovieShortDataDto> dtos,
+  ) {
     return dtos.map(mapMovieShortDataDtoToDomain).toList();
   }
 
@@ -96,6 +101,7 @@ final class AppMoviesMapper extends AppMapper {
       id: dto.id ?? -1,
       posterUrl: dto.posterUrl ?? '',
       genres: _mapMovieGenresDtoToDomain(dto.genres),
+      originCountry: dto.originCountry ?? [],
       premiereDate: dto.premiereDate,
       title: dto.title ?? '',
       tmdbRating: _ratingMapper.mapRatingDtoToTMDBRating(dto.tmdbRating),
@@ -121,6 +127,7 @@ final class AppMoviesMapper extends AppMapper {
       id: data.id,
       posterUrl: data.posterUrl,
       genres: _mapMovieGenresToDto(data.genres),
+      originCountry: data.originCountry,
       premiereDate: data.premiereDate,
       title: data.title,
       tmdbRating: _mapRatingToDto(data.tmdbRating),

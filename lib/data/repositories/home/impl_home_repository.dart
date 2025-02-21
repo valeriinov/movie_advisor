@@ -14,23 +14,26 @@ class ImplHomeRepository implements HomeRepository {
   final AppMoviesMapper _moviesMapper;
   final AppSeriesMapper _seriesMapper;
 
-  ImplHomeRepository(
-      {required HomeRemoteDataSource dataSource,
-      required MediaLocalDataSource localDataSource,
-      required AppMoviesMapper moviesMapper,
-      required AppSeriesMapper seriesMapper})
-      : _dataSource = dataSource,
-        _localDataSource = localDataSource,
-        _moviesMapper = moviesMapper,
-        _seriesMapper = seriesMapper;
+  ImplHomeRepository({
+    required HomeRemoteDataSource dataSource,
+    required MediaLocalDataSource localDataSource,
+    required AppMoviesMapper moviesMapper,
+    required AppSeriesMapper seriesMapper,
+  }) : _dataSource = dataSource,
+       _localDataSource = localDataSource,
+       _moviesMapper = moviesMapper,
+       _seriesMapper = seriesMapper;
 
   @override
   Future<Result<PaginatedMovies>> getSuggestedMovies() async {
     try {
-      final response = await _dataSource.getSuggestedMovies();
+      final filter = await _localDataSource.getMovieRateFilter();
 
-      final result =
-          await _localDataSource.addLocalDataToMoviesResponse(response);
+      final response = await _dataSource.getSuggestedMovies(filter);
+
+      final result = await _localDataSource.addLocalDataToMoviesResponse(
+        response,
+      );
 
       return Right(_moviesMapper.mapMoviesResponseDataToDomain(result));
     } catch (e) {
@@ -39,13 +42,15 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<PaginatedMovies>> getNowPlayingMovies(
-      {required int page}) async {
+  Future<Result<PaginatedMovies>> getNowPlayingMovies({
+    required int page,
+  }) async {
     try {
       final response = await _dataSource.getNowPlayingMovies(page: page);
 
-      final result =
-          await _localDataSource.addLocalDataToMoviesResponse(response);
+      final result = await _localDataSource.addLocalDataToMoviesResponse(
+        response,
+      );
 
       return Right(_moviesMapper.mapMoviesResponseDataToDomain(result));
     } catch (e) {
@@ -58,8 +63,9 @@ class ImplHomeRepository implements HomeRepository {
     try {
       final response = await _dataSource.getUpcomingMovies(page: page);
 
-      final result =
-          await _localDataSource.addLocalDataToMoviesResponse(response);
+      final result = await _localDataSource.addLocalDataToMoviesResponse(
+        response,
+      );
 
       return Right(_moviesMapper.mapMoviesResponseDataToDomain(result));
     } catch (e) {
@@ -72,8 +78,9 @@ class ImplHomeRepository implements HomeRepository {
     try {
       final response = await _dataSource.getTopRatedMovies(page: page);
 
-      final result =
-          await _localDataSource.addLocalDataToMoviesResponse(response);
+      final result = await _localDataSource.addLocalDataToMoviesResponse(
+        response,
+      );
 
       return Right(_moviesMapper.mapMoviesResponseDataToDomain(result));
     } catch (e) {
@@ -86,8 +93,9 @@ class ImplHomeRepository implements HomeRepository {
     try {
       final response = await _dataSource.getPopularMovies(page: page);
 
-      final result =
-          await _localDataSource.addLocalDataToMoviesResponse(response);
+      final result = await _localDataSource.addLocalDataToMoviesResponse(
+        response,
+      );
 
       return Right(_moviesMapper.mapMoviesResponseDataToDomain(result));
     } catch (e) {
@@ -98,10 +106,13 @@ class ImplHomeRepository implements HomeRepository {
   @override
   Future<Result<PaginatedSeries>> getSuggestedSeries() async {
     try {
-      final response = await _dataSource.getSuggestedSeries();
+      final filter = await _localDataSource.getSeriesRateFilter();
 
-      final result =
-          await _localDataSource.addLocalDataToSeriesResponse(response);
+      final response = await _dataSource.getSuggestedSeries(filter);
+
+      final result = await _localDataSource.addLocalDataToSeriesResponse(
+        response,
+      );
 
       return Right(_seriesMapper.mapSeriesResponseDataToDomain(result));
     } catch (e) {
@@ -110,13 +121,15 @@ class ImplHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<PaginatedSeries>> getNowPlayingSeries(
-      {required int page}) async {
+  Future<Result<PaginatedSeries>> getNowPlayingSeries({
+    required int page,
+  }) async {
     try {
       final response = await _dataSource.getAiringTodaySeries(page: page);
 
-      final result =
-          await _localDataSource.addLocalDataToSeriesResponse(response);
+      final result = await _localDataSource.addLocalDataToSeriesResponse(
+        response,
+      );
 
       return Right(_seriesMapper.mapSeriesResponseDataToDomain(result));
     } catch (e) {
@@ -129,8 +142,9 @@ class ImplHomeRepository implements HomeRepository {
     try {
       final response = await _dataSource.getOnTheAirSeries(page: page);
 
-      final result =
-          await _localDataSource.addLocalDataToSeriesResponse(response);
+      final result = await _localDataSource.addLocalDataToSeriesResponse(
+        response,
+      );
 
       return Right(_seriesMapper.mapSeriesResponseDataToDomain(result));
     } catch (e) {
@@ -143,8 +157,9 @@ class ImplHomeRepository implements HomeRepository {
     try {
       final response = await _dataSource.getTopRatedSeries(page: page);
 
-      final result =
-          await _localDataSource.addLocalDataToSeriesResponse(response);
+      final result = await _localDataSource.addLocalDataToSeriesResponse(
+        response,
+      );
 
       return Right(_seriesMapper.mapSeriesResponseDataToDomain(result));
     } catch (e) {
@@ -157,8 +172,9 @@ class ImplHomeRepository implements HomeRepository {
     try {
       final response = await _dataSource.getPopularSeries(page: page);
 
-      final result =
-          await _localDataSource.addLocalDataToSeriesResponse(response);
+      final result = await _localDataSource.addLocalDataToSeriesResponse(
+        response,
+      );
 
       return Right(_seriesMapper.mapSeriesResponseDataToDomain(result));
     } catch (e) {

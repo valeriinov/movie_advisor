@@ -10,6 +10,7 @@ class MovieShortDataDto with MovieShortDataDtoMappable {
   final int? id;
   final String? posterUrl;
   final List<MovieGenreDto>? genres;
+  final List<String>? originCountry;
   final DateTime? premiereDate;
   final String? title;
   final RatingDataDto? tmdbRating;
@@ -21,6 +22,7 @@ class MovieShortDataDto with MovieShortDataDtoMappable {
     this.id,
     this.posterUrl,
     this.genres,
+    this.originCountry,
     this.premiereDate,
     this.title,
     this.tmdbRating,

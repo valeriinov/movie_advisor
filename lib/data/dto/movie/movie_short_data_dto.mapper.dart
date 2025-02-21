@@ -31,6 +31,10 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
   static List<MovieGenreDto>? _$genres(MovieShortDataDto v) => v.genres;
   static const Field<MovieShortDataDto, List<MovieGenreDto>> _f$genres =
       Field('genres', _$genres, opt: true);
+  static List<String>? _$originCountry(MovieShortDataDto v) => v.originCountry;
+  static const Field<MovieShortDataDto, List<String>> _f$originCountry = Field(
+      'originCountry', _$originCountry,
+      key: r'origin_country', opt: true);
   static DateTime? _$premiereDate(MovieShortDataDto v) => v.premiereDate;
   static const Field<MovieShortDataDto, DateTime> _f$premiereDate =
       Field('premiereDate', _$premiereDate, key: r'premiere_date', opt: true);
@@ -56,6 +60,7 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
     #id: _f$id,
     #posterUrl: _f$posterUrl,
     #genres: _f$genres,
+    #originCountry: _f$originCountry,
     #premiereDate: _f$premiereDate,
     #title: _f$title,
     #tmdbRating: _f$tmdbRating,
@@ -71,6 +76,7 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
         id: data.dec(_f$id),
         posterUrl: data.dec(_f$posterUrl),
         genres: data.dec(_f$genres),
+        originCountry: data.dec(_f$originCountry),
         premiereDate: data.dec(_f$premiereDate),
         title: data.dec(_f$title),
         tmdbRating: data.dec(_f$tmdbRating),
@@ -136,11 +142,14 @@ abstract class MovieShortDataDtoCopyWith<$R, $In extends MovieShortDataDto,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, MovieGenreDto,
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genres;
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+      get originCountry;
   RatingDataDtoCopyWith<$R, RatingDataDto, RatingDataDto>? get tmdbRating;
   $R call(
       {int? id,
       String? posterUrl,
       List<MovieGenreDto>? genres,
+      List<String>? originCountry,
       DateTime? premiereDate,
       String? title,
       RatingDataDto? tmdbRating,
@@ -167,6 +176,14 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
               (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v))
           : null;
   @override
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+      get originCountry => $value.originCountry != null
+          ? ListCopyWith(
+              $value.originCountry!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(originCountry: v))
+          : null;
+  @override
   RatingDataDtoCopyWith<$R, RatingDataDto, RatingDataDto>? get tmdbRating =>
       $value.tmdbRating?.copyWith.$chain((v) => call(tmdbRating: v));
   @override
@@ -174,6 +191,7 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
           {Object? id = $none,
           Object? posterUrl = $none,
           Object? genres = $none,
+          Object? originCountry = $none,
           Object? premiereDate = $none,
           Object? title = $none,
           Object? tmdbRating = $none,
@@ -184,6 +202,7 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
         if (id != $none) #id: id,
         if (posterUrl != $none) #posterUrl: posterUrl,
         if (genres != $none) #genres: genres,
+        if (originCountry != $none) #originCountry: originCountry,
         if (premiereDate != $none) #premiereDate: premiereDate,
         if (title != $none) #title: title,
         if (tmdbRating != $none) #tmdbRating: tmdbRating,
@@ -196,6 +215,7 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       posterUrl: data.get(#posterUrl, or: $value.posterUrl),
       genres: data.get(#genres, or: $value.genres),
+      originCountry: data.get(#originCountry, or: $value.originCountry),
       premiereDate: data.get(#premiereDate, or: $value.premiereDate),
       title: data.get(#title, or: $value.title),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
