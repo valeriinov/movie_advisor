@@ -125,16 +125,21 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final movies = await query.get();
 
-    final genresSet =
-        movies
-            .map((movie) => movie.genres)
-            .nonNulls
-            .expand((genres) => genres)
-            .toSet();
+    final frequency = movies
+        .expand((movie) => movie.genres ?? <MovieGenreDto>[])
+        .where((genre) => genre != MovieGenreDto.none)
+        .fold<Map<MovieGenreDto, int>>({}, (map, genre) {
+          map[genre] = (map[genre] ?? 0) + 1;
+          return map;
+        });
 
-    genresSet.remove(MovieGenreDto.none);
+    final topGenres =
+        frequency.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
 
-    return genresSet.toList();
+    return topGenres
+        .take(DbConstants.rateFilterGenresCount)
+        .map((entry) => entry.key)
+        .toList();
   }
 
   @override
@@ -166,15 +171,20 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
     );
     final seriesList = await query.get();
 
-    final genresSet =
-        seriesList
-            .map((series) => series.genres)
-            .nonNulls
-            .expand((genres) => genres)
-            .toSet();
+    final frequency = seriesList
+        .expand((series) => series.genres ?? <SeriesGenreDto>[])
+        .where((genre) => genre != SeriesGenreDto.none)
+        .fold<Map<SeriesGenreDto, int>>({}, (map, genre) {
+          map[genre] = (map[genre] ?? 0) + 1;
+          return map;
+        });
 
-    genresSet.remove(SeriesGenreDto.none);
+    final topGenres =
+        frequency.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
 
-    return genresSet.toList();
+    return topGenres
+        .take(DbConstants.rateFilterGenresCount)
+        .map((entry) => entry.key)
+        .toList();
   }
 }
