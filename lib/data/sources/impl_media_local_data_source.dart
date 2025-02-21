@@ -98,11 +98,15 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   @override
   Future<MovieRateFilterDataDto> getMovieRateFilter() async {
     final excludeIds = await _fetchExcludedMovieIds();
-    final targetGenres = await _fetchTargetMovieGenres();
+    final movieList = await _fetchFilteredMoviesData();
+
+    final targetGenres = _calculateTargetMovieGenres(movieList);
+    final targetCountries = _calculateTopMovieCountries(movieList);
 
     return MovieRateFilterDataDto(
       excludeIds: excludeIds,
       targetGenres: targetGenres,
+      targetCountries: targetCountries,
     );
   }
 
@@ -116,7 +120,7 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
     return movies.map((movie) => movie.tmdbId).toList();
   }
 
-  Future<List<MovieGenreDto>> _fetchTargetMovieGenres() async {
+  Future<List<MovieShortDataDto>> _fetchFilteredMoviesData() async {
     final query = _database.select(_database.moviesTable)..where(
       (tbl) =>
           tbl.isWatched.equals(true) &
@@ -125,7 +129,13 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final movies = await query.get();
 
-    final frequency = movies
+    return movies.map((m) => m.toDto()).toList();
+  }
+
+  List<MovieGenreDto> _calculateTargetMovieGenres(
+    List<MovieShortDataDto> movieList,
+  ) {
+    final frequency = movieList
         .expand((movie) => movie.genres ?? <MovieGenreDto>[])
         .where((genre) => genre != MovieGenreDto.none)
         .fold<Map<MovieGenreDto, int>>({}, (map, genre) {
@@ -142,14 +152,35 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
         .toList();
   }
 
+  List<String> _calculateTopMovieCountries(List<MovieShortDataDto> movieList) {
+    final frequency = movieList
+        .expand((movie) => movie.originCountry ?? <String>[])
+        .fold<Map<String, int>>({}, (map, country) {
+          map[country] = (map[country] ?? 0) + 1;
+          return map;
+        });
+
+    final topCountries =
+        frequency.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+
+    return topCountries
+        .take(DbConstants.rateFilterCountriesCount)
+        .map((entry) => entry.key)
+        .toList();
+  }
+
   @override
   Future<SeriesRateFilterDataDto> getSeriesRateFilter() async {
     final excludeIds = await _fetchExcludedSeriesIds();
-    final targetGenres = await _fetchTargetSeriesGenres();
+    final seriesList = await _fetchFilteredSeriesData();
+
+    final targetGenres = _calculateTargetSeriesGenres(seriesList);
+    final targetCountries = _calculateTopSeriesCountries(seriesList);
 
     return SeriesRateFilterDataDto(
       excludeIds: excludeIds,
       targetGenres: targetGenres,
+      targetCountries: targetCountries,
     );
   }
 
@@ -163,14 +194,21 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
     return seriesList.map((series) => series.tmdbId).toList();
   }
 
-  Future<List<SeriesGenreDto>> _fetchTargetSeriesGenres() async {
+  Future<List<SeriesShortDataDto>> _fetchFilteredSeriesData() async {
     final query = _database.select(_database.seriesTable)..where(
       (tbl) =>
           tbl.isWatched.equals(true) &
           tbl.userRating.isBiggerThanValue(DbConstants.minTargetUserRate),
     );
+
     final seriesList = await query.get();
 
+    return seriesList.map((s) => s.toDto()).toList();
+  }
+
+  List<SeriesGenreDto> _calculateTargetSeriesGenres(
+    List<SeriesShortDataDto> seriesList,
+  ) {
     final frequency = seriesList
         .expand((series) => series.genres ?? <SeriesGenreDto>[])
         .where((genre) => genre != SeriesGenreDto.none)
@@ -184,6 +222,25 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     return topGenres
         .take(DbConstants.rateFilterGenresCount)
+        .map((entry) => entry.key)
+        .toList();
+  }
+
+  List<String> _calculateTopSeriesCountries(
+    List<SeriesShortDataDto> seriesList,
+  ) {
+    final frequency = seriesList
+        .expand((series) => series.originCountry ?? <String>[])
+        .fold<Map<String, int>>({}, (map, country) {
+          map[country] = (map[country] ?? 0) + 1;
+          return map;
+        });
+
+    final topCountries =
+        frequency.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+
+    return topCountries
+        .take(DbConstants.rateFilterCountriesCount)
         .map((entry) => entry.key)
         .toList();
   }

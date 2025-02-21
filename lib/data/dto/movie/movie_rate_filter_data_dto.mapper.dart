@@ -30,11 +30,17 @@ class MovieRateFilterDataDtoMapper
   static const Field<MovieRateFilterDataDto, List<MovieGenreDto>>
       _f$targetGenres =
       Field('targetGenres', _$targetGenres, key: r'target_genres', opt: true);
+  static List<String>? _$targetCountries(MovieRateFilterDataDto v) =>
+      v.targetCountries;
+  static const Field<MovieRateFilterDataDto, List<String>> _f$targetCountries =
+      Field('targetCountries', _$targetCountries,
+          key: r'target_countries', opt: true);
 
   @override
   final MappableFields<MovieRateFilterDataDto> fields = const {
     #excludeIds: _f$excludeIds,
     #targetGenres: _f$targetGenres,
+    #targetCountries: _f$targetCountries,
   };
   @override
   final bool ignoreNull = true;
@@ -42,7 +48,8 @@ class MovieRateFilterDataDtoMapper
   static MovieRateFilterDataDto _instantiate(DecodingData data) {
     return MovieRateFilterDataDto(
         excludeIds: data.dec(_f$excludeIds),
-        targetGenres: data.dec(_f$targetGenres));
+        targetGenres: data.dec(_f$targetGenres),
+        targetCountries: data.dec(_f$targetCountries));
   }
 
   @override
@@ -105,7 +112,12 @@ abstract class MovieRateFilterDataDtoCopyWith<
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get excludeIds;
   ListCopyWith<$R, MovieGenreDto,
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get targetGenres;
-  $R call({List<int>? excludeIds, List<MovieGenreDto>? targetGenres});
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+      get targetCountries;
+  $R call(
+      {List<int>? excludeIds,
+      List<MovieGenreDto>? targetGenres,
+      List<String>? targetCountries});
   MovieRateFilterDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -137,15 +149,28 @@ class _MovieRateFilterDataDtoCopyWithImpl<$R, $Out>
               (v) => call(targetGenres: v))
           : null;
   @override
-  $R call({Object? excludeIds = $none, Object? targetGenres = $none}) =>
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+      get targetCountries => $value.targetCountries != null
+          ? ListCopyWith(
+              $value.targetCountries!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(targetCountries: v))
+          : null;
+  @override
+  $R call(
+          {Object? excludeIds = $none,
+          Object? targetGenres = $none,
+          Object? targetCountries = $none}) =>
       $apply(FieldCopyWithData({
         if (excludeIds != $none) #excludeIds: excludeIds,
-        if (targetGenres != $none) #targetGenres: targetGenres
+        if (targetGenres != $none) #targetGenres: targetGenres,
+        if (targetCountries != $none) #targetCountries: targetCountries
       }));
   @override
   MovieRateFilterDataDto $make(CopyWithData data) => MovieRateFilterDataDto(
       excludeIds: data.get(#excludeIds, or: $value.excludeIds),
-      targetGenres: data.get(#targetGenres, or: $value.targetGenres));
+      targetGenres: data.get(#targetGenres, or: $value.targetGenres),
+      targetCountries: data.get(#targetCountries, or: $value.targetCountries));
 
   @override
   MovieRateFilterDataDtoCopyWith<$R2, MovieRateFilterDataDto, $Out2>

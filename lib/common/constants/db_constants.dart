@@ -5,4 +5,5 @@ abstract final class DbConstants {
   static const int minTmdbVoteCount = 1000;
 
   static const int rateFilterGenresCount = 2;
+  static const int rateFilterCountriesCount = 2;
 }

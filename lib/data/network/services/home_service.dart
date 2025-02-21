@@ -23,20 +23,26 @@ class HomeService {
   Future<MoviesResponseDataDto> getSuggestedMovies(
     MovieRateFilterDataDto filter,
   ) async {
-    final suggestions = await _accumulateMovies(filter);
+    final suggestions = await _gatherSuggestedMovies(filter);
 
     return MoviesResponseDataDto(results: suggestions);
   }
 
-  Future<List<MovieDataDto>> _accumulateMovies(
-    MovieRateFilterDataDto filter,
-  ) async {
+  Future<List<MovieDataDto>> _gatherSuggestedMovies(
+    MovieRateFilterDataDto filter, [
+    List<MovieDataDto>? existingMovies,
+  ]) async {
     const int desiredCount = DbConstants.pageSize;
     int currentPage = 1;
-    final List<MovieDataDto> accumulatedMovies = [];
+    final List<MovieDataDto> accumulatedMovies = existingMovies ?? [];
 
     while (accumulatedMovies.length < desiredCount) {
-      final moviesResponse = await _fetchMoviesResponse(filter, currentPage);
+      final moviesResponse = await _fetchMoviesResponse(
+        filter,
+        currentPage,
+        useCountryFilter: existingMovies == null,
+      );
+
       final filteredMovies = _filterMovies(moviesResponse.results, filter);
 
       if (filteredMovies.isEmpty) break;
@@ -48,18 +54,36 @@ class HomeService {
       currentPage++;
     }
 
+    if (_shouldRelaxMoviesCountryFilter(accumulatedMovies, existingMovies)) {
+      return _gatherSuggestedMovies(filter, accumulatedMovies);
+    }
+
     return accumulatedMovies.length > desiredCount
         ? accumulatedMovies.sublist(0, desiredCount)
         : accumulatedMovies;
   }
 
+  bool _shouldRelaxMoviesCountryFilter(
+    List<MovieDataDto> accumulatedMovies,
+    List<MovieDataDto>? existingMovies,
+  ) {
+    return accumulatedMovies.length < DbConstants.pageSize &&
+        existingMovies == null;
+  }
+
   Future<MoviesResponseDataDto> _fetchMoviesResponse(
     MovieRateFilterDataDto filter,
-    int page,
-  ) async {
-    final genreIdsStr = _buildMoviesGenreIdsStr(filter.targetGenres);
+    int page, {
+    bool useCountryFilter = true,
+  }) async {
+    final genreFilter = _buildMoviesGenreIdsStr(filter.targetGenres);
 
-    final queryParams = _buildQueryParams(genreIdsStr, page);
+    final countryFilter =
+        useCountryFilter
+            ? _buildCountryFilterString(filter.targetCountries)
+            : '';
+
+    final queryParams = _buildQueryParams(genreFilter, countryFilter, page);
 
     final result = await _mediaApiClient.get(
       '/discover/movie',
@@ -131,20 +155,26 @@ class HomeService {
   Future<SeriesResponseDataDto> getSuggestedSeries(
     SeriesRateFilterDataDto filter,
   ) async {
-    final suggestions = await _accumulateSeries(filter);
+    final suggestions = await _gatherSuggestedSeries(filter);
 
     return SeriesResponseDataDto(results: suggestions);
   }
 
-  Future<List<SeriesDataDto>> _accumulateSeries(
-    SeriesRateFilterDataDto filter,
-  ) async {
+  Future<List<SeriesDataDto>> _gatherSuggestedSeries(
+    SeriesRateFilterDataDto filter, [
+    List<SeriesDataDto>? existingSeries,
+  ]) async {
     const int desiredCount = DbConstants.pageSize;
     int currentPage = 1;
-    final List<SeriesDataDto> accumulatedSeries = [];
+    final List<SeriesDataDto> accumulatedSeries = existingSeries ?? [];
 
     while (accumulatedSeries.length < desiredCount) {
-      final seriesResponse = await _fetchSeriesResponse(filter, currentPage);
+      final seriesResponse = await _fetchSeriesResponse(
+        filter,
+        currentPage,
+        useCountryFilter: existingSeries == null,
+      );
+
       final filteredSeries = _filterSeries(seriesResponse.results, filter);
 
       if (filteredSeries.isEmpty) break;
@@ -156,18 +186,36 @@ class HomeService {
       currentPage++;
     }
 
+    if (_shouldRelaxSeriesCountryFilter(accumulatedSeries, existingSeries)) {
+      return _gatherSuggestedSeries(filter, accumulatedSeries);
+    }
+
     return accumulatedSeries.length > desiredCount
         ? accumulatedSeries.sublist(0, desiredCount)
         : accumulatedSeries;
   }
 
+  bool _shouldRelaxSeriesCountryFilter(
+    List<SeriesDataDto> accumulatedSeries,
+    List<SeriesDataDto>? existingSeries,
+  ) {
+    return accumulatedSeries.length < DbConstants.pageSize &&
+        existingSeries == null;
+  }
+
   Future<SeriesResponseDataDto> _fetchSeriesResponse(
     SeriesRateFilterDataDto filter,
-    int page,
-  ) async {
-    final genreIdsStr = _buildSeriesGenreIdsStr(filter.targetGenres);
+    int page, {
+    bool useCountryFilter = true,
+  }) async {
+    final genreFilter = _buildSeriesGenresFilterString(filter.targetGenres);
 
-    final queryParams = _buildQueryParams(genreIdsStr, page);
+    final countryFilter =
+        useCountryFilter
+            ? _buildCountryFilterString(filter.targetCountries)
+            : '';
+
+    final queryParams = _buildQueryParams(genreFilter, countryFilter, page);
 
     final result = await _mediaApiClient.get(
       '/discover/tv',
@@ -177,12 +225,20 @@ class HomeService {
     return _responseHandler.handleSeriesResponse(result);
   }
 
-  String _buildSeriesGenreIdsStr(List<SeriesGenreDto>? targetGenres) {
+  String _buildSeriesGenresFilterString(List<SeriesGenreDto>? targetGenres) {
     return targetGenres?.map((genre) => genre.toValue().toString()).join('|') ??
         '';
   }
 
-  Map<String, dynamic> _buildQueryParams(String genreIdsStr, int page) {
+  String _buildCountryFilterString(List<String>? targetCountries) {
+    return targetCountries?.join('|') ?? '';
+  }
+
+  Map<String, dynamic> _buildQueryParams(
+    String genreIdsStr,
+    String countryIdsStr,
+    int page,
+  ) {
     final params = {
       'sort_by': 'popularity.desc',
       'vote_average.gte': '${DbConstants.minTargetTmdbRate}',
@@ -192,6 +248,10 @@ class HomeService {
 
     if (genreIdsStr.isNotEmpty) {
       params['with_genres'] = genreIdsStr;
+    }
+
+    if (countryIdsStr.isNotEmpty) {
+      params['with_origin_country'] = countryIdsStr;
     }
 
     return params;
