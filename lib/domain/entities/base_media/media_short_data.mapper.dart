@@ -26,6 +26,9 @@ class MediaShortDataMapper extends ClassMapperBase<MediaShortData> {
   static String _$posterUrl(MediaShortData v) => v.posterUrl;
   static const Field<MediaShortData, String> _f$posterUrl =
       Field('posterUrl', _$posterUrl);
+  static List<String> _$originCountry(MediaShortData v) => v.originCountry;
+  static const Field<MediaShortData, List<String>> _f$originCountry =
+      Field('originCountry', _$originCountry);
   static DateTime? _$premiereDate(MediaShortData v) => v.premiereDate;
   static const Field<MediaShortData, DateTime> _f$premiereDate =
       Field('premiereDate', _$premiereDate, opt: true);
@@ -48,6 +51,7 @@ class MediaShortDataMapper extends ClassMapperBase<MediaShortData> {
   final MappableFields<MediaShortData> fields = const {
     #id: _f$id,
     #posterUrl: _f$posterUrl,
+    #originCountry: _f$originCountry,
     #premiereDate: _f$premiereDate,
     #title: _f$title,
     #tmdbRating: _f$tmdbRating,
@@ -71,10 +75,13 @@ mixin MediaShortDataMappable {
 
 abstract class MediaShortDataCopyWith<$R, $In extends MediaShortData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+      get originCountry;
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
   $R call(
       {int? id,
       String? posterUrl,
+      List<String>? originCountry,
       DateTime? premiereDate,
       String? title,
       TMDBRating? tmdbRating,

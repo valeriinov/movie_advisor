@@ -38,6 +38,15 @@ class $MoviesTableTable extends MoviesTable
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<MovieGenreDto>?>(
               $MoviesTableTable.$convertergenresn);
+  static const VerificationMeta _originCountryMeta =
+      const VerificationMeta('originCountry');
+  @override
+  late final GeneratedColumnWithTypeConverter<List<String>?, String>
+      originCountry = GeneratedColumn<String>(
+              'origin_country', aliasedName, true,
+              type: DriftSqlType.string, requiredDuringInsert: false)
+          .withConverter<List<String>?>(
+              $MoviesTableTable.$converteroriginCountryn);
   static const VerificationMeta _premiereDateMeta =
       const VerificationMeta('premiereDate');
   @override
@@ -103,6 +112,7 @@ class $MoviesTableTable extends MoviesTable
         tmdbId,
         posterUrl,
         genres,
+        originCountry,
         premiereDate,
         title,
         tmdbRating,
@@ -136,6 +146,7 @@ class $MoviesTableTable extends MoviesTable
           posterUrl.isAcceptableOrUnknown(data['poster_url']!, _posterUrlMeta));
     }
     context.handle(_genresMeta, const VerificationResult.success());
+    context.handle(_originCountryMeta, const VerificationResult.success());
     if (data.containsKey('premiere_date')) {
       context.handle(
           _premiereDateMeta,
@@ -189,6 +200,9 @@ class $MoviesTableTable extends MoviesTable
       genres: $MoviesTableTable.$convertergenresn.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}genres'])),
+      originCountry: $MoviesTableTable.$converteroriginCountryn.fromSql(
+          attachedDatabase.typeMapping.read(
+              DriftSqlType.string, data['${effectivePrefix}origin_country'])),
       premiereDate: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}premiere_date']),
       title: attachedDatabase.typeMapping
@@ -218,6 +232,10 @@ class $MoviesTableTable extends MoviesTable
       movieGenresConverter;
   static TypeConverter<List<MovieGenreDto>?, String?> $convertergenresn =
       NullAwareTypeConverter.wrap($convertergenres);
+  static TypeConverter<List<String>, String> $converteroriginCountry =
+      countryConverter;
+  static TypeConverter<List<String>?, String?> $converteroriginCountryn =
+      NullAwareTypeConverter.wrap($converteroriginCountry);
   static TypeConverter<RatingDataDto, String> $convertertmdbRating =
       ratingConverter;
   static TypeConverter<RatingDataDto?, String?> $convertertmdbRatingn =
@@ -229,6 +247,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
   final int tmdbId;
   final String? posterUrl;
   final List<MovieGenreDto>? genres;
+  final List<String>? originCountry;
   final DateTime? premiereDate;
   final String? title;
   final RatingDataDto? tmdbRating;
@@ -242,6 +261,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       required this.tmdbId,
       this.posterUrl,
       this.genres,
+      this.originCountry,
       this.premiereDate,
       this.title,
       this.tmdbRating,
@@ -261,6 +281,10 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     if (!nullToAbsent || genres != null) {
       map['genres'] =
           Variable<String>($MoviesTableTable.$convertergenresn.toSql(genres));
+    }
+    if (!nullToAbsent || originCountry != null) {
+      map['origin_country'] = Variable<String>(
+          $MoviesTableTable.$converteroriginCountryn.toSql(originCountry));
     }
     if (!nullToAbsent || premiereDate != null) {
       map['premiere_date'] = Variable<DateTime>(premiereDate);
@@ -295,6 +319,9 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
           : Value(posterUrl),
       genres:
           genres == null && nullToAbsent ? const Value.absent() : Value(genres),
+      originCountry: originCountry == null && nullToAbsent
+          ? const Value.absent()
+          : Value(originCountry),
       premiereDate: premiereDate == null && nullToAbsent
           ? const Value.absent()
           : Value(premiereDate),
@@ -325,6 +352,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       tmdbId: serializer.fromJson<int>(json['tmdbId']),
       posterUrl: serializer.fromJson<String?>(json['posterUrl']),
       genres: serializer.fromJson<List<MovieGenreDto>?>(json['genres']),
+      originCountry: serializer.fromJson<List<String>?>(json['originCountry']),
       premiereDate: serializer.fromJson<DateTime?>(json['premiereDate']),
       title: serializer.fromJson<String?>(json['title']),
       tmdbRating: serializer.fromJson<RatingDataDto?>(json['tmdbRating']),
@@ -343,6 +371,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       'tmdbId': serializer.toJson<int>(tmdbId),
       'posterUrl': serializer.toJson<String?>(posterUrl),
       'genres': serializer.toJson<List<MovieGenreDto>?>(genres),
+      'originCountry': serializer.toJson<List<String>?>(originCountry),
       'premiereDate': serializer.toJson<DateTime?>(premiereDate),
       'title': serializer.toJson<String?>(title),
       'tmdbRating': serializer.toJson<RatingDataDto?>(tmdbRating),
@@ -359,6 +388,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
           int? tmdbId,
           Value<String?> posterUrl = const Value.absent(),
           Value<List<MovieGenreDto>?> genres = const Value.absent(),
+          Value<List<String>?> originCountry = const Value.absent(),
           Value<DateTime?> premiereDate = const Value.absent(),
           Value<String?> title = const Value.absent(),
           Value<RatingDataDto?> tmdbRating = const Value.absent(),
@@ -372,6 +402,8 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
         tmdbId: tmdbId ?? this.tmdbId,
         posterUrl: posterUrl.present ? posterUrl.value : this.posterUrl,
         genres: genres.present ? genres.value : this.genres,
+        originCountry:
+            originCountry.present ? originCountry.value : this.originCountry,
         premiereDate:
             premiereDate.present ? premiereDate.value : this.premiereDate,
         title: title.present ? title.value : this.title,
@@ -389,6 +421,9 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       tmdbId: data.tmdbId.present ? data.tmdbId.value : this.tmdbId,
       posterUrl: data.posterUrl.present ? data.posterUrl.value : this.posterUrl,
       genres: data.genres.present ? data.genres.value : this.genres,
+      originCountry: data.originCountry.present
+          ? data.originCountry.value
+          : this.originCountry,
       premiereDate: data.premiereDate.present
           ? data.premiereDate.value
           : this.premiereDate,
@@ -413,6 +448,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
           ..write('tmdbId: $tmdbId, ')
           ..write('posterUrl: $posterUrl, ')
           ..write('genres: $genres, ')
+          ..write('originCountry: $originCountry, ')
           ..write('premiereDate: $premiereDate, ')
           ..write('title: $title, ')
           ..write('tmdbRating: $tmdbRating, ')
@@ -431,6 +467,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
       tmdbId,
       posterUrl,
       genres,
+      originCountry,
       premiereDate,
       title,
       tmdbRating,
@@ -447,6 +484,7 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
           other.tmdbId == this.tmdbId &&
           other.posterUrl == this.posterUrl &&
           other.genres == this.genres &&
+          other.originCountry == this.originCountry &&
           other.premiereDate == this.premiereDate &&
           other.title == this.title &&
           other.tmdbRating == this.tmdbRating &&
@@ -462,6 +500,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
   final Value<int> tmdbId;
   final Value<String?> posterUrl;
   final Value<List<MovieGenreDto>?> genres;
+  final Value<List<String>?> originCountry;
   final Value<DateTime?> premiereDate;
   final Value<String?> title;
   final Value<RatingDataDto?> tmdbRating;
@@ -475,6 +514,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     this.tmdbId = const Value.absent(),
     this.posterUrl = const Value.absent(),
     this.genres = const Value.absent(),
+    this.originCountry = const Value.absent(),
     this.premiereDate = const Value.absent(),
     this.title = const Value.absent(),
     this.tmdbRating = const Value.absent(),
@@ -489,6 +529,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     required int tmdbId,
     this.posterUrl = const Value.absent(),
     this.genres = const Value.absent(),
+    this.originCountry = const Value.absent(),
     this.premiereDate = const Value.absent(),
     this.title = const Value.absent(),
     this.tmdbRating = const Value.absent(),
@@ -503,6 +544,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     Expression<int>? tmdbId,
     Expression<String>? posterUrl,
     Expression<String>? genres,
+    Expression<String>? originCountry,
     Expression<DateTime>? premiereDate,
     Expression<String>? title,
     Expression<String>? tmdbRating,
@@ -517,6 +559,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
       if (tmdbId != null) 'tmdb_id': tmdbId,
       if (posterUrl != null) 'poster_url': posterUrl,
       if (genres != null) 'genres': genres,
+      if (originCountry != null) 'origin_country': originCountry,
       if (premiereDate != null) 'premiere_date': premiereDate,
       if (title != null) 'title': title,
       if (tmdbRating != null) 'tmdb_rating': tmdbRating,
@@ -533,6 +576,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
       Value<int>? tmdbId,
       Value<String?>? posterUrl,
       Value<List<MovieGenreDto>?>? genres,
+      Value<List<String>?>? originCountry,
       Value<DateTime?>? premiereDate,
       Value<String?>? title,
       Value<RatingDataDto?>? tmdbRating,
@@ -546,6 +590,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
       tmdbId: tmdbId ?? this.tmdbId,
       posterUrl: posterUrl ?? this.posterUrl,
       genres: genres ?? this.genres,
+      originCountry: originCountry ?? this.originCountry,
       premiereDate: premiereDate ?? this.premiereDate,
       title: title ?? this.title,
       tmdbRating: tmdbRating ?? this.tmdbRating,
@@ -572,6 +617,11 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
     if (genres.present) {
       map['genres'] = Variable<String>(
           $MoviesTableTable.$convertergenresn.toSql(genres.value));
+    }
+    if (originCountry.present) {
+      map['origin_country'] = Variable<String>($MoviesTableTable
+          .$converteroriginCountryn
+          .toSql(originCountry.value));
     }
     if (premiereDate.present) {
       map['premiere_date'] = Variable<DateTime>(premiereDate.value);
@@ -608,6 +658,7 @@ class MoviesTableCompanion extends UpdateCompanion<MoviesTableData> {
           ..write('tmdbId: $tmdbId, ')
           ..write('posterUrl: $posterUrl, ')
           ..write('genres: $genres, ')
+          ..write('originCountry: $originCountry, ')
           ..write('premiereDate: $premiereDate, ')
           ..write('title: $title, ')
           ..write('tmdbRating: $tmdbRating, ')
@@ -656,6 +707,15 @@ class $SeriesTableTable extends SeriesTable
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<SeriesGenreDto>?>(
               $SeriesTableTable.$convertergenresn);
+  static const VerificationMeta _originCountryMeta =
+      const VerificationMeta('originCountry');
+  @override
+  late final GeneratedColumnWithTypeConverter<List<String>?, String>
+      originCountry = GeneratedColumn<String>(
+              'origin_country', aliasedName, true,
+              type: DriftSqlType.string, requiredDuringInsert: false)
+          .withConverter<List<String>?>(
+              $SeriesTableTable.$converteroriginCountryn);
   static const VerificationMeta _premiereDateMeta =
       const VerificationMeta('premiereDate');
   @override
@@ -721,6 +781,7 @@ class $SeriesTableTable extends SeriesTable
         tmdbId,
         posterUrl,
         genres,
+        originCountry,
         premiereDate,
         title,
         tmdbRating,
@@ -754,6 +815,7 @@ class $SeriesTableTable extends SeriesTable
           posterUrl.isAcceptableOrUnknown(data['poster_url']!, _posterUrlMeta));
     }
     context.handle(_genresMeta, const VerificationResult.success());
+    context.handle(_originCountryMeta, const VerificationResult.success());
     if (data.containsKey('premiere_date')) {
       context.handle(
           _premiereDateMeta,
@@ -807,6 +869,9 @@ class $SeriesTableTable extends SeriesTable
       genres: $SeriesTableTable.$convertergenresn.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}genres'])),
+      originCountry: $SeriesTableTable.$converteroriginCountryn.fromSql(
+          attachedDatabase.typeMapping.read(
+              DriftSqlType.string, data['${effectivePrefix}origin_country'])),
       premiereDate: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}premiere_date']),
       title: attachedDatabase.typeMapping
@@ -836,6 +901,10 @@ class $SeriesTableTable extends SeriesTable
       seriesGenresConverter;
   static TypeConverter<List<SeriesGenreDto>?, String?> $convertergenresn =
       NullAwareTypeConverter.wrap($convertergenres);
+  static TypeConverter<List<String>, String> $converteroriginCountry =
+      countryConverter;
+  static TypeConverter<List<String>?, String?> $converteroriginCountryn =
+      NullAwareTypeConverter.wrap($converteroriginCountry);
   static TypeConverter<RatingDataDto, String> $convertertmdbRating =
       ratingConverter;
   static TypeConverter<RatingDataDto?, String?> $convertertmdbRatingn =
@@ -847,6 +916,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
   final int tmdbId;
   final String? posterUrl;
   final List<SeriesGenreDto>? genres;
+  final List<String>? originCountry;
   final DateTime? premiereDate;
   final String? title;
   final RatingDataDto? tmdbRating;
@@ -860,6 +930,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       required this.tmdbId,
       this.posterUrl,
       this.genres,
+      this.originCountry,
       this.premiereDate,
       this.title,
       this.tmdbRating,
@@ -879,6 +950,10 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
     if (!nullToAbsent || genres != null) {
       map['genres'] =
           Variable<String>($SeriesTableTable.$convertergenresn.toSql(genres));
+    }
+    if (!nullToAbsent || originCountry != null) {
+      map['origin_country'] = Variable<String>(
+          $SeriesTableTable.$converteroriginCountryn.toSql(originCountry));
     }
     if (!nullToAbsent || premiereDate != null) {
       map['premiere_date'] = Variable<DateTime>(premiereDate);
@@ -913,6 +988,9 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
           : Value(posterUrl),
       genres:
           genres == null && nullToAbsent ? const Value.absent() : Value(genres),
+      originCountry: originCountry == null && nullToAbsent
+          ? const Value.absent()
+          : Value(originCountry),
       premiereDate: premiereDate == null && nullToAbsent
           ? const Value.absent()
           : Value(premiereDate),
@@ -943,6 +1021,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       tmdbId: serializer.fromJson<int>(json['tmdbId']),
       posterUrl: serializer.fromJson<String?>(json['posterUrl']),
       genres: serializer.fromJson<List<SeriesGenreDto>?>(json['genres']),
+      originCountry: serializer.fromJson<List<String>?>(json['originCountry']),
       premiereDate: serializer.fromJson<DateTime?>(json['premiereDate']),
       title: serializer.fromJson<String?>(json['title']),
       tmdbRating: serializer.fromJson<RatingDataDto?>(json['tmdbRating']),
@@ -961,6 +1040,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       'tmdbId': serializer.toJson<int>(tmdbId),
       'posterUrl': serializer.toJson<String?>(posterUrl),
       'genres': serializer.toJson<List<SeriesGenreDto>?>(genres),
+      'originCountry': serializer.toJson<List<String>?>(originCountry),
       'premiereDate': serializer.toJson<DateTime?>(premiereDate),
       'title': serializer.toJson<String?>(title),
       'tmdbRating': serializer.toJson<RatingDataDto?>(tmdbRating),
@@ -977,6 +1057,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
           int? tmdbId,
           Value<String?> posterUrl = const Value.absent(),
           Value<List<SeriesGenreDto>?> genres = const Value.absent(),
+          Value<List<String>?> originCountry = const Value.absent(),
           Value<DateTime?> premiereDate = const Value.absent(),
           Value<String?> title = const Value.absent(),
           Value<RatingDataDto?> tmdbRating = const Value.absent(),
@@ -990,6 +1071,8 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
         tmdbId: tmdbId ?? this.tmdbId,
         posterUrl: posterUrl.present ? posterUrl.value : this.posterUrl,
         genres: genres.present ? genres.value : this.genres,
+        originCountry:
+            originCountry.present ? originCountry.value : this.originCountry,
         premiereDate:
             premiereDate.present ? premiereDate.value : this.premiereDate,
         title: title.present ? title.value : this.title,
@@ -1007,6 +1090,9 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       tmdbId: data.tmdbId.present ? data.tmdbId.value : this.tmdbId,
       posterUrl: data.posterUrl.present ? data.posterUrl.value : this.posterUrl,
       genres: data.genres.present ? data.genres.value : this.genres,
+      originCountry: data.originCountry.present
+          ? data.originCountry.value
+          : this.originCountry,
       premiereDate: data.premiereDate.present
           ? data.premiereDate.value
           : this.premiereDate,
@@ -1031,6 +1117,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
           ..write('tmdbId: $tmdbId, ')
           ..write('posterUrl: $posterUrl, ')
           ..write('genres: $genres, ')
+          ..write('originCountry: $originCountry, ')
           ..write('premiereDate: $premiereDate, ')
           ..write('title: $title, ')
           ..write('tmdbRating: $tmdbRating, ')
@@ -1049,6 +1136,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       tmdbId,
       posterUrl,
       genres,
+      originCountry,
       premiereDate,
       title,
       tmdbRating,
@@ -1065,6 +1153,7 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
           other.tmdbId == this.tmdbId &&
           other.posterUrl == this.posterUrl &&
           other.genres == this.genres &&
+          other.originCountry == this.originCountry &&
           other.premiereDate == this.premiereDate &&
           other.title == this.title &&
           other.tmdbRating == this.tmdbRating &&
@@ -1080,6 +1169,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
   final Value<int> tmdbId;
   final Value<String?> posterUrl;
   final Value<List<SeriesGenreDto>?> genres;
+  final Value<List<String>?> originCountry;
   final Value<DateTime?> premiereDate;
   final Value<String?> title;
   final Value<RatingDataDto?> tmdbRating;
@@ -1093,6 +1183,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     this.tmdbId = const Value.absent(),
     this.posterUrl = const Value.absent(),
     this.genres = const Value.absent(),
+    this.originCountry = const Value.absent(),
     this.premiereDate = const Value.absent(),
     this.title = const Value.absent(),
     this.tmdbRating = const Value.absent(),
@@ -1107,6 +1198,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     required int tmdbId,
     this.posterUrl = const Value.absent(),
     this.genres = const Value.absent(),
+    this.originCountry = const Value.absent(),
     this.premiereDate = const Value.absent(),
     this.title = const Value.absent(),
     this.tmdbRating = const Value.absent(),
@@ -1121,6 +1213,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     Expression<int>? tmdbId,
     Expression<String>? posterUrl,
     Expression<String>? genres,
+    Expression<String>? originCountry,
     Expression<DateTime>? premiereDate,
     Expression<String>? title,
     Expression<String>? tmdbRating,
@@ -1135,6 +1228,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
       if (tmdbId != null) 'tmdb_id': tmdbId,
       if (posterUrl != null) 'poster_url': posterUrl,
       if (genres != null) 'genres': genres,
+      if (originCountry != null) 'origin_country': originCountry,
       if (premiereDate != null) 'premiere_date': premiereDate,
       if (title != null) 'title': title,
       if (tmdbRating != null) 'tmdb_rating': tmdbRating,
@@ -1151,6 +1245,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
       Value<int>? tmdbId,
       Value<String?>? posterUrl,
       Value<List<SeriesGenreDto>?>? genres,
+      Value<List<String>?>? originCountry,
       Value<DateTime?>? premiereDate,
       Value<String?>? title,
       Value<RatingDataDto?>? tmdbRating,
@@ -1164,6 +1259,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
       tmdbId: tmdbId ?? this.tmdbId,
       posterUrl: posterUrl ?? this.posterUrl,
       genres: genres ?? this.genres,
+      originCountry: originCountry ?? this.originCountry,
       premiereDate: premiereDate ?? this.premiereDate,
       title: title ?? this.title,
       tmdbRating: tmdbRating ?? this.tmdbRating,
@@ -1190,6 +1286,11 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
     if (genres.present) {
       map['genres'] = Variable<String>(
           $SeriesTableTable.$convertergenresn.toSql(genres.value));
+    }
+    if (originCountry.present) {
+      map['origin_country'] = Variable<String>($SeriesTableTable
+          .$converteroriginCountryn
+          .toSql(originCountry.value));
     }
     if (premiereDate.present) {
       map['premiere_date'] = Variable<DateTime>(premiereDate.value);
@@ -1226,6 +1327,7 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
           ..write('tmdbId: $tmdbId, ')
           ..write('posterUrl: $posterUrl, ')
           ..write('genres: $genres, ')
+          ..write('originCountry: $originCountry, ')
           ..write('premiereDate: $premiereDate, ')
           ..write('title: $title, ')
           ..write('tmdbRating: $tmdbRating, ')
@@ -1258,6 +1360,7 @@ typedef $$MoviesTableTableCreateCompanionBuilder = MoviesTableCompanion
   required int tmdbId,
   Value<String?> posterUrl,
   Value<List<MovieGenreDto>?> genres,
+  Value<List<String>?> originCountry,
   Value<DateTime?> premiereDate,
   Value<String?> title,
   Value<RatingDataDto?> tmdbRating,
@@ -1273,6 +1376,7 @@ typedef $$MoviesTableTableUpdateCompanionBuilder = MoviesTableCompanion
   Value<int> tmdbId,
   Value<String?> posterUrl,
   Value<List<MovieGenreDto>?> genres,
+  Value<List<String>?> originCountry,
   Value<DateTime?> premiereDate,
   Value<String?> title,
   Value<RatingDataDto?> tmdbRating,
@@ -1305,6 +1409,11 @@ class $$MoviesTableTableFilterComposer
           String>
       get genres => $composableBuilder(
           column: $table.genres,
+          builder: (column) => ColumnWithTypeConverterFilters(column));
+
+  ColumnWithTypeConverterFilters<List<String>?, List<String>, String>
+      get originCountry => $composableBuilder(
+          column: $table.originCountry,
           builder: (column) => ColumnWithTypeConverterFilters(column));
 
   ColumnFilters<DateTime> get premiereDate => $composableBuilder(
@@ -1355,6 +1464,10 @@ class $$MoviesTableTableOrderingComposer
   ColumnOrderings<String> get genres => $composableBuilder(
       column: $table.genres, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get originCountry => $composableBuilder(
+      column: $table.originCountry,
+      builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<DateTime> get premiereDate => $composableBuilder(
       column: $table.premiereDate,
       builder: (column) => ColumnOrderings(column));
@@ -1402,6 +1515,10 @@ class $$MoviesTableTableAnnotationComposer
 
   GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String> get genres =>
       $composableBuilder(column: $table.genres, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<List<String>?, String> get originCountry =>
+      $composableBuilder(
+          column: $table.originCountry, builder: (column) => column);
 
   GeneratedColumn<DateTime> get premiereDate => $composableBuilder(
       column: $table.premiereDate, builder: (column) => column);
@@ -1459,6 +1576,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
             Value<int> tmdbId = const Value.absent(),
             Value<String?> posterUrl = const Value.absent(),
             Value<List<MovieGenreDto>?> genres = const Value.absent(),
+            Value<List<String>?> originCountry = const Value.absent(),
             Value<DateTime?> premiereDate = const Value.absent(),
             Value<String?> title = const Value.absent(),
             Value<RatingDataDto?> tmdbRating = const Value.absent(),
@@ -1473,6 +1591,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
             tmdbId: tmdbId,
             posterUrl: posterUrl,
             genres: genres,
+            originCountry: originCountry,
             premiereDate: premiereDate,
             title: title,
             tmdbRating: tmdbRating,
@@ -1487,6 +1606,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
             required int tmdbId,
             Value<String?> posterUrl = const Value.absent(),
             Value<List<MovieGenreDto>?> genres = const Value.absent(),
+            Value<List<String>?> originCountry = const Value.absent(),
             Value<DateTime?> premiereDate = const Value.absent(),
             Value<String?> title = const Value.absent(),
             Value<RatingDataDto?> tmdbRating = const Value.absent(),
@@ -1501,6 +1621,7 @@ class $$MoviesTableTableTableManager extends RootTableManager<
             tmdbId: tmdbId,
             posterUrl: posterUrl,
             genres: genres,
+            originCountry: originCountry,
             premiereDate: premiereDate,
             title: title,
             tmdbRating: tmdbRating,
@@ -1538,6 +1659,7 @@ typedef $$SeriesTableTableCreateCompanionBuilder = SeriesTableCompanion
   required int tmdbId,
   Value<String?> posterUrl,
   Value<List<SeriesGenreDto>?> genres,
+  Value<List<String>?> originCountry,
   Value<DateTime?> premiereDate,
   Value<String?> title,
   Value<RatingDataDto?> tmdbRating,
@@ -1553,6 +1675,7 @@ typedef $$SeriesTableTableUpdateCompanionBuilder = SeriesTableCompanion
   Value<int> tmdbId,
   Value<String?> posterUrl,
   Value<List<SeriesGenreDto>?> genres,
+  Value<List<String>?> originCountry,
   Value<DateTime?> premiereDate,
   Value<String?> title,
   Value<RatingDataDto?> tmdbRating,
@@ -1585,6 +1708,11 @@ class $$SeriesTableTableFilterComposer
           String>
       get genres => $composableBuilder(
           column: $table.genres,
+          builder: (column) => ColumnWithTypeConverterFilters(column));
+
+  ColumnWithTypeConverterFilters<List<String>?, List<String>, String>
+      get originCountry => $composableBuilder(
+          column: $table.originCountry,
           builder: (column) => ColumnWithTypeConverterFilters(column));
 
   ColumnFilters<DateTime> get premiereDate => $composableBuilder(
@@ -1635,6 +1763,10 @@ class $$SeriesTableTableOrderingComposer
   ColumnOrderings<String> get genres => $composableBuilder(
       column: $table.genres, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get originCountry => $composableBuilder(
+      column: $table.originCountry,
+      builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<DateTime> get premiereDate => $composableBuilder(
       column: $table.premiereDate,
       builder: (column) => ColumnOrderings(column));
@@ -1682,6 +1814,10 @@ class $$SeriesTableTableAnnotationComposer
 
   GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String> get genres =>
       $composableBuilder(column: $table.genres, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<List<String>?, String> get originCountry =>
+      $composableBuilder(
+          column: $table.originCountry, builder: (column) => column);
 
   GeneratedColumn<DateTime> get premiereDate => $composableBuilder(
       column: $table.premiereDate, builder: (column) => column);
@@ -1739,6 +1875,7 @@ class $$SeriesTableTableTableManager extends RootTableManager<
             Value<int> tmdbId = const Value.absent(),
             Value<String?> posterUrl = const Value.absent(),
             Value<List<SeriesGenreDto>?> genres = const Value.absent(),
+            Value<List<String>?> originCountry = const Value.absent(),
             Value<DateTime?> premiereDate = const Value.absent(),
             Value<String?> title = const Value.absent(),
             Value<RatingDataDto?> tmdbRating = const Value.absent(),
@@ -1753,6 +1890,7 @@ class $$SeriesTableTableTableManager extends RootTableManager<
             tmdbId: tmdbId,
             posterUrl: posterUrl,
             genres: genres,
+            originCountry: originCountry,
             premiereDate: premiereDate,
             title: title,
             tmdbRating: tmdbRating,
@@ -1767,6 +1905,7 @@ class $$SeriesTableTableTableManager extends RootTableManager<
             required int tmdbId,
             Value<String?> posterUrl = const Value.absent(),
             Value<List<SeriesGenreDto>?> genres = const Value.absent(),
+            Value<List<String>?> originCountry = const Value.absent(),
             Value<DateTime?> premiereDate = const Value.absent(),
             Value<String?> title = const Value.absent(),
             Value<RatingDataDto?> tmdbRating = const Value.absent(),
@@ -1781,6 +1920,7 @@ class $$SeriesTableTableTableManager extends RootTableManager<
             tmdbId: tmdbId,
             posterUrl: posterUrl,
             genres: genres,
+            originCountry: originCountry,
             premiereDate: premiereDate,
             title: title,
             tmdbRating: tmdbRating,

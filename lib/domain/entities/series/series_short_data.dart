@@ -13,14 +13,15 @@ final class SeriesShortData extends MediaShortData
   final List<SeriesGenre> genres;
 
   const SeriesShortData({
-    required super.id,
-    required super.posterUrl,
-    required this.genres,
-    required super.premiereDate,
-    required super.title,
-    required super.tmdbRating,
-    required super.userRating,
-    required super.isInWatchlist,
-    required super.isWatched,
+    super.id = -1,
+    super.posterUrl = '',
+    this.genres = const [],
+    super.originCountry = const [],
+    super.premiereDate,
+    super.title = '',
+    super.tmdbRating = const TMDBRating(),
+    super.userRating = 0,
+    super.isInWatchlist = false,
+    super.isWatched = false,
   });
 }
