@@ -1,16 +1,20 @@
 import '../dto/movie/movie_data_dto.dart';
+import '../dto/movie/movie_rate_filter_data_dto.dart';
 import '../dto/movie/movie_short_data_dto.dart';
 import '../dto/movie/movies_response_data_dto.dart';
 import '../dto/series/series_data_dto.dart';
+import '../dto/series/series_rate_filter_data_dto.dart';
 import '../dto/series/series_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 
 abstract interface class MediaLocalDataSource {
   Future<MoviesResponseDataDto> addLocalDataToMoviesResponse(
-      MoviesResponseDataDto response);
+    MoviesResponseDataDto response,
+  );
 
   Future<SeriesResponseDataDto> addLocalDataToSeriesResponse(
-      SeriesResponseDataDto response);
+    SeriesResponseDataDto response,
+  );
 
   Future<MovieDataDto> addLocalDataToMovie(MovieDataDto movie);
 
@@ -19,4 +23,8 @@ abstract interface class MediaLocalDataSource {
   Future<List<MovieShortDataDto>> getMoviesByIds(List<int> ids);
 
   Future<List<SeriesShortDataDto>> getSeriesByIds(List<int> ids);
+
+  Future<MovieRateFilterDataDto> getMovieRateFilter();
+
+  Future<SeriesRateFilterDataDto> getSeriesRateFilter();
 }

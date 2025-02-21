@@ -1,8 +1,12 @@
+import '../../dto/movie/movie_rate_filter_data_dto.dart';
 import '../../dto/movie/movies_response_data_dto.dart';
+import '../../dto/series/series_rate_filter_data_dto.dart';
 import '../../dto/series/series_response_data_dto.dart';
 
 abstract interface class HomeRemoteDataSource {
-  Future<MoviesResponseDataDto> getSuggestedMovies();
+  Future<MoviesResponseDataDto> getSuggestedMovies(
+    MovieRateFilterDataDto filter,
+  );
 
   Future<MoviesResponseDataDto> getNowPlayingMovies({required int page});
 
@@ -12,7 +16,9 @@ abstract interface class HomeRemoteDataSource {
 
   Future<MoviesResponseDataDto> getPopularMovies({required int page});
 
-  Future<SeriesResponseDataDto> getSuggestedSeries();
+  Future<SeriesResponseDataDto> getSuggestedSeries(
+    SeriesRateFilterDataDto filter,
+  );
 
   Future<SeriesResponseDataDto> getAiringTodaySeries({required int page});
 
