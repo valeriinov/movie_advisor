@@ -1,0 +1,92 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+  
+// **************************************************************************
+// add_build_outputs_info
+// **************************************************************************
+  
+ext {
+    appName = "Movie Advisor"
+    buildOutputDir = "../../build/app/outputs"
+
+    createCleanApkDirTask = { variant ->
+        def cleanApkDirTaskName = "clean${variant.name.capitalize()}ApkDir"
+        tasks.create(name: cleanApkDirTaskName, type: Delete) {
+            delete "${buildOutputDir}/apk/${variant.dirName}"
+            delete "${buildOutputDir}/flutter-apk"
+        }
+        variant.assembleProvider.configure { it.dependsOn cleanApkDirTaskName }
+    }
+
+    createCleanAabDirTask = { variant ->
+        def cleanAabDirTaskName = "clean${variant.name.capitalize()}AabDir"
+        tasks.create(name: cleanAabDirTaskName, type: Delete) {
+            delete "${buildDir}/outputs/bundle"
+        }
+
+        def bundleTask = tasks.findByName("bundle${variant.name.capitalize()}")
+        if (bundleTask != null) {
+            bundleTask.dependsOn cleanAabDirTaskName
+        }
+    }
+
+    moveCreatedFileToFlutterApkDir = { variant ->
+        variant.assembleProvider.configure { assembleTask ->
+            assembleTask.doLast {
+                def outputProvider = variant.outputs.first()
+                def outputFile = outputProvider.outputFile
+
+                if (outputFile != null) {
+                    def destDir = "${buildOutputDir}/flutter-apk"
+                    def newFileName = "${createBaseName(variant)}.apk"
+                    copyFile(outputFile, destDir, newFileName)
+                    delete outputFile
+                }
+            }
+        }
+    }
+
+    renameAABFile = { variant ->
+        def bundleTask = tasks.findByName("bundle${variant.name.capitalize()}")
+
+        if (bundleTask != null) {
+            bundleTask.doLast {
+                def flavorName = getFlavorName(variant)
+
+                def dirName = flavorName
+                        ? "${flavorName}${variant.buildType.name.capitalize()}"
+                        : variant.dirName
+
+                def releaseDir = new File("${buildDir}/outputs/bundle/${dirName}")
+
+                def originalFileName = flavorName
+                        ? "app-${flavorName}-${variant.buildType.name}.aab"
+                        : "app-${variant.name}.aab"
+
+                def originalAAB = new File(releaseDir, originalFileName)
+
+                if (originalAAB.exists()) {
+                    String newFileName = "${createBaseName(variant)}.aab"
+
+                    copyFile(originalAAB, releaseDir.path, newFileName)
+                }
+            }
+        }
+    }
+
+    createBaseName = { variant ->
+        def flavorName = getFlavorName(variant) ? "-${getFlavorName(variant)}" : ""
+        return "${appName}${flavorName}-${variant.buildType.name}-v${variant.versionName}b${variant.versionCode}"
+    }
+    
+    getFlavorName = { variant ->
+        return variant.productFlavors.size() > 0 ? variant.productFlavors[0].name : ""
+    }
+
+    copyFile = { File apkFile, String destDir, String newFileName ->
+        copy {
+            from apkFile
+            into destDir
+            rename { newFileName }
+        }
+    }
+}
