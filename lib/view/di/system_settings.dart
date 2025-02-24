@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -19,6 +20,9 @@ abstract final class SystemSettings {
   /// This setup should be called before the app's main logic runs.
   static Future<void> initializeSystemSettings() async {
     WidgetsFlutterBinding.ensureInitialized();
+
+    // Firebase
+    await Firebase.initializeApp();
 
     // localization
     await EasyLocalization.ensureInitialized();

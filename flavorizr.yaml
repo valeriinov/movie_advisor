@@ -8,8 +8,12 @@ flavors:
       adaptiveIcon:
         foreground: "assets/icon/android_icon_foreground_1024_dev.png"
         background: "assets/icon/android_icon_background_1024_dev.png"
+      firebase:
+        config: "config/dev/google-services.json"
     ios:
       bundleId: "com.movieadvisor.app.dev"
+      firebase:
+        config: "config/dev/GoogleService-Info.plist"
 
   prod:
     app:
@@ -20,8 +24,12 @@ flavors:
       adaptiveIcon:
         foreground: "assets/icon/android_icon_foreground_1024_prod.png"
         background: "assets/icon/android_icon_background_1024_prod.png"
+      firebase:
+        config: "config/prod/google-services.json"
     ios:
       bundleId: "com.movieadvisor.app"
+      firebase:
+        config: "config/prod/GoogleService-Info.plist"
 
 
 instructions:

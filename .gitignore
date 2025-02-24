@@ -50,3 +50,5 @@ android/app/.cxx/
 mason-lock.json
 dev.env
 prod.env
+
+firebase.json
