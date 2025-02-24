@@ -73,6 +73,7 @@
   "contentTypeMenu": "Content type",
   "movie": "Movie",
   "series": "Series",
+  "signInTile": "Sign In",
   "aboutUsTile": "About Us",
   "privacyPolicyTile": "Privacy Policy",
   "termsAndConditionsTile": "Terms & Conditions",
@@ -101,5 +102,8 @@
   "nameFieldHint": "Name",
   "emailFieldHint": "Email",
   "passFieldHint": "Password",
-  "confirmPassFieldHint": "Confirm Password"
+  "confirmPassFieldHint": "Confirm Password",
+  "signInScreenTitle": "Sign In",
+  "signInSuccessToast": "Welcome back! Sign in successful",
+  "signInButton": "SIGN IN"
 }

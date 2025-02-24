@@ -24,6 +24,7 @@ abstract final class AppImages {
   static const addWatchlistFillIcon = "${_imgPath}add_watchlist_fill_icon.svg";
   static const starIcon = "${_imgPath}star_icon.svg";
   static const placeholderImage = "${_imgPath}placeholder_image.png";
+  static const signOutIcon = "${_imgPath}sign_out_icon.svg";
   static const emptyResultImage = "${_imgPath}empty_result_image.png";
   static const watchedIcon = "${_imgPath}watched_icon.svg";
   static const toastSuccessIcon = "${_imgPath}toast_success_icon.svg";
@@ -31,6 +32,7 @@ abstract final class AppImages {
   static const emptyListImage = "${_imgPath}empty_list_image.png";
   static const genreIcon = "${_imgPath}genre_icon.svg";
   static const dateIcon = "${_imgPath}date_icon.svg";
+  static const signInIcon = "${_imgPath}sign_in_icon.svg";
   static const moreVertIcon = "${_imgPath}more_vert_icon.svg";
   static const watchlistIcon = "${_imgPath}watchlist_icon.svg";
   static const addWatchedIcon = "${_imgPath}add_watched_icon.svg";

@@ -17,4 +17,7 @@ abstract final class AppRoutes {
 
   // More/About Us
   static const String aboutUs = 'about-us';
+
+  // More/Auth
+  static const String auth = 'auth';
 }

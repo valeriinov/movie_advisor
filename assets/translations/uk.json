@@ -73,6 +73,7 @@
   "contentTypeMenu": "Тип контенту",
   "movie": "Фільм",
   "series": "Серіал",
+  "signInTile": "Увійти",
   "aboutUsTile": "Про нас",
   "privacyPolicyTile": "Політика конфіденційності",
   "termsAndConditionsTile": "Умови та положення",
@@ -101,5 +102,8 @@
   "nameFieldHint": "Ім'я",
   "emailFieldHint": "Електронна пошта",
   "passFieldHint": "Пароль",
-  "confirmPassFieldHint": "Підтвердьте пароль"
+  "confirmPassFieldHint": "Підтвердьте пароль",
+  "signInScreenTitle": "Увійти",
+  "signInSuccessToast": "З поверненням! Успішний вхід",
+  "signInButton": "УВІЙТИ"
 }

@@ -25,9 +25,11 @@ class MoreScreenView extends ConsumerWidget {
 
     final vsp = ref.vspFromADProvider(moreViewModelPr);
 
-    vsp.handleState(listener: (prev, next) {
-      ref.baseStatusHandler.handleStatus(prev, next);
-    });
+    vsp.handleState(
+      listener: (prev, next) {
+        ref.baseStatusHandler.handleStatus(prev, next);
+      },
+    );
 
     final urlLauncher = ref.urlLauncher;
 
@@ -35,12 +37,15 @@ class MoreScreenView extends ConsumerWidget {
       appBar: MoreAppBar(),
       body: CustomScrollView(
         slivers: [
-          SliverRefreshIndicator(
-            onRefresh: () async {},
-          ),
+          SliverRefreshIndicator(onRefresh: () async {}),
           SliverPadding(padding: dimens.padTopPrimIns),
           SliverList.list(
             children: [
+              ListTile(
+                title: Text(LocaleKeys.signInTile.tr()),
+                leading: AppSvgAsset(path: AppImages.signInIcon),
+                onTap: () => AuthRoute().go(context),
+              ),
               ListTile(
                 title: Text(LocaleKeys.aboutUsTile.tr()),
                 leading: AppSvgAsset(path: AppImages.infoIcon),
@@ -49,14 +54,18 @@ class MoreScreenView extends ConsumerWidget {
               ListTile(
                 title: Text(LocaleKeys.privacyPolicyTile.tr()),
                 leading: AppSvgAsset(path: AppImages.privacyIcon),
-                onTap: () => urlLauncher
-                    .openUrl(AppOfficialResourcesUrls.privacyPolicyUrl),
+                onTap:
+                    () => urlLauncher.openUrl(
+                      AppOfficialResourcesUrls.privacyPolicyUrl,
+                    ),
               ),
               ListTile(
                 title: Text(LocaleKeys.termsAndConditionsTile.tr()),
                 leading: AppSvgAsset(path: AppImages.termsIcon),
-                onTap: () => urlLauncher
-                    .openUrl(AppOfficialResourcesUrls.termsAndConditionsUrl),
+                onTap:
+                    () => urlLauncher.openUrl(
+                      AppOfficialResourcesUrls.termsAndConditionsUrl,
+                    ),
               ),
             ].addSeparators(context, (_, __) => dimens.spSmall.gapVert()),
           ),
