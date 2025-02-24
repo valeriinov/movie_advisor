@@ -10,8 +10,11 @@ class NavBarContainer extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const NavBarContainer(
-      {super.key, required this.currentIndex, required this.onTap});
+  const NavBarContainer({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,23 +22,21 @@ class NavBarContainer extends StatelessWidget {
 
     return Theme(
       data: context.theme.copyWith(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
+        splashFactory: NoSplash.splashFactory,
         // Set the label size to zero so that it doesn't take up any space.
         bottomNavigationBarTheme: context.theme.bottomNavigationBarTheme
             .copyWith(selectedLabelStyle: TextStyle(fontSize: 0)),
       ),
       child: Container(
         decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(color: colors.navBarDivider),
-          ),
+          border: Border(top: BorderSide(color: colors.navBarDivider)),
         ),
         child: BottomNavigationBar(
           currentIndex: currentIndex,
-          items: AppNavMenu.values
-              .map((item) => _buildNavBarItem(context, item, currentIndex))
-              .toList(),
+          items:
+              AppNavMenu.values
+                  .map((item) => _buildNavBarItem(context, item, currentIndex))
+                  .toList(),
           onTap: onTap,
         ),
       ),
