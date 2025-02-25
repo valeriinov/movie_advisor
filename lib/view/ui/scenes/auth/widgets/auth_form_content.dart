@@ -19,43 +19,45 @@ class AuthFormContent extends StatelessWidget {
     final emailFieldName = AuthFormState.nameof.fieldEmail;
     final passFieldName = AuthFormState.nameof.fieldPassword;
 
-    return FormAutoValidateBuilder<FormBuilderState>(
-      builder: (context, formKey, autoValidate, setAutoValidate) {
-        return FormBuilder(
-          key: formKey,
-          autovalidateMode:
-              autoValidate
-                  ? AutovalidateMode.always
-                  : AutovalidateMode.disabled,
-          onChanged: () => _updateFormState(formKey),
-          child: SizedBox(
-            width: double.infinity,
-            child: KeyboardActionsWrapper(
-              fieldNames: [emailFieldName, passFieldName],
-              builder:
-                  (context, nodesDict) => ColumnSeparated(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      InputField.email(
-                        name: emailFieldName,
-                        focusNode: nodesDict[emailFieldName],
-                      ),
-                      InputField.pass(
-                        name: passFieldName,
-                        focusNode: nodesDict[passFieldName],
-                        textInputAction: TextInputAction.done,
-                      ),
-                      AuthSubmitButton(
-                        formKey: formKey,
-                        setAutoValidate: setAutoValidate,
-                      ),
-                    ],
-                    separatorBuilder: (_, __) => dimens.spLarge.gapVert(),
-                  ),
+    return SliverToBoxAdapter(
+      child: FormAutoValidateBuilder<FormBuilderState>(
+        builder: (context, formKey, autoValidate, setAutoValidate) {
+          return FormBuilder(
+            key: formKey,
+            autovalidateMode:
+                autoValidate
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
+            onChanged: () => _updateFormState(formKey),
+            child: SizedBox(
+              width: double.infinity,
+              child: KeyboardActionsWrapper(
+                fieldNames: [emailFieldName, passFieldName],
+                builder:
+                    (context, nodesDict) => ColumnSeparated(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        InputField.email(
+                          name: emailFieldName,
+                          focusNode: nodesDict[emailFieldName],
+                        ),
+                        InputField.pass(
+                          name: passFieldName,
+                          focusNode: nodesDict[passFieldName],
+                          textInputAction: TextInputAction.done,
+                        ),
+                        AuthSubmitButton(
+                          formKey: formKey,
+                          setAutoValidate: setAutoValidate,
+                        ),
+                      ],
+                      separatorBuilder: (_, __) => dimens.spLarge.gapVert(),
+                    ),
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 

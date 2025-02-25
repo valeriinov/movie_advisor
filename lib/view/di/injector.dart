@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -70,6 +71,7 @@ import '../ui/widgets/dialogs/loading_dialog/loading_dialog_manager.dart';
 import '../ui/widgets/dialogs/toasts/toast_manager.dart';
 
 // CORE
+final firebaseAuthPr = Provider<FirebaseAuth>((_) => FirebaseAuth.instance);
 final appRouterPr = Provider<AppRouter>(
   (ref) => ImplAppRouter(rootNavKey: GlobalKey<NavigatorState>()),
 );
@@ -252,7 +254,9 @@ final watchSeriesUseCasePr = Provider<WatchSeriesUseCase>(
 );
 
 // AUTH
-final authServicePr = Provider<AuthService>((_) => AuthService());
+final authServicePr = Provider<AuthService>(
+  (ref) => AuthService(firebaseAuth: ref.read(firebaseAuthPr)),
+);
 final authRemoteDataSourcePr = Provider<AuthRemoteDataSource>(
   (ref) => ImplAuthRemoteDataSource(service: ref.read(authServicePr)),
 );

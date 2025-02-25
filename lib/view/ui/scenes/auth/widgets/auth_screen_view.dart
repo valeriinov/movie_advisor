@@ -35,11 +35,7 @@ class AuthScreenView extends ConsumerWidget {
         child: CustomScrollView(
           slivers: [
             SliverPadding(padding: dimens.padTopPrim.insTop()),
-            SliverToBoxAdapter(
-              child: AuthFormContent(
-                updateFormState: vsp.viewModel.updateFormState,
-              ),
-            ),
+            AuthFormContent(updateFormState: vsp.viewModel.updateFormState),
             SliverPadding(padding: dimens.padBotPrim.insBottom()),
           ],
         ),
