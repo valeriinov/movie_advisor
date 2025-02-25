@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
+import '../../../resources/base_theme/durations/base_durations_ext.dart';
 import '../../../resources/base_theme/nav_bars/base_nav_bars_styles_ext.dart';
 import '../../../widgets/app_svg_asset.dart';
 import '../model/app_nav_menu.dart';
@@ -18,28 +19,42 @@ class NavBarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final durations = context.baseDurations;
     final colors = context.baseColors;
 
-    return Theme(
-      data: context.theme.copyWith(
-        splashFactory: NoSplash.splashFactory,
-        // Set the label size to zero so that it doesn't take up any space.
-        bottomNavigationBarTheme: context.theme.bottomNavigationBarTheme
-            .copyWith(selectedLabelStyle: TextStyle(fontSize: 0)),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: colors.navBarDivider)),
-        ),
-        child: BottomNavigationBar(
-          currentIndex: currentIndex,
-          items:
-              AppNavMenu.values
-                  .map((item) => _buildNavBarItem(context, item, currentIndex))
-                  .toList(),
-          onTap: onTap,
-        ),
-      ),
+    return AnimatedSwitcher(
+      duration: durations.animSwitchPrim,
+      child:
+          !context.isKeyboardOpened
+              ? Theme(
+                data: context.theme.copyWith(
+                  splashFactory: NoSplash.splashFactory,
+                  // Set the label size to zero so that it doesn't take up any space.
+                  bottomNavigationBarTheme: context
+                      .theme
+                      .bottomNavigationBarTheme
+                      .copyWith(selectedLabelStyle: TextStyle(fontSize: 0)),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: colors.navBarDivider),
+                    ),
+                  ),
+                  child: BottomNavigationBar(
+                    currentIndex: currentIndex,
+                    items:
+                        AppNavMenu.values
+                            .map(
+                              (item) =>
+                                  _buildNavBarItem(context, item, currentIndex),
+                            )
+                            .toList(),
+                    onTap: onTap,
+                  ),
+                ),
+              )
+              : SizedBox.shrink(),
     );
   }
 
