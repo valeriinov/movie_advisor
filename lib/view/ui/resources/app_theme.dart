@@ -81,20 +81,9 @@ class AppTheme {
     return PageTransitionsTheme(
       builders: {
         for (final platform in TargetPlatform.values)
-          platform: _resolvePageTransitionsBuilder(platform, colors),
+          platform: const CupertinoPageTransitionsBuilder(),
       },
     );
-  }
-
-  PageTransitionsBuilder _resolvePageTransitionsBuilder(
-    TargetPlatform platform,
-    BaseColors colors,
-  ) {
-    return platform.isIOS
-        ? const CupertinoPageTransitionsBuilder()
-        : FadeForwardsPageTransitionsBuilder(
-            backgroundColor: colors.scaffoldBg,
-          );
   }
 
   AppBarTheme _createAppBarTheme(BaseColors colors, BaseNavBarsStyles styles) {
