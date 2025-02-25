@@ -6,6 +6,7 @@ import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../widgets/form/input_field.dart';
 import '../../../widgets/form/keyboard_actions_wrapper.dart';
 import '../model/auth_form_state.dart';
+import 'account_management_buttons.dart';
 import 'auth_submit_button.dart';
 
 class AuthFormContent extends StatelessWidget {
@@ -34,24 +35,27 @@ class AuthFormContent extends StatelessWidget {
               child: KeyboardActionsWrapper(
                 fieldNames: [emailFieldName, passFieldName],
                 builder:
-                    (context, nodesDict) => ColumnSeparated(
+                    (context, nodesDict) => Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         InputField.email(
                           name: emailFieldName,
                           focusNode: nodesDict[emailFieldName],
                         ),
+                        dimens.spLarge.gapVert(),
                         InputField.pass(
                           name: passFieldName,
                           focusNode: nodesDict[passFieldName],
                           textInputAction: TextInputAction.done,
                         ),
+                        dimens.spSmall.gapVert(),
+                        AccountManagementButtons(),
+                        dimens.spSmall.gapVert(),
                         AuthSubmitButton(
                           formKey: formKey,
                           setAutoValidate: setAutoValidate,
                         ),
                       ],
-                      separatorBuilder: (_, __) => dimens.spLarge.gapVert(),
                     ),
               ),
             ),

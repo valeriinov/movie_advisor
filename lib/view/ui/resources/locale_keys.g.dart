@@ -110,5 +110,7 @@ abstract class  LocaleKeys {
   static const signInScreenTitle = 'signInScreenTitle';
   static const signInSuccessToast = 'signInSuccessToast';
   static const signInButton = 'signInButton';
+  static const forgotPassButton = 'forgotPassButton';
+  static const createAccountButton = 'createAccountButton';
 
 }

@@ -105,5 +105,7 @@
   "confirmPassFieldHint": "Підтвердьте пароль",
   "signInScreenTitle": "Увійти",
   "signInSuccessToast": "З поверненням! Успішний вхід",
-  "signInButton": "УВІЙТИ"
+  "signInButton": "УВІЙТИ",
+  "forgotPassButton": "Забули пароль?",
+  "createAccountButton": "Створити акаунт"
 }

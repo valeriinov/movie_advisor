@@ -105,5 +105,7 @@
   "confirmPassFieldHint": "Confirm Password",
   "signInScreenTitle": "Sign In",
   "signInSuccessToast": "Welcome back! Sign in successful",
-  "signInButton": "SIGN IN"
+  "signInButton": "SIGN IN",
+  "forgotPassButton": "Forgot Password?",
+  "createAccountButton": "Create Account"
 }

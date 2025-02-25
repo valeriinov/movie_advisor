@@ -20,4 +20,10 @@ abstract final class AppRoutes {
 
   // More/Auth
   static const String auth = 'auth';
+
+  // More/Auth/Registration
+  static const String reg = 'reg';
+
+  // More/Auth/Reset Password
+  static const String resetPass = 'reset-pass';
 }

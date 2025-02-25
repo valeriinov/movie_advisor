@@ -21,6 +21,16 @@ RouteBase get $moreRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'auth',
           factory: $AuthRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'reg',
+              factory: $RegRouteExtension._fromState,
+            ),
+            GoRouteData.$route(
+              path: 'reset-pass',
+              factory: $ResetPassRouteExtension._fromState,
+            ),
+          ],
         ),
       ],
     );
@@ -64,6 +74,40 @@ extension $AuthRouteExtension on AuthRoute {
 
   String get location => GoRouteData.$location(
         '/more/auth',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $RegRouteExtension on RegRoute {
+  static RegRoute _fromState(GoRouterState state) => RegRoute();
+
+  String get location => GoRouteData.$location(
+        '/more/auth/reg',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ResetPassRouteExtension on ResetPassRoute {
+  static ResetPassRoute _fromState(GoRouterState state) => ResetPassRoute();
+
+  String get location => GoRouteData.$location(
+        '/more/auth/reset-pass',
       );
 
   void go(BuildContext context) => context.go(location);
