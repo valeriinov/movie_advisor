@@ -4,11 +4,11 @@ part 'auth_data_dto.mapper.dart';
 
 @MappableClass(ignoreNull: true, caseStyle: CaseStyle.snakeCase)
 class AuthDataDto with AuthDataDtoMappable {
-  final String? login;
+  final String? email;
   final String? password;
 
   const AuthDataDto({
-    this.login,
+    this.email,
     this.password,
   });
 

@@ -26,7 +26,7 @@ class AuthFormState with AuthFormStateMappable {
 
 extension ToAuthDataMapper on AuthFormState {
   AuthData toAuthData() => AuthData(
-        login: email,
+        email: email,
         password: password,
       );
 }

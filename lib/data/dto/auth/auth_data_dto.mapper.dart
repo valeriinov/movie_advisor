@@ -20,16 +20,16 @@ class AuthDataDtoMapper extends ClassMapperBase<AuthDataDto> {
   @override
   final String id = 'AuthDataDto';
 
-  static String? _$login(AuthDataDto v) => v.login;
-  static const Field<AuthDataDto, String> _f$login =
-      Field('login', _$login, opt: true);
+  static String? _$email(AuthDataDto v) => v.email;
+  static const Field<AuthDataDto, String> _f$email =
+      Field('email', _$email, opt: true);
   static String? _$password(AuthDataDto v) => v.password;
   static const Field<AuthDataDto, String> _f$password =
       Field('password', _$password, opt: true);
 
   @override
   final MappableFields<AuthDataDto> fields = const {
-    #login: _f$login,
+    #email: _f$email,
     #password: _f$password,
   };
   @override
@@ -37,7 +37,7 @@ class AuthDataDtoMapper extends ClassMapperBase<AuthDataDto> {
 
   static AuthDataDto _instantiate(DecodingData data) {
     return AuthDataDto(
-        login: data.dec(_f$login), password: data.dec(_f$password));
+        email: data.dec(_f$email), password: data.dec(_f$password));
   }
 
   @override
@@ -91,7 +91,7 @@ extension AuthDataDtoValueCopy<$R, $Out>
 
 abstract class AuthDataDtoCopyWith<$R, $In extends AuthDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? login, String? password});
+  $R call({String? email, String? password});
   AuthDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -104,14 +104,14 @@ class _AuthDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<AuthDataDto> $mapper =
       AuthDataDtoMapper.ensureInitialized();
   @override
-  $R call({Object? login = $none, Object? password = $none}) =>
+  $R call({Object? email = $none, Object? password = $none}) =>
       $apply(FieldCopyWithData({
-        if (login != $none) #login: login,
+        if (email != $none) #email: email,
         if (password != $none) #password: password
       }));
   @override
   AuthDataDto $make(CopyWithData data) => AuthDataDto(
-      login: data.get(#login, or: $value.login),
+      email: data.get(#email, or: $value.email),
       password: data.get(#password, or: $value.password));
 
   @override
