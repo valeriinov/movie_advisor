@@ -116,5 +116,8 @@ abstract class  LocaleKeys {
   static const signOutDialog = 'signOutDialog';
   static const deleteAccountDialog = 'deleteAccountDialog';
   static const deleteAccountButton = 'deleteAccountButton';
+  static const regScreenTitle = 'regScreenTitle';
+  static const regSubmitButton = 'regSubmitButton';
+  static const createAccountSuccessToast = 'createAccountSuccessToast';
 
 }

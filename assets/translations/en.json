@@ -111,5 +111,8 @@
   "createAccountButton": "Create Account",
   "signOutDialog": "Are you sure you want to sign out? Data will stop syncing until the next login.",
   "deleteAccountDialog": "Are you sure you want to delete your account? Your data will be deleted from the server and synchronization will be stopped. Local data will not be deleted.",
-  "deleteAccountButton": "Delete Account"
+  "deleteAccountButton": "Delete Account",
+  "regScreenTitle": "Create Account",
+  "regSubmitButton": "CREATE ACCOUNT",
+  "createAccountSuccessToast": "Account created successfully"
 }
