@@ -96,6 +96,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get sliderTrackBg;
   Color get sliderThumbFill;
   Color get removeRateBtn;
+  Color get deleteAccountBtn;
 
   @override
   BaseColors copyWith({
@@ -186,6 +187,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? sliderTrackBg,
     Color? sliderThumbFill,
     Color? removeRateBtn,
+    Color? deleteAccountBtn,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -277,6 +279,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       sliderTrackBg: sliderTrackBg ?? this.sliderTrackBg,
       sliderThumbFill: sliderThumbFill ?? this.sliderThumbFill,
       removeRateBtn: removeRateBtn ?? this.removeRateBtn,
+      deleteAccountBtn: deleteAccountBtn ?? this.deleteAccountBtn,
     );
   }
 
@@ -401,6 +404,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       sliderTrackBg: Color.lerp(sliderTrackBg, other.sliderTrackBg, t)!,
       sliderThumbFill: Color.lerp(sliderThumbFill, other.sliderThumbFill, t)!,
       removeRateBtn: Color.lerp(removeRateBtn, other.removeRateBtn, t)!,
+      deleteAccountBtn:
+          Color.lerp(deleteAccountBtn, other.deleteAccountBtn, t)!,
     );
   }
 
@@ -539,7 +544,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(sliderTrackFg, other.sliderTrackFg) &&
             const DeepCollectionEquality().equals(sliderTrackBg, other.sliderTrackBg) &&
             const DeepCollectionEquality().equals(sliderThumbFill, other.sliderThumbFill) &&
-            const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn));
+            const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn) &&
+            const DeepCollectionEquality().equals(deleteAccountBtn, other.deleteAccountBtn));
   }
 
   @override
@@ -633,6 +639,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(sliderTrackBg),
       const DeepCollectionEquality().hash(sliderThumbFill),
       const DeepCollectionEquality().hash(removeRateBtn),
+      const DeepCollectionEquality().hash(deleteAccountBtn),
     ]);
   }
 }

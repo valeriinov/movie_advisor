@@ -17,7 +17,10 @@ final class MoreState extends BaseState<MoreStatus> with MoreStateMappable {
   @override
   final MoreStatus status;
 
-  const MoreState({this.user, this.status = const MoreBaseStatus()});
+  const MoreState({
+    this.user,
+    this.status = const MoreBaseStatus(isLoading: true),
+  });
 }
 
 /// {@category StateManagement}

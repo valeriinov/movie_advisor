@@ -125,4 +125,5 @@ abstract final class _BaseColors {
   static const sliderThumbFill = Color(0xFFF7F7FC);
 
   static const removeRateBtn = Color(0xFF6f1919);
+  static const deleteAccountBtn = Color(0xff685a5a);
 }

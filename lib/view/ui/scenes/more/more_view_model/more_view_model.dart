@@ -6,9 +6,15 @@ import '../../../../../domain/entities/auth/user_data.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/usecases/auth_use_case.dart';
 import '../../../../di/injector.dart';
+import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
 import 'more_state.dart';
+
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [MoreViewModel] and [MoreState].
+typedef MoreVSP = ASP<MoreViewModel, MoreState>;
 
 /// {@category StateManagement}
 ///
@@ -56,6 +62,29 @@ class MoreViewModel extends AutoDisposeNotifier<MoreState>
       },
       (user) {
         state = state.copyWith(status: const MoreBaseInitStatus(), user: user);
+      },
+    );
+  }
+
+  Future<void> signOut() async {
+    _updateStatus(const MoreBaseInitStatus(isLoading: true));
+
+    await safeCall(_authUseCase.signOut, onResult: _handleResult);
+  }
+
+  Future<void> deleteAccount() async {
+    _updateStatus(const MoreBaseInitStatus(isLoading: true));
+
+    await safeCall(_authUseCase.deleteAccount, onResult: _handleResult);
+  }
+
+  void _handleResult(Result<void> result) {
+    result.fold(
+      (error) {
+        _updateStatus(MoreBaseInitStatus(errorMessage: error.message));
+      },
+      (_) {
+        _updateStatus(const MoreBaseInitStatus());
       },
     );
   }

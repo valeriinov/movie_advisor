@@ -25,8 +25,9 @@ class MoreStateMapper extends ClassMapperBase<MoreState> {
   static const Field<MoreState, UserData> _f$user =
       Field('user', _$user, opt: true);
   static MoreStatus _$status(MoreState v) => v.status;
-  static const Field<MoreState, MoreStatus> _f$status =
-      Field('status', _$status, opt: true, def: const MoreBaseStatus());
+  static const Field<MoreState, MoreStatus> _f$status = Field(
+      'status', _$status,
+      opt: true, def: const MoreBaseStatus(isLoading: true));
 
   @override
   final MappableFields<MoreState> fields = const {

@@ -78,6 +78,7 @@ abstract class  LocaleKeys {
   static const movie = 'movie';
   static const series = 'series';
   static const signInTile = 'signInTile';
+  static const signOutTile = 'signOutTile';
   static const aboutUsTile = 'aboutUsTile';
   static const privacyPolicyTile = 'privacyPolicyTile';
   static const termsAndConditionsTile = 'termsAndConditionsTile';
@@ -112,5 +113,8 @@ abstract class  LocaleKeys {
   static const signInButton = 'signInButton';
   static const forgotPassButton = 'forgotPassButton';
   static const createAccountButton = 'createAccountButton';
+  static const signOutDialog = 'signOutDialog';
+  static const deleteAccountDialog = 'deleteAccountDialog';
+  static const deleteAccountButton = 'deleteAccountButton';
 
 }
