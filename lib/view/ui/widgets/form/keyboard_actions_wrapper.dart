@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_utils/flutter_utils.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
 import '../../resources/base_theme/colors/base_colors_ext.dart';
@@ -52,11 +53,12 @@ class KeyboardActionsWrapper extends StatefulWidget {
   /// A builder function that provides the context and the focus nodes map.
   final Function(BuildContext, Map<String, FocusNode>) builder;
 
-  const KeyboardActionsWrapper(
-      {super.key,
-      this.fieldNames = const [],
-      this.nodesDict,
-      required this.builder});
+  const KeyboardActionsWrapper({
+    super.key,
+    this.fieldNames = const [],
+    this.nodesDict,
+    required this.builder,
+  });
 
   @override
   State<KeyboardActionsWrapper> createState() => _KeyboardActionsWrapperState();
@@ -69,30 +71,49 @@ class _KeyboardActionsWrapperState extends State<KeyboardActionsWrapper> {
   @override
   void initState() {
     super.initState();
-    _nodesDict = widget.nodesDict ??
+    _nodesDict =
+        widget.nodesDict ??
         widget.fieldNames.fold({}, (acc, name) {
           acc[name] = FocusNode();
           return acc;
         });
 
-    _keyboardActions = _nodesDict.values
-        .map((node) => KeyboardActionsCreator.createActionItem(
-            focusNode: node, onButtonPressed: () => node.unfocus()))
-        .toList();
+    _keyboardActions =
+        _nodesDict.values
+            .map(
+              (node) => KeyboardActionsCreator.createActionItem(
+                focusNode: node,
+                onButtonPressed: () => node.unfocus(),
+              ),
+            )
+            .toList();
   }
 
   @override
   Widget build(BuildContext context) {
     final colors = context.baseColors;
 
-    return KeyboardActions(
-      disableScroll: true,
-      config: KeyboardActionsConfig(
-        keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
-        keyboardBarColor: colors.kbdActionBar,
-        actions: _keyboardActions,
+    // Override the icon theme color for keyboard actions
+    // without affecting the form's theme.
+    return Theme(
+      data: context.theme.copyWith(
+        iconTheme: context.theme.iconTheme.copyWith(
+          color: colors.kbdActionBarFg,
+        ),
       ),
-      child: widget.builder(context, _nodesDict),
+      child: KeyboardActions(
+        disableScroll: true,
+        config: KeyboardActionsConfig(
+          keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
+          keyboardBarColor: colors.kbdActionBarBg,
+          actions: _keyboardActions,
+        ),
+        // Restore the original theme for the form content.
+        child: Theme(
+          data: context.theme,
+          child: widget.builder(context, _nodesDict),
+        ),
+      ),
     );
   }
 

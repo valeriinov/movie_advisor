@@ -77,7 +77,8 @@ abstract final class _BaseColors {
   static const txtFldPrimSuffixIcon = Color(0xFF67686D);
 
   // Keyboard Actions
-  static const kbdActionBar = Color(0xFFCCCED5);
+  static const kbdActionBarBg = Color(0xFFCCCED5);
+  static const kbdActionBarFg = Color(0xFF000000);
 
   // Dialogs
   static const dlgPrimBg = Color(0xFFFFFFFF);

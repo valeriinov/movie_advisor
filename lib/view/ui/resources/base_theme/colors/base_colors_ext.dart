@@ -60,7 +60,8 @@ abstract final class BaseColorsFactory {
     txtFldPrimBorderError: _BaseColors.txtFldPrimBorderError,
     txtFldPrimError: _BaseColors.txtFldPrimError,
     txtFldPrimSuffixIcon: _BaseColors.txtFldPrimSuffixIcon,
-    kbdActionBar: _BaseColors.kbdActionBar,
+    kbdActionBarBg: _BaseColors.kbdActionBarBg,
+    kbdActionBarFg: _BaseColors.kbdActionBarFg,
     dlgPrimBg: _BaseColors.dlgPrimBg,
     dlgPrimTitle: _BaseColors.dlgPrimTitle,
     dlgPrimCont: _BaseColors.dlgPrimCont,
@@ -326,9 +327,13 @@ class BaseColors extends ThemeExtension<BaseColors>
 
   // KEYBOARD ACTIONS
 
-  /// Keyboard action bar color.
+  /// Keyboard action bar background color.
   @override
-  final Color kbdActionBar;
+  final Color kbdActionBarBg;
+
+  /// Keyboard action bar foreground color.
+  @override
+  final Color kbdActionBarFg;
 
   // DIALOGS
 
@@ -532,7 +537,8 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.txtFldPrimBorderError,
     required this.txtFldPrimError,
     required this.txtFldPrimSuffixIcon,
-    required this.kbdActionBar,
+    required this.kbdActionBarBg,
+    required this.kbdActionBarFg,
     required this.dlgPrimBg,
     required this.dlgPrimTitle,
     required this.dlgPrimCont,

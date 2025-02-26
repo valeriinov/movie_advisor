@@ -62,7 +62,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get txtFldPrimBorderError;
   Color get txtFldPrimError;
   Color get txtFldPrimSuffixIcon;
-  Color get kbdActionBar;
+  Color get kbdActionBarBg;
+  Color get kbdActionBarFg;
   Color get dlgPrimBg;
   Color get dlgPrimTitle;
   Color get dlgPrimCont;
@@ -154,7 +155,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? txtFldPrimBorderError,
     Color? txtFldPrimError,
     Color? txtFldPrimSuffixIcon,
-    Color? kbdActionBar,
+    Color? kbdActionBarBg,
+    Color? kbdActionBarFg,
     Color? dlgPrimBg,
     Color? dlgPrimTitle,
     Color? dlgPrimCont,
@@ -247,7 +249,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
           txtFldPrimBorderError ?? this.txtFldPrimBorderError,
       txtFldPrimError: txtFldPrimError ?? this.txtFldPrimError,
       txtFldPrimSuffixIcon: txtFldPrimSuffixIcon ?? this.txtFldPrimSuffixIcon,
-      kbdActionBar: kbdActionBar ?? this.kbdActionBar,
+      kbdActionBarBg: kbdActionBarBg ?? this.kbdActionBarBg,
+      kbdActionBarFg: kbdActionBarFg ?? this.kbdActionBarFg,
       dlgPrimBg: dlgPrimBg ?? this.dlgPrimBg,
       dlgPrimTitle: dlgPrimTitle ?? this.dlgPrimTitle,
       dlgPrimCont: dlgPrimCont ?? this.dlgPrimCont,
@@ -366,7 +369,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       txtFldPrimError: Color.lerp(txtFldPrimError, other.txtFldPrimError, t)!,
       txtFldPrimSuffixIcon:
           Color.lerp(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon, t)!,
-      kbdActionBar: Color.lerp(kbdActionBar, other.kbdActionBar, t)!,
+      kbdActionBarBg: Color.lerp(kbdActionBarBg, other.kbdActionBarBg, t)!,
+      kbdActionBarFg: Color.lerp(kbdActionBarFg, other.kbdActionBarFg, t)!,
       dlgPrimBg: Color.lerp(dlgPrimBg, other.dlgPrimBg, t)!,
       dlgPrimTitle: Color.lerp(dlgPrimTitle, other.dlgPrimTitle, t)!,
       dlgPrimCont: Color.lerp(dlgPrimCont, other.dlgPrimCont, t)!,
@@ -515,7 +519,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
             const DeepCollectionEquality().equals(txtFldPrimError, other.txtFldPrimError) &&
             const DeepCollectionEquality().equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
-            const DeepCollectionEquality().equals(kbdActionBar, other.kbdActionBar) &&
+            const DeepCollectionEquality().equals(kbdActionBarBg, other.kbdActionBarBg) &&
+            const DeepCollectionEquality().equals(kbdActionBarFg, other.kbdActionBarFg) &&
             const DeepCollectionEquality().equals(dlgPrimBg, other.dlgPrimBg) &&
             const DeepCollectionEquality().equals(dlgPrimTitle, other.dlgPrimTitle) &&
             const DeepCollectionEquality().equals(dlgPrimCont, other.dlgPrimCont) &&
@@ -610,7 +615,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(txtFldPrimBorderError),
       const DeepCollectionEquality().hash(txtFldPrimError),
       const DeepCollectionEquality().hash(txtFldPrimSuffixIcon),
-      const DeepCollectionEquality().hash(kbdActionBar),
+      const DeepCollectionEquality().hash(kbdActionBarBg),
+      const DeepCollectionEquality().hash(kbdActionBarFg),
       const DeepCollectionEquality().hash(dlgPrimBg),
       const DeepCollectionEquality().hash(dlgPrimTitle),
       const DeepCollectionEquality().hash(dlgPrimCont),
