@@ -13,6 +13,7 @@ class RegStateMapper extends ClassMapperBase<RegState> {
   static RegStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = RegStateMapper._());
+      RegFormStateMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,17 +21,22 @@ class RegStateMapper extends ClassMapperBase<RegState> {
   @override
   final String id = 'RegState';
 
+  static RegFormState _$formState(RegState v) => v.formState;
+  static const Field<RegState, RegFormState> _f$formState =
+      Field('formState', _$formState, opt: true, def: const RegFormState());
   static RegStatus _$status(RegState v) => v.status;
   static const Field<RegState, RegStatus> _f$status =
       Field('status', _$status, opt: true, def: const RegBaseStatus());
 
   @override
   final MappableFields<RegState> fields = const {
+    #formState: _f$formState,
     #status: _f$status,
   };
 
   static RegState _instantiate(DecodingData data) {
-    return RegState(status: data.dec(_f$status));
+    return RegState(
+        formState: data.dec(_f$formState), status: data.dec(_f$status));
   }
 
   @override
@@ -64,7 +70,8 @@ extension RegStateValueCopy<$R, $Out> on ObjectCopyWith<$R, RegState, $Out> {
 
 abstract class RegStateCopyWith<$R, $In extends RegState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({RegStatus? status});
+  RegFormStateCopyWith<$R, RegFormState, RegFormState> get formState;
+  $R call({RegFormState? formState, RegStatus? status});
   RegStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -77,11 +84,18 @@ class _RegStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<RegState> $mapper =
       RegStateMapper.ensureInitialized();
   @override
-  $R call({RegStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  RegFormStateCopyWith<$R, RegFormState, RegFormState> get formState =>
+      $value.formState.copyWith.$chain((v) => call(formState: v));
   @override
-  RegState $make(CopyWithData data) =>
-      RegState(status: data.get(#status, or: $value.status));
+  $R call({RegFormState? formState, RegStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (formState != null) #formState: formState,
+        if (status != null) #status: status
+      }));
+  @override
+  RegState $make(CopyWithData data) => RegState(
+      formState: data.get(#formState, or: $value.formState),
+      status: data.get(#status, or: $value.status));
 
   @override
   RegStateCopyWith<$R2, RegState, $Out2> $chain<$R2, $Out2>(
@@ -304,4 +318,113 @@ class _RegBaseInitStatusCopyWithImpl<$R, $Out>
   RegBaseInitStatusCopyWith<$R2, RegBaseInitStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
       _RegBaseInitStatusCopyWithImpl($value, $cast, t);
+}
+
+class RegSuccessStatusMapper extends ClassMapperBase<RegSuccessStatus> {
+  RegSuccessStatusMapper._();
+
+  static RegSuccessStatusMapper? _instance;
+  static RegSuccessStatusMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = RegSuccessStatusMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'RegSuccessStatus';
+
+  static bool _$isLoading(RegSuccessStatus v) => v.isLoading;
+  static const Field<RegSuccessStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
+  static String? _$errorMessage(RegSuccessStatus v) => v.errorMessage;
+  static const Field<RegSuccessStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
+  static bool _$isInitialized(RegSuccessStatus v) => v.isInitialized;
+  static const Field<RegSuccessStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
+
+  @override
+  final MappableFields<RegSuccessStatus> fields = const {
+    #isLoading: _f$isLoading,
+    #errorMessage: _f$errorMessage,
+    #isInitialized: _f$isInitialized,
+  };
+
+  static RegSuccessStatus _instantiate(DecodingData data) {
+    return RegSuccessStatus(
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+}
+
+mixin RegSuccessStatusMappable {
+  RegSuccessStatusCopyWith<RegSuccessStatus, RegSuccessStatus, RegSuccessStatus>
+      get copyWith => _RegSuccessStatusCopyWithImpl(
+          this as RegSuccessStatus, $identity, $identity);
+  @override
+  String toString() {
+    return RegSuccessStatusMapper.ensureInitialized()
+        .stringifyValue(this as RegSuccessStatus);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return RegSuccessStatusMapper.ensureInitialized()
+        .equalsValue(this as RegSuccessStatus, other);
+  }
+
+  @override
+  int get hashCode {
+    return RegSuccessStatusMapper.ensureInitialized()
+        .hashValue(this as RegSuccessStatus);
+  }
+}
+
+extension RegSuccessStatusValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, RegSuccessStatus, $Out> {
+  RegSuccessStatusCopyWith<$R, RegSuccessStatus, $Out>
+      get $asRegSuccessStatus =>
+          $base.as((v, t, t2) => _RegSuccessStatusCopyWithImpl(v, t, t2));
+}
+
+abstract class RegSuccessStatusCopyWith<$R, $In extends RegSuccessStatus, $Out>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
+  RegSuccessStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
+}
+
+class _RegSuccessStatusCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, RegSuccessStatus, $Out>
+    implements RegSuccessStatusCopyWith<$R, RegSuccessStatus, $Out> {
+  _RegSuccessStatusCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<RegSuccessStatus> $mapper =
+      RegSuccessStatusMapper.ensureInitialized();
+  @override
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
+  @override
+  RegSuccessStatus $make(CopyWithData data) => RegSuccessStatus(
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+
+  @override
+  RegSuccessStatusCopyWith<$R2, RegSuccessStatus, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
+      _RegSuccessStatusCopyWithImpl($value, $cast, t);
 }

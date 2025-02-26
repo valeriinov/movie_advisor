@@ -2,6 +2,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../../../../domain/entities/mappable_entity.dart';
 import '../../../base/view_model/base_state.dart';
+import '../model/reg_form_state.dart';
 
 part 'reg_state.mapper.dart';
 
@@ -11,10 +12,13 @@ part 'reg_state.mapper.dart';
 /// Manages the current status for reactive updates.
 @mappableEntity
 final class RegState extends BaseState<RegStatus> with RegStateMappable {
+  final RegFormState formState;
+
   @override
   final RegStatus status;
 
   const RegState({
+    this.formState = const RegFormState(),
     this.status = const RegBaseStatus(),
   });
 }
@@ -24,8 +28,7 @@ final class RegState extends BaseState<RegStatus> with RegStateMappable {
 /// A sealed class representing the possible statuses of a [RegState].
 /// Provides properties for loading, initialization, and error handling.
 sealed class RegStatus extends BaseStatus {
-const RegStatus(
-{super.isLoading, super.errorMessage, super.isInitialized});
+  const RegStatus({super.isLoading, super.errorMessage, super.isInitialized});
 }
 
 /// {@category StateManagement}
@@ -33,10 +36,12 @@ const RegStatus(
 /// Represents the initial or uninitialized status of a [RegState].
 /// Used before it has completed its setup.
 @mappableEntity
-final class RegBaseStatus extends RegStatus
-with RegBaseStatusMappable {
-const RegBaseStatus(
-{super.isLoading, super.errorMessage, super.isInitialized});
+final class RegBaseStatus extends RegStatus with RegBaseStatusMappable {
+  const RegBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -44,8 +49,19 @@ const RegBaseStatus(
 /// Represents the neutral or idle status of a [RegState] after it has completed its initial setup.
 /// Indicates that it is ready for interaction with [isInitialized] set to `true`.
 @mappableEntity
-final class RegBaseInitStatus extends RegStatus
-with RegBaseInitStatusMappable {
-const RegBaseInitStatus(
-{super.isLoading, super.errorMessage, super.isInitialized = true});
+final class RegBaseInitStatus extends RegStatus with RegBaseInitStatusMappable {
+  const RegBaseInitStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
+}
+
+@mappableEntity
+final class RegSuccessStatus extends RegStatus with RegSuccessStatusMappable {
+  const RegSuccessStatus({
+    super.isLoading = false,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }
