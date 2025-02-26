@@ -9,6 +9,14 @@ part of 'base_buttons_styles_ext.dart';
 // **************************************************************************
 
 mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
+  double get btnPrimBorderRadius;
+  double get btnPrimHeight;
+  double get btnSecBorderRadius;
+  double get btnSecHeight;
+  OutlinedBorder get btnPrimShape;
+  OutlinedBorder get btnSecShape;
+  Size get btnPrimMinSize;
+  Size get btnSecMinSize;
   ButtonStyle get elevBtnPrimStyle;
   ButtonStyle get outBtnPrimStyle;
   ButtonStyle get fillBtnPrimStyle;
@@ -18,6 +26,14 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
 
   @override
   BaseButtonStyles copyWith({
+    double? btnPrimBorderRadius,
+    double? btnPrimHeight,
+    double? btnSecBorderRadius,
+    double? btnSecHeight,
+    OutlinedBorder? btnPrimShape,
+    OutlinedBorder? btnSecShape,
+    Size? btnPrimMinSize,
+    Size? btnSecMinSize,
     ButtonStyle? elevBtnPrimStyle,
     ButtonStyle? outBtnPrimStyle,
     ButtonStyle? fillBtnPrimStyle,
@@ -26,6 +42,14 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
     ButtonStyle? iconBtnPrimStyle,
   }) {
     return BaseButtonStyles(
+      btnPrimBorderRadius: btnPrimBorderRadius ?? this.btnPrimBorderRadius,
+      btnPrimHeight: btnPrimHeight ?? this.btnPrimHeight,
+      btnSecBorderRadius: btnSecBorderRadius ?? this.btnSecBorderRadius,
+      btnSecHeight: btnSecHeight ?? this.btnSecHeight,
+      btnPrimShape: btnPrimShape ?? this.btnPrimShape,
+      btnSecShape: btnSecShape ?? this.btnSecShape,
+      btnPrimMinSize: btnPrimMinSize ?? this.btnPrimMinSize,
+      btnSecMinSize: btnSecMinSize ?? this.btnSecMinSize,
       elevBtnPrimStyle: elevBtnPrimStyle ?? this.elevBtnPrimStyle,
       outBtnPrimStyle: outBtnPrimStyle ?? this.outBtnPrimStyle,
       fillBtnPrimStyle: fillBtnPrimStyle ?? this.fillBtnPrimStyle,
@@ -40,6 +64,16 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
       covariant ThemeExtension<BaseButtonStyles>? other, double t) {
     if (other is! BaseButtonStyles) return this as BaseButtonStyles;
     return BaseButtonStyles(
+      btnPrimBorderRadius:
+          t < 0.5 ? btnPrimBorderRadius : other.btnPrimBorderRadius,
+      btnPrimHeight: t < 0.5 ? btnPrimHeight : other.btnPrimHeight,
+      btnSecBorderRadius:
+          t < 0.5 ? btnSecBorderRadius : other.btnSecBorderRadius,
+      btnSecHeight: t < 0.5 ? btnSecHeight : other.btnSecHeight,
+      btnPrimShape: t < 0.5 ? btnPrimShape : other.btnPrimShape,
+      btnSecShape: t < 0.5 ? btnSecShape : other.btnSecShape,
+      btnPrimMinSize: t < 0.5 ? btnPrimMinSize : other.btnPrimMinSize,
+      btnSecMinSize: t < 0.5 ? btnSecMinSize : other.btnSecMinSize,
       elevBtnPrimStyle: t < 0.5 ? elevBtnPrimStyle : other.elevBtnPrimStyle,
       outBtnPrimStyle: t < 0.5 ? outBtnPrimStyle : other.outBtnPrimStyle,
       fillBtnPrimStyle: t < 0.5 ? fillBtnPrimStyle : other.fillBtnPrimStyle,
@@ -54,6 +88,22 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BaseButtonStyles &&
+            const DeepCollectionEquality()
+                .equals(btnPrimBorderRadius, other.btnPrimBorderRadius) &&
+            const DeepCollectionEquality()
+                .equals(btnPrimHeight, other.btnPrimHeight) &&
+            const DeepCollectionEquality()
+                .equals(btnSecBorderRadius, other.btnSecBorderRadius) &&
+            const DeepCollectionEquality()
+                .equals(btnSecHeight, other.btnSecHeight) &&
+            const DeepCollectionEquality()
+                .equals(btnPrimShape, other.btnPrimShape) &&
+            const DeepCollectionEquality()
+                .equals(btnSecShape, other.btnSecShape) &&
+            const DeepCollectionEquality()
+                .equals(btnPrimMinSize, other.btnPrimMinSize) &&
+            const DeepCollectionEquality()
+                .equals(btnSecMinSize, other.btnSecMinSize) &&
             const DeepCollectionEquality()
                 .equals(elevBtnPrimStyle, other.elevBtnPrimStyle) &&
             const DeepCollectionEquality()
@@ -71,6 +121,14 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(btnPrimBorderRadius),
+      const DeepCollectionEquality().hash(btnPrimHeight),
+      const DeepCollectionEquality().hash(btnSecBorderRadius),
+      const DeepCollectionEquality().hash(btnSecHeight),
+      const DeepCollectionEquality().hash(btnPrimShape),
+      const DeepCollectionEquality().hash(btnSecShape),
+      const DeepCollectionEquality().hash(btnPrimMinSize),
+      const DeepCollectionEquality().hash(btnSecMinSize),
       const DeepCollectionEquality().hash(elevBtnPrimStyle),
       const DeepCollectionEquality().hash(outBtnPrimStyle),
       const DeepCollectionEquality().hash(fillBtnPrimStyle),

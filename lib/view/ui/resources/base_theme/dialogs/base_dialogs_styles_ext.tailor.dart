@@ -12,6 +12,7 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
   TextStyle get dlgPrimTitleTextStyle;
   TextStyle get dlgPrimContTextStyle;
   TextStyle get dlgPrimBtnTextStyle;
+  TextStyle get dlgSecBtnTextStyle;
   EdgeInsets get dlgPrimActPadding;
   EdgeInsets get dlgPrimInsPadding;
   ShapeBorder get dlgPrimShape;
@@ -27,6 +28,7 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
     TextStyle? dlgPrimTitleTextStyle,
     TextStyle? dlgPrimContTextStyle,
     TextStyle? dlgPrimBtnTextStyle,
+    TextStyle? dlgSecBtnTextStyle,
     EdgeInsets? dlgPrimActPadding,
     EdgeInsets? dlgPrimInsPadding,
     ShapeBorder? dlgPrimShape,
@@ -42,6 +44,7 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
           dlgPrimTitleTextStyle ?? this.dlgPrimTitleTextStyle,
       dlgPrimContTextStyle: dlgPrimContTextStyle ?? this.dlgPrimContTextStyle,
       dlgPrimBtnTextStyle: dlgPrimBtnTextStyle ?? this.dlgPrimBtnTextStyle,
+      dlgSecBtnTextStyle: dlgSecBtnTextStyle ?? this.dlgSecBtnTextStyle,
       dlgPrimActPadding: dlgPrimActPadding ?? this.dlgPrimActPadding,
       dlgPrimInsPadding: dlgPrimInsPadding ?? this.dlgPrimInsPadding,
       dlgPrimShape: dlgPrimShape ?? this.dlgPrimShape,
@@ -65,6 +68,8 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
           TextStyle.lerp(dlgPrimContTextStyle, other.dlgPrimContTextStyle, t)!,
       dlgPrimBtnTextStyle:
           TextStyle.lerp(dlgPrimBtnTextStyle, other.dlgPrimBtnTextStyle, t)!,
+      dlgSecBtnTextStyle:
+          TextStyle.lerp(dlgSecBtnTextStyle, other.dlgSecBtnTextStyle, t)!,
       dlgPrimActPadding: t < 0.5 ? dlgPrimActPadding : other.dlgPrimActPadding,
       dlgPrimInsPadding: t < 0.5 ? dlgPrimInsPadding : other.dlgPrimInsPadding,
       dlgPrimShape: t < 0.5 ? dlgPrimShape : other.dlgPrimShape,
@@ -88,6 +93,8 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
                 .equals(dlgPrimContTextStyle, other.dlgPrimContTextStyle) &&
             const DeepCollectionEquality()
                 .equals(dlgPrimBtnTextStyle, other.dlgPrimBtnTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(dlgSecBtnTextStyle, other.dlgSecBtnTextStyle) &&
             const DeepCollectionEquality()
                 .equals(dlgPrimActPadding, other.dlgPrimActPadding) &&
             const DeepCollectionEquality()
@@ -115,6 +122,7 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
       const DeepCollectionEquality().hash(dlgPrimTitleTextStyle),
       const DeepCollectionEquality().hash(dlgPrimContTextStyle),
       const DeepCollectionEquality().hash(dlgPrimBtnTextStyle),
+      const DeepCollectionEquality().hash(dlgSecBtnTextStyle),
       const DeepCollectionEquality().hash(dlgPrimActPadding),
       const DeepCollectionEquality().hash(dlgPrimInsPadding),
       const DeepCollectionEquality().hash(dlgPrimShape),

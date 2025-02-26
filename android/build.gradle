@@ -1,3 +1,11 @@
+buildscript {
+    ext {
+        compileSdk = 35
+        minSdk = 24
+        targetSdk = 35
+    }
+}
+
 allprojects {
     repositories {
         google()

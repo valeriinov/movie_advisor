@@ -77,6 +77,8 @@ abstract class  LocaleKeys {
   static const contentTypeMenu = 'contentTypeMenu';
   static const movie = 'movie';
   static const series = 'series';
+  static const signInTile = 'signInTile';
+  static const signOutTile = 'signOutTile';
   static const aboutUsTile = 'aboutUsTile';
   static const privacyPolicyTile = 'privacyPolicyTile';
   static const termsAndConditionsTile = 'termsAndConditionsTile';
@@ -106,5 +108,19 @@ abstract class  LocaleKeys {
   static const emailFieldHint = 'emailFieldHint';
   static const passFieldHint = 'passFieldHint';
   static const confirmPassFieldHint = 'confirmPassFieldHint';
+  static const signInScreenTitle = 'signInScreenTitle';
+  static const signInSuccessToast = 'signInSuccessToast';
+  static const signInButton = 'signInButton';
+  static const forgotPassButton = 'forgotPassButton';
+  static const createAccountButton = 'createAccountButton';
+  static const signOutDialog = 'signOutDialog';
+  static const deleteAccountDialog = 'deleteAccountDialog';
+  static const deleteAccountButton = 'deleteAccountButton';
+  static const regScreenTitle = 'regScreenTitle';
+  static const regSubmitButton = 'regSubmitButton';
+  static const signUpButton = 'signUpButton';
+  static const createAccountSuccessToast = 'createAccountSuccessToast';
+  static const resetPassScreenTitle = 'resetPassScreenTitle';
+  static const resetPassButton = 'resetPassButton';
 
 }

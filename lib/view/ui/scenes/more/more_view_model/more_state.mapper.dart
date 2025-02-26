@@ -13,6 +13,7 @@ class MoreStateMapper extends ClassMapperBase<MoreState> {
   static MoreStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MoreStateMapper._());
+      UserDataMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,17 +21,22 @@ class MoreStateMapper extends ClassMapperBase<MoreState> {
   @override
   final String id = 'MoreState';
 
+  static UserData? _$user(MoreState v) => v.user;
+  static const Field<MoreState, UserData> _f$user =
+      Field('user', _$user, opt: true);
   static MoreStatus _$status(MoreState v) => v.status;
-  static const Field<MoreState, MoreStatus> _f$status =
-      Field('status', _$status, opt: true, def: const MoreBaseStatus());
+  static const Field<MoreState, MoreStatus> _f$status = Field(
+      'status', _$status,
+      opt: true, def: const MoreBaseStatus(isLoading: true));
 
   @override
   final MappableFields<MoreState> fields = const {
+    #user: _f$user,
     #status: _f$status,
   };
 
   static MoreState _instantiate(DecodingData data) {
-    return MoreState(status: data.dec(_f$status));
+    return MoreState(user: data.dec(_f$user), status: data.dec(_f$status));
   }
 
   @override
@@ -65,7 +71,8 @@ extension MoreStateValueCopy<$R, $Out> on ObjectCopyWith<$R, MoreState, $Out> {
 
 abstract class MoreStateCopyWith<$R, $In extends MoreState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({MoreStatus? status});
+  UserDataCopyWith<$R, UserData, UserData>? get user;
+  $R call({UserData? user, MoreStatus? status});
   MoreStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -78,11 +85,18 @@ class _MoreStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MoreState> $mapper =
       MoreStateMapper.ensureInitialized();
   @override
-  $R call({MoreStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  UserDataCopyWith<$R, UserData, UserData>? get user =>
+      $value.user?.copyWith.$chain((v) => call(user: v));
   @override
-  MoreState $make(CopyWithData data) =>
-      MoreState(status: data.get(#status, or: $value.status));
+  $R call({Object? user = $none, MoreStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (user != $none) #user: user,
+        if (status != null) #status: status
+      }));
+  @override
+  MoreState $make(CopyWithData data) => MoreState(
+      user: data.get(#user, or: $value.user),
+      status: data.get(#status, or: $value.status));
 
   @override
   MoreStateCopyWith<$R2, MoreState, $Out2> $chain<$R2, $Out2>(

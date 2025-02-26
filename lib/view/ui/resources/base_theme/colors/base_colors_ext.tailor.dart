@@ -62,11 +62,13 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get txtFldPrimBorderError;
   Color get txtFldPrimError;
   Color get txtFldPrimSuffixIcon;
-  Color get kbdActionBar;
+  Color get kbdActionBarBg;
+  Color get kbdActionBarFg;
   Color get dlgPrimBg;
   Color get dlgPrimTitle;
   Color get dlgPrimCont;
   Color get dlgPrimBtnFg;
+  Color get dlgSecBtnFg;
   Color get toastSuccessBg;
   Color get toastInfoBg;
   Color get toastErrorBg;
@@ -96,6 +98,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get sliderTrackBg;
   Color get sliderThumbFill;
   Color get removeRateBtn;
+  Color get deleteAccountBtn;
 
   @override
   BaseColors copyWith({
@@ -152,11 +155,13 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? txtFldPrimBorderError,
     Color? txtFldPrimError,
     Color? txtFldPrimSuffixIcon,
-    Color? kbdActionBar,
+    Color? kbdActionBarBg,
+    Color? kbdActionBarFg,
     Color? dlgPrimBg,
     Color? dlgPrimTitle,
     Color? dlgPrimCont,
     Color? dlgPrimBtnFg,
+    Color? dlgSecBtnFg,
     Color? toastSuccessBg,
     Color? toastInfoBg,
     Color? toastErrorBg,
@@ -186,6 +191,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? sliderTrackBg,
     Color? sliderThumbFill,
     Color? removeRateBtn,
+    Color? deleteAccountBtn,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -243,11 +249,13 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
           txtFldPrimBorderError ?? this.txtFldPrimBorderError,
       txtFldPrimError: txtFldPrimError ?? this.txtFldPrimError,
       txtFldPrimSuffixIcon: txtFldPrimSuffixIcon ?? this.txtFldPrimSuffixIcon,
-      kbdActionBar: kbdActionBar ?? this.kbdActionBar,
+      kbdActionBarBg: kbdActionBarBg ?? this.kbdActionBarBg,
+      kbdActionBarFg: kbdActionBarFg ?? this.kbdActionBarFg,
       dlgPrimBg: dlgPrimBg ?? this.dlgPrimBg,
       dlgPrimTitle: dlgPrimTitle ?? this.dlgPrimTitle,
       dlgPrimCont: dlgPrimCont ?? this.dlgPrimCont,
       dlgPrimBtnFg: dlgPrimBtnFg ?? this.dlgPrimBtnFg,
+      dlgSecBtnFg: dlgSecBtnFg ?? this.dlgSecBtnFg,
       toastSuccessBg: toastSuccessBg ?? this.toastSuccessBg,
       toastInfoBg: toastInfoBg ?? this.toastInfoBg,
       toastErrorBg: toastErrorBg ?? this.toastErrorBg,
@@ -277,6 +285,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       sliderTrackBg: sliderTrackBg ?? this.sliderTrackBg,
       sliderThumbFill: sliderThumbFill ?? this.sliderThumbFill,
       removeRateBtn: removeRateBtn ?? this.removeRateBtn,
+      deleteAccountBtn: deleteAccountBtn ?? this.deleteAccountBtn,
     );
   }
 
@@ -360,11 +369,13 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       txtFldPrimError: Color.lerp(txtFldPrimError, other.txtFldPrimError, t)!,
       txtFldPrimSuffixIcon:
           Color.lerp(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon, t)!,
-      kbdActionBar: Color.lerp(kbdActionBar, other.kbdActionBar, t)!,
+      kbdActionBarBg: Color.lerp(kbdActionBarBg, other.kbdActionBarBg, t)!,
+      kbdActionBarFg: Color.lerp(kbdActionBarFg, other.kbdActionBarFg, t)!,
       dlgPrimBg: Color.lerp(dlgPrimBg, other.dlgPrimBg, t)!,
       dlgPrimTitle: Color.lerp(dlgPrimTitle, other.dlgPrimTitle, t)!,
       dlgPrimCont: Color.lerp(dlgPrimCont, other.dlgPrimCont, t)!,
       dlgPrimBtnFg: Color.lerp(dlgPrimBtnFg, other.dlgPrimBtnFg, t)!,
+      dlgSecBtnFg: Color.lerp(dlgSecBtnFg, other.dlgSecBtnFg, t)!,
       toastSuccessBg: Color.lerp(toastSuccessBg, other.toastSuccessBg, t)!,
       toastInfoBg: Color.lerp(toastInfoBg, other.toastInfoBg, t)!,
       toastErrorBg: Color.lerp(toastErrorBg, other.toastErrorBg, t)!,
@@ -401,6 +412,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       sliderTrackBg: Color.lerp(sliderTrackBg, other.sliderTrackBg, t)!,
       sliderThumbFill: Color.lerp(sliderThumbFill, other.sliderThumbFill, t)!,
       removeRateBtn: Color.lerp(removeRateBtn, other.removeRateBtn, t)!,
+      deleteAccountBtn:
+          Color.lerp(deleteAccountBtn, other.deleteAccountBtn, t)!,
     );
   }
 
@@ -506,11 +519,13 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
             const DeepCollectionEquality().equals(txtFldPrimError, other.txtFldPrimError) &&
             const DeepCollectionEquality().equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
-            const DeepCollectionEquality().equals(kbdActionBar, other.kbdActionBar) &&
+            const DeepCollectionEquality().equals(kbdActionBarBg, other.kbdActionBarBg) &&
+            const DeepCollectionEquality().equals(kbdActionBarFg, other.kbdActionBarFg) &&
             const DeepCollectionEquality().equals(dlgPrimBg, other.dlgPrimBg) &&
             const DeepCollectionEquality().equals(dlgPrimTitle, other.dlgPrimTitle) &&
             const DeepCollectionEquality().equals(dlgPrimCont, other.dlgPrimCont) &&
             const DeepCollectionEquality().equals(dlgPrimBtnFg, other.dlgPrimBtnFg) &&
+            const DeepCollectionEquality().equals(dlgSecBtnFg, other.dlgSecBtnFg) &&
             const DeepCollectionEquality().equals(toastSuccessBg, other.toastSuccessBg) &&
             const DeepCollectionEquality().equals(toastInfoBg, other.toastInfoBg) &&
             const DeepCollectionEquality().equals(toastErrorBg, other.toastErrorBg) &&
@@ -539,7 +554,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(sliderTrackFg, other.sliderTrackFg) &&
             const DeepCollectionEquality().equals(sliderTrackBg, other.sliderTrackBg) &&
             const DeepCollectionEquality().equals(sliderThumbFill, other.sliderThumbFill) &&
-            const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn));
+            const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn) &&
+            const DeepCollectionEquality().equals(deleteAccountBtn, other.deleteAccountBtn));
   }
 
   @override
@@ -599,11 +615,13 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(txtFldPrimBorderError),
       const DeepCollectionEquality().hash(txtFldPrimError),
       const DeepCollectionEquality().hash(txtFldPrimSuffixIcon),
-      const DeepCollectionEquality().hash(kbdActionBar),
+      const DeepCollectionEquality().hash(kbdActionBarBg),
+      const DeepCollectionEquality().hash(kbdActionBarFg),
       const DeepCollectionEquality().hash(dlgPrimBg),
       const DeepCollectionEquality().hash(dlgPrimTitle),
       const DeepCollectionEquality().hash(dlgPrimCont),
       const DeepCollectionEquality().hash(dlgPrimBtnFg),
+      const DeepCollectionEquality().hash(dlgSecBtnFg),
       const DeepCollectionEquality().hash(toastSuccessBg),
       const DeepCollectionEquality().hash(toastInfoBg),
       const DeepCollectionEquality().hash(toastErrorBg),
@@ -633,6 +651,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(sliderTrackBg),
       const DeepCollectionEquality().hash(sliderThumbFill),
       const DeepCollectionEquality().hash(removeRateBtn),
+      const DeepCollectionEquality().hash(deleteAccountBtn),
     ]);
   }
 }
