@@ -115,5 +115,7 @@
   "regScreenTitle": "Створити акаунт",
   "regSubmitButton": "СТВОРИТИ АКАУНТ",
   "signUpButton": "ЗАРЕЄСТРУВАТИСЯ",
-  "createAccountSuccessToast": "Акаунт успішно створено"
+  "createAccountSuccessToast": "Акаунт успішно створено",
+  "resetPassScreenTitle": "Скинути пароль",
+  "resetPassButton": "СКИНУТИ ПАРОЛЬ"
 }
