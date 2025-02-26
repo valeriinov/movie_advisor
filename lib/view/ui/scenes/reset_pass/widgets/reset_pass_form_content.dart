@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_utils/widgets/form_widgets/form_auto_validate_builder.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../widgets/form/input_field.dart';
 import '../../../widgets/form/keyboard_actions_wrapper.dart';
-import '../model/reg_form_state.dart';
-import '../reg_view_model/reg_view_model.dart';
-import 'reg_submit_button.dart';
+import '../../auth/model/auth_form_state.dart';
+import '../model/reset_pass_form_state.dart';
+import 'reset_pass_submit_button.dart';
 
-class RegFormContent extends ConsumerWidget {
-  final void Function(RegFormState) updateFormState;
+class ResetPassFormContent extends StatelessWidget {
+  final void Function(ResetPassFormState) updateFormState;
 
-  const RegFormContent({super.key, required this.updateFormState});
+  const ResetPassFormContent({super.key, required this.updateFormState});
 
   @override
-  Widget build(context, ref) {
+  Widget build(BuildContext context) {
     final dimens = context.baseDimens;
-    final emailFieldName = RegFormState.nameof.fieldEmail;
-    final passFieldName = RegFormState.nameof.fieldPassword;
-    final confirmPassFieldName = RegFormState.nameof.fieldConfirmPassword;
-
-    final vsp = ref.vspFromADProvider(regViewModelPr);
+    final emailFieldName = AuthFormState.nameof.fieldEmail;
 
     return SliverToBoxAdapter(
       child: FormAutoValidateBuilder<FormBuilderState>(
@@ -38,11 +32,7 @@ class RegFormContent extends ConsumerWidget {
             child: SizedBox(
               width: double.infinity,
               child: KeyboardActionsWrapper(
-                fieldNames: [
-                  emailFieldName,
-                  passFieldName,
-                  confirmPassFieldName,
-                ],
+                fieldNames: [emailFieldName],
                 builder:
                     (context, nodesDict) => Column(
                       mainAxisSize: MainAxisSize.min,
@@ -52,18 +42,7 @@ class RegFormContent extends ConsumerWidget {
                           name: emailFieldName,
                           focusNode: nodesDict[emailFieldName],
                         ),
-                        InputField.pass(
-                          name: passFieldName,
-                          focusNode: nodesDict[passFieldName],
-                        ),
-                        InputField.confirmPass(
-                          name: confirmPassFieldName,
-                          focusNode: nodesDict[confirmPassFieldName],
-                          textInputAction: TextInputAction.done,
-                          getPassValue:
-                              () => vsp.selectRead((s) => s.formState.password),
-                        ),
-                        RegSubmitButton(
+                        ResetPassSubmitButton(
                           formKey: formKey,
                           setAutoValidate: setAutoValidate,
                         ),
@@ -81,7 +60,7 @@ class RegFormContent extends ConsumerWidget {
     final json = formKey.currentState?.instantValue;
     if (json == null) return;
 
-    final formState = RegFormState.fromJson(json);
+    final formState = ResetPassFormState.fromJson(json);
 
     updateFormState(formState);
   }
