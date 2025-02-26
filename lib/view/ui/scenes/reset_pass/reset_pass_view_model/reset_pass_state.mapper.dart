@@ -13,6 +13,7 @@ class ResetPassStateMapper extends ClassMapperBase<ResetPassState> {
   static ResetPassStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ResetPassStateMapper._());
+      ResetPassFormStateMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,17 +21,23 @@ class ResetPassStateMapper extends ClassMapperBase<ResetPassState> {
   @override
   final String id = 'ResetPassState';
 
+  static ResetPassFormState _$formState(ResetPassState v) => v.formState;
+  static const Field<ResetPassState, ResetPassFormState> _f$formState = Field(
+      'formState', _$formState,
+      opt: true, def: const ResetPassFormState());
   static ResetPassStatus _$status(ResetPassState v) => v.status;
   static const Field<ResetPassState, ResetPassStatus> _f$status =
       Field('status', _$status, opt: true, def: const ResetPassBaseStatus());
 
   @override
   final MappableFields<ResetPassState> fields = const {
+    #formState: _f$formState,
     #status: _f$status,
   };
 
   static ResetPassState _instantiate(DecodingData data) {
-    return ResetPassState(status: data.dec(_f$status));
+    return ResetPassState(
+        formState: data.dec(_f$formState), status: data.dec(_f$status));
   }
 
   @override
@@ -68,7 +75,9 @@ extension ResetPassStateValueCopy<$R, $Out>
 
 abstract class ResetPassStateCopyWith<$R, $In extends ResetPassState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({ResetPassStatus? status});
+  ResetPassFormStateCopyWith<$R, ResetPassFormState, ResetPassFormState>
+      get formState;
+  $R call({ResetPassFormState? formState, ResetPassStatus? status});
   ResetPassStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -82,11 +91,19 @@ class _ResetPassStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<ResetPassState> $mapper =
       ResetPassStateMapper.ensureInitialized();
   @override
-  $R call({ResetPassStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  ResetPassFormStateCopyWith<$R, ResetPassFormState, ResetPassFormState>
+      get formState =>
+          $value.formState.copyWith.$chain((v) => call(formState: v));
   @override
-  ResetPassState $make(CopyWithData data) =>
-      ResetPassState(status: data.get(#status, or: $value.status));
+  $R call({ResetPassFormState? formState, ResetPassStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (formState != null) #formState: formState,
+        if (status != null) #status: status
+      }));
+  @override
+  ResetPassState $make(CopyWithData data) => ResetPassState(
+      formState: data.get(#formState, or: $value.formState),
+      status: data.get(#status, or: $value.status));
 
   @override
   ResetPassStateCopyWith<$R2, ResetPassState, $Out2> $chain<$R2, $Out2>(
@@ -317,4 +334,118 @@ class _ResetPassBaseInitStatusCopyWithImpl<$R, $Out>
   ResetPassBaseInitStatusCopyWith<$R2, ResetPassBaseInitStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
           _ResetPassBaseInitStatusCopyWithImpl($value, $cast, t);
+}
+
+class ResetPassSuccessStatusMapper
+    extends ClassMapperBase<ResetPassSuccessStatus> {
+  ResetPassSuccessStatusMapper._();
+
+  static ResetPassSuccessStatusMapper? _instance;
+  static ResetPassSuccessStatusMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ResetPassSuccessStatusMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'ResetPassSuccessStatus';
+
+  static bool _$isLoading(ResetPassSuccessStatus v) => v.isLoading;
+  static const Field<ResetPassSuccessStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
+  static String? _$errorMessage(ResetPassSuccessStatus v) => v.errorMessage;
+  static const Field<ResetPassSuccessStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
+  static bool _$isInitialized(ResetPassSuccessStatus v) => v.isInitialized;
+  static const Field<ResetPassSuccessStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
+
+  @override
+  final MappableFields<ResetPassSuccessStatus> fields = const {
+    #isLoading: _f$isLoading,
+    #errorMessage: _f$errorMessage,
+    #isInitialized: _f$isInitialized,
+  };
+
+  static ResetPassSuccessStatus _instantiate(DecodingData data) {
+    return ResetPassSuccessStatus(
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+}
+
+mixin ResetPassSuccessStatusMappable {
+  ResetPassSuccessStatusCopyWith<ResetPassSuccessStatus, ResetPassSuccessStatus,
+          ResetPassSuccessStatus>
+      get copyWith => _ResetPassSuccessStatusCopyWithImpl(
+          this as ResetPassSuccessStatus, $identity, $identity);
+  @override
+  String toString() {
+    return ResetPassSuccessStatusMapper.ensureInitialized()
+        .stringifyValue(this as ResetPassSuccessStatus);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return ResetPassSuccessStatusMapper.ensureInitialized()
+        .equalsValue(this as ResetPassSuccessStatus, other);
+  }
+
+  @override
+  int get hashCode {
+    return ResetPassSuccessStatusMapper.ensureInitialized()
+        .hashValue(this as ResetPassSuccessStatus);
+  }
+}
+
+extension ResetPassSuccessStatusValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, ResetPassSuccessStatus, $Out> {
+  ResetPassSuccessStatusCopyWith<$R, ResetPassSuccessStatus, $Out>
+      get $asResetPassSuccessStatus =>
+          $base.as((v, t, t2) => _ResetPassSuccessStatusCopyWithImpl(v, t, t2));
+}
+
+abstract class ResetPassSuccessStatusCopyWith<
+    $R,
+    $In extends ResetPassSuccessStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
+  ResetPassSuccessStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
+}
+
+class _ResetPassSuccessStatusCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, ResetPassSuccessStatus, $Out>
+    implements
+        ResetPassSuccessStatusCopyWith<$R, ResetPassSuccessStatus, $Out> {
+  _ResetPassSuccessStatusCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<ResetPassSuccessStatus> $mapper =
+      ResetPassSuccessStatusMapper.ensureInitialized();
+  @override
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
+  @override
+  ResetPassSuccessStatus $make(CopyWithData data) => ResetPassSuccessStatus(
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+
+  @override
+  ResetPassSuccessStatusCopyWith<$R2, ResetPassSuccessStatus, $Out2>
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _ResetPassSuccessStatusCopyWithImpl($value, $cast, t);
 }
