@@ -20,9 +20,9 @@ abstract final class _BaseColors {
   static const btnElevPrimFgDis = Color(0xFFBDBDBD);
   static const btnElevPrimBgDis = Color(0xFFE0E0E0);
 
-  static const btnOutPrimFg = Color(0xFF6200EA);
+  static const btnOutPrimFg = Color(0xFF0296E5);
   static const btnOutPrimBg = Colors.transparent;
-  static const btnOutPrimFgPress = Color(0xFF3700B3);
+  static const btnOutPrimFgPress = Color(0xFF036fac);
   static const btnOutPrimBgPress = Color(0xFFEDE7F6);
   static const btnOutPrimFgDis = Color(0xFFBDBDBD);
   static const btnOutPrimBgDis = Color(0xFFE0E0E0);
@@ -83,7 +83,8 @@ abstract final class _BaseColors {
   static const dlgPrimBg = Color(0xFFFFFFFF);
   static const dlgPrimTitle = Color(0xFF000000);
   static const dlgPrimCont = Color(0xFF000000);
-  static const dlgPrimBtnFg = Color(0xFF6200EA);
+  static const dlgPrimBtnFg = Color(0xFFFFFFFF);
+  static const dlgSecBtnFg = Color(0xFF67686D);
 
   static const toastSuccessBg = Color(0xFFD6FFD3);
   static const toastInfoBg = Color(0xFFD9EEFF);

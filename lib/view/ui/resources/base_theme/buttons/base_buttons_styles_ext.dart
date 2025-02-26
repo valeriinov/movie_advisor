@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
-
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../app_fonts.dart';
@@ -13,6 +12,14 @@ part 'base_buttons_styles_ext.tailor.dart';
 abstract final class BaseButtonStylesFactory {
   static BaseButtonStyles createButtonsStyles(BaseColors colors) {
     return BaseButtonStyles(
+      btnPrimBorderRadius: _BaseButtonsStyles.btnPrimBorderRadius,
+      btnPrimHeight: _BaseButtonsStyles.btnPrimHeight,
+      btnSecBorderRadius: _BaseButtonsStyles.btnSecBorderRadius,
+      btnSecHeight: _BaseButtonsStyles.btnSecHeight,
+      btnPrimShape: _BaseButtonsStyles.btnPrimShape,
+      btnSecShape: _BaseButtonsStyles.btnSecShape,
+      btnPrimMinSize: _BaseButtonsStyles.btnPrimMinSize,
+      btnSecMinSize: _BaseButtonsStyles.btnSecMinSize,
       elevBtnPrimStyle: _BaseButtonsStyles.elevBtnPrimStyle(
         fgColor: colors.btnElevPrimFg,
         bgColor: colors.btnElevPrimBg,
@@ -56,6 +63,38 @@ abstract final class BaseButtonStylesFactory {
 @TailorMixin()
 class BaseButtonStyles extends ThemeExtension<BaseButtonStyles>
     with _$BaseButtonStylesTailorMixin {
+  /// Primary button border radius.
+  @override
+  final double btnPrimBorderRadius;
+
+  /// Primary button height.
+  @override
+  final double btnPrimHeight;
+
+  /// Secondary button border radius.
+  @override
+  final double btnSecBorderRadius;
+
+  /// Secondary button height.
+  @override
+  final double btnSecHeight;
+
+  /// Primary button shape.
+  @override
+  final OutlinedBorder btnPrimShape;
+
+  /// Secondary button shape.
+  @override
+  final OutlinedBorder btnSecShape;
+
+  /// Primary button minimum size.
+  @override
+  final Size btnPrimMinSize;
+
+  /// Secondary button minimum size.
+  @override
+  final Size btnSecMinSize;
+
   /// Primary elevated button style.
   @override
   final ButtonStyle elevBtnPrimStyle;
@@ -81,6 +120,14 @@ class BaseButtonStyles extends ThemeExtension<BaseButtonStyles>
   final ButtonStyle iconBtnPrimStyle;
 
   BaseButtonStyles({
+    required this.btnPrimBorderRadius,
+    required this.btnPrimHeight,
+    required this.btnSecBorderRadius,
+    required this.btnSecHeight,
+    required this.btnPrimShape,
+    required this.btnSecShape,
+    required this.btnPrimMinSize,
+    required this.btnSecMinSize,
     required this.elevBtnPrimStyle,
     required this.outBtnPrimStyle,
     required this.fillBtnPrimStyle,

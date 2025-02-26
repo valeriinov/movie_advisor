@@ -67,6 +67,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get dlgPrimTitle;
   Color get dlgPrimCont;
   Color get dlgPrimBtnFg;
+  Color get dlgSecBtnFg;
   Color get toastSuccessBg;
   Color get toastInfoBg;
   Color get toastErrorBg;
@@ -158,6 +159,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? dlgPrimTitle,
     Color? dlgPrimCont,
     Color? dlgPrimBtnFg,
+    Color? dlgSecBtnFg,
     Color? toastSuccessBg,
     Color? toastInfoBg,
     Color? toastErrorBg,
@@ -250,6 +252,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       dlgPrimTitle: dlgPrimTitle ?? this.dlgPrimTitle,
       dlgPrimCont: dlgPrimCont ?? this.dlgPrimCont,
       dlgPrimBtnFg: dlgPrimBtnFg ?? this.dlgPrimBtnFg,
+      dlgSecBtnFg: dlgSecBtnFg ?? this.dlgSecBtnFg,
       toastSuccessBg: toastSuccessBg ?? this.toastSuccessBg,
       toastInfoBg: toastInfoBg ?? this.toastInfoBg,
       toastErrorBg: toastErrorBg ?? this.toastErrorBg,
@@ -368,6 +371,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       dlgPrimTitle: Color.lerp(dlgPrimTitle, other.dlgPrimTitle, t)!,
       dlgPrimCont: Color.lerp(dlgPrimCont, other.dlgPrimCont, t)!,
       dlgPrimBtnFg: Color.lerp(dlgPrimBtnFg, other.dlgPrimBtnFg, t)!,
+      dlgSecBtnFg: Color.lerp(dlgSecBtnFg, other.dlgSecBtnFg, t)!,
       toastSuccessBg: Color.lerp(toastSuccessBg, other.toastSuccessBg, t)!,
       toastInfoBg: Color.lerp(toastInfoBg, other.toastInfoBg, t)!,
       toastErrorBg: Color.lerp(toastErrorBg, other.toastErrorBg, t)!,
@@ -516,6 +520,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(dlgPrimTitle, other.dlgPrimTitle) &&
             const DeepCollectionEquality().equals(dlgPrimCont, other.dlgPrimCont) &&
             const DeepCollectionEquality().equals(dlgPrimBtnFg, other.dlgPrimBtnFg) &&
+            const DeepCollectionEquality().equals(dlgSecBtnFg, other.dlgSecBtnFg) &&
             const DeepCollectionEquality().equals(toastSuccessBg, other.toastSuccessBg) &&
             const DeepCollectionEquality().equals(toastInfoBg, other.toastInfoBg) &&
             const DeepCollectionEquality().equals(toastErrorBg, other.toastErrorBg) &&
@@ -610,6 +615,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(dlgPrimTitle),
       const DeepCollectionEquality().hash(dlgPrimCont),
       const DeepCollectionEquality().hash(dlgPrimBtnFg),
+      const DeepCollectionEquality().hash(dlgSecBtnFg),
       const DeepCollectionEquality().hash(toastSuccessBg),
       const DeepCollectionEquality().hash(toastInfoBg),
       const DeepCollectionEquality().hash(toastErrorBg),

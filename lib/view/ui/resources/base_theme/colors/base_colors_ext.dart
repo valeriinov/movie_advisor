@@ -65,6 +65,7 @@ abstract final class BaseColorsFactory {
     dlgPrimTitle: _BaseColors.dlgPrimTitle,
     dlgPrimCont: _BaseColors.dlgPrimCont,
     dlgPrimBtnFg: _BaseColors.dlgPrimBtnFg,
+    dlgSecBtnFg: _BaseColors.dlgSecBtnFg,
     toastSuccessBg: _BaseColors.toastSuccessBg,
     toastInfoBg: _BaseColors.toastInfoBg,
     toastErrorBg: _BaseColors.toastErrorBg,
@@ -347,6 +348,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color dlgPrimBtnFg;
 
+  /// Dialog secondary button foreground color.
+  @override
+  final Color dlgSecBtnFg;
+
   /// Toast success background color.
   @override
   final Color toastSuccessBg;
@@ -532,6 +537,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.dlgPrimTitle,
     required this.dlgPrimCont,
     required this.dlgPrimBtnFg,
+    required this.dlgSecBtnFg,
     required this.toastSuccessBg,
     required this.toastInfoBg,
     required this.toastErrorBg,
