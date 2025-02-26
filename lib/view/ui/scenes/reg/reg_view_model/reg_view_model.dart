@@ -3,9 +3,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/usecases/auth_use_case.dart';
 import '../../../../di/injector.dart';
+import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../model/reg_form_state.dart';
 import 'reg_state.dart';
+
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [RegViewModel] and [RegState].
+typedef RegVSP = ASP<RegViewModel, RegState>;
 
 /// {@category StateManagement}
 ///

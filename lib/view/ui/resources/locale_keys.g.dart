@@ -118,6 +118,7 @@ abstract class  LocaleKeys {
   static const deleteAccountButton = 'deleteAccountButton';
   static const regScreenTitle = 'regScreenTitle';
   static const regSubmitButton = 'regSubmitButton';
+  static const signUpButton = 'signUpButton';
   static const createAccountSuccessToast = 'createAccountSuccessToast';
 
 }

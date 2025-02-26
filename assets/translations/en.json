@@ -114,5 +114,6 @@
   "deleteAccountButton": "Delete Account",
   "regScreenTitle": "Create Account",
   "regSubmitButton": "CREATE ACCOUNT",
+  "signUpButton": "SIGN UP",
   "createAccountSuccessToast": "Account created successfully"
 }
