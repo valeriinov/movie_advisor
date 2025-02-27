@@ -93,7 +93,7 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
 
     batch.insert(
       _localDatabase.moviesTable,
-      remoteMovie.toTableData(),
+      remoteMovie.toTableData(remoteUpdatedAt),
       mode: InsertMode.insertOrReplace,
     );
   }
@@ -204,7 +204,7 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
 
     batch.insert(
       _localDatabase.seriesTable,
-      remoteSeriesItem.toTableData(),
+      remoteSeriesItem.toTableData(remoteUpdatedAt),
       mode: InsertMode.insertOrReplace,
     );
   }
