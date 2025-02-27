@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../dto/general_exceptions.dart';
@@ -60,65 +61,84 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
     List<MovieShortDataDto> remoteMovies,
     Map<int, MoviesTableData> localMoviesMap,
   ) async {
-    for (final remoteMovie in remoteMovies) {
-      final localMovie = localMoviesMap[remoteMovie.id];
-
-      localMovie != null
-          ? await _updateLocalMovieIfNeeded(remoteMovie, localMovie)
-          : await _insertLocalMovie(remoteMovie);
-    }
+    await _localDatabase.batch((batch) async {
+      for (final remoteMovie in remoteMovies) {
+        await _processRemoteMovieItem(batch, remoteMovie, localMoviesMap);
+      }
+    });
   }
 
-  Future<void> _updateLocalMovieIfNeeded(
+  Future<void> _processRemoteMovieItem(
+    Batch batch,
+    MovieShortDataDto remoteMovie,
+    Map<int, MoviesTableData> localMoviesMap,
+  ) async {
+    final localMovie = localMoviesMap[remoteMovie.id];
+
+    localMovie != null
+        ? _batchInsertMovieIfNeeded(batch, remoteMovie, localMovie)
+        : _batchInsertMovie(batch, remoteMovie);
+  }
+
+  void _batchInsertMovieIfNeeded(
+    Batch batch,
     MovieShortDataDto remoteMovie,
     MoviesTableData localMovie,
-  ) async {
+  ) {
     // If updatedAt is missing in remote db, assume it's a new record
     // and treat it as freshly updated to avoid ignoring it.
     final remoteUpdatedAt = remoteMovie.updatedAt ?? DateTime.now();
 
     if (remoteUpdatedAt.isBefore(localMovie.updatedAt)) return;
 
-    await _localDatabase
-        .into(_localDatabase.moviesTable)
-        .insertOnConflictUpdate(remoteMovie.toTableData());
+    batch.insert(
+      _localDatabase.moviesTable,
+      remoteMovie.toTableData(),
+      mode: InsertMode.insertOrReplace,
+    );
   }
 
-  Future<void> _insertLocalMovie(MovieShortDataDto remoteMovie) async {
-    await _localDatabase
-        .into(_localDatabase.moviesTable)
-        .insert(remoteMovie.toTableData());
+  void _batchInsertMovie(Batch batch, MovieShortDataDto remoteMovie) {
+    batch.insert(_localDatabase.moviesTable, remoteMovie.toTableData());
   }
 
   Future<void> _syncMoviesFromLocalToRemote(
     List<MoviesTableData> localMoviesList,
     Map<int, MovieShortDataDto> remoteMoviesMap,
   ) async {
-    for (final localMovie in localMoviesList) {
-      final remoteMovie = remoteMoviesMap[localMovie.tmdbId];
+    final moviesToSync = _collectMoviesToSyncFromLocal(
+      localMoviesList,
+      remoteMoviesMap,
+    );
 
-      remoteMovie != null
-          ? await _updateRemoteMovieIfNeeded(localMovie, remoteMovie)
-          : await _insertRemoteMovie(localMovie);
+    if (moviesToSync.isNotEmpty) {
+      await _remoteMediaService.updateOrInsertMovies(moviesToSync);
     }
   }
 
-  Future<void> _updateRemoteMovieIfNeeded(
+  List<MovieShortDataDto> _collectMoviesToSyncFromLocal(
+    List<MoviesTableData> localMoviesList,
+    Map<int, MovieShortDataDto> remoteMoviesMap,
+  ) {
+    return localMoviesList
+        .where((localMovie) => _shouldSyncMovie(localMovie, remoteMoviesMap))
+        .map((localMovie) => localMovie.toDto())
+        .toList();
+  }
+
+  bool _shouldSyncMovie(
     MoviesTableData localMovie,
-    MovieShortDataDto remoteMovie,
-  ) async {
+    Map<int, MovieShortDataDto> remoteMoviesMap,
+  ) {
+    final remoteMovie = remoteMoviesMap[localMovie.tmdbId];
+
     // If updatedAt is missing in remote db, set it to the earliest possible date
     // to ensure any local record will be considered more recent.
     final remoteUpdatedAt =
-        remoteMovie.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+        remoteMovie?.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
 
-    if (localMovie.updatedAt.isBefore(remoteUpdatedAt)) return;
-
-    await _remoteMediaService.updateOrInsertMovie(localMovie.toDto());
-  }
-
-  Future<void> _insertRemoteMovie(MoviesTableData localMovie) async {
-    await _remoteMediaService.updateOrInsertMovie(localMovie.toDto());
+    return remoteMovie == null ||
+        !localMovie.updatedAt.isBefore(remoteUpdatedAt);
   }
 
   @override
@@ -152,65 +172,84 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
     List<SeriesShortDataDto> remoteSeries,
     Map<int, SeriesTableData> localSeriesMap,
   ) async {
-    for (final remoteSeriesItem in remoteSeries) {
-      final localSeriesItem = localSeriesMap[remoteSeriesItem.id];
-
-      localSeriesItem != null
-          ? await _updateLocalSeriesIfNeeded(remoteSeriesItem, localSeriesItem)
-          : await _insertLocalSeries(remoteSeriesItem);
-    }
+    await _localDatabase.batch((batch) async {
+      for (final remoteSeriesItem in remoteSeries) {
+        await _processRemoteSeriesItem(batch, remoteSeriesItem, localSeriesMap);
+      }
+    });
   }
 
-  Future<void> _updateLocalSeriesIfNeeded(
+  Future<void> _processRemoteSeriesItem(
+    Batch batch,
+    SeriesShortDataDto remoteSeriesItem,
+    Map<int, SeriesTableData> localSeriesMap,
+  ) async {
+    final localSeriesItem = localSeriesMap[remoteSeriesItem.id];
+
+    localSeriesItem != null
+        ? _batchInsertSeriesIfNeeded(batch, remoteSeriesItem, localSeriesItem)
+        : _batchInsertSeries(batch, remoteSeriesItem);
+  }
+
+  void _batchInsertSeriesIfNeeded(
+    Batch batch,
     SeriesShortDataDto remoteSeriesItem,
     SeriesTableData localSeriesItem,
-  ) async {
+  ) {
     // If updatedAt is missing in remote db, assume it's a new record
     // and treat it as freshly updated to avoid ignoring it.
     final remoteUpdatedAt = remoteSeriesItem.updatedAt ?? DateTime.now();
 
     if (remoteUpdatedAt.isBefore(localSeriesItem.updatedAt)) return;
 
-    await _localDatabase
-        .into(_localDatabase.seriesTable)
-        .insertOnConflictUpdate(remoteSeriesItem.toTableData());
+    batch.insert(
+      _localDatabase.seriesTable,
+      remoteSeriesItem.toTableData(),
+      mode: InsertMode.insertOrReplace,
+    );
   }
 
-  Future<void> _insertLocalSeries(SeriesShortDataDto remoteSeriesItem) async {
-    await _localDatabase
-        .into(_localDatabase.seriesTable)
-        .insert(remoteSeriesItem.toTableData());
+  void _batchInsertSeries(Batch batch, SeriesShortDataDto remoteSeriesItem) {
+    batch.insert(_localDatabase.seriesTable, remoteSeriesItem.toTableData());
   }
 
   Future<void> _syncSeriesFromLocalToRemote(
     List<SeriesTableData> localSeriesList,
     Map<int, SeriesShortDataDto> remoteSeriesMap,
   ) async {
-    for (final localSeriesItem in localSeriesList) {
-      final remoteSeriesItem = remoteSeriesMap[localSeriesItem.tmdbId];
+    final seriesToSync = _collectSeriesToSyncFromLocal(
+      localSeriesList,
+      remoteSeriesMap,
+    );
 
-      remoteSeriesItem != null
-          ? await _updateRemoteSeriesIfNeeded(localSeriesItem, remoteSeriesItem)
-          : await _insertRemoteSeries(localSeriesItem);
+    if (seriesToSync.isNotEmpty) {
+      await _remoteMediaService.updateOrInsertSeriesList(seriesToSync);
     }
   }
 
-  Future<void> _updateRemoteSeriesIfNeeded(
-    SeriesTableData localSeriesItem,
-    SeriesShortDataDto remoteSeriesItem,
-  ) async {
+  List<SeriesShortDataDto> _collectSeriesToSyncFromLocal(
+    List<SeriesTableData> localSeriesList,
+    Map<int, SeriesShortDataDto> remoteSeriesMap,
+  ) {
+    return localSeriesList
+        .where((localSeries) => _shouldSyncSeries(localSeries, remoteSeriesMap))
+        .map((localSeries) => localSeries.toDto())
+        .toList();
+  }
+
+  bool _shouldSyncSeries(
+    SeriesTableData localSeries,
+    Map<int, SeriesShortDataDto> remoteSeriesMap,
+  ) {
+    final remoteSeries = remoteSeriesMap[localSeries.tmdbId];
+
     // If updatedAt is missing in remote db, set it to the earliest possible date
     // to ensure any local record will be considered more recent.
     final remoteUpdatedAt =
-        remoteSeriesItem.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+        remoteSeries?.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
 
-    if (localSeriesItem.updatedAt.isBefore(remoteUpdatedAt)) return;
-
-    await _remoteMediaService.updateOrInsertSeries(localSeriesItem.toDto());
-  }
-
-  Future<void> _insertRemoteSeries(SeriesTableData localSeriesItem) async {
-    await _remoteMediaService.updateOrInsertSeries(localSeriesItem.toDto());
+    return remoteSeries == null ||
+        !localSeries.updatedAt.isBefore(remoteUpdatedAt);
   }
 
   /// Prepares the sync by checking connectivity, user authentication,
