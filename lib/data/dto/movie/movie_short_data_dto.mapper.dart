@@ -54,6 +54,9 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
   static bool? _$isWatched(MovieShortDataDto v) => v.isWatched;
   static const Field<MovieShortDataDto, bool> _f$isWatched =
       Field('isWatched', _$isWatched, key: r'is_watched', opt: true);
+  static DateTime? _$updatedAt(MovieShortDataDto v) => v.updatedAt;
+  static const Field<MovieShortDataDto, DateTime> _f$updatedAt =
+      Field('updatedAt', _$updatedAt, key: r'updated_at', opt: true);
 
   @override
   final MappableFields<MovieShortDataDto> fields = const {
@@ -67,6 +70,7 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
+    #updatedAt: _f$updatedAt,
   };
   @override
   final bool ignoreNull = true;
@@ -82,7 +86,8 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
         tmdbRating: data.dec(_f$tmdbRating),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
-        isWatched: data.dec(_f$isWatched));
+        isWatched: data.dec(_f$isWatched),
+        updatedAt: data.dec(_f$updatedAt));
   }
 
   @override
@@ -155,7 +160,8 @@ abstract class MovieShortDataDtoCopyWith<$R, $In extends MovieShortDataDto,
       RatingDataDto? tmdbRating,
       int? userRating,
       bool? isInWatchlist,
-      bool? isWatched});
+      bool? isWatched,
+      DateTime? updatedAt});
   MovieShortDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -197,7 +203,8 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
           Object? tmdbRating = $none,
           Object? userRating = $none,
           Object? isInWatchlist = $none,
-          Object? isWatched = $none}) =>
+          Object? isWatched = $none,
+          Object? updatedAt = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (posterUrl != $none) #posterUrl: posterUrl,
@@ -208,7 +215,8 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
         if (tmdbRating != $none) #tmdbRating: tmdbRating,
         if (userRating != $none) #userRating: userRating,
         if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
-        if (isWatched != $none) #isWatched: isWatched
+        if (isWatched != $none) #isWatched: isWatched,
+        if (updatedAt != $none) #updatedAt: updatedAt
       }));
   @override
   MovieShortDataDto $make(CopyWithData data) => MovieShortDataDto(
@@ -221,7 +229,8 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
-      isWatched: data.get(#isWatched, or: $value.isWatched));
+      isWatched: data.get(#isWatched, or: $value.isWatched),
+      updatedAt: data.get(#updatedAt, or: $value.updatedAt));
 
   @override
   MovieShortDataDtoCopyWith<$R2, MovieShortDataDto, $Out2> $chain<$R2, $Out2>(

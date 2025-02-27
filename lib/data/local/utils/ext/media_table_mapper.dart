@@ -17,6 +17,7 @@ extension MoviesMapper on MoviesTableData {
       userRating: userRating,
       isInWatchlist: isInWatchlist,
       isWatched: isWatched,
+      updatedAt: updatedAt,
     );
   }
 }
@@ -34,6 +35,7 @@ extension SeriesMapper on SeriesTableData {
       userRating: userRating,
       isInWatchlist: isInWatchlist,
       isWatched: isWatched,
+      updatedAt: updatedAt,
     );
   }
 }

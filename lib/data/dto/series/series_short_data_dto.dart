@@ -17,6 +17,7 @@ class SeriesShortDataDto with SeriesShortDataDtoMappable {
   final int? userRating;
   final bool? isInWatchlist;
   final bool? isWatched;
+  final DateTime? updatedAt;
 
   const SeriesShortDataDto({
     this.id,
@@ -29,6 +30,7 @@ class SeriesShortDataDto with SeriesShortDataDtoMappable {
     this.userRating,
     this.isInWatchlist,
     this.isWatched,
+    this.updatedAt,
   });
 
   factory SeriesShortDataDto.fromJson(Map<String, dynamic> json) =>
