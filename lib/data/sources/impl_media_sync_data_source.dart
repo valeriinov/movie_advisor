@@ -5,6 +5,8 @@ import '../dto/movie/movie_short_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../local/utils/ext/media_table_mapper.dart';
+import '../local/utils/ext/user_table_mapper.dart';
+import '../network/services/auth_service.dart';
 import '../network/services/connectivity_service.dart';
 import '../network/services/media_service.dart';
 import '../repositories/media_sync_data_source.dart';
@@ -15,23 +17,21 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
   final AppLocalDatabase _localDatabase;
   final MediaService _remoteMediaService;
   final ConnectivityService _connectivity;
+  final AuthService _authService;
 
   ImplMediaSyncDataSource({
     required AppLocalDatabase localDatabase,
     required MediaService remoteMediaService,
     required ConnectivityService connectivity,
+    required AuthService authService,
   }) : _localDatabase = localDatabase,
        _remoteMediaService = remoteMediaService,
-       _connectivity = connectivity;
+       _connectivity = connectivity,
+       _authService = authService;
 
   @override
   Future<void> syncMovies() async {
-    final isOnline = await _connectivity.isOnline();
-
-    if (!isOnline) {
-      debugLog('Offline, skipping sync', name: _logTitle);
-      return;
-    }
+    if (!(await _prepareSync())) return;
 
     try {
       final remoteMovies = await _remoteMediaService.getMovies();
@@ -48,6 +48,8 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
       await _syncMoviesFromRemoteToLocal(remoteMovies, localMoviesMap);
 
       await _syncMoviesFromLocalToRemote(localMoviesList, remoteMoviesMap);
+
+      await _updateSyncUser();
     } catch (e, stacktrace) {
       debugLog('Error during sync: $e\n$stacktrace', name: _logTitle);
       throw SyncDataException(error: e);
@@ -121,12 +123,7 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
 
   @override
   Future<void> syncSeries() async {
-    final isOnline = await _connectivity.isOnline();
-
-    if (!isOnline) {
-      debugLog('Offline, skipping sync', name: _logTitle);
-      return;
-    }
+    if (!(await _prepareSync())) return;
 
     try {
       final remoteSeries = await _remoteMediaService.getSeries();
@@ -143,6 +140,8 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
       await _syncSeriesFromRemoteToLocal(remoteSeries, localSeriesMap);
 
       await _syncSeriesFromLocalToRemote(localSeriesList, remoteSeriesMap);
+
+      await _updateSyncUser();
     } catch (e, stacktrace) {
       debugLog('Error during sync: $e\n$stacktrace', name: _logTitle);
       throw SyncDataException(error: e);
@@ -212,5 +211,52 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
 
   Future<void> _insertRemoteSeries(SeriesTableData localSeriesItem) async {
     await _remoteMediaService.updateOrInsertSeries(localSeriesItem.toDto());
+  }
+
+  /// Prepares the sync by checking connectivity, user authentication,
+  /// and ensuring that if a different user was previously synced, local data is cleared.
+  Future<bool> _prepareSync() async {
+    final isOnline = await _connectivity.isOnline();
+
+    if (!isOnline) {
+      debugLog('Offline, skipping sync', name: _logTitle);
+      return false;
+    }
+
+    final currentUser = await _authService.getUser();
+
+    if (currentUser == null) {
+      debugLog('No authenticated user, skipping sync', name: _logTitle);
+      return false;
+    }
+
+    final syncUser =
+        await (_localDatabase.select(_localDatabase.syncUserTable)
+          ..where((tbl) => tbl.id.equals(1))).getSingleOrNull();
+
+    if (syncUser != null && syncUser.uid != currentUser.id) {
+      debugLog(
+        'Different sync user detected. Clearing local media data.',
+        name: _logTitle,
+      );
+      await _clearLocalMediaData();
+    }
+
+    return true;
+  }
+
+  Future<void> _clearLocalMediaData() async {
+    await _localDatabase.delete(_localDatabase.moviesTable).go();
+    await _localDatabase.delete(_localDatabase.seriesTable).go();
+  }
+
+  Future<void> _updateSyncUser() async {
+    final user = await _authService.getUser();
+
+    if (user == null) return;
+
+    await _localDatabase
+        .into(_localDatabase.syncUserTable)
+        .insertOnConflictUpdate(user.toTableData());
   }
 }
