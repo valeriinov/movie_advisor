@@ -29,6 +29,7 @@ final class WatchlistMoviesViewModel
   @override
   WatchlistMoviesState build() {
     _watchUseCase = ref.read(watchMoviesUseCasePr);
+    _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,
@@ -42,5 +43,14 @@ final class WatchlistMoviesViewModel
     scheduleCall(loadInitialData);
 
     return WatchlistMoviesState();
+  }
+
+  @override
+  Future<void> loadInitialData({bool showLoader = true}) async {
+    _updateStatus(WatchlistBaseStatus(isLoading: showLoader));
+
+    await _syncUseCase.syncMovies();
+
+    return super.loadInitialData(showLoader: showLoader);
   }
 }
