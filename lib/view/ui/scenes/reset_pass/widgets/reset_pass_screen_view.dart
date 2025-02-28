@@ -57,7 +57,7 @@ class ResetPassScreenView extends ConsumerWidget {
         next.status is ResetPassSuccessStatus) {
       final toastManager = ref.toastManager;
 
-      toastManager.showSuccessToast(LocaleKeys.signInSuccessToast.tr());
+      toastManager.showSuccessToast(LocaleKeys.resetPassSuccessToast.tr());
 
       context.pop();
     }

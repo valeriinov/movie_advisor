@@ -122,5 +122,6 @@ abstract class  LocaleKeys {
   static const createAccountSuccessToast = 'createAccountSuccessToast';
   static const resetPassScreenTitle = 'resetPassScreenTitle';
   static const resetPassButton = 'resetPassButton';
+  static const resetPassSuccessToast = 'resetPassSuccessToast';
 
 }

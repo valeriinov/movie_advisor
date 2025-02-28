@@ -117,5 +117,6 @@
   "signUpButton": "SIGN UP",
   "createAccountSuccessToast": "Account created successfully",
   "resetPassScreenTitle": "Reset Password",
-  "resetPassButton": "RESET PASSWORD"
+  "resetPassButton": "RESET PASSWORD",
+  "resetPassSuccessToast": "Password reset email sent"
 }
