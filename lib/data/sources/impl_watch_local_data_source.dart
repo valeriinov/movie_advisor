@@ -13,16 +13,19 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   final AppLocalDatabase _database;
 
   ImplWatchLocalDataSource({required AppLocalDatabase database})
-      : _database = database;
+    : _database = database;
 
   @override
   Stream<MovieShortDataDto> watchChangesMovies() {
-    final query = _database.select(_database.moviesTable)
-      ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.desc)
-      ])
-      ..limit(1);
+    final query =
+        _database.select(_database.moviesTable)
+          ..orderBy([
+            (tbl) => OrderingTerm(
+              expression: tbl.updatedAt,
+              mode: OrderingMode.desc,
+            ),
+          ])
+          ..limit(1);
 
     final stream = query.watch();
 
@@ -35,12 +38,15 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
   @override
   Stream<SeriesShortDataDto> watchChangesSeries() {
-    final query = _database.select(_database.seriesTable)
-      ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.desc)
-      ])
-      ..limit(1);
+    final query =
+        _database.select(_database.seriesTable)
+          ..orderBy([
+            (tbl) => OrderingTerm(
+              expression: tbl.updatedAt,
+              mode: OrderingMode.desc,
+            ),
+          ])
+          ..limit(1);
 
     final stream = query.watch();
 
@@ -52,13 +58,21 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }
 
   @override
-  Future<MoviesShortResponseDataDto> getWatchedMovies(
-      {required int page}) async {
+  Future<MoviesShortResponseDataDto> getWatchedMovies({
+    required int page,
+  }) async {
     final int offset = _calculateOffset(page);
 
-    final moviesQuery = (_database.select(_database.moviesTable)
-      ..where((tbl) => tbl.isWatched.equals(true))
-      ..limit(DbConstants.pageSize, offset: offset));
+    final moviesQuery =
+        (_database.select(_database.moviesTable)
+          ..where((tbl) => tbl.isWatched.equals(true))
+          ..orderBy([
+            (tbl) => OrderingTerm(
+              expression: tbl.updatedAt,
+              mode: OrderingMode.desc,
+            ),
+          ])
+          ..limit(DbConstants.pageSize, offset: offset));
 
     final movies = await moviesQuery.get();
 
@@ -76,13 +90,19 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }
 
   @override
-  Future<MoviesShortResponseDataDto> getWatchlistMovies(
-      {required int page}) async {
+  Future<MoviesShortResponseDataDto> getWatchlistMovies({
+    required int page,
+  }) async {
     final int offset = _calculateOffset(page);
 
-    final moviesQuery = (_database.select(_database.moviesTable)
-      ..where((tbl) => tbl.isInWatchlist.equals(true))
-      ..limit(DbConstants.pageSize, offset: offset));
+    final moviesQuery =
+        (_database.select(_database.moviesTable)
+          ..where((tbl) => tbl.isInWatchlist.equals(true))
+          ..orderBy([
+            (tbl) =>
+                OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.asc),
+          ])
+          ..limit(DbConstants.pageSize, offset: offset));
 
     final movies = await moviesQuery.get();
 
@@ -100,13 +120,21 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }
 
   @override
-  Future<SeriesShortResponseDataDto> getWatchedSeries(
-      {required int page}) async {
+  Future<SeriesShortResponseDataDto> getWatchedSeries({
+    required int page,
+  }) async {
     final int offset = _calculateOffset(page);
 
-    final seriesQuery = (_database.select(_database.seriesTable)
-      ..where((tbl) => tbl.isWatched.equals(true))
-      ..limit(DbConstants.pageSize, offset: offset));
+    final seriesQuery =
+        (_database.select(_database.seriesTable)
+          ..where((tbl) => tbl.isWatched.equals(true))
+          ..orderBy([
+            (tbl) => OrderingTerm(
+              expression: tbl.updatedAt,
+              mode: OrderingMode.desc,
+            ),
+          ])
+          ..limit(DbConstants.pageSize, offset: offset));
 
     final series = await seriesQuery.get();
 
@@ -124,13 +152,19 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }
 
   @override
-  Future<SeriesShortResponseDataDto> getWatchlistSeries(
-      {required int page}) async {
+  Future<SeriesShortResponseDataDto> getWatchlistSeries({
+    required int page,
+  }) async {
     final int offset = _calculateOffset(page);
 
-    final seriesQuery = (_database.select(_database.seriesTable)
-      ..where((tbl) => tbl.isInWatchlist.equals(true))
-      ..limit(DbConstants.pageSize, offset: offset));
+    final seriesQuery =
+        (_database.select(_database.seriesTable)
+          ..where((tbl) => tbl.isInWatchlist.equals(true))
+          ..orderBy([
+            (tbl) =>
+                OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.asc),
+          ])
+          ..limit(DbConstants.pageSize, offset: offset));
 
     final series = await seriesQuery.get();
 
@@ -170,11 +204,12 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
     required Expression<bool> predicate,
     required JoinedSelectStatement<T, R> tableState,
   }) async {
-    final totalCountResult = await (tableState
-          ..addColumns([countExp])
-          ..where(predicate))
-        .map((row) => row.read(countExp))
-        .getSingleOrNull();
+    final totalCountResult =
+        await (tableState
+              ..addColumns([countExp])
+              ..where(predicate))
+            .map((row) => row.read(countExp))
+            .getSingleOrNull();
 
     return totalCountResult ?? 0;
   }
@@ -183,81 +218,81 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   Future<void> addToWatchedMovie(MovieShortDataDto data) {
     final preparedData = data.copyWith(isWatched: true);
 
-    return _database.into(_database.moviesTable).insert(
-          preparedData.toTableData(),
-          mode: InsertMode.insertOrReplace,
-        );
+    return _database
+        .into(_database.moviesTable)
+        .insert(preparedData.toTableData(), mode: InsertMode.insertOrReplace);
   }
 
   @override
   Future<void> addToWatchedSeries(SeriesShortDataDto data) {
     final preparedData = data.copyWith(isWatched: true);
 
-    return _database.into(_database.seriesTable).insert(
-          preparedData.toTableData(),
-          mode: InsertMode.insertOrReplace,
-        );
+    return _database
+        .into(_database.seriesTable)
+        .insert(preparedData.toTableData(), mode: InsertMode.insertOrReplace);
   }
 
   @override
   Future<void> addToWatchlistMovie(MovieShortDataDto data) {
     final preparedData = data.copyWith(isInWatchlist: true);
 
-    return _database.into(_database.moviesTable).insert(
-          preparedData.toTableData(),
-          mode: InsertMode.insertOrReplace,
-        );
+    return _database
+        .into(_database.moviesTable)
+        .insert(preparedData.toTableData(), mode: InsertMode.insertOrReplace);
   }
 
   @override
   Future<void> addToWatchlistSeries(SeriesShortDataDto data) {
     final preparedData = data.copyWith(isInWatchlist: true);
 
-    return _database.into(_database.seriesTable).insert(
-          preparedData.toTableData(),
-          mode: InsertMode.insertOrReplace,
-        );
+    return _database
+        .into(_database.seriesTable)
+        .insert(preparedData.toTableData(), mode: InsertMode.insertOrReplace);
   }
 
   @override
   Future<void> removeFromWatchedMovie(int id) async {
     await (_database.update(_database.moviesTable)
-          ..where((tbl) => tbl.tmdbId.equals(id)))
-        .write(MoviesTableCompanion(
-      userRating: Value(0),
-      isWatched: Value(false),
-      updatedAt: Value(DateTime.now()),
-    ));
+      ..where((tbl) => tbl.tmdbId.equals(id))).write(
+      MoviesTableCompanion(
+        userRating: Value(0),
+        isWatched: Value(false),
+        updatedAt: Value(DateTime.now()),
+      ),
+    );
   }
 
   @override
   Future<void> removeFromWatchedSeries(int id) async {
     await (_database.update(_database.seriesTable)
-          ..where((tbl) => tbl.tmdbId.equals(id)))
-        .write(SeriesTableCompanion(
-      userRating: Value(0),
-      isWatched: Value(false),
-      updatedAt: Value(DateTime.now()),
-    ));
+      ..where((tbl) => tbl.tmdbId.equals(id))).write(
+      SeriesTableCompanion(
+        userRating: Value(0),
+        isWatched: Value(false),
+        updatedAt: Value(DateTime.now()),
+      ),
+    );
   }
 
   @override
   Future<void> removeFromWatchlistMovie(int id) async {
     await (_database.update(_database.moviesTable)
-          ..where((tbl) => tbl.tmdbId.equals(id)))
-        .write(MoviesTableCompanion(
-      isInWatchlist: Value(false),
-      updatedAt: Value(DateTime.now()),
-    ));
+      ..where((tbl) => tbl.tmdbId.equals(id))).write(
+      MoviesTableCompanion(
+        isInWatchlist: Value(false),
+        updatedAt: Value(DateTime.now()),
+      ),
+    );
   }
 
   @override
   Future<void> removeFromWatchlistSeries(int id) async {
     await (_database.update(_database.seriesTable)
-          ..where((tbl) => tbl.tmdbId.equals(id)))
-        .write(SeriesTableCompanion(
-      isInWatchlist: Value(false),
-      updatedAt: Value(DateTime.now()),
-    ));
+      ..where((tbl) => tbl.tmdbId.equals(id))).write(
+      SeriesTableCompanion(
+        isInWatchlist: Value(false),
+        updatedAt: Value(DateTime.now()),
+      ),
+    );
   }
 }
