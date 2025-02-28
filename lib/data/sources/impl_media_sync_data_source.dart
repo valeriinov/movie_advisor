@@ -75,20 +75,26 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
   ) async {
     final localMovie = localMoviesMap[remoteMovie.id];
 
+    // If updatedAt is missing in remote db, assume it's a new record
+    // and treat it as freshly updated to avoid ignoring it.
+    final remoteUpdatedAt = remoteMovie.updatedAt ?? DateTime.now();
+
     localMovie != null
-        ? _batchInsertMovieIfNeeded(batch, remoteMovie, localMovie)
-        : _batchInsertMovie(batch, remoteMovie);
+        ? _batchInsertMovieIfNeeded(
+          batch,
+          remoteMovie,
+          localMovie,
+          remoteUpdatedAt,
+        )
+        : _batchInsertMovie(batch, remoteMovie, remoteUpdatedAt);
   }
 
   void _batchInsertMovieIfNeeded(
     Batch batch,
     MovieShortDataDto remoteMovie,
     MoviesTableData localMovie,
+    DateTime remoteUpdatedAt,
   ) {
-    // If updatedAt is missing in remote db, assume it's a new record
-    // and treat it as freshly updated to avoid ignoring it.
-    final remoteUpdatedAt = remoteMovie.updatedAt ?? DateTime.now();
-
     if (remoteUpdatedAt.isBefore(localMovie.updatedAt)) return;
 
     batch.insert(
@@ -98,8 +104,15 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
     );
   }
 
-  void _batchInsertMovie(Batch batch, MovieShortDataDto remoteMovie) {
-    batch.insert(_localDatabase.moviesTable, remoteMovie.toTableData());
+  void _batchInsertMovie(
+    Batch batch,
+    MovieShortDataDto remoteMovie,
+    DateTime remoteUpdatedAt,
+  ) {
+    batch.insert(
+      _localDatabase.moviesTable,
+      remoteMovie.toTableData(remoteUpdatedAt),
+    );
   }
 
   Future<void> _syncMoviesFromLocalToRemote(
@@ -186,20 +199,26 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
   ) async {
     final localSeriesItem = localSeriesMap[remoteSeriesItem.id];
 
+    // If updatedAt is missing in remote db, assume it's a new record
+    // and treat it as freshly updated to avoid ignoring it.
+    final remoteUpdatedAt = remoteSeriesItem.updatedAt ?? DateTime.now();
+
     localSeriesItem != null
-        ? _batchInsertSeriesIfNeeded(batch, remoteSeriesItem, localSeriesItem)
-        : _batchInsertSeries(batch, remoteSeriesItem);
+        ? _batchInsertSeriesIfNeeded(
+          batch,
+          remoteSeriesItem,
+          localSeriesItem,
+          remoteUpdatedAt,
+        )
+        : _batchInsertSeries(batch, remoteSeriesItem, remoteUpdatedAt);
   }
 
   void _batchInsertSeriesIfNeeded(
     Batch batch,
     SeriesShortDataDto remoteSeriesItem,
     SeriesTableData localSeriesItem,
+    DateTime remoteUpdatedAt,
   ) {
-    // If updatedAt is missing in remote db, assume it's a new record
-    // and treat it as freshly updated to avoid ignoring it.
-    final remoteUpdatedAt = remoteSeriesItem.updatedAt ?? DateTime.now();
-
     if (remoteUpdatedAt.isBefore(localSeriesItem.updatedAt)) return;
 
     batch.insert(
@@ -209,8 +228,15 @@ class ImplMediaSyncDataSource implements MediaSyncDataSource {
     );
   }
 
-  void _batchInsertSeries(Batch batch, SeriesShortDataDto remoteSeriesItem) {
-    batch.insert(_localDatabase.seriesTable, remoteSeriesItem.toTableData());
+  void _batchInsertSeries(
+    Batch batch,
+    SeriesShortDataDto remoteSeriesItem,
+    DateTime remoteUpdatedAt,
+  ) {
+    batch.insert(
+      _localDatabase.seriesTable,
+      remoteSeriesItem.toTableData(remoteUpdatedAt),
+    );
   }
 
   Future<void> _syncSeriesFromLocalToRemote(
