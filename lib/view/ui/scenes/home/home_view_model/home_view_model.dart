@@ -10,6 +10,7 @@ import '../../../../../domain/entities/pagination/list_with_pagination_data.dart
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../../../domain/usecases/home/home_use_case.dart';
+import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
@@ -58,6 +59,7 @@ abstract base class HomeViewModel<T extends MediaShortData>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final HomeUseCase<T> _homeUseCase;
   late final WatchUseCase<T> _watchUseCase;
+  late final SyncUseCase _syncUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _loadTabOperation;
 
@@ -85,6 +87,8 @@ abstract base class HomeViewModel<T extends MediaShortData>
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(HomeBaseStatus(isLoading: showLoader));
 
+    await _syncData();
+
     await safeCall(
       _homeUseCase.getSuggested,
       onResult:
@@ -94,6 +98,11 @@ abstract base class HomeViewModel<T extends MediaShortData>
     );
 
     await _loadTabCont();
+  }
+
+  Future<void> _syncData() async {
+    await _syncUseCase.syncMovies();
+    await _syncUseCase.syncSeries();
   }
 
   void updateCurrentTab(MediaTab tab) {

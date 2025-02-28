@@ -30,6 +30,7 @@ final class HomeSeriesViewModel extends HomeViewModel<SeriesShortData> {
   HomeSeriesState build() {
     _homeUseCase = ref.read(homeSeriesUseCasePr);
     _watchUseCase = ref.read(watchSeriesUseCasePr);
+    _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,

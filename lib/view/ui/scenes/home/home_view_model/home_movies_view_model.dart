@@ -28,6 +28,7 @@ final class HomeMoviesViewModel extends HomeViewModel<MovieShortData> {
   HomeMoviesState build() {
     _homeUseCase = ref.read(homeMoviesUseCasePr);
     _watchUseCase = ref.read(watchMoviesUseCasePr);
+    _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,
