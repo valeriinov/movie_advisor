@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/usecases/auth_use_case.dart';
+import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
@@ -28,10 +29,12 @@ final regViewModelPr = AutoDisposeNotifierProvider<RegViewModel, RegState>(
 class RegViewModel extends AutoDisposeNotifier<RegState>
     with SafeOperationsMixin {
   late final AuthUseCase _authUseCase;
+  late final SyncUseCase _syncUseCase;
 
   @override
   RegState build() {
     _authUseCase = ref.read(authUseCasePr);
+    _syncUseCase = ref.read(syncUseCasePr);
 
     return const RegState();
   }
@@ -57,9 +60,15 @@ class RegViewModel extends AutoDisposeNotifier<RegState>
         _updateStatus(RegBaseInitStatus(errorMessage: error.message));
       },
       (_) {
+        _runSyncData();
         _updateStatus(const RegSuccessStatus());
       },
     );
+  }
+
+  Future<void> _runSyncData() async {
+    await _syncUseCase.syncMovies();
+    await _syncUseCase.syncSeries();
   }
 
   void _updateStatus(RegStatus status) {
