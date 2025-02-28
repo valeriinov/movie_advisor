@@ -45,4 +45,13 @@ final class HomeSeriesViewModel extends HomeViewModel<SeriesShortData> {
 
     return HomeSeriesState();
   }
+
+  @override
+  Future<void> loadInitialData({bool showLoader = true}) async {
+    _updateStatus(HomeBaseStatus(isLoading: showLoader));
+
+    await _syncUseCase.syncSeries();
+
+    return super.loadInitialData(showLoader: showLoader);
+  }
 }

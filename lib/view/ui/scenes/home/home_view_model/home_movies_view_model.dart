@@ -43,4 +43,13 @@ final class HomeMoviesViewModel extends HomeViewModel<MovieShortData> {
 
     return HomeMoviesState();
   }
+
+  @override
+  Future<void> loadInitialData({bool showLoader = true}) async {
+    _updateStatus(HomeBaseStatus(isLoading: showLoader));
+
+    await _syncUseCase.syncMovies();
+
+    return super.loadInitialData(showLoader: showLoader);
+  }
 }

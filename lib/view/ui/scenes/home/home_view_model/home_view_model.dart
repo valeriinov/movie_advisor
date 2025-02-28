@@ -87,8 +87,6 @@ abstract base class HomeViewModel<T extends MediaShortData>
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(HomeBaseStatus(isLoading: showLoader));
 
-    await _syncData();
-
     await safeCall(
       _homeUseCase.getSuggested,
       onResult:
@@ -98,11 +96,6 @@ abstract base class HomeViewModel<T extends MediaShortData>
     );
 
     await _loadTabCont();
-  }
-
-  Future<void> _syncData() async {
-    await _syncUseCase.syncMovies();
-    await _syncUseCase.syncSeries();
   }
 
   void updateCurrentTab(MediaTab tab) {
