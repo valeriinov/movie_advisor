@@ -8,6 +8,7 @@ import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
+import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
@@ -50,6 +51,7 @@ abstract base class WatchlistViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<WatchlistState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final WatchUseCase<T> _watchUseCase;
+  late final SyncUseCase _syncUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
 
   void _handleWatchChanges(Result<T> event) {

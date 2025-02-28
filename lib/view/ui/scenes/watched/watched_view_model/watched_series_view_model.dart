@@ -27,6 +27,7 @@ final class WatchedSeriesViewModel extends WatchedViewModel<SeriesShortData> {
   @override
   WatchedSeriesState build() {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
+    _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,
@@ -40,5 +41,14 @@ final class WatchedSeriesViewModel extends WatchedViewModel<SeriesShortData> {
     scheduleCall(loadInitialData);
 
     return WatchedSeriesState();
+  }
+
+  @override
+  Future<void> loadInitialData({bool showLoader = true}) async {
+    _updateStatus(WatchedBaseStatus(isLoading: showLoader));
+
+    await _syncUseCase.syncSeries();
+
+    return super.loadInitialData(showLoader: showLoader);
   }
 }

@@ -6,12 +6,13 @@ import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
 import 'tables/movies_table.dart';
 import 'tables/series_table.dart';
+import 'tables/sync_user_table.dart';
 import 'utils/origin_country_converter.dart';
 import 'utils/rating_converter.dart';
 
 part 'app_local_database.g.dart';
 
-@DriftDatabase(tables: [MoviesTable, SeriesTable])
+@DriftDatabase(tables: [MoviesTable, SeriesTable, SyncUserTable])
 class AppLocalDatabase extends _$AppLocalDatabase {
   AppLocalDatabase() : super(_openConnection());
 

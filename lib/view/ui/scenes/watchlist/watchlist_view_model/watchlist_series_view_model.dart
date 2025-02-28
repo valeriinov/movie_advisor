@@ -29,6 +29,7 @@ final class WatchlistSeriesViewModel
   @override
   WatchlistSeriesState build() {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
+    _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,
@@ -42,5 +43,14 @@ final class WatchlistSeriesViewModel
     scheduleCall(loadInitialData);
 
     return WatchlistSeriesState();
+  }
+
+  @override
+  Future<void> loadInitialData({bool showLoader = true}) async {
+    _updateStatus(WatchlistBaseStatus(isLoading: showLoader));
+
+    await _syncUseCase.syncSeries();
+
+    return super.loadInitialData(showLoader: showLoader);
   }
 }

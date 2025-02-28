@@ -1341,17 +1341,327 @@ class SeriesTableCompanion extends UpdateCompanion<SeriesTableData> {
   }
 }
 
+class $SyncUserTableTable extends SyncUserTable
+    with TableInfo<$SyncUserTableTable, SyncUserTableData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SyncUserTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _uidMeta = const VerificationMeta('uid');
+  @override
+  late final GeneratedColumn<String> uid = GeneratedColumn<String>(
+      'uid', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
+  static const VerificationMeta _emailMeta = const VerificationMeta('email');
+  @override
+  late final GeneratedColumn<String> email = GeneratedColumn<String>(
+      'email', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
+  static const VerificationMeta _moviesSyncedAtMeta =
+      const VerificationMeta('moviesSyncedAt');
+  @override
+  late final GeneratedColumn<DateTime> moviesSyncedAt =
+      GeneratedColumn<DateTime>('movies_synced_at', aliasedName, false,
+          type: DriftSqlType.dateTime,
+          requiredDuringInsert: false,
+          defaultValue: currentDateAndTime);
+  static const VerificationMeta _seriesSyncedAtMeta =
+      const VerificationMeta('seriesSyncedAt');
+  @override
+  late final GeneratedColumn<DateTime> seriesSyncedAt =
+      GeneratedColumn<DateTime>('series_synced_at', aliasedName, false,
+          type: DriftSqlType.dateTime,
+          requiredDuringInsert: false,
+          defaultValue: currentDateAndTime);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, uid, email, moviesSyncedAt, seriesSyncedAt];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'sync_user_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<SyncUserTableData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('uid')) {
+      context.handle(
+          _uidMeta, uid.isAcceptableOrUnknown(data['uid']!, _uidMeta));
+    } else if (isInserting) {
+      context.missing(_uidMeta);
+    }
+    if (data.containsKey('email')) {
+      context.handle(
+          _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
+    } else if (isInserting) {
+      context.missing(_emailMeta);
+    }
+    if (data.containsKey('movies_synced_at')) {
+      context.handle(
+          _moviesSyncedAtMeta,
+          moviesSyncedAt.isAcceptableOrUnknown(
+              data['movies_synced_at']!, _moviesSyncedAtMeta));
+    }
+    if (data.containsKey('series_synced_at')) {
+      context.handle(
+          _seriesSyncedAtMeta,
+          seriesSyncedAt.isAcceptableOrUnknown(
+              data['series_synced_at']!, _seriesSyncedAtMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SyncUserTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SyncUserTableData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      uid: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}uid'])!,
+      email: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}email'])!,
+      moviesSyncedAt: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}movies_synced_at'])!,
+      seriesSyncedAt: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}series_synced_at'])!,
+    );
+  }
+
+  @override
+  $SyncUserTableTable createAlias(String alias) {
+    return $SyncUserTableTable(attachedDatabase, alias);
+  }
+}
+
+class SyncUserTableData extends DataClass
+    implements Insertable<SyncUserTableData> {
+  final int id;
+  final String uid;
+  final String email;
+  final DateTime moviesSyncedAt;
+  final DateTime seriesSyncedAt;
+  const SyncUserTableData(
+      {required this.id,
+      required this.uid,
+      required this.email,
+      required this.moviesSyncedAt,
+      required this.seriesSyncedAt});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['uid'] = Variable<String>(uid);
+    map['email'] = Variable<String>(email);
+    map['movies_synced_at'] = Variable<DateTime>(moviesSyncedAt);
+    map['series_synced_at'] = Variable<DateTime>(seriesSyncedAt);
+    return map;
+  }
+
+  SyncUserTableCompanion toCompanion(bool nullToAbsent) {
+    return SyncUserTableCompanion(
+      id: Value(id),
+      uid: Value(uid),
+      email: Value(email),
+      moviesSyncedAt: Value(moviesSyncedAt),
+      seriesSyncedAt: Value(seriesSyncedAt),
+    );
+  }
+
+  factory SyncUserTableData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SyncUserTableData(
+      id: serializer.fromJson<int>(json['id']),
+      uid: serializer.fromJson<String>(json['uid']),
+      email: serializer.fromJson<String>(json['email']),
+      moviesSyncedAt: serializer.fromJson<DateTime>(json['moviesSyncedAt']),
+      seriesSyncedAt: serializer.fromJson<DateTime>(json['seriesSyncedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'uid': serializer.toJson<String>(uid),
+      'email': serializer.toJson<String>(email),
+      'moviesSyncedAt': serializer.toJson<DateTime>(moviesSyncedAt),
+      'seriesSyncedAt': serializer.toJson<DateTime>(seriesSyncedAt),
+    };
+  }
+
+  SyncUserTableData copyWith(
+          {int? id,
+          String? uid,
+          String? email,
+          DateTime? moviesSyncedAt,
+          DateTime? seriesSyncedAt}) =>
+      SyncUserTableData(
+        id: id ?? this.id,
+        uid: uid ?? this.uid,
+        email: email ?? this.email,
+        moviesSyncedAt: moviesSyncedAt ?? this.moviesSyncedAt,
+        seriesSyncedAt: seriesSyncedAt ?? this.seriesSyncedAt,
+      );
+  SyncUserTableData copyWithCompanion(SyncUserTableCompanion data) {
+    return SyncUserTableData(
+      id: data.id.present ? data.id.value : this.id,
+      uid: data.uid.present ? data.uid.value : this.uid,
+      email: data.email.present ? data.email.value : this.email,
+      moviesSyncedAt: data.moviesSyncedAt.present
+          ? data.moviesSyncedAt.value
+          : this.moviesSyncedAt,
+      seriesSyncedAt: data.seriesSyncedAt.present
+          ? data.seriesSyncedAt.value
+          : this.seriesSyncedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SyncUserTableData(')
+          ..write('id: $id, ')
+          ..write('uid: $uid, ')
+          ..write('email: $email, ')
+          ..write('moviesSyncedAt: $moviesSyncedAt, ')
+          ..write('seriesSyncedAt: $seriesSyncedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, uid, email, moviesSyncedAt, seriesSyncedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SyncUserTableData &&
+          other.id == this.id &&
+          other.uid == this.uid &&
+          other.email == this.email &&
+          other.moviesSyncedAt == this.moviesSyncedAt &&
+          other.seriesSyncedAt == this.seriesSyncedAt);
+}
+
+class SyncUserTableCompanion extends UpdateCompanion<SyncUserTableData> {
+  final Value<int> id;
+  final Value<String> uid;
+  final Value<String> email;
+  final Value<DateTime> moviesSyncedAt;
+  final Value<DateTime> seriesSyncedAt;
+  const SyncUserTableCompanion({
+    this.id = const Value.absent(),
+    this.uid = const Value.absent(),
+    this.email = const Value.absent(),
+    this.moviesSyncedAt = const Value.absent(),
+    this.seriesSyncedAt = const Value.absent(),
+  });
+  SyncUserTableCompanion.insert({
+    this.id = const Value.absent(),
+    required String uid,
+    required String email,
+    this.moviesSyncedAt = const Value.absent(),
+    this.seriesSyncedAt = const Value.absent(),
+  })  : uid = Value(uid),
+        email = Value(email);
+  static Insertable<SyncUserTableData> custom({
+    Expression<int>? id,
+    Expression<String>? uid,
+    Expression<String>? email,
+    Expression<DateTime>? moviesSyncedAt,
+    Expression<DateTime>? seriesSyncedAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (uid != null) 'uid': uid,
+      if (email != null) 'email': email,
+      if (moviesSyncedAt != null) 'movies_synced_at': moviesSyncedAt,
+      if (seriesSyncedAt != null) 'series_synced_at': seriesSyncedAt,
+    });
+  }
+
+  SyncUserTableCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? uid,
+      Value<String>? email,
+      Value<DateTime>? moviesSyncedAt,
+      Value<DateTime>? seriesSyncedAt}) {
+    return SyncUserTableCompanion(
+      id: id ?? this.id,
+      uid: uid ?? this.uid,
+      email: email ?? this.email,
+      moviesSyncedAt: moviesSyncedAt ?? this.moviesSyncedAt,
+      seriesSyncedAt: seriesSyncedAt ?? this.seriesSyncedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (uid.present) {
+      map['uid'] = Variable<String>(uid.value);
+    }
+    if (email.present) {
+      map['email'] = Variable<String>(email.value);
+    }
+    if (moviesSyncedAt.present) {
+      map['movies_synced_at'] = Variable<DateTime>(moviesSyncedAt.value);
+    }
+    if (seriesSyncedAt.present) {
+      map['series_synced_at'] = Variable<DateTime>(seriesSyncedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SyncUserTableCompanion(')
+          ..write('id: $id, ')
+          ..write('uid: $uid, ')
+          ..write('email: $email, ')
+          ..write('moviesSyncedAt: $moviesSyncedAt, ')
+          ..write('seriesSyncedAt: $seriesSyncedAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppLocalDatabase extends GeneratedDatabase {
   _$AppLocalDatabase(QueryExecutor e) : super(e);
   $AppLocalDatabaseManager get managers => $AppLocalDatabaseManager(this);
   late final $MoviesTableTable moviesTable = $MoviesTableTable(this);
   late final $SeriesTableTable seriesTable = $SeriesTableTable(this);
+  late final $SyncUserTableTable syncUserTable = $SyncUserTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [moviesTable, seriesTable];
+      [moviesTable, seriesTable, syncUserTable];
 }
 
 typedef $$MoviesTableTableCreateCompanionBuilder = MoviesTableCompanion
@@ -1952,6 +2262,178 @@ typedef $$SeriesTableTableProcessedTableManager = ProcessedTableManager<
     ),
     SeriesTableData,
     PrefetchHooks Function()>;
+typedef $$SyncUserTableTableCreateCompanionBuilder = SyncUserTableCompanion
+    Function({
+  Value<int> id,
+  required String uid,
+  required String email,
+  Value<DateTime> moviesSyncedAt,
+  Value<DateTime> seriesSyncedAt,
+});
+typedef $$SyncUserTableTableUpdateCompanionBuilder = SyncUserTableCompanion
+    Function({
+  Value<int> id,
+  Value<String> uid,
+  Value<String> email,
+  Value<DateTime> moviesSyncedAt,
+  Value<DateTime> seriesSyncedAt,
+});
+
+class $$SyncUserTableTableFilterComposer
+    extends Composer<_$AppLocalDatabase, $SyncUserTableTable> {
+  $$SyncUserTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get uid => $composableBuilder(
+      column: $table.uid, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get email => $composableBuilder(
+      column: $table.email, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get moviesSyncedAt => $composableBuilder(
+      column: $table.moviesSyncedAt,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get seriesSyncedAt => $composableBuilder(
+      column: $table.seriesSyncedAt,
+      builder: (column) => ColumnFilters(column));
+}
+
+class $$SyncUserTableTableOrderingComposer
+    extends Composer<_$AppLocalDatabase, $SyncUserTableTable> {
+  $$SyncUserTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get uid => $composableBuilder(
+      column: $table.uid, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get email => $composableBuilder(
+      column: $table.email, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get moviesSyncedAt => $composableBuilder(
+      column: $table.moviesSyncedAt,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get seriesSyncedAt => $composableBuilder(
+      column: $table.seriesSyncedAt,
+      builder: (column) => ColumnOrderings(column));
+}
+
+class $$SyncUserTableTableAnnotationComposer
+    extends Composer<_$AppLocalDatabase, $SyncUserTableTable> {
+  $$SyncUserTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get uid =>
+      $composableBuilder(column: $table.uid, builder: (column) => column);
+
+  GeneratedColumn<String> get email =>
+      $composableBuilder(column: $table.email, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get moviesSyncedAt => $composableBuilder(
+      column: $table.moviesSyncedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get seriesSyncedAt => $composableBuilder(
+      column: $table.seriesSyncedAt, builder: (column) => column);
+}
+
+class $$SyncUserTableTableTableManager extends RootTableManager<
+    _$AppLocalDatabase,
+    $SyncUserTableTable,
+    SyncUserTableData,
+    $$SyncUserTableTableFilterComposer,
+    $$SyncUserTableTableOrderingComposer,
+    $$SyncUserTableTableAnnotationComposer,
+    $$SyncUserTableTableCreateCompanionBuilder,
+    $$SyncUserTableTableUpdateCompanionBuilder,
+    (
+      SyncUserTableData,
+      BaseReferences<_$AppLocalDatabase, $SyncUserTableTable, SyncUserTableData>
+    ),
+    SyncUserTableData,
+    PrefetchHooks Function()> {
+  $$SyncUserTableTableTableManager(
+      _$AppLocalDatabase db, $SyncUserTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SyncUserTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SyncUserTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SyncUserTableTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> uid = const Value.absent(),
+            Value<String> email = const Value.absent(),
+            Value<DateTime> moviesSyncedAt = const Value.absent(),
+            Value<DateTime> seriesSyncedAt = const Value.absent(),
+          }) =>
+              SyncUserTableCompanion(
+            id: id,
+            uid: uid,
+            email: email,
+            moviesSyncedAt: moviesSyncedAt,
+            seriesSyncedAt: seriesSyncedAt,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required String uid,
+            required String email,
+            Value<DateTime> moviesSyncedAt = const Value.absent(),
+            Value<DateTime> seriesSyncedAt = const Value.absent(),
+          }) =>
+              SyncUserTableCompanion.insert(
+            id: id,
+            uid: uid,
+            email: email,
+            moviesSyncedAt: moviesSyncedAt,
+            seriesSyncedAt: seriesSyncedAt,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$SyncUserTableTableProcessedTableManager = ProcessedTableManager<
+    _$AppLocalDatabase,
+    $SyncUserTableTable,
+    SyncUserTableData,
+    $$SyncUserTableTableFilterComposer,
+    $$SyncUserTableTableOrderingComposer,
+    $$SyncUserTableTableAnnotationComposer,
+    $$SyncUserTableTableCreateCompanionBuilder,
+    $$SyncUserTableTableUpdateCompanionBuilder,
+    (
+      SyncUserTableData,
+      BaseReferences<_$AppLocalDatabase, $SyncUserTableTable, SyncUserTableData>
+    ),
+    SyncUserTableData,
+    PrefetchHooks Function()>;
 
 class $AppLocalDatabaseManager {
   final _$AppLocalDatabase _db;
@@ -1960,4 +2442,6 @@ class $AppLocalDatabaseManager {
       $$MoviesTableTableTableManager(_db, _db.moviesTable);
   $$SeriesTableTableTableManager get seriesTable =>
       $$SeriesTableTableTableManager(_db, _db.seriesTable);
+  $$SyncUserTableTableTableManager get syncUserTable =>
+      $$SyncUserTableTableTableManager(_db, _db.syncUserTable);
 }
