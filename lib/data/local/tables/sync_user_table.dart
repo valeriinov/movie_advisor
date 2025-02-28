@@ -8,4 +8,10 @@ class SyncUserTable extends Table {
   TextColumn get uid => text().unique()();
 
   TextColumn get email => text().unique()();
+
+  DateTimeColumn get moviesSyncedAt =>
+      dateTime().withDefault(currentDateAndTime)();
+
+  DateTimeColumn get seriesSyncedAt =>
+      dateTime().withDefault(currentDateAndTime)();
 }

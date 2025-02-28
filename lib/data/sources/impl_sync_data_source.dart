@@ -4,9 +4,10 @@ import 'package:flutter_utils/flutter_utils.dart';
 import '../dto/general_exceptions.dart';
 import '../dto/movie/movie_short_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
+import '../dto/sync/sync_user_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../local/utils/ext/media_table_mapper.dart';
-import '../local/utils/ext/user_table_mapper.dart';
+import '../local/utils/ext/sync_user_table_mapper.dart';
 import '../network/services/auth_service.dart';
 import '../network/services/connectivity_service.dart';
 import '../network/services/media_service.dart';
@@ -46,40 +47,55 @@ class ImplSyncDataSource implements SyncDataSource {
         for (final movie in remoteMovies) movie.id!: movie,
       };
 
-      await _syncMoviesFromRemoteToLocal(remoteMovies, localMoviesMap);
+      final localUpdated = await _syncMoviesFromRemoteToLocal(
+        remoteMovies,
+        localMoviesMap,
+      );
 
       await _syncMoviesFromLocalToRemote(localMoviesList, remoteMoviesMap);
 
-      await _updateSyncUser();
+      if (localUpdated) {
+        await _updateSyncUser(isMovies: true);
+      }
     } catch (e, stacktrace) {
       debugLog('Error during sync: $e\n$stacktrace', name: _logTitle);
       throw SyncDataException(error: e);
     }
   }
 
-  Future<void> _syncMoviesFromRemoteToLocal(
+  Future<bool> _syncMoviesFromRemoteToLocal(
     List<MovieShortDataDto> remoteMovies,
     Map<int, MoviesTableData> localMoviesMap,
   ) async {
-    await _localDatabase.batch((batch) async {
+    bool changesApplied = false;
+
+    await _localDatabase.batch((batch) {
       for (final remoteMovie in remoteMovies) {
-        await _processRemoteMovieItem(batch, remoteMovie, localMoviesMap);
+        final updated = _processRemoteMovieItem(
+          batch,
+          remoteMovie,
+          localMoviesMap,
+        );
+
+        if (updated) changesApplied = true;
       }
     });
+
+    return changesApplied;
   }
 
-  Future<void> _processRemoteMovieItem(
+  bool _processRemoteMovieItem(
     Batch batch,
     MovieShortDataDto remoteMovie,
     Map<int, MoviesTableData> localMoviesMap,
-  ) async {
+  ) {
     final localMovie = localMoviesMap[remoteMovie.id];
 
     // If updatedAt is missing in remote db, assume it's a new record
     // and treat it as freshly updated to avoid ignoring it.
     final remoteUpdatedAt = remoteMovie.updatedAt ?? DateTime.now();
 
-    localMovie != null
+    return localMovie != null
         ? _batchInsertMovieIfNeeded(
           batch,
           remoteMovie,
@@ -89,22 +105,26 @@ class ImplSyncDataSource implements SyncDataSource {
         : _batchInsertMovie(batch, remoteMovie, remoteUpdatedAt);
   }
 
-  void _batchInsertMovieIfNeeded(
+  bool _batchInsertMovieIfNeeded(
     Batch batch,
     MovieShortDataDto remoteMovie,
     MoviesTableData localMovie,
     DateTime remoteUpdatedAt,
   ) {
-    if (remoteUpdatedAt.isBefore(localMovie.updatedAt)) return;
+    if (remoteUpdatedAt.isBeforeOrAtSameMomentAs(localMovie.updatedAt)) {
+      return false;
+    }
 
     batch.insert(
       _localDatabase.moviesTable,
       remoteMovie.toTableData(remoteUpdatedAt),
       mode: InsertMode.insertOrReplace,
     );
+
+    return true;
   }
 
-  void _batchInsertMovie(
+  bool _batchInsertMovie(
     Batch batch,
     MovieShortDataDto remoteMovie,
     DateTime remoteUpdatedAt,
@@ -113,6 +133,8 @@ class ImplSyncDataSource implements SyncDataSource {
       _localDatabase.moviesTable,
       remoteMovie.toTableData(remoteUpdatedAt),
     );
+
+    return true;
   }
 
   Future<void> _syncMoviesFromLocalToRemote(
@@ -151,7 +173,7 @@ class ImplSyncDataSource implements SyncDataSource {
         remoteMovie?.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
 
     return remoteMovie == null ||
-        !localMovie.updatedAt.isBefore(remoteUpdatedAt);
+        !localMovie.updatedAt.isBeforeOrAtSameMomentAs(remoteUpdatedAt);
   }
 
   @override
@@ -170,40 +192,55 @@ class ImplSyncDataSource implements SyncDataSource {
         for (final series in remoteSeries) series.id!: series,
       };
 
-      await _syncSeriesFromRemoteToLocal(remoteSeries, localSeriesMap);
+      final localUpdated = await _syncSeriesFromRemoteToLocal(
+        remoteSeries,
+        localSeriesMap,
+      );
 
       await _syncSeriesFromLocalToRemote(localSeriesList, remoteSeriesMap);
 
-      await _updateSyncUser();
+      if (localUpdated) {
+        await _updateSyncUser(isMovies: false);
+      }
     } catch (e, stacktrace) {
       debugLog('Error during sync: $e\n$stacktrace', name: _logTitle);
       throw SyncDataException(error: e);
     }
   }
 
-  Future<void> _syncSeriesFromRemoteToLocal(
+  Future<bool> _syncSeriesFromRemoteToLocal(
     List<SeriesShortDataDto> remoteSeries,
     Map<int, SeriesTableData> localSeriesMap,
   ) async {
-    await _localDatabase.batch((batch) async {
+    bool changesApplied = false;
+
+    await _localDatabase.batch((batch) {
       for (final remoteSeriesItem in remoteSeries) {
-        await _processRemoteSeriesItem(batch, remoteSeriesItem, localSeriesMap);
+        final updated = _processRemoteSeriesItem(
+          batch,
+          remoteSeriesItem,
+          localSeriesMap,
+        );
+
+        if (updated) changesApplied = true;
       }
     });
+
+    return changesApplied;
   }
 
-  Future<void> _processRemoteSeriesItem(
+  bool _processRemoteSeriesItem(
     Batch batch,
     SeriesShortDataDto remoteSeriesItem,
     Map<int, SeriesTableData> localSeriesMap,
-  ) async {
+  ) {
     final localSeriesItem = localSeriesMap[remoteSeriesItem.id];
 
     // If updatedAt is missing in remote db, assume it's a new record
     // and treat it as freshly updated to avoid ignoring it.
     final remoteUpdatedAt = remoteSeriesItem.updatedAt ?? DateTime.now();
 
-    localSeriesItem != null
+    return localSeriesItem != null
         ? _batchInsertSeriesIfNeeded(
           batch,
           remoteSeriesItem,
@@ -213,22 +250,26 @@ class ImplSyncDataSource implements SyncDataSource {
         : _batchInsertSeries(batch, remoteSeriesItem, remoteUpdatedAt);
   }
 
-  void _batchInsertSeriesIfNeeded(
+  bool _batchInsertSeriesIfNeeded(
     Batch batch,
     SeriesShortDataDto remoteSeriesItem,
     SeriesTableData localSeriesItem,
     DateTime remoteUpdatedAt,
   ) {
-    if (remoteUpdatedAt.isBefore(localSeriesItem.updatedAt)) return;
+    if (remoteUpdatedAt.isBeforeOrAtSameMomentAs(localSeriesItem.updatedAt)) {
+      return false;
+    }
 
     batch.insert(
       _localDatabase.seriesTable,
       remoteSeriesItem.toTableData(remoteUpdatedAt),
       mode: InsertMode.insertOrReplace,
     );
+
+    return true;
   }
 
-  void _batchInsertSeries(
+  bool _batchInsertSeries(
     Batch batch,
     SeriesShortDataDto remoteSeriesItem,
     DateTime remoteUpdatedAt,
@@ -237,6 +278,8 @@ class ImplSyncDataSource implements SyncDataSource {
       _localDatabase.seriesTable,
       remoteSeriesItem.toTableData(remoteUpdatedAt),
     );
+
+    return true;
   }
 
   Future<void> _syncSeriesFromLocalToRemote(
@@ -275,7 +318,7 @@ class ImplSyncDataSource implements SyncDataSource {
         remoteSeries?.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
 
     return remoteSeries == null ||
-        !localSeries.updatedAt.isBefore(remoteUpdatedAt);
+        !localSeries.updatedAt.isBeforeOrAtSameMomentAs(remoteUpdatedAt);
   }
 
   /// Prepares the sync by checking connectivity, user authentication,
@@ -315,13 +358,20 @@ class ImplSyncDataSource implements SyncDataSource {
     await _localDatabase.delete(_localDatabase.seriesTable).go();
   }
 
-  Future<void> _updateSyncUser() async {
+  Future<void> _updateSyncUser({required bool isMovies}) async {
     final user = await _authService.getUser();
 
     if (user == null) return;
 
+    final preparedUser = SyncUserDataDto(
+      id: user.id,
+      email: user.email,
+      moviesSyncedAt: isMovies ? DateTime.now() : null,
+      seriesSyncedAt: isMovies ? null : DateTime.now(),
+    );
+
     await _localDatabase
         .into(_localDatabase.syncUserTable)
-        .insertOnConflictUpdate(user.toTableData());
+        .insertOnConflictUpdate(preparedUser.toTableData());
   }
 }

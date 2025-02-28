@@ -10,6 +10,7 @@ import '../../../../../domain/entities/pagination/list_with_pagination_data.dart
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../../../domain/usecases/home/home_use_case.dart';
+import '../../../../../domain/usecases/refresh_use_case.dart';
 import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
@@ -60,7 +61,9 @@ abstract base class HomeViewModel<T extends MediaShortData>
   late final HomeUseCase<T> _homeUseCase;
   late final WatchUseCase<T> _watchUseCase;
   late final SyncUseCase _syncUseCase;
+  late final RefreshUseCase _refreshUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
+  late final StreamSubscription<Result<bool>> _refreshSubscription;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _loadTabOperation;
 
   void _handleWatchChanges(Result<T> event) {
@@ -82,6 +85,14 @@ abstract base class HomeViewModel<T extends MediaShortData>
         mediaData: tabData.copyWith(items: tabItems),
       ),
     );
+  }
+
+  void _handleRefresh(Result<bool> event) {
+    final shouldRefresh = event.fold((_) => null, (value) => value);
+
+    if (shouldRefresh == true && !state.status.isLoading) {
+      loadInitialData(showLoader: false);
+    }
   }
 
   Future<void> loadInitialData({bool showLoader = true}) async {

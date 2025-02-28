@@ -1370,8 +1370,25 @@ class $SyncUserTableTable extends SyncUserTable
       type: DriftSqlType.string,
       requiredDuringInsert: true,
       defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
+  static const VerificationMeta _moviesSyncedAtMeta =
+      const VerificationMeta('moviesSyncedAt');
   @override
-  List<GeneratedColumn> get $columns => [id, uid, email];
+  late final GeneratedColumn<DateTime> moviesSyncedAt =
+      GeneratedColumn<DateTime>('movies_synced_at', aliasedName, false,
+          type: DriftSqlType.dateTime,
+          requiredDuringInsert: false,
+          defaultValue: currentDateAndTime);
+  static const VerificationMeta _seriesSyncedAtMeta =
+      const VerificationMeta('seriesSyncedAt');
+  @override
+  late final GeneratedColumn<DateTime> seriesSyncedAt =
+      GeneratedColumn<DateTime>('series_synced_at', aliasedName, false,
+          type: DriftSqlType.dateTime,
+          requiredDuringInsert: false,
+          defaultValue: currentDateAndTime);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, uid, email, moviesSyncedAt, seriesSyncedAt];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -1397,6 +1414,18 @@ class $SyncUserTableTable extends SyncUserTable
     } else if (isInserting) {
       context.missing(_emailMeta);
     }
+    if (data.containsKey('movies_synced_at')) {
+      context.handle(
+          _moviesSyncedAtMeta,
+          moviesSyncedAt.isAcceptableOrUnknown(
+              data['movies_synced_at']!, _moviesSyncedAtMeta));
+    }
+    if (data.containsKey('series_synced_at')) {
+      context.handle(
+          _seriesSyncedAtMeta,
+          seriesSyncedAt.isAcceptableOrUnknown(
+              data['series_synced_at']!, _seriesSyncedAtMeta));
+    }
     return context;
   }
 
@@ -1412,6 +1441,10 @@ class $SyncUserTableTable extends SyncUserTable
           .read(DriftSqlType.string, data['${effectivePrefix}uid'])!,
       email: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}email'])!,
+      moviesSyncedAt: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}movies_synced_at'])!,
+      seriesSyncedAt: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}series_synced_at'])!,
     );
   }
 
@@ -1426,14 +1459,22 @@ class SyncUserTableData extends DataClass
   final int id;
   final String uid;
   final String email;
+  final DateTime moviesSyncedAt;
+  final DateTime seriesSyncedAt;
   const SyncUserTableData(
-      {required this.id, required this.uid, required this.email});
+      {required this.id,
+      required this.uid,
+      required this.email,
+      required this.moviesSyncedAt,
+      required this.seriesSyncedAt});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['uid'] = Variable<String>(uid);
     map['email'] = Variable<String>(email);
+    map['movies_synced_at'] = Variable<DateTime>(moviesSyncedAt);
+    map['series_synced_at'] = Variable<DateTime>(seriesSyncedAt);
     return map;
   }
 
@@ -1442,6 +1483,8 @@ class SyncUserTableData extends DataClass
       id: Value(id),
       uid: Value(uid),
       email: Value(email),
+      moviesSyncedAt: Value(moviesSyncedAt),
+      seriesSyncedAt: Value(seriesSyncedAt),
     );
   }
 
@@ -1452,6 +1495,8 @@ class SyncUserTableData extends DataClass
       id: serializer.fromJson<int>(json['id']),
       uid: serializer.fromJson<String>(json['uid']),
       email: serializer.fromJson<String>(json['email']),
+      moviesSyncedAt: serializer.fromJson<DateTime>(json['moviesSyncedAt']),
+      seriesSyncedAt: serializer.fromJson<DateTime>(json['seriesSyncedAt']),
     );
   }
   @override
@@ -1461,20 +1506,35 @@ class SyncUserTableData extends DataClass
       'id': serializer.toJson<int>(id),
       'uid': serializer.toJson<String>(uid),
       'email': serializer.toJson<String>(email),
+      'moviesSyncedAt': serializer.toJson<DateTime>(moviesSyncedAt),
+      'seriesSyncedAt': serializer.toJson<DateTime>(seriesSyncedAt),
     };
   }
 
-  SyncUserTableData copyWith({int? id, String? uid, String? email}) =>
+  SyncUserTableData copyWith(
+          {int? id,
+          String? uid,
+          String? email,
+          DateTime? moviesSyncedAt,
+          DateTime? seriesSyncedAt}) =>
       SyncUserTableData(
         id: id ?? this.id,
         uid: uid ?? this.uid,
         email: email ?? this.email,
+        moviesSyncedAt: moviesSyncedAt ?? this.moviesSyncedAt,
+        seriesSyncedAt: seriesSyncedAt ?? this.seriesSyncedAt,
       );
   SyncUserTableData copyWithCompanion(SyncUserTableCompanion data) {
     return SyncUserTableData(
       id: data.id.present ? data.id.value : this.id,
       uid: data.uid.present ? data.uid.value : this.uid,
       email: data.email.present ? data.email.value : this.email,
+      moviesSyncedAt: data.moviesSyncedAt.present
+          ? data.moviesSyncedAt.value
+          : this.moviesSyncedAt,
+      seriesSyncedAt: data.seriesSyncedAt.present
+          ? data.seriesSyncedAt.value
+          : this.seriesSyncedAt,
     );
   }
 
@@ -1483,55 +1543,76 @@ class SyncUserTableData extends DataClass
     return (StringBuffer('SyncUserTableData(')
           ..write('id: $id, ')
           ..write('uid: $uid, ')
-          ..write('email: $email')
+          ..write('email: $email, ')
+          ..write('moviesSyncedAt: $moviesSyncedAt, ')
+          ..write('seriesSyncedAt: $seriesSyncedAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, uid, email);
+  int get hashCode =>
+      Object.hash(id, uid, email, moviesSyncedAt, seriesSyncedAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is SyncUserTableData &&
           other.id == this.id &&
           other.uid == this.uid &&
-          other.email == this.email);
+          other.email == this.email &&
+          other.moviesSyncedAt == this.moviesSyncedAt &&
+          other.seriesSyncedAt == this.seriesSyncedAt);
 }
 
 class SyncUserTableCompanion extends UpdateCompanion<SyncUserTableData> {
   final Value<int> id;
   final Value<String> uid;
   final Value<String> email;
+  final Value<DateTime> moviesSyncedAt;
+  final Value<DateTime> seriesSyncedAt;
   const SyncUserTableCompanion({
     this.id = const Value.absent(),
     this.uid = const Value.absent(),
     this.email = const Value.absent(),
+    this.moviesSyncedAt = const Value.absent(),
+    this.seriesSyncedAt = const Value.absent(),
   });
   SyncUserTableCompanion.insert({
     this.id = const Value.absent(),
     required String uid,
     required String email,
+    this.moviesSyncedAt = const Value.absent(),
+    this.seriesSyncedAt = const Value.absent(),
   })  : uid = Value(uid),
         email = Value(email);
   static Insertable<SyncUserTableData> custom({
     Expression<int>? id,
     Expression<String>? uid,
     Expression<String>? email,
+    Expression<DateTime>? moviesSyncedAt,
+    Expression<DateTime>? seriesSyncedAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (uid != null) 'uid': uid,
       if (email != null) 'email': email,
+      if (moviesSyncedAt != null) 'movies_synced_at': moviesSyncedAt,
+      if (seriesSyncedAt != null) 'series_synced_at': seriesSyncedAt,
     });
   }
 
   SyncUserTableCompanion copyWith(
-      {Value<int>? id, Value<String>? uid, Value<String>? email}) {
+      {Value<int>? id,
+      Value<String>? uid,
+      Value<String>? email,
+      Value<DateTime>? moviesSyncedAt,
+      Value<DateTime>? seriesSyncedAt}) {
     return SyncUserTableCompanion(
       id: id ?? this.id,
       uid: uid ?? this.uid,
       email: email ?? this.email,
+      moviesSyncedAt: moviesSyncedAt ?? this.moviesSyncedAt,
+      seriesSyncedAt: seriesSyncedAt ?? this.seriesSyncedAt,
     );
   }
 
@@ -1547,6 +1628,12 @@ class SyncUserTableCompanion extends UpdateCompanion<SyncUserTableData> {
     if (email.present) {
       map['email'] = Variable<String>(email.value);
     }
+    if (moviesSyncedAt.present) {
+      map['movies_synced_at'] = Variable<DateTime>(moviesSyncedAt.value);
+    }
+    if (seriesSyncedAt.present) {
+      map['series_synced_at'] = Variable<DateTime>(seriesSyncedAt.value);
+    }
     return map;
   }
 
@@ -1555,7 +1642,9 @@ class SyncUserTableCompanion extends UpdateCompanion<SyncUserTableData> {
     return (StringBuffer('SyncUserTableCompanion(')
           ..write('id: $id, ')
           ..write('uid: $uid, ')
-          ..write('email: $email')
+          ..write('email: $email, ')
+          ..write('moviesSyncedAt: $moviesSyncedAt, ')
+          ..write('seriesSyncedAt: $seriesSyncedAt')
           ..write(')'))
         .toString();
   }
@@ -2178,12 +2267,16 @@ typedef $$SyncUserTableTableCreateCompanionBuilder = SyncUserTableCompanion
   Value<int> id,
   required String uid,
   required String email,
+  Value<DateTime> moviesSyncedAt,
+  Value<DateTime> seriesSyncedAt,
 });
 typedef $$SyncUserTableTableUpdateCompanionBuilder = SyncUserTableCompanion
     Function({
   Value<int> id,
   Value<String> uid,
   Value<String> email,
+  Value<DateTime> moviesSyncedAt,
+  Value<DateTime> seriesSyncedAt,
 });
 
 class $$SyncUserTableTableFilterComposer
@@ -2203,6 +2296,14 @@ class $$SyncUserTableTableFilterComposer
 
   ColumnFilters<String> get email => $composableBuilder(
       column: $table.email, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get moviesSyncedAt => $composableBuilder(
+      column: $table.moviesSyncedAt,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get seriesSyncedAt => $composableBuilder(
+      column: $table.seriesSyncedAt,
+      builder: (column) => ColumnFilters(column));
 }
 
 class $$SyncUserTableTableOrderingComposer
@@ -2222,6 +2323,14 @@ class $$SyncUserTableTableOrderingComposer
 
   ColumnOrderings<String> get email => $composableBuilder(
       column: $table.email, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get moviesSyncedAt => $composableBuilder(
+      column: $table.moviesSyncedAt,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get seriesSyncedAt => $composableBuilder(
+      column: $table.seriesSyncedAt,
+      builder: (column) => ColumnOrderings(column));
 }
 
 class $$SyncUserTableTableAnnotationComposer
@@ -2241,6 +2350,12 @@ class $$SyncUserTableTableAnnotationComposer
 
   GeneratedColumn<String> get email =>
       $composableBuilder(column: $table.email, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get moviesSyncedAt => $composableBuilder(
+      column: $table.moviesSyncedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get seriesSyncedAt => $composableBuilder(
+      column: $table.seriesSyncedAt, builder: (column) => column);
 }
 
 class $$SyncUserTableTableTableManager extends RootTableManager<
@@ -2273,21 +2388,29 @@ class $$SyncUserTableTableTableManager extends RootTableManager<
             Value<int> id = const Value.absent(),
             Value<String> uid = const Value.absent(),
             Value<String> email = const Value.absent(),
+            Value<DateTime> moviesSyncedAt = const Value.absent(),
+            Value<DateTime> seriesSyncedAt = const Value.absent(),
           }) =>
               SyncUserTableCompanion(
             id: id,
             uid: uid,
             email: email,
+            moviesSyncedAt: moviesSyncedAt,
+            seriesSyncedAt: seriesSyncedAt,
           ),
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
             required String uid,
             required String email,
+            Value<DateTime> moviesSyncedAt = const Value.absent(),
+            Value<DateTime> seriesSyncedAt = const Value.absent(),
           }) =>
               SyncUserTableCompanion.insert(
             id: id,
             uid: uid,
             email: email,
+            moviesSyncedAt: moviesSyncedAt,
+            seriesSyncedAt: seriesSyncedAt,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

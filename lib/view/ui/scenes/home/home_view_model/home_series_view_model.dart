@@ -31,14 +31,20 @@ final class HomeSeriesViewModel extends HomeViewModel<SeriesShortData> {
     _homeUseCase = ref.read(homeSeriesUseCasePr);
     _watchUseCase = ref.read(watchSeriesUseCasePr);
     _syncUseCase = ref.read(syncUseCasePr);
+    _refreshUseCase = ref.read(refreshUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,
     );
 
+    _refreshSubscription = _refreshUseCase
+        .shouldRefreshContent(isMovies: true)
+        .listen(_handleRefresh);
+
     ref.onDispose(() {
       cancelSafeOperations();
       _watchChangesSubscription.cancel();
+      _refreshSubscription.cancel();
     });
 
     scheduleCall(loadInitialData);
