@@ -118,5 +118,8 @@
   "createAccountSuccessToast": "Account created successfully",
   "resetPassScreenTitle": "Reset Password",
   "resetPassButton": "RESET PASSWORD",
-  "resetPassSuccessToast": "Password reset email sent"
+  "resetPassSuccessToast": "Password reset email sent",
+  "userNotFoundException": "User not found",
+  "wrongEmailOrPassException": "Wrong email or password",
+  "emailExistsException": "Email already exists"
 }

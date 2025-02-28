@@ -118,5 +118,8 @@
   "createAccountSuccessToast": "Акаунт успішно створено",
   "resetPassScreenTitle": "Скинути пароль",
   "resetPassButton": "СКИНУТИ ПАРОЛЬ",
-  "resetPassSuccessToast": "Лист для скидання пароля надіслано"
+  "resetPassSuccessToast": "Лист для скидання пароля надіслано",
+  "userNotFoundException": "Користувача не знайдено",
+  "wrongEmailOrPassException": "Неправильний email або пароль",
+  "emailExistsException": "Email вже існує"
 }

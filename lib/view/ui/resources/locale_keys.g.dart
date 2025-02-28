@@ -123,5 +123,8 @@ abstract class  LocaleKeys {
   static const resetPassScreenTitle = 'resetPassScreenTitle';
   static const resetPassButton = 'resetPassButton';
   static const resetPassSuccessToast = 'resetPassSuccessToast';
+  static const userNotFoundException = 'userNotFoundException';
+  static const wrongEmailOrPassException = 'wrongEmailOrPassException';
+  static const emailExistsException = 'emailExistsException';
 
 }
