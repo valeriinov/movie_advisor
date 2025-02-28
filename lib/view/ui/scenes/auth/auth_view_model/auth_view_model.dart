@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/usecases/auth_use_case.dart';
+import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../model/auth_form_state.dart';
@@ -22,10 +23,12 @@ final authViewModelPr = AutoDisposeNotifierProvider<AuthViewModel, AuthState>(
 class AuthViewModel extends AutoDisposeNotifier<AuthState>
     with SafeOperationsMixin {
   late final AuthUseCase _authUseCase;
+  late final SyncUseCase _syncUseCase;
 
   @override
   AuthState build() {
     _authUseCase = ref.read(authUseCasePr);
+    _syncUseCase = ref.read(syncUseCasePr);
 
     ref.onDispose(cancelSafeOperations);
 
@@ -53,9 +56,15 @@ class AuthViewModel extends AutoDisposeNotifier<AuthState>
         _updateStatus(AuthBaseInitStatus(errorMessage: error.message));
       },
       (_) {
+        _runSyncData();
         _updateStatus(const AuthSuccessStatus());
       },
     );
+  }
+
+  Future<void> _runSyncData() async {
+    await _syncUseCase.syncMovies();
+    await _syncUseCase.syncSeries();
   }
 
   void _updateStatus(AuthStatus status) {
