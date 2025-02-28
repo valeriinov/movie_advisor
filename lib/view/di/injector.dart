@@ -39,11 +39,11 @@ import '../../data/repositories/details/impl_details_repository.dart';
 import '../../data/repositories/home/home_remote_data_source.dart';
 import '../../data/repositories/home/impl_home_repository.dart';
 import '../../data/repositories/media_local_data_source.dart';
-import '../../data/repositories/media_sync_data_source.dart';
 import '../../data/repositories/search/impl_search_repository.dart';
 import '../../data/repositories/search/search_remote_data_source.dart';
 import '../../data/repositories/settings_provider.dart';
 import '../../data/repositories/sync/impl_sync_repository.dart';
+import '../../data/repositories/sync/sync_data_source.dart';
 import '../../data/repositories/watch/impl_watch_repository.dart';
 import '../../data/repositories/watch/watch_local_data_source.dart';
 import '../../data/repositories/watch/watch_remote_data_source.dart';
@@ -51,9 +51,9 @@ import '../../data/sources/impl_auth_remote_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
 import '../../data/sources/impl_media_local_data_source.dart';
-import '../../data/sources/impl_media_sync_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
+import '../../data/sources/impl_sync_data_source.dart';
 import '../../data/sources/impl_watch_local_data_source.dart';
 import '../../data/sources/impl_watch_remote_data_source.dart';
 import '../../data/utils/media_merger/impl_media_merger.dart';
@@ -184,8 +184,8 @@ final mediaServicePr = Provider<MediaService>(
   ),
 );
 
-final mediaSyncDataSourcePr = Provider<MediaSyncDataSource>(
-  (ref) => ImplMediaSyncDataSource(
+final mediaSyncDataSourcePr = Provider<SyncDataSource>(
+  (ref) => ImplSyncDataSource(
     localDatabase: ref.read(localDatabasePr),
     remoteMediaService: ref.read(mediaServicePr),
     connectivity: ref.read(connectivityServicePr),

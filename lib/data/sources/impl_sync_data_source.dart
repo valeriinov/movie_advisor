@@ -10,17 +10,17 @@ import '../local/utils/ext/user_table_mapper.dart';
 import '../network/services/auth_service.dart';
 import '../network/services/connectivity_service.dart';
 import '../network/services/media_service.dart';
-import '../repositories/media_sync_data_source.dart';
+import '../repositories/sync/sync_data_source.dart';
 
-class ImplMediaSyncDataSource implements MediaSyncDataSource {
-  static const _logTitle = 'MEDIA SYNC DATA SOURCE LOG';
+class ImplSyncDataSource implements SyncDataSource {
+  static const _logTitle = 'SYNC DATA SOURCE LOG';
 
   final AppLocalDatabase _localDatabase;
   final MediaService _remoteMediaService;
   final ConnectivityService _connectivity;
   final AuthService _authService;
 
-  ImplMediaSyncDataSource({
+  ImplSyncDataSource({
     required AppLocalDatabase localDatabase,
     required MediaService remoteMediaService,
     required ConnectivityService connectivity,

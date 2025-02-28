@@ -3,14 +3,14 @@ import 'package:dartz/dartz.dart';
 import '../../../domain/entities/result.dart';
 import '../../../domain/repositories/sync_repository.dart';
 import '../../mappers/app_mapper.dart';
-import '../media_sync_data_source.dart';
+import 'sync_data_source.dart';
 
 class ImplSyncRepository implements SyncRepository {
-  final MediaSyncDataSource _dataSource;
+  final SyncDataSource _dataSource;
   final AppMapper _mapper;
 
   ImplSyncRepository({
-    required MediaSyncDataSource dataSource,
+    required SyncDataSource dataSource,
     required AppMapper mapper,
   }) : _dataSource = dataSource,
        _mapper = mapper;
