@@ -216,38 +216,30 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
   @override
   Future<void> addToWatchedMovie(MovieShortDataDto data) {
-    final preparedData = data.copyWith(isWatched: true);
-
     return _database
         .into(_database.moviesTable)
-        .insert(preparedData.toTableData(), mode: InsertMode.insertOrReplace);
+        .insert(data.toTableData(), mode: InsertMode.insertOrReplace);
   }
 
   @override
   Future<void> addToWatchedSeries(SeriesShortDataDto data) {
-    final preparedData = data.copyWith(isWatched: true);
-
     return _database
         .into(_database.seriesTable)
-        .insert(preparedData.toTableData(), mode: InsertMode.insertOrReplace);
+        .insert(data.toTableData(), mode: InsertMode.insertOrReplace);
   }
 
   @override
   Future<void> addToWatchlistMovie(MovieShortDataDto data) {
-    final preparedData = data.copyWith(isInWatchlist: true);
-
     return _database
         .into(_database.moviesTable)
-        .insert(preparedData.toTableData(), mode: InsertMode.insertOrReplace);
+        .insert(data.toTableData(), mode: InsertMode.insertOrReplace);
   }
 
   @override
   Future<void> addToWatchlistSeries(SeriesShortDataDto data) {
-    final preparedData = data.copyWith(isInWatchlist: true);
-
     return _database
         .into(_database.seriesTable)
-        .insert(preparedData.toTableData(), mode: InsertMode.insertOrReplace);
+        .insert(data.toTableData(), mode: InsertMode.insertOrReplace);
   }
 
   @override

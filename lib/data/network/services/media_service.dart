@@ -118,4 +118,30 @@ class MediaService {
 
     await batch.commit();
   }
+
+  Future<void> updateMoviePartial(int id, Map<String, dynamic> data) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return;
+
+    final docRef = _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.moviesCollection)
+        .doc(id.toString());
+
+    await docRef.update(data);
+  }
+
+  Future<void> updateSeriesPartial(int id, Map<String, dynamic> data) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return;
+
+    final docRef = _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.seriesCollection)
+        .doc(id.toString());
+
+    await docRef.update(data);
+  }
 }

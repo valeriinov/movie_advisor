@@ -46,6 +46,7 @@ import '../../data/repositories/settings_provider.dart';
 import '../../data/repositories/sync/impl_sync_repository.dart';
 import '../../data/repositories/watch/impl_watch_repository.dart';
 import '../../data/repositories/watch/watch_local_data_source.dart';
+import '../../data/repositories/watch/watch_remote_data_source.dart';
 import '../../data/sources/impl_auth_remote_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
@@ -54,6 +55,7 @@ import '../../data/sources/impl_media_sync_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
 import '../../data/sources/impl_watch_local_data_source.dart';
+import '../../data/sources/impl_watch_remote_data_source.dart';
 import '../../data/utils/media_merger/impl_media_merger.dart';
 import '../../data/utils/media_merger/media_merger.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -273,9 +275,13 @@ final detailsSeriesUseCasePr = Provider<DetailsSeriesUseCase>(
 final watchLocalDataSourcePr = Provider<WatchLocalDataSource>(
   (ref) => ImplWatchLocalDataSource(database: ref.read(localDatabasePr)),
 );
+final watchRemoteDataSourcePr = Provider<WatchRemoteDataSource>(
+  (ref) => ImplWatchRemoteDataSource(service: ref.read(mediaServicePr)),
+);
 final watchRepositoryPr = Provider<WatchRepository>(
   (ref) => ImplWatchRepository(
-    dataSource: ref.read(watchLocalDataSourcePr),
+    localDataSource: ref.read(watchLocalDataSourcePr),
+    remoteDataSource: ref.read(watchRemoteDataSourcePr),
     moviesMapper: ref.read(moviesMapperPr),
     seriesMapper: ref.read(seriesMapperPr),
   ),
