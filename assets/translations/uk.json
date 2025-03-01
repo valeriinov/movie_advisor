@@ -117,6 +117,7 @@
   "createAccountSuccessToast": "Акаунт успішно створено",
   "resetPassScreenTitle": "Скинути пароль",
   "resetPassButton": "СКИНУТИ ПАРОЛЬ",
+  "syncDataErrorDesc": "Синхронізація даних не вдалася",
   "resetPassSuccessToast": "Лист для скидання пароля надіслано",
   "userNotFoundException": "Користувача не знайдено",
   "wrongEmailOrPassException": "Неправильний email або пароль",

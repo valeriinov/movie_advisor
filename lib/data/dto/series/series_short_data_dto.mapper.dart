@@ -54,6 +54,9 @@ class SeriesShortDataDtoMapper extends ClassMapperBase<SeriesShortDataDto> {
   static bool? _$isWatched(SeriesShortDataDto v) => v.isWatched;
   static const Field<SeriesShortDataDto, bool> _f$isWatched =
       Field('isWatched', _$isWatched, key: r'is_watched', opt: true);
+  static DateTime? _$updatedAt(SeriesShortDataDto v) => v.updatedAt;
+  static const Field<SeriesShortDataDto, DateTime> _f$updatedAt =
+      Field('updatedAt', _$updatedAt, key: r'updated_at', opt: true);
 
   @override
   final MappableFields<SeriesShortDataDto> fields = const {
@@ -67,6 +70,7 @@ class SeriesShortDataDtoMapper extends ClassMapperBase<SeriesShortDataDto> {
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
+    #updatedAt: _f$updatedAt,
   };
   @override
   final bool ignoreNull = true;
@@ -82,7 +86,8 @@ class SeriesShortDataDtoMapper extends ClassMapperBase<SeriesShortDataDto> {
         tmdbRating: data.dec(_f$tmdbRating),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
-        isWatched: data.dec(_f$isWatched));
+        isWatched: data.dec(_f$isWatched),
+        updatedAt: data.dec(_f$updatedAt));
   }
 
   @override
@@ -155,7 +160,8 @@ abstract class SeriesShortDataDtoCopyWith<$R, $In extends SeriesShortDataDto,
       RatingDataDto? tmdbRating,
       int? userRating,
       bool? isInWatchlist,
-      bool? isWatched});
+      bool? isWatched,
+      DateTime? updatedAt});
   SeriesShortDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -197,7 +203,8 @@ class _SeriesShortDataDtoCopyWithImpl<$R, $Out>
           Object? tmdbRating = $none,
           Object? userRating = $none,
           Object? isInWatchlist = $none,
-          Object? isWatched = $none}) =>
+          Object? isWatched = $none,
+          Object? updatedAt = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (posterUrl != $none) #posterUrl: posterUrl,
@@ -208,7 +215,8 @@ class _SeriesShortDataDtoCopyWithImpl<$R, $Out>
         if (tmdbRating != $none) #tmdbRating: tmdbRating,
         if (userRating != $none) #userRating: userRating,
         if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
-        if (isWatched != $none) #isWatched: isWatched
+        if (isWatched != $none) #isWatched: isWatched,
+        if (updatedAt != $none) #updatedAt: updatedAt
       }));
   @override
   SeriesShortDataDto $make(CopyWithData data) => SeriesShortDataDto(
@@ -221,7 +229,8 @@ class _SeriesShortDataDtoCopyWithImpl<$R, $Out>
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
-      isWatched: data.get(#isWatched, or: $value.isWatched));
+      isWatched: data.get(#isWatched, or: $value.isWatched),
+      updatedAt: data.get(#updatedAt, or: $value.updatedAt));
 
   @override
   SeriesShortDataDtoCopyWith<$R2, SeriesShortDataDto, $Out2> $chain<$R2, $Out2>(

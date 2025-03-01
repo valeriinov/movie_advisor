@@ -17,6 +17,7 @@ extension MoviesMapper on MoviesTableData {
       userRating: userRating,
       isInWatchlist: isInWatchlist,
       isWatched: isWatched,
+      updatedAt: updatedAt,
     );
   }
 }
@@ -34,12 +35,13 @@ extension SeriesMapper on SeriesTableData {
       userRating: userRating,
       isInWatchlist: isInWatchlist,
       isWatched: isWatched,
+      updatedAt: updatedAt,
     );
   }
 }
 
 extension MoviesTableMapper on MovieShortDataDto {
-  MoviesTableCompanion toTableData() {
+  MoviesTableCompanion toTableData([DateTime? updatedAt]) {
     return MoviesTableCompanion(
       tmdbId: Value(id!),
       posterUrl: Value(posterUrl),
@@ -51,13 +53,13 @@ extension MoviesTableMapper on MovieShortDataDto {
       userRating: Value(userRating),
       isInWatchlist: Value(isInWatchlist),
       isWatched: Value(isWatched),
-      updatedAt: Value(DateTime.now()),
+      updatedAt: Value(updatedAt ?? DateTime.now()),
     );
   }
 }
 
 extension SeriesTableMapper on SeriesShortDataDto {
-  SeriesTableCompanion toTableData() {
+  SeriesTableCompanion toTableData([DateTime? updatedAt]) {
     return SeriesTableCompanion(
       tmdbId: Value(id!),
       posterUrl: Value(posterUrl),
@@ -69,7 +71,7 @@ extension SeriesTableMapper on SeriesShortDataDto {
       userRating: Value(userRating),
       isInWatchlist: Value(isInWatchlist),
       isWatched: Value(isWatched),
-      updatedAt: Value(DateTime.now()),
+      updatedAt: Value(updatedAt ?? DateTime.now()),
     );
   }
 }

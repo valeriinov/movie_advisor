@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +12,7 @@ import '../../common/adapters/url_launcher_adapter/url_launcher_adapter.dart';
 import '../../data/local/app_local_database.dart';
 import '../../data/mappers/app_auth_mapper.dart';
 import '../../data/mappers/app_cast_mapper.dart';
+import '../../data/mappers/app_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
 import '../../data/mappers/app_rating_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
@@ -20,8 +23,10 @@ import '../../data/network/network_manager/impl_dio/dio_error_handler.dart';
 import '../../data/network/network_manager/impl_dio/impl_network_manager.dart';
 import '../../data/network/network_manager/network_manager.dart';
 import '../../data/network/services/auth_service.dart';
+import '../../data/network/services/connectivity_service.dart';
 import '../../data/network/services/details_service.dart';
 import '../../data/network/services/home_service.dart';
+import '../../data/network/services/media_service.dart';
 import '../../data/network/services/search_service.dart';
 import '../../data/network/utils/image_url_handler/image_url_handler.dart';
 import '../../data/network/utils/image_url_handler/impl_image_url_handler.dart';
@@ -34,32 +39,44 @@ import '../../data/repositories/details/impl_details_repository.dart';
 import '../../data/repositories/home/home_remote_data_source.dart';
 import '../../data/repositories/home/impl_home_repository.dart';
 import '../../data/repositories/media_local_data_source.dart';
+import '../../data/repositories/refresh/impl_refresh_repository.dart';
+import '../../data/repositories/refresh/refresh_local_data_source.dart';
 import '../../data/repositories/search/impl_search_repository.dart';
 import '../../data/repositories/search/search_remote_data_source.dart';
 import '../../data/repositories/settings_provider.dart';
+import '../../data/repositories/sync/impl_sync_repository.dart';
+import '../../data/repositories/sync/sync_data_source.dart';
 import '../../data/repositories/watch/impl_watch_repository.dart';
 import '../../data/repositories/watch/watch_local_data_source.dart';
+import '../../data/repositories/watch/watch_remote_data_source.dart';
 import '../../data/sources/impl_auth_remote_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
 import '../../data/sources/impl_media_local_data_source.dart';
+import '../../data/sources/impl_refresh_local_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
+import '../../data/sources/impl_sync_data_source.dart';
 import '../../data/sources/impl_watch_local_data_source.dart';
+import '../../data/sources/impl_watch_remote_data_source.dart';
 import '../../data/utils/media_merger/impl_media_merger.dart';
 import '../../data/utils/media_merger/media_merger.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../domain/repositories/details_repository.dart';
 import '../../domain/repositories/home_repository.dart';
+import '../../domain/repositories/refresh_repository.dart';
 import '../../domain/repositories/search_repository.dart';
+import '../../domain/repositories/sync_repository.dart';
 import '../../domain/repositories/watch_repository.dart';
 import '../../domain/usecases/auth_use_case.dart';
 import '../../domain/usecases/details/details_movie_use_case.dart';
 import '../../domain/usecases/details/details_series_use_case.dart';
 import '../../domain/usecases/home/home_movies_use_case.dart';
 import '../../domain/usecases/home/home_series_use_case.dart';
+import '../../domain/usecases/refresh_use_case.dart';
 import '../../domain/usecases/search/search_movies_use_case.dart';
 import '../../domain/usecases/search/search_series_use_case.dart';
+import '../../domain/usecases/sync_use_case.dart';
 import '../../domain/usecases/watch/watch_movie_use_case.dart';
 import '../../domain/usecases/watch/watch_series_use_case.dart';
 import '../ui/base/view_model/base_status_handler.dart';
@@ -72,6 +89,9 @@ import '../ui/widgets/dialogs/toasts/toast_manager.dart';
 
 // CORE
 final firebaseAuthPr = Provider<FirebaseAuth>((_) => FirebaseAuth.instance);
+final firebaseFirestorePr = Provider<FirebaseFirestore>(
+  (_) => FirebaseFirestore.instance,
+);
 final appRouterPr = Provider<AppRouter>(
   (ref) => ImplAppRouter(rootNavKey: GlobalKey<NavigatorState>()),
 );
@@ -130,6 +150,7 @@ final mediaResponseHandlerPr = Provider<MediaResponseHandler>(
 
 final localDatabasePr = Provider<AppLocalDatabase>((_) => AppLocalDatabase());
 
+final appMapperPr = Provider<AppMapper>((_) => AppMapper());
 final castMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
 final ratingMapperPr = Provider<AppRatingMapper>((_) => AppRatingMapper());
 final moviesMapperPr = Provider<AppMoviesMapper>(
@@ -155,6 +176,26 @@ final mediaLocalDataSourcePr = Provider<MediaLocalDataSource>(
 
 final urlLauncherPr = Provider<UrlLauncherAdapter>(
   (_) => ImplUrlLauncherAdapter(),
+);
+
+final connectivityServicePr = Provider<ConnectivityService>(
+  (_) => ConnectivityService(connectivity: Connectivity()),
+);
+
+final mediaServicePr = Provider<MediaService>(
+  (ref) => MediaService(
+    firebaseFirestore: ref.read(firebaseFirestorePr),
+    firebaseAuth: ref.read(firebaseAuthPr),
+  ),
+);
+
+final mediaSyncDataSourcePr = Provider<SyncDataSource>(
+  (ref) => ImplSyncDataSource(
+    localDatabase: ref.read(localDatabasePr),
+    remoteMediaService: ref.read(mediaServicePr),
+    connectivity: ref.read(connectivityServicePr),
+    authService: ref.read(authServicePr),
+  ),
 );
 
 // HOME
@@ -239,9 +280,13 @@ final detailsSeriesUseCasePr = Provider<DetailsSeriesUseCase>(
 final watchLocalDataSourcePr = Provider<WatchLocalDataSource>(
   (ref) => ImplWatchLocalDataSource(database: ref.read(localDatabasePr)),
 );
+final watchRemoteDataSourcePr = Provider<WatchRemoteDataSource>(
+  (ref) => ImplWatchRemoteDataSource(service: ref.read(mediaServicePr)),
+);
 final watchRepositoryPr = Provider<WatchRepository>(
   (ref) => ImplWatchRepository(
-    dataSource: ref.read(watchLocalDataSourcePr),
+    localDataSource: ref.read(watchLocalDataSourcePr),
+    remoteDataSource: ref.read(watchRemoteDataSourcePr),
     moviesMapper: ref.read(moviesMapperPr),
     seriesMapper: ref.read(seriesMapperPr),
   ),
@@ -269,6 +314,31 @@ final authRepositoryPr = Provider<AuthRepository>(
 );
 final authUseCasePr = Provider<AuthUseCase>(
   (ref) => AuthUseCase(repository: ref.read(authRepositoryPr)),
+);
+
+// SYNC
+final syncRepositoryPr = Provider<SyncRepository>(
+  (ref) => ImplSyncRepository(
+    dataSource: ref.read(mediaSyncDataSourcePr),
+    mapper: ref.read(appMapperPr),
+  ),
+);
+final syncUseCasePr = Provider<SyncUseCase>(
+  (ref) => SyncUseCase(repository: ref.read(syncRepositoryPr)),
+);
+
+// REFRESH
+final refreshLocalDataSourcePr = Provider<RefreshLocalDataSource>(
+  (ref) => ImplRefreshLocalDataSource(database: ref.read(localDatabasePr)),
+);
+final refreshRepositoryPr = Provider<RefreshRepository>(
+  (ref) => ImplRefreshRepository(
+    dataSource: ref.read(refreshLocalDataSourcePr),
+    mapper: ref.read(appMapperPr),
+  ),
+);
+final refreshUseCasePr = Provider<RefreshUseCase>(
+  (ref) => RefreshUseCase(repository: ref.read(refreshRepositoryPr)),
 );
 
 /// {@category Utils}

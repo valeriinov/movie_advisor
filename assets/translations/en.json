@@ -117,6 +117,7 @@
   "createAccountSuccessToast": "Account created successfully",
   "resetPassScreenTitle": "Reset Password",
   "resetPassButton": "RESET PASSWORD",
+  "syncDataErrorDesc": "Data synchronization failed",
   "resetPassSuccessToast": "Password reset email sent",
   "userNotFoundException": "User not found",
   "wrongEmailOrPassException": "Wrong email or password",
