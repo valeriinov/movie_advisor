@@ -104,6 +104,7 @@ abstract class  LocaleKeys {
   static const invalidEmailError = 'invalidEmailError';
   static const invalidPassError = 'invalidPassError';
   static const invalidConfirmPassError = 'invalidConfirmPassError';
+  static const requiredFieldError = 'requiredFieldError';
   static const nameFieldHint = 'nameFieldHint';
   static const emailFieldHint = 'emailFieldHint';
   static const passFieldHint = 'passFieldHint';

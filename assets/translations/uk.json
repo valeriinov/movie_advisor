@@ -100,6 +100,7 @@
   "invalidEmailError": "Некоректна електронна адреса.",
   "invalidPassError": "Мінімум 8 символів, цифра, велика і мала літера.",
   "invalidConfirmPassError": "Пароль не збігається з підтвердженням.",
+  "requiredFieldError": "Це поле є обов'язковим",
   "nameFieldHint": "Ім'я",
   "emailFieldHint": "Електронна пошта",
   "passFieldHint": "Пароль",

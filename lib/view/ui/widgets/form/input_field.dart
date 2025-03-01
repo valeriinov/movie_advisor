@@ -8,6 +8,7 @@ import '../../resources/app_images.dart';
 import '../../resources/base_theme/inputs/base_inputs_styles_ext.dart';
 import '../../resources/locale_keys.g.dart';
 import '../app_svg_asset.dart';
+import 'utils/app_validators.dart';
 import 'utils/clear_button_builder.dart';
 import 'widgets/field_label.dart';
 
@@ -164,8 +165,9 @@ class InputField extends StatelessWidget {
            onFocusChanged: onFocusChanged,
            builder: (props) {
              final validator =
-                 EmailValidator(
+                 AppEmailValidator(
                    LocaleKeys.invalidEmailError.tr(),
+                   requiredErrorText: LocaleKeys.requiredFieldError.tr(),
                    isRequired: isRequired,
                  ).validate;
 
@@ -219,8 +221,9 @@ class InputField extends StatelessWidget {
            onFocusChanged: onFocusChanged,
            builder: (props) {
              final validator =
-                 PasswordValidator(
+                 AppEmailValidator(
                    LocaleKeys.invalidPassError.tr(),
+                   requiredErrorText: LocaleKeys.requiredFieldError.tr(),
                    isRequired: isRequired,
                  ).validate;
 

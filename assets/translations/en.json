@@ -100,6 +100,7 @@
   "invalidEmailError": "Invalid email address",
   "invalidPassError": "Min 8 chars with a digit, upper & lower case",
   "invalidConfirmPassError": "Password does not match the confirmation",
+  "requiredFieldError": "This field is required",
   "nameFieldHint": "Name",
   "emailFieldHint": "Email",
   "passFieldHint": "Password",
