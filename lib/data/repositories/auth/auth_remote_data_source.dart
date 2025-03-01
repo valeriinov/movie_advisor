@@ -1,4 +1,5 @@
 import '../../dto/auth/auth_data_dto.dart';
+import '../../dto/auth/delete_account_data_dto.dart';
 import '../../dto/auth/reg_data_dto.dart';
 import '../../dto/auth/reset_pass_data_dto.dart';
 import '../../dto/auth/user_data_dto.dart';
@@ -16,5 +17,5 @@ abstract interface class AuthRemoteDataSource {
 
   Future<void> signOut();
 
-  Future<void> deleteAccount();
+  Future<void> deleteAccount(DeleteAccountDataDto data);
 }

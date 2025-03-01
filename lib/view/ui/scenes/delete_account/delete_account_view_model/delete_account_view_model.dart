@@ -5,6 +5,7 @@ import '../../../../../domain/usecases/auth_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
+import '../model/delete_account_form_state.dart';
 import 'delete_account_state.dart';
 
 /// {@category StateManagement}
@@ -38,10 +39,19 @@ class DeleteAccountViewModel extends AutoDisposeNotifier<DeleteAccountState>
     return const DeleteAccountState();
   }
 
+  void updateFormState(DeleteAccountFormState formState) {
+    state = state.copyWith(formState: formState);
+  }
+
   Future<void> deleteAccount() async {
     _updateStatus(const DeleteAccountBaseInitStatus(isLoading: true));
 
-    await safeCall(_authUseCase.deleteAccount, onResult: _handleResult);
+    final deleteAccountData = state.formState.toDeleteAccountData();
+
+    await safeCall(
+      () => _authUseCase.deleteAccount(deleteAccountData),
+      onResult: _handleResult,
+    );
   }
 
   void _handleResult(Result<void> result) {
@@ -50,7 +60,7 @@ class DeleteAccountViewModel extends AutoDisposeNotifier<DeleteAccountState>
         _updateStatus(DeleteAccountBaseInitStatus(errorMessage: error.message));
       },
       (_) {
-        _updateStatus(const AccountDeletedStatus());
+        _updateStatus(const DeleteAccountSuccessStatus());
       },
     );
   }

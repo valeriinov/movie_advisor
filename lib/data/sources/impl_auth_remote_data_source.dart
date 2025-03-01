@@ -1,4 +1,5 @@
 import '../dto/auth/auth_data_dto.dart';
+import '../dto/auth/delete_account_data_dto.dart';
 import '../dto/auth/reg_data_dto.dart';
 import '../dto/auth/reset_pass_data_dto.dart';
 import '../dto/auth/user_data_dto.dart';
@@ -39,7 +40,7 @@ class ImplAuthRemoteDataSource implements AuthRemoteDataSource {
   }
 
   @override
-  Future<void> deleteAccount() {
-    return _service.deleteAccount();
+  Future<void> deleteAccount(DeleteAccountDataDto data) {
+    return _service.deleteAccount(data);
   }
 }

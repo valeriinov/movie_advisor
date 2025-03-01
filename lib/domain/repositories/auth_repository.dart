@@ -1,4 +1,5 @@
 import '../entities/auth/auth_data.dart';
+import '../entities/auth/delete_account_data.dart' show DeleteAccountData;
 import '../entities/auth/reg_data.dart';
 import '../entities/auth/reset_pass_data.dart';
 import '../entities/auth/user_data.dart';
@@ -17,5 +18,5 @@ abstract interface class AuthRepository {
 
   Future<Result<void>> signOut();
 
-  Future<Result<void>> deleteAccount();
+  Future<Result<void>> deleteAccount(DeleteAccountData data);
 }

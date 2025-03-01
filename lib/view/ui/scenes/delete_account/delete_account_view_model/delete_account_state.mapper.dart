@@ -13,6 +13,7 @@ class DeleteAccountStateMapper extends ClassMapperBase<DeleteAccountState> {
   static DeleteAccountStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = DeleteAccountStateMapper._());
+      DeleteAccountFormStateMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,6 +21,11 @@ class DeleteAccountStateMapper extends ClassMapperBase<DeleteAccountState> {
   @override
   final String id = 'DeleteAccountState';
 
+  static DeleteAccountFormState _$formState(DeleteAccountState v) =>
+      v.formState;
+  static const Field<DeleteAccountState, DeleteAccountFormState> _f$formState =
+      Field('formState', _$formState,
+          opt: true, def: const DeleteAccountFormState());
   static DeleteAccountStatus _$status(DeleteAccountState v) => v.status;
   static const Field<DeleteAccountState, DeleteAccountStatus> _f$status = Field(
       'status', _$status,
@@ -27,11 +33,13 @@ class DeleteAccountStateMapper extends ClassMapperBase<DeleteAccountState> {
 
   @override
   final MappableFields<DeleteAccountState> fields = const {
+    #formState: _f$formState,
     #status: _f$status,
   };
 
   static DeleteAccountState _instantiate(DecodingData data) {
-    return DeleteAccountState(status: data.dec(_f$status));
+    return DeleteAccountState(
+        formState: data.dec(_f$formState), status: data.dec(_f$status));
   }
 
   @override
@@ -71,7 +79,9 @@ extension DeleteAccountStateValueCopy<$R, $Out>
 
 abstract class DeleteAccountStateCopyWith<$R, $In extends DeleteAccountState,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
-  $R call({DeleteAccountStatus? status});
+  DeleteAccountFormStateCopyWith<$R, DeleteAccountFormState,
+      DeleteAccountFormState> get formState;
+  $R call({DeleteAccountFormState? formState, DeleteAccountStatus? status});
   DeleteAccountStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -85,11 +95,20 @@ class _DeleteAccountStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<DeleteAccountState> $mapper =
       DeleteAccountStateMapper.ensureInitialized();
   @override
-  $R call({DeleteAccountStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  DeleteAccountFormStateCopyWith<$R, DeleteAccountFormState,
+          DeleteAccountFormState>
+      get formState =>
+          $value.formState.copyWith.$chain((v) => call(formState: v));
   @override
-  DeleteAccountState $make(CopyWithData data) =>
-      DeleteAccountState(status: data.get(#status, or: $value.status));
+  $R call({DeleteAccountFormState? formState, DeleteAccountStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (formState != null) #formState: formState,
+        if (status != null) #status: status
+      }));
+  @override
+  DeleteAccountState $make(CopyWithData data) => DeleteAccountState(
+      formState: data.get(#formState, or: $value.formState),
+      status: data.get(#status, or: $value.status));
 
   @override
   DeleteAccountStateCopyWith<$R2, DeleteAccountState, $Out2> $chain<$R2, $Out2>(
@@ -331,39 +350,41 @@ class _DeleteAccountBaseInitStatusCopyWithImpl<$R, $Out>
           _DeleteAccountBaseInitStatusCopyWithImpl($value, $cast, t);
 }
 
-class AccountDeletedStatusMapper extends ClassMapperBase<AccountDeletedStatus> {
-  AccountDeletedStatusMapper._();
+class DeleteAccountSuccessStatusMapper
+    extends ClassMapperBase<DeleteAccountSuccessStatus> {
+  DeleteAccountSuccessStatusMapper._();
 
-  static AccountDeletedStatusMapper? _instance;
-  static AccountDeletedStatusMapper ensureInitialized() {
+  static DeleteAccountSuccessStatusMapper? _instance;
+  static DeleteAccountSuccessStatusMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals.use(_instance = AccountDeletedStatusMapper._());
+      MapperContainer.globals
+          .use(_instance = DeleteAccountSuccessStatusMapper._());
     }
     return _instance!;
   }
 
   @override
-  final String id = 'AccountDeletedStatus';
+  final String id = 'DeleteAccountSuccessStatus';
 
-  static bool _$isLoading(AccountDeletedStatus v) => v.isLoading;
-  static const Field<AccountDeletedStatus, bool> _f$isLoading =
+  static bool _$isLoading(DeleteAccountSuccessStatus v) => v.isLoading;
+  static const Field<DeleteAccountSuccessStatus, bool> _f$isLoading =
       Field('isLoading', _$isLoading, opt: true, def: false);
-  static String? _$errorMessage(AccountDeletedStatus v) => v.errorMessage;
-  static const Field<AccountDeletedStatus, String> _f$errorMessage =
+  static String? _$errorMessage(DeleteAccountSuccessStatus v) => v.errorMessage;
+  static const Field<DeleteAccountSuccessStatus, String> _f$errorMessage =
       Field('errorMessage', _$errorMessage, opt: true);
-  static bool _$isInitialized(AccountDeletedStatus v) => v.isInitialized;
-  static const Field<AccountDeletedStatus, bool> _f$isInitialized =
+  static bool _$isInitialized(DeleteAccountSuccessStatus v) => v.isInitialized;
+  static const Field<DeleteAccountSuccessStatus, bool> _f$isInitialized =
       Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
-  final MappableFields<AccountDeletedStatus> fields = const {
+  final MappableFields<DeleteAccountSuccessStatus> fields = const {
     #isLoading: _f$isLoading,
     #errorMessage: _f$errorMessage,
     #isInitialized: _f$isInitialized,
   };
 
-  static AccountDeletedStatus _instantiate(DecodingData data) {
-    return AccountDeletedStatus(
+  static DeleteAccountSuccessStatus _instantiate(DecodingData data) {
+    return DeleteAccountSuccessStatus(
         isLoading: data.dec(_f$isLoading),
         errorMessage: data.dec(_f$errorMessage),
         isInitialized: data.dec(_f$isInitialized));
@@ -373,54 +394,56 @@ class AccountDeletedStatusMapper extends ClassMapperBase<AccountDeletedStatus> {
   final Function instantiate = _instantiate;
 }
 
-mixin AccountDeletedStatusMappable {
-  AccountDeletedStatusCopyWith<AccountDeletedStatus, AccountDeletedStatus,
-          AccountDeletedStatus>
-      get copyWith => _AccountDeletedStatusCopyWithImpl(
-          this as AccountDeletedStatus, $identity, $identity);
+mixin DeleteAccountSuccessStatusMappable {
+  DeleteAccountSuccessStatusCopyWith<DeleteAccountSuccessStatus,
+          DeleteAccountSuccessStatus, DeleteAccountSuccessStatus>
+      get copyWith => _DeleteAccountSuccessStatusCopyWithImpl(
+          this as DeleteAccountSuccessStatus, $identity, $identity);
   @override
   String toString() {
-    return AccountDeletedStatusMapper.ensureInitialized()
-        .stringifyValue(this as AccountDeletedStatus);
+    return DeleteAccountSuccessStatusMapper.ensureInitialized()
+        .stringifyValue(this as DeleteAccountSuccessStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return AccountDeletedStatusMapper.ensureInitialized()
-        .equalsValue(this as AccountDeletedStatus, other);
+    return DeleteAccountSuccessStatusMapper.ensureInitialized()
+        .equalsValue(this as DeleteAccountSuccessStatus, other);
   }
 
   @override
   int get hashCode {
-    return AccountDeletedStatusMapper.ensureInitialized()
-        .hashValue(this as AccountDeletedStatus);
+    return DeleteAccountSuccessStatusMapper.ensureInitialized()
+        .hashValue(this as DeleteAccountSuccessStatus);
   }
 }
 
-extension AccountDeletedStatusValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, AccountDeletedStatus, $Out> {
-  AccountDeletedStatusCopyWith<$R, AccountDeletedStatus, $Out>
-      get $asAccountDeletedStatus =>
-          $base.as((v, t, t2) => _AccountDeletedStatusCopyWithImpl(v, t, t2));
+extension DeleteAccountSuccessStatusValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, DeleteAccountSuccessStatus, $Out> {
+  DeleteAccountSuccessStatusCopyWith<$R, DeleteAccountSuccessStatus, $Out>
+      get $asDeleteAccountSuccessStatus => $base
+          .as((v, t, t2) => _DeleteAccountSuccessStatusCopyWithImpl(v, t, t2));
 }
 
-abstract class AccountDeletedStatusCopyWith<
+abstract class DeleteAccountSuccessStatusCopyWith<
     $R,
-    $In extends AccountDeletedStatus,
+    $In extends DeleteAccountSuccessStatus,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
-  AccountDeletedStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+  DeleteAccountSuccessStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
 
-class _AccountDeletedStatusCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, AccountDeletedStatus, $Out>
-    implements AccountDeletedStatusCopyWith<$R, AccountDeletedStatus, $Out> {
-  _AccountDeletedStatusCopyWithImpl(super.value, super.then, super.then2);
+class _DeleteAccountSuccessStatusCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, DeleteAccountSuccessStatus, $Out>
+    implements
+        DeleteAccountSuccessStatusCopyWith<$R, DeleteAccountSuccessStatus,
+            $Out> {
+  _DeleteAccountSuccessStatusCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<AccountDeletedStatus> $mapper =
-      AccountDeletedStatusMapper.ensureInitialized();
+  late final ClassMapperBase<DeleteAccountSuccessStatus> $mapper =
+      DeleteAccountSuccessStatusMapper.ensureInitialized();
   @override
   $R call(
           {bool? isLoading,
@@ -432,13 +455,14 @@ class _AccountDeletedStatusCopyWithImpl<$R, $Out>
         if (isInitialized != null) #isInitialized: isInitialized
       }));
   @override
-  AccountDeletedStatus $make(CopyWithData data) => AccountDeletedStatus(
-      isLoading: data.get(#isLoading, or: $value.isLoading),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+  DeleteAccountSuccessStatus $make(CopyWithData data) =>
+      DeleteAccountSuccessStatus(
+          isLoading: data.get(#isLoading, or: $value.isLoading),
+          errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+          isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
-  AccountDeletedStatusCopyWith<$R2, AccountDeletedStatus, $Out2>
+  DeleteAccountSuccessStatusCopyWith<$R2, DeleteAccountSuccessStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _AccountDeletedStatusCopyWithImpl($value, $cast, t);
+          _DeleteAccountSuccessStatusCopyWithImpl($value, $cast, t);
 }

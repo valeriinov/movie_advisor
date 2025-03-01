@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../dto/app_firebase_exception.dart';
 import '../../dto/auth/auth_data_dto.dart';
+import '../../dto/auth/delete_account_data_dto.dart';
 import '../../dto/auth/reg_data_dto.dart';
 import '../../dto/auth/reset_pass_data_dto.dart';
 import '../../dto/auth/user_data_dto.dart';
-import '../../dto/app_firebase_exception.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth;
@@ -21,7 +22,7 @@ class AuthService {
 
   Future<void> signIn(AuthDataDto dto) async {
     return _execWithHandleError(
-      () async => _firebaseAuth.signInWithEmailAndPassword(
+      () => _firebaseAuth.signInWithEmailAndPassword(
         email: dto.email ?? '',
         password: dto.password ?? '',
       ),
@@ -30,7 +31,7 @@ class AuthService {
 
   Future<void> signUp(RegDataDto dto) async {
     return _execWithHandleError(
-      () async => _firebaseAuth.createUserWithEmailAndPassword(
+      () => _firebaseAuth.createUserWithEmailAndPassword(
         email: dto.email ?? '',
         password: dto.password ?? '',
       ),
@@ -39,7 +40,7 @@ class AuthService {
 
   Future<void> resetPass(ResetPassDataDto data) {
     return _execWithHandleError(
-      () async => _firebaseAuth.sendPasswordResetEmail(email: data.email ?? ''),
+      () => _firebaseAuth.sendPasswordResetEmail(email: data.email ?? ''),
     );
   }
 
@@ -47,17 +48,25 @@ class AuthService {
     return _firebaseAuth.signOut();
   }
 
-  Future<void> deleteAccount() async {
-    // TODO: Implement reauthentication before deleting account
-    // final credential = EmailAuthProvider.credential(
-    //     email: _firebaseAuth.currentUser?.email ?? '',
-    //     password: userProvidedPassword // User must enter password to delete account
-    // );
-    // await _firebaseAuth.currentUser?.reauthenticateWithCredential(credential);
+  Future<void> deleteAccount(DeleteAccountDataDto data) async {
+    return _execWithHandleError(() => _deleteAccount(data));
+  }
 
-    return _execWithHandleError(
-      () async => _firebaseAuth.currentUser?.delete(),
+  Future<void> _deleteAccount(DeleteAccountDataDto data) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) {
+      throw AppFirebaseException(error: Object(), message: 'unauthorized');
+    }
+
+    final uid = user.uid;
+
+    final credential = EmailAuthProvider.credential(
+      email: user.email ?? '',
+      password: data.password ?? '',
     );
+
+    await user.reauthenticateWithCredential(credential);
+    await user.delete();
   }
 
   Future<void> _execWithHandleError(Future<void> Function() action) async {

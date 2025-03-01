@@ -402,12 +402,13 @@ class InputField extends StatelessWidget {
   }) {
     final isFocused = props.focusNode.hasFocus;
     final isNotEmpty = props.controller.text.isNotEmpty;
+    final isFloating = isFocused || isNotEmpty;
 
     return InputDecoration(
       label: FieldLabel(
-        color: isFocused || isNotEmpty ? null : Colors.transparent,
+        color: isFloating ? null : Colors.transparent,
         isRequired: isRequired,
-        content: Text(labelText),
+        content: Text(isFloating ? labelText: hintText),
       ),
       suffixIcon: suffixIcon,
       floatingLabelBehavior: floatingLabelBehavior,

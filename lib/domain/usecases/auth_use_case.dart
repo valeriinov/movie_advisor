@@ -1,4 +1,5 @@
 import '../entities/auth/auth_data.dart';
+import '../entities/auth/delete_account_data.dart';
 import '../entities/auth/reg_data.dart';
 import '../entities/auth/reset_pass_data.dart';
 import '../entities/auth/user_data.dart';
@@ -32,7 +33,7 @@ class AuthUseCase {
     return _repository.signOut();
   }
 
-  Future<Result<void>> deleteAccount() {
-    return _repository.deleteAccount();
+  Future<Result<void>> deleteAccount(DeleteAccountData data) {
+    return _repository.deleteAccount(data);
   }
 }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/auth/auth_data.dart';
+import '../../../domain/entities/auth/delete_account_data.dart';
 import '../../../domain/entities/auth/reg_data.dart';
 import '../../../domain/entities/auth/reset_pass_data.dart';
 import '../../../domain/entities/auth/user_data.dart';
@@ -92,9 +93,9 @@ class ImplAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<Result<void>> deleteAccount() async {
+  Future<Result<void>> deleteAccount(DeleteAccountData data) async {
     try {
-      await _dataSource.deleteAccount();
+      await _dataSource.deleteAccount(_mapper.mapDeleteAccountDataToDto(data));
 
       return Right(null);
     } catch (e) {

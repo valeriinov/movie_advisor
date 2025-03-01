@@ -2,6 +2,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../../../../domain/entities/mappable_entity.dart';
 import '../../../base/view_model/base_state.dart';
+import '../model/delete_account_form_state.dart';
 
 part 'delete_account_state.mapper.dart';
 
@@ -12,10 +13,15 @@ part 'delete_account_state.mapper.dart';
 @mappableEntity
 final class DeleteAccountState extends BaseState<DeleteAccountStatus>
     with DeleteAccountStateMappable {
+  final DeleteAccountFormState formState;
+
   @override
   final DeleteAccountStatus status;
 
-  const DeleteAccountState({this.status = const DeleteAccountBaseStatus()});
+  const DeleteAccountState({
+    this.formState = const DeleteAccountFormState(),
+    this.status = const DeleteAccountBaseStatus(),
+  });
 }
 
 /// {@category StateManagement}
@@ -59,9 +65,9 @@ final class DeleteAccountBaseInitStatus extends DeleteAccountStatus
 }
 
 @mappableEntity
-final class AccountDeletedStatus extends DeleteAccountStatus
-    with AccountDeletedStatusMappable {
-  const AccountDeletedStatus({
+final class DeleteAccountSuccessStatus extends DeleteAccountStatus
+    with DeleteAccountSuccessStatusMappable {
+  const DeleteAccountSuccessStatus({
     super.isLoading,
     super.errorMessage,
     super.isInitialized = true,

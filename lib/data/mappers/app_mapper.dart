@@ -46,6 +46,7 @@ base class AppMapper {
       'user-not-found' => LocaleKeys.userNotFoundException.tr(),
       'wrong-password' => LocaleKeys.wrongEmailOrPassException.tr(),
       'email-already-in-use' => LocaleKeys.emailExistsException.tr(),
+      'unauthorized' => LocaleKeys.unauthorizedErrorDesc.tr(),
       _ => LocaleKeys.unexpectedErrorDesc.tr(),
     };
 
