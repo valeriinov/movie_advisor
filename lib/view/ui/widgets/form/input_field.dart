@@ -147,59 +147,6 @@ class InputField extends StatelessWidget {
         );
   }
 
-  InputField.name({
-    Key? key,
-    required String name,
-    FocusNode? focusNode,
-    dynamic Function(bool)? onFocusChanged,
-    bool isRequired = true,
-    VoidCallback? onEditingComplete,
-    TextInputAction textInputAction = TextInputAction.next,
-    String initialValue = '',
-  }) : this._(
-         key: key,
-         child: TextFieldBuilderExtended(
-           initialValue: initialValue,
-           focusNode: focusNode,
-           onFocusChanged: onFocusChanged,
-           builder: (props) {
-             final validator =
-                 MinLengthValidator(
-                   LocaleKeys.invalidNameError.tr(),
-                   minLength: 2,
-                   isRequired: isRequired,
-                 ).validate;
-
-             return FormBuilderTextField(
-               name: name,
-               controller: props.controller,
-               focusNode: props.focusNode,
-               scrollPadding: _getScrollPadding(props.context),
-               decoration: _buildBaseDecoration(
-                 labelText: LocaleKeys.nameFieldHint.tr(),
-                 hintText: LocaleKeys.nameFieldHint.tr(),
-                 props: props,
-                 isRequired: isRequired,
-                 suffixIcon: _buildTextFieldClearSuffixButton(
-                   props.controller,
-                   initialValue,
-                   props.focusNode.hasFocus,
-                 ),
-               ),
-               textCapitalization: TextCapitalization.words,
-               validator: validator,
-               textInputAction: textInputAction,
-               onEditingComplete:
-                   () => _onEditingComplete(
-                     textInputAction,
-                     props.focusNode,
-                     onEditingComplete: onEditingComplete,
-                   ),
-             );
-           },
-         ),
-       );
-
   InputField.email({
     Key? key,
     required String name,
@@ -408,7 +355,7 @@ class InputField extends StatelessWidget {
       label: FieldLabel(
         color: isFloating ? null : Colors.transparent,
         isRequired: isRequired,
-        content: Text(isFloating ? labelText: hintText),
+        content: Text(isFloating ? labelText : hintText),
       ),
       suffixIcon: suffixIcon,
       floatingLabelBehavior: floatingLabelBehavior,
