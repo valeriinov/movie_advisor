@@ -10,6 +10,8 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/form/widgets/keyboard_opened_bottom_gap.dart';
+import '../../../widgets/no_always_scroll_wrapper.dart';
 import '../reset_pass_view_model/reset_pass_state.dart';
 import '../reset_pass_view_model/reset_pass_view_model.dart';
 import 'reset_pass_form_content.dart';
@@ -32,14 +34,19 @@ class ResetPassScreenView extends ConsumerWidget {
       appBar: MainAppBar(title: Text(LocaleKeys.resetPassScreenTitle.tr())),
       body: Padding(
         padding: dimens.padHorPrimIns,
-        child: CustomScrollView(
-          slivers: [
-            SliverPadding(padding: dimens.padTopPrim.insTop()),
-            ResetPassFormContent(
-              updateFormState: vsp.viewModel.updateFormState,
-            ),
-            SliverPadding(padding: dimens.padBotPrim.insBottom()),
-          ],
+        child: NoAlwaysScrollWrapper(
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(padding: dimens.padTopPrim.insTop()),
+              ResetPassFormContent(
+                updateFormState: vsp.viewModel.updateFormState,
+              ),
+              SliverPadding(padding: dimens.padBotPrim.insBottom()),
+              KeyboardOpenedBottomGap(
+                isKeyboardOpened: context.isKeyboardOpened,
+              ),
+            ],
+          ),
         ),
       ),
     );

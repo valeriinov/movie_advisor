@@ -110,7 +110,6 @@
   "forgotPassButton": "Forgot Password?",
   "createAccountButton": "Create Account",
   "signOutDialog": "Are you sure you want to sign out? Data will stop syncing until the next login.",
-  "deleteAccountDialog": "Are you sure you want to delete your account? Your data will be deleted from the server and synchronization will be stopped. Local data will not be deleted.",
   "deleteAccountButton": "Delete Account",
   "regScreenTitle": "Create Account",
   "regSubmitButton": "CREATE ACCOUNT",
@@ -121,5 +120,10 @@
   "resetPassSuccessToast": "Password reset email sent",
   "userNotFoundException": "User not found",
   "wrongEmailOrPassException": "Wrong email or password",
-  "emailExistsException": "Email already exists"
+  "emailExistsException": "Email already exists",
+  "deleteAccountScreenTitle": "Delete Account",
+  "deleteAccountDesc": "Are you sure you want to delete your account? Your data will be deleted from the server and synchronization will be stopped. Local data will not be deleted.",
+  "deleteAccountPassLabel": "Enter your password to confirm",
+  "deleteAccountSubmitButton": "DELETE ACCOUNT",
+  "deleteAccountSuccessToast": "Account deleted successfully"
 }

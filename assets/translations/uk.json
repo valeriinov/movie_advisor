@@ -110,7 +110,6 @@
   "forgotPassButton": "Забули пароль?",
   "createAccountButton": "Створити акаунт",
   "signOutDialog": "Ви впевнені, що хочете вийти? Дані перестануть синхронізуватися до наступного входу.",
-  "deleteAccountDialog": "Ви впевнені, що хочете видалити свій акаунт? Ваші дані будуть видалені з сервера, і синхронізація буде зупинена. Локальні дані відалені не будуть.",
   "deleteAccountButton": "Видалити Акаунт",
   "regScreenTitle": "Створити акаунт",
   "regSubmitButton": "СТВОРИТИ АКАУНТ",
@@ -121,5 +120,10 @@
   "resetPassSuccessToast": "Лист для скидання пароля надіслано",
   "userNotFoundException": "Користувача не знайдено",
   "wrongEmailOrPassException": "Неправильний email або пароль",
-  "emailExistsException": "Email вже існує"
+  "emailExistsException": "Email вже існує",
+  "deleteAccountScreenTitle": "Видалити Акаунт",
+  "deleteAccountDesc": "Ви впевнені, що хочете видалити свій акаунт? Ваші дані будуть видалені з сервера, і синхронізація буде зупинена. Локальні дані відалені не будуть.",
+  "deleteAccountPassLabel": "Введіть свій пароль для підтвердження",
+  "deleteAccountSubmitButton": "ВИДАЛИТИ АКАУНТ",
+  "deleteAccountSuccessToast": "Акаунт успішно видалено"
 }

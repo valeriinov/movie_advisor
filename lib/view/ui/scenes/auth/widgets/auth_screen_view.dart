@@ -10,6 +10,8 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/form/widgets/keyboard_opened_bottom_gap.dart';
+import '../../../widgets/no_always_scroll_wrapper.dart';
 import '../auth_view_model/auth_state.dart';
 import '../auth_view_model/auth_view_model.dart';
 import 'auth_form_content.dart';
@@ -32,12 +34,17 @@ class AuthScreenView extends ConsumerWidget {
       appBar: MainAppBar(title: Text(LocaleKeys.signInScreenTitle.tr())),
       body: Padding(
         padding: dimens.padHorPrimIns,
-        child: CustomScrollView(
-          slivers: [
-            SliverPadding(padding: dimens.padTopPrim.insTop()),
-            AuthFormContent(updateFormState: vsp.viewModel.updateFormState),
-            SliverPadding(padding: dimens.padBotPrim.insBottom()),
-          ],
+        child: NoAlwaysScrollWrapper(
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(padding: dimens.padTopPrim.insTop()),
+              AuthFormContent(updateFormState: vsp.viewModel.updateFormState),
+              SliverPadding(padding: dimens.padBotPrim.insBottom()),
+              KeyboardOpenedBottomGap(
+                isKeyboardOpened: context.isKeyboardOpened,
+              ),
+            ],
+          ),
         ),
       ),
     );

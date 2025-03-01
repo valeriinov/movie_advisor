@@ -114,7 +114,6 @@ abstract class  LocaleKeys {
   static const forgotPassButton = 'forgotPassButton';
   static const createAccountButton = 'createAccountButton';
   static const signOutDialog = 'signOutDialog';
-  static const deleteAccountDialog = 'deleteAccountDialog';
   static const deleteAccountButton = 'deleteAccountButton';
   static const regScreenTitle = 'regScreenTitle';
   static const regSubmitButton = 'regSubmitButton';
@@ -126,5 +125,10 @@ abstract class  LocaleKeys {
   static const userNotFoundException = 'userNotFoundException';
   static const wrongEmailOrPassException = 'wrongEmailOrPassException';
   static const emailExistsException = 'emailExistsException';
+  static const deleteAccountScreenTitle = 'deleteAccountScreenTitle';
+  static const deleteAccountDesc = 'deleteAccountDesc';
+  static const deleteAccountPassLabel = 'deleteAccountPassLabel';
+  static const deleteAccountSubmitButton = 'deleteAccountSubmitButton';
+  static const deleteAccountSuccessToast = 'deleteAccountSuccessToast';
 
 }

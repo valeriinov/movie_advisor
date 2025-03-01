@@ -260,6 +260,8 @@ class InputField extends StatelessWidget {
     bool isRequired = true,
     VoidCallback? onEditingComplete,
     TextInputAction textInputAction = TextInputAction.next,
+    String? labelText,
+    String? hintText,
     String initialValue = '',
   }) : this._(
          key: key,
@@ -285,8 +287,8 @@ class InputField extends StatelessWidget {
                enableSuggestions: false,
                autocorrect: false,
                decoration: _buildBaseDecoration(
-                 labelText: LocaleKeys.passFieldHint.tr(),
-                 hintText: LocaleKeys.passFieldHint.tr(),
+                 labelText: labelText ?? LocaleKeys.passFieldHint.tr(),
+                 hintText: hintText ?? LocaleKeys.passFieldHint.tr(),
                  props: props,
                  isRequired: isRequired,
                  suffixIcon: _buildObscureTextSuffixButton(

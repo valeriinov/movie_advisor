@@ -10,6 +10,8 @@ import '../../../navigation/routes/more_routes.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/form/widgets/keyboard_opened_bottom_gap.dart';
+import '../../../widgets/no_always_scroll_wrapper.dart';
 import '../reg_view_model/reg_state.dart';
 import '../reg_view_model/reg_view_model.dart';
 import 'reg_form_content.dart';
@@ -32,12 +34,17 @@ class RegScreenView extends ConsumerWidget {
       appBar: MainAppBar(title: Text(LocaleKeys.regScreenTitle.tr())),
       body: Padding(
         padding: dimens.padHorPrimIns,
-        child: CustomScrollView(
-          slivers: [
-            SliverPadding(padding: dimens.padTopPrim.insTop()),
-            RegFormContent(updateFormState: vsp.viewModel.updateFormState),
-            SliverPadding(padding: dimens.padBotPrim.insBottom()),
-          ],
+        child: NoAlwaysScrollWrapper(
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(padding: dimens.padTopPrim.insTop()),
+              RegFormContent(updateFormState: vsp.viewModel.updateFormState),
+              SliverPadding(padding: dimens.padBotPrim.insBottom()),
+              KeyboardOpenedBottomGap(
+                isKeyboardOpened: context.isKeyboardOpened,
+              ),
+            ],
+          ),
         ),
       ),
     );
