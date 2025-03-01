@@ -44,7 +44,7 @@ base class AppMapper {
   Failure _handleFirebaseError(AppFirebaseException error) {
     final message = switch (error.message) {
       'user-not-found' => LocaleKeys.userNotFoundException.tr(),
-      'wrong-password' => LocaleKeys.wrongEmailOrPassException.tr(),
+      'wrong-password' => LocaleKeys.wrongPassException.tr(),
       'email-already-in-use' => LocaleKeys.emailExistsException.tr(),
       'unauthorized' => LocaleKeys.unauthorizedErrorDesc.tr(),
       _ => LocaleKeys.unexpectedErrorDesc.tr(),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../dto/app_firebase_exception.dart';
@@ -6,12 +7,17 @@ import '../../dto/auth/delete_account_data_dto.dart';
 import '../../dto/auth/reg_data_dto.dart';
 import '../../dto/auth/reset_pass_data_dto.dart';
 import '../../dto/auth/user_data_dto.dart';
+import '../constants/db_path.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth;
+  final FirebaseFirestore _firebaseFirestore;
 
-  AuthService({required FirebaseAuth firebaseAuth})
-    : _firebaseAuth = firebaseAuth;
+  AuthService({
+    required FirebaseAuth firebaseAuth,
+    required FirebaseFirestore firebaseFirestore,
+  }) : _firebaseAuth = firebaseAuth,
+       _firebaseFirestore = firebaseFirestore;
 
   Stream<UserDataDto?> get userChanges =>
       _firebaseAuth.userChanges().map((user) => user.toUserDataDto());
@@ -59,14 +65,26 @@ class AuthService {
     }
 
     final uid = user.uid;
-
     final credential = EmailAuthProvider.credential(
       email: user.email ?? '',
       password: data.password ?? '',
     );
 
+    await _deleteUserDataFromStorage(uid);
+    await _deleteUser(user, credential);
+  }
+
+  Future<void> _deleteUser(User user, AuthCredential credential) async {
     await user.reauthenticateWithCredential(credential);
     await user.delete();
+  }
+
+  Future<void> _deleteUserDataFromStorage(String uid) async {
+    final docRef = _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(uid);
+
+    await docRef.delete();
   }
 
   Future<void> _execWithHandleError(Future<void> Function() action) async {

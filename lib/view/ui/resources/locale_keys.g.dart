@@ -124,7 +124,7 @@ abstract class  LocaleKeys {
   static const syncDataErrorDesc = 'syncDataErrorDesc';
   static const resetPassSuccessToast = 'resetPassSuccessToast';
   static const userNotFoundException = 'userNotFoundException';
-  static const wrongEmailOrPassException = 'wrongEmailOrPassException';
+  static const wrongPassException = 'wrongPassException';
   static const emailExistsException = 'emailExistsException';
   static const deleteAccountScreenTitle = 'deleteAccountScreenTitle';
   static const deleteAccountDesc = 'deleteAccountDesc';

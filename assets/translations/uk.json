@@ -120,7 +120,7 @@
   "syncDataErrorDesc": "Синхронізація даних не вдалася",
   "resetPassSuccessToast": "Лист для скидання пароля надіслано",
   "userNotFoundException": "Користувача не знайдено",
-  "wrongEmailOrPassException": "Неправильний email або пароль",
+  "wrongPassException": "Неправильний пароль",
   "emailExistsException": "Email вже існує",
   "deleteAccountScreenTitle": "Видалити Акаунт",
   "deleteAccountDesc": "Ви впевнені, що хочете видалити свій акаунт? Ваші дані будуть видалені з сервера, і синхронізація буде зупинена. Локальні дані відалені не будуть.",

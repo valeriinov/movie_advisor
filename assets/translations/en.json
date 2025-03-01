@@ -120,7 +120,7 @@
   "syncDataErrorDesc": "Data synchronization failed",
   "resetPassSuccessToast": "Password reset email sent",
   "userNotFoundException": "User not found",
-  "wrongEmailOrPassException": "Wrong email or password",
+  "wrongPassException": "Wrong password",
   "emailExistsException": "Email already exists",
   "deleteAccountScreenTitle": "Delete Account",
   "deleteAccountDesc": "Are you sure you want to delete your account? Your data will be deleted from the server and synchronization will be stopped. Local data will not be deleted.",

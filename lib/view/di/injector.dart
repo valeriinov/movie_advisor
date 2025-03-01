@@ -300,7 +300,10 @@ final watchSeriesUseCasePr = Provider<WatchSeriesUseCase>(
 
 // AUTH
 final authServicePr = Provider<AuthService>(
-  (ref) => AuthService(firebaseAuth: ref.read(firebaseAuthPr)),
+  (ref) => AuthService(
+    firebaseAuth: ref.read(firebaseAuthPr),
+    firebaseFirestore: ref.read(firebaseFirestorePr),
+  ),
 );
 final authRemoteDataSourcePr = Provider<AuthRemoteDataSource>(
   (ref) => ImplAuthRemoteDataSource(service: ref.read(authServicePr)),
