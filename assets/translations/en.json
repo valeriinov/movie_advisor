@@ -127,5 +127,6 @@
   "deleteAccountDesc": "Are you sure you want to delete your account? Your data will be deleted from the server and synchronization will be stopped. Local data will not be deleted.",
   "deleteAccountPassLabel": "Enter your password to confirm",
   "deleteAccountSubmitButton": "DELETE ACCOUNT",
-  "deleteAccountSuccessToast": "Account deleted successfully"
+  "deleteAccountSuccessToast": "Account deleted successfully",
+  "exitDialog": "Are you sure you want to exit? All unsaved data will be lost."
 }

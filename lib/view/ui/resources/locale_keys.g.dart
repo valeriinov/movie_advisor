@@ -132,5 +132,6 @@ abstract class  LocaleKeys {
   static const deleteAccountPassLabel = 'deleteAccountPassLabel';
   static const deleteAccountSubmitButton = 'deleteAccountSubmitButton';
   static const deleteAccountSuccessToast = 'deleteAccountSuccessToast';
+  static const exitDialog = 'exitDialog';
 
 }

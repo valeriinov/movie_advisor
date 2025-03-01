@@ -15,9 +15,17 @@ class RegFormState with RegFormStateMappable {
   final String password;
   final String confirmPassword;
 
-  bool get isFilled => email.isNotBlank && password.isNotBlank && confirmPassword.isNotBlank;
+  bool get isFilled =>
+      email.isNotBlank && password.isNotBlank && confirmPassword.isNotBlank;
 
-  const RegFormState({this.email = '', this.password = '', this.confirmPassword = ''});
+  bool get hasUnsavedData =>
+      email.isNotBlank || password.isNotBlank || confirmPassword.isNotBlank;
+
+  const RegFormState({
+    this.email = '',
+    this.password = '',
+    this.confirmPassword = '',
+  });
 
   static RegFormStateNames get nameof => RegFormStateNames._();
 
@@ -26,8 +34,5 @@ class RegFormState with RegFormStateMappable {
 }
 
 extension ToRegDataMapper on RegFormState {
-  RegData toRegData() => RegData(
-    email: email,
-    password: password,
-  );
+  RegData toRegData() => RegData(email: email, password: password);
 }

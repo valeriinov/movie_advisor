@@ -15,6 +15,8 @@ class DeleteAccountFormState with DeleteAccountFormStateMappable {
 
   bool get isFilled => password.isNotBlank;
 
+  bool get hasUnsavedData => password.isNotBlank;
+
   const DeleteAccountFormState({this.password = ''});
 
   static DeleteAccountFormStateNames get nameof =>

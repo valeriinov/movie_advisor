@@ -10,6 +10,7 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/dialogs/question_dialog.dart';
 import '../../../widgets/form/widgets/keyboard_opened_bottom_gap.dart';
 import '../../../widgets/no_always_scroll_wrapper.dart';
 import '../reset_pass_view_model/reset_pass_state.dart';
@@ -30,8 +31,16 @@ class ResetPassScreenView extends ConsumerWidget {
           (prev, next) => _handleStatus(prev, next, context: context, ref: ref),
     );
 
+    final hasUnsavedData = vsp.selectWatch((s) => s.formState.hasUnsavedData);
+
     return Scaffold(
-      appBar: MainAppBar(title: Text(LocaleKeys.resetPassScreenTitle.tr())),
+      appBar: MainAppBar(
+        title: Text(LocaleKeys.resetPassScreenTitle.tr()),
+        leading: BackButton(
+          onPressed:
+              hasUnsavedData ? () => _showExitDialog(context) : context.pop,
+        ),
+      ),
       body: Padding(
         padding: dimens.padHorPrimIns,
         child: NoAlwaysScrollWrapper(
@@ -40,6 +49,7 @@ class ResetPassScreenView extends ConsumerWidget {
               SliverPadding(padding: dimens.padTopPrim.insTop()),
               ResetPassFormContent(
                 updateFormState: vsp.viewModel.updateFormState,
+                showExitDialog: () => _showExitDialog(context),
               ),
               SliverPadding(padding: dimens.padBotPrim.insBottom()),
               KeyboardOpenedBottomGap(
@@ -68,5 +78,16 @@ class ResetPassScreenView extends ConsumerWidget {
 
       context.pop();
     }
+  }
+
+  void _showExitDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (dialogContext) => QuestionDialog(
+            contentText: LocaleKeys.exitDialog.tr(),
+            onOkButtonPressed: context.pop,
+          ),
+    );
   }
 }

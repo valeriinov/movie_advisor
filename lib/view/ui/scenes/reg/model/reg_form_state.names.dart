@@ -15,4 +15,5 @@ class RegFormStateNames {
   final String fieldConfirmPassword = 'confirmPassword';
 
   final String propertyGetIsFilled = 'isFilled';
+  final String propertyGetHasUnsavedData = 'hasUnsavedData';
 }
