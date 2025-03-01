@@ -221,7 +221,7 @@ class InputField extends StatelessWidget {
            onFocusChanged: onFocusChanged,
            builder: (props) {
              final validator =
-                 AppEmailValidator(
+                 AppPasswordValidator(
                    LocaleKeys.invalidPassError.tr(),
                    requiredErrorText: LocaleKeys.requiredFieldError.tr(),
                    isRequired: isRequired,
