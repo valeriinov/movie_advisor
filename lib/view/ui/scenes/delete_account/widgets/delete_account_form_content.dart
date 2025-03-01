@@ -43,6 +43,7 @@ class DeleteAccountFormContent extends StatelessWidget {
                           name: passwordFieldName,
                           focusNode: nodesDict[passwordFieldName],
                           hintText: LocaleKeys.deleteAccountPassLabel.tr(),
+                          textInputAction: TextInputAction.done,
                         ),
                         DeleteAccountSubmitButton(
                           formKey: formKey,

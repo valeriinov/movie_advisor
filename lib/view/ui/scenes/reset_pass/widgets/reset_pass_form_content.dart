@@ -41,6 +41,7 @@ class ResetPassFormContent extends StatelessWidget {
                         InputField.email(
                           name: emailFieldName,
                           focusNode: nodesDict[emailFieldName],
+                          textInputAction: TextInputAction.done,
                         ),
                         ResetPassSubmitButton(
                           formKey: formKey,
