@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../dto/app_firebase_exception.dart';
@@ -7,17 +7,16 @@ import '../../dto/auth/delete_account_data_dto.dart';
 import '../../dto/auth/reg_data_dto.dart';
 import '../../dto/auth/reset_pass_data_dto.dart';
 import '../../dto/auth/user_data_dto.dart';
-import '../constants/db_path.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth;
-  final FirebaseFirestore _firebaseFirestore;
+  final FirebaseFunctions _firebaseFunctions;
 
   AuthService({
     required FirebaseAuth firebaseAuth,
-    required FirebaseFirestore firebaseFirestore,
+    required FirebaseFunctions firebaseFunctions,
   }) : _firebaseAuth = firebaseAuth,
-       _firebaseFirestore = firebaseFirestore;
+       _firebaseFunctions = firebaseFunctions;
 
   Stream<UserDataDto?> get userChanges =>
       _firebaseAuth.userChanges().map((user) => user.toUserDataDto());
@@ -80,11 +79,9 @@ class AuthService {
   }
 
   Future<void> _deleteUserDataFromStorage(String uid) async {
-    final docRef = _firebaseFirestore
-        .collection(DbPath.usersMediaCollection)
-        .doc(uid);
-
-    await docRef.delete();
+    await _firebaseFunctions.httpsCallable('deleteUserMedia').call({
+      'uid': uid,
+    });
   }
 
   Future<void> _execWithHandleError(Future<void> Function() action) async {

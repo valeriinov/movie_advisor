@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -91,6 +92,9 @@ import '../ui/widgets/dialogs/toasts/toast_manager.dart';
 final firebaseAuthPr = Provider<FirebaseAuth>((_) => FirebaseAuth.instance);
 final firebaseFirestorePr = Provider<FirebaseFirestore>(
   (_) => FirebaseFirestore.instance,
+);
+final firebaseFunctionsPr = Provider<FirebaseFunctions>(
+  (_) => FirebaseFunctions.instance,
 );
 final appRouterPr = Provider<AppRouter>(
   (ref) => ImplAppRouter(rootNavKey: GlobalKey<NavigatorState>()),
@@ -302,7 +306,7 @@ final watchSeriesUseCasePr = Provider<WatchSeriesUseCase>(
 final authServicePr = Provider<AuthService>(
   (ref) => AuthService(
     firebaseAuth: ref.read(firebaseAuthPr),
-    firebaseFirestore: ref.read(firebaseFirestorePr),
+    firebaseFunctions: ref.read(firebaseFunctionsPr),
   ),
 );
 final authRemoteDataSourcePr = Provider<AuthRemoteDataSource>(
