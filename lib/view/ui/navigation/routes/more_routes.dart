@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../scenes/about_us/about_us_screen.dart';
 import '../../scenes/auth/auth_screen.dart';
+import '../../scenes/delete_account/delete_account_screen.dart';
 import '../../scenes/more/more_screen.dart';
 import '../../scenes/reg/reg_screen.dart';
 import '../../scenes/reset_pass/reset_pass_screen.dart';
@@ -21,6 +22,7 @@ part 'more_routes.g.dart';
         TypedGoRoute<ResetPassRoute>(path: AppRoutes.resetPass),
       ],
     ),
+    TypedGoRoute<DeleteAccountRoute>(path: AppRoutes.deleteAccount),
   ],
 )
 class MoreRoute extends GoRouteData {
@@ -74,6 +76,17 @@ class ResetPassRoute extends GoRouteData {
       key: state.pageKey,
       name: state.fullPath,
       child: ResetPassScreen(),
+    );
+  }
+}
+
+class DeleteAccountRoute extends GoRouteData {
+  @override
+  Page<void> buildPage(context, state) {
+    return MaterialPage(
+      key: state.pageKey,
+      name: state.fullPath,
+      child: DeleteAccountScreen(),
     );
   }
 }

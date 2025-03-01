@@ -21,14 +21,12 @@ class MoreScreenContent extends ConsumerWidget {
   final Future<void> Function()? onRefresh;
   final UserData? user;
   final VoidCallback? onSignOut;
-  final VoidCallback? onDeleteAccount;
 
   const MoreScreenContent({
     super.key,
     this.onRefresh,
     this.user,
     this.onSignOut,
-    this.onDeleteAccount,
   });
 
   @override
@@ -67,7 +65,10 @@ class MoreScreenContent extends ConsumerWidget {
             SignInOutTile(user: user, onSignOut: onSignOut),
           ].addSeparators(context, (_, __) => dimens.spSmall.gapVert()),
         ),
-        DeleteAccountButton(user: user, onDeleteAccount: onDeleteAccount),
+        DeleteAccountButton(
+          user: user,
+          onDeleteAccount: () => DeleteAccountRoute().go(context),
+        ),
       ],
     );
   }
