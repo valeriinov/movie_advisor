@@ -44,13 +44,38 @@ mixin ExitHandlerMixin on GoRouteData {
   ///
   /// Returns `true` if navigation is allowed, otherwise `false`.
   Future<bool> onExitWithDialog<T>(
-    BuildContext context, {
+    BuildContext context,
+    GoRouterState state, {
     required ProviderListenable<T> viewModelProvider,
     required bool Function(T) hasUnsavedData,
   }) async {
-    final state = _getViewModelState(context, provider: viewModelProvider);
+    if (!_isCurrentRoute(context, state)) return true;
 
-    return hasUnsavedData(state) ? _showExitConfirmationDialog(context) : true;
+    final viewModelState = _getViewModelState(
+      context,
+      provider: viewModelProvider,
+    );
+
+    return hasUnsavedData(viewModelState)
+        ? _showExitConfirmationDialog(context)
+        : true;
+  }
+
+  bool _isCurrentRoute(BuildContext context, GoRouterState state) {
+    final configuration =
+        GoRouter.of(context).routerDelegate.currentConfiguration;
+
+    if (configuration.isEmpty) return false;
+
+    final currentPath = configuration.last.matchedLocation;
+
+    return _isMatchingRoute(currentPath, state.path);
+  }
+
+  bool _isMatchingRoute(String currentPath, String? statePath) {
+    final segments = currentPath.split('/');
+
+    return segments.isNotEmpty && segments.last == statePath;
   }
 
   T _getViewModelState<T>(

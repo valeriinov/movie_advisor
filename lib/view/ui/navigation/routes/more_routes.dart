@@ -66,6 +66,7 @@ class AuthRoute extends GoRouteData with ExitHandlerMixin {
   Future<bool> onExit(BuildContext context, GoRouterState state) async {
     return onExitWithDialog(
       context,
+      state,
       viewModelProvider: authViewModelPr,
       hasUnsavedData: (s) => s.formState.hasUnsavedData,
     );
@@ -86,6 +87,7 @@ class RegRoute extends GoRouteData with ExitHandlerMixin {
   Future<bool> onExit(BuildContext context, GoRouterState state) async {
     return onExitWithDialog(
       context,
+      state,
       viewModelProvider: regViewModelPr,
       hasUnsavedData: (s) => s.formState.hasUnsavedData,
     );
@@ -106,6 +108,7 @@ class ResetPassRoute extends GoRouteData with ExitHandlerMixin {
   Future<bool> onExit(BuildContext context, GoRouterState state) async {
     return onExitWithDialog(
       context,
+      state,
       viewModelProvider: resetPassViewModelPr,
       hasUnsavedData: (s) => s.formState.hasUnsavedData,
     );
@@ -126,6 +129,7 @@ class DeleteAccountRoute extends GoRouteData with ExitHandlerMixin {
   Future<bool> onExit(BuildContext context, GoRouterState state) async {
     return onExitWithDialog(
       context,
+      state,
       viewModelProvider: deleteAccountViewModelPr,
       hasUnsavedData: (s) => s.formState.hasUnsavedData,
     );
