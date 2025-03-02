@@ -10,7 +10,6 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
-import '../../../widgets/dialogs/question_dialog.dart';
 import '../../../widgets/form/widgets/keyboard_opened_bottom_gap.dart';
 import '../../../widgets/no_always_scroll_wrapper.dart';
 import '../auth_view_model/auth_state.dart';
@@ -31,26 +30,15 @@ class AuthScreenView extends ConsumerWidget {
           (prev, next) => _handleStatus(prev, next, context: context, ref: ref),
     );
 
-    final hasUnsavedData = vsp.selectWatch((s) => s.formState.hasUnsavedData);
-
     return Scaffold(
-      appBar: MainAppBar(
-        title: Text(LocaleKeys.signInScreenTitle.tr()),
-        leading: BackButton(
-          onPressed:
-              hasUnsavedData ? () => _showExitDialog(context) : context.pop,
-        ),
-      ),
+      appBar: MainAppBar(title: Text(LocaleKeys.signInScreenTitle.tr())),
       body: Padding(
         padding: dimens.padHorPrimIns,
         child: NoAlwaysScrollWrapper(
           child: CustomScrollView(
             slivers: [
               SliverPadding(padding: dimens.padTopPrim.insTop()),
-              AuthFormContent(
-                updateFormState: vsp.viewModel.updateFormState,
-                showExitDialog: () => _showExitDialog(context),
-              ),
+              AuthFormContent(updateFormState: vsp.viewModel.updateFormState),
               SliverPadding(padding: dimens.padBotPrim.insBottom()),
               KeyboardOpenedBottomGap(
                 isKeyboardOpened: context.isKeyboardOpened,
@@ -78,16 +66,5 @@ class AuthScreenView extends ConsumerWidget {
 
       context.pop();
     }
-  }
-
-  void _showExitDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder:
-          (dialogContext) => QuestionDialog(
-            contentText: LocaleKeys.exitDialog.tr(),
-            onOkButtonPressed: context.pop,
-          ),
-    );
   }
 }

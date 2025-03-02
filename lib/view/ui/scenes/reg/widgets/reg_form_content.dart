@@ -13,13 +13,8 @@ import 'reg_submit_button.dart';
 
 class RegFormContent extends ConsumerWidget {
   final void Function(RegFormState) updateFormState;
-  final VoidCallback showExitDialog;
 
-  const RegFormContent({
-    super.key,
-    required this.updateFormState,
-    required this.showExitDialog,
-  });
+  const RegFormContent({super.key, required this.updateFormState});
 
   @override
   Widget build(context, ref) {
@@ -30,18 +25,11 @@ class RegFormContent extends ConsumerWidget {
 
     final vsp = ref.vspFromADProvider(regViewModelPr);
 
-    final hasUnsavedData = vsp.selectWatch((s) => s.formState.hasUnsavedData);
-
     return SliverToBoxAdapter(
       child: FormAutoValidateBuilder<FormBuilderState>(
         builder: (context, formKey, autoValidate, setAutoValidate) {
           return FormBuilder(
             key: formKey,
-            onPopInvokedWithResult: (didPop, result) {
-              if (didPop) return;
-              showExitDialog();
-            },
-            canPop: !hasUnsavedData,
             autovalidateMode:
                 autoValidate
                     ? AutovalidateMode.always

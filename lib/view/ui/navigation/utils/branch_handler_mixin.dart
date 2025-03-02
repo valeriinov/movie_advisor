@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../navigation/utils/extended_shell_branch.dart';
+import 'extended_shell_branch.dart';
 
 /// {@category Navigation}
 ///

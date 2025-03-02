@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../navigation/utils/extended_shell_branch.dart';
-import '../utils/branch_handler_mixin.dart';
+import '../../../navigation/utils/branch_handler_mixin.dart';
 
 /// {@category Widgets}
 ///

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../di/injector.dart';
@@ -11,7 +10,6 @@ import '../../../navigation/routes/more_routes.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
-import '../../../widgets/dialogs/question_dialog.dart';
 import '../../../widgets/form/widgets/keyboard_opened_bottom_gap.dart';
 import '../../../widgets/no_always_scroll_wrapper.dart';
 import '../reg_view_model/reg_state.dart';
@@ -32,26 +30,15 @@ class RegScreenView extends ConsumerWidget {
           (prev, next) => _handleStatus(prev, next, context: context, ref: ref),
     );
 
-    final hasUnsavedData = vsp.selectWatch((s) => s.formState.hasUnsavedData);
-
     return Scaffold(
-      appBar: MainAppBar(
-        title: Text(LocaleKeys.regScreenTitle.tr()),
-        leading: BackButton(
-          onPressed:
-              hasUnsavedData ? () => _showExitDialog(context) : context.pop,
-        ),
-      ),
+      appBar: MainAppBar(title: Text(LocaleKeys.regScreenTitle.tr())),
       body: Padding(
         padding: dimens.padHorPrimIns,
         child: NoAlwaysScrollWrapper(
           child: CustomScrollView(
             slivers: [
               SliverPadding(padding: dimens.padTopPrim.insTop()),
-              RegFormContent(
-                updateFormState: vsp.viewModel.updateFormState,
-                showExitDialog: () => _showExitDialog(context),
-              ),
+              RegFormContent(updateFormState: vsp.viewModel.updateFormState),
               SliverPadding(padding: dimens.padBotPrim.insBottom()),
               KeyboardOpenedBottomGap(
                 isKeyboardOpened: context.isKeyboardOpened,
@@ -79,16 +66,5 @@ class RegScreenView extends ConsumerWidget {
 
       MoreRoute().go(context);
     }
-  }
-
-  void _showExitDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder:
-          (dialogContext) => QuestionDialog(
-            contentText: LocaleKeys.exitDialog.tr(),
-            onOkButtonPressed: context.pop,
-          ),
-    );
   }
 }
