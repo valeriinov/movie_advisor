@@ -13,4 +13,5 @@ class DeleteAccountFormStateNames {
   final String fieldPassword = 'password';
 
   final String propertyGetIsFilled = 'isFilled';
+  final String propertyGetHasUnsavedData = 'hasUnsavedData';
 }
