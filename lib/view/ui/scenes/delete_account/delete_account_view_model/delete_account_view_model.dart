@@ -60,9 +60,14 @@ class DeleteAccountViewModel extends AutoDisposeNotifier<DeleteAccountState>
         _updateStatus(DeleteAccountBaseInitStatus(errorMessage: error.message));
       },
       (_) {
+        _resetFormState();
         _updateStatus(const DeleteAccountSuccessStatus());
       },
     );
+  }
+
+  void _resetFormState() {
+    state = state.copyWith(formState: const DeleteAccountFormState());
   }
 
   void _updateStatus(DeleteAccountStatus status) {

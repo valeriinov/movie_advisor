@@ -61,6 +61,7 @@ class RegViewModel extends AutoDisposeNotifier<RegState>
       },
       (_) {
         _runSyncData();
+        _resetFormState();
         _updateStatus(const RegSuccessStatus());
       },
     );
@@ -69,6 +70,10 @@ class RegViewModel extends AutoDisposeNotifier<RegState>
   Future<void> _runSyncData() async {
     await _syncUseCase.syncMovies();
     await _syncUseCase.syncSeries();
+  }
+
+  void _resetFormState() {
+    state = state.copyWith(formState: const RegFormState());
   }
 
   void _updateStatus(RegStatus status) {
