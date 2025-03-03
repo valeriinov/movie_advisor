@@ -110,15 +110,20 @@ class ImageWithLoader extends StatelessWidget {
   }
 
   ImageProvider _createImageProvider() {
+    if (imageProvider != null) return imageProvider!;
+
     if (imagePath?.isRemoteLink() == true) {
       return ExtendedNetworkImageProvider(imagePath!, cache: true, scale: 1.0);
     }
 
-    return imageProvider ??
-        imagePath.createImageProviderFromPath(
-          cacheWidth: cacheWidth,
-          cacheHeight: cacheHeight,
-        );
+    if (imagePath.isNullOrEmpty) {
+      return AppImages.placeholderImage.createImageProviderFromPath();
+    }
+
+    return imagePath.createImageProviderFromPath(
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
   }
 
   Widget? _handleLoadState(ExtendedImageState state) {
