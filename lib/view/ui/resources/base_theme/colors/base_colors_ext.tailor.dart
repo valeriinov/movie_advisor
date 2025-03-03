@@ -43,6 +43,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get btnFABBg;
   Color get btnFABFgSplash;
   Color get btnIconPrim;
+  Color get btnIconSecFg;
+  Color get btnIconSecBg;
+  Color get btnIconSecBgPress;
   Color get loadingIndicatorFg;
   Color get loadingIndicatorBg;
   Color get refreshIndicatorFg;
@@ -138,6 +141,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? btnFABBg,
     Color? btnFABFgSplash,
     Color? btnIconPrim,
+    Color? btnIconSecFg,
+    Color? btnIconSecBg,
+    Color? btnIconSecBgPress,
     Color? loadingIndicatorFg,
     Color? loadingIndicatorBg,
     Color? refreshIndicatorFg,
@@ -232,6 +238,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABBg: btnFABBg ?? this.btnFABBg,
       btnFABFgSplash: btnFABFgSplash ?? this.btnFABFgSplash,
       btnIconPrim: btnIconPrim ?? this.btnIconPrim,
+      btnIconSecFg: btnIconSecFg ?? this.btnIconSecFg,
+      btnIconSecBg: btnIconSecBg ?? this.btnIconSecBg,
+      btnIconSecBgPress: btnIconSecBgPress ?? this.btnIconSecBgPress,
       loadingIndicatorFg: loadingIndicatorFg ?? this.loadingIndicatorFg,
       loadingIndicatorBg: loadingIndicatorBg ?? this.loadingIndicatorBg,
       refreshIndicatorFg: refreshIndicatorFg ?? this.refreshIndicatorFg,
@@ -347,6 +356,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABBg: Color.lerp(btnFABBg, other.btnFABBg, t)!,
       btnFABFgSplash: Color.lerp(btnFABFgSplash, other.btnFABFgSplash, t)!,
       btnIconPrim: Color.lerp(btnIconPrim, other.btnIconPrim, t)!,
+      btnIconSecFg: Color.lerp(btnIconSecFg, other.btnIconSecFg, t)!,
+      btnIconSecBg: Color.lerp(btnIconSecBg, other.btnIconSecBg, t)!,
+      btnIconSecBgPress:
+          Color.lerp(btnIconSecBgPress, other.btnIconSecBgPress, t)!,
       loadingIndicatorFg:
           Color.lerp(loadingIndicatorFg, other.loadingIndicatorFg, t)!,
       loadingIndicatorBg:
@@ -497,6 +510,12 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality()
                 .equals(btnIconPrim, other.btnIconPrim) &&
             const DeepCollectionEquality()
+                .equals(btnIconSecFg, other.btnIconSecFg) &&
+            const DeepCollectionEquality()
+                .equals(btnIconSecBg, other.btnIconSecBg) &&
+            const DeepCollectionEquality()
+                .equals(btnIconSecBgPress, other.btnIconSecBgPress) &&
+            const DeepCollectionEquality()
                 .equals(loadingIndicatorFg, other.loadingIndicatorFg) &&
             const DeepCollectionEquality()
                 .equals(loadingIndicatorBg, other.loadingIndicatorBg) &&
@@ -516,12 +535,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(botNavBarBg, other.botNavBarBg) &&
             const DeepCollectionEquality()
                 .equals(botNavBarFgSelect, other.botNavBarFgSelect) &&
-            const DeepCollectionEquality()
-                .equals(botNavBarFgUnselect, other.botNavBarFgUnselect) &&
-            const DeepCollectionEquality()
-                .equals(navBarDivider, other.navBarDivider) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimFill, other.txtFldPrimFill) &&
+            const DeepCollectionEquality().equals(botNavBarFgUnselect, other.botNavBarFgUnselect) &&
+            const DeepCollectionEquality().equals(navBarDivider, other.navBarDivider) &&
+            const DeepCollectionEquality().equals(txtFldPrimFill, other.txtFldPrimFill) &&
             const DeepCollectionEquality().equals(txtFldPrimInput, other.txtFldPrimInput) &&
             const DeepCollectionEquality().equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
             const DeepCollectionEquality().equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
@@ -607,6 +623,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(btnFABBg),
       const DeepCollectionEquality().hash(btnFABFgSplash),
       const DeepCollectionEquality().hash(btnIconPrim),
+      const DeepCollectionEquality().hash(btnIconSecFg),
+      const DeepCollectionEquality().hash(btnIconSecBg),
+      const DeepCollectionEquality().hash(btnIconSecBgPress),
       const DeepCollectionEquality().hash(loadingIndicatorFg),
       const DeepCollectionEquality().hash(loadingIndicatorBg),
       const DeepCollectionEquality().hash(refreshIndicatorFg),

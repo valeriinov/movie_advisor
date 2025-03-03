@@ -47,6 +47,10 @@ abstract final class _BaseColors {
 
   static const btnIconPrim = Color(0xFFFFFFFF);
 
+  static const btnIconSecFg = Color(0xFFFFFFFF);
+  static const btnIconSecBg = Color(0xFF0296E5);
+  static const btnIconSecBgPress = Color(0xFF036fac);
+
   // Loading Indicator
   static const loadingIndicatorFg = Color(0xFF0296E5);
   static const loadingIndicatorBg = Color(0xFFE8E8EC);
@@ -73,8 +77,8 @@ abstract final class _BaseColors {
   static const txtFldPrimLabel = Color(0xFF67686D);
   static const txtFldPrimBorder = Color(0xFF3a3f47);
   static const txtFldPrimBorderFocus = Color(0xFF3a3f47);
-  static const txtFldPrimBorderError = Color(0xFFB00020);
-  static const txtFldPrimError = Color(0xFFB00020);
+  static const txtFldPrimBorderError = Color(0xFFDA5353);
+  static const txtFldPrimError = Color(0xFFDA5353);
   static const txtFldPrimSuffixIcon = Color(0xFF67686D);
 
   // Keyboard Actions

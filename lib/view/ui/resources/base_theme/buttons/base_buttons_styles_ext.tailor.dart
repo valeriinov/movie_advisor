@@ -23,6 +23,7 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
   ButtonStyle get textBtnPrimStyle;
   ShapeBorder get fabShape;
   ButtonStyle get iconBtnPrimStyle;
+  ButtonStyle get iconBtnSecStyle;
 
   @override
   BaseButtonStyles copyWith({
@@ -40,6 +41,7 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
     ButtonStyle? textBtnPrimStyle,
     ShapeBorder? fabShape,
     ButtonStyle? iconBtnPrimStyle,
+    ButtonStyle? iconBtnSecStyle,
   }) {
     return BaseButtonStyles(
       btnPrimBorderRadius: btnPrimBorderRadius ?? this.btnPrimBorderRadius,
@@ -56,6 +58,7 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
       textBtnPrimStyle: textBtnPrimStyle ?? this.textBtnPrimStyle,
       fabShape: fabShape ?? this.fabShape,
       iconBtnPrimStyle: iconBtnPrimStyle ?? this.iconBtnPrimStyle,
+      iconBtnSecStyle: iconBtnSecStyle ?? this.iconBtnSecStyle,
     );
   }
 
@@ -80,6 +83,7 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
       textBtnPrimStyle: t < 0.5 ? textBtnPrimStyle : other.textBtnPrimStyle,
       fabShape: t < 0.5 ? fabShape : other.fabShape,
       iconBtnPrimStyle: t < 0.5 ? iconBtnPrimStyle : other.iconBtnPrimStyle,
+      iconBtnSecStyle: t < 0.5 ? iconBtnSecStyle : other.iconBtnSecStyle,
     );
   }
 
@@ -114,7 +118,9 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
                 .equals(textBtnPrimStyle, other.textBtnPrimStyle) &&
             const DeepCollectionEquality().equals(fabShape, other.fabShape) &&
             const DeepCollectionEquality()
-                .equals(iconBtnPrimStyle, other.iconBtnPrimStyle));
+                .equals(iconBtnPrimStyle, other.iconBtnPrimStyle) &&
+            const DeepCollectionEquality()
+                .equals(iconBtnSecStyle, other.iconBtnSecStyle));
   }
 
   @override
@@ -135,6 +141,7 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
       const DeepCollectionEquality().hash(textBtnPrimStyle),
       const DeepCollectionEquality().hash(fabShape),
       const DeepCollectionEquality().hash(iconBtnPrimStyle),
+      const DeepCollectionEquality().hash(iconBtnSecStyle),
     );
   }
 }

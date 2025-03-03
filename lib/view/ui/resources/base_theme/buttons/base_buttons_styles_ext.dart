@@ -53,8 +53,13 @@ abstract final class BaseButtonStylesFactory {
         bgDisColor: colors.btnTextPrimBgDis,
       ),
       fabShape: _BaseButtonsStyles.fabShape,
-      iconBtnPrimStyle: _BaseButtonsStyles.iconBtnPrimStyle(
+      iconBtnPrimStyle: _BaseButtonsStyles.iconBtnStyle(
         fgColor: colors.btnIconPrim,
+      ),
+      iconBtnSecStyle: _BaseButtonsStyles.iconBtnStyle(
+        fgColor: colors.btnIconSecFg,
+        bgColor: colors.btnIconSecBg,
+        bgPressColor: colors.btnIconSecBgPress,
       ),
     );
   }
@@ -119,6 +124,10 @@ class BaseButtonStyles extends ThemeExtension<BaseButtonStyles>
   @override
   final ButtonStyle iconBtnPrimStyle;
 
+  /// Secondary Icon Button Style.
+  @override
+  final ButtonStyle iconBtnSecStyle;
+
   BaseButtonStyles({
     required this.btnPrimBorderRadius,
     required this.btnPrimHeight,
@@ -134,5 +143,6 @@ class BaseButtonStyles extends ThemeExtension<BaseButtonStyles>
     required this.textBtnPrimStyle,
     required this.fabShape,
     required this.iconBtnPrimStyle,
+    required this.iconBtnSecStyle,
   });
 }

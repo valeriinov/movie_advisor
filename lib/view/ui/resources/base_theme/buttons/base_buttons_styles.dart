@@ -130,7 +130,7 @@ abstract final class _BaseButtonsStyles {
     shape: _createButtonShape(btnPrimBorderRadius),
   );
 
-  static ButtonStyle iconBtnPrimStyle({
+  static ButtonStyle iconBtnStyle({
     Color? fgColor,
     Color? bgColor,
     Color? fgPressColor,

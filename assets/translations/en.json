@@ -128,5 +128,7 @@
   "deleteAccountPassLabel": "Enter your password to confirm",
   "deleteAccountSubmitButton": "DELETE ACCOUNT",
   "deleteAccountSuccessToast": "Account deleted successfully",
-  "exitDialog": "Are you sure you want to exit? All unsaved data will be lost."
+  "exitDialog": "Are you sure you want to exit? All unsaved data will be lost.",
+  "ratingTMDBDesc": "TMDB: {}",
+  "ratingUserDesc": "Your: {}"
 }

@@ -9,11 +9,15 @@ import '../../../widgets/app_svg_asset.dart';
 class DetailsPropsTile extends StatelessWidget {
   final String iconPath;
   final String description;
+  final Color? iconColor;
+  final TextStyle? descStyle;
 
   const DetailsPropsTile({
     super.key,
     required this.iconPath,
     required this.description,
+    this.iconColor,
+    this.descStyle,
   });
 
   @override
@@ -27,14 +31,17 @@ class DetailsPropsTile extends StatelessWidget {
       children: [
         AppSvgAsset(
           path: iconPath,
-          color: colors.textThemeSec,
+          color: iconColor ?? colors.textThemeSec,
           width: 19.5,
           height: 19.5,
         ),
         dimens.spSmall.gapHor(),
         Flexible(
-          child: Text(description, style: styles.detailsPropsTextStyle),
-        )
+          child: Text(
+            description,
+            style: descStyle ?? styles.detailsPropsTextStyle,
+          ),
+        ),
       ],
     );
   }
