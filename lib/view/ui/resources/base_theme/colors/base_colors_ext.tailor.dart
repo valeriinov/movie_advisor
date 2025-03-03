@@ -99,6 +99,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get sliderThumbFill;
   Color get removeRateBtn;
   Color get deleteAccountBtn;
+  Color get divider;
 
   @override
   BaseColors copyWith({
@@ -192,6 +193,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? sliderThumbFill,
     Color? removeRateBtn,
     Color? deleteAccountBtn,
+    Color? divider,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -286,6 +288,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       sliderThumbFill: sliderThumbFill ?? this.sliderThumbFill,
       removeRateBtn: removeRateBtn ?? this.removeRateBtn,
       deleteAccountBtn: deleteAccountBtn ?? this.deleteAccountBtn,
+      divider: divider ?? this.divider,
     );
   }
 
@@ -414,6 +417,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       removeRateBtn: Color.lerp(removeRateBtn, other.removeRateBtn, t)!,
       deleteAccountBtn:
           Color.lerp(deleteAccountBtn, other.deleteAccountBtn, t)!,
+      divider: Color.lerp(divider, other.divider, t)!,
     );
   }
 
@@ -555,7 +559,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(sliderTrackBg, other.sliderTrackBg) &&
             const DeepCollectionEquality().equals(sliderThumbFill, other.sliderThumbFill) &&
             const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn) &&
-            const DeepCollectionEquality().equals(deleteAccountBtn, other.deleteAccountBtn));
+            const DeepCollectionEquality().equals(deleteAccountBtn, other.deleteAccountBtn) &&
+            const DeepCollectionEquality().equals(divider, other.divider));
   }
 
   @override
@@ -652,6 +657,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(sliderThumbFill),
       const DeepCollectionEquality().hash(removeRateBtn),
       const DeepCollectionEquality().hash(deleteAccountBtn),
+      const DeepCollectionEquality().hash(divider),
     ]);
   }
 }

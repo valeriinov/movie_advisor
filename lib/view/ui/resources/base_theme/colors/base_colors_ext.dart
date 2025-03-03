@@ -97,6 +97,7 @@ abstract final class BaseColorsFactory {
     sliderThumbFill: _BaseColors.sliderThumbFill,
     removeRateBtn: _BaseColors.removeRateBtn,
     deleteAccountBtn: _BaseColors.deleteAccountBtn,
+    divider: _BaseColors.divider,
   );
 }
 
@@ -479,6 +480,9 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color deleteAccountBtn;
 
+  @override
+  final Color divider;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -574,5 +578,6 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.sliderThumbFill,
     required this.removeRateBtn,
     required this.deleteAccountBtn,
+    required this.divider,
   });
 }

@@ -34,8 +34,9 @@ class AppTheme {
     final inputsStyles = BaseInputsStylesFactory.createInputsStyles(colors);
     final navBarsStyles = BaseNavBarsStylesFactory.createNavBarsStyles(colors);
     final dialogsStyles = BaseDialogsStylesFactory.createDialogsStyles(colors);
-    final componentsStyles =
-        BaseComponentsStylesFactory.createComponentsStyles(colors);
+    final componentsStyles = BaseComponentsStylesFactory.createComponentsStyles(
+      colors,
+    );
 
     return ThemeData(
       colorScheme: colors.createColorScheme(),
@@ -46,8 +47,10 @@ class AppTheme {
       pageTransitionsTheme: _createPageTransitionsTheme(colors),
       textTheme: textStyles.createTextTheme(),
       appBarTheme: _createAppBarTheme(colors, navBarsStyles),
-      bottomNavigationBarTheme:
-          _createBottomNavigationBarTheme(colors, navBarsStyles),
+      bottomNavigationBarTheme: _createBottomNavigationBarTheme(
+        colors,
+        navBarsStyles,
+      ),
       floatingActionButtonTheme: _createFabTheme(colors, buttonsStyles),
       outlinedButtonTheme: _createOutBtnTheme(buttonsStyles),
       elevatedButtonTheme: _createElevBtnTheme(buttonsStyles),
@@ -63,6 +66,7 @@ class AppTheme {
       bottomSheetTheme: _createBottomSheetTheme(colors, componentsStyles),
       sliderTheme: _createSliderTheme(colors, componentsStyles),
       progressIndicatorTheme: _createProgressIndicatorTheme(colors),
+      dividerTheme: _createDividerTheme(colors),
       extensions: [
         colors,
         textStyles,
@@ -98,7 +102,9 @@ class AppTheme {
   }
 
   BottomNavigationBarThemeData _createBottomNavigationBarTheme(
-      BaseColors colors, BaseNavBarsStyles styles) {
+    BaseColors colors,
+    BaseNavBarsStyles styles,
+  ) {
     return BottomNavigationBarThemeData(
       backgroundColor: colors.botNavBarBg,
       selectedItemColor: colors.botNavBarFgSelect,
@@ -110,7 +116,9 @@ class AppTheme {
   }
 
   FloatingActionButtonThemeData _createFabTheme(
-      BaseColors colors, BaseButtonStyles styles) {
+    BaseColors colors,
+    BaseButtonStyles styles,
+  ) {
     return FloatingActionButtonThemeData(
       backgroundColor: colors.btnFABBg,
       foregroundColor: colors.btnFABFg,
@@ -160,7 +168,9 @@ class AppTheme {
   }
 
   InputDecorationTheme _createInputDecorationTheme(
-      BaseColors colors, BaseInputsStyles styles) {
+    BaseColors colors,
+    BaseInputsStyles styles,
+  ) {
     return InputDecorationTheme(
       filled: true,
       suffixIconColor: colors.txtFldPrimSuffixIcon,
@@ -189,7 +199,9 @@ class AppTheme {
   }
 
   BottomSheetThemeData _createBottomSheetTheme(
-      BaseColors colors, BaseComponentsStyles styles) {
+    BaseColors colors,
+    BaseComponentsStyles styles,
+  ) {
     return BottomSheetThemeData(
       backgroundColor: colors.botSheetBg,
       shape: styles.botSheetShape,
@@ -197,7 +209,9 @@ class AppTheme {
   }
 
   SliderThemeData _createSliderTheme(
-      BaseColors colors, BaseComponentsStyles styles) {
+    BaseColors colors,
+    BaseComponentsStyles styles,
+  ) {
     return SliderThemeData(
       thumbSize: WidgetStateResolver(
         defaultValue: Size.fromRadius(styles.sliderThumbRadius),
@@ -218,5 +232,9 @@ class AppTheme {
 
   ProgressIndicatorThemeData _createProgressIndicatorTheme(BaseColors colors) {
     return ProgressIndicatorThemeData(color: colors.loadingIndicator);
+  }
+
+  DividerThemeData _createDividerTheme(BaseColors colors) {
+    return DividerThemeData(color: colors.divider);
   }
 }

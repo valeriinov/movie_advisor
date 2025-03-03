@@ -128,4 +128,6 @@ abstract final class _BaseColors {
 
   static const removeRateBtn = Color(0xFF6f1919);
   static const deleteAccountBtn = Color(0xff685a5a);
+
+  static const divider = Color(0xFF92929D);
 }
