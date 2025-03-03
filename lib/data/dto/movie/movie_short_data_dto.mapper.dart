@@ -36,8 +36,9 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
       'originCountry', _$originCountry,
       key: r'origin_country', opt: true);
   static DateTime? _$premiereDate(MovieShortDataDto v) => v.premiereDate;
-  static const Field<MovieShortDataDto, DateTime> _f$premiereDate =
-      Field('premiereDate', _$premiereDate, key: r'premiere_date', opt: true);
+  static const Field<MovieShortDataDto, DateTime> _f$premiereDate = Field(
+      'premiereDate', _$premiereDate,
+      key: r'premiere_date', opt: true, hook: DateMapperHook());
   static String? _$title(MovieShortDataDto v) => v.title;
   static const Field<MovieShortDataDto, String> _f$title =
       Field('title', _$title, opt: true);
@@ -55,8 +56,9 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
   static const Field<MovieShortDataDto, bool> _f$isWatched =
       Field('isWatched', _$isWatched, key: r'is_watched', opt: true);
   static DateTime? _$updatedAt(MovieShortDataDto v) => v.updatedAt;
-  static const Field<MovieShortDataDto, DateTime> _f$updatedAt =
-      Field('updatedAt', _$updatedAt, key: r'updated_at', opt: true);
+  static const Field<MovieShortDataDto, DateTime> _f$updatedAt = Field(
+      'updatedAt', _$updatedAt,
+      key: r'updated_at', opt: true, hook: DateMapperHook());
 
   @override
   final MappableFields<MovieShortDataDto> fields = const {
