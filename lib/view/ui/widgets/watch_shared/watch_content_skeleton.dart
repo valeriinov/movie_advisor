@@ -14,18 +14,16 @@ class WatchContentSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.baseColors;
 
-    final media = MockMediaShort.createMediaShortDataList(3);
+    final media = MockMediaShort.createMediaShortDataList(1);
 
     return Skeletonizer(
-      effect: PulseEffect(
-        from: colors.skeletonFrom,
-        to: colors.skeletonTo,
-      ),
+      effect: PulseEffect(from: colors.skeletonFrom, to: colors.skeletonTo),
       child: WatchScreenContent(
         isInitialized: true,
         isLoading: false,
-        watchlist:
-            MediaLoadInfo(mediaData: ListWithPaginationData(items: media)),
+        watchlist: MediaLoadInfo(
+          mediaData: ListWithPaginationData(items: media),
+        ),
         emptyListTitle: '',
         emptyListSubtitle: '',
         onItemSelect: (_) {},
