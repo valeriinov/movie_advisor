@@ -231,7 +231,7 @@ class AppTheme {
   }
 
   ProgressIndicatorThemeData _createProgressIndicatorTheme(BaseColors colors) {
-    return ProgressIndicatorThemeData(color: colors.loadingIndicator);
+    return ProgressIndicatorThemeData(color: colors.loadingIndicatorFg);
   }
 
   DividerThemeData _createDividerTheme(BaseColors colors) {

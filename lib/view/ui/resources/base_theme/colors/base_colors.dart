@@ -48,7 +48,8 @@ abstract final class _BaseColors {
   static const btnIconPrim = Color(0xFFFFFFFF);
 
   // Loading Indicator
-  static const loadingIndicator = Color(0xFF0296E5);
+  static const loadingIndicatorFg = Color(0xFF0296E5);
+  static const loadingIndicatorBg = Color(0xFFE8E8EC);
 
   static const refreshIndicatorFg = Color(0xFF242A32);
   static const refreshIndicatorBg = Color(0xFFa1a3ac);

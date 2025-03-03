@@ -43,7 +43,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get btnFABBg;
   Color get btnFABFgSplash;
   Color get btnIconPrim;
-  Color get loadingIndicator;
+  Color get loadingIndicatorFg;
+  Color get loadingIndicatorBg;
   Color get refreshIndicatorFg;
   Color get refreshIndicatorBg;
   Color get skeletonFrom;
@@ -137,7 +138,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? btnFABBg,
     Color? btnFABFgSplash,
     Color? btnIconPrim,
-    Color? loadingIndicator,
+    Color? loadingIndicatorFg,
+    Color? loadingIndicatorBg,
     Color? refreshIndicatorFg,
     Color? refreshIndicatorBg,
     Color? skeletonFrom,
@@ -230,7 +232,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABBg: btnFABBg ?? this.btnFABBg,
       btnFABFgSplash: btnFABFgSplash ?? this.btnFABFgSplash,
       btnIconPrim: btnIconPrim ?? this.btnIconPrim,
-      loadingIndicator: loadingIndicator ?? this.loadingIndicator,
+      loadingIndicatorFg: loadingIndicatorFg ?? this.loadingIndicatorFg,
+      loadingIndicatorBg: loadingIndicatorBg ?? this.loadingIndicatorBg,
       refreshIndicatorFg: refreshIndicatorFg ?? this.refreshIndicatorFg,
       refreshIndicatorBg: refreshIndicatorBg ?? this.refreshIndicatorBg,
       skeletonFrom: skeletonFrom ?? this.skeletonFrom,
@@ -344,8 +347,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABBg: Color.lerp(btnFABBg, other.btnFABBg, t)!,
       btnFABFgSplash: Color.lerp(btnFABFgSplash, other.btnFABFgSplash, t)!,
       btnIconPrim: Color.lerp(btnIconPrim, other.btnIconPrim, t)!,
-      loadingIndicator:
-          Color.lerp(loadingIndicator, other.loadingIndicator, t)!,
+      loadingIndicatorFg:
+          Color.lerp(loadingIndicatorFg, other.loadingIndicatorFg, t)!,
+      loadingIndicatorBg:
+          Color.lerp(loadingIndicatorBg, other.loadingIndicatorBg, t)!,
       refreshIndicatorFg:
           Color.lerp(refreshIndicatorFg, other.refreshIndicatorFg, t)!,
       refreshIndicatorBg:
@@ -492,7 +497,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality()
                 .equals(btnIconPrim, other.btnIconPrim) &&
             const DeepCollectionEquality()
-                .equals(loadingIndicator, other.loadingIndicator) &&
+                .equals(loadingIndicatorFg, other.loadingIndicatorFg) &&
+            const DeepCollectionEquality()
+                .equals(loadingIndicatorBg, other.loadingIndicatorBg) &&
             const DeepCollectionEquality()
                 .equals(refreshIndicatorFg, other.refreshIndicatorFg) &&
             const DeepCollectionEquality()
@@ -515,8 +522,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(navBarDivider, other.navBarDivider) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimFill, other.txtFldPrimFill) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimInput, other.txtFldPrimInput) &&
+            const DeepCollectionEquality().equals(txtFldPrimInput, other.txtFldPrimInput) &&
             const DeepCollectionEquality().equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
             const DeepCollectionEquality().equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
             const DeepCollectionEquality().equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
@@ -601,7 +607,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(btnFABBg),
       const DeepCollectionEquality().hash(btnFABFgSplash),
       const DeepCollectionEquality().hash(btnIconPrim),
-      const DeepCollectionEquality().hash(loadingIndicator),
+      const DeepCollectionEquality().hash(loadingIndicatorFg),
+      const DeepCollectionEquality().hash(loadingIndicatorBg),
       const DeepCollectionEquality().hash(refreshIndicatorFg),
       const DeepCollectionEquality().hash(refreshIndicatorBg),
       const DeepCollectionEquality().hash(skeletonFrom),
