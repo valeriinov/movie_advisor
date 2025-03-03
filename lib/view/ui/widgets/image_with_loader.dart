@@ -135,7 +135,7 @@ class ImageWithLoader extends StatelessWidget {
   }
 
   Widget _buildLoader() {
-    return loader ?? _placeholderImage();
+    return loader ?? const Center(child: CircularProgressIndicator());
   }
 
   Widget _buildLoadedImage(ExtendedImageState state) {
