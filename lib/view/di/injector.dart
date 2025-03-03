@@ -376,7 +376,7 @@ extension CoreProvider on WidgetRef {
 
   /// Provides access to the url launcher.
   ///
-  /// Used for opening URLs in the in-app web view.
+  /// Used for opening URLs in the default platform app.
   UrlLauncherAdapter get urlLauncher => read(urlLauncherPr);
 
   /// Provides access to the toast manager.
