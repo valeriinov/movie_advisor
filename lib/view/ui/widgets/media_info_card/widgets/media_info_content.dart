@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
-import '../../../../../common/utils/ext/double/to_rating.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/app_rate_format.dart';
