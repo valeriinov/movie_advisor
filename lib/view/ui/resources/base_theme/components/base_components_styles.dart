@@ -55,8 +55,8 @@ abstract final class _BaseComponentsStyles {
   static const double posterBorderRadius = 16.0;
   static const double backdrBorderRadius = 16.0;
 
-  static const Size posterSmallSize = Size(95, 120);
-  static const Size posterMediumSize = Size(100, 146);
+  static const Size posterSmallSize = Size(83, 120);
+  static const Size posterMediumSize = Size(101, 146);
   static const Size posterLargeSize = Size(145, 210);
 
   // Media info card

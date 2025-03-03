@@ -51,7 +51,7 @@ class DetailsHeader extends StatelessWidget {
         return Flexible(
           child: Padding(
             padding: EdgeInsets.only(
-              left: 123.0,
+              left: 111.0,
               top: 12,
               right: dimens.padHorPrim,
             ),
