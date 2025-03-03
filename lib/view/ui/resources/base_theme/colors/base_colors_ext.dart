@@ -41,6 +41,9 @@ abstract final class BaseColorsFactory {
     btnFABBg: _BaseColors.btnFABBg,
     btnFABFgSplash: _BaseColors.btnFABFgSplash,
     btnIconPrim: _BaseColors.btnIconPrim,
+    btnIconSecFg: _BaseColors.btnIconSecFg,
+    btnIconSecBg: _BaseColors.btnIconSecBg,
+    btnIconSecBgPress: _BaseColors.btnIconSecBgPress,
     loadingIndicatorFg: _BaseColors.loadingIndicatorFg,
     loadingIndicatorBg: _BaseColors.loadingIndicatorBg,
     refreshIndicatorFg: _BaseColors.refreshIndicatorFg,
@@ -244,6 +247,18 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Icon button color.
   @override
   final Color btnIconPrim;
+
+  /// Icon button secondary foreground color.
+  @override
+  final Color btnIconSecFg;
+
+  /// Icon button secondary background color.
+  @override
+  final Color btnIconSecBg;
+
+  /// Icon button secondary background color (pressed state).
+  @override
+  final Color btnIconSecBgPress;
 
   // LOADING INDICATOR
 
@@ -527,6 +542,9 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.btnFABBg,
     required this.btnFABFgSplash,
     required this.btnIconPrim,
+    required this.btnIconSecFg,
+    required this.btnIconSecBg,
+    required this.btnIconSecBgPress,
     required this.loadingIndicatorFg,
     required this.loadingIndicatorBg,
     required this.refreshIndicatorFg,
