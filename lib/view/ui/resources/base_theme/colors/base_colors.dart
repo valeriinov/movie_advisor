@@ -73,8 +73,8 @@ abstract final class _BaseColors {
   static const txtFldPrimLabel = Color(0xFF67686D);
   static const txtFldPrimBorder = Color(0xFF3a3f47);
   static const txtFldPrimBorderFocus = Color(0xFF3a3f47);
-  static const txtFldPrimBorderError = Color(0xFFB00020);
-  static const txtFldPrimError = Color(0xFFB00020);
+  static const txtFldPrimBorderError = Color(0xFFDA5353);
+  static const txtFldPrimError = Color(0xFFDA5353);
   static const txtFldPrimSuffixIcon = Color(0xFF67686D);
 
   // Keyboard Actions
