@@ -24,6 +24,6 @@ sealed class GeneralException implements AppException {
 final class SyncDataException extends GeneralException {
   SyncDataException({
     required super.error,
-    String message = LocaleKeys.syncDataErrorDesc,
+    super.message = LocaleKeys.syncDataErrorDesc,
   });
 }
