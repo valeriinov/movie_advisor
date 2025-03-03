@@ -15,6 +15,8 @@ class ResetPassFormState with ResetPassFormStateMappable {
 
   bool get isFilled => email.isNotBlank;
 
+  bool get hasUnsavedData => email.isNotBlank;
+
   const ResetPassFormState({this.email = ''});
 
   static ResetPassFormStateNames get nameof => ResetPassFormStateNames._();

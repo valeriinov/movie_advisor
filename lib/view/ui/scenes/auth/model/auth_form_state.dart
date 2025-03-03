@@ -16,6 +16,8 @@ class AuthFormState with AuthFormStateMappable {
 
   bool get isFilled => email.isNotBlank && password.isNotBlank;
 
+  bool get hasUnsavedData => email.isNotBlank || password.isNotBlank;
+
   const AuthFormState({this.email = '', this.password = ''});
 
   static AuthFormStateNames get nameof => AuthFormStateNames._();
@@ -25,8 +27,5 @@ class AuthFormState with AuthFormStateMappable {
 }
 
 extension ToAuthDataMapper on AuthFormState {
-  AuthData toAuthData() => AuthData(
-        email: email,
-        password: password,
-      );
+  AuthData toAuthData() => AuthData(email: email, password: password);
 }

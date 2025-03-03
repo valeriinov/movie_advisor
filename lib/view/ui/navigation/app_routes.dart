@@ -26,4 +26,7 @@ abstract final class AppRoutes {
 
   // More/Auth/Reset Password
   static const String resetPass = 'reset-pass';
+
+  // More/Delete Account
+  static const String deleteAccount = 'delete-account';
 }

@@ -104,6 +104,7 @@ abstract class  LocaleKeys {
   static const invalidEmailError = 'invalidEmailError';
   static const invalidPassError = 'invalidPassError';
   static const invalidConfirmPassError = 'invalidConfirmPassError';
+  static const requiredFieldError = 'requiredFieldError';
   static const nameFieldHint = 'nameFieldHint';
   static const emailFieldHint = 'emailFieldHint';
   static const passFieldHint = 'passFieldHint';
@@ -114,7 +115,6 @@ abstract class  LocaleKeys {
   static const forgotPassButton = 'forgotPassButton';
   static const createAccountButton = 'createAccountButton';
   static const signOutDialog = 'signOutDialog';
-  static const deleteAccountDialog = 'deleteAccountDialog';
   static const deleteAccountButton = 'deleteAccountButton';
   static const regScreenTitle = 'regScreenTitle';
   static const regSubmitButton = 'regSubmitButton';
@@ -123,5 +123,15 @@ abstract class  LocaleKeys {
   static const resetPassScreenTitle = 'resetPassScreenTitle';
   static const resetPassButton = 'resetPassButton';
   static const syncDataErrorDesc = 'syncDataErrorDesc';
+  static const resetPassSuccessToast = 'resetPassSuccessToast';
+  static const userNotFoundException = 'userNotFoundException';
+  static const wrongPassException = 'wrongPassException';
+  static const emailExistsException = 'emailExistsException';
+  static const deleteAccountScreenTitle = 'deleteAccountScreenTitle';
+  static const deleteAccountDesc = 'deleteAccountDesc';
+  static const deleteAccountPassLabel = 'deleteAccountPassLabel';
+  static const deleteAccountSubmitButton = 'deleteAccountSubmitButton';
+  static const deleteAccountSuccessToast = 'deleteAccountSuccessToast';
+  static const exitDialog = 'exitDialog';
 
 }

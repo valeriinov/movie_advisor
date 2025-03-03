@@ -52,3 +52,5 @@ dev.env
 prod.env
 
 firebase.json
+/functions/build/
+/.firebaserc

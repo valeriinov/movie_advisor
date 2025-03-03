@@ -13,4 +13,5 @@ class ResetPassFormStateNames {
   final String fieldEmail = 'email';
 
   final String propertyGetIsFilled = 'isFilled';
+  final String propertyGetHasUnsavedData = 'hasUnsavedData';
 }

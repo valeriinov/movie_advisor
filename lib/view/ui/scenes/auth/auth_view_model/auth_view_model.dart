@@ -57,6 +57,7 @@ class AuthViewModel extends AutoDisposeNotifier<AuthState>
       },
       (_) {
         _runSyncData();
+        _resetFormState();
         _updateStatus(const AuthSuccessStatus());
       },
     );
@@ -65,6 +66,10 @@ class AuthViewModel extends AutoDisposeNotifier<AuthState>
   Future<void> _runSyncData() async {
     await _syncUseCase.syncMovies();
     await _syncUseCase.syncSeries();
+  }
+
+  void _resetFormState() {
+    state = state.copyWith(formState: const AuthFormState());
   }
 
   void _updateStatus(AuthStatus status) {

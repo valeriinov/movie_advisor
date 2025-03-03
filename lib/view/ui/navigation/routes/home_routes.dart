@@ -26,7 +26,7 @@ class HomeRoute extends GoRouteData {
 class SearchRoute extends GoRouteData with TransitionBuilderMixin {
   final ContentMode contentMode;
 
-  SearchRoute({required this.contentMode});
+  SearchRoute({this.contentMode = ContentMode.movies});
 
   @override
   Page<void> buildPage(context, state) {

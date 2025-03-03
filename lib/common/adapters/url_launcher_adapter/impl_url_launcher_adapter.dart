@@ -13,7 +13,7 @@ class ImplUrlLauncherAdapter implements UrlLauncherAdapter {
 
   Future<void> _safeLaunchUrl(Uri launchUri) async {
     try {
-      await launchUrl(launchUri, mode: LaunchMode.inAppWebView);
+      await launchUrl(launchUri);
     } catch (e) {
       debugLog('[ERROR OPENING URL]: $launchUri : $e');
     }

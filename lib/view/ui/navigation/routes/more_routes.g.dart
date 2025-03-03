@@ -32,6 +32,10 @@ RouteBase get $moreRoute => GoRouteData.$route(
             ),
           ],
         ),
+        GoRouteData.$route(
+          path: 'delete-account',
+          factory: $DeleteAccountRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -108,6 +112,24 @@ extension $ResetPassRouteExtension on ResetPassRoute {
 
   String get location => GoRouteData.$location(
         '/more/auth/reset-pass',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $DeleteAccountRouteExtension on DeleteAccountRoute {
+  static DeleteAccountRoute _fromState(GoRouterState state) =>
+      DeleteAccountRoute();
+
+  String get location => GoRouteData.$location(
+        '/more/delete-account',
       );
 
   void go(BuildContext context) => context.go(location);

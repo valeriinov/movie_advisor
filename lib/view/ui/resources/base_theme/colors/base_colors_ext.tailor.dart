@@ -43,7 +43,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get btnFABBg;
   Color get btnFABFgSplash;
   Color get btnIconPrim;
-  Color get loadingIndicator;
+  Color get loadingIndicatorFg;
+  Color get loadingIndicatorBg;
   Color get refreshIndicatorFg;
   Color get refreshIndicatorBg;
   Color get skeletonFrom;
@@ -99,6 +100,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get sliderThumbFill;
   Color get removeRateBtn;
   Color get deleteAccountBtn;
+  Color get divider;
 
   @override
   BaseColors copyWith({
@@ -136,7 +138,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? btnFABBg,
     Color? btnFABFgSplash,
     Color? btnIconPrim,
-    Color? loadingIndicator,
+    Color? loadingIndicatorFg,
+    Color? loadingIndicatorBg,
     Color? refreshIndicatorFg,
     Color? refreshIndicatorBg,
     Color? skeletonFrom,
@@ -192,6 +195,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? sliderThumbFill,
     Color? removeRateBtn,
     Color? deleteAccountBtn,
+    Color? divider,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -228,7 +232,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABBg: btnFABBg ?? this.btnFABBg,
       btnFABFgSplash: btnFABFgSplash ?? this.btnFABFgSplash,
       btnIconPrim: btnIconPrim ?? this.btnIconPrim,
-      loadingIndicator: loadingIndicator ?? this.loadingIndicator,
+      loadingIndicatorFg: loadingIndicatorFg ?? this.loadingIndicatorFg,
+      loadingIndicatorBg: loadingIndicatorBg ?? this.loadingIndicatorBg,
       refreshIndicatorFg: refreshIndicatorFg ?? this.refreshIndicatorFg,
       refreshIndicatorBg: refreshIndicatorBg ?? this.refreshIndicatorBg,
       skeletonFrom: skeletonFrom ?? this.skeletonFrom,
@@ -286,6 +291,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       sliderThumbFill: sliderThumbFill ?? this.sliderThumbFill,
       removeRateBtn: removeRateBtn ?? this.removeRateBtn,
       deleteAccountBtn: deleteAccountBtn ?? this.deleteAccountBtn,
+      divider: divider ?? this.divider,
     );
   }
 
@@ -341,8 +347,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       btnFABBg: Color.lerp(btnFABBg, other.btnFABBg, t)!,
       btnFABFgSplash: Color.lerp(btnFABFgSplash, other.btnFABFgSplash, t)!,
       btnIconPrim: Color.lerp(btnIconPrim, other.btnIconPrim, t)!,
-      loadingIndicator:
-          Color.lerp(loadingIndicator, other.loadingIndicator, t)!,
+      loadingIndicatorFg:
+          Color.lerp(loadingIndicatorFg, other.loadingIndicatorFg, t)!,
+      loadingIndicatorBg:
+          Color.lerp(loadingIndicatorBg, other.loadingIndicatorBg, t)!,
       refreshIndicatorFg:
           Color.lerp(refreshIndicatorFg, other.refreshIndicatorFg, t)!,
       refreshIndicatorBg:
@@ -414,6 +422,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       removeRateBtn: Color.lerp(removeRateBtn, other.removeRateBtn, t)!,
       deleteAccountBtn:
           Color.lerp(deleteAccountBtn, other.deleteAccountBtn, t)!,
+      divider: Color.lerp(divider, other.divider, t)!,
     );
   }
 
@@ -488,7 +497,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality()
                 .equals(btnIconPrim, other.btnIconPrim) &&
             const DeepCollectionEquality()
-                .equals(loadingIndicator, other.loadingIndicator) &&
+                .equals(loadingIndicatorFg, other.loadingIndicatorFg) &&
+            const DeepCollectionEquality()
+                .equals(loadingIndicatorBg, other.loadingIndicatorBg) &&
             const DeepCollectionEquality()
                 .equals(refreshIndicatorFg, other.refreshIndicatorFg) &&
             const DeepCollectionEquality()
@@ -511,8 +522,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
                 .equals(navBarDivider, other.navBarDivider) &&
             const DeepCollectionEquality()
                 .equals(txtFldPrimFill, other.txtFldPrimFill) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimInput, other.txtFldPrimInput) &&
+            const DeepCollectionEquality().equals(txtFldPrimInput, other.txtFldPrimInput) &&
             const DeepCollectionEquality().equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
             const DeepCollectionEquality().equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
             const DeepCollectionEquality().equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
@@ -555,7 +565,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(sliderTrackBg, other.sliderTrackBg) &&
             const DeepCollectionEquality().equals(sliderThumbFill, other.sliderThumbFill) &&
             const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn) &&
-            const DeepCollectionEquality().equals(deleteAccountBtn, other.deleteAccountBtn));
+            const DeepCollectionEquality().equals(deleteAccountBtn, other.deleteAccountBtn) &&
+            const DeepCollectionEquality().equals(divider, other.divider));
   }
 
   @override
@@ -596,7 +607,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(btnFABBg),
       const DeepCollectionEquality().hash(btnFABFgSplash),
       const DeepCollectionEquality().hash(btnIconPrim),
-      const DeepCollectionEquality().hash(loadingIndicator),
+      const DeepCollectionEquality().hash(loadingIndicatorFg),
+      const DeepCollectionEquality().hash(loadingIndicatorBg),
       const DeepCollectionEquality().hash(refreshIndicatorFg),
       const DeepCollectionEquality().hash(refreshIndicatorBg),
       const DeepCollectionEquality().hash(skeletonFrom),
@@ -652,6 +664,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(sliderThumbFill),
       const DeepCollectionEquality().hash(removeRateBtn),
       const DeepCollectionEquality().hash(deleteAccountBtn),
+      const DeepCollectionEquality().hash(divider),
     ]);
   }
 }

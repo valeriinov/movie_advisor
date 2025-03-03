@@ -8,6 +8,7 @@ import '../../resources/app_images.dart';
 import '../../resources/base_theme/inputs/base_inputs_styles_ext.dart';
 import '../../resources/locale_keys.g.dart';
 import '../app_svg_asset.dart';
+import 'utils/app_validators.dart';
 import 'utils/clear_button_builder.dart';
 import 'widgets/field_label.dart';
 
@@ -147,59 +148,6 @@ class InputField extends StatelessWidget {
         );
   }
 
-  InputField.name({
-    Key? key,
-    required String name,
-    FocusNode? focusNode,
-    dynamic Function(bool)? onFocusChanged,
-    bool isRequired = true,
-    VoidCallback? onEditingComplete,
-    TextInputAction textInputAction = TextInputAction.next,
-    String initialValue = '',
-  }) : this._(
-         key: key,
-         child: TextFieldBuilderExtended(
-           initialValue: initialValue,
-           focusNode: focusNode,
-           onFocusChanged: onFocusChanged,
-           builder: (props) {
-             final validator =
-                 MinLengthValidator(
-                   LocaleKeys.invalidNameError.tr(),
-                   minLength: 2,
-                   isRequired: isRequired,
-                 ).validate;
-
-             return FormBuilderTextField(
-               name: name,
-               controller: props.controller,
-               focusNode: props.focusNode,
-               scrollPadding: _getScrollPadding(props.context),
-               decoration: _buildBaseDecoration(
-                 labelText: LocaleKeys.nameFieldHint.tr(),
-                 hintText: LocaleKeys.nameFieldHint.tr(),
-                 props: props,
-                 isRequired: isRequired,
-                 suffixIcon: _buildTextFieldClearSuffixButton(
-                   props.controller,
-                   initialValue,
-                   props.focusNode.hasFocus,
-                 ),
-               ),
-               textCapitalization: TextCapitalization.words,
-               validator: validator,
-               textInputAction: textInputAction,
-               onEditingComplete:
-                   () => _onEditingComplete(
-                     textInputAction,
-                     props.focusNode,
-                     onEditingComplete: onEditingComplete,
-                   ),
-             );
-           },
-         ),
-       );
-
   InputField.email({
     Key? key,
     required String name,
@@ -217,8 +165,9 @@ class InputField extends StatelessWidget {
            onFocusChanged: onFocusChanged,
            builder: (props) {
              final validator =
-                 EmailValidator(
+                 AppEmailValidator(
                    LocaleKeys.invalidEmailError.tr(),
+                   requiredErrorText: LocaleKeys.requiredFieldError.tr(),
                    isRequired: isRequired,
                  ).validate;
 
@@ -260,6 +209,8 @@ class InputField extends StatelessWidget {
     bool isRequired = true,
     VoidCallback? onEditingComplete,
     TextInputAction textInputAction = TextInputAction.next,
+    String? labelText,
+    String? hintText,
     String initialValue = '',
   }) : this._(
          key: key,
@@ -270,8 +221,9 @@ class InputField extends StatelessWidget {
            onFocusChanged: onFocusChanged,
            builder: (props) {
              final validator =
-                 PasswordValidator(
+                 AppPasswordValidator(
                    LocaleKeys.invalidPassError.tr(),
+                   requiredErrorText: LocaleKeys.requiredFieldError.tr(),
                    isRequired: isRequired,
                  ).validate;
 
@@ -285,8 +237,8 @@ class InputField extends StatelessWidget {
                enableSuggestions: false,
                autocorrect: false,
                decoration: _buildBaseDecoration(
-                 labelText: LocaleKeys.passFieldHint.tr(),
-                 hintText: LocaleKeys.passFieldHint.tr(),
+                 labelText: labelText ?? LocaleKeys.passFieldHint.tr(),
+                 hintText: hintText ?? LocaleKeys.passFieldHint.tr(),
                  props: props,
                  isRequired: isRequired,
                  suffixIcon: _buildObscureTextSuffixButton(
@@ -400,12 +352,13 @@ class InputField extends StatelessWidget {
   }) {
     final isFocused = props.focusNode.hasFocus;
     final isNotEmpty = props.controller.text.isNotEmpty;
+    final isFloating = isFocused || isNotEmpty;
 
     return InputDecoration(
       label: FieldLabel(
-        color: isFocused || isNotEmpty ? null : Colors.transparent,
+        color: isFloating ? null : Colors.transparent,
         isRequired: isRequired,
-        content: Text(labelText),
+        content: Text(isFloating ? labelText : hintText),
       ),
       suffixIcon: suffixIcon,
       floatingLabelBehavior: floatingLabelBehavior,

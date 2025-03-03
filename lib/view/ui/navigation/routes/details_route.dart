@@ -21,7 +21,7 @@ class DetailsRoute extends GoRouteData {
   ///   DetailsRoute(id: id, contentMode: ContentMode.movies).push(context);
   /// }
   /// ```
-  DetailsRoute({required this.id, required this.contentMode});
+  DetailsRoute({this.id = -1, this.contentMode = ContentMode.movies});
 
   @override
   Page<void> buildPage(context, state) {

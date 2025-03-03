@@ -47,7 +47,6 @@ class MoreScreenView extends ConsumerWidget {
                         ? () => vsp.viewModel.loadInitialData(showLoader: false)
                         : null,
                 onSignOut: () => _showSignOutDialog(context, vsp),
-                onDeleteAccount: () => _showDeleteAccountDialog(context, vsp),
               ),
     );
   }
@@ -59,17 +58,6 @@ class MoreScreenView extends ConsumerWidget {
           (_) => QuestionDialog(
             contentText: LocaleKeys.signOutDialog.tr(),
             onOkButtonPressed: vsp.viewModel.signOut,
-          ),
-    );
-  }
-
-  void _showDeleteAccountDialog(BuildContext context, MoreVSP vsp) {
-    showDialog(
-      context: context,
-      builder:
-          (_) => QuestionDialog(
-            contentText: LocaleKeys.deleteAccountDialog.tr(),
-            onOkButtonPressed: vsp.viewModel.deleteAccount,
           ),
     );
   }

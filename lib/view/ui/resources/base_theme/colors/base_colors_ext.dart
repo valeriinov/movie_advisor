@@ -41,7 +41,8 @@ abstract final class BaseColorsFactory {
     btnFABBg: _BaseColors.btnFABBg,
     btnFABFgSplash: _BaseColors.btnFABFgSplash,
     btnIconPrim: _BaseColors.btnIconPrim,
-    loadingIndicator: _BaseColors.loadingIndicator,
+    loadingIndicatorFg: _BaseColors.loadingIndicatorFg,
+    loadingIndicatorBg: _BaseColors.loadingIndicatorBg,
     refreshIndicatorFg: _BaseColors.refreshIndicatorFg,
     refreshIndicatorBg: _BaseColors.refreshIndicatorBg,
     skeletonFrom: _BaseColors.skeletonFrom,
@@ -97,6 +98,7 @@ abstract final class BaseColorsFactory {
     sliderThumbFill: _BaseColors.sliderThumbFill,
     removeRateBtn: _BaseColors.removeRateBtn,
     deleteAccountBtn: _BaseColors.deleteAccountBtn,
+    divider: _BaseColors.divider,
   );
 }
 
@@ -245,9 +247,13 @@ class BaseColors extends ThemeExtension<BaseColors>
 
   // LOADING INDICATOR
 
-  /// Loading indicator color.
+  /// Loading indicator foreground color.
   @override
-  final Color loadingIndicator;
+  final Color loadingIndicatorFg;
+
+  /// Loading indicator background color.
+  @override
+  final Color loadingIndicatorBg;
 
   /// Refresh indicator foreground color.
   @override
@@ -479,6 +485,9 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color deleteAccountBtn;
 
+  @override
+  final Color divider;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -518,7 +527,8 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.btnFABBg,
     required this.btnFABFgSplash,
     required this.btnIconPrim,
-    required this.loadingIndicator,
+    required this.loadingIndicatorFg,
+    required this.loadingIndicatorBg,
     required this.refreshIndicatorFg,
     required this.refreshIndicatorBg,
     required this.skeletonFrom,
@@ -574,5 +584,6 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.sliderThumbFill,
     required this.removeRateBtn,
     required this.deleteAccountBtn,
+    required this.divider,
   });
 }

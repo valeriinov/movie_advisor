@@ -58,9 +58,14 @@ class ResetPassViewModel extends AutoDisposeNotifier<ResetPassState>
         _updateStatus(ResetPassBaseInitStatus(errorMessage: error.message));
       },
       (_) {
+        _resetFormState();
         _updateStatus(const ResetPassSuccessStatus());
       },
     );
+  }
+
+  void _resetFormState() {
+    state = state.copyWith(formState: ResetPassFormState());
   }
 
   void _updateStatus(ResetPassStatus status) {

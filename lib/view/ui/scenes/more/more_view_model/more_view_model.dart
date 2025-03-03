@@ -72,12 +72,6 @@ class MoreViewModel extends AutoDisposeNotifier<MoreState>
     await safeCall(_authUseCase.signOut, onResult: _handleResult);
   }
 
-  Future<void> deleteAccount() async {
-    _updateStatus(const MoreBaseInitStatus(isLoading: true));
-
-    await safeCall(_authUseCase.deleteAccount, onResult: _handleResult);
-  }
-
   void _handleResult(Result<void> result) {
     result.fold(
       (error) {
