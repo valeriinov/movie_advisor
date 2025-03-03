@@ -5,6 +5,7 @@ import '../../app_fonts.dart';
 import '../colors/base_colors_ext.dart';
 
 part 'base_components_styles.dart';
+
 part 'base_components_styles_ext.tailor.dart';
 
 abstract final class BaseComponentsStylesFactory {
@@ -17,27 +18,27 @@ abstract final class BaseComponentsStylesFactory {
       horizontalTitleGap: _BaseComponentsStyles.horizontalTitleGap,
       listTilePrimTitleTextStyle:
           _BaseComponentsStyles.listTilePrimTitleTextStyle(
-        colors.listTilePrimTitle,
-      ),
+            colors.listTilePrimTitle,
+          ),
       listTilePrimSubtTextStyle:
           _BaseComponentsStyles.listTilePrimSubtTextStyle(
-        colors.listTilePrimSubtitle,
-      ),
+            colors.listTilePrimSubtitle,
+          ),
       listTileSecTitleTextStyle:
           _BaseComponentsStyles.listTileSecTitleTextStyle(
-        colors.listTileSecTitle,
-      ),
+            colors.listTileSecTitle,
+          ),
       listTileSecSubtTextStyle: _BaseComponentsStyles.listTileSecSubtTextStyle(
         colors.listTileSecSubtitle,
       ),
       listTileSecTitleTextStyleSelect:
           _BaseComponentsStyles.listTileSecTitleTextStyleSelect(
-        colors.listTileSecTitle,
-      ),
+            colors.listTileSecTitle,
+          ),
       listTileSecSubtTextStyleSelect:
           _BaseComponentsStyles.listTileSecSubtTextStyleSelect(
-        colors.listTileSecSubtitle,
-      ),
+            colors.listTileSecSubtitle,
+          ),
       avatarPrimTextStyle: _BaseComponentsStyles.avatarPrimTextStyle(
         colors.avatarPrimFg,
       ),
@@ -53,12 +54,14 @@ abstract final class BaseComponentsStylesFactory {
         colors.textThemePrim,
       ),
       emptyListSubtitleTextStyle:
-          _BaseComponentsStyles.emptyListSubtitleTextStyle(
-        colors.textThemeSec,
-      ),
+          _BaseComponentsStyles.emptyListSubtitleTextStyle(colors.textThemeSec),
       detailsPropsTextStyle: _BaseComponentsStyles.detailsPropsTextStyle(
         colors.textThemeSec,
       ),
+      detailsPropsRateTextStyle:
+          _BaseComponentsStyles.detailsPropsRateTextStyle(
+            colors.infoCardRating,
+          ),
       botSheetBorderRadius: _BaseComponentsStyles.botSheetBorderRadius,
       botSheetContPadding: _BaseComponentsStyles.botSheetContPadding,
       botSheetMinHeight: _BaseComponentsStyles.botSheetMinHeight,
@@ -154,6 +157,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final TextStyle detailsPropsTextStyle;
 
+  /// TextStyle of the rate in the details properties.
+  @override
+  final TextStyle detailsPropsRateTextStyle;
+
   /// BorderRadius of the bottom sheet.
   @override
   final double botSheetBorderRadius;
@@ -205,6 +212,7 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.emptyListTitleTextStyle,
     required this.emptyListSubtitleTextStyle,
     required this.detailsPropsTextStyle,
+    required this.detailsPropsRateTextStyle,
     required this.botSheetBorderRadius,
     required this.botSheetContPadding,
     required this.botSheetMinHeight,

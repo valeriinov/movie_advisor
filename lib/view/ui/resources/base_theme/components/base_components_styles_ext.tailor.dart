@@ -29,6 +29,7 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get emptyListTitleTextStyle;
   TextStyle get emptyListSubtitleTextStyle;
   TextStyle get detailsPropsTextStyle;
+  TextStyle get detailsPropsRateTextStyle;
   double get botSheetBorderRadius;
   double get botSheetContPadding;
   double get botSheetMinHeight;
@@ -59,6 +60,7 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? emptyListTitleTextStyle,
     TextStyle? emptyListSubtitleTextStyle,
     TextStyle? detailsPropsTextStyle,
+    TextStyle? detailsPropsRateTextStyle,
     double? botSheetBorderRadius,
     double? botSheetContPadding,
     double? botSheetMinHeight,
@@ -98,6 +100,8 @@ mixin _$BaseComponentsStylesTailorMixin
           emptyListSubtitleTextStyle ?? this.emptyListSubtitleTextStyle,
       detailsPropsTextStyle:
           detailsPropsTextStyle ?? this.detailsPropsTextStyle,
+      detailsPropsRateTextStyle:
+          detailsPropsRateTextStyle ?? this.detailsPropsRateTextStyle,
       botSheetBorderRadius: botSheetBorderRadius ?? this.botSheetBorderRadius,
       botSheetContPadding: botSheetContPadding ?? this.botSheetContPadding,
       botSheetMinHeight: botSheetMinHeight ?? this.botSheetMinHeight,
@@ -153,6 +157,8 @@ mixin _$BaseComponentsStylesTailorMixin
           emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle, t)!,
       detailsPropsTextStyle: TextStyle.lerp(
           detailsPropsTextStyle, other.detailsPropsTextStyle, t)!,
+      detailsPropsRateTextStyle: TextStyle.lerp(
+          detailsPropsRateTextStyle, other.detailsPropsRateTextStyle, t)!,
       botSheetBorderRadius:
           t < 0.5 ? botSheetBorderRadius : other.botSheetBorderRadius,
       botSheetContPadding:
@@ -213,6 +219,8 @@ mixin _$BaseComponentsStylesTailorMixin
                 emptyListSubtitleTextStyle, other.emptyListSubtitleTextStyle) &&
             const DeepCollectionEquality()
                 .equals(detailsPropsTextStyle, other.detailsPropsTextStyle) &&
+            const DeepCollectionEquality().equals(
+                detailsPropsRateTextStyle, other.detailsPropsRateTextStyle) &&
             const DeepCollectionEquality()
                 .equals(botSheetBorderRadius, other.botSheetBorderRadius) &&
             const DeepCollectionEquality()
@@ -221,8 +229,7 @@ mixin _$BaseComponentsStylesTailorMixin
                 .equals(botSheetMinHeight, other.botSheetMinHeight) &&
             const DeepCollectionEquality()
                 .equals(botSheetShape, other.botSheetShape) &&
-            const DeepCollectionEquality()
-                .equals(botSheetTitleTextStyle, other.botSheetTitleTextStyle) &&
+            const DeepCollectionEquality().equals(botSheetTitleTextStyle, other.botSheetTitleTextStyle) &&
             const DeepCollectionEquality().equals(sliderThumbRadius, other.sliderThumbRadius) &&
             const DeepCollectionEquality().equals(sliderTrackHeight, other.sliderTrackHeight) &&
             const DeepCollectionEquality().equals(sliderValTextStyle, other.sliderValTextStyle));
@@ -251,6 +258,7 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(emptyListTitleTextStyle),
       const DeepCollectionEquality().hash(emptyListSubtitleTextStyle),
       const DeepCollectionEquality().hash(detailsPropsTextStyle),
+      const DeepCollectionEquality().hash(detailsPropsRateTextStyle),
       const DeepCollectionEquality().hash(botSheetBorderRadius),
       const DeepCollectionEquality().hash(botSheetContPadding),
       const DeepCollectionEquality().hash(botSheetMinHeight),

@@ -133,5 +133,7 @@ abstract class  LocaleKeys {
   static const deleteAccountSubmitButton = 'deleteAccountSubmitButton';
   static const deleteAccountSuccessToast = 'deleteAccountSuccessToast';
   static const exitDialog = 'exitDialog';
+  static const ratingTMDBDesc = 'ratingTMDBDesc';
+  static const ratingUserDesc = 'ratingUserDesc';
 
 }

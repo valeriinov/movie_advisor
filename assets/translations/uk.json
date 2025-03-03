@@ -128,5 +128,7 @@
   "deleteAccountPassLabel": "Введіть свій пароль для підтвердження",
   "deleteAccountSubmitButton": "ВИДАЛИТИ АКАУНТ",
   "deleteAccountSuccessToast": "Акаунт успішно видалено",
-  "exitDialog": "Ви впевнені, що хочете вийти? Всі незбережені дані будуть втрачені."
+  "exitDialog": "Ви впевнені, що хочете вийти? Всі незбережені дані будуть втрачені.",
+  "ratingTMDBDesc": "TMDB: {}",
+  "ratingUserDesc": "Ваш: {}"
 }
