@@ -26,6 +26,7 @@ class FloatingSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dimens = context.baseDimens;
+    final isMoreButtonVisible = onMoreTap != null;
 
     return SliverAppBar(
       floating: true,
@@ -36,6 +37,7 @@ class FloatingSearchBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(
           left: dimens.padHorPrim,
+          right: isMoreButtonVisible ? 0 : dimens.padHorPrim,
           bottom: dimens.spLarge / 2,
         ),
         title: Row(
@@ -52,10 +54,11 @@ class FloatingSearchBar extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(
-              onPressed: onMoreTap,
-              icon: AppSvgAsset(path: AppImages.moreVertIcon),
-            ),
+            if (isMoreButtonVisible)
+              IconButton(
+                onPressed: onMoreTap,
+                icon: AppSvgAsset(path: AppImages.moreVertIcon),
+              ),
           ],
         ),
       ),

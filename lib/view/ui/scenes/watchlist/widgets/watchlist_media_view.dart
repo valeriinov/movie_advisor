@@ -6,16 +6,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
+import '../../../base/content_mode_view_model/content_mode_view_model.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
-import '../../../widgets/blurred_bottom_sheet.dart';
+import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/app_bar/widgets/content_mode_switch.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
-import '../../../widgets/watch_shared/watch_app_bar.dart';
 import '../../../widgets/watch_shared/watch_content_skeleton.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
 import '../watchlist_view_model/watchlist_view_model.dart';
-import 'watchlist_filter_bottom_sheet.dart';
 
 class WatchlistMediaView<T extends MediaShortData> extends HookConsumerWidget {
   final WatchlistVMProvider<T> provider;
@@ -35,6 +35,10 @@ class WatchlistMediaView<T extends MediaShortData> extends HookConsumerWidget {
 
   @override
   Widget build(context, ref) {
+    final vspContMode = ref.vspFromADProvider(contentModeViewModelPr);
+
+    final contMode = vspContMode.selectWatch((s) => s.mode);
+
     final vsp = ref.vspFromADProvider(provider);
 
     final isLoading = vsp.isLoading;
@@ -65,9 +69,14 @@ class WatchlistMediaView<T extends MediaShortData> extends HookConsumerWidget {
       scrollController: scrollController,
       builder: (_, isFabVisible) {
         return Scaffold(
-          appBar: WatchAppBar(
-            title: screenTitle,
-            onMoreTap: () => _onMoreTap(context),
+          appBar: MainAppBar(
+            title: Text(screenTitle),
+            actions: [
+              ContentModeSwitch(
+                contentMode: contMode,
+                toggleMode: vspContMode.viewModel.toggleMode,
+              ),
+            ],
           ),
           body:
               isSkeletonVisible
@@ -118,15 +127,6 @@ class WatchlistMediaView<T extends MediaShortData> extends HookConsumerWidget {
       currentPage: loadInfo.mediaData.currentPage,
       isLoading: loadInfo.isNextPageLoading,
       isLastPage: loadInfo.mediaData.isLastPage,
-    );
-  }
-
-  void _onMoreTap(BuildContext context) {
-    showBlurredBottomSheet(
-      isDismissible: false,
-      useRootNavigator: true,
-      context: context,
-      child: WatchlistFilterBottomSheet(),
     );
   }
 
