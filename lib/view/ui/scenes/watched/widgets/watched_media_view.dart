@@ -7,6 +7,7 @@ import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/content_mode_view_model/content_mode_view_model.dart';
+import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
@@ -56,6 +57,14 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
     );
 
     final scrollController = useScrollController();
+
+    vspContMode.handleState(
+      listener: (prev, next) {
+        if (next.isUpdate(prev, (s) => s?.mode)) {
+          scrollController.jumpTo(0);
+        }
+      },
+    );
 
     useEffect(() {
       final paginationCtrl = _initPaginationController(vsp, scrollController);
