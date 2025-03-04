@@ -26,8 +26,8 @@ class ContentModeSwitch extends StatelessWidget {
     return Padding(
       padding: dimens.padHorPrim.insRight(),
       child: AnimatedToggleSwitch.rolling(
-        height: 36,
-        indicatorSize: Size.fromWidth(34),
+        height: 32,
+        indicatorSize: Size.fromWidth(30),
         current: contentMode,
         values: [ContentMode.movies, ContentMode.series],
         borderWidth: 1,
@@ -39,7 +39,7 @@ class ContentModeSwitch extends StatelessWidget {
         ),
         onChanged: (_) => toggleMode(),
         iconBuilder: (mode, isSelected) {
-          final size = 20.0;
+          final size = 18.0;
           final color =
               isSelected ? colors.contSwitchFgSelect : colors.contSwitchFg;
 
