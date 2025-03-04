@@ -28,12 +28,15 @@ class FloatingSearchBar extends StatelessWidget {
     final dimens = context.baseDimens;
     final isMoreButtonVisible = onMoreTap != null;
 
+    final fixedHeight = kToolbarHeight + (dimens.spLarge / 2);
+
     return SliverAppBar(
       floating: true,
       snap: true,
       primary: false,
       automaticallyImplyLeading: false,
-      toolbarHeight: kToolbarHeight + (dimens.spLarge / 2),
+      toolbarHeight: fixedHeight,
+      expandedHeight: fixedHeight,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(
           left: dimens.padHorPrim,

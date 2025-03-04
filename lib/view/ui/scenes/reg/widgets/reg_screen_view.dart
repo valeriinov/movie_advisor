@@ -40,9 +40,7 @@ class RegScreenView extends ConsumerWidget {
               SliverPadding(padding: dimens.padTopPrim.insTop()),
               RegFormContent(updateFormState: vsp.viewModel.updateFormState),
               SliverPadding(padding: dimens.padBotPrim.insBottom()),
-              KeyboardOpenedBottomGap(
-                isKeyboardOpened: context.isKeyboardOpened,
-              ),
+              KeyboardOpenedBottomGap(),
             ],
           ),
         ),

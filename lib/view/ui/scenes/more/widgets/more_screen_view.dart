@@ -38,7 +38,6 @@ class MoreScreenView extends ConsumerWidget {
 
     return Scaffold(
       appBar: MoreAppBar(),
-      resizeToAvoidBottomInset: false,
       body: AnimatedSwitcher(
         duration: durations.animSwitchPrim,
         child:

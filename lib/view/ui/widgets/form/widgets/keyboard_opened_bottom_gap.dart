@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 import '../../../resources/base_theme/durations/base_durations_ext.dart';
 
 class KeyboardOpenedBottomGap extends StatelessWidget {
-  final bool isKeyboardOpened;
-
-  const KeyboardOpenedBottomGap({super.key, required this.isKeyboardOpened});
+  const KeyboardOpenedBottomGap({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,11 @@ class KeyboardOpenedBottomGap extends StatelessWidget {
     return SliverToBoxAdapter(
       child: AnimatedSize(
         duration: durations.animSwitchPrim,
-        child: isKeyboardOpened ? SizedBox(height: 40) : SizedBox.shrink(),
+        child: KeyboardVisibilityBuilder(
+          builder:
+              (_, isVisible) =>
+                  isVisible ? SizedBox(height: 40) : SizedBox.shrink(),
+        ),
       ),
     );
   }

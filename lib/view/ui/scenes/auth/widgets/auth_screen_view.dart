@@ -40,9 +40,7 @@ class AuthScreenView extends ConsumerWidget {
               SliverPadding(padding: dimens.padTopPrim.insTop()),
               AuthFormContent(updateFormState: vsp.viewModel.updateFormState),
               SliverPadding(padding: dimens.padBotPrim.insBottom()),
-              KeyboardOpenedBottomGap(
-                isKeyboardOpened: context.isKeyboardOpened,
-              ),
+              KeyboardOpenedBottomGap(),
             ],
           ),
         ),

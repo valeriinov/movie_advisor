@@ -42,33 +42,31 @@ class SearchScreenContent extends StatelessWidget {
     final isNextPageLoading = results.isNextPageLoading;
 
     return SliverAnimatedSwitcher(
-        duration: durations.animSwitchPrim,
-        child: switch (_hasEmptyResults) {
-          true => _buildEmptySearch(),
-          false when isLoading => SliverFillLoader(),
-          _ => MultiSliver(
-              children: [
-                SliverRefreshIndicator(
-                  onRefresh: onRefresh,
-                ),
-                SearchResults(
-                  resultsMedia: results.mediaData.items,
-                  onItemSelect: onItemSelect,
-                ),
-                if (isNextPageLoading) NextPageLoader(),
-                SliverPadding(padding: dimens.padBotPrimIns),
-              ],
+      duration: durations.animSwitchPrim,
+      child: switch (_hasEmptyResults) {
+        true => _buildEmptySearch(context),
+        false when isLoading => SliverFillLoader(),
+        _ => MultiSliver(
+          children: [
+            SliverRefreshIndicator(onRefresh: onRefresh),
+            SearchResults(
+              resultsMedia: results.mediaData.items,
+              onItemSelect: onItemSelect,
             ),
-        });
+            if (isNextPageLoading) NextPageLoader(),
+            SliverPadding(padding: dimens.padBotPrimIns),
+          ],
+        ),
+      },
+    );
   }
 
-  Widget _buildEmptySearch() {
+  Widget _buildEmptySearch(BuildContext context) {
     return MultiSliver(
       children: [
-        SliverRefreshIndicator(
-          onRefresh: onRefresh,
-        ),
+        SliverRefreshIndicator(onRefresh: onRefresh),
         EmptyListContainer(
+          height: 450,
           imagePath: AppImages.emptyResultImage,
           title: LocaleKeys.emptySearchTitle.tr(),
           subtitle: LocaleKeys.emptySearchSubtitle.tr(),
