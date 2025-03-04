@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
-import '../../../../../domain/entities/search/search_filter_data.dart';
 import '../../../base/media_load_info.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';

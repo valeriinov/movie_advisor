@@ -123,7 +123,6 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
 
   void _handleFilterUpdate(FilterState? prev, FilterState next, SearchVSP vsp) {
     if (next.isUpdate(prev, (s) => s?.filter)) {
-      print('[FILTER UPDATE] $next');
       vsp.viewModel.loadByFilter(next.filter);
     }
   }
