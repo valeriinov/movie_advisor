@@ -102,6 +102,11 @@ abstract final class BaseColorsFactory {
     removeRateBtn: _BaseColors.removeRateBtn,
     deleteAccountBtn: _BaseColors.deleteAccountBtn,
     divider: _BaseColors.divider,
+    contSwitchBg: _BaseColors.contSwitchBg,
+    contSwitchIndicator: _BaseColors.contSwitchIndicator,
+    contSwitchBorder: _BaseColors.contSwitchBorder,
+    contSwitchFg: _BaseColors.contSwitchFg,
+    contSwitchFgSelect: _BaseColors.contSwitchFgSelect,
   );
 }
 
@@ -500,8 +505,29 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color deleteAccountBtn;
 
+  /// Divider color.
   @override
   final Color divider;
+
+  /// Container switch background color.
+  @override
+  final Color contSwitchBg;
+
+  /// Container switch indicator color.
+  @override
+  final Color contSwitchIndicator;
+
+  /// Container switch border color.
+  @override
+  final Color contSwitchBorder;
+
+  /// Container switch foreground color.
+  @override
+  final Color contSwitchFg;
+
+  /// Container switch foreground color (selected state).
+  @override
+  final Color contSwitchFgSelect;
 
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
@@ -603,5 +629,10 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.removeRateBtn,
     required this.deleteAccountBtn,
     required this.divider,
+    required this.contSwitchBg,
+    required this.contSwitchIndicator,
+    required this.contSwitchBorder,
+    required this.contSwitchFg,
+    required this.contSwitchFgSelect,
   });
 }

@@ -14,9 +14,6 @@ import '../../../../../domain/usecases/refresh_use_case.dart';
 import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
-import '../../../base/content_mode_view_model/content_mode.dart';
-import '../../../base/content_mode_view_model/content_mode_state.dart';
-import '../../../base/content_mode_view_model/content_mode_view_model.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
@@ -26,12 +23,6 @@ import 'home_state.dart';
 part 'home_movies_view_model.dart';
 
 part 'home_series_view_model.dart';
-
-final homeContModeViewModelPr = AutoDisposeNotifierProvider.family<
-  ContentModeViewModel,
-  ContentModeState,
-  ContentMode
->(ContentModeViewModel.new);
 
 /// {@category StateManagement}
 ///

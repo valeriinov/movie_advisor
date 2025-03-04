@@ -6,18 +6,24 @@ import 'content_mode_state.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AFSP] with [ContentModeViewModel], [ContentModeState], and [ContentMode].
-typedef ContentModeAFSP =
-    AFSP<ContentModeViewModel, ContentModeState, ContentMode>;
+/// A provider for the [ContentModeViewModel] class.
+final contentModeViewModelPr =
+    AutoDisposeNotifierProvider<ContentModeViewModel, ContentModeState>(
+      ContentModeViewModel.new,
+    );
+
+/// {@category StateManagement}
+///
+/// A type alias for [ASP] with [ContentModeViewModel] and [ContentModeState].
+typedef ContentModeVSP = ASP<ContentModeViewModel, ContentModeState>;
 
 /// {@category StateManagement}
 ///
 /// A view model for managing the [ContentMode] state.
-class ContentModeViewModel
-    extends AutoDisposeFamilyNotifier<ContentModeState, ContentMode> {
+class ContentModeViewModel extends AutoDisposeNotifier<ContentModeState> {
   @override
-  ContentModeState build(arg) {
-    return ContentModeState(mode: arg);
+  ContentModeState build() {
+    return ContentModeState();
   }
 
   /// Toggles the content mode between [ContentMode.movies] and [ContentMode.series].

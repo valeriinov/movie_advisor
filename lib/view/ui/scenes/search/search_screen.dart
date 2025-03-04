@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../base/content_mode_view_model/content_mode.dart';
+
 import 'widgets/search_screen_view.dart';
 
 class SearchScreen extends StatelessWidget {
-  final ContentMode initContentMode;
-
-  const SearchScreen({super.key, required this.initContentMode});
+  const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SearchScreenView(initContentMode: initContentMode);
+    return SearchScreenView();
   }
 }

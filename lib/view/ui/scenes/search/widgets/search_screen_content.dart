@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
-import '../../../../../domain/entities/search/search_filter_data.dart';
 import '../../../base/media_load_info.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
@@ -17,19 +16,19 @@ import 'search_results.dart';
 
 class SearchScreenContent extends StatelessWidget {
   final bool isLoading;
-  final SearchFilterData filter;
+  final bool isInitialized;
   final MediaLoadInfo<MediaShortData> results;
   final void Function(int id)? onItemSelect;
   final Future<void> Function()? onRefresh;
 
   bool get _hasEmptyResults {
-    return results.mediaData.items.isEmpty && !isLoading && !filter.isDefault;
+    return results.mediaData.items.isEmpty && !isLoading && isInitialized;
   }
 
   const SearchScreenContent({
     super.key,
     required this.isLoading,
-    required this.filter,
+    required this.isInitialized,
     required this.results,
     this.onItemSelect,
     this.onRefresh,

@@ -47,6 +47,7 @@ dependencies:
   sliver_tools: ^0.2.12
   url_launcher: ^6.3.1
   fluttertoast: ^8.2.12
+  animated_toggle_switch: ^0.8.4
 
   # General
   intl: any
