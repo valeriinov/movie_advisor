@@ -72,7 +72,7 @@ abstract base class SearchViewModel<T extends MediaShortData>
   }
 
   Future<void> loadByFilter(SearchFilterData filter, {bool showLoader = true}) {
-    _updateStatus(SearchBaseInitStatus(isLoading: showLoader));
+    _updateStatus(SearchBaseStatus(isLoading: showLoader));
 
     return _loadSearchResult(filter);
   }

@@ -17,19 +17,19 @@ import 'search_results.dart';
 
 class SearchScreenContent extends StatelessWidget {
   final bool isLoading;
-  final SearchFilterData filter;
+  final bool isInitialized;
   final MediaLoadInfo<MediaShortData> results;
   final void Function(int id)? onItemSelect;
   final Future<void> Function()? onRefresh;
 
   bool get _hasEmptyResults {
-    return results.mediaData.items.isEmpty && !isLoading && !filter.isDefault;
+    return results.mediaData.items.isEmpty && !isLoading && isInitialized;
   }
 
   const SearchScreenContent({
     super.key,
     required this.isLoading,
-    required this.filter,
+    required this.isInitialized,
     required this.results,
     this.onItemSelect,
     this.onRefresh,

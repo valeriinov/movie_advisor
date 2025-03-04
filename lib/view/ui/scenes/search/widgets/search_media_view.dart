@@ -53,13 +53,13 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
     );
 
     final isLoading = vsp.isLoading;
+    final isInitialized = vsp.isInitialized;
     final results = vsp.selectWatch((s) => s.results);
-    final filter = vspFilter.selectWatch((s) => s.filter);
 
     return SearchScreenContent(
       onRefresh: !isLoading ? () => _onRefresh(vspFilter, vsp) : null,
       isLoading: isLoading,
-      filter: filter,
+      isInitialized: isInitialized,
       results: results,
       onItemSelect: (id) => _goToDetails(context, id),
     );
@@ -123,6 +123,7 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
 
   void _handleFilterUpdate(FilterState? prev, FilterState next, SearchVSP vsp) {
     if (next.isUpdate(prev, (s) => s?.filter)) {
+      print('[FILTER UPDATE] $next');
       vsp.viewModel.loadByFilter(next.filter);
     }
   }

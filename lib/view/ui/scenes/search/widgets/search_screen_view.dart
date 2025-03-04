@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../base/content_mode_view_model/content_mode_view_model.dart';
+import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/floating_search_bar.dart';
@@ -27,6 +28,14 @@ class SearchScreenView extends HookConsumerWidget {
 
     final scrollController = useScrollController();
     final searchFieldController = useTextEditingController();
+
+    vspContMode.handleState(
+      listener: (prev, next) {
+        if (next.isUpdate(prev, (s) => s?.mode)) {
+          scrollController.jumpTo(0);
+        }
+      },
+    );
 
     return ScrollTopListener(
       scrollController: scrollController,
