@@ -79,7 +79,7 @@
   "privacyPolicyTile": "Privacy Policy",
   "termsAndConditionsTile": "Terms & Conditions",
   "aboutUsScreenTitle": "About Us",
-  "aboutUsDescription": "We are a team of movie enthusiasts who love to watch movies and series. We created this app to help you find the best movies and series to watch. We hope you enjoy it!",
+  "aboutUsDescription": "Movie Advisor is designed to simplify the search for movies and TV shows. You can explore recommendations, create your own watchlist, and rate watched titles. Based on your preferences, the app will suggest movies and shows that match your taste.",
   "aboutUsTMDBAttribution": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
   "addedToWatchlist": "Added to watchlist",
   "removedFromWatchlist": "Removed from watchlist",
