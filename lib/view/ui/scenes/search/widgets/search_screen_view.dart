@@ -40,40 +40,38 @@ class SearchScreenView extends HookConsumerWidget {
     return ScrollTopListener(
       scrollController: scrollController,
       builder: (_, isFabVisible) {
-        return SafeArea(
-          child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: MainAppBar(
-              title: Text(
-                contMode.isMovies
-                    ? LocaleKeys.searchScreenMoviesTitle.tr()
-                    : LocaleKeys.searchScreenSeriesTitle.tr(),
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: MainAppBar(
+            title: Text(
+              contMode.isMovies
+                  ? LocaleKeys.searchScreenMoviesTitle.tr()
+                  : LocaleKeys.searchScreenSeriesTitle.tr(),
+            ),
+            actions: [
+              ContentModeSwitch(
+                contentMode: contMode,
+                toggleMode: vspContMode.viewModel.toggleMode,
               ),
-              actions: [
-                ContentModeSwitch(
-                  contentMode: contMode,
-                  toggleMode: vspContMode.viewModel.toggleMode,
-                ),
-              ],
-            ),
-            body: CustomScrollView(
-              controller: scrollController,
-              slivers: [
-                FloatingSearchBar(
-                  onSearch: vspFilter.viewModel.updateSearchQuery,
-                  textController: searchFieldController,
-                ),
-                SearchContentSwitcher(
-                  scrollController: scrollController,
-                  contMode: contMode,
-                ),
-              ],
-            ),
-            floatingActionButton:
-                isFabVisible
-                    ? ScrollTopFab(scrollController: scrollController)
-                    : null,
+            ],
           ),
+          body: CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              FloatingSearchBar(
+                onSearch: vspFilter.viewModel.updateSearchQuery,
+                textController: searchFieldController,
+              ),
+              SearchContentSwitcher(
+                scrollController: scrollController,
+                contMode: contMode,
+              ),
+            ],
+          ),
+          floatingActionButton:
+              isFabVisible
+                  ? ScrollTopFab(scrollController: scrollController)
+                  : null,
         );
       },
     );
