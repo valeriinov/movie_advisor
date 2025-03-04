@@ -28,6 +28,7 @@ class ContentModeSwitch extends StatelessWidget {
       child: AnimatedToggleSwitch.rolling(
         height: 32,
         indicatorSize: Size.fromWidth(30),
+        onTap: (_) => toggleMode(),
         current: contentMode,
         values: [ContentMode.movies, ContentMode.series],
         borderWidth: 1,
