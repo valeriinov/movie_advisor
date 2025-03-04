@@ -135,4 +135,10 @@ abstract final class _BaseColors {
   static const deleteAccountBtn = Color(0xff685a5a);
 
   static const divider = Color(0xFF92929D);
+
+  static const contSwitchBg = Color(0xFF242A32);
+  static const contSwitchIndicator = Color(0xFF242A32);
+  static const contSwitchBorder = Color(0xFF0296E5);
+  static const contSwitchFg = Color(0xFF67686D);
+  static const contSwitchFgSelect = Color(0xFF0296E5);
 }

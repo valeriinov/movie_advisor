@@ -32,9 +32,11 @@ abstract final class AppImages {
   static const emptyListImage = "${_imgPath}empty_list_image.png";
   static const genreIcon = "${_imgPath}genre_icon.svg";
   static const dateIcon = "${_imgPath}date_icon.svg";
+  static const movieIcon = "${_imgPath}movie_icon.svg";
   static const signInIcon = "${_imgPath}sign_in_icon.svg";
   static const moreVertIcon = "${_imgPath}more_vert_icon.svg";
   static const watchlistIcon = "${_imgPath}watchlist_icon.svg";
   static const userIcon = "${_imgPath}user_icon.svg";
+  static const tvIcon = "${_imgPath}tv_icon.svg";
   static const addWatchedIcon = "${_imgPath}add_watched_icon.svg";
 }

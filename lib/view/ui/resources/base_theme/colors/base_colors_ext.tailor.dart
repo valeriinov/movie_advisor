@@ -104,6 +104,11 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get removeRateBtn;
   Color get deleteAccountBtn;
   Color get divider;
+  Color get contSwitchBg;
+  Color get contSwitchIndicator;
+  Color get contSwitchBorder;
+  Color get contSwitchFg;
+  Color get contSwitchFgSelect;
 
   @override
   BaseColors copyWith({
@@ -202,6 +207,11 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? removeRateBtn,
     Color? deleteAccountBtn,
     Color? divider,
+    Color? contSwitchBg,
+    Color? contSwitchIndicator,
+    Color? contSwitchBorder,
+    Color? contSwitchFg,
+    Color? contSwitchFgSelect,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -301,6 +311,11 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       removeRateBtn: removeRateBtn ?? this.removeRateBtn,
       deleteAccountBtn: deleteAccountBtn ?? this.deleteAccountBtn,
       divider: divider ?? this.divider,
+      contSwitchBg: contSwitchBg ?? this.contSwitchBg,
+      contSwitchIndicator: contSwitchIndicator ?? this.contSwitchIndicator,
+      contSwitchBorder: contSwitchBorder ?? this.contSwitchBorder,
+      contSwitchFg: contSwitchFg ?? this.contSwitchFg,
+      contSwitchFgSelect: contSwitchFgSelect ?? this.contSwitchFgSelect,
     );
   }
 
@@ -436,6 +451,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       deleteAccountBtn:
           Color.lerp(deleteAccountBtn, other.deleteAccountBtn, t)!,
       divider: Color.lerp(divider, other.divider, t)!,
+      contSwitchBg: Color.lerp(contSwitchBg, other.contSwitchBg, t)!,
+      contSwitchIndicator:
+          Color.lerp(contSwitchIndicator, other.contSwitchIndicator, t)!,
+      contSwitchBorder:
+          Color.lerp(contSwitchBorder, other.contSwitchBorder, t)!,
+      contSwitchFg: Color.lerp(contSwitchFg, other.contSwitchFg, t)!,
+      contSwitchFgSelect:
+          Color.lerp(contSwitchFgSelect, other.contSwitchFgSelect, t)!,
     );
   }
 
@@ -582,7 +605,12 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(sliderThumbFill, other.sliderThumbFill) &&
             const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn) &&
             const DeepCollectionEquality().equals(deleteAccountBtn, other.deleteAccountBtn) &&
-            const DeepCollectionEquality().equals(divider, other.divider));
+            const DeepCollectionEquality().equals(divider, other.divider) &&
+            const DeepCollectionEquality().equals(contSwitchBg, other.contSwitchBg) &&
+            const DeepCollectionEquality().equals(contSwitchIndicator, other.contSwitchIndicator) &&
+            const DeepCollectionEquality().equals(contSwitchBorder, other.contSwitchBorder) &&
+            const DeepCollectionEquality().equals(contSwitchFg, other.contSwitchFg) &&
+            const DeepCollectionEquality().equals(contSwitchFgSelect, other.contSwitchFgSelect));
   }
 
   @override
@@ -684,6 +712,11 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(removeRateBtn),
       const DeepCollectionEquality().hash(deleteAccountBtn),
       const DeepCollectionEquality().hash(divider),
+      const DeepCollectionEquality().hash(contSwitchBg),
+      const DeepCollectionEquality().hash(contSwitchIndicator),
+      const DeepCollectionEquality().hash(contSwitchBorder),
+      const DeepCollectionEquality().hash(contSwitchFg),
+      const DeepCollectionEquality().hash(contSwitchFgSelect),
     ]);
   }
 }
