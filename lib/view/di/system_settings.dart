@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../ui/resources/base_theme/colors/base_colors_ext.dart';
+
 /// {@category Utils}
 ///
 /// Provides system-wide settings initialization for the application.
@@ -32,5 +34,14 @@ abstract final class SystemSettings {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
+    // Set system UI overlay style
+    final colors = BaseColorsFactory.createColors();
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: colors.scaffoldBg,
+        systemNavigationBarColor: colors.scaffoldBg,
+      ),
+    );
   }
 }
