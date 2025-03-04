@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_utils/flutter_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -44,9 +43,7 @@ class DeleteAccountScreenView extends ConsumerWidget {
                 updateFormState: vsp.viewModel.updateFormState,
               ),
               SliverPadding(padding: dimens.padBotPrimIns),
-              KeyboardOpenedBottomGap(
-                isKeyboardOpened: context.isKeyboardOpened,
-              ),
+              KeyboardOpenedBottomGap(),
             ],
           ),
         ),

@@ -42,9 +42,7 @@ class ResetPassScreenView extends ConsumerWidget {
                 updateFormState: vsp.viewModel.updateFormState,
               ),
               SliverPadding(padding: dimens.padBotPrim.insBottom()),
-              KeyboardOpenedBottomGap(
-                isKeyboardOpened: context.isKeyboardOpened,
-              ),
+              KeyboardOpenedBottomGap(),
             ],
           ),
         ),

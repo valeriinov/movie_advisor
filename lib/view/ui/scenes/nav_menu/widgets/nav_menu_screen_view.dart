@@ -26,7 +26,6 @@ class NavMenuScreenView extends StatelessWidget with BranchHandlerMixin {
       },
       canPop: currentIndex == 0,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         body: NavBranchContainer(
           currentIndex: currentIndex,
           children: children,
