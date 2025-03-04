@@ -49,13 +49,13 @@ class ContentModeSwitch extends StatelessWidget {
                 color: color,
                 height: size,
                 width: size,
-              ).paddingOnly(right: 3)
+              )
               : AppSvgAsset(
                 path: AppImages.tvIcon,
                 color: color,
                 height: size,
                 width: size,
-              ).paddingOnly(left: 1);
+              );
         },
       ),
     );
