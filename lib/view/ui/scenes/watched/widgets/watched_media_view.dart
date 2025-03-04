@@ -14,7 +14,6 @@ import '../../../widgets/app_bar/main_app_bar.dart';
 import '../../../widgets/app_bar/widgets/content_mode_switch.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
-import '../../../widgets/watch_shared/watch_content_skeleton.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
 import '../watched_view_model/watched_view_model.dart';
 
@@ -44,7 +43,6 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;
-    final isSkeletonVisible = isLoading && !isInitialized;
 
     vsp.handleState(
       listener: (prev, next) {
@@ -87,23 +85,19 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
               ),
             ],
           ),
-          body:
-              isSkeletonVisible
-                  ? WatchContentSkeleton()
-                  : WatchScreenContent(
-                    isLoading: isLoading,
-                    isInitialized: isInitialized,
-                    watchlist: watched,
-                    emptyListTitle: emptyListTitle,
-                    emptyListSubtitle: emptyListSubtitle,
-                    scrollController: scrollController,
-                    onItemSelect: (id) => _goToDetails(context, id),
-                    onRefresh:
-                        !isLoading
-                            ? () =>
-                                vsp.viewModel.loadInitialData(showLoader: false)
-                            : null,
-                  ),
+          body: WatchScreenContent(
+            isLoading: isLoading,
+            isInitialized: isInitialized,
+            watchlist: watched,
+            emptyListTitle: emptyListTitle,
+            emptyListSubtitle: emptyListSubtitle,
+            scrollController: scrollController,
+            onItemSelect: (id) => _goToDetails(context, id),
+            onRefresh:
+                !isLoading
+                    ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                    : null,
+          ),
           floatingActionButton:
               isFabVisible
                   ? ScrollTopFab(scrollController: scrollController)
