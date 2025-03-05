@@ -5,6 +5,7 @@ import '../../../../../domain/entities/base_media/media_data.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../widgets/sliver_refresh_indicator.dart';
 import '../../../widgets/tabs/app_tabs.dart';
+import '../details_view_model/details_state.dart';
 import '../model/details_tab.dart';
 import 'details_actions_container.dart';
 import 'details_header.dart';
@@ -14,6 +15,7 @@ import 'details_tab_content.dart';
 class DetailsScreenContent extends StatelessWidget {
   final MediaData data;
   final DetailsTab currentTab;
+  final DetailsStatus status;
   final ScrollController? scrollController;
   final Future<void> Function()? onRefresh;
   final void Function(int index)? onTabSelect;
@@ -24,6 +26,7 @@ class DetailsScreenContent extends StatelessWidget {
     super.key,
     required this.data,
     required this.currentTab,
+    required this.status,
     this.scrollController,
     this.onRefresh,
     this.onTabSelect,
@@ -43,6 +46,7 @@ class DetailsScreenContent extends StatelessWidget {
         SliverPadding(padding: 12.insVert()),
         DetailsActionsContainer(
           data: data,
+          status: status,
           onWatchlistTap: onWatchlistTap,
           onWatchedTap: onWatchedTap,
         ),

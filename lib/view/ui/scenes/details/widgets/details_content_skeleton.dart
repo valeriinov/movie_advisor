@@ -3,6 +3,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../common/mock/mock_media.dart';
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
+import '../details_view_model/details_state.dart';
 import '../model/details_tab.dart';
 import 'details_screen_content.dart';
 
@@ -22,6 +23,7 @@ class DetailsContentSkeleton extends StatelessWidget {
       ),
       child: DetailsScreenContent(
         data: data,
+        status: DetailsBaseStatus(),
         currentTab: DetailsTab.about,
         onRefresh: () async {},
         onTabSelect: (_) {},

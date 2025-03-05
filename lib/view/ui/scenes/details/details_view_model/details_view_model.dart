@@ -77,7 +77,7 @@ abstract base class DetailsViewModel<
   }
 
   Future<void> addToWatchlist() async {
-    _updateStatus(DetailsBaseInitStatus(isLoading: true));
+    _updateStatus(WatchlistLoadingStatus());
 
     await safeCall(
       () => _watchUseCase.addToWatchlist(state.data.toShortData()),
@@ -92,7 +92,7 @@ abstract base class DetailsViewModel<
   }
 
   Future<void> addToWatched(int userRating) async {
-    _updateStatus(DetailsBaseInitStatus(isLoading: true));
+    _updateStatus(WatchedLoadingStatus());
 
     final data =
         state.data.copyWith(isWatched: true, userRating: userRating) as T;
@@ -107,7 +107,7 @@ abstract base class DetailsViewModel<
   }
 
   Future<void> removeFromWatchlist() async {
-    _updateStatus(DetailsBaseInitStatus(isLoading: true));
+    _updateStatus(WatchlistLoadingStatus());
 
     await safeCall(
       () => _watchUseCase.removeFromWatchlist(state.data.id),
@@ -122,7 +122,7 @@ abstract base class DetailsViewModel<
   }
 
   Future<void> removeFromWatched() async {
-    _updateStatus(DetailsBaseInitStatus(isLoading: true));
+    _updateStatus(WatchedLoadingStatus());
 
     await safeCall(
       () => _watchUseCase.removeFromWatched(state.data.id),

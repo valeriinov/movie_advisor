@@ -32,8 +32,11 @@ final class DetailsState<T extends MediaData> extends BaseState<DetailsStatus>
 /// A sealed class representing the possible statuses of a [DetailsState].
 /// Provides properties for loading, initialization, and error handling.
 sealed class DetailsStatus extends BaseStatus {
-  const DetailsStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const DetailsStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -43,8 +46,11 @@ sealed class DetailsStatus extends BaseStatus {
 @mappableEntity
 final class DetailsBaseStatus extends DetailsStatus
     with DetailsBaseStatusMappable {
-  const DetailsBaseStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const DetailsBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -54,34 +60,69 @@ final class DetailsBaseStatus extends DetailsStatus
 @mappableEntity
 final class DetailsBaseInitStatus extends DetailsStatus
     with DetailsBaseInitStatusMappable {
-  const DetailsBaseInitStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const DetailsBaseInitStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
+}
+
+@mappableEntity
+final class WatchlistLoadingStatus extends DetailsStatus
+    with WatchlistLoadingStatusMappable {
+  const WatchlistLoadingStatus({
+    super.isLoading = true,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }
 
 @mappableEntity
 final class AddedToWatchlistStatus extends DetailsStatus
     with AddedToWatchlistStatusMappable {
-  const AddedToWatchlistStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const AddedToWatchlistStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
+}
+
+@mappableEntity
+final class WatchedLoadingStatus extends DetailsStatus
+    with WatchedLoadingStatusMappable {
+  const WatchedLoadingStatus({
+    super.isLoading = true,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }
 
 @mappableEntity
 final class AddedToWatchedStatus extends DetailsStatus
     with AddedToWatchedStatusMappable {
-  const AddedToWatchedStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const AddedToWatchedStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }
 
 @mappableEntity
 final class RemovedFromWatchlistStatus extends DetailsStatus
     with RemovedFromWatchlistStatusMappable {
-  const RemovedFromWatchlistStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const RemovedFromWatchlistStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }
 
 @mappableEntity
 final class RemovedFromWatchedStatus extends DetailsStatus
     with RemovedFromWatchedStatusMappable {
-  const RemovedFromWatchedStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const RemovedFromWatchedStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }
