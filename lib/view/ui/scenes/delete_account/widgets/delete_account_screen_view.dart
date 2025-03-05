@@ -57,10 +57,15 @@ class DeleteAccountScreenView extends ConsumerWidget {
     required BuildContext context,
     required WidgetRef ref,
   }) {
-    ref.baseStatusHandler.handleStatus(prev, next);
+    if (!next.isUpdate(prev, (s) => s?.status)) return;
 
-    if (next.isUpdate(prev, (s) => s?.status) &&
-        next.status is DeleteAccountSuccessStatus) {
+    ref.baseStatusHandler.handleStatus(
+      prev,
+      next,
+      handleLoadingState: () => false,
+    );
+
+    if (next.status is DeleteAccountSuccessStatus) {
       final toastManager = ref.toastManager;
 
       toastManager.showInfoToast(LocaleKeys.deleteAccountSuccessToast.tr());
