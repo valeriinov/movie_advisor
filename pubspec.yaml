@@ -49,6 +49,7 @@ dependencies:
   fluttertoast: ^8.2.12
   animated_toggle_switch: ^0.8.4
   flutter_keyboard_visibility: ^6.0.0
+  upgrader: ^11.3.1
 
   # General
   intl: any

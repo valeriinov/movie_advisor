@@ -140,5 +140,14 @@ abstract class  LocaleKeys {
   static const emptySuggestionsMoviesTitle = 'emptySuggestionsMoviesTitle';
   static const emptySuggestionsSeriesTitle = 'emptySuggestionsSeriesTitle';
   static const homeEmptyListSubtitle = 'homeEmptyListSubtitle';
+  static const updateAlertNewVersionAvailable = 'updateAlertNewVersionAvailable';
+  static const updateAlertNewVersion = 'updateAlertNewVersion';
+  static const updateAlertCurrentVersion = 'updateAlertCurrentVersion';
+  static const updateAlertIgnore = 'updateAlertIgnore';
+  static const updateAlertLate = 'updateAlertLate';
+  static const updateAlertUpdateNow = 'updateAlertUpdateNow';
+  static const updateAlertUpdateQuestion = 'updateAlertUpdateQuestion';
+  static const updateAlertReleaseNotes = 'updateAlertReleaseNotes';
+  static const updateAlertTitle = 'updateAlertTitle';
 
 }

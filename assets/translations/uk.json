@@ -135,5 +135,14 @@
   "emptyTabSeriesTitle": "Не вдалося завантажити список серіалів.",
   "emptySuggestionsMoviesTitle": "Не вдалося завантажити рекомендації фільмів.",
   "emptySuggestionsSeriesTitle": "Не вдалося завантажити рекомендації серіалів.",
-  "homeEmptyListSubtitle": "Будь ласка, спробуйте ще раз пізніше."
+  "homeEmptyListSubtitle": "Будь ласка, спробуйте ще раз пізніше.",
+  "updateAlertNewVersionAvailable": "Доступна нова версія додатку",
+  "updateAlertNewVersion": "Нова версія:",
+  "updateAlertCurrentVersion": "поточна версія:",
+  "updateAlertIgnore": "Ігнорувати",
+  "updateAlertLate": "Пізніше",
+  "updateAlertUpdateNow": "Оновити зараз",
+  "updateAlertUpdateQuestion": "Бажаєте оновити?",
+  "updateAlertReleaseNotes": "Примітки до випуску",
+  "updateAlertTitle": "Оновити додаток?"
 }
