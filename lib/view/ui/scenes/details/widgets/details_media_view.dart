@@ -43,11 +43,10 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
     final isInitialized = vsp.isInitialized;
     final isSkeletonVisible = isLoading && !isInitialized;
 
-    vsp.handleState(
-      listener: (prev, next) => _handleStatus(prev, next, ref, isInitialized),
-    );
+    vsp.handleState(listener: (prev, next) => _handleStatus(prev, next, ref));
 
     final data = vsp.selectWatch((s) => s.data);
+    final status = vsp.selectWatch((s) => s.status);
     final currentTab = vsp.selectWatch((s) => s.currentTab);
 
     final scrollController = useScrollController();
@@ -62,6 +61,7 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
                     ? const DetailsContentSkeleton()
                     : DetailsScreenContent(
                       data: data,
+                      status: status,
                       currentTab: currentTab,
                       scrollController: scrollController,
                       onWatchlistTap: () => _onWatchlistTap(vsp),
@@ -82,18 +82,13 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
     );
   }
 
-  void _handleStatus(
-    DetailsState? prev,
-    DetailsState next,
-    WidgetRef ref,
-    bool isInitialized,
-  ) {
+  void _handleStatus(DetailsState? prev, DetailsState next, WidgetRef ref) {
     if (!next.isUpdate(prev, (s) => s?.status)) return;
 
     ref.baseStatusHandler.handleStatus(
       prev,
       next,
-      handleLoadingState: () => isInitialized,
+      handleLoadingState: () => false,
     );
 
     _showToast(ref, next.status);

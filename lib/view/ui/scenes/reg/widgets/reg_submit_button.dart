@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/submit_button_with_loader.dart';
 import '../reg_view_model/reg_view_model.dart';
 
 class RegSubmitButton extends ConsumerWidget {
@@ -24,7 +25,8 @@ class RegSubmitButton extends ConsumerWidget {
 
     final formState = vsp.selectWatch((s) => s.formState);
 
-    return FilledButton(
+    return SubmitButtonWithLoader(
+      isLoading: vsp.isLoading,
       onPressed:
           formState.isFilled
               ? () => _onSubmit(context, vsp, formKey, setAutoValidate)

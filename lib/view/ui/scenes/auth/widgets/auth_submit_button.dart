@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/submit_button_with_loader.dart';
 import '../auth_view_model/auth_state.dart';
 import '../auth_view_model/auth_view_model.dart';
 
@@ -25,7 +26,8 @@ class AuthSubmitButton extends ConsumerWidget {
 
     final formState = vsp.selectWatch((s) => s.formState);
 
-    return FilledButton(
+    return SubmitButtonWithLoader(
+      isLoading: vsp.isLoading,
       onPressed:
           formState.isFilled
               ? () => _onSubmit(context, vsp, formKey, setAutoValidate)

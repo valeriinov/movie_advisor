@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
@@ -8,6 +9,7 @@ import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
+import '../../../resources/locale_keys.g.dart';
 import '../home_view_model/home_view_model.dart';
 import '../model/media_tab.dart';
 import '../utils/jump_to_tab_start_position.dart';
@@ -79,6 +81,15 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
               !isLoading
                   ? () => vsp.viewModel.loadInitialData(showLoader: false)
                   : null,
+          emptyTabListTitle:
+              contentMode.isMovies
+                  ? LocaleKeys.emptyTabMoviesTitle.tr()
+                  : LocaleKeys.emptyTabSeriesTitle.tr(),
+          emptySuggestionsListTitle:
+              contentMode.isMovies
+                  ? LocaleKeys.emptySuggestionsMoviesTitle.tr()
+                  : LocaleKeys.emptySuggestionsSeriesTitle.tr(),
+          emptyListSubtitle: LocaleKeys.homeEmptyListSubtitle.tr(),
           isSkeletonVisible: isSkeletonVisible,
           suggestionsContent: suggestionsContent,
           currentTab: currentTab,

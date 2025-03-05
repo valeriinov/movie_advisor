@@ -130,5 +130,10 @@
   "deleteAccountSuccessToast": "Акаунт успішно видалено",
   "exitDialog": "Ви впевнені, що хочете вийти? Всі незбережені дані будуть втрачені.",
   "ratingTMDBDesc": "TMDB: {}",
-  "ratingUserDesc": "Ваш: {}"
+  "ratingUserDesc": "Ваш: {}",
+  "emptyTabMoviesTitle": "Не вдалося завантажити список фільмів.",
+  "emptyTabSeriesTitle": "Не вдалося завантажити список серіалів.",
+  "emptySuggestionsMoviesTitle": "Не вдалося завантажити рекомендації фільмів.",
+  "emptySuggestionsSeriesTitle": "Не вдалося завантажити рекомендації серіалів.",
+  "homeEmptyListSubtitle": "Будь ласка, спробуйте ще раз пізніше."
 }

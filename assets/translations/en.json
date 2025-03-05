@@ -130,5 +130,10 @@
   "deleteAccountSuccessToast": "Account deleted successfully",
   "exitDialog": "Are you sure you want to exit? All unsaved data will be lost.",
   "ratingTMDBDesc": "TMDB: {}",
-  "ratingUserDesc": "Your: {}"
+  "ratingUserDesc": "Your: {}",
+  "emptyTabMoviesTitle": "Failed to load the movie list.",
+  "emptyTabSeriesTitle": "Failed to load the series list.",
+  "emptySuggestionsMoviesTitle": "Failed to load the movie suggestions.",
+  "emptySuggestionsSeriesTitle": "Failed to load the series suggestions.",
+  "homeEmptyListSubtitle": "Please try again later."
 }

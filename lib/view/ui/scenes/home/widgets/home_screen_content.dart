@@ -17,6 +17,9 @@ class HomeScreenContent extends StatelessWidget {
   final List<MediaShortData> suggestionsContent;
   final MediaLoadInfo<MediaShortData> tabContent;
   final MediaTab currentTab;
+  final String emptyTabListTitle;
+  final String emptySuggestionsListTitle;
+  final String emptyListSubtitle;
   final void Function(int index)? onTabSelect;
   final void Function(int id)? onSuggestionItemSelect;
   final void Function(int id)? onTabItemSelect;
@@ -27,6 +30,9 @@ class HomeScreenContent extends StatelessWidget {
     required this.isSkeletonVisible,
     required this.suggestionsContent,
     required this.currentTab,
+    required this.emptyListSubtitle,
+    required this.emptySuggestionsListTitle,
+    required this.emptyTabListTitle,
     required this.tabContent,
     this.onTabSelect,
     this.onSuggestionItemSelect,
@@ -42,13 +48,14 @@ class HomeScreenContent extends StatelessWidget {
 
     return MultiSliver(
       children: [
-        SliverRefreshIndicator(
-          onRefresh: onRefresh,
-        ),
+        SliverRefreshIndicator(onRefresh: onRefresh),
         SliverPadding(padding: (dimens.spLarge / 2).insBottom()),
         SuggestionsContainer(
+          isSkeletonVisible: isSkeletonVisible,
           suggestions: suggestionsContent,
           onTap: onSuggestionItemSelect,
+          emptyListTitle: emptySuggestionsListTitle,
+          emptyListSubtitle: emptyListSubtitle,
         ),
         SliverPadding(padding: dimens.spExtLarge.insTop()),
         AppTabs(
@@ -58,9 +65,12 @@ class HomeScreenContent extends StatelessWidget {
         ),
         SliverPadding(padding: (dimens.spLarge / 2).insTop()),
         HomeTabContent(
-            isSkeletonVisible: isSkeletonVisible,
-            mediaLoadInfo: tabContent,
-            onTap: onTabItemSelect),
+          isSkeletonVisible: isSkeletonVisible,
+          mediaLoadInfo: tabContent,
+          emptyListTitle: emptyTabListTitle,
+          emptyListSubtitle: emptyListSubtitle,
+          onTap: onTabItemSelect,
+        ),
         if (isNextPageLoading) NextPageLoader(),
       ],
     );

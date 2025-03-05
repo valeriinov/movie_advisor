@@ -39,7 +39,7 @@ abstract final class _BaseColors {
   static const btnTextPrimFgPress = Color(0xFF036fac);
   static const btnTextPrimBgPress = Colors.transparent;
   static const btnTextPrimFgDis = Color(0xFFBDBDBD);
-  static const btnTextPrimBgDis = Color(0xFFE0E0E0);
+  static const btnTextPrimBgDis = Colors.transparent;
 
   static const btnFABFg = Colors.white;
   static const btnFABBg = Color(0xFF0296E5);

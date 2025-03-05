@@ -135,5 +135,10 @@ abstract class  LocaleKeys {
   static const exitDialog = 'exitDialog';
   static const ratingTMDBDesc = 'ratingTMDBDesc';
   static const ratingUserDesc = 'ratingUserDesc';
+  static const emptyTabMoviesTitle = 'emptyTabMoviesTitle';
+  static const emptyTabSeriesTitle = 'emptyTabSeriesTitle';
+  static const emptySuggestionsMoviesTitle = 'emptySuggestionsMoviesTitle';
+  static const emptySuggestionsSeriesTitle = 'emptySuggestionsSeriesTitle';
+  static const homeEmptyListSubtitle = 'homeEmptyListSubtitle';
 
 }

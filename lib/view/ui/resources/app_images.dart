@@ -13,6 +13,7 @@ abstract final class AppImages {
 
   static const infoIcon = "${_imgPath}info_icon.svg";
   static const addWatchlistIcon = "${_imgPath}add_watchlist_icon.svg";
+  static const errorListImage = "${_imgPath}error_list_image.png";
   static const privacyIcon = "${_imgPath}privacy_icon.svg";
   static const toastErrorIcon = "${_imgPath}toast_error_icon.svg";
   static const tmbdLogo = "${_imgPath}tmbd_logo.svg";

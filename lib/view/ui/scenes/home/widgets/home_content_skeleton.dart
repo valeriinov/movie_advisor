@@ -19,19 +19,20 @@ class HomeContentSkeleton extends StatelessWidget {
     final tabMedia = MockMediaShort.createMediaShortDataList(6);
 
     return SliverSkeletonizer(
-      effect: PulseEffect(
-        from: colors.skeletonFrom,
-        to: colors.skeletonTo,
-      ),
+      effect: PulseEffect(from: colors.skeletonFrom, to: colors.skeletonTo),
       child: HomeScreenContent(
         isSkeletonVisible: true,
         suggestionsContent: suggestionsContent,
         currentTab: MediaTab.nowPlaying,
-        tabContent:
-            MediaLoadInfo(mediaData: ListWithPaginationData(items: tabMedia)),
+        tabContent: MediaLoadInfo(
+          mediaData: ListWithPaginationData(items: tabMedia),
+        ),
         onTabSelect: (_) {},
         onSuggestionItemSelect: (_) {},
         onTabItemSelect: (_) {},
+        emptyListSubtitle: '',
+        emptySuggestionsListTitle: '',
+        emptyTabListTitle: '',
       ),
     );
   }
