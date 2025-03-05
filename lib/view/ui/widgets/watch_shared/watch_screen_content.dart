@@ -6,7 +6,7 @@ import '../../base/media_load_info.dart';
 import '../../resources/app_images.dart';
 import '../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../resources/base_theme/durations/base_durations_ext.dart';
-import '../empty_list_container.dart';
+import '../sliver_empty_list_container.dart';
 import '../next_page_loader.dart';
 import '../sliver_fill_loader.dart';
 import '../sliver_refresh_indicator.dart';
@@ -81,7 +81,7 @@ class WatchScreenContent extends StatelessWidget {
         SliverRefreshIndicator(
           onRefresh: onRefresh,
         ),
-        EmptyListContainer(
+        SliverEmptyListContainer(
           imagePath: AppImages.emptyListImage,
           title: emptyListTitle,
           subtitle: emptyListSubtitle,

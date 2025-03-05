@@ -24,32 +24,29 @@ class EmptyListContainer extends StatelessWidget {
     final dimens = context.baseDimens;
     final styles = context.baseComponentsStyles;
 
-    return SliverFillRemaining(
-      hasScrollBody: false,
-      child: SizedBox(
-        height: height,
-        child: Center(
-          child: Container(
-            padding: dimens.spExtLarge.insVert(),
-            width: 190,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ImageWithLoader(imagePath: imagePath, size: Size(76, 76)),
-                dimens.spMedium.gapVert(),
-                Text(
-                  title,
-                  style: styles.emptyListTitleTextStyle,
-                  textAlign: TextAlign.center,
-                ),
-                dimens.spSmall.gapVert(),
-                Text(
-                  subtitle,
-                  style: styles.emptyListSubtitleTextStyle,
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
+    return SizedBox(
+      height: height,
+      child: Center(
+        child: Container(
+          padding: dimens.spExtLarge.insVert(),
+          width: 190,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ImageWithLoader(imagePath: imagePath, size: Size(76, 76)),
+              dimens.spMedium.gapVert(),
+              Text(
+                title,
+                style: styles.emptyListTitleTextStyle,
+                textAlign: TextAlign.center,
+              ),
+              dimens.spSmall.gapVert(),
+              Text(
+                subtitle,
+                style: styles.emptyListSubtitleTextStyle,
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         ),
       ),
