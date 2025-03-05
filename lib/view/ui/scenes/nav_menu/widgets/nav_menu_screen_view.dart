@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../navigation/utils/branch_handler_mixin.dart';
+import '../../../widgets/update_alert_wrapper/update_allert_wrapper.dart';
 import 'nav_bar_container.dart';
 import 'nav_branch_container.dart';
 
@@ -26,9 +27,11 @@ class NavMenuScreenView extends StatelessWidget with BranchHandlerMixin {
       },
       canPop: currentIndex == 0,
       child: Scaffold(
-        body: NavBranchContainer(
-          currentIndex: currentIndex,
-          children: children,
+        body: UpdateAlertWrapper(
+          child: NavBranchContainer(
+            currentIndex: currentIndex,
+            children: children,
+          ),
         ),
         bottomNavigationBar: NavBarContainer(
           currentIndex: currentIndex,

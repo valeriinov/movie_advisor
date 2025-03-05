@@ -135,5 +135,14 @@
   "emptyTabSeriesTitle": "Failed to load the series list.",
   "emptySuggestionsMoviesTitle": "Failed to load the movie suggestions.",
   "emptySuggestionsSeriesTitle": "Failed to load the series suggestions.",
-  "homeEmptyListSubtitle": "Please try again later."
+  "homeEmptyListSubtitle": "Please try again later.",
+  "updateAlertNewVersionAvailable": "A new version of the app is available",
+  "updateAlertNewVersion": "New version:",
+  "updateAlertCurrentVersion": "current version:",
+  "updateAlertIgnore": "Ignore",
+  "updateAlertLate": "Later",
+  "updateAlertUpdateNow": "Update Now",
+  "updateAlertUpdateQuestion": "Want to update?",
+  "updateAlertReleaseNotes": "Release Notes",
+  "updateAlertTitle": "Update App?"
 }

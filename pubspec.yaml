@@ -49,6 +49,7 @@ dependencies:
   fluttertoast: ^8.2.12
   animated_toggle_switch: ^0.8.4
   flutter_keyboard_visibility: ^6.0.0
+  upgrader: ^11.3.1
 
   # General
   intl: any
@@ -97,7 +98,7 @@ dev_dependencies:
   theme_tailor: ^3.0.1
   build_runner: ^2.4.15
   dart_mappable_builder: ^4.3.0
-  go_router_builder: ^2.8.1
+  go_router_builder: ^2.8.2
   build_verify: ^3.1.0
   flutter_flavorizr: ^2.2.3
   drift_dev: ^2.25.2
