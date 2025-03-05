@@ -33,6 +33,7 @@ import '../../data/network/utils/image_url_handler/image_url_handler.dart';
 import '../../data/network/utils/image_url_handler/impl_image_url_handler.dart';
 import '../../data/network/utils/media_response_handler/impl_media_response_handler.dart';
 import '../../data/network/utils/media_response_handler/media_response_handler.dart';
+import '../../data/repositories/auth/auth_local_data_source.dart';
 import '../../data/repositories/auth/auth_remote_data_source.dart';
 import '../../data/repositories/auth/impl_auth_repository.dart';
 import '../../data/repositories/details/details_remote_data_source.dart';
@@ -50,6 +51,7 @@ import '../../data/repositories/sync/sync_data_source.dart';
 import '../../data/repositories/watch/impl_watch_repository.dart';
 import '../../data/repositories/watch/watch_local_data_source.dart';
 import '../../data/repositories/watch/watch_remote_data_source.dart';
+import '../../data/sources/impl_auth_local_data_source.dart';
 import '../../data/sources/impl_auth_remote_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
@@ -312,10 +314,14 @@ final authServicePr = Provider<AuthService>(
 final authRemoteDataSourcePr = Provider<AuthRemoteDataSource>(
   (ref) => ImplAuthRemoteDataSource(service: ref.read(authServicePr)),
 );
+final authLocalDataSourcePr = Provider<AuthLocalDataSource>(
+  (ref) => ImplAuthLocalDataSource(database: ref.read(localDatabasePr)),
+);
 final authMapperPr = Provider<AppAuthMapper>((_) => AppAuthMapper());
 final authRepositoryPr = Provider<AuthRepository>(
   (ref) => ImplAuthRepository(
-    dataSource: ref.read(authRemoteDataSourcePr),
+    remoteDataSource: ref.read(authRemoteDataSourcePr),
+    localDataSource: ref.read(authLocalDataSourcePr),
     mapper: ref.read(authMapperPr),
   ),
 );
