@@ -151,5 +151,8 @@ abstract class  LocaleKeys {
   static const updateAlertReleaseNotes = 'updateAlertReleaseNotes';
   static const updateAlertTitle = 'updateAlertTitle';
   static const settingsScreenTitle = 'settingsScreenTitle';
+  static const settingsLanguageTitle = 'settingsLanguageTitle';
+  static const english = 'english';
+  static const ukrainian = 'ukrainian';
 
 }

@@ -146,5 +146,8 @@
   "updateAlertUpdateQuestion": "Бажаєте оновити?",
   "updateAlertReleaseNotes": "Примітки до випуску",
   "updateAlertTitle": "Оновити додаток?",
-  "settingsScreenTitle": "Налаштування"
+  "settingsScreenTitle": "Налаштування",
+  "settingsLanguageTitle": "Мова інтерфейсу",
+  "english": "Англійська",
+  "ukrainian": "Українська"
 }

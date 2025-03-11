@@ -146,5 +146,8 @@
   "updateAlertUpdateQuestion": "Want to update?",
   "updateAlertReleaseNotes": "Release Notes",
   "updateAlertTitle": "Update App?",
-  "settingsScreenTitle": "Settings"
+  "settingsScreenTitle": "Settings",
+  "settingsLanguageTitle": "Interface Language",
+  "english": "English",
+  "ukrainian": "Ukrainian"
 }
