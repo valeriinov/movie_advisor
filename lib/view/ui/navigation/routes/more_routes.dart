@@ -11,6 +11,7 @@ import '../../scenes/reg/reg_screen.dart';
 import '../../scenes/reg/reg_view_model/reg_view_model.dart';
 import '../../scenes/reset_pass/reset_pass_screen.dart';
 import '../../scenes/reset_pass/reset_pass_view_model/reset_pass_view_model.dart';
+import '../../scenes/settings/settings_screen.dart';
 import '../app_routes.dart';
 import '../utils/exit_handler_mixin.dart';
 
@@ -28,6 +29,7 @@ part 'more_routes.g.dart';
       ],
     ),
     TypedGoRoute<DeleteAccountRoute>(path: AppRoutes.deleteAccount),
+    TypedGoRoute<SettingsRoute>(path: AppRoutes.settings),
   ],
 )
 class MoreRoute extends GoRouteData {
@@ -132,6 +134,17 @@ class DeleteAccountRoute extends GoRouteData with ExitHandlerMixin {
       state,
       viewModelProvider: deleteAccountViewModelPr,
       hasUnsavedData: (s) => s.formState.hasUnsavedData,
+    );
+  }
+}
+
+class SettingsRoute extends GoRouteData {
+  @override
+  Page<void> buildPage(context, state) {
+    return MaterialPage(
+      key: state.pageKey,
+      name: state.fullPath,
+      child: SettingsScreen(),
     );
   }
 }

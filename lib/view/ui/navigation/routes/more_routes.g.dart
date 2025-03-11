@@ -36,6 +36,10 @@ RouteBase get $moreRoute => GoRouteData.$route(
           path: 'delete-account',
           factory: $DeleteAccountRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'settings',
+          factory: $SettingsRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -130,6 +134,23 @@ extension $DeleteAccountRouteExtension on DeleteAccountRoute {
 
   String get location => GoRouteData.$location(
         '/more/delete-account',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SettingsRouteExtension on SettingsRoute {
+  static SettingsRoute _fromState(GoRouterState state) => SettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/more/settings',
       );
 
   void go(BuildContext context) => context.go(location);

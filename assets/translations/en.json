@@ -76,6 +76,7 @@
   "signInTile": "Sign In",
   "signOutTile": "Sign Out",
   "aboutUsTile": "About Us",
+  "settingsTile": "Settings",
   "privacyPolicyTile": "Privacy Policy",
   "termsAndConditionsTile": "Terms & Conditions",
   "aboutUsScreenTitle": "About Us",
@@ -144,5 +145,6 @@
   "updateAlertUpdateNow": "Update Now",
   "updateAlertUpdateQuestion": "Want to update?",
   "updateAlertReleaseNotes": "Release Notes",
-  "updateAlertTitle": "Update App?"
+  "updateAlertTitle": "Update App?",
+  "settingsScreenTitle": "Settings"
 }

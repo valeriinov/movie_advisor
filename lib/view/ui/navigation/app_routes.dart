@@ -29,4 +29,7 @@ abstract final class AppRoutes {
 
   // More/Delete Account
   static const String deleteAccount = 'delete-account';
+
+  // More/Settings
+  static const String settings = 'settings';
 }
