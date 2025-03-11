@@ -62,6 +62,11 @@ class MoreScreenContent extends ConsumerWidget {
                     AppOfficialResourcesUrls.termsAndConditionsUrl,
                   ),
             ),
+            ListTile(
+              title: Text(LocaleKeys.settingsTile.tr()),
+              leading: AppSvgAsset(path: AppImages.settingsIcon),
+              onTap: () => SettingsRoute().go(context),
+            ),
             SignInOutTile(user: user, onSignOut: onSignOut),
           ].addSeparators(context, (_, __) => dimens.spSmall.gapVert()),
         ),

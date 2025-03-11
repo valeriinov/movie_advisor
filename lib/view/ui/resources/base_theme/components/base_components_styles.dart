@@ -22,8 +22,12 @@ abstract final class _BaseComponentsStyles {
     color: color,
   );
 
-  static TextStyle listTilePrimSubtTextStyle(Color color) =>
-      TextStyle(color: color);
+  static TextStyle listTilePrimSubtTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: color,
+  );
 
   static TextStyle listTileSecTitleTextStyle(Color color) => TextStyle(
     fontFamily: AppFonts.montserrat,

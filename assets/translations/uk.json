@@ -76,6 +76,7 @@
   "signInTile": "Увійти",
   "signOutTile": "Вийти",
   "aboutUsTile": "Про нас",
+  "settingsTile": "Налаштування",
   "privacyPolicyTile": "Політика конфіденційності",
   "termsAndConditionsTile": "Умови та положення",
   "aboutUsScreenTitle": "Про нас",
@@ -144,5 +145,9 @@
   "updateAlertUpdateNow": "Оновити зараз",
   "updateAlertUpdateQuestion": "Бажаєте оновити?",
   "updateAlertReleaseNotes": "Примітки до випуску",
-  "updateAlertTitle": "Оновити додаток?"
+  "updateAlertTitle": "Оновити додаток?",
+  "settingsScreenTitle": "Налаштування",
+  "settingsLanguageTitle": "Мова інтерфейсу",
+  "english": "Англійська",
+  "ukrainian": "Українська"
 }
