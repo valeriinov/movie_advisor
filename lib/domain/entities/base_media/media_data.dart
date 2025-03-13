@@ -2,6 +2,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
+import '../video/video_data.dart';
 import 'cast_data.dart';
 
 part 'media_data.mapper.dart';
@@ -19,6 +20,7 @@ abstract base class MediaData with MediaDataMappable {
   final String overview;
   final TMDBRating tmdbRating;
   final List<CastData> cast;
+  final List<VideoData> videos;
   final int userRating;
   final bool isInWatchlist;
   final bool isWatched;
@@ -35,6 +37,7 @@ abstract base class MediaData with MediaDataMappable {
     required this.overview,
     required this.tmdbRating,
     required this.cast,
+    required this.videos,
     required this.userRating,
     required this.isInWatchlist,
     required this.isWatched,

@@ -37,7 +37,7 @@ class DetailsService {
 
   Map<String, dynamic> _buildQueryParameters() {
     return {
-      'append_to_response': 'credits',
+      'append_to_response': 'credits,videos',
     };
   }
 }

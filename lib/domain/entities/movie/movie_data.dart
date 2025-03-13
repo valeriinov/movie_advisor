@@ -1,10 +1,11 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../base_media/cast_data.dart';
+import '../base_media/media_data.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
+import '../video/video_data.dart';
 import 'movie_genre.dart';
-import '../base_media/media_data.dart';
 
 part 'movie_data.mapper.dart';
 
@@ -25,6 +26,7 @@ final class MovieData extends MediaData with MovieDataMappable {
     super.overview = '',
     super.tmdbRating = const TMDBRating(),
     super.cast = const [],
+    super.videos = const [],
     super.userRating = 0,
     super.isInWatchlist = false,
     super.isWatched = false,
