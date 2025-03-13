@@ -7,6 +7,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
+import '../../../base/refresh_view_model/refresh_state.dart';
+import '../../../base/refresh_view_model/refresh_view_model.dart';
+import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
 import '../../../resources/locale_keys.g.dart';
@@ -44,6 +47,17 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
           next,
           handleLoadingState: () => isInitialized,
         );
+      },
+    );
+
+    final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
+
+    refreshVsp.handleState(
+      listener: (prev, next) {
+        if (_isLangUpdated(prev, next)) {
+          vsp.viewModel.loadInitialData(showLoader: false);
+          scrollController.jumpTo(0);
+        }
       },
     );
 
@@ -98,6 +112,11 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
           onSuggestionItemSelect: (id) => _goToDetails(context, id),
           onTabItemSelect: (id) => _goToDetails(context, id),
         );
+  }
+
+  bool _isLangUpdated(RefreshState? prev, RefreshState next) {
+    return next.isUpdate(prev, (s) => s?.status) &&
+        next.status is LangUpdatedStatus;
   }
 
   PaginationState _getPaginationState(HomeVSP vsp) {

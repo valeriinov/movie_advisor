@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../utils/date_mapper_hook.dart';
+import '../localized_string.dart';
 import '../rating/rating_data_dto.dart';
 import 'series_genre_dto.dart';
 
@@ -21,6 +22,8 @@ class SeriesShortDataDto with SeriesShortDataDtoMappable {
   final bool? isWatched;
   @MappableField(hook: DateMapperHook())
   final DateTime? updatedAt;
+  final LocalizedString? localizedTitle;
+  final LocalizedString? localizedPosterUrl;
 
   const SeriesShortDataDto({
     this.id,
@@ -34,6 +37,8 @@ class SeriesShortDataDto with SeriesShortDataDtoMappable {
     this.isInWatchlist,
     this.isWatched,
     this.updatedAt,
+    this.localizedTitle,
+    this.localizedPosterUrl,
   });
 
   factory SeriesShortDataDto.fromJson(Map<String, dynamic> json) =>

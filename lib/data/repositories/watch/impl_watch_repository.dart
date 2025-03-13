@@ -113,9 +113,11 @@ class ImplWatchRepository implements WatchRepository {
       final preparedData = data.copyWith(isInWatchlist: true);
       final dto = _moviesMapper.mapMovieShortDataToDto(preparedData);
 
-      await _localDataSource.addToWatchlistMovie(dto);
+      final preparedDto = await _remoteDataSource.getLocalizedMovie(dto);
 
-      await _remoteDataSource.addToWatchlistMovie(dto);
+      await _localDataSource.addToWatchlistMovie(preparedDto);
+
+      await _remoteDataSource.addToWatchlistMovie(preparedDto);
 
       return Right(null);
     } catch (e) {
@@ -129,9 +131,11 @@ class ImplWatchRepository implements WatchRepository {
       final preparedData = data.copyWith(isWatched: true);
       final dto = _moviesMapper.mapMovieShortDataToDto(preparedData);
 
-      await _localDataSource.addToWatchedMovie(dto);
+      final preparedDto = await _remoteDataSource.getLocalizedMovie(dto);
 
-      await _remoteDataSource.addToWatchedMovie(dto);
+      await _localDataSource.addToWatchedMovie(preparedDto);
+
+      await _remoteDataSource.addToWatchedMovie(preparedDto);
 
       return Right(null);
     } catch (e) {
@@ -171,9 +175,11 @@ class ImplWatchRepository implements WatchRepository {
       final preparedData = data.copyWith(isInWatchlist: true);
       final dto = _seriesMapper.mapSeriesShortDataToDto(preparedData);
 
-      await _localDataSource.addToWatchlistSeries(dto);
+      final preparedDto = await _remoteDataSource.getLocalizedSeries(dto);
 
-      await _remoteDataSource.addToWatchlistSeries(dto);
+      await _localDataSource.addToWatchlistSeries(preparedDto);
+
+      await _remoteDataSource.addToWatchlistSeries(preparedDto);
 
       return Right(null);
     } catch (e) {
@@ -187,9 +193,11 @@ class ImplWatchRepository implements WatchRepository {
       final preparedData = data.copyWith(isWatched: true);
       final dto = _seriesMapper.mapSeriesShortDataToDto(preparedData);
 
-      await _localDataSource.addToWatchedSeries(dto);
+      final preparedDto = await _remoteDataSource.getLocalizedSeries(dto);
 
-      await _remoteDataSource.addToWatchedSeries(dto);
+      await _localDataSource.addToWatchedSeries(preparedDto);
+
+      await _remoteDataSource.addToWatchedSeries(preparedDto);
 
       return Right(null);
     } catch (e) {

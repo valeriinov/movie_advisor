@@ -1,12 +1,14 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 
+import '../dto/localized_string.dart';
 import '../dto/movie/movie_genre_dto.dart';
 import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
 import 'tables/movies_table.dart';
 import 'tables/series_table.dart';
 import 'tables/sync_user_table.dart';
+import 'utils/localized_string_converter.dart';
 import 'utils/origin_country_converter.dart';
 import 'utils/rating_converter.dart';
 

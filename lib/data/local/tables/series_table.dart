@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 import '../../dto/series/series_genre_dto.dart';
+import '../utils/localized_string_converter.dart';
 import '../utils/origin_country_converter.dart';
 import '../utils/rating_converter.dart';
 
@@ -30,6 +31,12 @@ class SeriesTable extends Table {
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 
   DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+
+  TextColumn get localizedTitle =>
+      text().map(localizedStringConverter).nullable()();
+
+  TextColumn get localizedPosterUrl =>
+      text().map(localizedStringConverter).nullable()();
 }
 
 final TypeConverter<List<SeriesGenreDto>, String> seriesGenresConverter =

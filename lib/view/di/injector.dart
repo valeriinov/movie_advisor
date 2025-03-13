@@ -29,6 +29,7 @@ import '../../data/network/services/details_service.dart';
 import '../../data/network/services/home_service.dart';
 import '../../data/network/services/media_service.dart';
 import '../../data/network/services/search_service.dart';
+import '../../data/network/services/watch_service.dart';
 import '../../data/network/utils/image_url_handler/image_url_handler.dart';
 import '../../data/network/utils/image_url_handler/impl_image_url_handler.dart';
 import '../../data/network/utils/media_response_handler/impl_media_response_handler.dart';
@@ -130,21 +131,37 @@ final settingsPr = Provider<SettingsProvider>(
 );
 
 final mediaApiClientPr = Provider<NetworkManager>((ref) {
-  final baseUrl = ref.read(envPr).baseUrl;
-  final settingsProvider = ref.read(settingsPr);
-
-  final dioBuilder =
-      DioBuilder(
-        settingsProvider: settingsProvider,
-      ).baseUrl(baseUrl).headers().language();
-
-  if (kDebugMode) dioBuilder.logger();
+  final dioBuilder = _createDioBuilder(ref, applyLang: false);
 
   return ImplNetworkManager(
     dio: dioBuilder.build(),
     errorHandler: DioErrorHandler(),
   );
 });
+
+final localizedMediaApiClientPr = Provider<NetworkManager>((ref) {
+  final dioBuilder = _createDioBuilder(ref);
+
+  return ImplNetworkManager(
+    dio: dioBuilder.build(),
+    errorHandler: DioErrorHandler(),
+  );
+});
+
+DioBuilder _createDioBuilder(Ref ref, {bool applyLang = true}) {
+  final settingsProvider = ref.read(settingsPr);
+  final baseUrl = ref.read(envPr).baseUrl;
+
+  final dioBuilder = DioBuilder(settingsProvider: settingsProvider);
+
+  dioBuilder.baseUrl(baseUrl).headers();
+
+  if (applyLang) dioBuilder.language();
+
+  if (kDebugMode) dioBuilder.logger();
+
+  return dioBuilder;
+}
 
 final imageUrlHandlerPr = Provider<ImageUrlHandler>(
   (ref) => ImplImageUrlHandler(envProvider: ref.read(envPr)),
@@ -177,6 +194,7 @@ final mediaLocalDataSourcePr = Provider<MediaLocalDataSource>(
   (ref) => ImplMediaLocalDataSource(
     database: ref.read(localDatabasePr),
     mediaMerger: ref.read(mediaMergerPr),
+    settingsProvider: ref.read(settingsPr),
   ),
 );
 
@@ -207,7 +225,7 @@ final mediaSyncDataSourcePr = Provider<SyncDataSource>(
 // HOME
 final homeServicePr = Provider<HomeService>(
   (ref) => HomeService(
-    mediaApiClient: ref.read(mediaApiClientPr),
+    mediaApiClient: ref.read(localizedMediaApiClientPr),
     responseHandler: ref.read(mediaResponseHandlerPr),
   ),
 );
@@ -232,7 +250,7 @@ final homeSeriesUseCasePr = Provider<HomeSeriesUseCase>(
 // SEARCH
 final searchServicePr = Provider<SearchService>(
   (ref) => SearchService(
-    mediaApiClient: ref.read(mediaApiClientPr),
+    mediaApiClient: ref.read(localizedMediaApiClientPr),
     responseHandler: ref.read(mediaResponseHandlerPr),
   ),
 );
@@ -259,7 +277,7 @@ final searchSeriesUseCasePr = Provider<SearchSeriesUseCase>(
 // DETAILS
 final detailsServicePr = Provider<DetailsService>(
   (ref) => DetailsService(
-    mediaApiClient: ref.read(mediaApiClientPr),
+    mediaApiClient: ref.read(localizedMediaApiClientPr),
     imageUrlHandler: ref.read(imageUrlHandlerPr),
   ),
 );
@@ -283,11 +301,24 @@ final detailsSeriesUseCasePr = Provider<DetailsSeriesUseCase>(
 );
 
 // WATCH
+final watchServicePr = Provider<WatchService>(
+  (ref) => WatchService(
+    settingsProvider: ref.read(settingsPr),
+    mediaApiClient: ref.read(mediaApiClientPr),
+    imageUrlHandler: ref.read(imageUrlHandlerPr),
+  ),
+);
 final watchLocalDataSourcePr = Provider<WatchLocalDataSource>(
-  (ref) => ImplWatchLocalDataSource(database: ref.read(localDatabasePr)),
+  (ref) => ImplWatchLocalDataSource(
+    database: ref.read(localDatabasePr),
+    settingsProvider: ref.read(settingsPr),
+  ),
 );
 final watchRemoteDataSourcePr = Provider<WatchRemoteDataSource>(
-  (ref) => ImplWatchRemoteDataSource(service: ref.read(mediaServicePr)),
+  (ref) => ImplWatchRemoteDataSource(
+    mediaService: ref.read(mediaServicePr),
+    watchService: ref.read(watchServicePr),
+  ),
 );
 final watchRepositoryPr = Provider<WatchRepository>(
   (ref) => ImplWatchRepository(
