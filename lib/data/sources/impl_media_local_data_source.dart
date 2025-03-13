@@ -15,17 +15,21 @@ import '../dto/series/series_short_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../local/utils/ext/media_table_mapper.dart';
 import '../repositories/media_local_data_source.dart';
+import '../repositories/settings_provider.dart';
 import '../utils/media_merger/media_merger.dart';
 
 class ImplMediaLocalDataSource implements MediaLocalDataSource {
   final AppLocalDatabase _database;
   final MediaMerger _mediaMerger;
+  final SettingsProvider _settingsProvider;
 
   ImplMediaLocalDataSource({
     required AppLocalDatabase database,
     required MediaMerger mediaMerger,
+    required SettingsProvider settingsProvider,
   }) : _database = database,
-       _mediaMerger = mediaMerger;
+       _mediaMerger = mediaMerger,
+       _settingsProvider = settingsProvider;
 
   @override
   Future<MoviesResponseDataDto> addLocalDataToMoviesResponse(
@@ -82,7 +86,7 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final movies = await query.get();
 
-    return movies.map((m) => m.toDto()).toList();
+    return movies.map((m) => m.toDto(_settingsProvider.currentLocale)).toList();
   }
 
   @override
@@ -92,7 +96,7 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final series = await query.get();
 
-    return series.map((s) => s.toDto()).toList();
+    return series.map((s) => s.toDto(_settingsProvider.currentLocale)).toList();
   }
 
   @override
@@ -129,7 +133,7 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final movies = await query.get();
 
-    return movies.map((m) => m.toDto()).toList();
+    return movies.map((m) => m.toDto(_settingsProvider.currentLocale)).toList();
   }
 
   List<MovieGenreDto> _calculateTargetMovieGenres(
@@ -203,7 +207,9 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final seriesList = await query.get();
 
-    return seriesList.map((s) => s.toDto()).toList();
+    return seriesList
+        .map((s) => s.toDto(_settingsProvider.currentLocale))
+        .toList();
   }
 
   List<SeriesGenreDto> _calculateTargetSeriesGenres(

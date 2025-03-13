@@ -15,6 +15,7 @@ class SeriesShortDataDtoMapper extends ClassMapperBase<SeriesShortDataDto> {
       MapperContainer.globals.use(_instance = SeriesShortDataDtoMapper._());
       SeriesGenreDtoMapper.ensureInitialized();
       RatingDataDtoMapper.ensureInitialized();
+      LocalizedStringMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -59,6 +60,16 @@ class SeriesShortDataDtoMapper extends ClassMapperBase<SeriesShortDataDto> {
   static const Field<SeriesShortDataDto, DateTime> _f$updatedAt = Field(
       'updatedAt', _$updatedAt,
       key: r'updated_at', opt: true, hook: DateMapperHook());
+  static LocalizedString? _$localizedTitle(SeriesShortDataDto v) =>
+      v.localizedTitle;
+  static const Field<SeriesShortDataDto, LocalizedString> _f$localizedTitle =
+      Field('localizedTitle', _$localizedTitle,
+          key: r'localized_title', opt: true);
+  static LocalizedString? _$localizedPosterUrl(SeriesShortDataDto v) =>
+      v.localizedPosterUrl;
+  static const Field<SeriesShortDataDto, LocalizedString>
+      _f$localizedPosterUrl = Field('localizedPosterUrl', _$localizedPosterUrl,
+          key: r'localized_poster_url', opt: true);
 
   @override
   final MappableFields<SeriesShortDataDto> fields = const {
@@ -73,6 +84,8 @@ class SeriesShortDataDtoMapper extends ClassMapperBase<SeriesShortDataDto> {
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
     #updatedAt: _f$updatedAt,
+    #localizedTitle: _f$localizedTitle,
+    #localizedPosterUrl: _f$localizedPosterUrl,
   };
   @override
   final bool ignoreNull = true;
@@ -89,7 +102,9 @@ class SeriesShortDataDtoMapper extends ClassMapperBase<SeriesShortDataDto> {
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
         isWatched: data.dec(_f$isWatched),
-        updatedAt: data.dec(_f$updatedAt));
+        updatedAt: data.dec(_f$updatedAt),
+        localizedTitle: data.dec(_f$localizedTitle),
+        localizedPosterUrl: data.dec(_f$localizedPosterUrl));
   }
 
   @override
@@ -152,6 +167,10 @@ abstract class SeriesShortDataDtoCopyWith<$R, $In extends SeriesShortDataDto,
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
       get originCountry;
   RatingDataDtoCopyWith<$R, RatingDataDto, RatingDataDto>? get tmdbRating;
+  LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
+      get localizedTitle;
+  LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
+      get localizedPosterUrl;
   $R call(
       {int? id,
       String? posterUrl,
@@ -163,7 +182,9 @@ abstract class SeriesShortDataDtoCopyWith<$R, $In extends SeriesShortDataDto,
       int? userRating,
       bool? isInWatchlist,
       bool? isWatched,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      LocalizedString? localizedTitle,
+      LocalizedString? localizedPosterUrl});
   SeriesShortDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -195,6 +216,14 @@ class _SeriesShortDataDtoCopyWithImpl<$R, $Out>
   RatingDataDtoCopyWith<$R, RatingDataDto, RatingDataDto>? get tmdbRating =>
       $value.tmdbRating?.copyWith.$chain((v) => call(tmdbRating: v));
   @override
+  LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
+      get localizedTitle => $value.localizedTitle?.copyWith
+          .$chain((v) => call(localizedTitle: v));
+  @override
+  LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
+      get localizedPosterUrl => $value.localizedPosterUrl?.copyWith
+          .$chain((v) => call(localizedPosterUrl: v));
+  @override
   $R call(
           {Object? id = $none,
           Object? posterUrl = $none,
@@ -206,7 +235,9 @@ class _SeriesShortDataDtoCopyWithImpl<$R, $Out>
           Object? userRating = $none,
           Object? isInWatchlist = $none,
           Object? isWatched = $none,
-          Object? updatedAt = $none}) =>
+          Object? updatedAt = $none,
+          Object? localizedTitle = $none,
+          Object? localizedPosterUrl = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (posterUrl != $none) #posterUrl: posterUrl,
@@ -218,7 +249,9 @@ class _SeriesShortDataDtoCopyWithImpl<$R, $Out>
         if (userRating != $none) #userRating: userRating,
         if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
         if (isWatched != $none) #isWatched: isWatched,
-        if (updatedAt != $none) #updatedAt: updatedAt
+        if (updatedAt != $none) #updatedAt: updatedAt,
+        if (localizedTitle != $none) #localizedTitle: localizedTitle,
+        if (localizedPosterUrl != $none) #localizedPosterUrl: localizedPosterUrl
       }));
   @override
   SeriesShortDataDto $make(CopyWithData data) => SeriesShortDataDto(
@@ -232,7 +265,10 @@ class _SeriesShortDataDtoCopyWithImpl<$R, $Out>
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
       isWatched: data.get(#isWatched, or: $value.isWatched),
-      updatedAt: data.get(#updatedAt, or: $value.updatedAt));
+      updatedAt: data.get(#updatedAt, or: $value.updatedAt),
+      localizedTitle: data.get(#localizedTitle, or: $value.localizedTitle),
+      localizedPosterUrl:
+          data.get(#localizedPosterUrl, or: $value.localizedPosterUrl));
 
   @override
   SeriesShortDataDtoCopyWith<$R2, SeriesShortDataDto, $Out2> $chain<$R2, $Out2>(

@@ -7,13 +7,18 @@ import '../dto/series/series_short_data_dto.dart';
 import '../dto/series/series_short_response_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../local/utils/ext/media_table_mapper.dart';
+import '../repositories/settings_provider.dart';
 import '../repositories/watch/watch_local_data_source.dart';
 
 class ImplWatchLocalDataSource implements WatchLocalDataSource {
   final AppLocalDatabase _database;
+  final SettingsProvider _settingsProvider;
 
-  ImplWatchLocalDataSource({required AppLocalDatabase database})
-    : _database = database;
+  ImplWatchLocalDataSource({
+    required AppLocalDatabase database,
+    required SettingsProvider settingsProvider,
+  }) : _database = database,
+       _settingsProvider = settingsProvider;
 
   @override
   Stream<MovieShortDataDto> watchChangesMovies() {
@@ -33,7 +38,9 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }
 
   Stream<MovieShortDataDto> _mapMovieRows(List<MoviesTableData> movies) {
-    return Stream.fromIterable(movies.map((movie) => movie.toDto()));
+    return Stream.fromIterable(
+      movies.map((movie) => movie.toDto(_settingsProvider.currentLocale)),
+    );
   }
 
   @override
@@ -54,7 +61,9 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }
 
   Stream<SeriesShortDataDto> _mapSeriesRows(List<SeriesTableData> seriesList) {
-    return Stream.fromIterable(seriesList.map((series) => series.toDto()));
+    return Stream.fromIterable(
+      seriesList.map((series) => series.toDto(_settingsProvider.currentLocale)),
+    );
   }
 
   @override
@@ -84,7 +93,10 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
     return MoviesShortResponseDataDto(
       page: page,
-      results: movies.map((movie) => movie.toDto()).toList(),
+      results:
+          movies
+              .map((movie) => movie.toDto(_settingsProvider.currentLocale))
+              .toList(),
       totalPages: totalPages,
     );
   }
@@ -114,7 +126,10 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
     return MoviesShortResponseDataDto(
       page: page,
-      results: movies.map((movie) => movie.toDto()).toList(),
+      results:
+          movies
+              .map((movie) => movie.toDto(_settingsProvider.currentLocale))
+              .toList(),
       totalPages: totalPages,
     );
   }
@@ -146,7 +161,10 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
     return SeriesShortResponseDataDto(
       page: page,
-      results: series.map((series) => series.toDto()).toList(),
+      results:
+          series
+              .map((series) => series.toDto(_settingsProvider.currentLocale))
+              .toList(),
       totalPages: totalPages,
     );
   }
@@ -176,7 +194,10 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
     return SeriesShortResponseDataDto(
       page: page,
-      results: series.map((series) => series.toDto()).toList(),
+      results:
+          series
+              .map((series) => series.toDto(_settingsProvider.currentLocale))
+              .toList(),
       totalPages: totalPages,
     );
   }

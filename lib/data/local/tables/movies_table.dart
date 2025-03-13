@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 import '../../dto/movie/movie_genre_dto.dart';
+import '../utils/localized_string_converter.dart';
 import '../utils/origin_country_converter.dart';
 import '../utils/rating_converter.dart';
 
@@ -9,15 +10,11 @@ class MoviesTable extends Table {
 
   IntColumn get tmdbId => integer().unique()();
 
-  TextColumn get posterUrl => text().nullable()();
-
   TextColumn get genres => text().map(movieGenresConverter).nullable()();
 
   TextColumn get originCountry => text().map(countryConverter).nullable()();
 
   DateTimeColumn get premiereDate => dateTime().nullable()();
-
-  TextColumn get title => text().nullable()();
 
   TextColumn get tmdbRating => text().map(ratingConverter).nullable()();
 
@@ -30,6 +27,12 @@ class MoviesTable extends Table {
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 
   DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+
+  TextColumn get localizedTitle =>
+      text().map(localizedStringConverter).nullable()();
+
+  TextColumn get localizedPosterUrl =>
+      text().map(localizedStringConverter).nullable()();
 }
 
 final TypeConverter<List<MovieGenreDto>, String> movieGenresConverter =
