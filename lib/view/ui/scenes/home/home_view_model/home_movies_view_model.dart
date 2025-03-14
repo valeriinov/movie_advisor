@@ -30,6 +30,7 @@ final class HomeMoviesViewModel extends HomeViewModel<MovieShortData> {
     _watchUseCase = ref.read(watchMoviesUseCasePr);
     _syncUseCase = ref.read(syncUseCasePr);
     _refreshUseCase = ref.read(refreshUseCasePr);
+    _settingsUseCase = ref.read(settingsUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,
@@ -45,7 +46,10 @@ final class HomeMoviesViewModel extends HomeViewModel<MovieShortData> {
       _refreshSubscription.cancel();
     });
 
-    scheduleCall(loadInitialData);
+    scheduleCall(() async {
+      await loadInitialData();
+      await _handleFirstLaunch();
+    });
 
     return HomeMoviesState();
   }

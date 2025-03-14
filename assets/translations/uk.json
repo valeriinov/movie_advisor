@@ -150,5 +150,7 @@
   "settingsLanguageTitle": "Мова інтерфейсу",
   "english": "Англійська",
   "ukrainian": "Українська",
-  "playTrailerButton": "Відтворити трейлер"
+  "playTrailerButton": "Відтворити трейлер",
+  "langDialog": "Бажаєте змінити налаштування мови інтерфейсу?",
+  "settingsButton": "НАЛАШТУВАННЯ"
 }

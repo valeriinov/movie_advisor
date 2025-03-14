@@ -47,6 +47,8 @@ import '../../data/repositories/refresh/impl_refresh_repository.dart';
 import '../../data/repositories/refresh/refresh_local_data_source.dart';
 import '../../data/repositories/search/impl_search_repository.dart';
 import '../../data/repositories/search/search_remote_data_source.dart';
+import '../../data/repositories/settings/impl_settings_repository.dart';
+import '../../data/repositories/settings/settings_local_data_source.dart';
 import '../../data/repositories/settings_provider.dart';
 import '../../data/repositories/sync/impl_sync_repository.dart';
 import '../../data/repositories/sync/sync_data_source.dart';
@@ -61,6 +63,7 @@ import '../../data/sources/impl_media_local_data_source.dart';
 import '../../data/sources/impl_refresh_local_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
+import '../../data/sources/impl_settings_remote_data_source.dart';
 import '../../data/sources/impl_sync_data_source.dart';
 import '../../data/sources/impl_watch_local_data_source.dart';
 import '../../data/sources/impl_watch_remote_data_source.dart';
@@ -71,6 +74,7 @@ import '../../domain/repositories/details_repository.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../../domain/repositories/refresh_repository.dart';
 import '../../domain/repositories/search_repository.dart';
+import '../../domain/repositories/settings_repository.dart';
 import '../../domain/repositories/sync_repository.dart';
 import '../../domain/repositories/watch_repository.dart';
 import '../../domain/usecases/auth_use_case.dart';
@@ -81,6 +85,7 @@ import '../../domain/usecases/home/home_series_use_case.dart';
 import '../../domain/usecases/refresh_use_case.dart';
 import '../../domain/usecases/search/search_movies_use_case.dart';
 import '../../domain/usecases/search/search_series_use_case.dart';
+import '../../domain/usecases/settings_use_case.dart';
 import '../../domain/usecases/sync_use_case.dart';
 import '../../domain/usecases/watch/watch_movie_use_case.dart';
 import '../../domain/usecases/watch/watch_series_use_case.dart';
@@ -387,6 +392,20 @@ final refreshRepositoryPr = Provider<RefreshRepository>(
 );
 final refreshUseCasePr = Provider<RefreshUseCase>(
   (ref) => RefreshUseCase(repository: ref.read(refreshRepositoryPr)),
+);
+
+// SETTINGS
+final settingsLocalDataSourcePr = Provider<SettingsLocalDataSource>(
+  (ref) => ImplSettingsLocalDataSource(database: ref.read(localDatabasePr)),
+);
+final settingsRepositoryPr = Provider<SettingsRepository>(
+  (ref) => ImplSettingsRepository(
+    dataSource: ref.read(settingsLocalDataSourcePr),
+    mapper: ref.read(appMapperPr),
+  ),
+);
+final settingsUseCasePr = Provider<SettingsUseCase>(
+  (ref) => SettingsUseCase(repository: ref.read(settingsRepositoryPr)),
 );
 
 /// {@category Utils}

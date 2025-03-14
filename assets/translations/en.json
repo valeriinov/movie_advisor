@@ -150,5 +150,7 @@
   "settingsLanguageTitle": "Interface Language",
   "english": "English",
   "ukrainian": "Ukrainian",
-  "playTrailerButton": "Play trailer"
+  "playTrailerButton": "Play trailer",
+  "langDialog": "Would you like to change the interface language settings?",
+  "settingsButton": "SETTINGS"
 }
