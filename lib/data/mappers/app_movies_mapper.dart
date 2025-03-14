@@ -13,16 +13,20 @@ import '../dto/rating/rating_data_dto.dart';
 import 'app_cast_mapper.dart';
 import 'app_mapper.dart';
 import 'app_rating_mapper.dart';
+import 'app_video_mapper.dart';
 
 final class AppMoviesMapper extends AppMapper {
   final AppRatingMapper _ratingMapper;
   final AppCastMapper _castMapper;
+  final AppVideoMapper _videoMapper;
 
   AppMoviesMapper({
     required AppRatingMapper ratingMapper,
     required AppCastMapper castMapper,
+    required AppVideoMapper videoMapper,
   }) : _ratingMapper = ratingMapper,
-       _castMapper = castMapper;
+       _castMapper = castMapper,
+       _videoMapper = videoMapper;
 
   PaginatedMovies mapMoviesShortResponseDataToDomain(
     MoviesShortResponseDataDto dto,
@@ -62,6 +66,10 @@ final class AppMoviesMapper extends AppMapper {
       cast:
           dto.credits != null
               ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
+              : [],
+      videos:
+          dto.videos != null
+              ? _videoMapper.mapVideosDataDtoTiDomain(dto.videos!)
               : [],
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,

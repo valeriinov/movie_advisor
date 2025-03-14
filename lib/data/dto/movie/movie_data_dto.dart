@@ -3,6 +3,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 import '../../utils/date_mapper_hook.dart';
 import '../../utils/genres_hook.dart';
 import '../cast/credits_data_dto.dart';
+import '../video/videos_data_dto.dart';
 import 'movie_genre_dto.dart';
 
 part 'movie_data_dto.mapper.dart';
@@ -27,6 +28,7 @@ class MovieDataDto with MovieDataDtoMappable {
   final double? voteAverage;
   final int? voteCount;
   final CreditsDataDto? credits;
+  final VideosDataDto? videos;
   final int? userRating;
   final bool? isInWatchlist;
   final bool? isWatched;
@@ -47,6 +49,7 @@ class MovieDataDto with MovieDataDtoMappable {
     this.voteAverage,
     this.voteCount,
     this.credits,
+    this.videos,
     this.userRating,
     this.isInWatchlist,
     this.isWatched,

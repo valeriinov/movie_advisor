@@ -16,6 +16,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
       MediaDataMapper.ensureInitialized();
       TMDBRatingMapper.ensureInitialized();
       CastDataMapper.ensureInitialized();
+      VideoDataMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -59,6 +60,9 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
   static List<CastData> _$cast(SeriesData v) => v.cast;
   static const Field<SeriesData, List<CastData>> _f$cast =
       Field('cast', _$cast, opt: true, def: const []);
+  static List<VideoData> _$videos(SeriesData v) => v.videos;
+  static const Field<SeriesData, List<VideoData>> _f$videos =
+      Field('videos', _$videos, opt: true, def: const []);
   static int _$userRating(SeriesData v) => v.userRating;
   static const Field<SeriesData, int> _f$userRating =
       Field('userRating', _$userRating, opt: true, def: 0);
@@ -83,6 +87,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     #overview: _f$overview,
     #tmdbRating: _f$tmdbRating,
     #cast: _f$cast,
+    #videos: _f$videos,
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
@@ -102,6 +107,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
         overview: data.dec(_f$overview),
         tmdbRating: data.dec(_f$tmdbRating),
         cast: data.dec(_f$cast),
+        videos: data.dec(_f$videos),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
         isWatched: data.dec(_f$isWatched));
@@ -150,6 +156,9 @@ abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
   @override
   ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>> get cast;
   @override
+  ListCopyWith<$R, VideoData, VideoDataCopyWith<$R, VideoData, VideoData>>
+      get videos;
+  @override
   $R call(
       {int? id,
       String? backdropUrl,
@@ -163,6 +172,7 @@ abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
       String? overview,
       TMDBRating? tmdbRating,
       List<CastData>? cast,
+      List<VideoData>? videos,
       int? userRating,
       bool? isInWatchlist,
       bool? isWatched});
@@ -195,6 +205,10 @@ class _SeriesDataCopyWithImpl<$R, $Out>
       get cast => ListCopyWith(
           $value.cast, (v, t) => v.copyWith.$chain(t), (v) => call(cast: v));
   @override
+  ListCopyWith<$R, VideoData, VideoDataCopyWith<$R, VideoData, VideoData>>
+      get videos => ListCopyWith($value.videos, (v, t) => v.copyWith.$chain(t),
+          (v) => call(videos: v));
+  @override
   $R call(
           {int? id,
           String? backdropUrl,
@@ -208,6 +222,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
           String? overview,
           TMDBRating? tmdbRating,
           List<CastData>? cast,
+          List<VideoData>? videos,
           int? userRating,
           bool? isInWatchlist,
           bool? isWatched}) =>
@@ -224,6 +239,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
         if (overview != null) #overview: overview,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
         if (cast != null) #cast: cast,
+        if (videos != null) #videos: videos,
         if (userRating != null) #userRating: userRating,
         if (isInWatchlist != null) #isInWatchlist: isInWatchlist,
         if (isWatched != null) #isWatched: isWatched
@@ -243,6 +259,7 @@ class _SeriesDataCopyWithImpl<$R, $Out>
       overview: data.get(#overview, or: $value.overview),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
       cast: data.get(#cast, or: $value.cast),
+      videos: data.get(#videos, or: $value.videos),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
       isWatched: data.get(#isWatched, or: $value.isWatched));

@@ -18,6 +18,7 @@ import '../../data/mappers/app_movies_mapper.dart';
 import '../../data/mappers/app_rating_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
 import '../../data/mappers/app_series_mapper.dart';
+import '../../data/mappers/app_video_mapper.dart';
 import '../../data/network/env_provider/env_provider.dart';
 import '../../data/network/network_manager/impl_dio/dio_builder.dart';
 import '../../data/network/network_manager/impl_dio/dio_error_handler.dart';
@@ -175,17 +176,20 @@ final localDatabasePr = Provider<AppLocalDatabase>((_) => AppLocalDatabase());
 
 final appMapperPr = Provider<AppMapper>((_) => AppMapper());
 final castMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
+final videoMapperPr = Provider<AppVideoMapper>((_) => AppVideoMapper());
 final ratingMapperPr = Provider<AppRatingMapper>((_) => AppRatingMapper());
 final moviesMapperPr = Provider<AppMoviesMapper>(
   (ref) => AppMoviesMapper(
     ratingMapper: ref.read(ratingMapperPr),
     castMapper: ref.read(castMapperPr),
+    videoMapper: ref.read(videoMapperPr),
   ),
 );
 final seriesMapperPr = Provider<AppSeriesMapper>(
   (ref) => AppSeriesMapper(
     ratingMapper: ref.read(ratingMapperPr),
     castMapper: ref.read(castMapperPr),
+    videoMapper: ref.read(videoMapperPr),
   ),
 );
 
