@@ -1790,18 +1790,213 @@ class SyncUserTableCompanion extends UpdateCompanion<SyncUserTableData> {
   }
 }
 
+class $SettingsTableTable extends SettingsTable
+    with TableInfo<$SettingsTableTable, SettingsTableData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SettingsTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _isFirstLaunchMeta =
+      const VerificationMeta('isFirstLaunch');
+  @override
+  late final GeneratedColumn<bool> isFirstLaunch = GeneratedColumn<bool>(
+      'is_first_launch', aliasedName, true,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("is_first_launch" IN (0, 1))'));
+  @override
+  List<GeneratedColumn> get $columns => [id, isFirstLaunch];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'settings_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<SettingsTableData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('is_first_launch')) {
+      context.handle(
+          _isFirstLaunchMeta,
+          isFirstLaunch.isAcceptableOrUnknown(
+              data['is_first_launch']!, _isFirstLaunchMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SettingsTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SettingsTableData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      isFirstLaunch: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_first_launch']),
+    );
+  }
+
+  @override
+  $SettingsTableTable createAlias(String alias) {
+    return $SettingsTableTable(attachedDatabase, alias);
+  }
+}
+
+class SettingsTableData extends DataClass
+    implements Insertable<SettingsTableData> {
+  final int id;
+  final bool? isFirstLaunch;
+  const SettingsTableData({required this.id, this.isFirstLaunch});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    if (!nullToAbsent || isFirstLaunch != null) {
+      map['is_first_launch'] = Variable<bool>(isFirstLaunch);
+    }
+    return map;
+  }
+
+  SettingsTableCompanion toCompanion(bool nullToAbsent) {
+    return SettingsTableCompanion(
+      id: Value(id),
+      isFirstLaunch: isFirstLaunch == null && nullToAbsent
+          ? const Value.absent()
+          : Value(isFirstLaunch),
+    );
+  }
+
+  factory SettingsTableData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SettingsTableData(
+      id: serializer.fromJson<int>(json['id']),
+      isFirstLaunch: serializer.fromJson<bool?>(json['isFirstLaunch']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'isFirstLaunch': serializer.toJson<bool?>(isFirstLaunch),
+    };
+  }
+
+  SettingsTableData copyWith(
+          {int? id, Value<bool?> isFirstLaunch = const Value.absent()}) =>
+      SettingsTableData(
+        id: id ?? this.id,
+        isFirstLaunch:
+            isFirstLaunch.present ? isFirstLaunch.value : this.isFirstLaunch,
+      );
+  SettingsTableData copyWithCompanion(SettingsTableCompanion data) {
+    return SettingsTableData(
+      id: data.id.present ? data.id.value : this.id,
+      isFirstLaunch: data.isFirstLaunch.present
+          ? data.isFirstLaunch.value
+          : this.isFirstLaunch,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SettingsTableData(')
+          ..write('id: $id, ')
+          ..write('isFirstLaunch: $isFirstLaunch')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, isFirstLaunch);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SettingsTableData &&
+          other.id == this.id &&
+          other.isFirstLaunch == this.isFirstLaunch);
+}
+
+class SettingsTableCompanion extends UpdateCompanion<SettingsTableData> {
+  final Value<int> id;
+  final Value<bool?> isFirstLaunch;
+  const SettingsTableCompanion({
+    this.id = const Value.absent(),
+    this.isFirstLaunch = const Value.absent(),
+  });
+  SettingsTableCompanion.insert({
+    this.id = const Value.absent(),
+    this.isFirstLaunch = const Value.absent(),
+  });
+  static Insertable<SettingsTableData> custom({
+    Expression<int>? id,
+    Expression<bool>? isFirstLaunch,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (isFirstLaunch != null) 'is_first_launch': isFirstLaunch,
+    });
+  }
+
+  SettingsTableCompanion copyWith(
+      {Value<int>? id, Value<bool?>? isFirstLaunch}) {
+    return SettingsTableCompanion(
+      id: id ?? this.id,
+      isFirstLaunch: isFirstLaunch ?? this.isFirstLaunch,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (isFirstLaunch.present) {
+      map['is_first_launch'] = Variable<bool>(isFirstLaunch.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SettingsTableCompanion(')
+          ..write('id: $id, ')
+          ..write('isFirstLaunch: $isFirstLaunch')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppLocalDatabase extends GeneratedDatabase {
   _$AppLocalDatabase(QueryExecutor e) : super(e);
   $AppLocalDatabaseManager get managers => $AppLocalDatabaseManager(this);
   late final $MoviesTableTable moviesTable = $MoviesTableTable(this);
   late final $SeriesTableTable seriesTable = $SeriesTableTable(this);
   late final $SyncUserTableTable syncUserTable = $SyncUserTableTable(this);
+  late final $SettingsTableTable settingsTable = $SettingsTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [moviesTable, seriesTable, syncUserTable];
+      [moviesTable, seriesTable, syncUserTable, settingsTable];
 }
 
 typedef $$MoviesTableTableCreateCompanionBuilder = MoviesTableCompanion
@@ -2620,6 +2815,130 @@ typedef $$SyncUserTableTableProcessedTableManager = ProcessedTableManager<
     ),
     SyncUserTableData,
     PrefetchHooks Function()>;
+typedef $$SettingsTableTableCreateCompanionBuilder = SettingsTableCompanion
+    Function({
+  Value<int> id,
+  Value<bool?> isFirstLaunch,
+});
+typedef $$SettingsTableTableUpdateCompanionBuilder = SettingsTableCompanion
+    Function({
+  Value<int> id,
+  Value<bool?> isFirstLaunch,
+});
+
+class $$SettingsTableTableFilterComposer
+    extends Composer<_$AppLocalDatabase, $SettingsTableTable> {
+  $$SettingsTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get isFirstLaunch => $composableBuilder(
+      column: $table.isFirstLaunch, builder: (column) => ColumnFilters(column));
+}
+
+class $$SettingsTableTableOrderingComposer
+    extends Composer<_$AppLocalDatabase, $SettingsTableTable> {
+  $$SettingsTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get isFirstLaunch => $composableBuilder(
+      column: $table.isFirstLaunch,
+      builder: (column) => ColumnOrderings(column));
+}
+
+class $$SettingsTableTableAnnotationComposer
+    extends Composer<_$AppLocalDatabase, $SettingsTableTable> {
+  $$SettingsTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<bool> get isFirstLaunch => $composableBuilder(
+      column: $table.isFirstLaunch, builder: (column) => column);
+}
+
+class $$SettingsTableTableTableManager extends RootTableManager<
+    _$AppLocalDatabase,
+    $SettingsTableTable,
+    SettingsTableData,
+    $$SettingsTableTableFilterComposer,
+    $$SettingsTableTableOrderingComposer,
+    $$SettingsTableTableAnnotationComposer,
+    $$SettingsTableTableCreateCompanionBuilder,
+    $$SettingsTableTableUpdateCompanionBuilder,
+    (
+      SettingsTableData,
+      BaseReferences<_$AppLocalDatabase, $SettingsTableTable, SettingsTableData>
+    ),
+    SettingsTableData,
+    PrefetchHooks Function()> {
+  $$SettingsTableTableTableManager(
+      _$AppLocalDatabase db, $SettingsTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SettingsTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SettingsTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SettingsTableTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<bool?> isFirstLaunch = const Value.absent(),
+          }) =>
+              SettingsTableCompanion(
+            id: id,
+            isFirstLaunch: isFirstLaunch,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<bool?> isFirstLaunch = const Value.absent(),
+          }) =>
+              SettingsTableCompanion.insert(
+            id: id,
+            isFirstLaunch: isFirstLaunch,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$SettingsTableTableProcessedTableManager = ProcessedTableManager<
+    _$AppLocalDatabase,
+    $SettingsTableTable,
+    SettingsTableData,
+    $$SettingsTableTableFilterComposer,
+    $$SettingsTableTableOrderingComposer,
+    $$SettingsTableTableAnnotationComposer,
+    $$SettingsTableTableCreateCompanionBuilder,
+    $$SettingsTableTableUpdateCompanionBuilder,
+    (
+      SettingsTableData,
+      BaseReferences<_$AppLocalDatabase, $SettingsTableTable, SettingsTableData>
+    ),
+    SettingsTableData,
+    PrefetchHooks Function()>;
 
 class $AppLocalDatabaseManager {
   final _$AppLocalDatabase _db;
@@ -2630,4 +2949,6 @@ class $AppLocalDatabaseManager {
       $$SeriesTableTableTableManager(_db, _db.seriesTable);
   $$SyncUserTableTableTableManager get syncUserTable =>
       $$SyncUserTableTableTableManager(_db, _db.syncUserTable);
+  $$SettingsTableTableTableManager get settingsTable =>
+      $$SettingsTableTableTableManager(_db, _db.settingsTable);
 }

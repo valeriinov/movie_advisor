@@ -32,6 +32,7 @@ final class HomeSeriesViewModel extends HomeViewModel<SeriesShortData> {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
     _syncUseCase = ref.read(syncUseCasePr);
     _refreshUseCase = ref.read(refreshUseCasePr);
+    _settingsUseCase = ref.read(settingsUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,
@@ -47,7 +48,10 @@ final class HomeSeriesViewModel extends HomeViewModel<SeriesShortData> {
       _refreshSubscription.cancel();
     });
 
-    scheduleCall(loadInitialData);
+    scheduleCall(() async {
+      await loadInitialData();
+      await _handleFirstLaunch();
+    });
 
     return HomeSeriesState();
   }

@@ -357,3 +357,113 @@ class _HomeBaseInitStatusCopyWithImpl<$R, $Out>
           Then<$Out2, $R2> t) =>
       _HomeBaseInitStatusCopyWithImpl($value, $cast, t);
 }
+
+class FirstLaunchStatusMapper extends ClassMapperBase<FirstLaunchStatus> {
+  FirstLaunchStatusMapper._();
+
+  static FirstLaunchStatusMapper? _instance;
+  static FirstLaunchStatusMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = FirstLaunchStatusMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'FirstLaunchStatus';
+
+  static bool _$isLoading(FirstLaunchStatus v) => v.isLoading;
+  static const Field<FirstLaunchStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
+  static String? _$errorMessage(FirstLaunchStatus v) => v.errorMessage;
+  static const Field<FirstLaunchStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
+  static bool _$isInitialized(FirstLaunchStatus v) => v.isInitialized;
+  static const Field<FirstLaunchStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
+
+  @override
+  final MappableFields<FirstLaunchStatus> fields = const {
+    #isLoading: _f$isLoading,
+    #errorMessage: _f$errorMessage,
+    #isInitialized: _f$isInitialized,
+  };
+
+  static FirstLaunchStatus _instantiate(DecodingData data) {
+    return FirstLaunchStatus(
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+}
+
+mixin FirstLaunchStatusMappable {
+  FirstLaunchStatusCopyWith<FirstLaunchStatus, FirstLaunchStatus,
+          FirstLaunchStatus>
+      get copyWith => _FirstLaunchStatusCopyWithImpl(
+          this as FirstLaunchStatus, $identity, $identity);
+  @override
+  String toString() {
+    return FirstLaunchStatusMapper.ensureInitialized()
+        .stringifyValue(this as FirstLaunchStatus);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return FirstLaunchStatusMapper.ensureInitialized()
+        .equalsValue(this as FirstLaunchStatus, other);
+  }
+
+  @override
+  int get hashCode {
+    return FirstLaunchStatusMapper.ensureInitialized()
+        .hashValue(this as FirstLaunchStatus);
+  }
+}
+
+extension FirstLaunchStatusValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, FirstLaunchStatus, $Out> {
+  FirstLaunchStatusCopyWith<$R, FirstLaunchStatus, $Out>
+      get $asFirstLaunchStatus =>
+          $base.as((v, t, t2) => _FirstLaunchStatusCopyWithImpl(v, t, t2));
+}
+
+abstract class FirstLaunchStatusCopyWith<$R, $In extends FirstLaunchStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
+  FirstLaunchStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
+}
+
+class _FirstLaunchStatusCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, FirstLaunchStatus, $Out>
+    implements FirstLaunchStatusCopyWith<$R, FirstLaunchStatus, $Out> {
+  _FirstLaunchStatusCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<FirstLaunchStatus> $mapper =
+      FirstLaunchStatusMapper.ensureInitialized();
+  @override
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
+  @override
+  FirstLaunchStatus $make(CopyWithData data) => FirstLaunchStatus(
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+
+  @override
+  FirstLaunchStatusCopyWith<$R2, FirstLaunchStatus, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
+      _FirstLaunchStatusCopyWithImpl($value, $cast, t);
+}

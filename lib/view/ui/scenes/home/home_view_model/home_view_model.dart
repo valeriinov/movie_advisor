@@ -11,6 +11,7 @@ import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../../../domain/usecases/home/home_use_case.dart';
 import '../../../../../domain/usecases/refresh_use_case.dart';
+import '../../../../../domain/usecases/settings_use_case.dart';
 import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
@@ -53,6 +54,7 @@ abstract base class HomeViewModel<T extends MediaShortData>
   late final WatchUseCase<T> _watchUseCase;
   late final SyncUseCase _syncUseCase;
   late final RefreshUseCase _refreshUseCase;
+  late final SettingsUseCase _settingsUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
   late final StreamSubscription<Result<bool>> _refreshSubscription;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _loadTabOperation;
@@ -84,6 +86,20 @@ abstract base class HomeViewModel<T extends MediaShortData>
     if (shouldRefresh == true && !state.status.isLoading) {
       loadInitialData(showLoader: false);
     }
+  }
+
+  Future<void> _handleFirstLaunch() {
+    return safeCall(
+      _settingsUseCase.isFirstLaunch,
+      onResult: (result) {
+        result.fold((_) {}, (isFirstLaunch) async {
+          if (!isFirstLaunch) return;
+
+          _settingsUseCase.setFirstLaunch();
+          _updateStatus(FirstLaunchStatus());
+        });
+      },
+    );
   }
 
   Future<void> loadInitialData({bool showLoader = true}) async {

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,7 +14,10 @@ import '../../../base/refresh_view_model/refresh_view_model.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
+import '../../../navigation/routes/more_routes.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/dialogs/question_dialog.dart';
+import '../home_view_model/home_state.dart';
 import '../home_view_model/home_view_model.dart';
 import '../model/media_tab.dart';
 import '../utils/jump_to_tab_start_position.dart';
@@ -41,13 +46,14 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
     final isSkeletonVisible = isLoading && !isInitialized;
 
     vsp.handleState(
-      listener: (prev, next) {
-        ref.baseStatusHandler.handleStatus(
-          prev,
-          next,
-          handleLoadingState: () => isInitialized,
-        );
-      },
+      listener:
+          (prev, next) => _handleState(
+            prev,
+            next,
+            context: context,
+            ref: ref,
+            isInitialized: isInitialized,
+          ),
     );
 
     final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
@@ -112,6 +118,45 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
           onSuggestionItemSelect: (id) => _goToDetails(context, id),
           onTabItemSelect: (id) => _goToDetails(context, id),
         );
+  }
+
+  void _handleState(
+    HomeState<T>? prev,
+    HomeState<T> next, {
+    required BuildContext context,
+    required WidgetRef ref,
+    required bool isInitialized,
+  }) {
+    if (!next.isUpdate(prev, (s) => s?.status)) return;
+
+    ref.baseStatusHandler.handleStatus(
+      prev,
+      next,
+      handleLoadingState: () => isInitialized,
+    );
+
+    if (_shouldShowLangDialog(next)) {
+      _showLangDialog(context);
+    }
+  }
+
+  void _showLangDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (_) => QuestionDialog(
+            contentText: LocaleKeys.langDialog.tr(),
+            okButtonTitle: LocaleKeys.settingsButton.tr(),
+            onOkButtonPressed: () {
+              SettingsRoute().go(context);
+            },
+          ),
+    );
+  }
+
+  bool _shouldShowLangDialog(HomeState<T> next) {
+    return next.status is FirstLaunchStatus &&
+        Platform.localeName.startsWith('ru');
   }
 
   bool _isLangUpdated(RefreshState? prev, RefreshState next) {
