@@ -125,9 +125,9 @@ class DetailsActionsContainer extends HookConsumerWidget {
 
     return TextButton.icon(
       onPressed: () => urlLauncher.openUrl(trailerUrl),
-      icon: Icon(Icons.play_arrow_rounded),
+      icon: Icon(Icons.play_arrow_rounded, size: 28),
       label: Text(LocaleKeys.playTrailerButton.tr()),
-    );
+    ).paddingOnly(top: 4);
   }
 
   String? _getTrailerUrl() {
