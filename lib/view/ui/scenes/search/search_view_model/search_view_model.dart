@@ -13,8 +13,6 @@ import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../../../domain/usecases/search/search_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
-import '../../../base/filter_view_model/filter_state.dart';
-import '../../../base/filter_view_model/filter_view_model.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import 'search_state.dart';
@@ -22,11 +20,6 @@ import 'search_state.dart';
 part 'search_movies_view_model.dart';
 
 part 'search_series_view_model.dart';
-
-final searchFilterViewModelPr =
-    AutoDisposeNotifierProvider<FilterViewModel, FilterState>(
-      FilterViewModel.new,
-    );
 
 /// {@category StateManagement}
 ///

@@ -12,7 +12,7 @@ import '../../../widgets/app_bar/main_app_bar.dart';
 import '../../../widgets/app_bar/widgets/content_mode_switch.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
-import '../search_view_model/search_view_model.dart';
+import '../search_filter_view_model/search_filter_view_model.dart';
 import 'search_content_switcher.dart';
 
 class SearchScreenView extends HookConsumerWidget {

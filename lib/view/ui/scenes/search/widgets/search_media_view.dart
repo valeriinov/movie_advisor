@@ -6,11 +6,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
-import '../../../base/filter_view_model/filter_state.dart';
-import '../../../base/filter_view_model/filter_view_model.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
+import '../search_filter_view_model/search_filter_state.dart';
+import '../search_filter_view_model/search_filter_view_model.dart';
 import '../search_view_model/search_view_model.dart';
 import 'search_screen_content.dart';
 
@@ -68,7 +68,7 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
     );
   }
 
-  Future<void> _onRefresh(FilterVSP vspFilter, SearchVSP vsp) {
+  Future<void> _onRefresh(SearchFilterVSP vspFilter, SearchVSP vsp) {
     final filter = vspFilter.selectRead((s) => s.filter);
 
     return vsp.viewModel.loadByFilter(filter, showLoader: false);
@@ -76,7 +76,7 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
 
   void _scheduleInitialDataLoad(
     BuildContext context,
-    FilterVSP vspFilter,
+    SearchFilterVSP vspFilter,
     SearchVSP vsp,
   ) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -86,7 +86,7 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
     });
   }
 
-  void _handleInitialDataLoading(FilterVSP vspFilter, SearchVSP vsp) {
+  void _handleInitialDataLoading(SearchFilterVSP vspFilter, SearchVSP vsp) {
     final filter = vspFilter.selectRead((s) => s.filter);
 
     if (!filter.isDefault) {
@@ -95,7 +95,7 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
   }
 
   ScrollPaginationController _initPaginationController(
-    FilterVSP vspFilter,
+    SearchFilterVSP vspFilter,
     SearchVSP vsp,
   ) {
     final paginationCtrl = ScrollPaginationController(
@@ -124,7 +124,11 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
     );
   }
 
-  void _handleFilterUpdate(FilterState? prev, FilterState next, SearchVSP vsp) {
+  void _handleFilterUpdate(
+    SearchFilterState? prev,
+    SearchFilterState next,
+    SearchVSP vsp,
+  ) {
     if (next.isUpdate(prev, (s) => s?.filter)) {
       vsp.viewModel.loadByFilter(next.filter);
     }
