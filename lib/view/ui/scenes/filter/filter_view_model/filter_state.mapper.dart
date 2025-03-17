@@ -13,80 +13,112 @@ class FilterStateMapper extends ClassMapperBase<FilterState> {
   static FilterStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = FilterStateMapper._());
+      MediaLoadInfoMapper.ensureInitialized();
     }
     return _instance!;
   }
 
   @override
   final String id = 'FilterState';
+  @override
+  Function get typeFactory => <T, F>(f) => f<FilterState<T, F>>();
 
+  static dynamic _$filter(FilterState v) => v.filter;
+  static dynamic _arg$filter<T, F>(f) => f<F>();
+  static const Field<FilterState, dynamic> _f$filter =
+      Field('filter', _$filter, arg: _arg$filter);
+  static MediaLoadInfo<dynamic> _$results(FilterState v) => v.results;
+  static dynamic _arg$results<T, F>(f) => f<MediaLoadInfo<T>>();
+  static const Field<FilterState, MediaLoadInfo<dynamic>> _f$results =
+      Field('results', _$results, opt: true, arg: _arg$results);
   static FilterStatus _$status(FilterState v) => v.status;
   static const Field<FilterState, FilterStatus> _f$status =
       Field('status', _$status, opt: true, def: const FilterBaseStatus());
 
   @override
   final MappableFields<FilterState> fields = const {
+    #filter: _f$filter,
+    #results: _f$results,
     #status: _f$status,
   };
 
-  static FilterState _instantiate(DecodingData data) {
-    return FilterState(status: data.dec(_f$status));
+  static FilterState<T, F> _instantiate<T, F>(DecodingData data) {
+    return FilterState(
+        filter: data.dec(_f$filter),
+        results: data.dec(_f$results),
+        status: data.dec(_f$status));
   }
 
   @override
   final Function instantiate = _instantiate;
 }
 
-mixin FilterStateMappable {
-  FilterStateCopyWith<FilterState, FilterState, FilterState> get copyWith =>
-      _FilterStateCopyWithImpl(this as FilterState, $identity, $identity);
+mixin FilterStateMappable<T, F> {
+  FilterStateCopyWith<FilterState<T, F>, FilterState<T, F>, FilterState<T, F>,
+          T, F>
+      get copyWith => _FilterStateCopyWithImpl(
+          this as FilterState<T, F>, $identity, $identity);
   @override
   String toString() {
     return FilterStateMapper.ensureInitialized()
-        .stringifyValue(this as FilterState);
+        .stringifyValue(this as FilterState<T, F>);
   }
 
   @override
   bool operator ==(Object other) {
     return FilterStateMapper.ensureInitialized()
-        .equalsValue(this as FilterState, other);
+        .equalsValue(this as FilterState<T, F>, other);
   }
 
   @override
   int get hashCode {
-    return FilterStateMapper.ensureInitialized().hashValue(this as FilterState);
+    return FilterStateMapper.ensureInitialized()
+        .hashValue(this as FilterState<T, F>);
   }
 }
 
-extension FilterStateValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, FilterState, $Out> {
-  FilterStateCopyWith<$R, FilterState, $Out> get $asFilterState =>
+extension FilterStateValueCopy<$R, $Out, T, F>
+    on ObjectCopyWith<$R, FilterState<T, F>, $Out> {
+  FilterStateCopyWith<$R, FilterState<T, F>, $Out, T, F> get $asFilterState =>
       $base.as((v, t, t2) => _FilterStateCopyWithImpl(v, t, t2));
 }
 
-abstract class FilterStateCopyWith<$R, $In extends FilterState, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
-  $R call({FilterStatus? status});
-  FilterStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+abstract class FilterStateCopyWith<$R, $In extends FilterState<T, F>, $Out, T,
+    F> implements ClassCopyWith<$R, $In, $Out> {
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T> get results;
+  $R call({F? filter, MediaLoadInfo<T>? results, FilterStatus? status});
+  FilterStateCopyWith<$R2, $In, $Out2, T, F> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
 }
 
-class _FilterStateCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, FilterState, $Out>
-    implements FilterStateCopyWith<$R, FilterState, $Out> {
+class _FilterStateCopyWithImpl<$R, $Out, T, F>
+    extends ClassCopyWithBase<$R, FilterState<T, F>, $Out>
+    implements FilterStateCopyWith<$R, FilterState<T, F>, $Out, T, F> {
   _FilterStateCopyWithImpl(super.value, super.then, super.then2);
 
   @override
   late final ClassMapperBase<FilterState> $mapper =
       FilterStateMapper.ensureInitialized();
   @override
-  $R call({FilterStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
+      get results => ($value.results as MediaLoadInfo<T>)
+          .copyWith
+          .$chain((v) => call(results: v));
   @override
-  FilterState $make(CopyWithData data) =>
-      FilterState(status: data.get(#status, or: $value.status));
+  $R call({F? filter, Object? results = $none, FilterStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (filter != null) #filter: filter,
+        if (results != $none) #results: results,
+        if (status != null) #status: status
+      }));
+  @override
+  FilterState<T, F> $make(CopyWithData data) => FilterState(
+      filter: data.get(#filter, or: $value.filter),
+      results: data.get(#results, or: $value.results),
+      status: data.get(#status, or: $value.status));
 
   @override
-  FilterStateCopyWith<$R2, FilterState, $Out2> $chain<$R2, $Out2>(
+  FilterStateCopyWith<$R2, FilterState<T, F>, $Out2, T, F> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
       _FilterStateCopyWithImpl($value, $cast, t);
 }
