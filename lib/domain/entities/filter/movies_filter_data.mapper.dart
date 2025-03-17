@@ -21,9 +21,9 @@ class MoviesFilterDataMapper extends ClassMapperBase<MoviesFilterData> {
   @override
   final String id = 'MoviesFilterData';
 
-  static int _$year(MoviesFilterData v) => v.year;
+  static int? _$year(MoviesFilterData v) => v.year;
   static const Field<MoviesFilterData, int> _f$year =
-      Field('year', _$year, opt: true, def: 0);
+      Field('year', _$year, opt: true);
   static SortBy _$sortBy(MoviesFilterData v) => v.sortBy;
   static const Field<MoviesFilterData, SortBy> _f$sortBy =
       Field('sortBy', _$sortBy, opt: true, def: SortBy.popularityDesc);
@@ -154,14 +154,14 @@ class _MoviesFilterDataCopyWithImpl<$R, $Out>
           (v) => call(withoutGenres: v));
   @override
   $R call(
-          {int? year,
+          {Object? year = $none,
           SortBy? sortBy,
           List<Country>? withCountries,
           List<Country>? withoutCountries,
           List<MovieGenre>? withGenres,
           List<MovieGenre>? withoutGenres}) =>
       $apply(FieldCopyWithData({
-        if (year != null) #year: year,
+        if (year != $none) #year: year,
         if (sortBy != null) #sortBy: sortBy,
         if (withCountries != null) #withCountries: withCountries,
         if (withoutCountries != null) #withoutCountries: withoutCountries,

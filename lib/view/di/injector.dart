@@ -13,6 +13,7 @@ import '../../common/adapters/url_launcher_adapter/url_launcher_adapter.dart';
 import '../../data/local/app_local_database.dart';
 import '../../data/mappers/app_auth_mapper.dart';
 import '../../data/mappers/app_cast_mapper.dart';
+import '../../data/mappers/app_filter_mapper.dart';
 import '../../data/mappers/app_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
 import '../../data/mappers/app_rating_mapper.dart';
@@ -27,6 +28,7 @@ import '../../data/network/network_manager/network_manager.dart';
 import '../../data/network/services/auth_service.dart';
 import '../../data/network/services/connectivity_service.dart';
 import '../../data/network/services/details_service.dart';
+import '../../data/network/services/filter_service.dart';
 import '../../data/network/services/home_service.dart';
 import '../../data/network/services/media_service.dart';
 import '../../data/network/services/search_service.dart';
@@ -40,6 +42,9 @@ import '../../data/repositories/auth/auth_remote_data_source.dart';
 import '../../data/repositories/auth/impl_auth_repository.dart';
 import '../../data/repositories/details/details_remote_data_source.dart';
 import '../../data/repositories/details/impl_details_repository.dart';
+import '../../data/repositories/filter/filter_local_data_source.dart';
+import '../../data/repositories/filter/filter_remote_data_source.dart';
+import '../../data/repositories/filter/impl_filter_repository.dart';
 import '../../data/repositories/home/home_remote_data_source.dart';
 import '../../data/repositories/home/impl_home_repository.dart';
 import '../../data/repositories/media_local_data_source.dart';
@@ -58,6 +63,8 @@ import '../../data/repositories/watch/watch_remote_data_source.dart';
 import '../../data/sources/impl_auth_local_data_source.dart';
 import '../../data/sources/impl_auth_remote_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
+import '../../data/sources/impl_filter_local_data_source.dart';
+import '../../data/sources/impl_filter_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
 import '../../data/sources/impl_media_local_data_source.dart';
 import '../../data/sources/impl_refresh_local_data_source.dart';
@@ -71,6 +78,7 @@ import '../../data/utils/media_merger/impl_media_merger.dart';
 import '../../data/utils/media_merger/media_merger.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../domain/repositories/details_repository.dart';
+import '../../domain/repositories/filter_repository.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../../domain/repositories/refresh_repository.dart';
 import '../../domain/repositories/search_repository.dart';
@@ -80,6 +88,8 @@ import '../../domain/repositories/watch_repository.dart';
 import '../../domain/usecases/auth_use_case.dart';
 import '../../domain/usecases/details/details_movie_use_case.dart';
 import '../../domain/usecases/details/details_series_use_case.dart';
+import '../../domain/usecases/filter/filter_movies_use_case.dart';
+import '../../domain/usecases/filter/filter_series_use_case.dart';
 import '../../domain/usecases/home/home_movies_use_case.dart';
 import '../../domain/usecases/home/home_series_use_case.dart';
 import '../../domain/usecases/refresh_use_case.dart';
@@ -406,6 +416,32 @@ final settingsRepositoryPr = Provider<SettingsRepository>(
 );
 final settingsUseCasePr = Provider<SettingsUseCase>(
   (ref) => SettingsUseCase(repository: ref.read(settingsRepositoryPr)),
+);
+
+// FILTER
+final filterServicePr = Provider<FilterService>((_) => FilterService());
+final filterRemoteDataSourcePr = Provider<FilterRemoteDataSource>(
+  (ref) => ImplFilterRemoteDataSource(service: ref.read(filterServicePr)),
+);
+final filterLocalDataSourcePr = Provider<FilterLocalDataSource>(
+  (ref) => ImplFilterLocalDataSource(database: ref.read(localDatabasePr)),
+);
+final filterMapperPr = Provider<AppFilterMapper>((_) => AppFilterMapper());
+final filterRepositoryPr = Provider<FilterRepository>(
+  (ref) => ImplFilterRepository(
+    remoteDataSource: ref.read(filterRemoteDataSourcePr),
+    localDataSource: ref.read(filterLocalDataSourcePr),
+    mediaLocalDataSource: ref.read(mediaLocalDataSourcePr),
+    filterMapper: ref.read(filterMapperPr),
+    moviesMapper: ref.read(moviesMapperPr),
+    seriesMapper: ref.read(seriesMapperPr),
+  ),
+);
+final filterMoviesUseCasePr = Provider<FilterMoviesUseCase>(
+  (ref) => FilterMoviesUseCase(repository: ref.read(filterRepositoryPr)),
+);
+final filterSeriesUseCasePr = Provider<FilterSeriesUseCase>(
+  (ref) => FilterSeriesUseCase(repository: ref.read(filterRepositoryPr)),
 );
 
 /// {@category Utils}

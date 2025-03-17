@@ -8,7 +8,7 @@ part 'filter_data.mapper.dart';
 
 @mappableEntity
 class FilterData with FilterDataMappable {
-  final int year;
+  final int? year;
   final SortBy sortBy;
   final List<Country> withCountries;
   final List<Country> withoutCountries;

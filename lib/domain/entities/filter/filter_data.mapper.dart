@@ -20,7 +20,7 @@ class FilterDataMapper extends ClassMapperBase<FilterData> {
   @override
   final String id = 'FilterData';
 
-  static int _$year(FilterData v) => v.year;
+  static int? _$year(FilterData v) => v.year;
   static const Field<FilterData, int> _f$year = Field('year', _$year);
   static SortBy _$sortBy(FilterData v) => v.sortBy;
   static const Field<FilterData, SortBy> _f$sortBy = Field('sortBy', _$sortBy);
@@ -114,12 +114,12 @@ class _FilterDataCopyWithImpl<$R, $Out>
           (v) => call(withoutCountries: v));
   @override
   $R call(
-          {int? year,
+          {Object? year = $none,
           SortBy? sortBy,
           List<Country>? withCountries,
           List<Country>? withoutCountries}) =>
       $apply(FieldCopyWithData({
-        if (year != null) #year: year,
+        if (year != $none) #year: year,
         if (sortBy != null) #sortBy: sortBy,
         if (withCountries != null) #withCountries: withCountries,
         if (withoutCountries != null) #withoutCountries: withoutCountries

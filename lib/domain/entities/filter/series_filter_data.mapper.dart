@@ -21,9 +21,9 @@ class SeriesFilterDataMapper extends ClassMapperBase<SeriesFilterData> {
   @override
   final String id = 'SeriesFilterData';
 
-  static int _$year(SeriesFilterData v) => v.year;
+  static int? _$year(SeriesFilterData v) => v.year;
   static const Field<SeriesFilterData, int> _f$year =
-      Field('year', _$year, opt: true, def: 0);
+      Field('year', _$year, opt: true);
   static SortBy _$sortBy(SeriesFilterData v) => v.sortBy;
   static const Field<SeriesFilterData, SortBy> _f$sortBy =
       Field('sortBy', _$sortBy, opt: true, def: SortBy.popularityDesc);
@@ -154,14 +154,14 @@ class _SeriesFilterDataCopyWithImpl<$R, $Out>
           (v) => call(withoutGenres: v));
   @override
   $R call(
-          {int? year,
+          {Object? year = $none,
           SortBy? sortBy,
           List<Country>? withCountries,
           List<Country>? withoutCountries,
           List<SeriesGenre>? withGenres,
           List<SeriesGenre>? withoutGenres}) =>
       $apply(FieldCopyWithData({
-        if (year != null) #year: year,
+        if (year != $none) #year: year,
         if (sortBy != null) #sortBy: sortBy,
         if (withCountries != null) #withCountries: withCountries,
         if (withoutCountries != null) #withoutCountries: withoutCountries,
