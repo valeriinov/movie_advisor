@@ -8,6 +8,7 @@ class FilterService {
     MoviesFilterDataDto filter, {
     required int page,
   }) {
+    // TODO: implement filterMovies
     throw UnimplementedError();
   }
 
@@ -15,6 +16,7 @@ class FilterService {
     SeriesFilterDataDto filter, {
     required int page,
   }) {
+    // TODO: implement filterSeries
     throw UnimplementedError();
   }
 }
