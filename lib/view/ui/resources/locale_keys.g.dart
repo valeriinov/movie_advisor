@@ -180,5 +180,7 @@ abstract class  LocaleKeys {
   static const sortByReleaseDateDesc = 'sortByReleaseDateDesc';
   static const sortByRevenueAsc = 'sortByRevenueAsc';
   static const sortByRevenueDesc = 'sortByRevenueDesc';
+  static const filterScreenMoviesTitle = 'filterScreenMoviesTitle';
+  static const filterScreenSeriesTitle = 'filterScreenSeriesTitle';
 
 }

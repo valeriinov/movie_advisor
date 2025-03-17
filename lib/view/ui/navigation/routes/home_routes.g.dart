@@ -18,6 +18,10 @@ RouteBase get $homeRoute => GoRouteData.$route(
           path: 'search',
           factory: $SearchRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'filter',
+          factory: $FilterRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -43,6 +47,23 @@ extension $SearchRouteExtension on SearchRoute {
 
   String get location => GoRouteData.$location(
         '/home/search',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $FilterRouteExtension on FilterRoute {
+  static FilterRoute _fromState(GoRouterState state) => FilterRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/filter',
       );
 
   void go(BuildContext context) => context.go(location);

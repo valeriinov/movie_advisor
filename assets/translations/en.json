@@ -175,5 +175,7 @@
   "sortByReleaseDateAsc": "Release Date  ↑",
   "sortByReleaseDateDesc": "Release Date  ↓",
   "sortByRevenueAsc": "Revenue  ↑",
-  "sortByRevenueDesc": "Revenue  ↓"
+  "sortByRevenueDesc": "Revenue  ↓",
+  "filterScreenMoviesTitle": "Filter Movies",
+  "filterScreenSeriesTitle": "Filter Series"
 }

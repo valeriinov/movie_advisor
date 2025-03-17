@@ -175,5 +175,7 @@
   "sortByReleaseDateAsc": "Дата випуску  ↑",
   "sortByReleaseDateDesc": "Дата випуску  ↓",
   "sortByRevenueAsc": "Дохід  ↑",
-  "sortByRevenueDesc": "Дохід  ↓"
+  "sortByRevenueDesc": "Дохід  ↓",
+  "filterScreenMoviesTitle": "Фільтрувати фільми",
+  "filterScreenSeriesTitle": "Фільтрувати серіали"
 }
