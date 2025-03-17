@@ -69,8 +69,8 @@ import '../../data/sources/impl_home_remote_data_source.dart';
 import '../../data/sources/impl_media_local_data_source.dart';
 import '../../data/sources/impl_refresh_local_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
+import '../../data/sources/impl_settings_local_data_source.dart';
 import '../../data/sources/impl_settings_provider.dart';
-import '../../data/sources/impl_settings_remote_data_source.dart';
 import '../../data/sources/impl_sync_data_source.dart';
 import '../../data/sources/impl_watch_local_data_source.dart';
 import '../../data/sources/impl_watch_remote_data_source.dart';
@@ -419,7 +419,12 @@ final settingsUseCasePr = Provider<SettingsUseCase>(
 );
 
 // FILTER
-final filterServicePr = Provider<FilterService>((_) => FilterService());
+final filterServicePr = Provider<FilterService>(
+  (ref) => FilterService(
+    mediaApiClient: ref.read(localizedMediaApiClientPr),
+    responseHandler: ref.read(mediaResponseHandlerPr),
+  ),
+);
 final filterRemoteDataSourcePr = Provider<FilterRemoteDataSource>(
   (ref) => ImplFilterRemoteDataSource(service: ref.read(filterServicePr)),
 );

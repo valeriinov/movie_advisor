@@ -19,6 +19,7 @@ class ImplSettingsLocalDataSource implements SettingsLocalDataSource {
   Future<SettingsTableData?> _fetchSettingsRecord() {
     final query = _database.select(_database.settingsTable)
       ..where((tbl) => tbl.id.equals(1));
+
     return query.getSingleOrNull();
   }
 
