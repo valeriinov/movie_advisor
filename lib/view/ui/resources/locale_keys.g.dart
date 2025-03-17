@@ -157,5 +157,28 @@ abstract class  LocaleKeys {
   static const playTrailerButton = 'playTrailerButton';
   static const langDialog = 'langDialog';
   static const settingsButton = 'settingsButton';
+  static const unitedStates = 'unitedStates';
+  static const unitedKingdom = 'unitedKingdom';
+  static const canada = 'canada';
+  static const germany = 'germany';
+  static const france = 'france';
+  static const italy = 'italy';
+  static const spain = 'spain';
+  static const china = 'china';
+  static const japan = 'japan';
+  static const southKorea = 'southKorea';
+  static const india = 'india';
+  static const brazil = 'brazil';
+  static const australia = 'australia';
+  static const russia = 'russia';
+  static const ukraine = 'ukraine';
+  static const sortByPopularityAsc = 'sortByPopularityAsc';
+  static const sortByPopularityDesc = 'sortByPopularityDesc';
+  static const sortByRatingAsc = 'sortByRatingAsc';
+  static const sortByRatingDesc = 'sortByRatingDesc';
+  static const sortByReleaseDateAsc = 'sortByReleaseDateAsc';
+  static const sortByReleaseDateDesc = 'sortByReleaseDateDesc';
+  static const sortByRevenueAsc = 'sortByRevenueAsc';
+  static const sortByRevenueDesc = 'sortByRevenueDesc';
 
 }

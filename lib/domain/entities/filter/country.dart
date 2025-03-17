@@ -1,0 +1,18 @@
+enum Country {
+  unitedStates,
+  unitedKingdom,
+  canada,
+  germany,
+  france,
+  italy,
+  spain,
+  china,
+  japan,
+  southKorea,
+  india,
+  brazil,
+  australia,
+  russia,
+  ukraine,
+  none,
+}
