@@ -16,4 +16,7 @@ enum SeriesGenre {
   warAndPolitics,
   western,
   none;
+
+  static List<SeriesGenre> get valuesWithoutNone =>
+      values.where((e) => e != none).toList();
 }

@@ -193,5 +193,7 @@ abstract class  LocaleKeys {
   static const filterDescAll = 'filterDescAll';
   static const filterDescNone = 'filterDescNone';
   static const filterSelectedDesc = 'filterSelectedDesc';
+  static const selectCountriesDialog = 'selectCountriesDialog';
+  static const selectGenresDialog = 'selectGenresDialog';
 
 }

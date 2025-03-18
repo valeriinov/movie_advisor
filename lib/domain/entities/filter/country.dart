@@ -14,5 +14,8 @@ enum Country {
   australia,
   russia,
   ukraine,
-  none,
+  none;
+
+  static List<Country> get valuesWithoutNone =>
+      values.where((e) => e != none).toList();
 }

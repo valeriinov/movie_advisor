@@ -19,4 +19,7 @@ enum MovieGenre {
   war,
   western,
   none;
+
+  static List<MovieGenre> get valuesWithoutNone =>
+      values.where((e) => e != none).toList();
 }

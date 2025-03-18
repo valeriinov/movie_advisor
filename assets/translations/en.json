@@ -188,5 +188,7 @@
   "filterYear": "Year",
   "filterDescAll": "All",
   "filterDescNone": "None",
-  "filterSelectedDesc": "Selected"
+  "filterSelectedDesc": "Selected",
+  "selectCountriesDialog": "Select countries",
+  "selectGenresDialog": "Select genres"
 }

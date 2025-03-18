@@ -1,15 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/ext/flutter_ext/widget/edge_insets_creator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../../../domain/entities/filter/country.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../../../domain/entities/filter/series_filter_data.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../../resources/ext/country_desc.dart';
 import '../../../resources/ext/sort_by_desc.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/no_always_scroll_wrapper.dart';
@@ -29,6 +32,7 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
     final fixedHeight = kToolbarHeight + (dimens.spLarge / 2);
 
     final vsp = ref.vspFromADProvider(provider);
+    final viewModel = vsp.viewModel;
 
     final filter = vsp.selectWatch((s) => s.filter);
 
@@ -71,7 +75,12 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
                 iconPath: AppImages.earthIcon,
                 title: LocaleKeys.filterWithCountries.tr(),
                 subtitle: _getWithDescription(filter.withCountries.length),
-                onTap: () {},
+                onTap:
+                    () => _openCountriesFilterDialog(
+                      context,
+                      filter.withCountries,
+                      viewModel.updateWithCountries,
+                    ),
               ),
               FilterButton(
                 iconPath: AppImages.earthIcon,
@@ -94,6 +103,25 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
           ),
         ),
       ),
+    );
+  }
+
+  void _openCountriesFilterDialog(
+    BuildContext context,
+    List<Country> selectedCountries,
+    Function(List<Country>) onApply,
+  ) async {
+    await FilterListDialog.display<Country>(
+      context,
+      themeData: FilterListThemeData(context),
+      listData: Country.valuesWithoutNone,
+      selectedListData: selectedCountries,
+      hideSearchField: true,
+      headlineText: LocaleKeys.selectCountriesDialog.tr(),
+      choiceChipLabel: (country) => country?.desc,
+      validateSelectedItem: (list, val) => list?.contains(val) ?? false,
+      onItemSearch: (_, __) => false,
+      onApplyButtonClick: (list) => onApply(list ?? []),
     );
   }
 

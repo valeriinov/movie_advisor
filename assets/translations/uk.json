@@ -188,5 +188,7 @@
   "filterYear": "Рік",
   "filterDescAll": "Всі",
   "filterDescNone": "Немає",
-  "filterSelectedDesc": "Вибрано"
+  "filterSelectedDesc": "Вибрано",
+  "selectCountriesDialog": "Виберіть країни",
+  "selectGenresDialog": "Виберіть жанри"
 }
