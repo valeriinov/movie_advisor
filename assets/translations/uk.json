@@ -177,5 +177,16 @@
   "sortByRevenueAsc": "Дохід  ↑",
   "sortByRevenueDesc": "Дохід  ↓",
   "filterScreenMoviesTitle": "Фільтрувати фільми",
-  "filterScreenSeriesTitle": "Фільтрувати серіали"
+  "filterScreenSeriesTitle": "Фільтрувати серіали",
+  "emptyFilterTitle": "Вибачте, Результатів За Вашим Фільтром Не Знайдено :(",
+  "emptyFilterSubtitle": "Спробуйте змінити налаштування фільтра.",
+  "filterSortBy": "Сортувати",
+  "filterWithGenres": "Включити жанри",
+  "filterWithoutGenres": "Виключити жанри",
+  "filterWithCountries": "Включити країни",
+  "filterWithoutCountries": "Виключити країни",
+  "filterYear": "Рік",
+  "filterDescAll": "Всі",
+  "filterDescNone": "Немає",
+  "filterSelectedDesc": "Вибрано"
 }

@@ -177,5 +177,16 @@
   "sortByRevenueAsc": "Revenue  ↑",
   "sortByRevenueDesc": "Revenue  ↓",
   "filterScreenMoviesTitle": "Filter Movies",
-  "filterScreenSeriesTitle": "Filter Series"
+  "filterScreenSeriesTitle": "Filter Series",
+  "emptyFilterTitle": "Sorry, No Results Found For Your Filter :(",
+  "emptyFilterSubtitle": "Try  changing the filter settings.",
+  "filterSortBy": "Sort",
+  "filterWithGenres": "Include Genres",
+  "filterWithoutGenres": "Exclude Genres",
+  "filterWithCountries": "Include Countries",
+  "filterWithoutCountries": "Exclude Countries",
+  "filterYear": "Year",
+  "filterDescAll": "All",
+  "filterDescNone": "None",
+  "filterSelectedDesc": "Selected"
 }

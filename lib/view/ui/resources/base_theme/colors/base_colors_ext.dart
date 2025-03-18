@@ -107,6 +107,8 @@ abstract final class BaseColorsFactory {
     contSwitchBorder: _BaseColors.contSwitchBorder,
     contSwitchFg: _BaseColors.contSwitchFg,
     contSwitchFgSelect: _BaseColors.contSwitchFgSelect,
+    filterPrimFg: _BaseColors.filterPrimFg,
+    filterSecFg: _BaseColors.filterSecFg,
   );
 }
 
@@ -529,6 +531,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color contSwitchFgSelect;
 
+  /// Filter primary foreground color.
+  @override
+  final Color filterPrimFg;
+
+  /// Filter secondary foreground color.
+  @override
+  final Color filterSecFg;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -634,5 +644,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.contSwitchBorder,
     required this.contSwitchFg,
     required this.contSwitchFgSelect,
+    required this.filterPrimFg,
+    required this.filterSecFg,
   });
 }

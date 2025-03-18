@@ -74,6 +74,12 @@ abstract final class BaseComponentsStylesFactory {
       sliderValTextStyle: _BaseComponentsStyles.sliderValTextStyle(
         colors.sliderVal,
       ),
+      filterTitleTextStyle: _BaseComponentsStyles.filterTitleTextStyle(
+        colors.filterPrimFg,
+      ),
+      filterSubtTextStyle: _BaseComponentsStyles.filterSubtTextStyle(
+        colors.filterSecFg,
+      ),
     );
   }
 }
@@ -192,6 +198,14 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final TextStyle sliderValTextStyle;
 
+  /// TextStyle of the filter title.
+  @override
+  final TextStyle filterTitleTextStyle;
+
+  /// TextStyle of the filter subtitle.
+  @override
+  final TextStyle filterSubtTextStyle;
+
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
     required this.cardPrimShape,
@@ -221,5 +235,7 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.sliderThumbRadius,
     required this.sliderTrackHeight,
     required this.sliderValTextStyle,
+    required this.filterTitleTextStyle,
+    required this.filterSubtTextStyle,
   });
 }

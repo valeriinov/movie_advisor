@@ -182,5 +182,16 @@ abstract class  LocaleKeys {
   static const sortByRevenueDesc = 'sortByRevenueDesc';
   static const filterScreenMoviesTitle = 'filterScreenMoviesTitle';
   static const filterScreenSeriesTitle = 'filterScreenSeriesTitle';
+  static const emptyFilterTitle = 'emptyFilterTitle';
+  static const emptyFilterSubtitle = 'emptyFilterSubtitle';
+  static const filterSortBy = 'filterSortBy';
+  static const filterWithGenres = 'filterWithGenres';
+  static const filterWithoutGenres = 'filterWithoutGenres';
+  static const filterWithCountries = 'filterWithCountries';
+  static const filterWithoutCountries = 'filterWithoutCountries';
+  static const filterYear = 'filterYear';
+  static const filterDescAll = 'filterDescAll';
+  static const filterDescNone = 'filterDescNone';
+  static const filterSelectedDesc = 'filterSelectedDesc';
 
 }

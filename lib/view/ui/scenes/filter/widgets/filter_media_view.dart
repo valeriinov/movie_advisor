@@ -7,10 +7,14 @@ import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
+import '../../../base/refresh_view_model/refresh_state.dart';
+import '../../../base/refresh_view_model/refresh_view_model.dart';
+import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
 import '../filter_view_model/filter_view_model.dart';
 import 'filter_screen_content.dart';
+import 'floating_filter_bar.dart';
 
 class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
     extends HookConsumerWidget {
@@ -42,6 +46,17 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
       },
     );
 
+    final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
+
+    refreshVsp.handleState(
+      listener: (prev, next) {
+        if (_isLangUpdated(prev, next)) {
+          vsp.viewModel.loadInitialData(showLoader: false);
+          scrollController.jumpTo(0);
+        }
+      },
+    );
+
     useEffect(() {
       final paginationCtrl = _initPaginationController(vsp, scrollController);
 
@@ -50,21 +65,27 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
 
     final results = vsp.selectWatch((s) => s.results);
 
-    return FilterScreenContent(
-      isLoading: isLoading,
-      isInitialized: isInitialized,
-      results: results,
-      // TODO: Add localization
-      emptyListTitle: 'No results found',
-      // TODO: Add localization
-      emptyListSubtitle: 'Try changing the filters',
-      scrollController: scrollController,
-      onItemSelect: (id) => _goToDetails(context, id),
-      onRefresh:
-          !isLoading
-              ? () => vsp.viewModel.loadInitialData(showLoader: false)
-              : null,
+    return CustomScrollView(
+      controller: scrollController,
+      slivers: [
+        FloatingFilterBar(provider: provider),
+        FilterScreenContent(
+          isLoading: isLoading,
+          isInitialized: isInitialized,
+          results: results,
+          onItemSelect: (id) => _goToDetails(context, id),
+          onRefresh:
+              !isLoading
+                  ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                  : null,
+        ),
+      ],
     );
+  }
+
+  bool _isLangUpdated(RefreshState? prev, RefreshState next) {
+    return next.isUpdate(prev, (s) => s?.status) &&
+        next.status is LangUpdatedStatus;
   }
 
   ScrollPaginationController _initPaginationController(

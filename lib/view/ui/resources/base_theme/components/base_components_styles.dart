@@ -130,4 +130,19 @@ abstract final class _BaseComponentsStyles {
     fontSize: 32,
     color: color,
   );
+
+  static TextStyle filterTitleTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    height: 22 / 16,
+    color: color,
+  );
+
+  static TextStyle filterSubtTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: color,
+  );
 }
