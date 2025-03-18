@@ -39,6 +39,8 @@ final class FilterMoviesViewModel
       _watchChangesSubscription.cancel();
     });
 
+    scheduleCall(loadInitialData);
+
     return FilterMoviesState(filter: MoviesFilterData());
   }
 

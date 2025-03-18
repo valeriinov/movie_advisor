@@ -39,6 +39,8 @@ final class FilterSeriesViewModel
       _watchChangesSubscription.cancel();
     });
 
+    scheduleCall(loadInitialData);
+
     return FilterSeriesState(filter: SeriesFilterData());
   }
 
