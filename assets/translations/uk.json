@@ -189,6 +189,11 @@
   "filterDescAll": "Всі",
   "filterDescNone": "Немає",
   "filterSelectedDesc": "Вибрано",
-  "selectCountriesDialog": "Виберіть країни",
-  "selectGenresDialog": "Виберіть жанри"
+  "withGenresDialog": "Включити жанри",
+  "withoutGenresDialog": "Виключити жанри",
+  "withCountriesDialog": "Включити країни",
+  "withoutCountriesDialog": "Виключити країни",
+  "sortByDialog": "Сортувати за",
+  "filterResetButton": "Скинути",
+  "filterApplyButton": "Застосувати"
 }

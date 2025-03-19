@@ -18,6 +18,10 @@ abstract final class BaseButtonStylesFactory {
       btnSecHeight: _BaseButtonsStyles.btnSecHeight,
       btnPrimShape: _BaseButtonsStyles.btnPrimShape,
       btnSecShape: _BaseButtonsStyles.btnSecShape,
+      elevBtnPrimTextStyle: _BaseButtonsStyles.elevBtnPrimTextStyle,
+      outBtnPrimTextStyle: _BaseButtonsStyles.outBtnPrimTextStyle,
+      fillBtnPrimTextStyle: _BaseButtonsStyles.fillBtnPrimTextStyle,
+      textBtnPrimTextStyle: _BaseButtonsStyles.textBtnPrimTextStyle,
       btnPrimMinSize: _BaseButtonsStyles.btnPrimMinSize,
       btnSecMinSize: _BaseButtonsStyles.btnSecMinSize,
       elevBtnPrimStyle: _BaseButtonsStyles.elevBtnPrimStyle(
@@ -92,6 +96,22 @@ class BaseButtonStyles extends ThemeExtension<BaseButtonStyles>
   @override
   final OutlinedBorder btnSecShape;
 
+  /// Primary button text style.
+  @override
+  final TextStyle elevBtnPrimTextStyle;
+
+  /// Primary button text style.
+  @override
+  final TextStyle outBtnPrimTextStyle;
+
+  /// Primary button text style.
+  @override
+  final TextStyle fillBtnPrimTextStyle;
+
+  /// Primary button text style.
+  @override
+  final TextStyle textBtnPrimTextStyle;
+
   /// Primary button minimum size.
   @override
   final Size btnPrimMinSize;
@@ -135,6 +155,10 @@ class BaseButtonStyles extends ThemeExtension<BaseButtonStyles>
     required this.btnSecHeight,
     required this.btnPrimShape,
     required this.btnSecShape,
+    required this.elevBtnPrimTextStyle,
+    required this.outBtnPrimTextStyle,
+    required this.fillBtnPrimTextStyle,
+    required this.textBtnPrimTextStyle,
     required this.btnPrimMinSize,
     required this.btnSecMinSize,
     required this.elevBtnPrimStyle,

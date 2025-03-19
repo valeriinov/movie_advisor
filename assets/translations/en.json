@@ -189,6 +189,11 @@
   "filterDescAll": "All",
   "filterDescNone": "None",
   "filterSelectedDesc": "Selected",
-  "selectCountriesDialog": "Select countries",
-  "selectGenresDialog": "Select genres"
+  "withGenresDialog": "Include Genres",
+  "withoutGenresDialog": "Exclude Genres",
+  "withCountriesDialog": "Include Countries",
+  "withoutCountriesDialog": "Exclude Countries",
+  "sortByDialog": "Sort by",
+  "filterResetButton": "Reset",
+  "filterApplyButton": "Apply"
 }
