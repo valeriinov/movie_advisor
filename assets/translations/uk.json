@@ -193,6 +193,7 @@
   "withoutGenresDialog": "Виключити жанри",
   "withCountriesDialog": "Включити країни",
   "withoutCountriesDialog": "Виключити країни",
+  "selectYearDialog": "Рік випуску",
   "sortByDialog": "Сортувати за",
   "filterResetButton": "Скинути",
   "filterApplyButton": "Застосувати"

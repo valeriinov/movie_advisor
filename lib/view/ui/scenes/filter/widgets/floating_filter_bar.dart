@@ -28,6 +28,7 @@ import '../filter_view_model/filter_view_model.dart';
 import 'filter_bottom_sheet.dart';
 import 'filter_button.dart';
 import 'filter_chip.dart';
+import 'filter_year_picker.dart';
 import 'sort_by_radio_group.dart';
 
 class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
@@ -145,7 +146,12 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
                     filter.year != null
                         ? filter.year.toString()
                         : LocaleKeys.filterDescAll.tr(),
-                onTap: () {},
+                onTap:
+                    () => _openYearDialog(
+                      context,
+                      currentYear: filter.year ?? DateTime.now().year,
+                      onYearChanged: viewModel.updateFilterYear,
+                    ),
               ),
             ],
           ),
@@ -184,6 +190,34 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
         _ => <G>[],
       },
     ];
+  }
+
+  int _getWithGenresCount(F filter) {
+    return switch (filter) {
+      MoviesFilterData() => filter.withGenres.length,
+      SeriesFilterData() => filter.withGenres.length,
+      _ => -1,
+    };
+  }
+
+  int _getWithoutGenresCount(F filter) {
+    return switch (filter) {
+      MoviesFilterData() => filter.withoutGenres.length,
+      SeriesFilterData() => filter.withoutGenres.length,
+      _ => -1,
+    };
+  }
+
+  String _getWithDescription(int itemsCount) {
+    return itemsCount == 0
+        ? LocaleKeys.filterDescAll.tr()
+        : '${LocaleKeys.filterSelectedDesc.tr()} ($itemsCount)';
+  }
+
+  String _getWithoutDescription(int itemsCount) {
+    return itemsCount == 0
+        ? LocaleKeys.filterDescNone.tr()
+        : '${LocaleKeys.filterSelectedDesc.tr()} ($itemsCount)';
   }
 
   void _openSortByDialog(
@@ -329,31 +363,23 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
     );
   }
 
-  int _getWithGenresCount(F filter) {
-    return switch (filter) {
-      MoviesFilterData() => filter.withGenres.length,
-      SeriesFilterData() => filter.withGenres.length,
-      _ => -1,
-    };
-  }
-
-  int _getWithoutGenresCount(F filter) {
-    return switch (filter) {
-      MoviesFilterData() => filter.withoutGenres.length,
-      SeriesFilterData() => filter.withoutGenres.length,
-      _ => -1,
-    };
-  }
-
-  String _getWithDescription(int itemsCount) {
-    return itemsCount == 0
-        ? LocaleKeys.filterDescAll.tr()
-        : '${LocaleKeys.filterSelectedDesc.tr()} ($itemsCount)';
-  }
-
-  String _getWithoutDescription(int itemsCount) {
-    return itemsCount == 0
-        ? LocaleKeys.filterDescNone.tr()
-        : '${LocaleKeys.filterSelectedDesc.tr()} ($itemsCount)';
+  void _openYearDialog(
+    BuildContext ctx, {
+    required int currentYear,
+    required void Function(int?) onYearChanged,
+  }) {
+    showBlurredBottomSheet(
+      isDismissible: false,
+      context: ctx,
+      useRootNavigator: true,
+      child: FilterBottomSheet(
+        title: LocaleKeys.selectYearDialog.tr(),
+        minHeight: 360,
+        content: FilterYearPicker(
+          year: currentYear,
+          onYearChanged: onYearChanged,
+        ),
+      ),
+    );
   }
 }

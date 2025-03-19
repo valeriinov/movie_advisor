@@ -193,6 +193,7 @@
   "withoutGenresDialog": "Exclude Genres",
   "withCountriesDialog": "Include Countries",
   "withoutCountriesDialog": "Exclude Countries",
+  "selectYearDialog": "Release Year",
   "sortByDialog": "Sort by",
   "filterResetButton": "Reset",
   "filterApplyButton": "Apply"
