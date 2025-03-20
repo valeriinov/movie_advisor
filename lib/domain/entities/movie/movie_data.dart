@@ -13,6 +13,7 @@ part 'movie_data.mapper.dart';
 @mappableEntity
 final class MovieData extends MediaData with MovieDataMappable {
   final List<MovieGenre> genres;
+  final int revenue;
 
   const MovieData({
     super.id = -1,
@@ -28,6 +29,7 @@ final class MovieData extends MediaData with MovieDataMappable {
     super.tmdbRating = const TMDBRating(),
     super.cast = const [],
     super.videos = const [],
+    this.revenue = 0,
     super.userRating = 0,
     super.isInWatchlist = false,
     super.isWatched = false,

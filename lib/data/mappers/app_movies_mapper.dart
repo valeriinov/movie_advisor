@@ -71,6 +71,7 @@ final class AppMoviesMapper extends AppMapper {
           dto.videos != null
               ? _videoMapper.mapVideosDataDtoTiDomain(dto.videos!)
               : [],
+      revenue: dto.revenue ?? 0,
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,

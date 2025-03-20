@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../../../domain/entities/movie/movie_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
@@ -58,7 +59,7 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
             appBar: MainAppBar(title: Text(appBarTitle)),
             body:
                 isSkeletonVisible
-                    ? const DetailsContentSkeleton()
+                    ? DetailsContentSkeleton(isMovie: T is MovieData)
                     : DetailsScreenContent(
                       data: data,
                       status: status,

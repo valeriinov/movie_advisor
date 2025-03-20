@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
+import '../../../../../domain/entities/movie/movie_data.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/app_rate_format.dart';
+import '../../../resources/app_revenue_format.dart';
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
 import '../../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
@@ -39,6 +41,7 @@ class DetailsPropsContainer extends StatelessWidget {
                 data.userRating,
               ),
             ),
+            _buildRevenueTile(),
             DetailsPropsTile(
               iconPath: AppImages.genreIcon,
               description: data.getGenresStr(),
@@ -55,5 +58,20 @@ class DetailsPropsContainer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildRevenueTile() {
+    if (!_isMovie()) return SizedBox.shrink();
+
+    final movie = data as MovieData;
+
+    return DetailsPropsTile(
+      iconPath: AppImages.revenueIcon,
+      description: AppRevenueFormat.createRevenueString(movie.revenue),
+    );
+  }
+
+  bool _isMovie() {
+    return data is MovieData;
   }
 }

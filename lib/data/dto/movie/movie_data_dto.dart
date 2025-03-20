@@ -30,6 +30,7 @@ class MovieDataDto with MovieDataDtoMappable {
   final int? voteCount;
   final CreditsDataDto? credits;
   final VideosDataDto? videos;
+  final int? revenue;
   final int? userRating;
   final bool? isInWatchlist;
   final bool? isWatched;
@@ -51,6 +52,7 @@ class MovieDataDto with MovieDataDtoMappable {
     this.voteCount,
     this.credits,
     this.videos,
+    this.revenue,
     this.userRating,
     this.isInWatchlist,
     this.isWatched,

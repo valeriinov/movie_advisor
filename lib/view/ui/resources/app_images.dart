@@ -32,6 +32,7 @@ abstract final class AppImages {
   static const watchedIcon = "${_imgPath}watched_icon.svg";
   static const toastSuccessIcon = "${_imgPath}toast_success_icon.svg";
   static const addWatchedFillIcon = "${_imgPath}add_watched_fill_icon.svg";
+  static const revenueIcon = "${_imgPath}revenue_icon.svg";
   static const emptyListImage = "${_imgPath}empty_list_image.png";
   static const genreIcon = "${_imgPath}genre_icon.svg";
   static const dateIcon = "${_imgPath}date_icon.svg";
