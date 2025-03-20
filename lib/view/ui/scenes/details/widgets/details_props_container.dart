@@ -41,7 +41,7 @@ class DetailsPropsContainer extends StatelessWidget {
                 data.userRating,
               ),
             ),
-            _buildRevenueTile(),
+            if (_isMovie()) _buildRevenueTile(),
             DetailsPropsTile(
               iconPath: AppImages.genreIcon,
               description: data.getGenresStr(),
@@ -60,18 +60,16 @@ class DetailsPropsContainer extends StatelessWidget {
     );
   }
 
-  Widget _buildRevenueTile() {
-    if (!_isMovie()) return SizedBox.shrink();
+  bool _isMovie() {
+    return data is MovieData;
+  }
 
+  Widget _buildRevenueTile() {
     final movie = data as MovieData;
 
     return DetailsPropsTile(
       iconPath: AppImages.revenueIcon,
       description: AppRevenueFormat.createRevenueString(movie.revenue),
     );
-  }
-
-  bool _isMovie() {
-    return data is MovieData;
   }
 }
