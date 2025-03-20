@@ -111,6 +111,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get contSwitchFgSelect;
   Color get filterPrimFg;
   Color get filterSecFg;
+  Color get filterCtrlBarBg;
+  Color get filterCtrlBarShadow;
+  Color get filterCtrlBarResetBtnOverlay;
 
   @override
   BaseColors copyWith({
@@ -216,6 +219,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? contSwitchFgSelect,
     Color? filterPrimFg,
     Color? filterSecFg,
+    Color? filterCtrlBarBg,
+    Color? filterCtrlBarShadow,
+    Color? filterCtrlBarResetBtnOverlay,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -322,6 +328,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       contSwitchFgSelect: contSwitchFgSelect ?? this.contSwitchFgSelect,
       filterPrimFg: filterPrimFg ?? this.filterPrimFg,
       filterSecFg: filterSecFg ?? this.filterSecFg,
+      filterCtrlBarBg: filterCtrlBarBg ?? this.filterCtrlBarBg,
+      filterCtrlBarShadow: filterCtrlBarShadow ?? this.filterCtrlBarShadow,
+      filterCtrlBarResetBtnOverlay:
+          filterCtrlBarResetBtnOverlay ?? this.filterCtrlBarResetBtnOverlay,
     );
   }
 
@@ -467,6 +477,11 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
           Color.lerp(contSwitchFgSelect, other.contSwitchFgSelect, t)!,
       filterPrimFg: Color.lerp(filterPrimFg, other.filterPrimFg, t)!,
       filterSecFg: Color.lerp(filterSecFg, other.filterSecFg, t)!,
+      filterCtrlBarBg: Color.lerp(filterCtrlBarBg, other.filterCtrlBarBg, t)!,
+      filterCtrlBarShadow:
+          Color.lerp(filterCtrlBarShadow, other.filterCtrlBarShadow, t)!,
+      filterCtrlBarResetBtnOverlay: Color.lerp(
+          filterCtrlBarResetBtnOverlay, other.filterCtrlBarResetBtnOverlay, t)!,
     );
   }
 
@@ -620,7 +635,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(contSwitchFg, other.contSwitchFg) &&
             const DeepCollectionEquality().equals(contSwitchFgSelect, other.contSwitchFgSelect) &&
             const DeepCollectionEquality().equals(filterPrimFg, other.filterPrimFg) &&
-            const DeepCollectionEquality().equals(filterSecFg, other.filterSecFg));
+            const DeepCollectionEquality().equals(filterSecFg, other.filterSecFg) &&
+            const DeepCollectionEquality().equals(filterCtrlBarBg, other.filterCtrlBarBg) &&
+            const DeepCollectionEquality().equals(filterCtrlBarShadow, other.filterCtrlBarShadow) &&
+            const DeepCollectionEquality().equals(filterCtrlBarResetBtnOverlay, other.filterCtrlBarResetBtnOverlay));
   }
 
   @override
@@ -729,6 +747,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(contSwitchFgSelect),
       const DeepCollectionEquality().hash(filterPrimFg),
       const DeepCollectionEquality().hash(filterSecFg),
+      const DeepCollectionEquality().hash(filterCtrlBarBg),
+      const DeepCollectionEquality().hash(filterCtrlBarShadow),
+      const DeepCollectionEquality().hash(filterCtrlBarResetBtnOverlay),
     ]);
   }
 }

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
+import '../../../resources/base_theme/buttons/base_buttons_styles_ext.dart';
+import '../../../resources/base_theme/colors/base_colors_ext.dart';
+import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 
 class FilterYearPicker extends HookWidget {
@@ -20,7 +23,9 @@ class FilterYearPicker extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxYear = useMemoized(() => DateTime.now().year + 1);
+    final dimens = context.baseDimens;
+
+    final maxYear = useMemoized(() => DateTime.now().year);
     final paddedYears = useMemoized(() => _generatePaddedYears(maxYear));
 
     final scrollController = useFixedExtentScrollController(
@@ -52,15 +57,9 @@ class FilterYearPicker extends HookWidget {
                     .toList(),
           ),
         ),
-        IntrinsicWidth(
-          child: FilledButton(
-            onPressed:
-                _isYearChanged(selectedYear.value)
-                    ? () => _applySelection(selectedYear)
-                    : null,
-            child: Text(LocaleKeys.filterApplyButton.tr()),
-          ),
-        ),
+        dimens.spMedium.gapVert(),
+        _buildControlButtonsBar(selectedYear),
+        10.gapVert(),
       ],
     );
   }
@@ -103,9 +102,87 @@ class FilterYearPicker extends HookWidget {
     );
   }
 
-  bool _isYearChanged(int newYear) => newYear != year;
+  Widget _buildControlButtonsBar(ValueNotifier<int> selectedYear) {
+    return Builder(
+      builder: (context) {
+        final colors = context.baseColors;
+        final styles = context.baseButtonStyles;
 
-  void _applySelection(ValueNotifier<int> selectedYear) {
+        return Container(
+          decoration: _buildContainerDecoration(colors),
+          height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildResetButton(context, colors, styles),
+              _buildApplyButton(context, colors, selectedYear),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  BoxDecoration _buildContainerDecoration(BaseColors colors) {
+    return BoxDecoration(
+      color: colors.filterCtrlBarBg,
+      borderRadius: BorderRadiusCircular(25),
+      boxShadow: [
+        BoxShadow(
+          offset: const Offset(0, 5),
+          blurRadius: 15,
+          color: colors.filterCtrlBarShadow,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildResetButton(
+    BuildContext context,
+    BaseColors colors,
+    BaseButtonStyles styles,
+  ) {
+    return IntrinsicWidth(
+      child: TextButton(
+        style: FilledButton.styleFrom(
+          overlayColor: colors.filterCtrlBarResetBtnOverlay,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadiusCircular(25)),
+          foregroundColor: colors.btnFillPrimBg,
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          textStyle: styles.fillBtnPrimTextStyle,
+        ),
+        onPressed: () => _resetSelection(context),
+        child: Text(LocaleKeys.filterResetButton.tr()),
+      ),
+    );
+  }
+
+  Widget _buildApplyButton(
+    BuildContext context,
+    BaseColors colors,
+    ValueNotifier<int> selectedYear,
+  ) {
+    return IntrinsicWidth(
+      child: FilledButton(
+        style: FilledButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadiusCircular(25)),
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+        ),
+        onPressed: () => _applySelection(context, selectedYear),
+        child: Text(LocaleKeys.filterApplyButton.tr()),
+      ),
+    );
+  }
+
+  void _applySelection(BuildContext context, ValueNotifier<int> selectedYear) {
     onYearChanged(selectedYear.value);
+    Navigator.of(context).pop();
+  }
+
+  void _resetSelection(BuildContext context) {
+    onYearChanged(null);
+    Navigator.of(context).pop();
   }
 }

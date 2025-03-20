@@ -144,4 +144,8 @@ abstract final class _BaseColors {
 
   static const filterPrimFg = Color(0xFF92929D);
   static const filterSecFg = Color(0xFF92929D);
+
+  static const filterCtrlBarBg = Colors.white;
+  static const filterCtrlBarShadow = Color(0x12000000);
+  static const filterCtrlBarResetBtnOverlay = Color(0xff737d8e);
 }
