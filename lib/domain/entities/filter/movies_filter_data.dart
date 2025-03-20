@@ -17,7 +17,6 @@ class MoviesFilterData extends FilterData with MoviesFilterDataMappable {
     super.year,
     super.sortBy = SortBy.popularityDesc,
     super.withCountries = const [],
-    super.withoutCountries = const [],
     this.withGenres = const [],
     this.withoutGenres = const [],
   });

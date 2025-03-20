@@ -14,9 +14,6 @@ class MoviesFilterTable extends Table {
   TextColumn get withCountries =>
       text().map(filterCountryConverter).nullable()();
 
-  TextColumn get withoutCountries =>
-      text().map(filterCountryConverter).nullable()();
-
   TextColumn get withGenres => text().map(movieGenresConverter).nullable()();
 
   TextColumn get withoutGenres => text().map(movieGenresConverter).nullable()();

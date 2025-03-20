@@ -11,7 +11,6 @@ class SeriesFilterDataDto with SeriesFilterDataDtoMappable {
   final int? year;
   final SortByDto? sortBy;
   final List<CountryDto>? withCountries;
-  final List<CountryDto>? withoutCountries;
   final List<SeriesGenreDto>? withGenres;
   final List<SeriesGenreDto>? withoutGenres;
 
@@ -19,7 +18,6 @@ class SeriesFilterDataDto with SeriesFilterDataDtoMappable {
     this.year,
     this.sortBy,
     this.withCountries,
-    this.withoutCountries,
     this.withGenres,
     this.withoutGenres,
   });

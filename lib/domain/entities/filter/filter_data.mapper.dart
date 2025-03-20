@@ -27,24 +27,19 @@ class FilterDataMapper extends ClassMapperBase<FilterData> {
   static List<Country> _$withCountries(FilterData v) => v.withCountries;
   static const Field<FilterData, List<Country>> _f$withCountries =
       Field('withCountries', _$withCountries);
-  static List<Country> _$withoutCountries(FilterData v) => v.withoutCountries;
-  static const Field<FilterData, List<Country>> _f$withoutCountries =
-      Field('withoutCountries', _$withoutCountries);
 
   @override
   final MappableFields<FilterData> fields = const {
     #year: _f$year,
     #sortBy: _f$sortBy,
     #withCountries: _f$withCountries,
-    #withoutCountries: _f$withoutCountries,
   };
 
   static FilterData _instantiate(DecodingData data) {
     return FilterData(
         year: data.dec(_f$year),
         sortBy: data.dec(_f$sortBy),
-        withCountries: data.dec(_f$withCountries),
-        withoutCountries: data.dec(_f$withoutCountries));
+        withCountries: data.dec(_f$withCountries));
   }
 
   @override
@@ -82,13 +77,7 @@ abstract class FilterDataCopyWith<$R, $In extends FilterData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get withCountries;
-  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
-      get withoutCountries;
-  $R call(
-      {int? year,
-      SortBy? sortBy,
-      List<Country>? withCountries,
-      List<Country>? withoutCountries});
+  $R call({int? year, SortBy? sortBy, List<Country>? withCountries});
   FilterDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -107,30 +96,20 @@ class _FilterDataCopyWithImpl<$R, $Out>
           (v, t) => ObjectCopyWith(v, $identity, t),
           (v) => call(withCountries: v));
   @override
-  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
-      get withoutCountries => ListCopyWith(
-          $value.withoutCountries,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(withoutCountries: v));
-  @override
   $R call(
           {Object? year = $none,
           SortBy? sortBy,
-          List<Country>? withCountries,
-          List<Country>? withoutCountries}) =>
+          List<Country>? withCountries}) =>
       $apply(FieldCopyWithData({
         if (year != $none) #year: year,
         if (sortBy != null) #sortBy: sortBy,
-        if (withCountries != null) #withCountries: withCountries,
-        if (withoutCountries != null) #withoutCountries: withoutCountries
+        if (withCountries != null) #withCountries: withCountries
       }));
   @override
   FilterData $make(CopyWithData data) => FilterData(
       year: data.get(#year, or: $value.year),
       sortBy: data.get(#sortBy, or: $value.sortBy),
-      withCountries: data.get(#withCountries, or: $value.withCountries),
-      withoutCountries:
-          data.get(#withoutCountries, or: $value.withoutCountries));
+      withCountries: data.get(#withCountries, or: $value.withCountries));
 
   @override
   FilterDataCopyWith<$R2, FilterData, $Out2> $chain<$R2, $Out2>(

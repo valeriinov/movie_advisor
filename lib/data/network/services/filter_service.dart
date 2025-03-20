@@ -45,11 +45,8 @@ class FilterService {
     if (filter.sortBy != null) params['sort_by'] = filter.sortBy!.toValue();
 
     if (filter.withCountries.isNotNullAndNotEmpty) {
-      params['with_countries'] = _serializeCountries(filter.withCountries!);
-    }
-    if (filter.withoutCountries.isNotNullAndNotEmpty) {
-      params['without_countries'] = _serializeCountries(
-        filter.withoutCountries!,
+      params['with_origin_country'] = _serializeCountries(
+        filter.withCountries!,
       );
     }
 
@@ -91,11 +88,8 @@ class FilterService {
     if (filter.sortBy != null) params['sort_by'] = filter.sortBy!.toValue();
 
     if (filter.withCountries.isNotNullAndNotEmpty) {
-      params['with_countries'] = _serializeCountries(filter.withCountries!);
-    }
-    if (filter.withoutCountries.isNotNullAndNotEmpty) {
-      params['without_countries'] = _serializeCountries(
-        filter.withoutCountries!,
+      params['with_origin_country'] = _serializeCountries(
+        filter.withCountries!,
       );
     }
 

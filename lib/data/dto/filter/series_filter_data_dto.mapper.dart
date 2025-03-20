@@ -34,11 +34,6 @@ class SeriesFilterDataDtoMapper extends ClassMapperBase<SeriesFilterDataDto> {
   static const Field<SeriesFilterDataDto, List<CountryDto>> _f$withCountries =
       Field('withCountries', _$withCountries,
           key: r'with_countries', opt: true);
-  static List<CountryDto>? _$withoutCountries(SeriesFilterDataDto v) =>
-      v.withoutCountries;
-  static const Field<SeriesFilterDataDto, List<CountryDto>>
-      _f$withoutCountries = Field('withoutCountries', _$withoutCountries,
-          key: r'without_countries', opt: true);
   static List<SeriesGenreDto>? _$withGenres(SeriesFilterDataDto v) =>
       v.withGenres;
   static const Field<SeriesFilterDataDto, List<SeriesGenreDto>> _f$withGenres =
@@ -54,7 +49,6 @@ class SeriesFilterDataDtoMapper extends ClassMapperBase<SeriesFilterDataDto> {
     #year: _f$year,
     #sortBy: _f$sortBy,
     #withCountries: _f$withCountries,
-    #withoutCountries: _f$withoutCountries,
     #withGenres: _f$withGenres,
     #withoutGenres: _f$withoutGenres,
   };
@@ -66,7 +60,6 @@ class SeriesFilterDataDtoMapper extends ClassMapperBase<SeriesFilterDataDto> {
         year: data.dec(_f$year),
         sortBy: data.dec(_f$sortBy),
         withCountries: data.dec(_f$withCountries),
-        withoutCountries: data.dec(_f$withoutCountries),
         withGenres: data.dec(_f$withGenres),
         withoutGenres: data.dec(_f$withoutGenres));
   }
@@ -128,8 +121,6 @@ abstract class SeriesFilterDataDtoCopyWith<$R, $In extends SeriesFilterDataDto,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get withCountries;
-  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
-      get withoutCountries;
   ListCopyWith<$R, SeriesGenreDto,
       ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get withGenres;
   ListCopyWith<$R, SeriesGenreDto,
@@ -138,7 +129,6 @@ abstract class SeriesFilterDataDtoCopyWith<$R, $In extends SeriesFilterDataDto,
       {int? year,
       SortByDto? sortBy,
       List<CountryDto>? withCountries,
-      List<CountryDto>? withoutCountries,
       List<SeriesGenreDto>? withGenres,
       List<SeriesGenreDto>? withoutGenres});
   SeriesFilterDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -160,14 +150,6 @@ class _SeriesFilterDataDtoCopyWithImpl<$R, $Out>
               $value.withCountries!,
               (v, t) => ObjectCopyWith(v, $identity, t),
               (v) => call(withCountries: v))
-          : null;
-  @override
-  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
-      get withoutCountries => $value.withoutCountries != null
-          ? ListCopyWith(
-              $value.withoutCountries!,
-              (v, t) => ObjectCopyWith(v, $identity, t),
-              (v) => call(withoutCountries: v))
           : null;
   @override
   ListCopyWith<$R, SeriesGenreDto,
@@ -192,14 +174,12 @@ class _SeriesFilterDataDtoCopyWithImpl<$R, $Out>
           {Object? year = $none,
           Object? sortBy = $none,
           Object? withCountries = $none,
-          Object? withoutCountries = $none,
           Object? withGenres = $none,
           Object? withoutGenres = $none}) =>
       $apply(FieldCopyWithData({
         if (year != $none) #year: year,
         if (sortBy != $none) #sortBy: sortBy,
         if (withCountries != $none) #withCountries: withCountries,
-        if (withoutCountries != $none) #withoutCountries: withoutCountries,
         if (withGenres != $none) #withGenres: withGenres,
         if (withoutGenres != $none) #withoutGenres: withoutGenres
       }));
@@ -208,8 +188,6 @@ class _SeriesFilterDataDtoCopyWithImpl<$R, $Out>
       year: data.get(#year, or: $value.year),
       sortBy: data.get(#sortBy, or: $value.sortBy),
       withCountries: data.get(#withCountries, or: $value.withCountries),
-      withoutCountries:
-          data.get(#withoutCountries, or: $value.withoutCountries),
       withGenres: data.get(#withGenres, or: $value.withGenres),
       withoutGenres: data.get(#withoutGenres, or: $value.withoutGenres));
 

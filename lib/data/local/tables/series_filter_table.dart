@@ -14,9 +14,6 @@ class SeriesFilterTable extends Table {
   TextColumn get withCountries =>
       text().map(filterCountryConverter).nullable()();
 
-  TextColumn get withoutCountries =>
-      text().map(filterCountryConverter).nullable()();
-
   TextColumn get withGenres => text().map(seriesGenresConverter).nullable()();
 
   TextColumn get withoutGenres =>

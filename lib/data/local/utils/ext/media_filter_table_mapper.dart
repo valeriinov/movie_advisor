@@ -10,7 +10,6 @@ extension MoviesFilterMapper on MoviesFilterTableData {
       year: year,
       sortBy: sortBy,
       withCountries: withCountries,
-      withoutCountries: withoutCountries,
       withGenres: withGenres,
       withoutGenres: withoutGenres,
     );
@@ -23,7 +22,6 @@ extension SeriesFilterMapper on SeriesFilterTableData {
       year: year,
       sortBy: sortBy,
       withCountries: withCountries,
-      withoutCountries: withoutCountries,
       withGenres: withGenres,
       withoutGenres: withoutGenres,
     );
@@ -38,7 +36,6 @@ extension MoviesFilterTableMapper on MoviesFilterDataDto {
       year: Value(year),
       sortBy: Value(sortBy),
       withCountries: Value(withCountries),
-      withoutCountries: Value(withoutCountries),
       withGenres: Value(withGenres),
       withoutGenres: Value(withoutGenres),
     );
@@ -53,7 +50,6 @@ extension SeriesFilterTableMapper on SeriesFilterDataDto {
       year: Value(year),
       sortBy: Value(sortBy),
       withCountries: Value(withCountries),
-      withoutCountries: Value(withoutCountries),
       withGenres: Value(withGenres),
       withoutGenres: Value(withoutGenres),
     );

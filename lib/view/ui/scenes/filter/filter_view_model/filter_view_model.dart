@@ -163,17 +163,6 @@ abstract base class FilterViewModel<
     _loadFilterResult();
   }
 
-  void updateWithoutCountries(List<Country> withoutCountries) {
-    final filter =
-        state.filter.copyWith(withoutCountries: withoutCountries) as F;
-
-    state = state.copyWith(filter: filter);
-
-    _saveFilter();
-
-    _loadFilterResult();
-  }
-
   void updateWithGenres(List<G> withGenres);
 
   void updateWithoutGenres(List<G> withoutGenres);

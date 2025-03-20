@@ -126,20 +126,6 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
                     ),
               ),
               FilterButton(
-                iconPath: AppImages.earthIcon,
-                title: LocaleKeys.filterWithoutCountries.tr(),
-                subtitle: _getWithoutDescription(
-                  filter.withoutCountries.length,
-                ),
-                onTap:
-                    () => _openCountriesFilterDialog(
-                      context,
-                      title: LocaleKeys.withoutCountriesDialog.tr(),
-                      selectedCountries: filter.withoutCountries,
-                      onApply: viewModel.updateWithoutCountries,
-                    ),
-              ),
-              FilterButton(
                 iconPath: AppImages.dateIcon,
                 title: LocaleKeys.filterYear.tr(),
                 subtitle:
@@ -255,7 +241,6 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
         builder: (context) {
           return FilterBottomSheet(
             title: title,
-            minHeight: 500,
             content: FilterListWidget(
               themeData: _createFilterListThemeData(context),
               hideSearchField: true,

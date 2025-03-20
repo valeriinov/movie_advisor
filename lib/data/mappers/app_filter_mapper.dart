@@ -17,7 +17,6 @@ final class AppFilterMapper extends AppMapper {
       year: dto.year,
       sortBy: _mapSortByDtoToDomain(dto.sortBy),
       withCountries: _mapCountriesDtoToDomain(dto.withCountries),
-      withoutCountries: _mapCountriesDtoToDomain(dto.withoutCountries),
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
     );
@@ -28,7 +27,6 @@ final class AppFilterMapper extends AppMapper {
       year: data.year,
       sortBy: _mapSortByToDto(data.sortBy),
       withCountries: _mapCountriesToDto(data.withCountries),
-      withoutCountries: _mapCountriesToDto(data.withoutCountries),
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
     );
@@ -41,7 +39,6 @@ final class AppFilterMapper extends AppMapper {
       year: dto.year,
       sortBy: _mapSortByDtoToDomain(dto.sortBy),
       withCountries: _mapCountriesDtoToDomain(dto.withCountries),
-      withoutCountries: _mapCountriesDtoToDomain(dto.withoutCountries),
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
     );
@@ -52,7 +49,6 @@ final class AppFilterMapper extends AppMapper {
       year: data.year,
       sortBy: _mapSortByToDto(data.sortBy),
       withCountries: _mapCountriesToDto(data.withCountries),
-      withoutCountries: _mapCountriesToDto(data.withoutCountries),
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
     );

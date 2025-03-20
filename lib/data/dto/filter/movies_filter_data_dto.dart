@@ -11,7 +11,6 @@ class MoviesFilterDataDto with MoviesFilterDataDtoMappable {
   final int? year;
   final SortByDto? sortBy;
   final List<CountryDto>? withCountries;
-  final List<CountryDto>? withoutCountries;
   final List<MovieGenreDto>? withGenres;
   final List<MovieGenreDto>? withoutGenres;
 
@@ -19,7 +18,6 @@ class MoviesFilterDataDto with MoviesFilterDataDtoMappable {
     this.year,
     this.sortBy,
     this.withCountries,
-    this.withoutCountries,
     this.withGenres,
     this.withoutGenres,
 });

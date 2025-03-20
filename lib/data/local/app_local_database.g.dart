@@ -2019,15 +2019,6 @@ class $MoviesFilterTableTable extends MoviesFilterTable
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<CountryDto>?>(
               $MoviesFilterTableTable.$converterwithCountriesn);
-  static const VerificationMeta _withoutCountriesMeta =
-      const VerificationMeta('withoutCountries');
-  @override
-  late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
-      withoutCountries = GeneratedColumn<String>(
-              'without_countries', aliasedName, true,
-              type: DriftSqlType.string, requiredDuringInsert: false)
-          .withConverter<List<CountryDto>?>(
-              $MoviesFilterTableTable.$converterwithoutCountriesn);
   static const VerificationMeta _withGenresMeta =
       const VerificationMeta('withGenres');
   @override
@@ -2046,15 +2037,8 @@ class $MoviesFilterTableTable extends MoviesFilterTable
           .withConverter<List<MovieGenreDto>?>(
               $MoviesFilterTableTable.$converterwithoutGenresn);
   @override
-  List<GeneratedColumn> get $columns => [
-        id,
-        year,
-        sortBy,
-        withCountries,
-        withoutCountries,
-        withGenres,
-        withoutGenres
-      ];
+  List<GeneratedColumn> get $columns =>
+      [id, year, sortBy, withCountries, withGenres, withoutGenres];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -2075,7 +2059,6 @@ class $MoviesFilterTableTable extends MoviesFilterTable
     }
     context.handle(_sortByMeta, const VerificationResult.success());
     context.handle(_withCountriesMeta, const VerificationResult.success());
-    context.handle(_withoutCountriesMeta, const VerificationResult.success());
     context.handle(_withGenresMeta, const VerificationResult.success());
     context.handle(_withoutGenresMeta, const VerificationResult.success());
     return context;
@@ -2097,9 +2080,6 @@ class $MoviesFilterTableTable extends MoviesFilterTable
       withCountries: $MoviesFilterTableTable.$converterwithCountriesn.fromSql(
           attachedDatabase.typeMapping.read(
               DriftSqlType.string, data['${effectivePrefix}with_countries'])),
-      withoutCountries: $MoviesFilterTableTable.$converterwithoutCountriesn
-          .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.string,
-              data['${effectivePrefix}without_countries'])),
       withGenres: $MoviesFilterTableTable.$converterwithGenresn.fromSql(
           attachedDatabase.typeMapping.read(
               DriftSqlType.string, data['${effectivePrefix}with_genres'])),
@@ -2122,10 +2102,6 @@ class $MoviesFilterTableTable extends MoviesFilterTable
       filterCountryConverter;
   static TypeConverter<List<CountryDto>?, String?> $converterwithCountriesn =
       NullAwareTypeConverter.wrap($converterwithCountries);
-  static TypeConverter<List<CountryDto>, String> $converterwithoutCountries =
-      filterCountryConverter;
-  static TypeConverter<List<CountryDto>?, String?> $converterwithoutCountriesn =
-      NullAwareTypeConverter.wrap($converterwithoutCountries);
   static TypeConverter<List<MovieGenreDto>, String> $converterwithGenres =
       movieGenresConverter;
   static TypeConverter<List<MovieGenreDto>?, String?> $converterwithGenresn =
@@ -2142,7 +2118,6 @@ class MoviesFilterTableData extends DataClass
   final int? year;
   final SortByDto? sortBy;
   final List<CountryDto>? withCountries;
-  final List<CountryDto>? withoutCountries;
   final List<MovieGenreDto>? withGenres;
   final List<MovieGenreDto>? withoutGenres;
   const MoviesFilterTableData(
@@ -2150,7 +2125,6 @@ class MoviesFilterTableData extends DataClass
       this.year,
       this.sortBy,
       this.withCountries,
-      this.withoutCountries,
       this.withGenres,
       this.withoutGenres});
   @override
@@ -2168,11 +2142,6 @@ class MoviesFilterTableData extends DataClass
       map['with_countries'] = Variable<String>($MoviesFilterTableTable
           .$converterwithCountriesn
           .toSql(withCountries));
-    }
-    if (!nullToAbsent || withoutCountries != null) {
-      map['without_countries'] = Variable<String>($MoviesFilterTableTable
-          .$converterwithoutCountriesn
-          .toSql(withoutCountries));
     }
     if (!nullToAbsent || withGenres != null) {
       map['with_genres'] = Variable<String>(
@@ -2195,9 +2164,6 @@ class MoviesFilterTableData extends DataClass
       withCountries: withCountries == null && nullToAbsent
           ? const Value.absent()
           : Value(withCountries),
-      withoutCountries: withoutCountries == null && nullToAbsent
-          ? const Value.absent()
-          : Value(withoutCountries),
       withGenres: withGenres == null && nullToAbsent
           ? const Value.absent()
           : Value(withGenres),
@@ -2216,8 +2182,6 @@ class MoviesFilterTableData extends DataClass
       sortBy: serializer.fromJson<SortByDto?>(json['sortBy']),
       withCountries:
           serializer.fromJson<List<CountryDto>?>(json['withCountries']),
-      withoutCountries:
-          serializer.fromJson<List<CountryDto>?>(json['withoutCountries']),
       withGenres: serializer.fromJson<List<MovieGenreDto>?>(json['withGenres']),
       withoutGenres:
           serializer.fromJson<List<MovieGenreDto>?>(json['withoutGenres']),
@@ -2231,8 +2195,6 @@ class MoviesFilterTableData extends DataClass
       'year': serializer.toJson<int?>(year),
       'sortBy': serializer.toJson<SortByDto?>(sortBy),
       'withCountries': serializer.toJson<List<CountryDto>?>(withCountries),
-      'withoutCountries':
-          serializer.toJson<List<CountryDto>?>(withoutCountries),
       'withGenres': serializer.toJson<List<MovieGenreDto>?>(withGenres),
       'withoutGenres': serializer.toJson<List<MovieGenreDto>?>(withoutGenres),
     };
@@ -2243,7 +2205,6 @@ class MoviesFilterTableData extends DataClass
           Value<int?> year = const Value.absent(),
           Value<SortByDto?> sortBy = const Value.absent(),
           Value<List<CountryDto>?> withCountries = const Value.absent(),
-          Value<List<CountryDto>?> withoutCountries = const Value.absent(),
           Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
           Value<List<MovieGenreDto>?> withoutGenres = const Value.absent()}) =>
       MoviesFilterTableData(
@@ -2252,9 +2213,6 @@ class MoviesFilterTableData extends DataClass
         sortBy: sortBy.present ? sortBy.value : this.sortBy,
         withCountries:
             withCountries.present ? withCountries.value : this.withCountries,
-        withoutCountries: withoutCountries.present
-            ? withoutCountries.value
-            : this.withoutCountries,
         withGenres: withGenres.present ? withGenres.value : this.withGenres,
         withoutGenres:
             withoutGenres.present ? withoutGenres.value : this.withoutGenres,
@@ -2267,9 +2225,6 @@ class MoviesFilterTableData extends DataClass
       withCountries: data.withCountries.present
           ? data.withCountries.value
           : this.withCountries,
-      withoutCountries: data.withoutCountries.present
-          ? data.withoutCountries.value
-          : this.withoutCountries,
       withGenres:
           data.withGenres.present ? data.withGenres.value : this.withGenres,
       withoutGenres: data.withoutGenres.present
@@ -2285,7 +2240,6 @@ class MoviesFilterTableData extends DataClass
           ..write('year: $year, ')
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
-          ..write('withoutCountries: $withoutCountries, ')
           ..write('withGenres: $withGenres, ')
           ..write('withoutGenres: $withoutGenres')
           ..write(')'))
@@ -2293,8 +2247,8 @@ class MoviesFilterTableData extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(id, year, sortBy, withCountries,
-      withoutCountries, withGenres, withoutGenres);
+  int get hashCode =>
+      Object.hash(id, year, sortBy, withCountries, withGenres, withoutGenres);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2303,7 +2257,6 @@ class MoviesFilterTableData extends DataClass
           other.year == this.year &&
           other.sortBy == this.sortBy &&
           other.withCountries == this.withCountries &&
-          other.withoutCountries == this.withoutCountries &&
           other.withGenres == this.withGenres &&
           other.withoutGenres == this.withoutGenres);
 }
@@ -2314,7 +2267,6 @@ class MoviesFilterTableCompanion
   final Value<int?> year;
   final Value<SortByDto?> sortBy;
   final Value<List<CountryDto>?> withCountries;
-  final Value<List<CountryDto>?> withoutCountries;
   final Value<List<MovieGenreDto>?> withGenres;
   final Value<List<MovieGenreDto>?> withoutGenres;
   const MoviesFilterTableCompanion({
@@ -2322,7 +2274,6 @@ class MoviesFilterTableCompanion
     this.year = const Value.absent(),
     this.sortBy = const Value.absent(),
     this.withCountries = const Value.absent(),
-    this.withoutCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
   });
@@ -2331,7 +2282,6 @@ class MoviesFilterTableCompanion
     this.year = const Value.absent(),
     this.sortBy = const Value.absent(),
     this.withCountries = const Value.absent(),
-    this.withoutCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
   });
@@ -2340,7 +2290,6 @@ class MoviesFilterTableCompanion
     Expression<int>? year,
     Expression<String>? sortBy,
     Expression<String>? withCountries,
-    Expression<String>? withoutCountries,
     Expression<String>? withGenres,
     Expression<String>? withoutGenres,
   }) {
@@ -2349,7 +2298,6 @@ class MoviesFilterTableCompanion
       if (year != null) 'year': year,
       if (sortBy != null) 'sort_by': sortBy,
       if (withCountries != null) 'with_countries': withCountries,
-      if (withoutCountries != null) 'without_countries': withoutCountries,
       if (withGenres != null) 'with_genres': withGenres,
       if (withoutGenres != null) 'without_genres': withoutGenres,
     });
@@ -2360,7 +2308,6 @@ class MoviesFilterTableCompanion
       Value<int?>? year,
       Value<SortByDto?>? sortBy,
       Value<List<CountryDto>?>? withCountries,
-      Value<List<CountryDto>?>? withoutCountries,
       Value<List<MovieGenreDto>?>? withGenres,
       Value<List<MovieGenreDto>?>? withoutGenres}) {
     return MoviesFilterTableCompanion(
@@ -2368,7 +2315,6 @@ class MoviesFilterTableCompanion
       year: year ?? this.year,
       sortBy: sortBy ?? this.sortBy,
       withCountries: withCountries ?? this.withCountries,
-      withoutCountries: withoutCountries ?? this.withoutCountries,
       withGenres: withGenres ?? this.withGenres,
       withoutGenres: withoutGenres ?? this.withoutGenres,
     );
@@ -2392,11 +2338,6 @@ class MoviesFilterTableCompanion
           .$converterwithCountriesn
           .toSql(withCountries.value));
     }
-    if (withoutCountries.present) {
-      map['without_countries'] = Variable<String>($MoviesFilterTableTable
-          .$converterwithoutCountriesn
-          .toSql(withoutCountries.value));
-    }
     if (withGenres.present) {
       map['with_genres'] = Variable<String>($MoviesFilterTableTable
           .$converterwithGenresn
@@ -2417,7 +2358,6 @@ class MoviesFilterTableCompanion
           ..write('year: $year, ')
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
-          ..write('withoutCountries: $withoutCountries, ')
           ..write('withGenres: $withGenres, ')
           ..write('withoutGenres: $withoutGenres')
           ..write(')'))
@@ -2460,15 +2400,6 @@ class $SeriesFilterTableTable extends SeriesFilterTable
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<CountryDto>?>(
               $SeriesFilterTableTable.$converterwithCountriesn);
-  static const VerificationMeta _withoutCountriesMeta =
-      const VerificationMeta('withoutCountries');
-  @override
-  late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
-      withoutCountries = GeneratedColumn<String>(
-              'without_countries', aliasedName, true,
-              type: DriftSqlType.string, requiredDuringInsert: false)
-          .withConverter<List<CountryDto>?>(
-              $SeriesFilterTableTable.$converterwithoutCountriesn);
   static const VerificationMeta _withGenresMeta =
       const VerificationMeta('withGenres');
   @override
@@ -2487,15 +2418,8 @@ class $SeriesFilterTableTable extends SeriesFilterTable
           .withConverter<List<SeriesGenreDto>?>(
               $SeriesFilterTableTable.$converterwithoutGenresn);
   @override
-  List<GeneratedColumn> get $columns => [
-        id,
-        year,
-        sortBy,
-        withCountries,
-        withoutCountries,
-        withGenres,
-        withoutGenres
-      ];
+  List<GeneratedColumn> get $columns =>
+      [id, year, sortBy, withCountries, withGenres, withoutGenres];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -2516,7 +2440,6 @@ class $SeriesFilterTableTable extends SeriesFilterTable
     }
     context.handle(_sortByMeta, const VerificationResult.success());
     context.handle(_withCountriesMeta, const VerificationResult.success());
-    context.handle(_withoutCountriesMeta, const VerificationResult.success());
     context.handle(_withGenresMeta, const VerificationResult.success());
     context.handle(_withoutGenresMeta, const VerificationResult.success());
     return context;
@@ -2538,9 +2461,6 @@ class $SeriesFilterTableTable extends SeriesFilterTable
       withCountries: $SeriesFilterTableTable.$converterwithCountriesn.fromSql(
           attachedDatabase.typeMapping.read(
               DriftSqlType.string, data['${effectivePrefix}with_countries'])),
-      withoutCountries: $SeriesFilterTableTable.$converterwithoutCountriesn
-          .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.string,
-              data['${effectivePrefix}without_countries'])),
       withGenres: $SeriesFilterTableTable.$converterwithGenresn.fromSql(
           attachedDatabase.typeMapping.read(
               DriftSqlType.string, data['${effectivePrefix}with_genres'])),
@@ -2563,10 +2483,6 @@ class $SeriesFilterTableTable extends SeriesFilterTable
       filterCountryConverter;
   static TypeConverter<List<CountryDto>?, String?> $converterwithCountriesn =
       NullAwareTypeConverter.wrap($converterwithCountries);
-  static TypeConverter<List<CountryDto>, String> $converterwithoutCountries =
-      filterCountryConverter;
-  static TypeConverter<List<CountryDto>?, String?> $converterwithoutCountriesn =
-      NullAwareTypeConverter.wrap($converterwithoutCountries);
   static TypeConverter<List<SeriesGenreDto>, String> $converterwithGenres =
       seriesGenresConverter;
   static TypeConverter<List<SeriesGenreDto>?, String?> $converterwithGenresn =
@@ -2584,7 +2500,6 @@ class SeriesFilterTableData extends DataClass
   final int? year;
   final SortByDto? sortBy;
   final List<CountryDto>? withCountries;
-  final List<CountryDto>? withoutCountries;
   final List<SeriesGenreDto>? withGenres;
   final List<SeriesGenreDto>? withoutGenres;
   const SeriesFilterTableData(
@@ -2592,7 +2507,6 @@ class SeriesFilterTableData extends DataClass
       this.year,
       this.sortBy,
       this.withCountries,
-      this.withoutCountries,
       this.withGenres,
       this.withoutGenres});
   @override
@@ -2610,11 +2524,6 @@ class SeriesFilterTableData extends DataClass
       map['with_countries'] = Variable<String>($SeriesFilterTableTable
           .$converterwithCountriesn
           .toSql(withCountries));
-    }
-    if (!nullToAbsent || withoutCountries != null) {
-      map['without_countries'] = Variable<String>($SeriesFilterTableTable
-          .$converterwithoutCountriesn
-          .toSql(withoutCountries));
     }
     if (!nullToAbsent || withGenres != null) {
       map['with_genres'] = Variable<String>(
@@ -2637,9 +2546,6 @@ class SeriesFilterTableData extends DataClass
       withCountries: withCountries == null && nullToAbsent
           ? const Value.absent()
           : Value(withCountries),
-      withoutCountries: withoutCountries == null && nullToAbsent
-          ? const Value.absent()
-          : Value(withoutCountries),
       withGenres: withGenres == null && nullToAbsent
           ? const Value.absent()
           : Value(withGenres),
@@ -2658,8 +2564,6 @@ class SeriesFilterTableData extends DataClass
       sortBy: serializer.fromJson<SortByDto?>(json['sortBy']),
       withCountries:
           serializer.fromJson<List<CountryDto>?>(json['withCountries']),
-      withoutCountries:
-          serializer.fromJson<List<CountryDto>?>(json['withoutCountries']),
       withGenres:
           serializer.fromJson<List<SeriesGenreDto>?>(json['withGenres']),
       withoutGenres:
@@ -2674,8 +2578,6 @@ class SeriesFilterTableData extends DataClass
       'year': serializer.toJson<int?>(year),
       'sortBy': serializer.toJson<SortByDto?>(sortBy),
       'withCountries': serializer.toJson<List<CountryDto>?>(withCountries),
-      'withoutCountries':
-          serializer.toJson<List<CountryDto>?>(withoutCountries),
       'withGenres': serializer.toJson<List<SeriesGenreDto>?>(withGenres),
       'withoutGenres': serializer.toJson<List<SeriesGenreDto>?>(withoutGenres),
     };
@@ -2686,7 +2588,6 @@ class SeriesFilterTableData extends DataClass
           Value<int?> year = const Value.absent(),
           Value<SortByDto?> sortBy = const Value.absent(),
           Value<List<CountryDto>?> withCountries = const Value.absent(),
-          Value<List<CountryDto>?> withoutCountries = const Value.absent(),
           Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
           Value<List<SeriesGenreDto>?> withoutGenres = const Value.absent()}) =>
       SeriesFilterTableData(
@@ -2695,9 +2596,6 @@ class SeriesFilterTableData extends DataClass
         sortBy: sortBy.present ? sortBy.value : this.sortBy,
         withCountries:
             withCountries.present ? withCountries.value : this.withCountries,
-        withoutCountries: withoutCountries.present
-            ? withoutCountries.value
-            : this.withoutCountries,
         withGenres: withGenres.present ? withGenres.value : this.withGenres,
         withoutGenres:
             withoutGenres.present ? withoutGenres.value : this.withoutGenres,
@@ -2710,9 +2608,6 @@ class SeriesFilterTableData extends DataClass
       withCountries: data.withCountries.present
           ? data.withCountries.value
           : this.withCountries,
-      withoutCountries: data.withoutCountries.present
-          ? data.withoutCountries.value
-          : this.withoutCountries,
       withGenres:
           data.withGenres.present ? data.withGenres.value : this.withGenres,
       withoutGenres: data.withoutGenres.present
@@ -2728,7 +2623,6 @@ class SeriesFilterTableData extends DataClass
           ..write('year: $year, ')
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
-          ..write('withoutCountries: $withoutCountries, ')
           ..write('withGenres: $withGenres, ')
           ..write('withoutGenres: $withoutGenres')
           ..write(')'))
@@ -2736,8 +2630,8 @@ class SeriesFilterTableData extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(id, year, sortBy, withCountries,
-      withoutCountries, withGenres, withoutGenres);
+  int get hashCode =>
+      Object.hash(id, year, sortBy, withCountries, withGenres, withoutGenres);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2746,7 +2640,6 @@ class SeriesFilterTableData extends DataClass
           other.year == this.year &&
           other.sortBy == this.sortBy &&
           other.withCountries == this.withCountries &&
-          other.withoutCountries == this.withoutCountries &&
           other.withGenres == this.withGenres &&
           other.withoutGenres == this.withoutGenres);
 }
@@ -2757,7 +2650,6 @@ class SeriesFilterTableCompanion
   final Value<int?> year;
   final Value<SortByDto?> sortBy;
   final Value<List<CountryDto>?> withCountries;
-  final Value<List<CountryDto>?> withoutCountries;
   final Value<List<SeriesGenreDto>?> withGenres;
   final Value<List<SeriesGenreDto>?> withoutGenres;
   const SeriesFilterTableCompanion({
@@ -2765,7 +2657,6 @@ class SeriesFilterTableCompanion
     this.year = const Value.absent(),
     this.sortBy = const Value.absent(),
     this.withCountries = const Value.absent(),
-    this.withoutCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
   });
@@ -2774,7 +2665,6 @@ class SeriesFilterTableCompanion
     this.year = const Value.absent(),
     this.sortBy = const Value.absent(),
     this.withCountries = const Value.absent(),
-    this.withoutCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
   });
@@ -2783,7 +2673,6 @@ class SeriesFilterTableCompanion
     Expression<int>? year,
     Expression<String>? sortBy,
     Expression<String>? withCountries,
-    Expression<String>? withoutCountries,
     Expression<String>? withGenres,
     Expression<String>? withoutGenres,
   }) {
@@ -2792,7 +2681,6 @@ class SeriesFilterTableCompanion
       if (year != null) 'year': year,
       if (sortBy != null) 'sort_by': sortBy,
       if (withCountries != null) 'with_countries': withCountries,
-      if (withoutCountries != null) 'without_countries': withoutCountries,
       if (withGenres != null) 'with_genres': withGenres,
       if (withoutGenres != null) 'without_genres': withoutGenres,
     });
@@ -2803,7 +2691,6 @@ class SeriesFilterTableCompanion
       Value<int?>? year,
       Value<SortByDto?>? sortBy,
       Value<List<CountryDto>?>? withCountries,
-      Value<List<CountryDto>?>? withoutCountries,
       Value<List<SeriesGenreDto>?>? withGenres,
       Value<List<SeriesGenreDto>?>? withoutGenres}) {
     return SeriesFilterTableCompanion(
@@ -2811,7 +2698,6 @@ class SeriesFilterTableCompanion
       year: year ?? this.year,
       sortBy: sortBy ?? this.sortBy,
       withCountries: withCountries ?? this.withCountries,
-      withoutCountries: withoutCountries ?? this.withoutCountries,
       withGenres: withGenres ?? this.withGenres,
       withoutGenres: withoutGenres ?? this.withoutGenres,
     );
@@ -2835,11 +2721,6 @@ class SeriesFilterTableCompanion
           .$converterwithCountriesn
           .toSql(withCountries.value));
     }
-    if (withoutCountries.present) {
-      map['without_countries'] = Variable<String>($SeriesFilterTableTable
-          .$converterwithoutCountriesn
-          .toSql(withoutCountries.value));
-    }
     if (withGenres.present) {
       map['with_genres'] = Variable<String>($SeriesFilterTableTable
           .$converterwithGenresn
@@ -2860,7 +2741,6 @@ class SeriesFilterTableCompanion
           ..write('year: $year, ')
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
-          ..write('withoutCountries: $withoutCountries, ')
           ..write('withGenres: $withGenres, ')
           ..write('withoutGenres: $withoutGenres')
           ..write(')'))
@@ -3839,7 +3719,6 @@ typedef $$MoviesFilterTableTableCreateCompanionBuilder
   Value<int?> year,
   Value<SortByDto?> sortBy,
   Value<List<CountryDto>?> withCountries,
-  Value<List<CountryDto>?> withoutCountries,
   Value<List<MovieGenreDto>?> withGenres,
   Value<List<MovieGenreDto>?> withoutGenres,
 });
@@ -3849,7 +3728,6 @@ typedef $$MoviesFilterTableTableUpdateCompanionBuilder
   Value<int?> year,
   Value<SortByDto?> sortBy,
   Value<List<CountryDto>?> withCountries,
-  Value<List<CountryDto>?> withoutCountries,
   Value<List<MovieGenreDto>?> withGenres,
   Value<List<MovieGenreDto>?> withoutGenres,
 });
@@ -3877,11 +3755,6 @@ class $$MoviesFilterTableTableFilterComposer
   ColumnWithTypeConverterFilters<List<CountryDto>?, List<CountryDto>, String>
       get withCountries => $composableBuilder(
           column: $table.withCountries,
-          builder: (column) => ColumnWithTypeConverterFilters(column));
-
-  ColumnWithTypeConverterFilters<List<CountryDto>?, List<CountryDto>, String>
-      get withoutCountries => $composableBuilder(
-          column: $table.withoutCountries,
           builder: (column) => ColumnWithTypeConverterFilters(column));
 
   ColumnWithTypeConverterFilters<List<MovieGenreDto>?, List<MovieGenreDto>,
@@ -3919,10 +3792,6 @@ class $$MoviesFilterTableTableOrderingComposer
       column: $table.withCountries,
       builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get withoutCountries => $composableBuilder(
-      column: $table.withoutCountries,
-      builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get withGenres => $composableBuilder(
       column: $table.withGenres, builder: (column) => ColumnOrderings(column));
 
@@ -3952,10 +3821,6 @@ class $$MoviesFilterTableTableAnnotationComposer
   GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
       get withCountries => $composableBuilder(
           column: $table.withCountries, builder: (column) => column);
-
-  GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
-      get withoutCountries => $composableBuilder(
-          column: $table.withoutCountries, builder: (column) => column);
 
   GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String>
       get withGenres => $composableBuilder(
@@ -3999,7 +3864,6 @@ class $$MoviesFilterTableTableTableManager extends RootTableManager<
             Value<int?> year = const Value.absent(),
             Value<SortByDto?> sortBy = const Value.absent(),
             Value<List<CountryDto>?> withCountries = const Value.absent(),
-            Value<List<CountryDto>?> withoutCountries = const Value.absent(),
             Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
             Value<List<MovieGenreDto>?> withoutGenres = const Value.absent(),
           }) =>
@@ -4008,7 +3872,6 @@ class $$MoviesFilterTableTableTableManager extends RootTableManager<
             year: year,
             sortBy: sortBy,
             withCountries: withCountries,
-            withoutCountries: withoutCountries,
             withGenres: withGenres,
             withoutGenres: withoutGenres,
           ),
@@ -4017,7 +3880,6 @@ class $$MoviesFilterTableTableTableManager extends RootTableManager<
             Value<int?> year = const Value.absent(),
             Value<SortByDto?> sortBy = const Value.absent(),
             Value<List<CountryDto>?> withCountries = const Value.absent(),
-            Value<List<CountryDto>?> withoutCountries = const Value.absent(),
             Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
             Value<List<MovieGenreDto>?> withoutGenres = const Value.absent(),
           }) =>
@@ -4026,7 +3888,6 @@ class $$MoviesFilterTableTableTableManager extends RootTableManager<
             year: year,
             sortBy: sortBy,
             withCountries: withCountries,
-            withoutCountries: withoutCountries,
             withGenres: withGenres,
             withoutGenres: withoutGenres,
           ),
@@ -4059,7 +3920,6 @@ typedef $$SeriesFilterTableTableCreateCompanionBuilder
   Value<int?> year,
   Value<SortByDto?> sortBy,
   Value<List<CountryDto>?> withCountries,
-  Value<List<CountryDto>?> withoutCountries,
   Value<List<SeriesGenreDto>?> withGenres,
   Value<List<SeriesGenreDto>?> withoutGenres,
 });
@@ -4069,7 +3929,6 @@ typedef $$SeriesFilterTableTableUpdateCompanionBuilder
   Value<int?> year,
   Value<SortByDto?> sortBy,
   Value<List<CountryDto>?> withCountries,
-  Value<List<CountryDto>?> withoutCountries,
   Value<List<SeriesGenreDto>?> withGenres,
   Value<List<SeriesGenreDto>?> withoutGenres,
 });
@@ -4097,11 +3956,6 @@ class $$SeriesFilterTableTableFilterComposer
   ColumnWithTypeConverterFilters<List<CountryDto>?, List<CountryDto>, String>
       get withCountries => $composableBuilder(
           column: $table.withCountries,
-          builder: (column) => ColumnWithTypeConverterFilters(column));
-
-  ColumnWithTypeConverterFilters<List<CountryDto>?, List<CountryDto>, String>
-      get withoutCountries => $composableBuilder(
-          column: $table.withoutCountries,
           builder: (column) => ColumnWithTypeConverterFilters(column));
 
   ColumnWithTypeConverterFilters<List<SeriesGenreDto>?, List<SeriesGenreDto>,
@@ -4139,10 +3993,6 @@ class $$SeriesFilterTableTableOrderingComposer
       column: $table.withCountries,
       builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get withoutCountries => $composableBuilder(
-      column: $table.withoutCountries,
-      builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get withGenres => $composableBuilder(
       column: $table.withGenres, builder: (column) => ColumnOrderings(column));
 
@@ -4172,10 +4022,6 @@ class $$SeriesFilterTableTableAnnotationComposer
   GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
       get withCountries => $composableBuilder(
           column: $table.withCountries, builder: (column) => column);
-
-  GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
-      get withoutCountries => $composableBuilder(
-          column: $table.withoutCountries, builder: (column) => column);
 
   GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String>
       get withGenres => $composableBuilder(
@@ -4219,7 +4065,6 @@ class $$SeriesFilterTableTableTableManager extends RootTableManager<
             Value<int?> year = const Value.absent(),
             Value<SortByDto?> sortBy = const Value.absent(),
             Value<List<CountryDto>?> withCountries = const Value.absent(),
-            Value<List<CountryDto>?> withoutCountries = const Value.absent(),
             Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
             Value<List<SeriesGenreDto>?> withoutGenres = const Value.absent(),
           }) =>
@@ -4228,7 +4073,6 @@ class $$SeriesFilterTableTableTableManager extends RootTableManager<
             year: year,
             sortBy: sortBy,
             withCountries: withCountries,
-            withoutCountries: withoutCountries,
             withGenres: withGenres,
             withoutGenres: withoutGenres,
           ),
@@ -4237,7 +4081,6 @@ class $$SeriesFilterTableTableTableManager extends RootTableManager<
             Value<int?> year = const Value.absent(),
             Value<SortByDto?> sortBy = const Value.absent(),
             Value<List<CountryDto>?> withCountries = const Value.absent(),
-            Value<List<CountryDto>?> withoutCountries = const Value.absent(),
             Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
             Value<List<SeriesGenreDto>?> withoutGenres = const Value.absent(),
           }) =>
@@ -4246,7 +4089,6 @@ class $$SeriesFilterTableTableTableManager extends RootTableManager<
             year: year,
             sortBy: sortBy,
             withCountries: withCountries,
-            withoutCountries: withoutCountries,
             withGenres: withGenres,
             withoutGenres: withoutGenres,
           ),

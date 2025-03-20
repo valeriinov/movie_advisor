@@ -20,7 +20,7 @@ class FilterBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: minHeight ?? 400),
+      constraints: BoxConstraints(minHeight: minHeight ?? 500),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

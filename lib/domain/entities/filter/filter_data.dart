@@ -11,12 +11,10 @@ class FilterData with FilterDataMappable {
   final int? year;
   final SortBy sortBy;
   final List<Country> withCountries;
-  final List<Country> withoutCountries;
 
   const FilterData({
     required this.year,
     required this.sortBy,
     required this.withCountries,
-    required this.withoutCountries,
   });
 }

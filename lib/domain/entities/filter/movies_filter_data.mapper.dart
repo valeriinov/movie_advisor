@@ -30,10 +30,6 @@ class MoviesFilterDataMapper extends ClassMapperBase<MoviesFilterData> {
   static List<Country> _$withCountries(MoviesFilterData v) => v.withCountries;
   static const Field<MoviesFilterData, List<Country>> _f$withCountries =
       Field('withCountries', _$withCountries, opt: true, def: const []);
-  static List<Country> _$withoutCountries(MoviesFilterData v) =>
-      v.withoutCountries;
-  static const Field<MoviesFilterData, List<Country>> _f$withoutCountries =
-      Field('withoutCountries', _$withoutCountries, opt: true, def: const []);
   static List<MovieGenre> _$withGenres(MoviesFilterData v) => v.withGenres;
   static const Field<MoviesFilterData, List<MovieGenre>> _f$withGenres =
       Field('withGenres', _$withGenres, opt: true, def: const []);
@@ -47,7 +43,6 @@ class MoviesFilterDataMapper extends ClassMapperBase<MoviesFilterData> {
     #year: _f$year,
     #sortBy: _f$sortBy,
     #withCountries: _f$withCountries,
-    #withoutCountries: _f$withoutCountries,
     #withGenres: _f$withGenres,
     #withoutGenres: _f$withoutGenres,
   };
@@ -57,7 +52,6 @@ class MoviesFilterDataMapper extends ClassMapperBase<MoviesFilterData> {
         year: data.dec(_f$year),
         sortBy: data.dec(_f$sortBy),
         withCountries: data.dec(_f$withCountries),
-        withoutCountries: data.dec(_f$withoutCountries),
         withGenres: data.dec(_f$withGenres),
         withoutGenres: data.dec(_f$withoutGenres));
   }
@@ -101,9 +95,6 @@ abstract class MoviesFilterDataCopyWith<$R, $In extends MoviesFilterData, $Out>
   @override
   ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get withCountries;
-  @override
-  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
-      get withoutCountries;
   ListCopyWith<$R, MovieGenre, ObjectCopyWith<$R, MovieGenre, MovieGenre>>
       get withGenres;
   ListCopyWith<$R, MovieGenre, ObjectCopyWith<$R, MovieGenre, MovieGenre>>
@@ -113,7 +104,6 @@ abstract class MoviesFilterDataCopyWith<$R, $In extends MoviesFilterData, $Out>
       {int? year,
       SortBy? sortBy,
       List<Country>? withCountries,
-      List<Country>? withoutCountries,
       List<MovieGenre>? withGenres,
       List<MovieGenre>? withoutGenres});
   MoviesFilterDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -135,12 +125,6 @@ class _MoviesFilterDataCopyWithImpl<$R, $Out>
           (v, t) => ObjectCopyWith(v, $identity, t),
           (v) => call(withCountries: v));
   @override
-  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
-      get withoutCountries => ListCopyWith(
-          $value.withoutCountries,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(withoutCountries: v));
-  @override
   ListCopyWith<$R, MovieGenre, ObjectCopyWith<$R, MovieGenre, MovieGenre>>
       get withGenres => ListCopyWith(
           $value.withGenres,
@@ -157,14 +141,12 @@ class _MoviesFilterDataCopyWithImpl<$R, $Out>
           {Object? year = $none,
           SortBy? sortBy,
           List<Country>? withCountries,
-          List<Country>? withoutCountries,
           List<MovieGenre>? withGenres,
           List<MovieGenre>? withoutGenres}) =>
       $apply(FieldCopyWithData({
         if (year != $none) #year: year,
         if (sortBy != null) #sortBy: sortBy,
         if (withCountries != null) #withCountries: withCountries,
-        if (withoutCountries != null) #withoutCountries: withoutCountries,
         if (withGenres != null) #withGenres: withGenres,
         if (withoutGenres != null) #withoutGenres: withoutGenres
       }));
@@ -173,8 +155,6 @@ class _MoviesFilterDataCopyWithImpl<$R, $Out>
       year: data.get(#year, or: $value.year),
       sortBy: data.get(#sortBy, or: $value.sortBy),
       withCountries: data.get(#withCountries, or: $value.withCountries),
-      withoutCountries:
-          data.get(#withoutCountries, or: $value.withoutCountries),
       withGenres: data.get(#withGenres, or: $value.withGenres),
       withoutGenres: data.get(#withoutGenres, or: $value.withoutGenres));
 
