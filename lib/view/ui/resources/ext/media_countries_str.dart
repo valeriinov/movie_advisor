@@ -5,7 +5,7 @@ import '../../../../domain/entities/series/series_data.dart';
 import 'country_desc.dart';
 
 extension MediaDataCountriesStr on MediaData {
-  String getGenresStr() {
+  String getCountriesStr() {
     return switch (this) {
       MovieData(originCountry: final c) => c
           .where((e) => e != Country.none)

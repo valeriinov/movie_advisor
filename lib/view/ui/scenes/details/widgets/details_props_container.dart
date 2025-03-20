@@ -6,6 +6,7 @@ import '../../../resources/app_rate_format.dart';
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
 import '../../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../../resources/ext/media_countries_str.dart';
 import '../../../resources/ext/media_date_str.dart';
 import '../../../resources/ext/media_genres_str.dart';
 import 'details_props_tile.dart';
@@ -45,6 +46,10 @@ class DetailsPropsContainer extends StatelessWidget {
             DetailsPropsTile(
               iconPath: AppImages.dateIcon,
               description: data.getPremiereYearStr(),
+            ),
+            DetailsPropsTile(
+              iconPath: AppImages.earthIcon,
+              description: data.getCountriesStr(),
             ),
           ],
         ),
