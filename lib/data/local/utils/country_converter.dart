@@ -1,8 +1,8 @@
 import 'package:drift/drift.dart';
 
-import '../../dto/filter/country_dto.dart';
+import '../../dto/country_dto.dart';
 
-final TypeConverter<List<CountryDto>, String> filterCountryConverter =
+final TypeConverter<List<CountryDto>, String> countryConverter =
     TypeConverter.json2(
       fromJson:
           (json) =>

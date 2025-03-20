@@ -14,6 +14,7 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MovieDataDtoMapper._());
       MovieGenreDtoMapper.ensureInitialized();
+      CountryDtoMapper.ensureInitialized();
       CreditsDataDtoMapper.ensureInitialized();
       VideosDataDtoMapper.ensureInitialized();
     }
@@ -35,8 +36,8 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static const Field<MovieDataDto, List<MovieGenreDto>> _f$genresAlt = Field(
       'genresAlt', _$genresAlt,
       key: r'genres', opt: true, hook: MovieGenresHook());
-  static List<String>? _$originCountry(MovieDataDto v) => v.originCountry;
-  static const Field<MovieDataDto, List<String>> _f$originCountry = Field(
+  static List<CountryDto>? _$originCountry(MovieDataDto v) => v.originCountry;
+  static const Field<MovieDataDto, List<CountryDto>> _f$originCountry = Field(
       'originCountry', _$originCountry,
       key: r'origin_country', opt: true);
   static String? _$originalLanguage(MovieDataDto v) => v.originalLanguage;
@@ -190,7 +191,7 @@ abstract class MovieDataDtoCopyWith<$R, $In extends MovieDataDto, $Out>
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genres;
   ListCopyWith<$R, MovieGenreDto,
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genresAlt;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry;
   CreditsDataDtoCopyWith<$R, CreditsDataDto, CreditsDataDto>? get credits;
   VideosDataDtoCopyWith<$R, VideosDataDto, VideosDataDto>? get videos;
@@ -199,7 +200,7 @@ abstract class MovieDataDtoCopyWith<$R, $In extends MovieDataDto, $Out>
       String? backdropPath,
       List<MovieGenreDto>? genres,
       List<MovieGenreDto>? genresAlt,
-      List<String>? originCountry,
+      List<CountryDto>? originCountry,
       String? originalLanguage,
       String? originalTitle,
       String? overview,
@@ -242,7 +243,7 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
               (v) => call(genresAlt: v))
           : null;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry => $value.originCountry != null
           ? ListCopyWith(
               $value.originCountry!,

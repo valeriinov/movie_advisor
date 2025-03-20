@@ -9,6 +9,7 @@ import '../dto/series/series_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../dto/series/series_short_response_data_dto.dart';
 import 'app_cast_mapper.dart';
+import 'app_countries_mapper_ext.dart';
 import 'app_genres_mapper_ext.dart';
 import 'app_mapper.dart';
 import 'app_rating_mapper.dart';
@@ -55,7 +56,7 @@ final class AppSeriesMapper extends AppMapper {
       backdropUrl: dto.backdropPath ?? '',
       posterUrl: dto.posterPath ?? '',
       genres: (dto.genres ?? dto.genresAlt).toDomain(),
-      originCountry: dto.originCountry ?? [],
+      originCountry: dto.originCountry.toDomain(),
       originalLanguage: dto.originalLanguage ?? '',
       originalTitle: dto.originalName ?? '',
       premiereDate: dto.firstAirDate,
@@ -87,7 +88,7 @@ final class AppSeriesMapper extends AppMapper {
       id: dto.id ?? -1,
       posterUrl: dto.posterPath ?? '',
       genres: dto.genres.toDomain(),
-      originCountry: dto.originCountry ?? [],
+      originCountry: dto.originCountry.toDomain(),
       premiereDate: dto.firstAirDate,
       title: dto.name ?? '',
       tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
@@ -108,7 +109,7 @@ final class AppSeriesMapper extends AppMapper {
       id: dto.id ?? -1,
       posterUrl: dto.posterUrl ?? '',
       genres: dto.genres.toDomain(),
-      originCountry: dto.originCountry ?? [],
+      originCountry: dto.originCountry.toDomain(),
       premiereDate: dto.premiereDate,
       title: dto.title ?? '',
       tmdbRating: _ratingMapper.mapRatingDtoToTMDBRating(dto.tmdbRating),
@@ -123,7 +124,7 @@ final class AppSeriesMapper extends AppMapper {
       id: data.id,
       posterUrl: data.posterUrl,
       genres: data.genres.toDto(),
-      originCountry: data.originCountry,
+      originCountry: data.originCountry.toDto(),
       premiereDate: data.premiereDate,
       title: data.title,
       tmdbRating: _mapRatingToDto(data.tmdbRating),

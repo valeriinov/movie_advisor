@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-import '../utils/filter_country_converter.dart';
+import '../utils/country_converter.dart';
 import '../utils/filter_sort_by_converter.dart';
 import '../utils/movie_genres_converter.dart';
 
@@ -12,7 +12,7 @@ class MoviesFilterTable extends Table {
   TextColumn get sortBy => text().map(filterSortByConverter).nullable()();
 
   TextColumn get withCountries =>
-      text().map(filterCountryConverter).nullable()();
+      text().map(countryConverter).nullable()();
 
   TextColumn get withGenres => text().map(movieGenresConverter).nullable()();
 

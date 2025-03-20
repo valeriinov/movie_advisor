@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../common/utils/ext/media_short_list_manager.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
-import '../../../../../domain/entities/filter/country.dart';
+import '../../../../../domain/entities/base_media/country.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../../../domain/entities/filter/series_filter_data.dart';

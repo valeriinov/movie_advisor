@@ -5,7 +5,7 @@ import 'package:flutter_utils/ext/flutter_ext/widget/edge_insets_creator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
-import '../../../../../domain/entities/filter/country.dart';
+import '../../../../../domain/entities/base_media/country.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../../../domain/entities/filter/series_filter_data.dart';
@@ -304,7 +304,7 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
               hideSearchField: true,
               hideHeader: true,
               hideSelectedTextCount: true,
-              listData: Country.valuesWithoutNone,
+              listData: Country.valuesForFilter,
               selectedListData: selectedCountries,
               choiceChipLabel: (_) => '',
               validateSelectedItem: (list, val) => list?.contains(val) ?? false,

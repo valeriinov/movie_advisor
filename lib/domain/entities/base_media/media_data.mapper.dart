@@ -31,8 +31,8 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
   static String _$posterUrl(MediaData v) => v.posterUrl;
   static const Field<MediaData, String> _f$posterUrl =
       Field('posterUrl', _$posterUrl);
-  static List<String> _$originCountry(MediaData v) => v.originCountry;
-  static const Field<MediaData, List<String>> _f$originCountry =
+  static List<Country> _$originCountry(MediaData v) => v.originCountry;
+  static const Field<MediaData, List<Country>> _f$originCountry =
       Field('originCountry', _$originCountry);
   static String _$originalLanguage(MediaData v) => v.originalLanguage;
   static const Field<MediaData, String> _f$originalLanguage =
@@ -99,7 +99,7 @@ mixin MediaDataMappable {
 
 abstract class MediaDataCopyWith<$R, $In extends MediaData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get originCountry;
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
   ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>> get cast;
@@ -109,7 +109,7 @@ abstract class MediaDataCopyWith<$R, $In extends MediaData, $Out>
       {int? id,
       String? backdropUrl,
       String? posterUrl,
-      List<String>? originCountry,
+      List<Country>? originCountry,
       String? originalLanguage,
       String? originalTitle,
       DateTime? premiereDate,

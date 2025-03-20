@@ -14,6 +14,7 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MovieShortDataDtoMapper._());
       MovieGenreDtoMapper.ensureInitialized();
+      CountryDtoMapper.ensureInitialized();
       RatingDataDtoMapper.ensureInitialized();
       LocalizedStringMapper.ensureInitialized();
     }
@@ -32,10 +33,11 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
   static List<MovieGenreDto>? _$genres(MovieShortDataDto v) => v.genres;
   static const Field<MovieShortDataDto, List<MovieGenreDto>> _f$genres =
       Field('genres', _$genres, opt: true);
-  static List<String>? _$originCountry(MovieShortDataDto v) => v.originCountry;
-  static const Field<MovieShortDataDto, List<String>> _f$originCountry = Field(
-      'originCountry', _$originCountry,
-      key: r'origin_country', opt: true);
+  static List<CountryDto>? _$originCountry(MovieShortDataDto v) =>
+      v.originCountry;
+  static const Field<MovieShortDataDto, List<CountryDto>> _f$originCountry =
+      Field('originCountry', _$originCountry,
+          key: r'origin_country', opt: true);
   static DateTime? _$premiereDate(MovieShortDataDto v) => v.premiereDate;
   static const Field<MovieShortDataDto, DateTime> _f$premiereDate = Field(
       'premiereDate', _$premiereDate,
@@ -164,7 +166,7 @@ abstract class MovieShortDataDtoCopyWith<$R, $In extends MovieShortDataDto,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, MovieGenreDto,
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genres;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry;
   RatingDataDtoCopyWith<$R, RatingDataDto, RatingDataDto>? get tmdbRating;
   LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
@@ -175,7 +177,7 @@ abstract class MovieShortDataDtoCopyWith<$R, $In extends MovieShortDataDto,
       {int? id,
       String? posterUrl,
       List<MovieGenreDto>? genres,
-      List<String>? originCountry,
+      List<CountryDto>? originCountry,
       DateTime? premiereDate,
       String? title,
       RatingDataDto? tmdbRating,
@@ -205,7 +207,7 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
               (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v))
           : null;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry => $value.originCountry != null
           ? ListCopyWith(
               $value.originCountry!,

@@ -14,6 +14,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SeriesDataDtoMapper._());
       SeriesGenreDtoMapper.ensureInitialized();
+      CountryDtoMapper.ensureInitialized();
       CreditsDataDtoMapper.ensureInitialized();
       VideosDataDtoMapper.ensureInitialized();
     }
@@ -35,8 +36,8 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static const Field<SeriesDataDto, List<SeriesGenreDto>> _f$genresAlt = Field(
       'genresAlt', _$genresAlt,
       key: r'genres', opt: true, hook: SeriesGenreHook());
-  static List<String>? _$originCountry(SeriesDataDto v) => v.originCountry;
-  static const Field<SeriesDataDto, List<String>> _f$originCountry = Field(
+  static List<CountryDto>? _$originCountry(SeriesDataDto v) => v.originCountry;
+  static const Field<SeriesDataDto, List<CountryDto>> _f$originCountry = Field(
       'originCountry', _$originCountry,
       key: r'origin_country', opt: true);
   static String? _$originalLanguage(SeriesDataDto v) => v.originalLanguage;
@@ -190,7 +191,7 @@ abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
       ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get genres;
   ListCopyWith<$R, SeriesGenreDto,
       ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get genresAlt;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry;
   CreditsDataDtoCopyWith<$R, CreditsDataDto, CreditsDataDto>? get credits;
   VideosDataDtoCopyWith<$R, VideosDataDto, VideosDataDto>? get videos;
@@ -199,7 +200,7 @@ abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
       String? backdropPath,
       List<SeriesGenreDto>? genres,
       List<SeriesGenreDto>? genresAlt,
-      List<String>? originCountry,
+      List<CountryDto>? originCountry,
       String? originalLanguage,
       String? originalName,
       String? overview,
@@ -242,7 +243,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
               (v) => call(genresAlt: v))
           : null;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry => $value.originCountry != null
           ? ListCopyWith(
               $value.originCountry!,

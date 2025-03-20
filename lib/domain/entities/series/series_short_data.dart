@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import '../base_media/country.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 import 'series_genre.dart';

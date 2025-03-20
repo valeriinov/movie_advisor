@@ -36,8 +36,8 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
   static List<MovieGenre> _$genres(MovieData v) => v.genres;
   static const Field<MovieData, List<MovieGenre>> _f$genres =
       Field('genres', _$genres, opt: true, def: const []);
-  static List<String> _$originCountry(MovieData v) => v.originCountry;
-  static const Field<MovieData, List<String>> _f$originCountry =
+  static List<Country> _$originCountry(MovieData v) => v.originCountry;
+  static const Field<MovieData, List<Country>> _f$originCountry =
       Field('originCountry', _$originCountry, opt: true, def: const []);
   static String _$originalLanguage(MovieData v) => v.originalLanguage;
   static const Field<MovieData, String> _f$originalLanguage =
@@ -148,7 +148,7 @@ abstract class MovieDataCopyWith<$R, $In extends MovieData, $Out>
   ListCopyWith<$R, MovieGenre, ObjectCopyWith<$R, MovieGenre, MovieGenre>>
       get genres;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get originCountry;
   @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
@@ -163,7 +163,7 @@ abstract class MovieDataCopyWith<$R, $In extends MovieData, $Out>
       String? backdropUrl,
       String? posterUrl,
       List<MovieGenre>? genres,
-      List<String>? originCountry,
+      List<Country>? originCountry,
       String? originalLanguage,
       String? originalTitle,
       DateTime? premiereDate,
@@ -191,7 +191,7 @@ class _MovieDataCopyWithImpl<$R, $Out>
       get genres => ListCopyWith($value.genres,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v));
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get originCountry => ListCopyWith(
           $value.originCountry,
           (v, t) => ObjectCopyWith(v, $identity, t),
@@ -213,7 +213,7 @@ class _MovieDataCopyWithImpl<$R, $Out>
           String? backdropUrl,
           String? posterUrl,
           List<MovieGenre>? genres,
-          List<String>? originCountry,
+          List<Country>? originCountry,
           String? originalLanguage,
           String? originalTitle,
           Object? premiereDate = $none,

@@ -1,7 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../series/series_genre_dto.dart';
-import 'country_dto.dart';
+import '../country_dto.dart';
 import 'sort_by_dto.dart';
 
 part 'series_filter_data_dto.mapper.dart';

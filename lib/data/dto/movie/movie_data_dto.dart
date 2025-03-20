@@ -3,6 +3,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 import '../../utils/date_mapper_hook.dart';
 import '../../utils/genres_hook.dart';
 import '../cast/credits_data_dto.dart';
+import '../country_dto.dart';
 import '../video/videos_data_dto.dart';
 import 'movie_genre_dto.dart';
 
@@ -16,7 +17,7 @@ class MovieDataDto with MovieDataDtoMappable {
   final List<MovieGenreDto>? genres;
   @MappableField(key: 'genres', hook: MovieGenresHook())
   final List<MovieGenreDto>? genresAlt;
-  final List<String>? originCountry;
+  final List<CountryDto>? originCountry;
   final String? originalLanguage;
   final String? originalTitle;
   final String? overview;

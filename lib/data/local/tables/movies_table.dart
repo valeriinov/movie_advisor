@@ -1,8 +1,8 @@
 import 'package:drift/drift.dart';
 
+import '../utils/country_converter.dart';
 import '../utils/localized_string_converter.dart';
 import '../utils/movie_genres_converter.dart';
-import '../utils/origin_country_converter.dart';
 import '../utils/rating_converter.dart';
 
 class MoviesTable extends Table {

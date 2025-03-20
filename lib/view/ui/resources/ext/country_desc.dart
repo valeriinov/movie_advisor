@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 
-import '../../../../domain/entities/filter/country.dart';
+import '../../../../domain/entities/base_media/country.dart';
 import '../locale_keys.g.dart';
 
 extension CountryDesc on Country {

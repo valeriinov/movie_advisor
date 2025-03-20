@@ -1,8 +1,8 @@
-import '../../domain/entities/filter/country.dart';
+import '../../domain/entities/base_media/country.dart';
 import '../../domain/entities/filter/movies_filter_data.dart';
 import '../../domain/entities/filter/series_filter_data.dart';
 import '../../domain/entities/filter/sort_by.dart';
-import '../dto/filter/country_dto.dart';
+import '../dto/country_dto.dart';
 import '../dto/filter/movies_filter_data_dto.dart';
 import '../dto/filter/series_filter_data_dto.dart';
 import '../dto/filter/sort_by_dto.dart';

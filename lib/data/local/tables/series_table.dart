@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 
+import '../utils/country_converter.dart';
 import '../utils/localized_string_converter.dart';
-import '../utils/origin_country_converter.dart';
 import '../utils/rating_converter.dart';
 import '../utils/servies_genres_converter.dart';
 
@@ -14,7 +14,8 @@ class SeriesTable extends Table {
 
   TextColumn get genres => text().map(seriesGenresConverter).nullable()();
 
-  TextColumn get originCountry => text().map(countryConverter).nullable()();
+  TextColumn get originCountry =>
+      text().map(countryConverter).nullable()();
 
   DateTimeColumn get premiereDate => dateTime().nullable()();
 

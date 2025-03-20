@@ -1,6 +1,6 @@
 import 'package:flutter_utils/ext/dart_ext/iterable/empty_iterable_handler.dart';
 
-import '../../dto/filter/country_dto.dart';
+import '../../dto/country_dto.dart';
 import '../../dto/filter/movies_filter_data_dto.dart';
 import '../../dto/filter/series_filter_data_dto.dart';
 import '../../dto/filter/sort_by_dto.dart';
