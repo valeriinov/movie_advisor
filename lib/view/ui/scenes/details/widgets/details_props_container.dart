@@ -44,12 +44,12 @@ class DetailsPropsContainer extends StatelessWidget {
               description: data.getGenresStr(),
             ),
             DetailsPropsTile(
-              iconPath: AppImages.dateIcon,
-              description: data.getPremiereYearStr(),
-            ),
-            DetailsPropsTile(
               iconPath: AppImages.earthIcon,
               description: data.getCountriesStr(),
+            ),
+            DetailsPropsTile(
+              iconPath: AppImages.dateIcon,
+              description: data.getPremiereYearStr(),
             ),
           ],
         ),

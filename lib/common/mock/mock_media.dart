@@ -1,3 +1,4 @@
+import '../../domain/entities/base_media/country.dart';
 import '../../domain/entities/base_media/media_data.dart';
 import '../../domain/entities/movie/movie_data.dart';
 import '../../domain/entities/movie/movie_genre.dart';
@@ -14,6 +15,7 @@ class MockMedia {
       genres: [MovieGenre.action, MovieGenre.scienceFiction],
       premiereDate: DateTime.now(),
       tmdbRating: TMDBRating(voteAverage: 8.9, voteCount: 42000),
+      originCountry: [Country.unitedStates],
       overview:
           'A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her teenage son, '
           'John Connor, from a more advanced and powerful cyborg.',
