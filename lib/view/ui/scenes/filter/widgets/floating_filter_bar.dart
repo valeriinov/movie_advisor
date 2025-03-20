@@ -304,7 +304,7 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
               hideSearchField: true,
               hideHeader: true,
               hideSelectedTextCount: true,
-              listData: Country.valuesForFilter,
+              listData: Country.valuesWithoutNone,
               selectedListData: selectedCountries,
               choiceChipLabel: (_) => '',
               validateSelectedItem: (list, val) => list?.contains(val) ?? false,

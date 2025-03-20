@@ -18,7 +18,11 @@ extension AppCountryDtoMapper on Country {
 
 extension AppCountriesMapper on List<CountryDto>? {
   List<Country> toDomain() {
-    return this?.map((e) => e.toDomain()).toList() ?? [];
+    return this
+            ?.where((e) => e != CountryDto.none)
+            .map((e) => e.toDomain())
+            .toList() ??
+        [];
   }
 }
 
