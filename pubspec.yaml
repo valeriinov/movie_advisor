@@ -102,7 +102,7 @@ dev_dependencies:
   go_router_builder: ^2.8.2
   build_verify: ^3.1.0
   flutter_flavorizr: ^2.2.3
-  drift_dev: ^2.25.2
+  drift_dev: ^2.26.0
   class_namer:
     git:
       url: https://github.com/valeriinov/class_namer.git
