@@ -6,5 +6,14 @@ enum SortBy {
   revenueAsc,
   revenueDesc,
   voteAverageAsc,
-  voteAverageDesc,
+  voteAverageDesc;
+
+  static List<SortBy> get valuesSeries => [
+    popularityAsc,
+    popularityDesc,
+    releaseDateAsc,
+    releaseDateDesc,
+    voteAverageAsc,
+    voteAverageDesc,
+  ];
 }

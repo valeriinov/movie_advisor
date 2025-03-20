@@ -5,21 +5,19 @@ import '../../../resources/base_theme/components/base_components_styles_ext.dart
 import '../../../resources/ext/sort_by_desc.dart';
 
 class SortByRadioGroup extends StatelessWidget {
+  final bool isMovies;
   final SortBy currentSortBy;
   final void Function(SortBy) onSortByChanged;
 
   const SortByRadioGroup({
     super.key,
+    required this.isMovies,
     required this.currentSortBy,
     required this.onSortByChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-    final styles = context.baseComponentsStyles;
-    final titleStyle = styles.listTileSecTitleTextStyle;
-    final selectedTitleStyle = styles.listTileSecTitleTextStyleSelect;
-
     return SingleChildScrollView(
       child: Material(
         type: MaterialType.transparency,
@@ -27,22 +25,38 @@ class SortByRadioGroup extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children:
-              SortBy.values.map((sortBy) {
-                final isSelected = currentSortBy == sortBy;
-
-                return RadioListTile<SortBy>(
-                  title: Text(
-                    sortBy.desc,
-                    style: isSelected ? selectedTitleStyle : titleStyle,
-                  ),
-                  value: sortBy,
-                  groupValue: currentSortBy,
-                  selected: isSelected,
-                  onChanged: (value) => _onSortSelected(context, value),
-                );
-              }).toList(),
+              isMovies
+                  ? SortBy.values
+                      .map(
+                        (sortBy) => _buildSortByRadioListTile(context, sortBy),
+                      )
+                      .toList()
+                  : SortBy.valuesSeries
+                      .map(
+                        (sortBy) => _buildSortByRadioListTile(context, sortBy),
+                      )
+                      .toList(),
         ),
       ),
+    );
+  }
+
+  Widget _buildSortByRadioListTile(BuildContext context, SortBy sortBy) {
+    final styles = context.baseComponentsStyles;
+    final titleStyle = styles.listTileSecTitleTextStyle;
+    final selectedTitleStyle = styles.listTileSecTitleTextStyleSelect;
+
+    final isSelected = currentSortBy == sortBy;
+
+    return RadioListTile<SortBy>(
+      title: Text(
+        sortBy.desc,
+        style: isSelected ? selectedTitleStyle : titleStyle,
+      ),
+      value: sortBy,
+      groupValue: currentSortBy,
+      selected: isSelected,
+      onChanged: (value) => _onSortSelected(context, value),
     );
   }
 

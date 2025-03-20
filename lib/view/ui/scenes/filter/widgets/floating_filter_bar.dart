@@ -70,6 +70,7 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
                 onTap:
                     () => _openSortByDialog(
                       context,
+                      isMovies: filter is MoviesFilterData,
                       currentSortBy: filter.sortBy,
                       onSortByChanged: viewModel.updateSortBy,
                     ),
@@ -208,6 +209,7 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
 
   void _openSortByDialog(
     BuildContext ctx, {
+    required bool isMovies,
     required SortBy currentSortBy,
     required void Function(SortBy) onSortByChanged,
   }) {
@@ -216,8 +218,10 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
       context: ctx,
       useRootNavigator: true,
       child: FilterBottomSheet(
+        minHeight: 400,
         title: LocaleKeys.sortByDialog.tr(),
         content: SortByRadioGroup(
+          isMovies: isMovies,
           currentSortBy: currentSortBy,
           onSortByChanged: onSortByChanged,
         ),
