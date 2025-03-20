@@ -25,15 +25,12 @@ class $MoviesTableTable extends MoviesTable
       type: DriftSqlType.int,
       requiredDuringInsert: true,
       defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
-  static const VerificationMeta _genresMeta = const VerificationMeta('genres');
   @override
   late final GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String>
       genres = GeneratedColumn<String>('genres', aliasedName, true,
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<MovieGenreDto>?>(
               $MoviesTableTable.$convertergenresn);
-  static const VerificationMeta _originCountryMeta =
-      const VerificationMeta('originCountry');
   @override
   late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
       originCountry = GeneratedColumn<String>(
@@ -47,8 +44,6 @@ class $MoviesTableTable extends MoviesTable
   late final GeneratedColumn<DateTime> premiereDate = GeneratedColumn<DateTime>(
       'premiere_date', aliasedName, true,
       type: DriftSqlType.dateTime, requiredDuringInsert: false);
-  static const VerificationMeta _tmdbRatingMeta =
-      const VerificationMeta('tmdbRating');
   @override
   late final GeneratedColumnWithTypeConverter<RatingDataDto?, String>
       tmdbRating = GeneratedColumn<String>('tmdb_rating', aliasedName, true,
@@ -95,8 +90,6 @@ class $MoviesTableTable extends MoviesTable
       type: DriftSqlType.dateTime,
       requiredDuringInsert: false,
       defaultValue: currentDateAndTime);
-  static const VerificationMeta _localizedTitleMeta =
-      const VerificationMeta('localizedTitle');
   @override
   late final GeneratedColumnWithTypeConverter<LocalizedString?, String>
       localizedTitle = GeneratedColumn<String>(
@@ -104,8 +97,6 @@ class $MoviesTableTable extends MoviesTable
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<LocalizedString?>(
               $MoviesTableTable.$converterlocalizedTitlen);
-  static const VerificationMeta _localizedPosterUrlMeta =
-      const VerificationMeta('localizedPosterUrl');
   @override
   late final GeneratedColumnWithTypeConverter<LocalizedString?, String>
       localizedPosterUrl = GeneratedColumn<String>(
@@ -148,15 +139,12 @@ class $MoviesTableTable extends MoviesTable
     } else if (isInserting) {
       context.missing(_tmdbIdMeta);
     }
-    context.handle(_genresMeta, const VerificationResult.success());
-    context.handle(_originCountryMeta, const VerificationResult.success());
     if (data.containsKey('premiere_date')) {
       context.handle(
           _premiereDateMeta,
           premiereDate.isAcceptableOrUnknown(
               data['premiere_date']!, _premiereDateMeta));
     }
-    context.handle(_tmdbRatingMeta, const VerificationResult.success());
     if (data.containsKey('user_rating')) {
       context.handle(
           _userRatingMeta,
@@ -181,8 +169,6 @@ class $MoviesTableTable extends MoviesTable
       context.handle(_updatedAtMeta,
           updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta));
     }
-    context.handle(_localizedTitleMeta, const VerificationResult.success());
-    context.handle(_localizedPosterUrlMeta, const VerificationResult.success());
     return context;
   }
 
@@ -732,15 +718,12 @@ class $SeriesTableTable extends SeriesTable
   late final GeneratedColumn<String> posterUrl = GeneratedColumn<String>(
       'poster_url', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
-  static const VerificationMeta _genresMeta = const VerificationMeta('genres');
   @override
   late final GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String>
       genres = GeneratedColumn<String>('genres', aliasedName, true,
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<SeriesGenreDto>?>(
               $SeriesTableTable.$convertergenresn);
-  static const VerificationMeta _originCountryMeta =
-      const VerificationMeta('originCountry');
   @override
   late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
       originCountry = GeneratedColumn<String>(
@@ -759,8 +742,6 @@ class $SeriesTableTable extends SeriesTable
   late final GeneratedColumn<String> title = GeneratedColumn<String>(
       'title', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
-  static const VerificationMeta _tmdbRatingMeta =
-      const VerificationMeta('tmdbRating');
   @override
   late final GeneratedColumnWithTypeConverter<RatingDataDto?, String>
       tmdbRating = GeneratedColumn<String>('tmdb_rating', aliasedName, true,
@@ -807,8 +788,6 @@ class $SeriesTableTable extends SeriesTable
       type: DriftSqlType.dateTime,
       requiredDuringInsert: false,
       defaultValue: currentDateAndTime);
-  static const VerificationMeta _localizedTitleMeta =
-      const VerificationMeta('localizedTitle');
   @override
   late final GeneratedColumnWithTypeConverter<LocalizedString?, String>
       localizedTitle = GeneratedColumn<String>(
@@ -816,8 +795,6 @@ class $SeriesTableTable extends SeriesTable
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<LocalizedString?>(
               $SeriesTableTable.$converterlocalizedTitlen);
-  static const VerificationMeta _localizedPosterUrlMeta =
-      const VerificationMeta('localizedPosterUrl');
   @override
   late final GeneratedColumnWithTypeConverter<LocalizedString?, String>
       localizedPosterUrl = GeneratedColumn<String>(
@@ -866,8 +843,6 @@ class $SeriesTableTable extends SeriesTable
       context.handle(_posterUrlMeta,
           posterUrl.isAcceptableOrUnknown(data['poster_url']!, _posterUrlMeta));
     }
-    context.handle(_genresMeta, const VerificationResult.success());
-    context.handle(_originCountryMeta, const VerificationResult.success());
     if (data.containsKey('premiere_date')) {
       context.handle(
           _premiereDateMeta,
@@ -878,7 +853,6 @@ class $SeriesTableTable extends SeriesTable
       context.handle(
           _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
     }
-    context.handle(_tmdbRatingMeta, const VerificationResult.success());
     if (data.containsKey('user_rating')) {
       context.handle(
           _userRatingMeta,
@@ -903,8 +877,6 @@ class $SeriesTableTable extends SeriesTable
       context.handle(_updatedAtMeta,
           updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta));
     }
-    context.handle(_localizedTitleMeta, const VerificationResult.success());
-    context.handle(_localizedPosterUrlMeta, const VerificationResult.success());
     return context;
   }
 
@@ -2006,14 +1978,11 @@ class $MoviesFilterTableTable extends MoviesFilterTable
   late final GeneratedColumn<int> year = GeneratedColumn<int>(
       'year', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
-  static const VerificationMeta _sortByMeta = const VerificationMeta('sortBy');
   @override
   late final GeneratedColumnWithTypeConverter<SortByDto?, String> sortBy =
       GeneratedColumn<String>('sort_by', aliasedName, true,
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<SortByDto?>($MoviesFilterTableTable.$convertersortByn);
-  static const VerificationMeta _withCountriesMeta =
-      const VerificationMeta('withCountries');
   @override
   late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
       withCountries = GeneratedColumn<String>(
@@ -2021,16 +1990,12 @@ class $MoviesFilterTableTable extends MoviesFilterTable
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<CountryDto>?>(
               $MoviesFilterTableTable.$converterwithCountriesn);
-  static const VerificationMeta _withGenresMeta =
-      const VerificationMeta('withGenres');
   @override
   late final GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String>
       withGenres = GeneratedColumn<String>('with_genres', aliasedName, true,
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<MovieGenreDto>?>(
               $MoviesFilterTableTable.$converterwithGenresn);
-  static const VerificationMeta _withoutGenresMeta =
-      const VerificationMeta('withoutGenres');
   @override
   late final GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String>
       withoutGenres = GeneratedColumn<String>(
@@ -2059,10 +2024,6 @@ class $MoviesFilterTableTable extends MoviesFilterTable
       context.handle(
           _yearMeta, year.isAcceptableOrUnknown(data['year']!, _yearMeta));
     }
-    context.handle(_sortByMeta, const VerificationResult.success());
-    context.handle(_withCountriesMeta, const VerificationResult.success());
-    context.handle(_withGenresMeta, const VerificationResult.success());
-    context.handle(_withoutGenresMeta, const VerificationResult.success());
     return context;
   }
 
@@ -2387,14 +2348,11 @@ class $SeriesFilterTableTable extends SeriesFilterTable
   late final GeneratedColumn<int> year = GeneratedColumn<int>(
       'year', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
-  static const VerificationMeta _sortByMeta = const VerificationMeta('sortBy');
   @override
   late final GeneratedColumnWithTypeConverter<SortByDto?, String> sortBy =
       GeneratedColumn<String>('sort_by', aliasedName, true,
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<SortByDto?>($SeriesFilterTableTable.$convertersortByn);
-  static const VerificationMeta _withCountriesMeta =
-      const VerificationMeta('withCountries');
   @override
   late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
       withCountries = GeneratedColumn<String>(
@@ -2402,16 +2360,12 @@ class $SeriesFilterTableTable extends SeriesFilterTable
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<CountryDto>?>(
               $SeriesFilterTableTable.$converterwithCountriesn);
-  static const VerificationMeta _withGenresMeta =
-      const VerificationMeta('withGenres');
   @override
   late final GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String>
       withGenres = GeneratedColumn<String>('with_genres', aliasedName, true,
               type: DriftSqlType.string, requiredDuringInsert: false)
           .withConverter<List<SeriesGenreDto>?>(
               $SeriesFilterTableTable.$converterwithGenresn);
-  static const VerificationMeta _withoutGenresMeta =
-      const VerificationMeta('withoutGenres');
   @override
   late final GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String>
       withoutGenres = GeneratedColumn<String>(
@@ -2440,10 +2394,6 @@ class $SeriesFilterTableTable extends SeriesFilterTable
       context.handle(
           _yearMeta, year.isAcceptableOrUnknown(data['year']!, _yearMeta));
     }
-    context.handle(_sortByMeta, const VerificationResult.success());
-    context.handle(_withCountriesMeta, const VerificationResult.success());
-    context.handle(_withGenresMeta, const VerificationResult.success());
-    context.handle(_withoutGenresMeta, const VerificationResult.success());
     return context;
   }
 
