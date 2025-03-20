@@ -40,6 +40,7 @@ abstract final class AppImages {
   static const moreVertIcon = "${_imgPath}more_vert_icon.svg";
   static const watchlistIcon = "${_imgPath}watchlist_icon.svg";
   static const userIcon = "${_imgPath}user_icon.svg";
+  static const filterIcon = "${_imgPath}filter_icon.svg";
   static const earthIcon = "${_imgPath}earth_icon.svg";
   static const tvIcon = "${_imgPath}tv_icon.svg";
   static const addWatchedIcon = "${_imgPath}add_watched_icon.svg";

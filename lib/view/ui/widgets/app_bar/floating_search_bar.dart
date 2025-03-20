@@ -10,7 +10,7 @@ class FloatingSearchBar extends StatelessWidget {
   final bool autoFocus;
   final void Function(String?)? onSearch;
   final VoidCallback? onSearchTap;
-  final VoidCallback? onMoreTap;
+  final VoidCallback? onFilterTap;
   final TextEditingController? textController;
 
   const FloatingSearchBar({
@@ -19,14 +19,14 @@ class FloatingSearchBar extends StatelessWidget {
     this.autoFocus = true,
     this.onSearch,
     this.onSearchTap,
-    this.onMoreTap,
+    this.onFilterTap,
     this.textController,
   });
 
   @override
   Widget build(BuildContext context) {
     final dimens = context.baseDimens;
-    final isMoreButtonVisible = onMoreTap != null;
+    final isFilterButtonVisible = onFilterTap != null;
 
     final fixedHeight = kToolbarHeight + (dimens.spLarge / 2);
 
@@ -40,7 +40,7 @@ class FloatingSearchBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(
           left: dimens.padHorPrim,
-          right: isMoreButtonVisible ? 0 : dimens.padHorPrim,
+          right: isFilterButtonVisible ? 0 : dimens.padHorPrim,
           bottom: dimens.spLarge / 2,
         ),
         title: Row(
@@ -57,10 +57,10 @@ class FloatingSearchBar extends StatelessWidget {
                 ),
               ),
             ),
-            if (isMoreButtonVisible)
+            if (isFilterButtonVisible)
               IconButton(
-                onPressed: onMoreTap,
-                icon: AppSvgAsset(path: AppImages.moreVertIcon),
+                onPressed: onFilterTap,
+                icon: AppSvgAsset(path: AppImages.filterIcon),
               ),
           ],
         ),

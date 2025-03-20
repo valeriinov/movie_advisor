@@ -12,7 +12,7 @@ class HomeFloatingTopBar extends StatelessWidget {
       isSearchEnabled: false,
       autoFocus: false,
       onSearchTap: () => SearchRoute().go(context),
-      onMoreTap: () => FilterRoute().go(context),
+      onFilterTap: () => FilterRoute().go(context),
     );
   }
 }
