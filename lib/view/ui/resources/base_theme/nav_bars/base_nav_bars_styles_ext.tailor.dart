@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element, unnecessary_cast
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'base_nav_bars_styles_ext.dart';
 
@@ -34,15 +35,29 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
 
   @override
   BaseNavBarsStyles lerp(
-      covariant ThemeExtension<BaseNavBarsStyles>? other, double t) {
+    covariant ThemeExtension<BaseNavBarsStyles>? other,
+    double t,
+  ) {
     if (other is! BaseNavBarsStyles) return this as BaseNavBarsStyles;
     return BaseNavBarsStyles(
-      appBarPrimTitleTextStyle: TextStyle.lerp(
-          appBarPrimTitleTextStyle, other.appBarPrimTitleTextStyle, t)!,
-      appBarSecTitleTextStyle: TextStyle.lerp(
-          appBarSecTitleTextStyle, other.appBarSecTitleTextStyle, t)!,
-      botNavBarLabelTextStyle: TextStyle.lerp(
-          botNavBarLabelTextStyle, other.botNavBarLabelTextStyle, t)!,
+      appBarPrimTitleTextStyle:
+          TextStyle.lerp(
+            appBarPrimTitleTextStyle,
+            other.appBarPrimTitleTextStyle,
+            t,
+          )!,
+      appBarSecTitleTextStyle:
+          TextStyle.lerp(
+            appBarSecTitleTextStyle,
+            other.appBarSecTitleTextStyle,
+            t,
+          )!,
+      botNavBarLabelTextStyle:
+          TextStyle.lerp(
+            botNavBarLabelTextStyle,
+            other.botNavBarLabelTextStyle,
+            t,
+          )!,
       appBarPrimIconTheme:
           t < 0.5 ? appBarPrimIconTheme : other.appBarPrimIconTheme,
     );
@@ -54,13 +69,21 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
         (other.runtimeType == runtimeType &&
             other is BaseNavBarsStyles &&
             const DeepCollectionEquality().equals(
-                appBarPrimTitleTextStyle, other.appBarPrimTitleTextStyle) &&
+              appBarPrimTitleTextStyle,
+              other.appBarPrimTitleTextStyle,
+            ) &&
             const DeepCollectionEquality().equals(
-                appBarSecTitleTextStyle, other.appBarSecTitleTextStyle) &&
+              appBarSecTitleTextStyle,
+              other.appBarSecTitleTextStyle,
+            ) &&
             const DeepCollectionEquality().equals(
-                botNavBarLabelTextStyle, other.botNavBarLabelTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(appBarPrimIconTheme, other.appBarPrimIconTheme));
+              botNavBarLabelTextStyle,
+              other.botNavBarLabelTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              appBarPrimIconTheme,
+              other.appBarPrimIconTheme,
+            ));
   }
 
   @override

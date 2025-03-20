@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element, unnecessary_cast
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'base_inputs_styles_ext.dart';
 
@@ -46,15 +47,29 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
 
   @override
   BaseInputsStyles lerp(
-      covariant ThemeExtension<BaseInputsStyles>? other, double t) {
+    covariant ThemeExtension<BaseInputsStyles>? other,
+    double t,
+  ) {
     if (other is! BaseInputsStyles) return this as BaseInputsStyles;
     return BaseInputsStyles(
-      txtFlsPrimInpTextStyle: TextStyle.lerp(
-          txtFlsPrimInpTextStyle, other.txtFlsPrimInpTextStyle, t)!,
-      txtFldPrimErrorTextStyle: TextStyle.lerp(
-          txtFldPrimErrorTextStyle, other.txtFldPrimErrorTextStyle, t)!,
-      txtFldPrimLabelTextStyle: TextStyle.lerp(
-          txtFldPrimLabelTextStyle, other.txtFldPrimLabelTextStyle, t)!,
+      txtFlsPrimInpTextStyle:
+          TextStyle.lerp(
+            txtFlsPrimInpTextStyle,
+            other.txtFlsPrimInpTextStyle,
+            t,
+          )!,
+      txtFldPrimErrorTextStyle:
+          TextStyle.lerp(
+            txtFldPrimErrorTextStyle,
+            other.txtFldPrimErrorTextStyle,
+            t,
+          )!,
+      txtFldPrimLabelTextStyle:
+          TextStyle.lerp(
+            txtFldPrimLabelTextStyle,
+            other.txtFldPrimLabelTextStyle,
+            t,
+          )!,
       txtFldPrimContPadding:
           t < 0.5 ? txtFldPrimContPadding : other.txtFldPrimContPadding,
       txtFldPrimInpBorder:
@@ -71,20 +86,34 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BaseInputsStyles &&
-            const DeepCollectionEquality()
-                .equals(txtFlsPrimInpTextStyle, other.txtFlsPrimInpTextStyle) &&
             const DeepCollectionEquality().equals(
-                txtFldPrimErrorTextStyle, other.txtFldPrimErrorTextStyle) &&
+              txtFlsPrimInpTextStyle,
+              other.txtFlsPrimInpTextStyle,
+            ) &&
             const DeepCollectionEquality().equals(
-                txtFldPrimLabelTextStyle, other.txtFldPrimLabelTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimContPadding, other.txtFldPrimContPadding) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimInpBorder, other.txtFldPrimInpBorder) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimFocusBorder, other.txtFldPrimFocusBorder) &&
-            const DeepCollectionEquality()
-                .equals(txtFldPrimErrorBorder, other.txtFldPrimErrorBorder));
+              txtFldPrimErrorTextStyle,
+              other.txtFldPrimErrorTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimLabelTextStyle,
+              other.txtFldPrimLabelTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimContPadding,
+              other.txtFldPrimContPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimInpBorder,
+              other.txtFldPrimInpBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimFocusBorder,
+              other.txtFldPrimFocusBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimErrorBorder,
+              other.txtFldPrimErrorBorder,
+            ));
   }
 
   @override
