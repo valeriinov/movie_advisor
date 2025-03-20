@@ -88,8 +88,6 @@ dependencies:
   drift_flutter: ^0.2.4
 
 dependency_overrides:
-  # flutter_native_splash conflict
-  archive: any
   # theme_tailor with class_namer conflict
   source_gen: any
 
