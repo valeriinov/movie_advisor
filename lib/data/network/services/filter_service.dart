@@ -42,7 +42,9 @@ class FilterService {
   ) {
     final params = <String, dynamic>{'page': page};
 
-    if (filter.year != null) params['year'] = filter.year;
+    if (filter.year != null) {
+      params['primary_release_year'] = filter.year;
+    }
 
     if (filter.sortBy != null) {
       params['sort_by'] = filter.sortBy!.toValue();
@@ -92,7 +94,9 @@ class FilterService {
   ) {
     final params = <String, dynamic>{'page': page};
 
-    if (filter.year != null) params['year'] = filter.year;
+    if (filter.year != null) {
+      params['first_air_date_year'] = filter.year;
+    }
 
     if (filter.sortBy != null) {
       params['sort_by'] = filter.sortBy!.toValue();
