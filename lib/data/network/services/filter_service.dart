@@ -1,6 +1,6 @@
 import 'package:flutter_utils/ext/dart_ext/iterable/empty_iterable_handler.dart';
 
-import '../../../common/constants/db_constants.dart';
+import '../../../common/constants/filter_constants.dart';
 import '../../dto/country_dto.dart';
 import '../../dto/filter/movies_filter_data_dto.dart';
 import '../../dto/filter/series_filter_data_dto.dart';
@@ -49,7 +49,7 @@ class FilterService {
     }
 
     if (_isRatingSort(filter.sortBy)) {
-      params['vote_count.gte'] = '${DbConstants.minTmdbVoteCount}';
+      params['vote_count.gte'] = '${FilterConstants.minTmdbVoteCount}';
     }
 
     if (filter.withCountries.isNotNullAndNotEmpty) {
@@ -99,7 +99,7 @@ class FilterService {
     }
 
     if (_isRatingSort(filter.sortBy)) {
-      params['vote_count.gte'] = '${DbConstants.minTmdbVoteCount}';
+      params['vote_count.gte'] = '${FilterConstants.minTmdbVoteCount}';
     }
 
     if (filter.withCountries.isNotNullAndNotEmpty) {
