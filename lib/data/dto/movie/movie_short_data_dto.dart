@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../utils/date_mapper_hook.dart';
+import '../country_dto.dart';
 import '../localized_string.dart';
 import '../rating/rating_data_dto.dart';
 import 'movie_genre_dto.dart';
@@ -12,7 +13,7 @@ class MovieShortDataDto with MovieShortDataDtoMappable {
   final int? id;
   final String? posterUrl;
   final List<MovieGenreDto>? genres;
-  final List<String>? originCountry;
+  final List<CountryDto>? originCountry;
   @MappableField(hook: DateMapperHook())
   final DateTime? premiereDate;
   final String? title;

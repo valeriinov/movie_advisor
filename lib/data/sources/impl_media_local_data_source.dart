@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 
 import '../../common/constants/db_constants.dart';
+import '../dto/country_dto.dart';
 import '../dto/movie/movie_data_dto.dart';
 import '../dto/movie/movie_genre_dto.dart';
 import '../dto/movie/movie_rate_filter_data_dto.dart';
@@ -156,10 +157,12 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
         .toList();
   }
 
-  List<String> _calculateTopMovieCountries(List<MovieShortDataDto> movieList) {
+  List<CountryDto> _calculateTopMovieCountries(
+    List<MovieShortDataDto> movieList,
+  ) {
     final frequency = movieList
-        .expand((movie) => movie.originCountry ?? <String>[])
-        .fold<Map<String, int>>({}, (map, country) {
+        .expand((movie) => movie.originCountry ?? <CountryDto>[])
+        .fold<Map<CountryDto, int>>({}, (map, country) {
           map[country] = (map[country] ?? 0) + 1;
           return map;
         });
@@ -232,12 +235,12 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
         .toList();
   }
 
-  List<String> _calculateTopSeriesCountries(
+  List<CountryDto> _calculateTopSeriesCountries(
     List<SeriesShortDataDto> seriesList,
   ) {
     final frequency = seriesList
-        .expand((series) => series.originCountry ?? <String>[])
-        .fold<Map<String, int>>({}, (map, country) {
+        .expand((series) => series.originCountry ?? <CountryDto>[])
+        .fold<Map<CountryDto, int>>({}, (map, country) {
           map[country] = (map[country] ?? 0) + 1;
           return map;
         });

@@ -16,6 +16,7 @@ class SeriesRateFilterDataDtoMapper
       MapperContainer.globals
           .use(_instance = SeriesRateFilterDataDtoMapper._());
       SeriesGenreDtoMapper.ensureInitialized();
+      CountryDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -31,10 +32,10 @@ class SeriesRateFilterDataDtoMapper
   static const Field<SeriesRateFilterDataDto, List<SeriesGenreDto>>
       _f$targetGenres =
       Field('targetGenres', _$targetGenres, key: r'target_genres', opt: true);
-  static List<String>? _$targetCountries(SeriesRateFilterDataDto v) =>
+  static List<CountryDto>? _$targetCountries(SeriesRateFilterDataDto v) =>
       v.targetCountries;
-  static const Field<SeriesRateFilterDataDto, List<String>> _f$targetCountries =
-      Field('targetCountries', _$targetCountries,
+  static const Field<SeriesRateFilterDataDto, List<CountryDto>>
+      _f$targetCountries = Field('targetCountries', _$targetCountries,
           key: r'target_countries', opt: true);
 
   @override
@@ -113,12 +114,12 @@ abstract class SeriesRateFilterDataDtoCopyWith<
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get excludeIds;
   ListCopyWith<$R, SeriesGenreDto,
       ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get targetGenres;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get targetCountries;
   $R call(
       {List<int>? excludeIds,
       List<SeriesGenreDto>? targetGenres,
-      List<String>? targetCountries});
+      List<CountryDto>? targetCountries});
   SeriesRateFilterDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -150,7 +151,7 @@ class _SeriesRateFilterDataDtoCopyWithImpl<$R, $Out>
               (v) => call(targetGenres: v))
           : null;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get targetCountries => $value.targetCountries != null
           ? ListCopyWith(
               $value.targetCountries!,

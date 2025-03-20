@@ -8,19 +8,19 @@ import '../model/details_tab.dart';
 import 'details_screen_content.dart';
 
 class DetailsContentSkeleton extends StatelessWidget {
-  const DetailsContentSkeleton({super.key});
+  final bool isMovie;
+
+  const DetailsContentSkeleton({super.key, required this.isMovie});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.baseColors;
 
-    final data = MockMedia.createMediaData();
+    final data =
+        isMovie ? MockMedia.createMovieData() : MockMedia.createSeriesData();
 
     return Skeletonizer(
-      effect: PulseEffect(
-        from: colors.skeletonFrom,
-        to: colors.skeletonTo,
-      ),
+      effect: PulseEffect(from: colors.skeletonFrom, to: colors.skeletonTo),
       child: DetailsScreenContent(
         data: data,
         status: DetailsBaseStatus(),

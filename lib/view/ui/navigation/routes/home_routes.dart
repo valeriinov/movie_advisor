@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../scenes/filter/filter_screen.dart';
 import '../../scenes/home/home_screen.dart';
 import '../../scenes/search/search_screen.dart';
 import '../app_routes.dart';
@@ -10,7 +11,10 @@ part 'home_routes.g.dart';
 
 @TypedGoRoute<HomeRoute>(
   path: AppRoutes.home,
-  routes: [TypedGoRoute<SearchRoute>(path: AppRoutes.search)],
+  routes: [
+    TypedGoRoute<SearchRoute>(path: AppRoutes.search),
+    TypedGoRoute<FilterRoute>(path: AppRoutes.filter),
+  ],
 )
 class HomeRoute extends GoRouteData {
   @override
@@ -32,6 +36,20 @@ class SearchRoute extends GoRouteData with TransitionBuilderMixin {
       key: state.pageKey,
       name: state.fullPath,
       child: SearchScreen(),
+      transitionsBuilder: fadeTransitionBuilder,
+    );
+  }
+}
+
+class FilterRoute extends GoRouteData with TransitionBuilderMixin {
+  FilterRoute();
+
+  @override
+  Page<void> buildPage(context, state) {
+    return CustomTransitionPage(
+      key: state.pageKey,
+      name: state.fullPath,
+      child: FilterScreen(),
       transitionsBuilder: fadeTransitionBuilder,
     );
   }

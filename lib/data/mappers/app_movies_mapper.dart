@@ -1,16 +1,16 @@
 import '../../common/utils/ext/int/pagination_handler.dart';
 import '../../domain/entities/movie/movie_data.dart';
-import '../../domain/entities/movie/movie_genre.dart';
 import '../../domain/entities/movie/movie_short_data.dart';
 import '../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../dto/movie/movie_data_dto.dart';
-import '../dto/movie/movie_genre_dto.dart';
 import '../dto/movie/movie_short_data_dto.dart';
 import '../dto/movie/movies_response_data_dto.dart';
 import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/rating/rating_data_dto.dart';
 import 'app_cast_mapper.dart';
+import 'app_countries_mapper_ext.dart';
+import 'app_genres_mapper_ext.dart';
 import 'app_mapper.dart';
 import 'app_rating_mapper.dart';
 import 'app_video_mapper.dart';
@@ -55,8 +55,8 @@ final class AppMoviesMapper extends AppMapper {
       id: dto.id ?? -1,
       backdropUrl: dto.backdropPath ?? '',
       posterUrl: dto.posterPath ?? '',
-      genres: _mapMovieGenresDtoToDomain(dto.genres ?? dto.genresAlt),
-      originCountry: dto.originCountry ?? [],
+      genres: (dto.genres ?? dto.genresAlt).toDomain(),
+      originCountry: dto.originCountry.toDomain(),
       originalLanguage: dto.originalLanguage ?? '',
       originalTitle: dto.originalTitle ?? '',
       premiereDate: dto.releaseDate,
@@ -71,6 +71,7 @@ final class AppMoviesMapper extends AppMapper {
           dto.videos != null
               ? _videoMapper.mapVideosDataDtoTiDomain(dto.videos!)
               : [],
+      revenue: dto.revenue ?? 0,
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
@@ -87,8 +88,8 @@ final class AppMoviesMapper extends AppMapper {
     return MovieShortData(
       id: dto.id ?? -1,
       posterUrl: dto.posterPath ?? '',
-      genres: _mapMovieGenresDtoToDomain(dto.genres),
-      originCountry: dto.originCountry ?? [],
+      genres: dto.genres.toDomain(),
+      originCountry: dto.originCountry.toDomain(),
       premiereDate: dto.releaseDate,
       title: dto.title ?? '',
       tmdbRating: _ratingMapper.mapMovieDataDtoToTMDBRating(dto),
@@ -108,8 +109,8 @@ final class AppMoviesMapper extends AppMapper {
     return MovieShortData(
       id: dto.id ?? -1,
       posterUrl: dto.posterUrl ?? '',
-      genres: _mapMovieGenresDtoToDomain(dto.genres),
-      originCountry: dto.originCountry ?? [],
+      genres: dto.genres.toDomain(),
+      originCountry: dto.originCountry.toDomain(),
       premiereDate: dto.premiereDate,
       title: dto.title ?? '',
       tmdbRating: _ratingMapper.mapRatingDtoToTMDBRating(dto.tmdbRating),
@@ -119,23 +120,12 @@ final class AppMoviesMapper extends AppMapper {
     );
   }
 
-  List<MovieGenre> _mapMovieGenresDtoToDomain(List<MovieGenreDto>? dtos) {
-    return dtos?.map(_mapMovieGenreDtoToDomain).toList() ?? [];
-  }
-
-  MovieGenre _mapMovieGenreDtoToDomain(MovieGenreDto? dto) {
-    return MovieGenre.values.firstWhere(
-      (e) => e.name == dto?.name,
-      orElse: () => MovieGenre.none,
-    );
-  }
-
   MovieShortDataDto mapMovieShortDataToDto(MovieShortData data) {
     return MovieShortDataDto(
       id: data.id,
       posterUrl: data.posterUrl,
-      genres: _mapMovieGenresToDto(data.genres),
-      originCountry: data.originCountry,
+      genres: data.genres.toDto(),
+      originCountry: data.originCountry.toDto(),
       premiereDate: data.premiereDate,
       title: data.title,
       tmdbRating: _mapRatingToDto(data.tmdbRating),
@@ -150,17 +140,6 @@ final class AppMoviesMapper extends AppMapper {
       popularity: rating.popularity,
       voteAverage: rating.voteAverage,
       voteCount: rating.voteCount,
-    );
-  }
-
-  List<MovieGenreDto> _mapMovieGenresToDto(List<MovieGenre> genres) {
-    return genres.map(_mapMovieGenreToDto).toList();
-  }
-
-  MovieGenreDto _mapMovieGenreToDto(MovieGenre genre) {
-    return MovieGenreDto.values.firstWhere(
-      (e) => e.name == genre.name,
-      orElse: () => MovieGenreDto.none,
     );
   }
 }

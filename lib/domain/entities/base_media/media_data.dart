@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import 'country.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 import '../video/video_data.dart';
@@ -12,7 +13,7 @@ abstract base class MediaData with MediaDataMappable {
   final int id;
   final String backdropUrl;
   final String posterUrl;
-  final List<String> originCountry;
+  final List<Country> originCountry;
   final String originalLanguage;
   final String originalTitle;
   final DateTime? premiereDate;

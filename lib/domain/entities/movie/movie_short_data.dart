@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../base_media/media_short_data.dart';
+import '../base_media/country.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 import 'movie_genre.dart';

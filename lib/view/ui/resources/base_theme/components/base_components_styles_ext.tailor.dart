@@ -38,6 +38,8 @@ mixin _$BaseComponentsStylesTailorMixin
   double get sliderThumbRadius;
   double get sliderTrackHeight;
   TextStyle get sliderValTextStyle;
+  TextStyle get filterTitleTextStyle;
+  TextStyle get filterSubtTextStyle;
 
   @override
   BaseComponentsStyles copyWith({
@@ -69,6 +71,8 @@ mixin _$BaseComponentsStylesTailorMixin
     double? sliderThumbRadius,
     double? sliderTrackHeight,
     TextStyle? sliderValTextStyle,
+    TextStyle? filterTitleTextStyle,
+    TextStyle? filterSubtTextStyle,
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
@@ -111,6 +115,8 @@ mixin _$BaseComponentsStylesTailorMixin
       sliderThumbRadius: sliderThumbRadius ?? this.sliderThumbRadius,
       sliderTrackHeight: sliderTrackHeight ?? this.sliderTrackHeight,
       sliderValTextStyle: sliderValTextStyle ?? this.sliderValTextStyle,
+      filterTitleTextStyle: filterTitleTextStyle ?? this.filterTitleTextStyle,
+      filterSubtTextStyle: filterSubtTextStyle ?? this.filterSubtTextStyle,
     );
   }
 
@@ -171,6 +177,10 @@ mixin _$BaseComponentsStylesTailorMixin
       sliderTrackHeight: t < 0.5 ? sliderTrackHeight : other.sliderTrackHeight,
       sliderValTextStyle:
           TextStyle.lerp(sliderValTextStyle, other.sliderValTextStyle, t)!,
+      filterTitleTextStyle:
+          TextStyle.lerp(filterTitleTextStyle, other.filterTitleTextStyle, t)!,
+      filterSubtTextStyle:
+          TextStyle.lerp(filterSubtTextStyle, other.filterSubtTextStyle, t)!,
     );
   }
 
@@ -232,7 +242,9 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality().equals(botSheetTitleTextStyle, other.botSheetTitleTextStyle) &&
             const DeepCollectionEquality().equals(sliderThumbRadius, other.sliderThumbRadius) &&
             const DeepCollectionEquality().equals(sliderTrackHeight, other.sliderTrackHeight) &&
-            const DeepCollectionEquality().equals(sliderValTextStyle, other.sliderValTextStyle));
+            const DeepCollectionEquality().equals(sliderValTextStyle, other.sliderValTextStyle) &&
+            const DeepCollectionEquality().equals(filterTitleTextStyle, other.filterTitleTextStyle) &&
+            const DeepCollectionEquality().equals(filterSubtTextStyle, other.filterSubtTextStyle));
   }
 
   @override
@@ -267,6 +279,8 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(sliderThumbRadius),
       const DeepCollectionEquality().hash(sliderTrackHeight),
       const DeepCollectionEquality().hash(sliderValTextStyle),
+      const DeepCollectionEquality().hash(filterTitleTextStyle),
+      const DeepCollectionEquality().hash(filterSubtTextStyle),
     ]);
   }
 }

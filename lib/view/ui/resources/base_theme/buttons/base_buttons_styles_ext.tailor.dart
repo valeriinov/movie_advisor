@@ -15,6 +15,10 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
   double get btnSecHeight;
   OutlinedBorder get btnPrimShape;
   OutlinedBorder get btnSecShape;
+  TextStyle get elevBtnPrimTextStyle;
+  TextStyle get outBtnPrimTextStyle;
+  TextStyle get fillBtnPrimTextStyle;
+  TextStyle get textBtnPrimTextStyle;
   Size get btnPrimMinSize;
   Size get btnSecMinSize;
   ButtonStyle get elevBtnPrimStyle;
@@ -33,6 +37,10 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
     double? btnSecHeight,
     OutlinedBorder? btnPrimShape,
     OutlinedBorder? btnSecShape,
+    TextStyle? elevBtnPrimTextStyle,
+    TextStyle? outBtnPrimTextStyle,
+    TextStyle? fillBtnPrimTextStyle,
+    TextStyle? textBtnPrimTextStyle,
     Size? btnPrimMinSize,
     Size? btnSecMinSize,
     ButtonStyle? elevBtnPrimStyle,
@@ -50,6 +58,10 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
       btnSecHeight: btnSecHeight ?? this.btnSecHeight,
       btnPrimShape: btnPrimShape ?? this.btnPrimShape,
       btnSecShape: btnSecShape ?? this.btnSecShape,
+      elevBtnPrimTextStyle: elevBtnPrimTextStyle ?? this.elevBtnPrimTextStyle,
+      outBtnPrimTextStyle: outBtnPrimTextStyle ?? this.outBtnPrimTextStyle,
+      fillBtnPrimTextStyle: fillBtnPrimTextStyle ?? this.fillBtnPrimTextStyle,
+      textBtnPrimTextStyle: textBtnPrimTextStyle ?? this.textBtnPrimTextStyle,
       btnPrimMinSize: btnPrimMinSize ?? this.btnPrimMinSize,
       btnSecMinSize: btnSecMinSize ?? this.btnSecMinSize,
       elevBtnPrimStyle: elevBtnPrimStyle ?? this.elevBtnPrimStyle,
@@ -75,6 +87,14 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
       btnSecHeight: t < 0.5 ? btnSecHeight : other.btnSecHeight,
       btnPrimShape: t < 0.5 ? btnPrimShape : other.btnPrimShape,
       btnSecShape: t < 0.5 ? btnSecShape : other.btnSecShape,
+      elevBtnPrimTextStyle:
+          TextStyle.lerp(elevBtnPrimTextStyle, other.elevBtnPrimTextStyle, t)!,
+      outBtnPrimTextStyle:
+          TextStyle.lerp(outBtnPrimTextStyle, other.outBtnPrimTextStyle, t)!,
+      fillBtnPrimTextStyle:
+          TextStyle.lerp(fillBtnPrimTextStyle, other.fillBtnPrimTextStyle, t)!,
+      textBtnPrimTextStyle:
+          TextStyle.lerp(textBtnPrimTextStyle, other.textBtnPrimTextStyle, t)!,
       btnPrimMinSize: t < 0.5 ? btnPrimMinSize : other.btnPrimMinSize,
       btnSecMinSize: t < 0.5 ? btnSecMinSize : other.btnSecMinSize,
       elevBtnPrimStyle: t < 0.5 ? elevBtnPrimStyle : other.elevBtnPrimStyle,
@@ -105,6 +125,14 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
             const DeepCollectionEquality()
                 .equals(btnSecShape, other.btnSecShape) &&
             const DeepCollectionEquality()
+                .equals(elevBtnPrimTextStyle, other.elevBtnPrimTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(outBtnPrimTextStyle, other.outBtnPrimTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(fillBtnPrimTextStyle, other.fillBtnPrimTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(textBtnPrimTextStyle, other.textBtnPrimTextStyle) &&
+            const DeepCollectionEquality()
                 .equals(btnPrimMinSize, other.btnPrimMinSize) &&
             const DeepCollectionEquality()
                 .equals(btnSecMinSize, other.btnSecMinSize) &&
@@ -133,6 +161,10 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
       const DeepCollectionEquality().hash(btnSecHeight),
       const DeepCollectionEquality().hash(btnPrimShape),
       const DeepCollectionEquality().hash(btnSecShape),
+      const DeepCollectionEquality().hash(elevBtnPrimTextStyle),
+      const DeepCollectionEquality().hash(outBtnPrimTextStyle),
+      const DeepCollectionEquality().hash(fillBtnPrimTextStyle),
+      const DeepCollectionEquality().hash(textBtnPrimTextStyle),
       const DeepCollectionEquality().hash(btnPrimMinSize),
       const DeepCollectionEquality().hash(btnSecMinSize),
       const DeepCollectionEquality().hash(elevBtnPrimStyle),

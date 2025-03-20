@@ -812,6 +812,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 519E668AA48F537F4F182DC6 /* Pods-Runner.debug-dev.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
 				PRODUCT_NAME = Runner;
 			};
@@ -821,6 +822,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5402D45229C5E6396FF39D67 /* Pods-Runner.profile-dev.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
 				PRODUCT_NAME = Runner;
 			};
@@ -830,6 +832,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BC4F0CF9135DD7796C9C29B /* Pods-Runner.release-dev.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
 				PRODUCT_NAME = Runner;
 			};
@@ -839,6 +842,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 599AB7FC98F3F088A2B933F4 /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
 			};
@@ -848,6 +852,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D43B0164F62214869402507B /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
 			};
@@ -857,6 +862,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1578F0B3EFDE71CD470F0DE6 /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
 			};

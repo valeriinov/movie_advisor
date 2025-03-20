@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import 'country.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 
@@ -9,7 +10,7 @@ part 'media_short_data.mapper.dart';
 abstract base class MediaShortData with MediaShortDataMappable {
   final int id;
   final String posterUrl;
-  final List<String> originCountry;
+  final List<Country> originCountry;
   final DateTime? premiereDate;
   final String title;
   final TMDBRating tmdbRating;

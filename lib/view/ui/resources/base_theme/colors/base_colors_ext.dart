@@ -107,6 +107,11 @@ abstract final class BaseColorsFactory {
     contSwitchBorder: _BaseColors.contSwitchBorder,
     contSwitchFg: _BaseColors.contSwitchFg,
     contSwitchFgSelect: _BaseColors.contSwitchFgSelect,
+    filterPrimFg: _BaseColors.filterPrimFg,
+    filterSecFg: _BaseColors.filterSecFg,
+    filterCtrlBarBg: _BaseColors.filterCtrlBarBg,
+    filterCtrlBarShadow: _BaseColors.filterCtrlBarShadow,
+    filterCtrlBarResetBtnOverlay: _BaseColors.filterCtrlBarResetBtnOverlay,
   );
 }
 
@@ -529,6 +534,26 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color contSwitchFgSelect;
 
+  /// Filter primary foreground color.
+  @override
+  final Color filterPrimFg;
+
+  /// Filter secondary foreground color.
+  @override
+  final Color filterSecFg;
+
+  /// Filter control bar background color.
+  @override
+  final Color filterCtrlBarBg;
+
+  /// Filter control bar shadow color.
+  @override
+  final Color filterCtrlBarShadow;
+
+  /// Filter control bar reset button overlay color.
+  @override
+  final Color filterCtrlBarResetBtnOverlay;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -634,5 +659,10 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.contSwitchBorder,
     required this.contSwitchFg,
     required this.contSwitchFgSelect,
+    required this.filterPrimFg,
+    required this.filterSecFg,
+    required this.filterCtrlBarBg,
+    required this.filterCtrlBarShadow,
+    required this.filterCtrlBarResetBtnOverlay,
   });
 }

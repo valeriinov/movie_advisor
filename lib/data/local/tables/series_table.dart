@@ -1,9 +1,9 @@
 import 'package:drift/drift.dart';
 
-import '../../dto/series/series_genre_dto.dart';
+import '../utils/country_converter.dart';
 import '../utils/localized_string_converter.dart';
-import '../utils/origin_country_converter.dart';
 import '../utils/rating_converter.dart';
+import '../utils/servies_genres_converter.dart';
 
 class SeriesTable extends Table {
   IntColumn get id => integer().autoIncrement()();
@@ -14,7 +14,8 @@ class SeriesTable extends Table {
 
   TextColumn get genres => text().map(seriesGenresConverter).nullable()();
 
-  TextColumn get originCountry => text().map(countryConverter).nullable()();
+  TextColumn get originCountry =>
+      text().map(countryConverter).nullable()();
 
   DateTimeColumn get premiereDate => dateTime().nullable()();
 
@@ -38,13 +39,3 @@ class SeriesTable extends Table {
   TextColumn get localizedPosterUrl =>
       text().map(localizedStringConverter).nullable()();
 }
-
-final TypeConverter<List<SeriesGenreDto>, String> seriesGenresConverter =
-    TypeConverter.json2(
-      fromJson:
-          (json) =>
-              (json as List<dynamic>)
-                  .map((e) => SeriesGenreDtoMapper.fromValue(e))
-                  .toList(),
-      toJson: (services) => services.map((e) => e.toValue()).toList(),
-    );

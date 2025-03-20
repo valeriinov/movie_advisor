@@ -1,4 +1,5 @@
 import '../../../common/constants/db_constants.dart';
+import '../../dto/country_dto.dart';
 import '../../dto/movie/movie_data_dto.dart';
 import '../../dto/movie/movie_genre_dto.dart';
 import '../../dto/movie/movie_rate_filter_data_dto.dart';
@@ -230,8 +231,8 @@ class HomeService {
         '';
   }
 
-  String _buildCountryFilterString(List<String>? targetCountries) {
-    return targetCountries?.join('|') ?? '';
+  String _buildCountryFilterString(List<CountryDto>? targetCountries) {
+    return targetCountries?.map((e) => e.toValue()).join('|') ?? '';
   }
 
   Map<String, dynamic> _buildQueryParams(
