@@ -4,8 +4,8 @@ import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../common/utils/ext/media_short_list_manager.dart';
-import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/base_media/country.dart';
+import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../../../domain/entities/filter/series_filter_data.dart';
@@ -134,6 +134,8 @@ abstract base class FilterViewModel<
   }
 
   void updateFilterYear(int? year) {
+    _updateStatus(FilterBaseInitStatus(isLoading: true));
+
     final filter = state.filter.copyWith(year: year) as F;
 
     state = state.copyWith(filter: filter);
@@ -144,6 +146,8 @@ abstract base class FilterViewModel<
   }
 
   void updateSortBy(SortBy sortBy) {
+    _updateStatus(FilterBaseInitStatus(isLoading: true));
+
     final filter = state.filter.copyWith(sortBy: sortBy) as F;
 
     state = state.copyWith(filter: filter);
@@ -154,6 +158,8 @@ abstract base class FilterViewModel<
   }
 
   void updateWithCountries(List<Country> withCountries) {
+    _updateStatus(FilterBaseInitStatus(isLoading: true));
+
     final filter = state.filter.copyWith(withCountries: withCountries) as F;
 
     state = state.copyWith(filter: filter);

@@ -43,6 +43,10 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
           next,
           handleLoadingState: () => false,
         );
+
+        if (next.isUpdate(prev, (s) => s?.filter)) {
+          scrollController.jumpTo(0);
+        }
       },
     );
 
