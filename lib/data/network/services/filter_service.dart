@@ -1,5 +1,6 @@
 import 'package:flutter_utils/ext/dart_ext/iterable/empty_iterable_handler.dart';
 
+import '../../../common/constants/db_constants.dart';
 import '../../dto/country_dto.dart';
 import '../../dto/filter/movies_filter_data_dto.dart';
 import '../../dto/filter/series_filter_data_dto.dart';
@@ -42,7 +43,14 @@ class FilterService {
     final params = <String, dynamic>{'page': page};
 
     if (filter.year != null) params['year'] = filter.year;
-    if (filter.sortBy != null) params['sort_by'] = filter.sortBy!.toValue();
+
+    if (filter.sortBy != null) {
+      params['sort_by'] = filter.sortBy!.toValue();
+    }
+
+    if (_isRatingSort(filter.sortBy)) {
+      params['vote_count.gte'] = '${DbConstants.minTmdbVoteCount}';
+    }
 
     if (filter.withCountries.isNotNullAndNotEmpty) {
       params['with_origin_country'] = _serializeCountries(
@@ -85,7 +93,14 @@ class FilterService {
     final params = <String, dynamic>{'page': page};
 
     if (filter.year != null) params['year'] = filter.year;
-    if (filter.sortBy != null) params['sort_by'] = filter.sortBy!.toValue();
+
+    if (filter.sortBy != null) {
+      params['sort_by'] = filter.sortBy!.toValue();
+    }
+
+    if (_isRatingSort(filter.sortBy)) {
+      params['vote_count.gte'] = '${DbConstants.minTmdbVoteCount}';
+    }
 
     if (filter.withCountries.isNotNullAndNotEmpty) {
       params['with_origin_country'] = _serializeCountries(
@@ -101,6 +116,11 @@ class FilterService {
     }
 
     return params;
+  }
+
+  bool _isRatingSort(SortByDto? sortBy) {
+    return sortBy == SortByDto.voteAverageAsc ||
+        sortBy == SortByDto.voteAverageDesc;
   }
 
   String _serializeSeriesGenres(List<SeriesGenreDto> genres) {
