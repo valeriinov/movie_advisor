@@ -60,7 +60,7 @@ mixin VideosDataDtoMappable {
   }
 
   VideosDataDtoCopyWith<VideosDataDto, VideosDataDto, VideosDataDto>
-      get copyWith => _VideosDataDtoCopyWithImpl(
+      get copyWith => _VideosDataDtoCopyWithImpl<VideosDataDto, VideosDataDto>(
           this as VideosDataDto, $identity, $identity);
   @override
   String toString() {
@@ -84,7 +84,7 @@ mixin VideosDataDtoMappable {
 extension VideosDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, VideosDataDto, $Out> {
   VideosDataDtoCopyWith<$R, VideosDataDto, $Out> get $asVideosDataDto =>
-      $base.as((v, t, t2) => _VideosDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _VideosDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class VideosDataDtoCopyWith<$R, $In extends VideosDataDto, $Out>
@@ -120,5 +120,5 @@ class _VideosDataDtoCopyWithImpl<$R, $Out>
   @override
   VideosDataDtoCopyWith<$R2, VideosDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _VideosDataDtoCopyWithImpl($value, $cast, t);
+      _VideosDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

@@ -45,7 +45,8 @@ class RegStateMapper extends ClassMapperBase<RegState> {
 
 mixin RegStateMappable {
   RegStateCopyWith<RegState, RegState, RegState> get copyWith =>
-      _RegStateCopyWithImpl(this as RegState, $identity, $identity);
+      _RegStateCopyWithImpl<RegState, RegState>(
+          this as RegState, $identity, $identity);
   @override
   String toString() {
     return RegStateMapper.ensureInitialized().stringifyValue(this as RegState);
@@ -65,7 +66,7 @@ mixin RegStateMappable {
 
 extension RegStateValueCopy<$R, $Out> on ObjectCopyWith<$R, RegState, $Out> {
   RegStateCopyWith<$R, RegState, $Out> get $asRegState =>
-      $base.as((v, t, t2) => _RegStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _RegStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RegStateCopyWith<$R, $In extends RegState, $Out>
@@ -100,7 +101,7 @@ class _RegStateCopyWithImpl<$R, $Out>
   @override
   RegStateCopyWith<$R2, RegState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _RegStateCopyWithImpl($value, $cast, t);
+      _RegStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RegBaseStatusMapper extends ClassMapperBase<RegBaseStatus> {
@@ -147,7 +148,7 @@ class RegBaseStatusMapper extends ClassMapperBase<RegBaseStatus> {
 
 mixin RegBaseStatusMappable {
   RegBaseStatusCopyWith<RegBaseStatus, RegBaseStatus, RegBaseStatus>
-      get copyWith => _RegBaseStatusCopyWithImpl(
+      get copyWith => _RegBaseStatusCopyWithImpl<RegBaseStatus, RegBaseStatus>(
           this as RegBaseStatus, $identity, $identity);
   @override
   String toString() {
@@ -171,7 +172,7 @@ mixin RegBaseStatusMappable {
 extension RegBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RegBaseStatus, $Out> {
   RegBaseStatusCopyWith<$R, RegBaseStatus, $Out> get $asRegBaseStatus =>
-      $base.as((v, t, t2) => _RegBaseStatusCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _RegBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RegBaseStatusCopyWith<$R, $In extends RegBaseStatus, $Out>
@@ -207,7 +208,7 @@ class _RegBaseStatusCopyWithImpl<$R, $Out>
   @override
   RegBaseStatusCopyWith<$R2, RegBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _RegBaseStatusCopyWithImpl($value, $cast, t);
+      _RegBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RegBaseInitStatusMapper extends ClassMapperBase<RegBaseInitStatus> {
@@ -255,8 +256,9 @@ class RegBaseInitStatusMapper extends ClassMapperBase<RegBaseInitStatus> {
 mixin RegBaseInitStatusMappable {
   RegBaseInitStatusCopyWith<RegBaseInitStatus, RegBaseInitStatus,
           RegBaseInitStatus>
-      get copyWith => _RegBaseInitStatusCopyWithImpl(
-          this as RegBaseInitStatus, $identity, $identity);
+      get copyWith =>
+          _RegBaseInitStatusCopyWithImpl<RegBaseInitStatus, RegBaseInitStatus>(
+              this as RegBaseInitStatus, $identity, $identity);
   @override
   String toString() {
     return RegBaseInitStatusMapper.ensureInitialized()
@@ -279,8 +281,8 @@ mixin RegBaseInitStatusMappable {
 extension RegBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RegBaseInitStatus, $Out> {
   RegBaseInitStatusCopyWith<$R, RegBaseInitStatus, $Out>
-      get $asRegBaseInitStatus =>
-          $base.as((v, t, t2) => _RegBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asRegBaseInitStatus => $base
+          .as((v, t, t2) => _RegBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RegBaseInitStatusCopyWith<$R, $In extends RegBaseInitStatus,
@@ -317,7 +319,7 @@ class _RegBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   RegBaseInitStatusCopyWith<$R2, RegBaseInitStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _RegBaseInitStatusCopyWithImpl($value, $cast, t);
+      _RegBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RegSuccessStatusMapper extends ClassMapperBase<RegSuccessStatus> {
@@ -364,8 +366,9 @@ class RegSuccessStatusMapper extends ClassMapperBase<RegSuccessStatus> {
 
 mixin RegSuccessStatusMappable {
   RegSuccessStatusCopyWith<RegSuccessStatus, RegSuccessStatus, RegSuccessStatus>
-      get copyWith => _RegSuccessStatusCopyWithImpl(
-          this as RegSuccessStatus, $identity, $identity);
+      get copyWith =>
+          _RegSuccessStatusCopyWithImpl<RegSuccessStatus, RegSuccessStatus>(
+              this as RegSuccessStatus, $identity, $identity);
   @override
   String toString() {
     return RegSuccessStatusMapper.ensureInitialized()
@@ -388,8 +391,8 @@ mixin RegSuccessStatusMappable {
 extension RegSuccessStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RegSuccessStatus, $Out> {
   RegSuccessStatusCopyWith<$R, RegSuccessStatus, $Out>
-      get $asRegSuccessStatus =>
-          $base.as((v, t, t2) => _RegSuccessStatusCopyWithImpl(v, t, t2));
+      get $asRegSuccessStatus => $base
+          .as((v, t, t2) => _RegSuccessStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RegSuccessStatusCopyWith<$R, $In extends RegSuccessStatus, $Out>
@@ -426,5 +429,5 @@ class _RegSuccessStatusCopyWithImpl<$R, $Out>
   @override
   RegSuccessStatusCopyWith<$R2, RegSuccessStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _RegSuccessStatusCopyWithImpl($value, $cast, t);
+      _RegSuccessStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

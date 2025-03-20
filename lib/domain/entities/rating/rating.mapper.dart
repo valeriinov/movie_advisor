@@ -50,7 +50,8 @@ class TMDBRatingMapper extends ClassMapperBase<TMDBRating> {
 
 mixin TMDBRatingMappable {
   TMDBRatingCopyWith<TMDBRating, TMDBRating, TMDBRating> get copyWith =>
-      _TMDBRatingCopyWithImpl(this as TMDBRating, $identity, $identity);
+      _TMDBRatingCopyWithImpl<TMDBRating, TMDBRating>(
+          this as TMDBRating, $identity, $identity);
   @override
   String toString() {
     return TMDBRatingMapper.ensureInitialized()
@@ -72,7 +73,7 @@ mixin TMDBRatingMappable {
 extension TMDBRatingValueCopy<$R, $Out>
     on ObjectCopyWith<$R, TMDBRating, $Out> {
   TMDBRatingCopyWith<$R, TMDBRating, $Out> get $asTMDBRating =>
-      $base.as((v, t, t2) => _TMDBRatingCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _TMDBRatingCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class TMDBRatingCopyWith<$R, $In extends TMDBRating, $Out>
@@ -105,5 +106,5 @@ class _TMDBRatingCopyWithImpl<$R, $Out>
   @override
   TMDBRatingCopyWith<$R2, TMDBRating, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _TMDBRatingCopyWithImpl($value, $cast, t);
+      _TMDBRatingCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

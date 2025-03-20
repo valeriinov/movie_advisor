@@ -87,8 +87,9 @@ class MovieShortDataMapper extends ClassMapperBase<MovieShortData> {
 
 mixin MovieShortDataMappable {
   MovieShortDataCopyWith<MovieShortData, MovieShortData, MovieShortData>
-      get copyWith => _MovieShortDataCopyWithImpl(
-          this as MovieShortData, $identity, $identity);
+      get copyWith =>
+          _MovieShortDataCopyWithImpl<MovieShortData, MovieShortData>(
+              this as MovieShortData, $identity, $identity);
   @override
   String toString() {
     return MovieShortDataMapper.ensureInitialized()
@@ -111,7 +112,7 @@ mixin MovieShortDataMappable {
 extension MovieShortDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MovieShortData, $Out> {
   MovieShortDataCopyWith<$R, MovieShortData, $Out> get $asMovieShortData =>
-      $base.as((v, t, t2) => _MovieShortDataCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _MovieShortDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MovieShortDataCopyWith<$R, $In extends MovieShortData, $Out>
@@ -200,5 +201,5 @@ class _MovieShortDataCopyWithImpl<$R, $Out>
   @override
   MovieShortDataCopyWith<$R2, MovieShortData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _MovieShortDataCopyWithImpl($value, $cast, t);
+      _MovieShortDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

@@ -48,8 +48,9 @@ class SearchStateMapper extends ClassMapperBase<SearchState> {
 
 mixin SearchStateMappable<T> {
   SearchStateCopyWith<SearchState<T>, SearchState<T>, SearchState<T>, T>
-      get copyWith => _SearchStateCopyWithImpl(
-          this as SearchState<T>, $identity, $identity);
+      get copyWith =>
+          _SearchStateCopyWithImpl<SearchState<T>, SearchState<T>, T>(
+              this as SearchState<T>, $identity, $identity);
   @override
   String toString() {
     return SearchStateMapper.ensureInitialized()
@@ -72,7 +73,7 @@ mixin SearchStateMappable<T> {
 extension SearchStateValueCopy<$R, $Out, T>
     on ObjectCopyWith<$R, SearchState<T>, $Out> {
   SearchStateCopyWith<$R, SearchState<T>, $Out, T> get $asSearchState =>
-      $base.as((v, t, t2) => _SearchStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _SearchStateCopyWithImpl<$R, $Out, T>(v, t, t2));
 }
 
 abstract class SearchStateCopyWith<$R, $In extends SearchState<T>, $Out, T>
@@ -110,7 +111,7 @@ class _SearchStateCopyWithImpl<$R, $Out, T>
   @override
   SearchStateCopyWith<$R2, SearchState<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SearchStateCopyWithImpl($value, $cast, t);
+      _SearchStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }
 
 class SearchBaseStatusMapper extends ClassMapperBase<SearchBaseStatus> {
@@ -157,8 +158,9 @@ class SearchBaseStatusMapper extends ClassMapperBase<SearchBaseStatus> {
 
 mixin SearchBaseStatusMappable {
   SearchBaseStatusCopyWith<SearchBaseStatus, SearchBaseStatus, SearchBaseStatus>
-      get copyWith => _SearchBaseStatusCopyWithImpl(
-          this as SearchBaseStatus, $identity, $identity);
+      get copyWith =>
+          _SearchBaseStatusCopyWithImpl<SearchBaseStatus, SearchBaseStatus>(
+              this as SearchBaseStatus, $identity, $identity);
   @override
   String toString() {
     return SearchBaseStatusMapper.ensureInitialized()
@@ -181,8 +183,8 @@ mixin SearchBaseStatusMappable {
 extension SearchBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchBaseStatus, $Out> {
   SearchBaseStatusCopyWith<$R, SearchBaseStatus, $Out>
-      get $asSearchBaseStatus =>
-          $base.as((v, t, t2) => _SearchBaseStatusCopyWithImpl(v, t, t2));
+      get $asSearchBaseStatus => $base
+          .as((v, t, t2) => _SearchBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchBaseStatusCopyWith<$R, $In extends SearchBaseStatus, $Out>
@@ -219,7 +221,7 @@ class _SearchBaseStatusCopyWithImpl<$R, $Out>
   @override
   SearchBaseStatusCopyWith<$R2, SearchBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SearchBaseStatusCopyWithImpl($value, $cast, t);
+      _SearchBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class SearchBaseInitStatusMapper extends ClassMapperBase<SearchBaseInitStatus> {
@@ -266,9 +268,9 @@ class SearchBaseInitStatusMapper extends ClassMapperBase<SearchBaseInitStatus> {
 
 mixin SearchBaseInitStatusMappable {
   SearchBaseInitStatusCopyWith<SearchBaseInitStatus, SearchBaseInitStatus,
-          SearchBaseInitStatus>
-      get copyWith => _SearchBaseInitStatusCopyWithImpl(
-          this as SearchBaseInitStatus, $identity, $identity);
+      SearchBaseInitStatus> get copyWith => _SearchBaseInitStatusCopyWithImpl<
+          SearchBaseInitStatus, SearchBaseInitStatus>(
+      this as SearchBaseInitStatus, $identity, $identity);
   @override
   String toString() {
     return SearchBaseInitStatusMapper.ensureInitialized()
@@ -291,8 +293,8 @@ mixin SearchBaseInitStatusMappable {
 extension SearchBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchBaseInitStatus, $Out> {
   SearchBaseInitStatusCopyWith<$R, SearchBaseInitStatus, $Out>
-      get $asSearchBaseInitStatus =>
-          $base.as((v, t, t2) => _SearchBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asSearchBaseInitStatus => $base.as(
+          (v, t, t2) => _SearchBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchBaseInitStatusCopyWith<
@@ -331,5 +333,5 @@ class _SearchBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   SearchBaseInitStatusCopyWith<$R2, SearchBaseInitStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _SearchBaseInitStatusCopyWithImpl($value, $cast, t);
+          _SearchBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

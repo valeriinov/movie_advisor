@@ -134,8 +134,9 @@ mixin MovieShortDataDtoMappable {
 
   MovieShortDataDtoCopyWith<MovieShortDataDto, MovieShortDataDto,
           MovieShortDataDto>
-      get copyWith => _MovieShortDataDtoCopyWithImpl(
-          this as MovieShortDataDto, $identity, $identity);
+      get copyWith =>
+          _MovieShortDataDtoCopyWithImpl<MovieShortDataDto, MovieShortDataDto>(
+              this as MovieShortDataDto, $identity, $identity);
   @override
   String toString() {
     return MovieShortDataDtoMapper.ensureInitialized()
@@ -158,8 +159,8 @@ mixin MovieShortDataDtoMappable {
 extension MovieShortDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MovieShortDataDto, $Out> {
   MovieShortDataDtoCopyWith<$R, MovieShortDataDto, $Out>
-      get $asMovieShortDataDto =>
-          $base.as((v, t, t2) => _MovieShortDataDtoCopyWithImpl(v, t, t2));
+      get $asMovieShortDataDto => $base
+          .as((v, t, t2) => _MovieShortDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MovieShortDataDtoCopyWith<$R, $In extends MovieShortDataDto,
@@ -275,5 +276,5 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
   @override
   MovieShortDataDtoCopyWith<$R2, MovieShortDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _MovieShortDataDtoCopyWithImpl($value, $cast, t);
+      _MovieShortDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

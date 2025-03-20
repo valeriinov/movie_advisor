@@ -46,8 +46,9 @@ class SearchFilterStateMapper extends ClassMapperBase<SearchFilterState> {
 mixin SearchFilterStateMappable {
   SearchFilterStateCopyWith<SearchFilterState, SearchFilterState,
           SearchFilterState>
-      get copyWith => _SearchFilterStateCopyWithImpl(
-          this as SearchFilterState, $identity, $identity);
+      get copyWith =>
+          _SearchFilterStateCopyWithImpl<SearchFilterState, SearchFilterState>(
+              this as SearchFilterState, $identity, $identity);
   @override
   String toString() {
     return SearchFilterStateMapper.ensureInitialized()
@@ -70,8 +71,8 @@ mixin SearchFilterStateMappable {
 extension SearchFilterStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchFilterState, $Out> {
   SearchFilterStateCopyWith<$R, SearchFilterState, $Out>
-      get $asSearchFilterState =>
-          $base.as((v, t, t2) => _SearchFilterStateCopyWithImpl(v, t, t2));
+      get $asSearchFilterState => $base
+          .as((v, t, t2) => _SearchFilterStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchFilterStateCopyWith<$R, $In extends SearchFilterState,
@@ -107,7 +108,7 @@ class _SearchFilterStateCopyWithImpl<$R, $Out>
   @override
   SearchFilterStateCopyWith<$R2, SearchFilterState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SearchFilterStateCopyWithImpl($value, $cast, t);
+      _SearchFilterStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class SearchFilterBaseStatusMapper
@@ -156,7 +157,8 @@ class SearchFilterBaseStatusMapper
 mixin SearchFilterBaseStatusMappable {
   SearchFilterBaseStatusCopyWith<SearchFilterBaseStatus, SearchFilterBaseStatus,
           SearchFilterBaseStatus>
-      get copyWith => _SearchFilterBaseStatusCopyWithImpl(
+      get copyWith => _SearchFilterBaseStatusCopyWithImpl<
+              SearchFilterBaseStatus, SearchFilterBaseStatus>(
           this as SearchFilterBaseStatus, $identity, $identity);
   @override
   String toString() {
@@ -180,8 +182,8 @@ mixin SearchFilterBaseStatusMappable {
 extension SearchFilterBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchFilterBaseStatus, $Out> {
   SearchFilterBaseStatusCopyWith<$R, SearchFilterBaseStatus, $Out>
-      get $asSearchFilterBaseStatus =>
-          $base.as((v, t, t2) => _SearchFilterBaseStatusCopyWithImpl(v, t, t2));
+      get $asSearchFilterBaseStatus => $base.as((v, t, t2) =>
+          _SearchFilterBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchFilterBaseStatusCopyWith<
@@ -221,5 +223,5 @@ class _SearchFilterBaseStatusCopyWithImpl<$R, $Out>
   @override
   SearchFilterBaseStatusCopyWith<$R2, SearchFilterBaseStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _SearchFilterBaseStatusCopyWithImpl($value, $cast, t);
+          _SearchFilterBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

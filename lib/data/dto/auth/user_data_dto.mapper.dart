@@ -62,7 +62,8 @@ mixin UserDataDtoMappable {
   }
 
   UserDataDtoCopyWith<UserDataDto, UserDataDto, UserDataDto> get copyWith =>
-      _UserDataDtoCopyWithImpl(this as UserDataDto, $identity, $identity);
+      _UserDataDtoCopyWithImpl<UserDataDto, UserDataDto>(
+          this as UserDataDto, $identity, $identity);
   @override
   String toString() {
     return UserDataDtoMapper.ensureInitialized()
@@ -84,7 +85,7 @@ mixin UserDataDtoMappable {
 extension UserDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, UserDataDto, $Out> {
   UserDataDtoCopyWith<$R, UserDataDto, $Out> get $asUserDataDto =>
-      $base.as((v, t, t2) => _UserDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _UserDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class UserDataDtoCopyWith<$R, $In extends UserDataDto, $Out>
@@ -113,5 +114,5 @@ class _UserDataDtoCopyWithImpl<$R, $Out>
   @override
   UserDataDtoCopyWith<$R2, UserDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _UserDataDtoCopyWithImpl($value, $cast, t);
+      _UserDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

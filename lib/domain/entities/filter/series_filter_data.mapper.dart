@@ -62,8 +62,9 @@ class SeriesFilterDataMapper extends ClassMapperBase<SeriesFilterData> {
 
 mixin SeriesFilterDataMappable {
   SeriesFilterDataCopyWith<SeriesFilterData, SeriesFilterData, SeriesFilterData>
-      get copyWith => _SeriesFilterDataCopyWithImpl(
-          this as SeriesFilterData, $identity, $identity);
+      get copyWith =>
+          _SeriesFilterDataCopyWithImpl<SeriesFilterData, SeriesFilterData>(
+              this as SeriesFilterData, $identity, $identity);
   @override
   String toString() {
     return SeriesFilterDataMapper.ensureInitialized()
@@ -86,8 +87,8 @@ mixin SeriesFilterDataMappable {
 extension SeriesFilterDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesFilterData, $Out> {
   SeriesFilterDataCopyWith<$R, SeriesFilterData, $Out>
-      get $asSeriesFilterData =>
-          $base.as((v, t, t2) => _SeriesFilterDataCopyWithImpl(v, t, t2));
+      get $asSeriesFilterData => $base
+          .as((v, t, t2) => _SeriesFilterDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesFilterDataCopyWith<$R, $In extends SeriesFilterData, $Out>
@@ -161,5 +162,5 @@ class _SeriesFilterDataCopyWithImpl<$R, $Out>
   @override
   SeriesFilterDataCopyWith<$R2, SeriesFilterData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SeriesFilterDataCopyWithImpl($value, $cast, t);
+      _SeriesFilterDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

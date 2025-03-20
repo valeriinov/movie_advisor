@@ -79,7 +79,8 @@ mixin SeriesRateFilterDataDtoMappable {
 
   SeriesRateFilterDataDtoCopyWith<SeriesRateFilterDataDto,
           SeriesRateFilterDataDto, SeriesRateFilterDataDto>
-      get copyWith => _SeriesRateFilterDataDtoCopyWithImpl(
+      get copyWith => _SeriesRateFilterDataDtoCopyWithImpl<
+              SeriesRateFilterDataDto, SeriesRateFilterDataDto>(
           this as SeriesRateFilterDataDto, $identity, $identity);
   @override
   String toString() {
@@ -103,8 +104,8 @@ mixin SeriesRateFilterDataDtoMappable {
 extension SeriesRateFilterDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesRateFilterDataDto, $Out> {
   SeriesRateFilterDataDtoCopyWith<$R, SeriesRateFilterDataDto, $Out>
-      get $asSeriesRateFilterDataDto => $base
-          .as((v, t, t2) => _SeriesRateFilterDataDtoCopyWithImpl(v, t, t2));
+      get $asSeriesRateFilterDataDto => $base.as((v, t, t2) =>
+          _SeriesRateFilterDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesRateFilterDataDtoCopyWith<
@@ -177,5 +178,5 @@ class _SeriesRateFilterDataDtoCopyWithImpl<$R, $Out>
   @override
   SeriesRateFilterDataDtoCopyWith<$R2, SeriesRateFilterDataDto, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _SeriesRateFilterDataDtoCopyWithImpl($value, $cast, t);
+          _SeriesRateFilterDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

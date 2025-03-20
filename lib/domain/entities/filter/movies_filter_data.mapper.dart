@@ -62,8 +62,9 @@ class MoviesFilterDataMapper extends ClassMapperBase<MoviesFilterData> {
 
 mixin MoviesFilterDataMappable {
   MoviesFilterDataCopyWith<MoviesFilterData, MoviesFilterData, MoviesFilterData>
-      get copyWith => _MoviesFilterDataCopyWithImpl(
-          this as MoviesFilterData, $identity, $identity);
+      get copyWith =>
+          _MoviesFilterDataCopyWithImpl<MoviesFilterData, MoviesFilterData>(
+              this as MoviesFilterData, $identity, $identity);
   @override
   String toString() {
     return MoviesFilterDataMapper.ensureInitialized()
@@ -86,8 +87,8 @@ mixin MoviesFilterDataMappable {
 extension MoviesFilterDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MoviesFilterData, $Out> {
   MoviesFilterDataCopyWith<$R, MoviesFilterData, $Out>
-      get $asMoviesFilterData =>
-          $base.as((v, t, t2) => _MoviesFilterDataCopyWithImpl(v, t, t2));
+      get $asMoviesFilterData => $base
+          .as((v, t, t2) => _MoviesFilterDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MoviesFilterDataCopyWith<$R, $In extends MoviesFilterData, $Out>
@@ -161,5 +162,5 @@ class _MoviesFilterDataCopyWithImpl<$R, $Out>
   @override
   MoviesFilterDataCopyWith<$R2, MoviesFilterData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _MoviesFilterDataCopyWithImpl($value, $cast, t);
+      _MoviesFilterDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

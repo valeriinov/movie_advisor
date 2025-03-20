@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element, unnecessary_cast
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'base_colors_ext.dart';
 
@@ -480,8 +481,12 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       filterCtrlBarBg: Color.lerp(filterCtrlBarBg, other.filterCtrlBarBg, t)!,
       filterCtrlBarShadow:
           Color.lerp(filterCtrlBarShadow, other.filterCtrlBarShadow, t)!,
-      filterCtrlBarResetBtnOverlay: Color.lerp(
-          filterCtrlBarResetBtnOverlay, other.filterCtrlBarResetBtnOverlay, t)!,
+      filterCtrlBarResetBtnOverlay:
+          Color.lerp(
+            filterCtrlBarResetBtnOverlay,
+            other.filterCtrlBarResetBtnOverlay,
+            t,
+          )!,
     );
   }
 
@@ -491,154 +496,404 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
         (other.runtimeType == runtimeType &&
             other is BaseColors &&
             const DeepCollectionEquality().equals(seed, other.seed) &&
-            const DeepCollectionEquality()
-                .equals(splashColor, other.splashColor) &&
-            const DeepCollectionEquality()
-                .equals(highlightColor, other.highlightColor) &&
-            const DeepCollectionEquality()
-                .equals(scaffoldBg, other.scaffoldBg) &&
-            const DeepCollectionEquality()
-                .equals(textThemePrim, other.textThemePrim) &&
-            const DeepCollectionEquality()
-                .equals(textThemeSec, other.textThemeSec) &&
-            const DeepCollectionEquality()
-                .equals(btnElevPrimFg, other.btnElevPrimFg) &&
-            const DeepCollectionEquality()
-                .equals(btnElevPrimBg, other.btnElevPrimBg) &&
-            const DeepCollectionEquality()
-                .equals(btnElevPrimFgPress, other.btnElevPrimFgPress) &&
-            const DeepCollectionEquality()
-                .equals(btnElevPrimBgPress, other.btnElevPrimBgPress) &&
-            const DeepCollectionEquality()
-                .equals(btnElevPrimFgDis, other.btnElevPrimFgDis) &&
-            const DeepCollectionEquality()
-                .equals(btnElevPrimBgDis, other.btnElevPrimBgDis) &&
-            const DeepCollectionEquality()
-                .equals(btnOutPrimFg, other.btnOutPrimFg) &&
-            const DeepCollectionEquality()
-                .equals(btnOutPrimBg, other.btnOutPrimBg) &&
-            const DeepCollectionEquality()
-                .equals(btnOutPrimFgPress, other.btnOutPrimFgPress) &&
-            const DeepCollectionEquality()
-                .equals(btnOutPrimBgPress, other.btnOutPrimBgPress) &&
-            const DeepCollectionEquality()
-                .equals(btnOutPrimFgDis, other.btnOutPrimFgDis) &&
-            const DeepCollectionEquality()
-                .equals(btnOutPrimBgDis, other.btnOutPrimBgDis) &&
-            const DeepCollectionEquality()
-                .equals(btnFillPrimFg, other.btnFillPrimFg) &&
-            const DeepCollectionEquality()
-                .equals(btnFillPrimBg, other.btnFillPrimBg) &&
-            const DeepCollectionEquality()
-                .equals(btnFillPrimFgPress, other.btnFillPrimFgPress) &&
-            const DeepCollectionEquality()
-                .equals(btnFillPrimBgPress, other.btnFillPrimBgPress) &&
-            const DeepCollectionEquality()
-                .equals(btnFillPrimFgDis, other.btnFillPrimFgDis) &&
-            const DeepCollectionEquality()
-                .equals(btnFillPrimBgDis, other.btnFillPrimBgDis) &&
-            const DeepCollectionEquality()
-                .equals(btnTextPrimFg, other.btnTextPrimFg) &&
-            const DeepCollectionEquality()
-                .equals(btnTextPrimBg, other.btnTextPrimBg) &&
-            const DeepCollectionEquality()
-                .equals(btnTextPrimFgPress, other.btnTextPrimFgPress) &&
-            const DeepCollectionEquality()
-                .equals(btnTextPrimBgPress, other.btnTextPrimBgPress) &&
-            const DeepCollectionEquality()
-                .equals(btnTextPrimFgDis, other.btnTextPrimFgDis) &&
-            const DeepCollectionEquality()
-                .equals(btnTextPrimBgDis, other.btnTextPrimBgDis) &&
+            const DeepCollectionEquality().equals(
+              splashColor,
+              other.splashColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              highlightColor,
+              other.highlightColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              scaffoldBg,
+              other.scaffoldBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textThemePrim,
+              other.textThemePrim,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textThemeSec,
+              other.textThemeSec,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnElevPrimFg,
+              other.btnElevPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnElevPrimBg,
+              other.btnElevPrimBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnElevPrimFgPress,
+              other.btnElevPrimFgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnElevPrimBgPress,
+              other.btnElevPrimBgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnElevPrimFgDis,
+              other.btnElevPrimFgDis,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnElevPrimBgDis,
+              other.btnElevPrimBgDis,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnOutPrimFg,
+              other.btnOutPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnOutPrimBg,
+              other.btnOutPrimBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnOutPrimFgPress,
+              other.btnOutPrimFgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnOutPrimBgPress,
+              other.btnOutPrimBgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnOutPrimFgDis,
+              other.btnOutPrimFgDis,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnOutPrimBgDis,
+              other.btnOutPrimBgDis,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnFillPrimFg,
+              other.btnFillPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnFillPrimBg,
+              other.btnFillPrimBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnFillPrimFgPress,
+              other.btnFillPrimFgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnFillPrimBgPress,
+              other.btnFillPrimBgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnFillPrimFgDis,
+              other.btnFillPrimFgDis,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnFillPrimBgDis,
+              other.btnFillPrimBgDis,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnTextPrimFg,
+              other.btnTextPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnTextPrimBg,
+              other.btnTextPrimBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnTextPrimFgPress,
+              other.btnTextPrimFgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnTextPrimBgPress,
+              other.btnTextPrimBgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnTextPrimFgDis,
+              other.btnTextPrimFgDis,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnTextPrimBgDis,
+              other.btnTextPrimBgDis,
+            ) &&
             const DeepCollectionEquality().equals(btnFABFg, other.btnFABFg) &&
             const DeepCollectionEquality().equals(btnFABBg, other.btnFABBg) &&
-            const DeepCollectionEquality()
-                .equals(btnFABFgSplash, other.btnFABFgSplash) &&
-            const DeepCollectionEquality()
-                .equals(btnIconPrim, other.btnIconPrim) &&
-            const DeepCollectionEquality()
-                .equals(btnIconSecFg, other.btnIconSecFg) &&
-            const DeepCollectionEquality()
-                .equals(btnIconSecBg, other.btnIconSecBg) &&
-            const DeepCollectionEquality()
-                .equals(btnIconSecBgPress, other.btnIconSecBgPress) &&
-            const DeepCollectionEquality()
-                .equals(loadingIndicatorFg, other.loadingIndicatorFg) &&
-            const DeepCollectionEquality()
-                .equals(loadingIndicatorBg, other.loadingIndicatorBg) &&
-            const DeepCollectionEquality()
-                .equals(refreshIndicatorFg, other.refreshIndicatorFg) &&
-            const DeepCollectionEquality()
-                .equals(refreshIndicatorBg, other.refreshIndicatorBg) &&
-            const DeepCollectionEquality()
-                .equals(skeletonFrom, other.skeletonFrom) &&
-            const DeepCollectionEquality()
-                .equals(skeletonTo, other.skeletonTo) &&
-            const DeepCollectionEquality()
-                .equals(appBarPrimFg, other.appBarPrimFg) &&
-            const DeepCollectionEquality()
-                .equals(appBarPrimBg, other.appBarPrimBg) &&
-            const DeepCollectionEquality()
-                .equals(botNavBarBg, other.botNavBarBg) &&
-            const DeepCollectionEquality()
-                .equals(botNavBarFgSelect, other.botNavBarFgSelect) &&
-            const DeepCollectionEquality().equals(botNavBarFgUnselect, other.botNavBarFgUnselect) &&
-            const DeepCollectionEquality().equals(navBarDivider, other.navBarDivider) &&
-            const DeepCollectionEquality().equals(txtFldPrimFill, other.txtFldPrimFill) &&
-            const DeepCollectionEquality().equals(txtFldPrimInput, other.txtFldPrimInput) &&
-            const DeepCollectionEquality().equals(txtFldPrimLabel, other.txtFldPrimLabel) &&
-            const DeepCollectionEquality().equals(txtFldPrimBorder, other.txtFldPrimBorder) &&
-            const DeepCollectionEquality().equals(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus) &&
-            const DeepCollectionEquality().equals(txtFldPrimBorderError, other.txtFldPrimBorderError) &&
-            const DeepCollectionEquality().equals(txtFldPrimError, other.txtFldPrimError) &&
-            const DeepCollectionEquality().equals(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon) &&
-            const DeepCollectionEquality().equals(kbdActionBarBg, other.kbdActionBarBg) &&
-            const DeepCollectionEquality().equals(kbdActionBarFg, other.kbdActionBarFg) &&
+            const DeepCollectionEquality().equals(
+              btnFABFgSplash,
+              other.btnFABFgSplash,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnIconPrim,
+              other.btnIconPrim,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnIconSecFg,
+              other.btnIconSecFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnIconSecBg,
+              other.btnIconSecBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnIconSecBgPress,
+              other.btnIconSecBgPress,
+            ) &&
+            const DeepCollectionEquality().equals(
+              loadingIndicatorFg,
+              other.loadingIndicatorFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              loadingIndicatorBg,
+              other.loadingIndicatorBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              refreshIndicatorFg,
+              other.refreshIndicatorFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              refreshIndicatorBg,
+              other.refreshIndicatorBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              skeletonFrom,
+              other.skeletonFrom,
+            ) &&
+            const DeepCollectionEquality().equals(
+              skeletonTo,
+              other.skeletonTo,
+            ) &&
+            const DeepCollectionEquality().equals(
+              appBarPrimFg,
+              other.appBarPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              appBarPrimBg,
+              other.appBarPrimBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botNavBarBg,
+              other.botNavBarBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botNavBarFgSelect,
+              other.botNavBarFgSelect,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botNavBarFgUnselect,
+              other.botNavBarFgUnselect,
+            ) &&
+            const DeepCollectionEquality().equals(
+              navBarDivider,
+              other.navBarDivider,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimFill,
+              other.txtFldPrimFill,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimInput,
+              other.txtFldPrimInput,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimLabel,
+              other.txtFldPrimLabel,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimBorder,
+              other.txtFldPrimBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimBorderFocus,
+              other.txtFldPrimBorderFocus,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimBorderError,
+              other.txtFldPrimBorderError,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimError,
+              other.txtFldPrimError,
+            ) &&
+            const DeepCollectionEquality().equals(
+              txtFldPrimSuffixIcon,
+              other.txtFldPrimSuffixIcon,
+            ) &&
+            const DeepCollectionEquality().equals(
+              kbdActionBarBg,
+              other.kbdActionBarBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              kbdActionBarFg,
+              other.kbdActionBarFg,
+            ) &&
             const DeepCollectionEquality().equals(dlgPrimBg, other.dlgPrimBg) &&
-            const DeepCollectionEquality().equals(dlgPrimTitle, other.dlgPrimTitle) &&
-            const DeepCollectionEquality().equals(dlgPrimCont, other.dlgPrimCont) &&
-            const DeepCollectionEquality().equals(dlgPrimBtnFg, other.dlgPrimBtnFg) &&
-            const DeepCollectionEquality().equals(dlgSecBtnFg, other.dlgSecBtnFg) &&
-            const DeepCollectionEquality().equals(toastSuccessBg, other.toastSuccessBg) &&
-            const DeepCollectionEquality().equals(toastInfoBg, other.toastInfoBg) &&
-            const DeepCollectionEquality().equals(toastErrorBg, other.toastErrorBg) &&
+            const DeepCollectionEquality().equals(
+              dlgPrimTitle,
+              other.dlgPrimTitle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgPrimCont,
+              other.dlgPrimCont,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgPrimBtnFg,
+              other.dlgPrimBtnFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgSecBtnFg,
+              other.dlgSecBtnFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastSuccessBg,
+              other.toastSuccessBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastInfoBg,
+              other.toastInfoBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastErrorBg,
+              other.toastErrorBg,
+            ) &&
             const DeepCollectionEquality().equals(toastFg, other.toastFg) &&
-            const DeepCollectionEquality().equals(cardPrimBg, other.cardPrimBg) &&
-            const DeepCollectionEquality().equals(cardPrimSurfTint, other.cardPrimSurfTint) &&
-            const DeepCollectionEquality().equals(cardPrimBorder, other.cardPrimBorder) &&
-            const DeepCollectionEquality().equals(cardPrimShadow, other.cardPrimShadow) &&
-            const DeepCollectionEquality().equals(listTilePrimTitle, other.listTilePrimTitle) &&
-            const DeepCollectionEquality().equals(listTilePrimSubtitle, other.listTilePrimSubtitle) &&
-            const DeepCollectionEquality().equals(listTileSecTitle, other.listTileSecTitle) &&
-            const DeepCollectionEquality().equals(listTileSecSubtitle, other.listTileSecSubtitle) &&
-            const DeepCollectionEquality().equals(avatarPrimBg, other.avatarPrimBg) &&
-            const DeepCollectionEquality().equals(avatarPrimFg, other.avatarPrimFg) &&
-            const DeepCollectionEquality().equals(suggestNumFill, other.suggestNumFill) &&
-            const DeepCollectionEquality().equals(suggestNumStroke, other.suggestNumStroke) &&
-            const DeepCollectionEquality().equals(suggestNumBlur, other.suggestNumBlur) &&
-            const DeepCollectionEquality().equals(tabUnderSelect, other.tabUnderSelect) &&
-            const DeepCollectionEquality().equals(infoCardRating, other.infoCardRating) &&
-            const DeepCollectionEquality().equals(backdropRatingBg, other.backdropRatingBg) &&
-            const DeepCollectionEquality().equals(botSheetBg, other.botSheetBg) &&
-            const DeepCollectionEquality().equals(botSheetFg, other.botSheetFg) &&
-            const DeepCollectionEquality().equals(botSheetIcon, other.botSheetIcon) &&
-            const DeepCollectionEquality().equals(botSheetBarrier, other.botSheetBarrier) &&
+            const DeepCollectionEquality().equals(
+              cardPrimBg,
+              other.cardPrimBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              cardPrimSurfTint,
+              other.cardPrimSurfTint,
+            ) &&
+            const DeepCollectionEquality().equals(
+              cardPrimBorder,
+              other.cardPrimBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
+              cardPrimShadow,
+              other.cardPrimShadow,
+            ) &&
+            const DeepCollectionEquality().equals(
+              listTilePrimTitle,
+              other.listTilePrimTitle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              listTilePrimSubtitle,
+              other.listTilePrimSubtitle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              listTileSecTitle,
+              other.listTileSecTitle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              listTileSecSubtitle,
+              other.listTileSecSubtitle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              avatarPrimBg,
+              other.avatarPrimBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              avatarPrimFg,
+              other.avatarPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              suggestNumFill,
+              other.suggestNumFill,
+            ) &&
+            const DeepCollectionEquality().equals(
+              suggestNumStroke,
+              other.suggestNumStroke,
+            ) &&
+            const DeepCollectionEquality().equals(
+              suggestNumBlur,
+              other.suggestNumBlur,
+            ) &&
+            const DeepCollectionEquality().equals(
+              tabUnderSelect,
+              other.tabUnderSelect,
+            ) &&
+            const DeepCollectionEquality().equals(
+              infoCardRating,
+              other.infoCardRating,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backdropRatingBg,
+              other.backdropRatingBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetBg,
+              other.botSheetBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetFg,
+              other.botSheetFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetIcon,
+              other.botSheetIcon,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetBarrier,
+              other.botSheetBarrier,
+            ) &&
             const DeepCollectionEquality().equals(sliderVal, other.sliderVal) &&
-            const DeepCollectionEquality().equals(sliderTrackFg, other.sliderTrackFg) &&
-            const DeepCollectionEquality().equals(sliderTrackBg, other.sliderTrackBg) &&
-            const DeepCollectionEquality().equals(sliderThumbFill, other.sliderThumbFill) &&
-            const DeepCollectionEquality().equals(removeRateBtn, other.removeRateBtn) &&
-            const DeepCollectionEquality().equals(deleteAccountBtn, other.deleteAccountBtn) &&
+            const DeepCollectionEquality().equals(
+              sliderTrackFg,
+              other.sliderTrackFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              sliderTrackBg,
+              other.sliderTrackBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              sliderThumbFill,
+              other.sliderThumbFill,
+            ) &&
+            const DeepCollectionEquality().equals(
+              removeRateBtn,
+              other.removeRateBtn,
+            ) &&
+            const DeepCollectionEquality().equals(
+              deleteAccountBtn,
+              other.deleteAccountBtn,
+            ) &&
             const DeepCollectionEquality().equals(divider, other.divider) &&
-            const DeepCollectionEquality().equals(contSwitchBg, other.contSwitchBg) &&
-            const DeepCollectionEquality().equals(contSwitchIndicator, other.contSwitchIndicator) &&
-            const DeepCollectionEquality().equals(contSwitchBorder, other.contSwitchBorder) &&
-            const DeepCollectionEquality().equals(contSwitchFg, other.contSwitchFg) &&
-            const DeepCollectionEquality().equals(contSwitchFgSelect, other.contSwitchFgSelect) &&
-            const DeepCollectionEquality().equals(filterPrimFg, other.filterPrimFg) &&
-            const DeepCollectionEquality().equals(filterSecFg, other.filterSecFg) &&
-            const DeepCollectionEquality().equals(filterCtrlBarBg, other.filterCtrlBarBg) &&
-            const DeepCollectionEquality().equals(filterCtrlBarShadow, other.filterCtrlBarShadow) &&
-            const DeepCollectionEquality().equals(filterCtrlBarResetBtnOverlay, other.filterCtrlBarResetBtnOverlay));
+            const DeepCollectionEquality().equals(
+              contSwitchBg,
+              other.contSwitchBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contSwitchIndicator,
+              other.contSwitchIndicator,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contSwitchBorder,
+              other.contSwitchBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contSwitchFg,
+              other.contSwitchFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contSwitchFgSelect,
+              other.contSwitchFgSelect,
+            ) &&
+            const DeepCollectionEquality().equals(
+              filterPrimFg,
+              other.filterPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              filterSecFg,
+              other.filterSecFg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              filterCtrlBarBg,
+              other.filterCtrlBarBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              filterCtrlBarShadow,
+              other.filterCtrlBarShadow,
+            ) &&
+            const DeepCollectionEquality().equals(
+              filterCtrlBarResetBtnOverlay,
+              other.filterCtrlBarResetBtnOverlay,
+            ));
   }
 
   @override

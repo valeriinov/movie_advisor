@@ -64,7 +64,8 @@ mixin AuthDataDtoMappable {
   }
 
   AuthDataDtoCopyWith<AuthDataDto, AuthDataDto, AuthDataDto> get copyWith =>
-      _AuthDataDtoCopyWithImpl(this as AuthDataDto, $identity, $identity);
+      _AuthDataDtoCopyWithImpl<AuthDataDto, AuthDataDto>(
+          this as AuthDataDto, $identity, $identity);
   @override
   String toString() {
     return AuthDataDtoMapper.ensureInitialized()
@@ -86,7 +87,7 @@ mixin AuthDataDtoMappable {
 extension AuthDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AuthDataDto, $Out> {
   AuthDataDtoCopyWith<$R, AuthDataDto, $Out> get $asAuthDataDto =>
-      $base.as((v, t, t2) => _AuthDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _AuthDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AuthDataDtoCopyWith<$R, $In extends AuthDataDto, $Out>
@@ -117,5 +118,5 @@ class _AuthDataDtoCopyWithImpl<$R, $Out>
   @override
   AuthDataDtoCopyWith<$R2, AuthDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _AuthDataDtoCopyWithImpl($value, $cast, t);
+      _AuthDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

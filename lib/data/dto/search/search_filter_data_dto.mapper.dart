@@ -59,9 +59,9 @@ mixin SearchFilterDataDtoMappable {
   }
 
   SearchFilterDataDtoCopyWith<SearchFilterDataDto, SearchFilterDataDto,
-          SearchFilterDataDto>
-      get copyWith => _SearchFilterDataDtoCopyWithImpl(
-          this as SearchFilterDataDto, $identity, $identity);
+      SearchFilterDataDto> get copyWith => _SearchFilterDataDtoCopyWithImpl<
+          SearchFilterDataDto, SearchFilterDataDto>(
+      this as SearchFilterDataDto, $identity, $identity);
   @override
   String toString() {
     return SearchFilterDataDtoMapper.ensureInitialized()
@@ -84,8 +84,8 @@ mixin SearchFilterDataDtoMappable {
 extension SearchFilterDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchFilterDataDto, $Out> {
   SearchFilterDataDtoCopyWith<$R, SearchFilterDataDto, $Out>
-      get $asSearchFilterDataDto =>
-          $base.as((v, t, t2) => _SearchFilterDataDtoCopyWithImpl(v, t, t2));
+      get $asSearchFilterDataDto => $base.as(
+          (v, t, t2) => _SearchFilterDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchFilterDataDtoCopyWith<$R, $In extends SearchFilterDataDto,
@@ -113,5 +113,5 @@ class _SearchFilterDataDtoCopyWithImpl<$R, $Out>
   @override
   SearchFilterDataDtoCopyWith<$R2, SearchFilterDataDto, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _SearchFilterDataDtoCopyWithImpl($value, $cast, t);
+          _SearchFilterDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

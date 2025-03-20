@@ -77,8 +77,9 @@ mixin SyncUserDataDtoMappable {
   }
 
   SyncUserDataDtoCopyWith<SyncUserDataDto, SyncUserDataDto, SyncUserDataDto>
-      get copyWith => _SyncUserDataDtoCopyWithImpl(
-          this as SyncUserDataDto, $identity, $identity);
+      get copyWith =>
+          _SyncUserDataDtoCopyWithImpl<SyncUserDataDto, SyncUserDataDto>(
+              this as SyncUserDataDto, $identity, $identity);
   @override
   String toString() {
     return SyncUserDataDtoMapper.ensureInitialized()
@@ -101,7 +102,7 @@ mixin SyncUserDataDtoMappable {
 extension SyncUserDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SyncUserDataDto, $Out> {
   SyncUserDataDtoCopyWith<$R, SyncUserDataDto, $Out> get $asSyncUserDataDto =>
-      $base.as((v, t, t2) => _SyncUserDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _SyncUserDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SyncUserDataDtoCopyWith<$R, $In extends SyncUserDataDto, $Out>
@@ -145,5 +146,5 @@ class _SyncUserDataDtoCopyWithImpl<$R, $Out>
   @override
   SyncUserDataDtoCopyWith<$R2, SyncUserDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SyncUserDataDtoCopyWithImpl($value, $cast, t);
+      _SyncUserDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

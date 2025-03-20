@@ -43,7 +43,8 @@ class RegDataMapper extends ClassMapperBase<RegData> {
 
 mixin RegDataMappable {
   RegDataCopyWith<RegData, RegData, RegData> get copyWith =>
-      _RegDataCopyWithImpl(this as RegData, $identity, $identity);
+      _RegDataCopyWithImpl<RegData, RegData>(
+          this as RegData, $identity, $identity);
   @override
   String toString() {
     return RegDataMapper.ensureInitialized().stringifyValue(this as RegData);
@@ -63,7 +64,7 @@ mixin RegDataMappable {
 
 extension RegDataValueCopy<$R, $Out> on ObjectCopyWith<$R, RegData, $Out> {
   RegDataCopyWith<$R, RegData, $Out> get $asRegData =>
-      $base.as((v, t, t2) => _RegDataCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _RegDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RegDataCopyWith<$R, $In extends RegData, $Out>
@@ -92,5 +93,5 @@ class _RegDataCopyWithImpl<$R, $Out>
 
   @override
   RegDataCopyWith<$R2, RegData, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _RegDataCopyWithImpl($value, $cast, t);
+      _RegDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

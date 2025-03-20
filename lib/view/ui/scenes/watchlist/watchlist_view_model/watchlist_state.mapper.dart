@@ -49,8 +49,9 @@ class WatchlistStateMapper extends ClassMapperBase<WatchlistState> {
 mixin WatchlistStateMappable<T> {
   WatchlistStateCopyWith<WatchlistState<T>, WatchlistState<T>,
           WatchlistState<T>, T>
-      get copyWith => _WatchlistStateCopyWithImpl(
-          this as WatchlistState<T>, $identity, $identity);
+      get copyWith =>
+          _WatchlistStateCopyWithImpl<WatchlistState<T>, WatchlistState<T>, T>(
+              this as WatchlistState<T>, $identity, $identity);
   @override
   String toString() {
     return WatchlistStateMapper.ensureInitialized()
@@ -73,8 +74,8 @@ mixin WatchlistStateMappable<T> {
 extension WatchlistStateValueCopy<$R, $Out, T>
     on ObjectCopyWith<$R, WatchlistState<T>, $Out> {
   WatchlistStateCopyWith<$R, WatchlistState<T>, $Out, T>
-      get $asWatchlistState =>
-          $base.as((v, t, t2) => _WatchlistStateCopyWithImpl(v, t, t2));
+      get $asWatchlistState => $base
+          .as((v, t, t2) => _WatchlistStateCopyWithImpl<$R, $Out, T>(v, t, t2));
 }
 
 abstract class WatchlistStateCopyWith<$R, $In extends WatchlistState<T>, $Out,
@@ -113,7 +114,7 @@ class _WatchlistStateCopyWithImpl<$R, $Out, T>
   @override
   WatchlistStateCopyWith<$R2, WatchlistState<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _WatchlistStateCopyWithImpl($value, $cast, t);
+      _WatchlistStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }
 
 class WatchlistBaseStatusMapper extends ClassMapperBase<WatchlistBaseStatus> {
@@ -160,9 +161,9 @@ class WatchlistBaseStatusMapper extends ClassMapperBase<WatchlistBaseStatus> {
 
 mixin WatchlistBaseStatusMappable {
   WatchlistBaseStatusCopyWith<WatchlistBaseStatus, WatchlistBaseStatus,
-          WatchlistBaseStatus>
-      get copyWith => _WatchlistBaseStatusCopyWithImpl(
-          this as WatchlistBaseStatus, $identity, $identity);
+      WatchlistBaseStatus> get copyWith => _WatchlistBaseStatusCopyWithImpl<
+          WatchlistBaseStatus, WatchlistBaseStatus>(
+      this as WatchlistBaseStatus, $identity, $identity);
   @override
   String toString() {
     return WatchlistBaseStatusMapper.ensureInitialized()
@@ -185,8 +186,8 @@ mixin WatchlistBaseStatusMappable {
 extension WatchlistBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, WatchlistBaseStatus, $Out> {
   WatchlistBaseStatusCopyWith<$R, WatchlistBaseStatus, $Out>
-      get $asWatchlistBaseStatus =>
-          $base.as((v, t, t2) => _WatchlistBaseStatusCopyWithImpl(v, t, t2));
+      get $asWatchlistBaseStatus => $base.as(
+          (v, t, t2) => _WatchlistBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class WatchlistBaseStatusCopyWith<$R, $In extends WatchlistBaseStatus,
@@ -223,7 +224,7 @@ class _WatchlistBaseStatusCopyWithImpl<$R, $Out>
   @override
   WatchlistBaseStatusCopyWith<$R2, WatchlistBaseStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _WatchlistBaseStatusCopyWithImpl($value, $cast, t);
+          _WatchlistBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class WatchlistBaseInitStatusMapper
@@ -273,7 +274,8 @@ class WatchlistBaseInitStatusMapper
 mixin WatchlistBaseInitStatusMappable {
   WatchlistBaseInitStatusCopyWith<WatchlistBaseInitStatus,
           WatchlistBaseInitStatus, WatchlistBaseInitStatus>
-      get copyWith => _WatchlistBaseInitStatusCopyWithImpl(
+      get copyWith => _WatchlistBaseInitStatusCopyWithImpl<
+              WatchlistBaseInitStatus, WatchlistBaseInitStatus>(
           this as WatchlistBaseInitStatus, $identity, $identity);
   @override
   String toString() {
@@ -297,8 +299,8 @@ mixin WatchlistBaseInitStatusMappable {
 extension WatchlistBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, WatchlistBaseInitStatus, $Out> {
   WatchlistBaseInitStatusCopyWith<$R, WatchlistBaseInitStatus, $Out>
-      get $asWatchlistBaseInitStatus => $base
-          .as((v, t, t2) => _WatchlistBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asWatchlistBaseInitStatus => $base.as((v, t, t2) =>
+          _WatchlistBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class WatchlistBaseInitStatusCopyWith<
@@ -338,5 +340,5 @@ class _WatchlistBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   WatchlistBaseInitStatusCopyWith<$R2, WatchlistBaseInitStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _WatchlistBaseInitStatusCopyWithImpl($value, $cast, t);
+          _WatchlistBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

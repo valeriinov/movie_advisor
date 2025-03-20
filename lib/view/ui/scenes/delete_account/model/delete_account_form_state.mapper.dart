@@ -59,7 +59,8 @@ mixin DeleteAccountFormStateMappable {
 
   DeleteAccountFormStateCopyWith<DeleteAccountFormState, DeleteAccountFormState,
           DeleteAccountFormState>
-      get copyWith => _DeleteAccountFormStateCopyWithImpl(
+      get copyWith => _DeleteAccountFormStateCopyWithImpl<
+              DeleteAccountFormState, DeleteAccountFormState>(
           this as DeleteAccountFormState, $identity, $identity);
   @override
   String toString() {
@@ -83,8 +84,8 @@ mixin DeleteAccountFormStateMappable {
 extension DeleteAccountFormStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DeleteAccountFormState, $Out> {
   DeleteAccountFormStateCopyWith<$R, DeleteAccountFormState, $Out>
-      get $asDeleteAccountFormState =>
-          $base.as((v, t, t2) => _DeleteAccountFormStateCopyWithImpl(v, t, t2));
+      get $asDeleteAccountFormState => $base.as((v, t, t2) =>
+          _DeleteAccountFormStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DeleteAccountFormStateCopyWith<
@@ -115,5 +116,5 @@ class _DeleteAccountFormStateCopyWithImpl<$R, $Out>
   @override
   DeleteAccountFormStateCopyWith<$R2, DeleteAccountFormState, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _DeleteAccountFormStateCopyWithImpl($value, $cast, t);
+          _DeleteAccountFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

@@ -45,7 +45,8 @@ class AuthStateMapper extends ClassMapperBase<AuthState> {
 
 mixin AuthStateMappable {
   AuthStateCopyWith<AuthState, AuthState, AuthState> get copyWith =>
-      _AuthStateCopyWithImpl(this as AuthState, $identity, $identity);
+      _AuthStateCopyWithImpl<AuthState, AuthState>(
+          this as AuthState, $identity, $identity);
   @override
   String toString() {
     return AuthStateMapper.ensureInitialized()
@@ -66,7 +67,7 @@ mixin AuthStateMappable {
 
 extension AuthStateValueCopy<$R, $Out> on ObjectCopyWith<$R, AuthState, $Out> {
   AuthStateCopyWith<$R, AuthState, $Out> get $asAuthState =>
-      $base.as((v, t, t2) => _AuthStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _AuthStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AuthStateCopyWith<$R, $In extends AuthState, $Out>
@@ -101,7 +102,7 @@ class _AuthStateCopyWithImpl<$R, $Out>
   @override
   AuthStateCopyWith<$R2, AuthState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _AuthStateCopyWithImpl($value, $cast, t);
+      _AuthStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class AuthBaseStatusMapper extends ClassMapperBase<AuthBaseStatus> {
@@ -148,8 +149,9 @@ class AuthBaseStatusMapper extends ClassMapperBase<AuthBaseStatus> {
 
 mixin AuthBaseStatusMappable {
   AuthBaseStatusCopyWith<AuthBaseStatus, AuthBaseStatus, AuthBaseStatus>
-      get copyWith => _AuthBaseStatusCopyWithImpl(
-          this as AuthBaseStatus, $identity, $identity);
+      get copyWith =>
+          _AuthBaseStatusCopyWithImpl<AuthBaseStatus, AuthBaseStatus>(
+              this as AuthBaseStatus, $identity, $identity);
   @override
   String toString() {
     return AuthBaseStatusMapper.ensureInitialized()
@@ -172,7 +174,7 @@ mixin AuthBaseStatusMappable {
 extension AuthBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AuthBaseStatus, $Out> {
   AuthBaseStatusCopyWith<$R, AuthBaseStatus, $Out> get $asAuthBaseStatus =>
-      $base.as((v, t, t2) => _AuthBaseStatusCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _AuthBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AuthBaseStatusCopyWith<$R, $In extends AuthBaseStatus, $Out>
@@ -209,7 +211,7 @@ class _AuthBaseStatusCopyWithImpl<$R, $Out>
   @override
   AuthBaseStatusCopyWith<$R2, AuthBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _AuthBaseStatusCopyWithImpl($value, $cast, t);
+      _AuthBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class AuthBaseInitStatusMapper extends ClassMapperBase<AuthBaseInitStatus> {
@@ -257,8 +259,8 @@ class AuthBaseInitStatusMapper extends ClassMapperBase<AuthBaseInitStatus> {
 mixin AuthBaseInitStatusMappable {
   AuthBaseInitStatusCopyWith<AuthBaseInitStatus, AuthBaseInitStatus,
           AuthBaseInitStatus>
-      get copyWith => _AuthBaseInitStatusCopyWithImpl(
-          this as AuthBaseInitStatus, $identity, $identity);
+      get copyWith => _AuthBaseInitStatusCopyWithImpl<AuthBaseInitStatus,
+          AuthBaseInitStatus>(this as AuthBaseInitStatus, $identity, $identity);
   @override
   String toString() {
     return AuthBaseInitStatusMapper.ensureInitialized()
@@ -281,8 +283,8 @@ mixin AuthBaseInitStatusMappable {
 extension AuthBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AuthBaseInitStatus, $Out> {
   AuthBaseInitStatusCopyWith<$R, AuthBaseInitStatus, $Out>
-      get $asAuthBaseInitStatus =>
-          $base.as((v, t, t2) => _AuthBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asAuthBaseInitStatus => $base.as(
+          (v, t, t2) => _AuthBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AuthBaseInitStatusCopyWith<$R, $In extends AuthBaseInitStatus,
@@ -319,7 +321,7 @@ class _AuthBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   AuthBaseInitStatusCopyWith<$R2, AuthBaseInitStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _AuthBaseInitStatusCopyWithImpl($value, $cast, t);
+      _AuthBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class AuthSuccessStatusMapper extends ClassMapperBase<AuthSuccessStatus> {
@@ -367,8 +369,9 @@ class AuthSuccessStatusMapper extends ClassMapperBase<AuthSuccessStatus> {
 mixin AuthSuccessStatusMappable {
   AuthSuccessStatusCopyWith<AuthSuccessStatus, AuthSuccessStatus,
           AuthSuccessStatus>
-      get copyWith => _AuthSuccessStatusCopyWithImpl(
-          this as AuthSuccessStatus, $identity, $identity);
+      get copyWith =>
+          _AuthSuccessStatusCopyWithImpl<AuthSuccessStatus, AuthSuccessStatus>(
+              this as AuthSuccessStatus, $identity, $identity);
   @override
   String toString() {
     return AuthSuccessStatusMapper.ensureInitialized()
@@ -391,8 +394,8 @@ mixin AuthSuccessStatusMappable {
 extension AuthSuccessStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AuthSuccessStatus, $Out> {
   AuthSuccessStatusCopyWith<$R, AuthSuccessStatus, $Out>
-      get $asAuthSuccessStatus =>
-          $base.as((v, t, t2) => _AuthSuccessStatusCopyWithImpl(v, t, t2));
+      get $asAuthSuccessStatus => $base
+          .as((v, t, t2) => _AuthSuccessStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AuthSuccessStatusCopyWith<$R, $In extends AuthSuccessStatus,
@@ -429,5 +432,5 @@ class _AuthSuccessStatusCopyWithImpl<$R, $Out>
   @override
   AuthSuccessStatusCopyWith<$R2, AuthSuccessStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _AuthSuccessStatusCopyWithImpl($value, $cast, t);
+      _AuthSuccessStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

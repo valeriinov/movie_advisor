@@ -158,7 +158,7 @@ mixin SeriesDataDtoMappable {
   }
 
   SeriesDataDtoCopyWith<SeriesDataDto, SeriesDataDto, SeriesDataDto>
-      get copyWith => _SeriesDataDtoCopyWithImpl(
+      get copyWith => _SeriesDataDtoCopyWithImpl<SeriesDataDto, SeriesDataDto>(
           this as SeriesDataDto, $identity, $identity);
   @override
   String toString() {
@@ -182,7 +182,7 @@ mixin SeriesDataDtoMappable {
 extension SeriesDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesDataDto, $Out> {
   SeriesDataDtoCopyWith<$R, SeriesDataDto, $Out> get $asSeriesDataDto =>
-      $base.as((v, t, t2) => _SeriesDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _SeriesDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
@@ -324,5 +324,5 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
   @override
   SeriesDataDtoCopyWith<$R2, SeriesDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SeriesDataDtoCopyWithImpl($value, $cast, t);
+      _SeriesDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

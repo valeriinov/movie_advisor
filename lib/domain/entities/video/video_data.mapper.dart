@@ -55,7 +55,8 @@ class VideoDataMapper extends ClassMapperBase<VideoData> {
 
 mixin VideoDataMappable {
   VideoDataCopyWith<VideoData, VideoData, VideoData> get copyWith =>
-      _VideoDataCopyWithImpl(this as VideoData, $identity, $identity);
+      _VideoDataCopyWithImpl<VideoData, VideoData>(
+          this as VideoData, $identity, $identity);
   @override
   String toString() {
     return VideoDataMapper.ensureInitialized()
@@ -76,7 +77,7 @@ mixin VideoDataMappable {
 
 extension VideoDataValueCopy<$R, $Out> on ObjectCopyWith<$R, VideoData, $Out> {
   VideoDataCopyWith<$R, VideoData, $Out> get $asVideoData =>
-      $base.as((v, t, t2) => _VideoDataCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _VideoDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class VideoDataCopyWith<$R, $In extends VideoData, $Out>
@@ -111,5 +112,5 @@ class _VideoDataCopyWithImpl<$R, $Out>
   @override
   VideoDataCopyWith<$R2, VideoData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _VideoDataCopyWithImpl($value, $cast, t);
+      _VideoDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

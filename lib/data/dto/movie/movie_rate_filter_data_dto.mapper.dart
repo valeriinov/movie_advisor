@@ -78,7 +78,8 @@ mixin MovieRateFilterDataDtoMappable {
 
   MovieRateFilterDataDtoCopyWith<MovieRateFilterDataDto, MovieRateFilterDataDto,
           MovieRateFilterDataDto>
-      get copyWith => _MovieRateFilterDataDtoCopyWithImpl(
+      get copyWith => _MovieRateFilterDataDtoCopyWithImpl<
+              MovieRateFilterDataDto, MovieRateFilterDataDto>(
           this as MovieRateFilterDataDto, $identity, $identity);
   @override
   String toString() {
@@ -102,8 +103,8 @@ mixin MovieRateFilterDataDtoMappable {
 extension MovieRateFilterDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MovieRateFilterDataDto, $Out> {
   MovieRateFilterDataDtoCopyWith<$R, MovieRateFilterDataDto, $Out>
-      get $asMovieRateFilterDataDto =>
-          $base.as((v, t, t2) => _MovieRateFilterDataDtoCopyWithImpl(v, t, t2));
+      get $asMovieRateFilterDataDto => $base.as((v, t, t2) =>
+          _MovieRateFilterDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MovieRateFilterDataDtoCopyWith<
@@ -176,5 +177,5 @@ class _MovieRateFilterDataDtoCopyWithImpl<$R, $Out>
   @override
   MovieRateFilterDataDtoCopyWith<$R2, MovieRateFilterDataDto, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _MovieRateFilterDataDtoCopyWithImpl($value, $cast, t);
+          _MovieRateFilterDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

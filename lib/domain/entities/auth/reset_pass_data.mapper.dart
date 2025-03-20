@@ -39,7 +39,7 @@ class ResetPassDataMapper extends ClassMapperBase<ResetPassData> {
 
 mixin ResetPassDataMappable {
   ResetPassDataCopyWith<ResetPassData, ResetPassData, ResetPassData>
-      get copyWith => _ResetPassDataCopyWithImpl(
+      get copyWith => _ResetPassDataCopyWithImpl<ResetPassData, ResetPassData>(
           this as ResetPassData, $identity, $identity);
   @override
   String toString() {
@@ -63,7 +63,7 @@ mixin ResetPassDataMappable {
 extension ResetPassDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ResetPassData, $Out> {
   ResetPassDataCopyWith<$R, ResetPassData, $Out> get $asResetPassData =>
-      $base.as((v, t, t2) => _ResetPassDataCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _ResetPassDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ResetPassDataCopyWith<$R, $In extends ResetPassData, $Out>
@@ -90,5 +90,5 @@ class _ResetPassDataCopyWithImpl<$R, $Out>
   @override
   ResetPassDataCopyWith<$R2, ResetPassData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _ResetPassDataCopyWithImpl($value, $cast, t);
+      _ResetPassDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

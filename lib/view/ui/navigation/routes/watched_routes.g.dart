@@ -6,21 +6,18 @@ part of 'watched_routes.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [
-      $watchedRoute,
-    ];
+List<RouteBase> get $appRoutes => [$watchedRoute];
 
 RouteBase get $watchedRoute => GoRouteData.$route(
-      path: '/watched',
-      factory: $WatchedRouteExtension._fromState,
-    );
+  path: '/watched',
+
+  factory: $WatchedRouteExtension._fromState,
+);
 
 extension $WatchedRouteExtension on WatchedRoute {
   static WatchedRoute _fromState(GoRouterState state) => WatchedRoute();
 
-  String get location => GoRouteData.$location(
-        '/watched',
-      );
+  String get location => GoRouteData.$location('/watched');
 
   void go(BuildContext context) => context.go(location);
 

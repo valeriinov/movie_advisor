@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element, unnecessary_cast
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'base_buttons_styles_ext.dart';
 
@@ -76,7 +77,9 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
 
   @override
   BaseButtonStyles lerp(
-      covariant ThemeExtension<BaseButtonStyles>? other, double t) {
+    covariant ThemeExtension<BaseButtonStyles>? other,
+    double t,
+  ) {
     if (other is! BaseButtonStyles) return this as BaseButtonStyles;
     return BaseButtonStyles(
       btnPrimBorderRadius:
@@ -112,43 +115,79 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BaseButtonStyles &&
-            const DeepCollectionEquality()
-                .equals(btnPrimBorderRadius, other.btnPrimBorderRadius) &&
-            const DeepCollectionEquality()
-                .equals(btnPrimHeight, other.btnPrimHeight) &&
-            const DeepCollectionEquality()
-                .equals(btnSecBorderRadius, other.btnSecBorderRadius) &&
-            const DeepCollectionEquality()
-                .equals(btnSecHeight, other.btnSecHeight) &&
-            const DeepCollectionEquality()
-                .equals(btnPrimShape, other.btnPrimShape) &&
-            const DeepCollectionEquality()
-                .equals(btnSecShape, other.btnSecShape) &&
-            const DeepCollectionEquality()
-                .equals(elevBtnPrimTextStyle, other.elevBtnPrimTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(outBtnPrimTextStyle, other.outBtnPrimTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(fillBtnPrimTextStyle, other.fillBtnPrimTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(textBtnPrimTextStyle, other.textBtnPrimTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(btnPrimMinSize, other.btnPrimMinSize) &&
-            const DeepCollectionEquality()
-                .equals(btnSecMinSize, other.btnSecMinSize) &&
-            const DeepCollectionEquality()
-                .equals(elevBtnPrimStyle, other.elevBtnPrimStyle) &&
-            const DeepCollectionEquality()
-                .equals(outBtnPrimStyle, other.outBtnPrimStyle) &&
-            const DeepCollectionEquality()
-                .equals(fillBtnPrimStyle, other.fillBtnPrimStyle) &&
-            const DeepCollectionEquality()
-                .equals(textBtnPrimStyle, other.textBtnPrimStyle) &&
+            const DeepCollectionEquality().equals(
+              btnPrimBorderRadius,
+              other.btnPrimBorderRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnPrimHeight,
+              other.btnPrimHeight,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnSecBorderRadius,
+              other.btnSecBorderRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnSecHeight,
+              other.btnSecHeight,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnPrimShape,
+              other.btnPrimShape,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnSecShape,
+              other.btnSecShape,
+            ) &&
+            const DeepCollectionEquality().equals(
+              elevBtnPrimTextStyle,
+              other.elevBtnPrimTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              outBtnPrimTextStyle,
+              other.outBtnPrimTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fillBtnPrimTextStyle,
+              other.fillBtnPrimTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textBtnPrimTextStyle,
+              other.textBtnPrimTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnPrimMinSize,
+              other.btnPrimMinSize,
+            ) &&
+            const DeepCollectionEquality().equals(
+              btnSecMinSize,
+              other.btnSecMinSize,
+            ) &&
+            const DeepCollectionEquality().equals(
+              elevBtnPrimStyle,
+              other.elevBtnPrimStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              outBtnPrimStyle,
+              other.outBtnPrimStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fillBtnPrimStyle,
+              other.fillBtnPrimStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textBtnPrimStyle,
+              other.textBtnPrimStyle,
+            ) &&
             const DeepCollectionEquality().equals(fabShape, other.fabShape) &&
-            const DeepCollectionEquality()
-                .equals(iconBtnPrimStyle, other.iconBtnPrimStyle) &&
-            const DeepCollectionEquality()
-                .equals(iconBtnSecStyle, other.iconBtnSecStyle));
+            const DeepCollectionEquality().equals(
+              iconBtnPrimStyle,
+              other.iconBtnPrimStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              iconBtnSecStyle,
+              other.iconBtnSecStyle,
+            ));
   }
 
   @override

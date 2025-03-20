@@ -54,8 +54,9 @@ class DetailsStateMapper extends ClassMapperBase<DetailsState> {
 
 mixin DetailsStateMappable<T extends MediaData> {
   DetailsStateCopyWith<DetailsState<T>, DetailsState<T>, DetailsState<T>, T>
-      get copyWith => _DetailsStateCopyWithImpl(
-          this as DetailsState<T>, $identity, $identity);
+      get copyWith =>
+          _DetailsStateCopyWithImpl<DetailsState<T>, DetailsState<T>, T>(
+              this as DetailsState<T>, $identity, $identity);
   @override
   String toString() {
     return DetailsStateMapper.ensureInitialized()
@@ -78,7 +79,7 @@ mixin DetailsStateMappable<T extends MediaData> {
 extension DetailsStateValueCopy<$R, $Out, T extends MediaData>
     on ObjectCopyWith<$R, DetailsState<T>, $Out> {
   DetailsStateCopyWith<$R, DetailsState<T>, $Out, T> get $asDetailsState =>
-      $base.as((v, t, t2) => _DetailsStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _DetailsStateCopyWithImpl<$R, $Out, T>(v, t, t2));
 }
 
 abstract class DetailsStateCopyWith<$R, $In extends DetailsState<T>, $Out,
@@ -112,7 +113,7 @@ class _DetailsStateCopyWithImpl<$R, $Out, T extends MediaData>
   @override
   DetailsStateCopyWith<$R2, DetailsState<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _DetailsStateCopyWithImpl($value, $cast, t);
+      _DetailsStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }
 
 class DetailsBaseStatusMapper extends ClassMapperBase<DetailsBaseStatus> {
@@ -160,8 +161,9 @@ class DetailsBaseStatusMapper extends ClassMapperBase<DetailsBaseStatus> {
 mixin DetailsBaseStatusMappable {
   DetailsBaseStatusCopyWith<DetailsBaseStatus, DetailsBaseStatus,
           DetailsBaseStatus>
-      get copyWith => _DetailsBaseStatusCopyWithImpl(
-          this as DetailsBaseStatus, $identity, $identity);
+      get copyWith =>
+          _DetailsBaseStatusCopyWithImpl<DetailsBaseStatus, DetailsBaseStatus>(
+              this as DetailsBaseStatus, $identity, $identity);
   @override
   String toString() {
     return DetailsBaseStatusMapper.ensureInitialized()
@@ -184,8 +186,8 @@ mixin DetailsBaseStatusMappable {
 extension DetailsBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DetailsBaseStatus, $Out> {
   DetailsBaseStatusCopyWith<$R, DetailsBaseStatus, $Out>
-      get $asDetailsBaseStatus =>
-          $base.as((v, t, t2) => _DetailsBaseStatusCopyWithImpl(v, t, t2));
+      get $asDetailsBaseStatus => $base
+          .as((v, t, t2) => _DetailsBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DetailsBaseStatusCopyWith<$R, $In extends DetailsBaseStatus,
@@ -222,7 +224,7 @@ class _DetailsBaseStatusCopyWithImpl<$R, $Out>
   @override
   DetailsBaseStatusCopyWith<$R2, DetailsBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _DetailsBaseStatusCopyWithImpl($value, $cast, t);
+      _DetailsBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class DetailsBaseInitStatusMapper
@@ -270,9 +272,9 @@ class DetailsBaseInitStatusMapper
 
 mixin DetailsBaseInitStatusMappable {
   DetailsBaseInitStatusCopyWith<DetailsBaseInitStatus, DetailsBaseInitStatus,
-          DetailsBaseInitStatus>
-      get copyWith => _DetailsBaseInitStatusCopyWithImpl(
-          this as DetailsBaseInitStatus, $identity, $identity);
+      DetailsBaseInitStatus> get copyWith => _DetailsBaseInitStatusCopyWithImpl<
+          DetailsBaseInitStatus, DetailsBaseInitStatus>(
+      this as DetailsBaseInitStatus, $identity, $identity);
   @override
   String toString() {
     return DetailsBaseInitStatusMapper.ensureInitialized()
@@ -295,8 +297,8 @@ mixin DetailsBaseInitStatusMappable {
 extension DetailsBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DetailsBaseInitStatus, $Out> {
   DetailsBaseInitStatusCopyWith<$R, DetailsBaseInitStatus, $Out>
-      get $asDetailsBaseInitStatus =>
-          $base.as((v, t, t2) => _DetailsBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asDetailsBaseInitStatus => $base.as(
+          (v, t, t2) => _DetailsBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DetailsBaseInitStatusCopyWith<
@@ -335,7 +337,7 @@ class _DetailsBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   DetailsBaseInitStatusCopyWith<$R2, DetailsBaseInitStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _DetailsBaseInitStatusCopyWithImpl($value, $cast, t);
+          _DetailsBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class WatchlistLoadingStatusMapper
@@ -384,7 +386,8 @@ class WatchlistLoadingStatusMapper
 mixin WatchlistLoadingStatusMappable {
   WatchlistLoadingStatusCopyWith<WatchlistLoadingStatus, WatchlistLoadingStatus,
           WatchlistLoadingStatus>
-      get copyWith => _WatchlistLoadingStatusCopyWithImpl(
+      get copyWith => _WatchlistLoadingStatusCopyWithImpl<
+              WatchlistLoadingStatus, WatchlistLoadingStatus>(
           this as WatchlistLoadingStatus, $identity, $identity);
   @override
   String toString() {
@@ -408,8 +411,8 @@ mixin WatchlistLoadingStatusMappable {
 extension WatchlistLoadingStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, WatchlistLoadingStatus, $Out> {
   WatchlistLoadingStatusCopyWith<$R, WatchlistLoadingStatus, $Out>
-      get $asWatchlistLoadingStatus =>
-          $base.as((v, t, t2) => _WatchlistLoadingStatusCopyWithImpl(v, t, t2));
+      get $asWatchlistLoadingStatus => $base.as((v, t, t2) =>
+          _WatchlistLoadingStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class WatchlistLoadingStatusCopyWith<
@@ -449,7 +452,7 @@ class _WatchlistLoadingStatusCopyWithImpl<$R, $Out>
   @override
   WatchlistLoadingStatusCopyWith<$R2, WatchlistLoadingStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _WatchlistLoadingStatusCopyWithImpl($value, $cast, t);
+          _WatchlistLoadingStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class AddedToWatchlistStatusMapper
@@ -498,7 +501,8 @@ class AddedToWatchlistStatusMapper
 mixin AddedToWatchlistStatusMappable {
   AddedToWatchlistStatusCopyWith<AddedToWatchlistStatus, AddedToWatchlistStatus,
           AddedToWatchlistStatus>
-      get copyWith => _AddedToWatchlistStatusCopyWithImpl(
+      get copyWith => _AddedToWatchlistStatusCopyWithImpl<
+              AddedToWatchlistStatus, AddedToWatchlistStatus>(
           this as AddedToWatchlistStatus, $identity, $identity);
   @override
   String toString() {
@@ -522,8 +526,8 @@ mixin AddedToWatchlistStatusMappable {
 extension AddedToWatchlistStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AddedToWatchlistStatus, $Out> {
   AddedToWatchlistStatusCopyWith<$R, AddedToWatchlistStatus, $Out>
-      get $asAddedToWatchlistStatus =>
-          $base.as((v, t, t2) => _AddedToWatchlistStatusCopyWithImpl(v, t, t2));
+      get $asAddedToWatchlistStatus => $base.as((v, t, t2) =>
+          _AddedToWatchlistStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AddedToWatchlistStatusCopyWith<
@@ -563,7 +567,7 @@ class _AddedToWatchlistStatusCopyWithImpl<$R, $Out>
   @override
   AddedToWatchlistStatusCopyWith<$R2, AddedToWatchlistStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _AddedToWatchlistStatusCopyWithImpl($value, $cast, t);
+          _AddedToWatchlistStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class WatchedLoadingStatusMapper extends ClassMapperBase<WatchedLoadingStatus> {
@@ -610,9 +614,9 @@ class WatchedLoadingStatusMapper extends ClassMapperBase<WatchedLoadingStatus> {
 
 mixin WatchedLoadingStatusMappable {
   WatchedLoadingStatusCopyWith<WatchedLoadingStatus, WatchedLoadingStatus,
-          WatchedLoadingStatus>
-      get copyWith => _WatchedLoadingStatusCopyWithImpl(
-          this as WatchedLoadingStatus, $identity, $identity);
+      WatchedLoadingStatus> get copyWith => _WatchedLoadingStatusCopyWithImpl<
+          WatchedLoadingStatus, WatchedLoadingStatus>(
+      this as WatchedLoadingStatus, $identity, $identity);
   @override
   String toString() {
     return WatchedLoadingStatusMapper.ensureInitialized()
@@ -635,8 +639,8 @@ mixin WatchedLoadingStatusMappable {
 extension WatchedLoadingStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, WatchedLoadingStatus, $Out> {
   WatchedLoadingStatusCopyWith<$R, WatchedLoadingStatus, $Out>
-      get $asWatchedLoadingStatus =>
-          $base.as((v, t, t2) => _WatchedLoadingStatusCopyWithImpl(v, t, t2));
+      get $asWatchedLoadingStatus => $base.as(
+          (v, t, t2) => _WatchedLoadingStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class WatchedLoadingStatusCopyWith<
@@ -675,7 +679,7 @@ class _WatchedLoadingStatusCopyWithImpl<$R, $Out>
   @override
   WatchedLoadingStatusCopyWith<$R2, WatchedLoadingStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _WatchedLoadingStatusCopyWithImpl($value, $cast, t);
+          _WatchedLoadingStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class AddedToWatchedStatusMapper extends ClassMapperBase<AddedToWatchedStatus> {
@@ -722,9 +726,9 @@ class AddedToWatchedStatusMapper extends ClassMapperBase<AddedToWatchedStatus> {
 
 mixin AddedToWatchedStatusMappable {
   AddedToWatchedStatusCopyWith<AddedToWatchedStatus, AddedToWatchedStatus,
-          AddedToWatchedStatus>
-      get copyWith => _AddedToWatchedStatusCopyWithImpl(
-          this as AddedToWatchedStatus, $identity, $identity);
+      AddedToWatchedStatus> get copyWith => _AddedToWatchedStatusCopyWithImpl<
+          AddedToWatchedStatus, AddedToWatchedStatus>(
+      this as AddedToWatchedStatus, $identity, $identity);
   @override
   String toString() {
     return AddedToWatchedStatusMapper.ensureInitialized()
@@ -747,8 +751,8 @@ mixin AddedToWatchedStatusMappable {
 extension AddedToWatchedStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AddedToWatchedStatus, $Out> {
   AddedToWatchedStatusCopyWith<$R, AddedToWatchedStatus, $Out>
-      get $asAddedToWatchedStatus =>
-          $base.as((v, t, t2) => _AddedToWatchedStatusCopyWithImpl(v, t, t2));
+      get $asAddedToWatchedStatus => $base.as(
+          (v, t, t2) => _AddedToWatchedStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AddedToWatchedStatusCopyWith<
@@ -787,7 +791,7 @@ class _AddedToWatchedStatusCopyWithImpl<$R, $Out>
   @override
   AddedToWatchedStatusCopyWith<$R2, AddedToWatchedStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _AddedToWatchedStatusCopyWithImpl($value, $cast, t);
+          _AddedToWatchedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RemovedFromWatchlistStatusMapper
@@ -837,7 +841,8 @@ class RemovedFromWatchlistStatusMapper
 mixin RemovedFromWatchlistStatusMappable {
   RemovedFromWatchlistStatusCopyWith<RemovedFromWatchlistStatus,
           RemovedFromWatchlistStatus, RemovedFromWatchlistStatus>
-      get copyWith => _RemovedFromWatchlistStatusCopyWithImpl(
+      get copyWith => _RemovedFromWatchlistStatusCopyWithImpl<
+              RemovedFromWatchlistStatus, RemovedFromWatchlistStatus>(
           this as RemovedFromWatchlistStatus, $identity, $identity);
   @override
   String toString() {
@@ -861,8 +866,8 @@ mixin RemovedFromWatchlistStatusMappable {
 extension RemovedFromWatchlistStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RemovedFromWatchlistStatus, $Out> {
   RemovedFromWatchlistStatusCopyWith<$R, RemovedFromWatchlistStatus, $Out>
-      get $asRemovedFromWatchlistStatus => $base
-          .as((v, t, t2) => _RemovedFromWatchlistStatusCopyWithImpl(v, t, t2));
+      get $asRemovedFromWatchlistStatus => $base.as((v, t, t2) =>
+          _RemovedFromWatchlistStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RemovedFromWatchlistStatusCopyWith<
@@ -904,7 +909,7 @@ class _RemovedFromWatchlistStatusCopyWithImpl<$R, $Out>
   @override
   RemovedFromWatchlistStatusCopyWith<$R2, RemovedFromWatchlistStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _RemovedFromWatchlistStatusCopyWithImpl($value, $cast, t);
+          _RemovedFromWatchlistStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RemovedFromWatchedStatusMapper
@@ -954,7 +959,8 @@ class RemovedFromWatchedStatusMapper
 mixin RemovedFromWatchedStatusMappable {
   RemovedFromWatchedStatusCopyWith<RemovedFromWatchedStatus,
           RemovedFromWatchedStatus, RemovedFromWatchedStatus>
-      get copyWith => _RemovedFromWatchedStatusCopyWithImpl(
+      get copyWith => _RemovedFromWatchedStatusCopyWithImpl<
+              RemovedFromWatchedStatus, RemovedFromWatchedStatus>(
           this as RemovedFromWatchedStatus, $identity, $identity);
   @override
   String toString() {
@@ -978,8 +984,8 @@ mixin RemovedFromWatchedStatusMappable {
 extension RemovedFromWatchedStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RemovedFromWatchedStatus, $Out> {
   RemovedFromWatchedStatusCopyWith<$R, RemovedFromWatchedStatus, $Out>
-      get $asRemovedFromWatchedStatus => $base
-          .as((v, t, t2) => _RemovedFromWatchedStatusCopyWithImpl(v, t, t2));
+      get $asRemovedFromWatchedStatus => $base.as((v, t, t2) =>
+          _RemovedFromWatchedStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RemovedFromWatchedStatusCopyWith<
@@ -1019,5 +1025,5 @@ class _RemovedFromWatchedStatusCopyWithImpl<$R, $Out>
   @override
   RemovedFromWatchedStatusCopyWith<$R2, RemovedFromWatchedStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _RemovedFromWatchedStatusCopyWithImpl($value, $cast, t);
+          _RemovedFromWatchedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

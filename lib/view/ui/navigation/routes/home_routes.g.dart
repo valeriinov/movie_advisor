@@ -6,31 +6,30 @@ part of 'home_routes.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [
-      $homeRoute,
-    ];
+List<RouteBase> get $appRoutes => [$homeRoute];
 
 RouteBase get $homeRoute => GoRouteData.$route(
-      path: '/home',
-      factory: $HomeRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: 'search',
-          factory: $SearchRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'filter',
-          factory: $FilterRouteExtension._fromState,
-        ),
-      ],
-    );
+  path: '/home',
+
+  factory: $HomeRouteExtension._fromState,
+  routes: [
+    GoRouteData.$route(
+      path: 'search',
+
+      factory: $SearchRouteExtension._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'filter',
+
+      factory: $FilterRouteExtension._fromState,
+    ),
+  ],
+);
 
 extension $HomeRouteExtension on HomeRoute {
   static HomeRoute _fromState(GoRouterState state) => HomeRoute();
 
-  String get location => GoRouteData.$location(
-        '/home',
-      );
+  String get location => GoRouteData.$location('/home');
 
   void go(BuildContext context) => context.go(location);
 
@@ -45,9 +44,7 @@ extension $HomeRouteExtension on HomeRoute {
 extension $SearchRouteExtension on SearchRoute {
   static SearchRoute _fromState(GoRouterState state) => SearchRoute();
 
-  String get location => GoRouteData.$location(
-        '/home/search',
-      );
+  String get location => GoRouteData.$location('/home/search');
 
   void go(BuildContext context) => context.go(location);
 
@@ -62,9 +59,7 @@ extension $SearchRouteExtension on SearchRoute {
 extension $FilterRouteExtension on FilterRoute {
   static FilterRoute _fromState(GoRouterState state) => FilterRoute();
 
-  String get location => GoRouteData.$location(
-        '/home/filter',
-      );
+  String get location => GoRouteData.$location('/home/filter');
 
   void go(BuildContext context) => context.go(location);
 

@@ -62,7 +62,7 @@ mixin AuthFormStateMappable {
   }
 
   AuthFormStateCopyWith<AuthFormState, AuthFormState, AuthFormState>
-      get copyWith => _AuthFormStateCopyWithImpl(
+      get copyWith => _AuthFormStateCopyWithImpl<AuthFormState, AuthFormState>(
           this as AuthFormState, $identity, $identity);
   @override
   String toString() {
@@ -86,7 +86,7 @@ mixin AuthFormStateMappable {
 extension AuthFormStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AuthFormState, $Out> {
   AuthFormStateCopyWith<$R, AuthFormState, $Out> get $asAuthFormState =>
-      $base.as((v, t, t2) => _AuthFormStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _AuthFormStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AuthFormStateCopyWith<$R, $In extends AuthFormState, $Out>
@@ -116,5 +116,5 @@ class _AuthFormStateCopyWithImpl<$R, $Out>
   @override
   AuthFormStateCopyWith<$R2, AuthFormState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _AuthFormStateCopyWithImpl($value, $cast, t);
+      _AuthFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

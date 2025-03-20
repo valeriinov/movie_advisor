@@ -60,8 +60,9 @@ mixin CreditsDataDtoMappable {
   }
 
   CreditsDataDtoCopyWith<CreditsDataDto, CreditsDataDto, CreditsDataDto>
-      get copyWith => _CreditsDataDtoCopyWithImpl(
-          this as CreditsDataDto, $identity, $identity);
+      get copyWith =>
+          _CreditsDataDtoCopyWithImpl<CreditsDataDto, CreditsDataDto>(
+              this as CreditsDataDto, $identity, $identity);
   @override
   String toString() {
     return CreditsDataDtoMapper.ensureInitialized()
@@ -84,7 +85,7 @@ mixin CreditsDataDtoMappable {
 extension CreditsDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, CreditsDataDto, $Out> {
   CreditsDataDtoCopyWith<$R, CreditsDataDto, $Out> get $asCreditsDataDto =>
-      $base.as((v, t, t2) => _CreditsDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _CreditsDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class CreditsDataDtoCopyWith<$R, $In extends CreditsDataDto, $Out>
@@ -121,5 +122,5 @@ class _CreditsDataDtoCopyWithImpl<$R, $Out>
   @override
   CreditsDataDtoCopyWith<$R2, CreditsDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _CreditsDataDtoCopyWithImpl($value, $cast, t);
+      _CreditsDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
