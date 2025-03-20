@@ -63,8 +63,9 @@ mixin LocalizedStringMappable {
   }
 
   LocalizedStringCopyWith<LocalizedString, LocalizedString, LocalizedString>
-      get copyWith => _LocalizedStringCopyWithImpl(
-          this as LocalizedString, $identity, $identity);
+      get copyWith =>
+          _LocalizedStringCopyWithImpl<LocalizedString, LocalizedString>(
+              this as LocalizedString, $identity, $identity);
   @override
   String toString() {
     return LocalizedStringMapper.ensureInitialized()
@@ -87,7 +88,7 @@ mixin LocalizedStringMappable {
 extension LocalizedStringValueCopy<$R, $Out>
     on ObjectCopyWith<$R, LocalizedString, $Out> {
   LocalizedStringCopyWith<$R, LocalizedString, $Out> get $asLocalizedString =>
-      $base.as((v, t, t2) => _LocalizedStringCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _LocalizedStringCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class LocalizedStringCopyWith<$R, $In extends LocalizedString, $Out>
@@ -115,5 +116,5 @@ class _LocalizedStringCopyWithImpl<$R, $Out>
   @override
   LocalizedStringCopyWith<$R2, LocalizedString, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _LocalizedStringCopyWithImpl($value, $cast, t);
+      _LocalizedStringCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

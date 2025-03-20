@@ -72,9 +72,9 @@ mixin SeriesResponseDataDtoMappable {
   }
 
   SeriesResponseDataDtoCopyWith<SeriesResponseDataDto, SeriesResponseDataDto,
-          SeriesResponseDataDto>
-      get copyWith => _SeriesResponseDataDtoCopyWithImpl(
-          this as SeriesResponseDataDto, $identity, $identity);
+      SeriesResponseDataDto> get copyWith => _SeriesResponseDataDtoCopyWithImpl<
+          SeriesResponseDataDto, SeriesResponseDataDto>(
+      this as SeriesResponseDataDto, $identity, $identity);
   @override
   String toString() {
     return SeriesResponseDataDtoMapper.ensureInitialized()
@@ -97,8 +97,8 @@ mixin SeriesResponseDataDtoMappable {
 extension SeriesResponseDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesResponseDataDto, $Out> {
   SeriesResponseDataDtoCopyWith<$R, SeriesResponseDataDto, $Out>
-      get $asSeriesResponseDataDto =>
-          $base.as((v, t, t2) => _SeriesResponseDataDtoCopyWithImpl(v, t, t2));
+      get $asSeriesResponseDataDto => $base.as(
+          (v, t, t2) => _SeriesResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesResponseDataDtoCopyWith<
@@ -146,5 +146,5 @@ class _SeriesResponseDataDtoCopyWithImpl<$R, $Out>
   @override
   SeriesResponseDataDtoCopyWith<$R2, SeriesResponseDataDto, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _SeriesResponseDataDtoCopyWithImpl($value, $cast, t);
+          _SeriesResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

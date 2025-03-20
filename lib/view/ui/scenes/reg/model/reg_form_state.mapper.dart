@@ -68,7 +68,8 @@ mixin RegFormStateMappable {
   }
 
   RegFormStateCopyWith<RegFormState, RegFormState, RegFormState> get copyWith =>
-      _RegFormStateCopyWithImpl(this as RegFormState, $identity, $identity);
+      _RegFormStateCopyWithImpl<RegFormState, RegFormState>(
+          this as RegFormState, $identity, $identity);
   @override
   String toString() {
     return RegFormStateMapper.ensureInitialized()
@@ -91,7 +92,7 @@ mixin RegFormStateMappable {
 extension RegFormStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RegFormState, $Out> {
   RegFormStateCopyWith<$R, RegFormState, $Out> get $asRegFormState =>
-      $base.as((v, t, t2) => _RegFormStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _RegFormStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RegFormStateCopyWith<$R, $In extends RegFormState, $Out>
@@ -124,5 +125,5 @@ class _RegFormStateCopyWithImpl<$R, $Out>
   @override
   RegFormStateCopyWith<$R2, RegFormState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _RegFormStateCopyWithImpl($value, $cast, t);
+      _RegFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

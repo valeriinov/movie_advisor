@@ -56,8 +56,9 @@ class MediaLoadInfoMapper extends ClassMapperBase<MediaLoadInfo> {
 
 mixin MediaLoadInfoMappable<T> {
   MediaLoadInfoCopyWith<MediaLoadInfo<T>, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
-      get copyWith => _MediaLoadInfoCopyWithImpl(
-          this as MediaLoadInfo<T>, $identity, $identity);
+      get copyWith =>
+          _MediaLoadInfoCopyWithImpl<MediaLoadInfo<T>, MediaLoadInfo<T>, T>(
+              this as MediaLoadInfo<T>, $identity, $identity);
   @override
   String toString() {
     return MediaLoadInfoMapper.ensureInitialized()
@@ -80,7 +81,7 @@ mixin MediaLoadInfoMappable<T> {
 extension MediaLoadInfoValueCopy<$R, $Out, T>
     on ObjectCopyWith<$R, MediaLoadInfo<T>, $Out> {
   MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, $Out, T> get $asMediaLoadInfo =>
-      $base.as((v, t, t2) => _MediaLoadInfoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _MediaLoadInfoCopyWithImpl<$R, $Out, T>(v, t, t2));
 }
 
 abstract class MediaLoadInfoCopyWith<$R, $In extends MediaLoadInfo<T>, $Out, T>
@@ -129,5 +130,5 @@ class _MediaLoadInfoCopyWithImpl<$R, $Out, T>
   @override
   MediaLoadInfoCopyWith<$R2, MediaLoadInfo<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _MediaLoadInfoCopyWithImpl($value, $cast, t);
+      _MediaLoadInfoCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }

@@ -49,8 +49,8 @@ class DeleteAccountStateMapper extends ClassMapperBase<DeleteAccountState> {
 mixin DeleteAccountStateMappable {
   DeleteAccountStateCopyWith<DeleteAccountState, DeleteAccountState,
           DeleteAccountState>
-      get copyWith => _DeleteAccountStateCopyWithImpl(
-          this as DeleteAccountState, $identity, $identity);
+      get copyWith => _DeleteAccountStateCopyWithImpl<DeleteAccountState,
+          DeleteAccountState>(this as DeleteAccountState, $identity, $identity);
   @override
   String toString() {
     return DeleteAccountStateMapper.ensureInitialized()
@@ -73,8 +73,8 @@ mixin DeleteAccountStateMappable {
 extension DeleteAccountStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DeleteAccountState, $Out> {
   DeleteAccountStateCopyWith<$R, DeleteAccountState, $Out>
-      get $asDeleteAccountState =>
-          $base.as((v, t, t2) => _DeleteAccountStateCopyWithImpl(v, t, t2));
+      get $asDeleteAccountState => $base.as(
+          (v, t, t2) => _DeleteAccountStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DeleteAccountStateCopyWith<$R, $In extends DeleteAccountState,
@@ -113,7 +113,7 @@ class _DeleteAccountStateCopyWithImpl<$R, $Out>
   @override
   DeleteAccountStateCopyWith<$R2, DeleteAccountState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _DeleteAccountStateCopyWithImpl($value, $cast, t);
+      _DeleteAccountStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class DeleteAccountBaseStatusMapper
@@ -163,7 +163,8 @@ class DeleteAccountBaseStatusMapper
 mixin DeleteAccountBaseStatusMappable {
   DeleteAccountBaseStatusCopyWith<DeleteAccountBaseStatus,
           DeleteAccountBaseStatus, DeleteAccountBaseStatus>
-      get copyWith => _DeleteAccountBaseStatusCopyWithImpl(
+      get copyWith => _DeleteAccountBaseStatusCopyWithImpl<
+              DeleteAccountBaseStatus, DeleteAccountBaseStatus>(
           this as DeleteAccountBaseStatus, $identity, $identity);
   @override
   String toString() {
@@ -187,8 +188,8 @@ mixin DeleteAccountBaseStatusMappable {
 extension DeleteAccountBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DeleteAccountBaseStatus, $Out> {
   DeleteAccountBaseStatusCopyWith<$R, DeleteAccountBaseStatus, $Out>
-      get $asDeleteAccountBaseStatus => $base
-          .as((v, t, t2) => _DeleteAccountBaseStatusCopyWithImpl(v, t, t2));
+      get $asDeleteAccountBaseStatus => $base.as((v, t, t2) =>
+          _DeleteAccountBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DeleteAccountBaseStatusCopyWith<
@@ -228,7 +229,7 @@ class _DeleteAccountBaseStatusCopyWithImpl<$R, $Out>
   @override
   DeleteAccountBaseStatusCopyWith<$R2, DeleteAccountBaseStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _DeleteAccountBaseStatusCopyWithImpl($value, $cast, t);
+          _DeleteAccountBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class DeleteAccountBaseInitStatusMapper
@@ -279,7 +280,8 @@ class DeleteAccountBaseInitStatusMapper
 mixin DeleteAccountBaseInitStatusMappable {
   DeleteAccountBaseInitStatusCopyWith<DeleteAccountBaseInitStatus,
           DeleteAccountBaseInitStatus, DeleteAccountBaseInitStatus>
-      get copyWith => _DeleteAccountBaseInitStatusCopyWithImpl(
+      get copyWith => _DeleteAccountBaseInitStatusCopyWithImpl<
+              DeleteAccountBaseInitStatus, DeleteAccountBaseInitStatus>(
           this as DeleteAccountBaseInitStatus, $identity, $identity);
   @override
   String toString() {
@@ -303,8 +305,8 @@ mixin DeleteAccountBaseInitStatusMappable {
 extension DeleteAccountBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DeleteAccountBaseInitStatus, $Out> {
   DeleteAccountBaseInitStatusCopyWith<$R, DeleteAccountBaseInitStatus, $Out>
-      get $asDeleteAccountBaseInitStatus => $base
-          .as((v, t, t2) => _DeleteAccountBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asDeleteAccountBaseInitStatus => $base.as((v, t, t2) =>
+          _DeleteAccountBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DeleteAccountBaseInitStatusCopyWith<
@@ -347,7 +349,8 @@ class _DeleteAccountBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   DeleteAccountBaseInitStatusCopyWith<$R2, DeleteAccountBaseInitStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _DeleteAccountBaseInitStatusCopyWithImpl($value, $cast, t);
+          _DeleteAccountBaseInitStatusCopyWithImpl<$R2, $Out2>(
+              $value, $cast, t);
 }
 
 class DeleteAccountSuccessStatusMapper
@@ -397,7 +400,8 @@ class DeleteAccountSuccessStatusMapper
 mixin DeleteAccountSuccessStatusMappable {
   DeleteAccountSuccessStatusCopyWith<DeleteAccountSuccessStatus,
           DeleteAccountSuccessStatus, DeleteAccountSuccessStatus>
-      get copyWith => _DeleteAccountSuccessStatusCopyWithImpl(
+      get copyWith => _DeleteAccountSuccessStatusCopyWithImpl<
+              DeleteAccountSuccessStatus, DeleteAccountSuccessStatus>(
           this as DeleteAccountSuccessStatus, $identity, $identity);
   @override
   String toString() {
@@ -421,8 +425,8 @@ mixin DeleteAccountSuccessStatusMappable {
 extension DeleteAccountSuccessStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DeleteAccountSuccessStatus, $Out> {
   DeleteAccountSuccessStatusCopyWith<$R, DeleteAccountSuccessStatus, $Out>
-      get $asDeleteAccountSuccessStatus => $base
-          .as((v, t, t2) => _DeleteAccountSuccessStatusCopyWithImpl(v, t, t2));
+      get $asDeleteAccountSuccessStatus => $base.as((v, t, t2) =>
+          _DeleteAccountSuccessStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DeleteAccountSuccessStatusCopyWith<
@@ -464,5 +468,5 @@ class _DeleteAccountSuccessStatusCopyWithImpl<$R, $Out>
   @override
   DeleteAccountSuccessStatusCopyWith<$R2, DeleteAccountSuccessStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _DeleteAccountSuccessStatusCopyWithImpl($value, $cast, t);
+          _DeleteAccountSuccessStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

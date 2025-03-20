@@ -79,7 +79,8 @@ mixin CastDataDtoMappable {
   }
 
   CastDataDtoCopyWith<CastDataDto, CastDataDto, CastDataDto> get copyWith =>
-      _CastDataDtoCopyWithImpl(this as CastDataDto, $identity, $identity);
+      _CastDataDtoCopyWithImpl<CastDataDto, CastDataDto>(
+          this as CastDataDto, $identity, $identity);
   @override
   String toString() {
     return CastDataDtoMapper.ensureInitialized()
@@ -101,7 +102,7 @@ mixin CastDataDtoMappable {
 extension CastDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, CastDataDto, $Out> {
   CastDataDtoCopyWith<$R, CastDataDto, $Out> get $asCastDataDto =>
-      $base.as((v, t, t2) => _CastDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _CastDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class CastDataDtoCopyWith<$R, $In extends CastDataDto, $Out>
@@ -148,5 +149,5 @@ class _CastDataDtoCopyWithImpl<$R, $Out>
   @override
   CastDataDtoCopyWith<$R2, CastDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _CastDataDtoCopyWithImpl($value, $cast, t);
+      _CastDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

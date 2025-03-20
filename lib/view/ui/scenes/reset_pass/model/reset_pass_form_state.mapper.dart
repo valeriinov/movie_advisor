@@ -58,8 +58,8 @@ mixin ResetPassFormStateMappable {
 
   ResetPassFormStateCopyWith<ResetPassFormState, ResetPassFormState,
           ResetPassFormState>
-      get copyWith => _ResetPassFormStateCopyWithImpl(
-          this as ResetPassFormState, $identity, $identity);
+      get copyWith => _ResetPassFormStateCopyWithImpl<ResetPassFormState,
+          ResetPassFormState>(this as ResetPassFormState, $identity, $identity);
   @override
   String toString() {
     return ResetPassFormStateMapper.ensureInitialized()
@@ -82,8 +82,8 @@ mixin ResetPassFormStateMappable {
 extension ResetPassFormStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ResetPassFormState, $Out> {
   ResetPassFormStateCopyWith<$R, ResetPassFormState, $Out>
-      get $asResetPassFormState =>
-          $base.as((v, t, t2) => _ResetPassFormStateCopyWithImpl(v, t, t2));
+      get $asResetPassFormState => $base.as(
+          (v, t, t2) => _ResetPassFormStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ResetPassFormStateCopyWith<$R, $In extends ResetPassFormState,
@@ -111,5 +111,5 @@ class _ResetPassFormStateCopyWithImpl<$R, $Out>
   @override
   ResetPassFormStateCopyWith<$R2, ResetPassFormState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _ResetPassFormStateCopyWithImpl($value, $cast, t);
+      _ResetPassFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

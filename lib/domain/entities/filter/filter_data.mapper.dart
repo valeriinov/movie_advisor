@@ -48,7 +48,8 @@ class FilterDataMapper extends ClassMapperBase<FilterData> {
 
 mixin FilterDataMappable {
   FilterDataCopyWith<FilterData, FilterData, FilterData> get copyWith =>
-      _FilterDataCopyWithImpl(this as FilterData, $identity, $identity);
+      _FilterDataCopyWithImpl<FilterData, FilterData>(
+          this as FilterData, $identity, $identity);
   @override
   String toString() {
     return FilterDataMapper.ensureInitialized()
@@ -70,7 +71,7 @@ mixin FilterDataMappable {
 extension FilterDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, FilterData, $Out> {
   FilterDataCopyWith<$R, FilterData, $Out> get $asFilterData =>
-      $base.as((v, t, t2) => _FilterDataCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _FilterDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class FilterDataCopyWith<$R, $In extends FilterData, $Out>
@@ -114,5 +115,5 @@ class _FilterDataCopyWithImpl<$R, $Out>
   @override
   FilterDataCopyWith<$R2, FilterData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _FilterDataCopyWithImpl($value, $cast, t);
+      _FilterDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

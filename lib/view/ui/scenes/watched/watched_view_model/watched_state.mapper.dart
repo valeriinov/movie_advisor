@@ -48,8 +48,9 @@ class WatchedStateMapper extends ClassMapperBase<WatchedState> {
 
 mixin WatchedStateMappable<T> {
   WatchedStateCopyWith<WatchedState<T>, WatchedState<T>, WatchedState<T>, T>
-      get copyWith => _WatchedStateCopyWithImpl(
-          this as WatchedState<T>, $identity, $identity);
+      get copyWith =>
+          _WatchedStateCopyWithImpl<WatchedState<T>, WatchedState<T>, T>(
+              this as WatchedState<T>, $identity, $identity);
   @override
   String toString() {
     return WatchedStateMapper.ensureInitialized()
@@ -72,7 +73,7 @@ mixin WatchedStateMappable<T> {
 extension WatchedStateValueCopy<$R, $Out, T>
     on ObjectCopyWith<$R, WatchedState<T>, $Out> {
   WatchedStateCopyWith<$R, WatchedState<T>, $Out, T> get $asWatchedState =>
-      $base.as((v, t, t2) => _WatchedStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _WatchedStateCopyWithImpl<$R, $Out, T>(v, t, t2));
 }
 
 abstract class WatchedStateCopyWith<$R, $In extends WatchedState<T>, $Out, T>
@@ -110,7 +111,7 @@ class _WatchedStateCopyWithImpl<$R, $Out, T>
   @override
   WatchedStateCopyWith<$R2, WatchedState<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _WatchedStateCopyWithImpl($value, $cast, t);
+      _WatchedStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }
 
 class WatchedBaseStatusMapper extends ClassMapperBase<WatchedBaseStatus> {
@@ -158,8 +159,9 @@ class WatchedBaseStatusMapper extends ClassMapperBase<WatchedBaseStatus> {
 mixin WatchedBaseStatusMappable {
   WatchedBaseStatusCopyWith<WatchedBaseStatus, WatchedBaseStatus,
           WatchedBaseStatus>
-      get copyWith => _WatchedBaseStatusCopyWithImpl(
-          this as WatchedBaseStatus, $identity, $identity);
+      get copyWith =>
+          _WatchedBaseStatusCopyWithImpl<WatchedBaseStatus, WatchedBaseStatus>(
+              this as WatchedBaseStatus, $identity, $identity);
   @override
   String toString() {
     return WatchedBaseStatusMapper.ensureInitialized()
@@ -182,8 +184,8 @@ mixin WatchedBaseStatusMappable {
 extension WatchedBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, WatchedBaseStatus, $Out> {
   WatchedBaseStatusCopyWith<$R, WatchedBaseStatus, $Out>
-      get $asWatchedBaseStatus =>
-          $base.as((v, t, t2) => _WatchedBaseStatusCopyWithImpl(v, t, t2));
+      get $asWatchedBaseStatus => $base
+          .as((v, t, t2) => _WatchedBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class WatchedBaseStatusCopyWith<$R, $In extends WatchedBaseStatus,
@@ -220,7 +222,7 @@ class _WatchedBaseStatusCopyWithImpl<$R, $Out>
   @override
   WatchedBaseStatusCopyWith<$R2, WatchedBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _WatchedBaseStatusCopyWithImpl($value, $cast, t);
+      _WatchedBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class WatchedBaseInitStatusMapper
@@ -268,9 +270,9 @@ class WatchedBaseInitStatusMapper
 
 mixin WatchedBaseInitStatusMappable {
   WatchedBaseInitStatusCopyWith<WatchedBaseInitStatus, WatchedBaseInitStatus,
-          WatchedBaseInitStatus>
-      get copyWith => _WatchedBaseInitStatusCopyWithImpl(
-          this as WatchedBaseInitStatus, $identity, $identity);
+      WatchedBaseInitStatus> get copyWith => _WatchedBaseInitStatusCopyWithImpl<
+          WatchedBaseInitStatus, WatchedBaseInitStatus>(
+      this as WatchedBaseInitStatus, $identity, $identity);
   @override
   String toString() {
     return WatchedBaseInitStatusMapper.ensureInitialized()
@@ -293,8 +295,8 @@ mixin WatchedBaseInitStatusMappable {
 extension WatchedBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, WatchedBaseInitStatus, $Out> {
   WatchedBaseInitStatusCopyWith<$R, WatchedBaseInitStatus, $Out>
-      get $asWatchedBaseInitStatus =>
-          $base.as((v, t, t2) => _WatchedBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asWatchedBaseInitStatus => $base.as(
+          (v, t, t2) => _WatchedBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class WatchedBaseInitStatusCopyWith<
@@ -333,5 +335,5 @@ class _WatchedBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   WatchedBaseInitStatusCopyWith<$R2, WatchedBaseInitStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _WatchedBaseInitStatusCopyWithImpl($value, $cast, t);
+          _WatchedBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

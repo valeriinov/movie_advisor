@@ -46,8 +46,9 @@ class ResetPassStateMapper extends ClassMapperBase<ResetPassState> {
 
 mixin ResetPassStateMappable {
   ResetPassStateCopyWith<ResetPassState, ResetPassState, ResetPassState>
-      get copyWith => _ResetPassStateCopyWithImpl(
-          this as ResetPassState, $identity, $identity);
+      get copyWith =>
+          _ResetPassStateCopyWithImpl<ResetPassState, ResetPassState>(
+              this as ResetPassState, $identity, $identity);
   @override
   String toString() {
     return ResetPassStateMapper.ensureInitialized()
@@ -70,7 +71,7 @@ mixin ResetPassStateMappable {
 extension ResetPassStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ResetPassState, $Out> {
   ResetPassStateCopyWith<$R, ResetPassState, $Out> get $asResetPassState =>
-      $base.as((v, t, t2) => _ResetPassStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _ResetPassStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ResetPassStateCopyWith<$R, $In extends ResetPassState, $Out>
@@ -108,7 +109,7 @@ class _ResetPassStateCopyWithImpl<$R, $Out>
   @override
   ResetPassStateCopyWith<$R2, ResetPassState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _ResetPassStateCopyWithImpl($value, $cast, t);
+      _ResetPassStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class ResetPassBaseStatusMapper extends ClassMapperBase<ResetPassBaseStatus> {
@@ -155,9 +156,9 @@ class ResetPassBaseStatusMapper extends ClassMapperBase<ResetPassBaseStatus> {
 
 mixin ResetPassBaseStatusMappable {
   ResetPassBaseStatusCopyWith<ResetPassBaseStatus, ResetPassBaseStatus,
-          ResetPassBaseStatus>
-      get copyWith => _ResetPassBaseStatusCopyWithImpl(
-          this as ResetPassBaseStatus, $identity, $identity);
+      ResetPassBaseStatus> get copyWith => _ResetPassBaseStatusCopyWithImpl<
+          ResetPassBaseStatus, ResetPassBaseStatus>(
+      this as ResetPassBaseStatus, $identity, $identity);
   @override
   String toString() {
     return ResetPassBaseStatusMapper.ensureInitialized()
@@ -180,8 +181,8 @@ mixin ResetPassBaseStatusMappable {
 extension ResetPassBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ResetPassBaseStatus, $Out> {
   ResetPassBaseStatusCopyWith<$R, ResetPassBaseStatus, $Out>
-      get $asResetPassBaseStatus =>
-          $base.as((v, t, t2) => _ResetPassBaseStatusCopyWithImpl(v, t, t2));
+      get $asResetPassBaseStatus => $base.as(
+          (v, t, t2) => _ResetPassBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ResetPassBaseStatusCopyWith<$R, $In extends ResetPassBaseStatus,
@@ -218,7 +219,7 @@ class _ResetPassBaseStatusCopyWithImpl<$R, $Out>
   @override
   ResetPassBaseStatusCopyWith<$R2, ResetPassBaseStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _ResetPassBaseStatusCopyWithImpl($value, $cast, t);
+          _ResetPassBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class ResetPassBaseInitStatusMapper
@@ -268,7 +269,8 @@ class ResetPassBaseInitStatusMapper
 mixin ResetPassBaseInitStatusMappable {
   ResetPassBaseInitStatusCopyWith<ResetPassBaseInitStatus,
           ResetPassBaseInitStatus, ResetPassBaseInitStatus>
-      get copyWith => _ResetPassBaseInitStatusCopyWithImpl(
+      get copyWith => _ResetPassBaseInitStatusCopyWithImpl<
+              ResetPassBaseInitStatus, ResetPassBaseInitStatus>(
           this as ResetPassBaseInitStatus, $identity, $identity);
   @override
   String toString() {
@@ -292,8 +294,8 @@ mixin ResetPassBaseInitStatusMappable {
 extension ResetPassBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ResetPassBaseInitStatus, $Out> {
   ResetPassBaseInitStatusCopyWith<$R, ResetPassBaseInitStatus, $Out>
-      get $asResetPassBaseInitStatus => $base
-          .as((v, t, t2) => _ResetPassBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asResetPassBaseInitStatus => $base.as((v, t, t2) =>
+          _ResetPassBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ResetPassBaseInitStatusCopyWith<
@@ -333,7 +335,7 @@ class _ResetPassBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   ResetPassBaseInitStatusCopyWith<$R2, ResetPassBaseInitStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _ResetPassBaseInitStatusCopyWithImpl($value, $cast, t);
+          _ResetPassBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class ResetPassSuccessStatusMapper
@@ -382,7 +384,8 @@ class ResetPassSuccessStatusMapper
 mixin ResetPassSuccessStatusMappable {
   ResetPassSuccessStatusCopyWith<ResetPassSuccessStatus, ResetPassSuccessStatus,
           ResetPassSuccessStatus>
-      get copyWith => _ResetPassSuccessStatusCopyWithImpl(
+      get copyWith => _ResetPassSuccessStatusCopyWithImpl<
+              ResetPassSuccessStatus, ResetPassSuccessStatus>(
           this as ResetPassSuccessStatus, $identity, $identity);
   @override
   String toString() {
@@ -406,8 +409,8 @@ mixin ResetPassSuccessStatusMappable {
 extension ResetPassSuccessStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ResetPassSuccessStatus, $Out> {
   ResetPassSuccessStatusCopyWith<$R, ResetPassSuccessStatus, $Out>
-      get $asResetPassSuccessStatus =>
-          $base.as((v, t, t2) => _ResetPassSuccessStatusCopyWithImpl(v, t, t2));
+      get $asResetPassSuccessStatus => $base.as((v, t, t2) =>
+          _ResetPassSuccessStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ResetPassSuccessStatusCopyWith<
@@ -447,5 +450,5 @@ class _ResetPassSuccessStatusCopyWithImpl<$R, $Out>
   @override
   ResetPassSuccessStatusCopyWith<$R2, ResetPassSuccessStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _ResetPassSuccessStatusCopyWithImpl($value, $cast, t);
+          _ResetPassSuccessStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

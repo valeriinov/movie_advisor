@@ -39,7 +39,8 @@ class RefreshStateMapper extends ClassMapperBase<RefreshState> {
 
 mixin RefreshStateMappable {
   RefreshStateCopyWith<RefreshState, RefreshState, RefreshState> get copyWith =>
-      _RefreshStateCopyWithImpl(this as RefreshState, $identity, $identity);
+      _RefreshStateCopyWithImpl<RefreshState, RefreshState>(
+          this as RefreshState, $identity, $identity);
   @override
   String toString() {
     return RefreshStateMapper.ensureInitialized()
@@ -62,7 +63,7 @@ mixin RefreshStateMappable {
 extension RefreshStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RefreshState, $Out> {
   RefreshStateCopyWith<$R, RefreshState, $Out> get $asRefreshState =>
-      $base.as((v, t, t2) => _RefreshStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _RefreshStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RefreshStateCopyWith<$R, $In extends RefreshState, $Out>
@@ -89,7 +90,7 @@ class _RefreshStateCopyWithImpl<$R, $Out>
   @override
   RefreshStateCopyWith<$R2, RefreshState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _RefreshStateCopyWithImpl($value, $cast, t);
+      _RefreshStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RefreshBaseStatusMapper extends ClassMapperBase<RefreshBaseStatus> {
@@ -137,8 +138,9 @@ class RefreshBaseStatusMapper extends ClassMapperBase<RefreshBaseStatus> {
 mixin RefreshBaseStatusMappable {
   RefreshBaseStatusCopyWith<RefreshBaseStatus, RefreshBaseStatus,
           RefreshBaseStatus>
-      get copyWith => _RefreshBaseStatusCopyWithImpl(
-          this as RefreshBaseStatus, $identity, $identity);
+      get copyWith =>
+          _RefreshBaseStatusCopyWithImpl<RefreshBaseStatus, RefreshBaseStatus>(
+              this as RefreshBaseStatus, $identity, $identity);
   @override
   String toString() {
     return RefreshBaseStatusMapper.ensureInitialized()
@@ -161,8 +163,8 @@ mixin RefreshBaseStatusMappable {
 extension RefreshBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RefreshBaseStatus, $Out> {
   RefreshBaseStatusCopyWith<$R, RefreshBaseStatus, $Out>
-      get $asRefreshBaseStatus =>
-          $base.as((v, t, t2) => _RefreshBaseStatusCopyWithImpl(v, t, t2));
+      get $asRefreshBaseStatus => $base
+          .as((v, t, t2) => _RefreshBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RefreshBaseStatusCopyWith<$R, $In extends RefreshBaseStatus,
@@ -199,7 +201,7 @@ class _RefreshBaseStatusCopyWithImpl<$R, $Out>
   @override
   RefreshBaseStatusCopyWith<$R2, RefreshBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _RefreshBaseStatusCopyWithImpl($value, $cast, t);
+      _RefreshBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class LangUpdatedStatusMapper extends ClassMapperBase<LangUpdatedStatus> {
@@ -247,8 +249,9 @@ class LangUpdatedStatusMapper extends ClassMapperBase<LangUpdatedStatus> {
 mixin LangUpdatedStatusMappable {
   LangUpdatedStatusCopyWith<LangUpdatedStatus, LangUpdatedStatus,
           LangUpdatedStatus>
-      get copyWith => _LangUpdatedStatusCopyWithImpl(
-          this as LangUpdatedStatus, $identity, $identity);
+      get copyWith =>
+          _LangUpdatedStatusCopyWithImpl<LangUpdatedStatus, LangUpdatedStatus>(
+              this as LangUpdatedStatus, $identity, $identity);
   @override
   String toString() {
     return LangUpdatedStatusMapper.ensureInitialized()
@@ -271,8 +274,8 @@ mixin LangUpdatedStatusMappable {
 extension LangUpdatedStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, LangUpdatedStatus, $Out> {
   LangUpdatedStatusCopyWith<$R, LangUpdatedStatus, $Out>
-      get $asLangUpdatedStatus =>
-          $base.as((v, t, t2) => _LangUpdatedStatusCopyWithImpl(v, t, t2));
+      get $asLangUpdatedStatus => $base
+          .as((v, t, t2) => _LangUpdatedStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class LangUpdatedStatusCopyWith<$R, $In extends LangUpdatedStatus,
@@ -309,5 +312,5 @@ class _LangUpdatedStatusCopyWithImpl<$R, $Out>
   @override
   LangUpdatedStatusCopyWith<$R2, LangUpdatedStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _LangUpdatedStatusCopyWithImpl($value, $cast, t);
+      _LangUpdatedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

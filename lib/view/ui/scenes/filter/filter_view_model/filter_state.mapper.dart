@@ -56,8 +56,9 @@ class FilterStateMapper extends ClassMapperBase<FilterState> {
 mixin FilterStateMappable<T, F> {
   FilterStateCopyWith<FilterState<T, F>, FilterState<T, F>, FilterState<T, F>,
           T, F>
-      get copyWith => _FilterStateCopyWithImpl(
-          this as FilterState<T, F>, $identity, $identity);
+      get copyWith =>
+          _FilterStateCopyWithImpl<FilterState<T, F>, FilterState<T, F>, T, F>(
+              this as FilterState<T, F>, $identity, $identity);
   @override
   String toString() {
     return FilterStateMapper.ensureInitialized()
@@ -80,7 +81,8 @@ mixin FilterStateMappable<T, F> {
 extension FilterStateValueCopy<$R, $Out, T, F>
     on ObjectCopyWith<$R, FilterState<T, F>, $Out> {
   FilterStateCopyWith<$R, FilterState<T, F>, $Out, T, F> get $asFilterState =>
-      $base.as((v, t, t2) => _FilterStateCopyWithImpl(v, t, t2));
+      $base
+          .as((v, t, t2) => _FilterStateCopyWithImpl<$R, $Out, T, F>(v, t, t2));
 }
 
 abstract class FilterStateCopyWith<$R, $In extends FilterState<T, F>, $Out, T,
@@ -105,9 +107,12 @@ class _FilterStateCopyWithImpl<$R, $Out, T, F>
           .copyWith
           .$chain((v) => call(results: v));
   @override
-  $R call({F? filter, Object? results = $none, FilterStatus? status}) =>
+  $R call(
+          {Object? filter = $none,
+          Object? results = $none,
+          FilterStatus? status}) =>
       $apply(FieldCopyWithData({
-        if (filter != null) #filter: filter,
+        if (filter != $none) #filter: filter,
         if (results != $none) #results: results,
         if (status != null) #status: status
       }));
@@ -120,7 +125,7 @@ class _FilterStateCopyWithImpl<$R, $Out, T, F>
   @override
   FilterStateCopyWith<$R2, FilterState<T, F>, $Out2, T, F> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _FilterStateCopyWithImpl($value, $cast, t);
+      _FilterStateCopyWithImpl<$R2, $Out2, T, F>($value, $cast, t);
 }
 
 class FilterBaseStatusMapper extends ClassMapperBase<FilterBaseStatus> {
@@ -167,8 +172,9 @@ class FilterBaseStatusMapper extends ClassMapperBase<FilterBaseStatus> {
 
 mixin FilterBaseStatusMappable {
   FilterBaseStatusCopyWith<FilterBaseStatus, FilterBaseStatus, FilterBaseStatus>
-      get copyWith => _FilterBaseStatusCopyWithImpl(
-          this as FilterBaseStatus, $identity, $identity);
+      get copyWith =>
+          _FilterBaseStatusCopyWithImpl<FilterBaseStatus, FilterBaseStatus>(
+              this as FilterBaseStatus, $identity, $identity);
   @override
   String toString() {
     return FilterBaseStatusMapper.ensureInitialized()
@@ -191,8 +197,8 @@ mixin FilterBaseStatusMappable {
 extension FilterBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, FilterBaseStatus, $Out> {
   FilterBaseStatusCopyWith<$R, FilterBaseStatus, $Out>
-      get $asFilterBaseStatus =>
-          $base.as((v, t, t2) => _FilterBaseStatusCopyWithImpl(v, t, t2));
+      get $asFilterBaseStatus => $base
+          .as((v, t, t2) => _FilterBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class FilterBaseStatusCopyWith<$R, $In extends FilterBaseStatus, $Out>
@@ -229,7 +235,7 @@ class _FilterBaseStatusCopyWithImpl<$R, $Out>
   @override
   FilterBaseStatusCopyWith<$R2, FilterBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _FilterBaseStatusCopyWithImpl($value, $cast, t);
+      _FilterBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class FilterBaseInitStatusMapper extends ClassMapperBase<FilterBaseInitStatus> {
@@ -276,9 +282,9 @@ class FilterBaseInitStatusMapper extends ClassMapperBase<FilterBaseInitStatus> {
 
 mixin FilterBaseInitStatusMappable {
   FilterBaseInitStatusCopyWith<FilterBaseInitStatus, FilterBaseInitStatus,
-          FilterBaseInitStatus>
-      get copyWith => _FilterBaseInitStatusCopyWithImpl(
-          this as FilterBaseInitStatus, $identity, $identity);
+      FilterBaseInitStatus> get copyWith => _FilterBaseInitStatusCopyWithImpl<
+          FilterBaseInitStatus, FilterBaseInitStatus>(
+      this as FilterBaseInitStatus, $identity, $identity);
   @override
   String toString() {
     return FilterBaseInitStatusMapper.ensureInitialized()
@@ -301,8 +307,8 @@ mixin FilterBaseInitStatusMappable {
 extension FilterBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, FilterBaseInitStatus, $Out> {
   FilterBaseInitStatusCopyWith<$R, FilterBaseInitStatus, $Out>
-      get $asFilterBaseInitStatus =>
-          $base.as((v, t, t2) => _FilterBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asFilterBaseInitStatus => $base.as(
+          (v, t, t2) => _FilterBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class FilterBaseInitStatusCopyWith<
@@ -341,5 +347,5 @@ class _FilterBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   FilterBaseInitStatusCopyWith<$R2, FilterBaseInitStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _FilterBaseInitStatusCopyWithImpl($value, $cast, t);
+          _FilterBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

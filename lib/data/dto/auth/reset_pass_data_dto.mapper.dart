@@ -59,8 +59,9 @@ mixin ResetPassDataDtoMappable {
   }
 
   ResetPassDataDtoCopyWith<ResetPassDataDto, ResetPassDataDto, ResetPassDataDto>
-      get copyWith => _ResetPassDataDtoCopyWithImpl(
-          this as ResetPassDataDto, $identity, $identity);
+      get copyWith =>
+          _ResetPassDataDtoCopyWithImpl<ResetPassDataDto, ResetPassDataDto>(
+              this as ResetPassDataDto, $identity, $identity);
   @override
   String toString() {
     return ResetPassDataDtoMapper.ensureInitialized()
@@ -83,8 +84,8 @@ mixin ResetPassDataDtoMappable {
 extension ResetPassDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ResetPassDataDto, $Out> {
   ResetPassDataDtoCopyWith<$R, ResetPassDataDto, $Out>
-      get $asResetPassDataDto =>
-          $base.as((v, t, t2) => _ResetPassDataDtoCopyWithImpl(v, t, t2));
+      get $asResetPassDataDto => $base
+          .as((v, t, t2) => _ResetPassDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ResetPassDataDtoCopyWith<$R, $In extends ResetPassDataDto, $Out>
@@ -112,5 +113,5 @@ class _ResetPassDataDtoCopyWithImpl<$R, $Out>
   @override
   ResetPassDataDtoCopyWith<$R2, ResetPassDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _ResetPassDataDtoCopyWithImpl($value, $cast, t);
+      _ResetPassDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

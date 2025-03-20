@@ -59,9 +59,9 @@ mixin DeleteAccountDataDtoMappable {
   }
 
   DeleteAccountDataDtoCopyWith<DeleteAccountDataDto, DeleteAccountDataDto,
-          DeleteAccountDataDto>
-      get copyWith => _DeleteAccountDataDtoCopyWithImpl(
-          this as DeleteAccountDataDto, $identity, $identity);
+      DeleteAccountDataDto> get copyWith => _DeleteAccountDataDtoCopyWithImpl<
+          DeleteAccountDataDto, DeleteAccountDataDto>(
+      this as DeleteAccountDataDto, $identity, $identity);
   @override
   String toString() {
     return DeleteAccountDataDtoMapper.ensureInitialized()
@@ -84,8 +84,8 @@ mixin DeleteAccountDataDtoMappable {
 extension DeleteAccountDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DeleteAccountDataDto, $Out> {
   DeleteAccountDataDtoCopyWith<$R, DeleteAccountDataDto, $Out>
-      get $asDeleteAccountDataDto =>
-          $base.as((v, t, t2) => _DeleteAccountDataDtoCopyWithImpl(v, t, t2));
+      get $asDeleteAccountDataDto => $base.as(
+          (v, t, t2) => _DeleteAccountDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DeleteAccountDataDtoCopyWith<
@@ -115,5 +115,5 @@ class _DeleteAccountDataDtoCopyWithImpl<$R, $Out>
   @override
   DeleteAccountDataDtoCopyWith<$R2, DeleteAccountDataDto, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _DeleteAccountDataDtoCopyWithImpl($value, $cast, t);
+          _DeleteAccountDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

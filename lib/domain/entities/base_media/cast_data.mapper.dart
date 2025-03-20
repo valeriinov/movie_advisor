@@ -60,7 +60,8 @@ class CastDataMapper extends ClassMapperBase<CastData> {
 
 mixin CastDataMappable {
   CastDataCopyWith<CastData, CastData, CastData> get copyWith =>
-      _CastDataCopyWithImpl(this as CastData, $identity, $identity);
+      _CastDataCopyWithImpl<CastData, CastData>(
+          this as CastData, $identity, $identity);
   @override
   String toString() {
     return CastDataMapper.ensureInitialized().stringifyValue(this as CastData);
@@ -80,7 +81,7 @@ mixin CastDataMappable {
 
 extension CastDataValueCopy<$R, $Out> on ObjectCopyWith<$R, CastData, $Out> {
   CastDataCopyWith<$R, CastData, $Out> get $asCastData =>
-      $base.as((v, t, t2) => _CastDataCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _CastDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class CastDataCopyWith<$R, $In extends CastData, $Out>
@@ -127,5 +128,5 @@ class _CastDataCopyWithImpl<$R, $Out>
   @override
   CastDataCopyWith<$R2, CastData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _CastDataCopyWithImpl($value, $cast, t);
+      _CastDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

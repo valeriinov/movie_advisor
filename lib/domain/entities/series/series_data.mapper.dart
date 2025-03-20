@@ -119,7 +119,8 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
 
 mixin SeriesDataMappable {
   SeriesDataCopyWith<SeriesData, SeriesData, SeriesData> get copyWith =>
-      _SeriesDataCopyWithImpl(this as SeriesData, $identity, $identity);
+      _SeriesDataCopyWithImpl<SeriesData, SeriesData>(
+          this as SeriesData, $identity, $identity);
   @override
   String toString() {
     return SeriesDataMapper.ensureInitialized()
@@ -141,7 +142,7 @@ mixin SeriesDataMappable {
 extension SeriesDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesData, $Out> {
   SeriesDataCopyWith<$R, SeriesData, $Out> get $asSeriesData =>
-      $base.as((v, t, t2) => _SeriesDataCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _SeriesDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
@@ -267,5 +268,5 @@ class _SeriesDataCopyWithImpl<$R, $Out>
   @override
   SeriesDataCopyWith<$R2, SeriesData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SeriesDataCopyWithImpl($value, $cast, t);
+      _SeriesDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
