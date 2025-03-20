@@ -84,6 +84,7 @@ abstract base class FilterViewModel<
       _filterUseCase.getSavedFilter,
       onResult: (result) {
         result.fold((_) {}, (filter) {
+          if (filter == null) return;
           state = state.copyWith(filter: filter);
         });
       },
