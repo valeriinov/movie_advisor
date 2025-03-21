@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
+import '../../../../../domain/entities/base_media/crew_data.dart';
+import '../../../../../domain/entities/base_media/crew_job.dart';
 import '../../../../../domain/entities/base_media/media_data.dart';
 import '../../../../../domain/entities/movie/movie_data.dart';
 import '../../../resources/app_images.dart';
@@ -29,6 +31,7 @@ class DetailsPropsContainer extends StatelessWidget {
     final genres = data.getGenresStr();
     final countries = data.getCountriesStr();
     final premiereYear = data.getPremiereYearStr();
+    final directors = _getDirectorNames();
 
     return SliverToBoxAdapter(
       child: Padding(
@@ -67,10 +70,23 @@ class DetailsPropsContainer extends StatelessWidget {
                 iconPath: AppImages.dateIcon,
                 description: data.getPremiereYearStr(),
               ),
+            if (directors.isNotBlank)
+              DetailsPropsTile(
+                iconPath: AppImages.movieIcon,
+                description: directors,
+              ),
           ],
         ),
       ),
     );
+  }
+
+  String _getDirectorNames() {
+    return _getDirectors().map((e) => e.name).join(', ');
+  }
+
+  List<CrewData> _getDirectors() {
+    return data.crew.where((e) => e.job == CrewJob.director).toList();
   }
 
   int _getRevenue() {
