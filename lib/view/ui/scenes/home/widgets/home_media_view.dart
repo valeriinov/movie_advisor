@@ -14,9 +14,9 @@ import '../../../base/refresh_view_model/refresh_view_model.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
-import '../../../navigation/routes/more_routes.dart';
 import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/dialogs/question_dialog.dart';
+import '../../../widgets/blurred_bottom_sheet.dart';
+import '../../../widgets/language_bottom_sheet.dart';
 import '../home_view_model/home_state.dart';
 import '../home_view_model/home_view_model.dart';
 import '../model/media_tab.dart';
@@ -141,16 +141,11 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
   }
 
   void _showLangDialog(BuildContext context) {
-    showDialog(
+    showBlurredBottomSheet(
+      isDismissible: false,
       context: context,
-      builder:
-          (_) => QuestionDialog(
-            contentText: LocaleKeys.langDialog.tr(),
-            okButtonTitle: LocaleKeys.settingsButton.tr(),
-            onOkButtonPressed: () {
-              SettingsRoute().go(context);
-            },
-          ),
+      useRootNavigator: true,
+      child: LanguageBottomSheet(),
     );
   }
 

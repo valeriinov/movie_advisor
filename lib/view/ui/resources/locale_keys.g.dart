@@ -155,8 +155,6 @@ abstract class  LocaleKeys {
   static const english = 'english';
   static const ukrainian = 'ukrainian';
   static const playTrailerButton = 'playTrailerButton';
-  static const langDialog = 'langDialog';
-  static const settingsButton = 'settingsButton';
   static const unitedStates = 'unitedStates';
   static const unitedKingdom = 'unitedKingdom';
   static const canada = 'canada';
