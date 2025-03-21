@@ -34,6 +34,24 @@ enum CountryDto {
   russia,
   @MappableValue('UA')
   ukraine,
+  @MappableValue('LV')
+  latvia,
+  @MappableValue('LT')
+  lithuania,
+  @MappableValue('EE')
+  estonia,
+  @MappableValue('PL')
+  poland,
+  @MappableValue('CZ')
+  czechRepublic,
+  @MappableValue('HU')
+  hungary,
+  @MappableValue('GR')
+  greece,
+  @MappableValue('TR')
+  turkey,
+  @MappableValue('MX')
+  mexico,
   @MappableValue('')
   none,
 }

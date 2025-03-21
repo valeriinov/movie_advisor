@@ -168,6 +168,15 @@
   "australia": "Australia",
   "russia": "Russia",
   "ukraine": "Ukraine",
+  "latvia": "Latvia",
+  "lithuania": "Lithuania",
+  "estonia": "Estonia",
+  "poland": "Poland",
+  "czechRepublic": "Czech Republic",
+  "hungary": "Hungary",
+  "greece": "Greece",
+  "turkey": "Turkey",
+  "mexico": "Mexico",
   "sortByPopularityAsc": "Popularity  ↑",
   "sortByPopularityDesc": "Popularity  ↓",
   "sortByRatingAsc": "Rating  ↑",
@@ -194,5 +203,9 @@
   "selectYearDialog": "Premiere Year",
   "sortByDialog": "Sort by",
   "filterResetButton": "Reset",
-  "filterApplyButton": "Apply"
+  "filterApplyButton": "Apply",
+  "emptyOverviewTab": "No description yet. Stay tuned! \uD83C\uDF7F",
+  "emptyCastTab": "No cast information yet. Stay tuned! \uD83C\uDF7F",
+  "crewJobDirector": "Director",
+  "crewJobProducer": "Producer"
 }

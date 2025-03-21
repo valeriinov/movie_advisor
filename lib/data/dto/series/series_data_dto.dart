@@ -2,7 +2,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../utils/date_mapper_hook.dart';
 import '../../utils/genres_hook.dart';
-import '../cast/credits_data_dto.dart';
+import '../credits/credits_data_dto.dart';
 import '../country_dto.dart';
 import '../video/videos_data_dto.dart';
 import 'series_genre_dto.dart';

@@ -14,6 +14,7 @@ class CreditsDataDtoMapper extends ClassMapperBase<CreditsDataDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = CreditsDataDtoMapper._());
       CastDataDtoMapper.ensureInitialized();
+      CrewDataDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -24,16 +25,20 @@ class CreditsDataDtoMapper extends ClassMapperBase<CreditsDataDto> {
   static List<CastDataDto>? _$cast(CreditsDataDto v) => v.cast;
   static const Field<CreditsDataDto, List<CastDataDto>> _f$cast =
       Field('cast', _$cast, opt: true);
+  static List<CrewDataDto>? _$crew(CreditsDataDto v) => v.crew;
+  static const Field<CreditsDataDto, List<CrewDataDto>> _f$crew =
+      Field('crew', _$crew, opt: true);
 
   @override
   final MappableFields<CreditsDataDto> fields = const {
     #cast: _f$cast,
+    #crew: _f$crew,
   };
   @override
   final bool ignoreNull = true;
 
   static CreditsDataDto _instantiate(DecodingData data) {
-    return CreditsDataDto(cast: data.dec(_f$cast));
+    return CreditsDataDto(cast: data.dec(_f$cast), crew: data.dec(_f$crew));
   }
 
   @override
@@ -92,7 +97,9 @@ abstract class CreditsDataDtoCopyWith<$R, $In extends CreditsDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, CastDataDto,
       CastDataDtoCopyWith<$R, CastDataDto, CastDataDto>>? get cast;
-  $R call({List<CastDataDto>? cast});
+  ListCopyWith<$R, CrewDataDto,
+      CrewDataDtoCopyWith<$R, CrewDataDto, CrewDataDto>>? get crew;
+  $R call({List<CastDataDto>? cast, List<CrewDataDto>? crew});
   CreditsDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -113,11 +120,20 @@ class _CreditsDataDtoCopyWithImpl<$R, $Out>
               (v) => call(cast: v))
           : null;
   @override
-  $R call({Object? cast = $none}) =>
-      $apply(FieldCopyWithData({if (cast != $none) #cast: cast}));
+  ListCopyWith<$R, CrewDataDto,
+          CrewDataDtoCopyWith<$R, CrewDataDto, CrewDataDto>>?
+      get crew => $value.crew != null
+          ? ListCopyWith($value.crew!, (v, t) => v.copyWith.$chain(t),
+              (v) => call(crew: v))
+          : null;
   @override
-  CreditsDataDto $make(CopyWithData data) =>
-      CreditsDataDto(cast: data.get(#cast, or: $value.cast));
+  $R call({Object? cast = $none, Object? crew = $none}) =>
+      $apply(FieldCopyWithData(
+          {if (cast != $none) #cast: cast, if (crew != $none) #crew: crew}));
+  @override
+  CreditsDataDto $make(CopyWithData data) => CreditsDataDto(
+      cast: data.get(#cast, or: $value.cast),
+      crew: data.get(#crew, or: $value.crew));
 
   @override
   CreditsDataDtoCopyWith<$R2, CreditsDataDto, $Out2> $chain<$R2, $Out2>(

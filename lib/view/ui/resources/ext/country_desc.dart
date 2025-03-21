@@ -21,6 +21,15 @@ extension CountryDesc on Country {
       Country.australia => LocaleKeys.australia.tr(),
       Country.russia => LocaleKeys.russia.tr(),
       Country.ukraine => LocaleKeys.ukraine.tr(),
+      Country.latvia => LocaleKeys.latvia.tr(),
+      Country.lithuania => LocaleKeys.lithuania.tr(),
+      Country.estonia => LocaleKeys.estonia.tr(),
+      Country.poland => LocaleKeys.poland.tr(),
+      Country.czechRepublic => LocaleKeys.czechRepublic.tr(),
+      Country.hungary => LocaleKeys.hungary.tr(),
+      Country.greece => LocaleKeys.greece.tr(),
+      Country.turkey => LocaleKeys.turkey.tr(),
+      Country.mexico => LocaleKeys.mexico.tr(),
       Country.none => '',
     };
   }

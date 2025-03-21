@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../base_media/cast_data.dart';
+import '../base_media/crew_data.dart';
 import '../base_media/media_data.dart';
 import '../base_media/country.dart';
 import '../mappable_entity.dart';
@@ -28,6 +29,7 @@ final class MovieData extends MediaData with MovieDataMappable {
     super.overview = '',
     super.tmdbRating = const TMDBRating(),
     super.cast = const [],
+    super.crew = const [],
     super.videos = const [],
     this.revenue = 0,
     super.userRating = 0,

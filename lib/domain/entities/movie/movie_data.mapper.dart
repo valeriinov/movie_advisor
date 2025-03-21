@@ -16,6 +16,7 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
       MediaDataMapper.ensureInitialized();
       TMDBRatingMapper.ensureInitialized();
       CastDataMapper.ensureInitialized();
+      CrewDataMapper.ensureInitialized();
       VideoDataMapper.ensureInitialized();
     }
     return _instance!;
@@ -60,6 +61,9 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
   static List<CastData> _$cast(MovieData v) => v.cast;
   static const Field<MovieData, List<CastData>> _f$cast =
       Field('cast', _$cast, opt: true, def: const []);
+  static List<CrewData> _$crew(MovieData v) => v.crew;
+  static const Field<MovieData, List<CrewData>> _f$crew =
+      Field('crew', _$crew, opt: true, def: const []);
   static List<VideoData> _$videos(MovieData v) => v.videos;
   static const Field<MovieData, List<VideoData>> _f$videos =
       Field('videos', _$videos, opt: true, def: const []);
@@ -90,6 +94,7 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
     #overview: _f$overview,
     #tmdbRating: _f$tmdbRating,
     #cast: _f$cast,
+    #crew: _f$crew,
     #videos: _f$videos,
     #revenue: _f$revenue,
     #userRating: _f$userRating,
@@ -111,6 +116,7 @@ class MovieDataMapper extends ClassMapperBase<MovieData> {
         overview: data.dec(_f$overview),
         tmdbRating: data.dec(_f$tmdbRating),
         cast: data.dec(_f$cast),
+        crew: data.dec(_f$crew),
         videos: data.dec(_f$videos),
         revenue: data.dec(_f$revenue),
         userRating: data.dec(_f$userRating),
@@ -161,6 +167,8 @@ abstract class MovieDataCopyWith<$R, $In extends MovieData, $Out>
   @override
   ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>> get cast;
   @override
+  ListCopyWith<$R, CrewData, CrewDataCopyWith<$R, CrewData, CrewData>> get crew;
+  @override
   ListCopyWith<$R, VideoData, VideoDataCopyWith<$R, VideoData, VideoData>>
       get videos;
   @override
@@ -177,6 +185,7 @@ abstract class MovieDataCopyWith<$R, $In extends MovieData, $Out>
       String? overview,
       TMDBRating? tmdbRating,
       List<CastData>? cast,
+      List<CrewData>? crew,
       List<VideoData>? videos,
       int? revenue,
       int? userRating,
@@ -211,6 +220,10 @@ class _MovieDataCopyWithImpl<$R, $Out>
       get cast => ListCopyWith(
           $value.cast, (v, t) => v.copyWith.$chain(t), (v) => call(cast: v));
   @override
+  ListCopyWith<$R, CrewData, CrewDataCopyWith<$R, CrewData, CrewData>>
+      get crew => ListCopyWith(
+          $value.crew, (v, t) => v.copyWith.$chain(t), (v) => call(crew: v));
+  @override
   ListCopyWith<$R, VideoData, VideoDataCopyWith<$R, VideoData, VideoData>>
       get videos => ListCopyWith($value.videos, (v, t) => v.copyWith.$chain(t),
           (v) => call(videos: v));
@@ -228,6 +241,7 @@ class _MovieDataCopyWithImpl<$R, $Out>
           String? overview,
           TMDBRating? tmdbRating,
           List<CastData>? cast,
+          List<CrewData>? crew,
           List<VideoData>? videos,
           int? revenue,
           int? userRating,
@@ -246,6 +260,7 @@ class _MovieDataCopyWithImpl<$R, $Out>
         if (overview != null) #overview: overview,
         if (tmdbRating != null) #tmdbRating: tmdbRating,
         if (cast != null) #cast: cast,
+        if (crew != null) #crew: crew,
         if (videos != null) #videos: videos,
         if (revenue != null) #revenue: revenue,
         if (userRating != null) #userRating: userRating,
@@ -267,6 +282,7 @@ class _MovieDataCopyWithImpl<$R, $Out>
       overview: data.get(#overview, or: $value.overview),
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
       cast: data.get(#cast, or: $value.cast),
+      crew: data.get(#crew, or: $value.crew),
       videos: data.get(#videos, or: $value.videos),
       revenue: data.get(#revenue, or: $value.revenue),
       userRating: data.get(#userRating, or: $value.userRating),

@@ -172,6 +172,15 @@ abstract class  LocaleKeys {
   static const australia = 'australia';
   static const russia = 'russia';
   static const ukraine = 'ukraine';
+  static const latvia = 'latvia';
+  static const lithuania = 'lithuania';
+  static const estonia = 'estonia';
+  static const poland = 'poland';
+  static const czechRepublic = 'czechRepublic';
+  static const hungary = 'hungary';
+  static const greece = 'greece';
+  static const turkey = 'turkey';
+  static const mexico = 'mexico';
   static const sortByPopularityAsc = 'sortByPopularityAsc';
   static const sortByPopularityDesc = 'sortByPopularityDesc';
   static const sortByRatingAsc = 'sortByRatingAsc';
@@ -199,5 +208,9 @@ abstract class  LocaleKeys {
   static const sortByDialog = 'sortByDialog';
   static const filterResetButton = 'filterResetButton';
   static const filterApplyButton = 'filterApplyButton';
+  static const emptyOverviewTab = 'emptyOverviewTab';
+  static const emptyCastTab = 'emptyCastTab';
+  static const crewJobDirector = 'crewJobDirector';
+  static const crewJobProducer = 'crewJobProducer';
 
 }

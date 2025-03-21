@@ -8,22 +8,36 @@ class ImpMediaResponseHandler implements MediaResponseHandler {
   final ImageUrlHandler _imageUrlHandler;
 
   ImpMediaResponseHandler({required ImageUrlHandler imageUrlHandler})
-      : _imageUrlHandler = imageUrlHandler;
+    : _imageUrlHandler = imageUrlHandler;
 
   @override
-  MoviesResponseDataDto handleMoviesResponse(NetResponse response) {
+  MoviesResponseDataDto handleMoviesResponse(
+    NetResponse response, {
+    bool removeWithoutPoster = false,
+  }) {
     final rawDto = MoviesResponseDataDto.fromJson(response.data);
-    final results =
-        _imageUrlHandler.handleMoviesListImages(rawDto.results ?? []);
+    final rawResults =
+        removeWithoutPoster
+            ? rawDto.results?.where((e) => e.posterPath != null).toList()
+            : rawDto.results;
+
+    final results = _imageUrlHandler.handleMoviesListImages(rawResults ?? []);
 
     return rawDto.copyWith(results: results);
   }
 
   @override
-  SeriesResponseDataDto handleSeriesResponse(NetResponse response) {
+  SeriesResponseDataDto handleSeriesResponse(
+    NetResponse response, {
+    bool removeWithoutPoster = false,
+  }) {
     final rawDto = SeriesResponseDataDto.fromJson(response.data);
-    final results =
-        _imageUrlHandler.handleSeriesListImages(rawDto.results ?? []);
+    final rawResults =
+        removeWithoutPoster
+            ? rawDto.results?.where((e) => e.posterPath != null).toList()
+            : rawDto.results;
+
+    final results = _imageUrlHandler.handleSeriesListImages(rawResults ?? []);
 
     return rawDto.copyWith(results: results);
   }

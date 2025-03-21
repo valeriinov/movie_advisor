@@ -12,7 +12,7 @@ import '../../common/adapters/url_launcher_adapter/impl_url_launcher_adapter.dar
 import '../../common/adapters/url_launcher_adapter/url_launcher_adapter.dart';
 import '../../data/local/app_local_database.dart';
 import '../../data/mappers/app_auth_mapper.dart';
-import '../../data/mappers/app_cast_mapper.dart';
+import '../../data/mappers/app_credits_mapper.dart';
 import '../../data/mappers/app_filter_mapper.dart';
 import '../../data/mappers/app_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
@@ -190,20 +190,20 @@ final mediaResponseHandlerPr = Provider<MediaResponseHandler>(
 final localDatabasePr = Provider<AppLocalDatabase>((_) => AppLocalDatabase());
 
 final appMapperPr = Provider<AppMapper>((_) => AppMapper());
-final castMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
+final creditsMapperPr = Provider<AppCreditsMapper>((_) => AppCreditsMapper());
 final videoMapperPr = Provider<AppVideoMapper>((_) => AppVideoMapper());
 final ratingMapperPr = Provider<AppRatingMapper>((_) => AppRatingMapper());
 final moviesMapperPr = Provider<AppMoviesMapper>(
   (ref) => AppMoviesMapper(
     ratingMapper: ref.read(ratingMapperPr),
-    castMapper: ref.read(castMapperPr),
+    creditsMapper: ref.read(creditsMapperPr),
     videoMapper: ref.read(videoMapperPr),
   ),
 );
 final seriesMapperPr = Provider<AppSeriesMapper>(
   (ref) => AppSeriesMapper(
     ratingMapper: ref.read(ratingMapperPr),
-    castMapper: ref.read(castMapperPr),
+    creditsMapper: ref.read(creditsMapperPr),
     videoMapper: ref.read(videoMapperPr),
   ),
 );
@@ -303,7 +303,7 @@ final detailsServicePr = Provider<DetailsService>(
 final detailsRemoteDataSourcePr = Provider<DetailsRemoteDataSource>(
   (ref) => ImplDetailsRemoteDataSource(service: ref.read(detailsServicePr)),
 );
-final detailsMapperPr = Provider<AppCastMapper>((_) => AppCastMapper());
+final detailsMapperPr = Provider<AppCreditsMapper>((_) => AppCreditsMapper());
 final detailsRepositoryPr = Provider<DetailsRepository>(
   (ref) => ImplDetailsRepository(
     dataSource: ref.read(detailsRemoteDataSourcePr),

@@ -91,7 +91,10 @@ class HomeService {
       queryParameters: queryParams,
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   String _buildMoviesGenreIdsStr(List<MovieGenreDto>? targetGenres) {
@@ -123,7 +126,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<MoviesResponseDataDto> getUpcomingMovies({required int page}) async {
@@ -132,7 +138,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<MoviesResponseDataDto> getTopRatedMovies({required int page}) async {
@@ -141,7 +150,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<MoviesResponseDataDto> getPopularMovies({required int page}) async {
@@ -150,7 +162,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<SeriesResponseDataDto> getSuggestedSeries(
@@ -223,7 +238,10 @@ class HomeService {
       queryParameters: queryParams,
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   String _buildSeriesGenresFilterString(List<SeriesGenreDto>? targetGenres) {
@@ -284,7 +302,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<SeriesResponseDataDto> getOnTheAirSeries({required int page}) async {
@@ -293,7 +314,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<SeriesResponseDataDto> getTopRatedSeries({required int page}) async {
@@ -302,7 +326,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<SeriesResponseDataDto> getPopularSeries({required int page}) async {
@@ -311,6 +338,9 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 }
