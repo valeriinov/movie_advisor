@@ -210,5 +210,7 @@ abstract class  LocaleKeys {
   static const filterApplyButton = 'filterApplyButton';
   static const emptyOverviewTab = 'emptyOverviewTab';
   static const emptyCastTab = 'emptyCastTab';
+  static const crewJobDirector = 'crewJobDirector';
+  static const crewJobProducer = 'crewJobProducer';
 
 }

@@ -205,5 +205,7 @@
   "filterResetButton": "Reset",
   "filterApplyButton": "Apply",
   "emptyOverviewTab": "No description yet. Stay tuned! \uD83C\uDF7F",
-  "emptyCastTab": "No cast information yet. Stay tuned! \uD83C\uDF7F"
+  "emptyCastTab": "No cast information yet. Stay tuned! \uD83C\uDF7F",
+  "crewJobDirector": "Director",
+  "crewJobProducer": "Producer"
 }

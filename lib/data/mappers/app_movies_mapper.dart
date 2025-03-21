@@ -8,8 +8,8 @@ import '../dto/movie/movie_short_data_dto.dart';
 import '../dto/movie/movies_response_data_dto.dart';
 import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/rating/rating_data_dto.dart';
-import 'app_cast_mapper.dart';
 import 'app_countries_mapper_ext.dart';
+import 'app_credits_mapper.dart';
 import 'app_genres_mapper_ext.dart';
 import 'app_mapper.dart';
 import 'app_rating_mapper.dart';
@@ -17,15 +17,15 @@ import 'app_video_mapper.dart';
 
 final class AppMoviesMapper extends AppMapper {
   final AppRatingMapper _ratingMapper;
-  final AppCastMapper _castMapper;
+  final AppCreditsMapper _creditsMapper;
   final AppVideoMapper _videoMapper;
 
   AppMoviesMapper({
     required AppRatingMapper ratingMapper,
-    required AppCastMapper castMapper,
+    required AppCreditsMapper creditsMapper,
     required AppVideoMapper videoMapper,
   }) : _ratingMapper = ratingMapper,
-       _castMapper = castMapper,
+       _creditsMapper = creditsMapper,
        _videoMapper = videoMapper;
 
   PaginatedMovies mapMoviesShortResponseDataToDomain(
@@ -65,7 +65,11 @@ final class AppMoviesMapper extends AppMapper {
       tmdbRating: _ratingMapper.mapMovieDataDtoToTMDBRating(dto),
       cast:
           dto.credits != null
-              ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
+              ? _creditsMapper.mapCreditsDataDtoToCastDataList(dto.credits!)
+              : [],
+      crew:
+          dto.credits != null
+              ? _creditsMapper.mapCreditsDataDtoToCrewDataList(dto.credits!)
               : [],
       videos:
           dto.videos != null

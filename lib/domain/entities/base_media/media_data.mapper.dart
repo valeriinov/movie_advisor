@@ -15,6 +15,7 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
       MapperContainer.globals.use(_instance = MediaDataMapper._());
       TMDBRatingMapper.ensureInitialized();
       CastDataMapper.ensureInitialized();
+      CrewDataMapper.ensureInitialized();
       VideoDataMapper.ensureInitialized();
     }
     return _instance!;
@@ -53,6 +54,8 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
       Field('tmdbRating', _$tmdbRating);
   static List<CastData> _$cast(MediaData v) => v.cast;
   static const Field<MediaData, List<CastData>> _f$cast = Field('cast', _$cast);
+  static List<CrewData> _$crew(MediaData v) => v.crew;
+  static const Field<MediaData, List<CrewData>> _f$crew = Field('crew', _$crew);
   static List<VideoData> _$videos(MediaData v) => v.videos;
   static const Field<MediaData, List<VideoData>> _f$videos =
       Field('videos', _$videos);
@@ -79,6 +82,7 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
     #overview: _f$overview,
     #tmdbRating: _f$tmdbRating,
     #cast: _f$cast,
+    #crew: _f$crew,
     #videos: _f$videos,
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
@@ -103,6 +107,7 @@ abstract class MediaDataCopyWith<$R, $In extends MediaData, $Out>
       get originCountry;
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
   ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>> get cast;
+  ListCopyWith<$R, CrewData, CrewDataCopyWith<$R, CrewData, CrewData>> get crew;
   ListCopyWith<$R, VideoData, VideoDataCopyWith<$R, VideoData, VideoData>>
       get videos;
   $R call(
@@ -117,6 +122,7 @@ abstract class MediaDataCopyWith<$R, $In extends MediaData, $Out>
       String? overview,
       TMDBRating? tmdbRating,
       List<CastData>? cast,
+      List<CrewData>? crew,
       List<VideoData>? videos,
       int? userRating,
       bool? isInWatchlist,
