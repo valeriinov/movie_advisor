@@ -9,7 +9,7 @@ import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
 import '../../../widgets/blurred_bottom_sheet.dart';
 import '../../../widgets/no_always_scroll_wrapper.dart';
-import 'language_bottom_sheet.dart';
+import '../../../widgets/language_bottom_sheet.dart';
 
 class SettingsScreenView extends StatelessWidget {
   const SettingsScreenView({super.key});

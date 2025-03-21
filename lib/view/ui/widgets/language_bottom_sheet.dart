@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../common/app_locales.dart';
-import '../../../base/refresh_view_model/refresh_view_model.dart';
-import '../../../base/view_model/ext/vm_state_provider_creator.dart';
-import '../../../resources/base_theme/components/base_components_styles_ext.dart';
-import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
-import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/bottom_sheet/bottom_sheet_close_button.dart';
-import '../../../widgets/bottom_sheet/bottom_sheet_title.dart';
+import '../../../common/app_locales.dart';
+import '../base/refresh_view_model/refresh_view_model.dart';
+import '../base/view_model/ext/vm_state_provider_creator.dart';
+import '../resources/base_theme/components/base_components_styles_ext.dart';
+import '../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../resources/locale_keys.g.dart';
+import 'bottom_sheet/bottom_sheet_close_button.dart';
+import 'bottom_sheet/bottom_sheet_title.dart';
 
 class LanguageBottomSheet extends ConsumerWidget {
   const LanguageBottomSheet({super.key});
