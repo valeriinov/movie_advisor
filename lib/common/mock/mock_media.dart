@@ -19,9 +19,6 @@ class MockMedia {
       revenue: 1000000000,
       tmdbRating: TMDBRating(voteAverage: 8.9, voteCount: 42000),
       originCountry: [Country.unitedStates],
-      overview:
-          'A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her teenage son, '
-          'John Connor, from a more advanced and powerful cyborg.',
       userRating: -1,
       isInWatchlist: false,
       isWatched: false,
@@ -38,9 +35,6 @@ class MockMedia {
       premiereDate: DateTime.now(),
       tmdbRating: TMDBRating(voteAverage: 8.9, voteCount: 42000),
       originCountry: [Country.unitedStates],
-      overview:
-          'A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her teenage son, '
-          'John Connor, from a more advanced and powerful cyborg.',
       userRating: -1,
       isInWatchlist: false,
       isWatched: false,

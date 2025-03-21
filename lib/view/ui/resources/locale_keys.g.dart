@@ -208,5 +208,7 @@ abstract class  LocaleKeys {
   static const sortByDialog = 'sortByDialog';
   static const filterResetButton = 'filterResetButton';
   static const filterApplyButton = 'filterApplyButton';
+  static const emptyOverviewTab = 'emptyOverviewTab';
+  static const emptyCastTab = 'emptyCastTab';
 
 }
