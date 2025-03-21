@@ -296,7 +296,9 @@ final searchSeriesUseCasePr = Provider<SearchSeriesUseCase>(
 // DETAILS
 final detailsServicePr = Provider<DetailsService>(
   (ref) => DetailsService(
-    mediaApiClient: ref.read(localizedMediaApiClientPr),
+    localizedMediaApiClient: ref.read(localizedMediaApiClientPr),
+    mediaApiClient: ref.read(mediaApiClientPr),
+    settingsProvider: ref.read(settingsPr),
     imageUrlHandler: ref.read(imageUrlHandlerPr),
   ),
 );
