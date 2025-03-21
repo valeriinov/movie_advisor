@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
 import '../../../../../domain/entities/movie/movie_data.dart';
@@ -24,6 +25,11 @@ class DetailsPropsContainer extends StatelessWidget {
     final colors = context.baseColors;
     final dimens = context.baseDimens;
 
+    final revenue = _getRevenue();
+    final genres = data.getGenresStr();
+    final countries = data.getCountriesStr();
+    final premiereYear = data.getPremiereYearStr();
+
     return SliverToBoxAdapter(
       child: Padding(
         padding: dimens.padHorSecIns,
@@ -41,35 +47,35 @@ class DetailsPropsContainer extends StatelessWidget {
                 data.userRating,
               ),
             ),
-            if (_isMovie()) _buildRevenueTile(),
-            DetailsPropsTile(
-              iconPath: AppImages.genreIcon,
-              description: data.getGenresStr(),
-            ),
-            DetailsPropsTile(
-              iconPath: AppImages.earthIcon,
-              description: data.getCountriesStr(),
-            ),
-            DetailsPropsTile(
-              iconPath: AppImages.dateIcon,
-              description: data.getPremiereYearStr(),
-            ),
+            if (revenue > 0)
+              DetailsPropsTile(
+                iconPath: AppImages.revenueIcon,
+                description: AppRevenueFormat.createRevenueString(revenue),
+              ),
+            if (genres.isNotBlank)
+              DetailsPropsTile(
+                iconPath: AppImages.genreIcon,
+                description: data.getGenresStr(),
+              ),
+            if (countries.isNotBlank)
+              DetailsPropsTile(
+                iconPath: AppImages.earthIcon,
+                description: data.getCountriesStr(),
+              ),
+            if (premiereYear.isNotBlank)
+              DetailsPropsTile(
+                iconPath: AppImages.dateIcon,
+                description: data.getPremiereYearStr(),
+              ),
           ],
         ),
       ),
     );
   }
 
-  bool _isMovie() {
-    return data is MovieData;
-  }
+  int _getRevenue() {
+    if (data is! MovieData) return 0;
 
-  Widget _buildRevenueTile() {
-    final movie = data as MovieData;
-
-    return DetailsPropsTile(
-      iconPath: AppImages.revenueIcon,
-      description: AppRevenueFormat.createRevenueString(movie.revenue),
-    );
+    return (data as MovieData).revenue;
   }
 }
