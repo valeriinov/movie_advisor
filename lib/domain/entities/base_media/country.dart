@@ -14,6 +14,15 @@ enum Country {
   australia,
   russia,
   ukraine,
+  latvia,
+  lithuania,
+  estonia,
+  poland,
+  czechRepublic,
+  hungary,
+  greece,
+  turkey,
+  mexico,
   none;
 
   static List<Country> get valuesWithoutNone =>

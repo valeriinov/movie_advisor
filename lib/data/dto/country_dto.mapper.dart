@@ -55,10 +55,28 @@ class CountryDtoMapper extends EnumMapper<CountryDto> {
         return CountryDto.russia;
       case 'UA':
         return CountryDto.ukraine;
+      case 'LV':
+        return CountryDto.latvia;
+      case 'LT':
+        return CountryDto.lithuania;
+      case 'EE':
+        return CountryDto.estonia;
+      case 'PL':
+        return CountryDto.poland;
+      case 'CZ':
+        return CountryDto.czechRepublic;
+      case 'HU':
+        return CountryDto.hungary;
+      case 'GR':
+        return CountryDto.greece;
+      case 'TR':
+        return CountryDto.turkey;
+      case 'MX':
+        return CountryDto.mexico;
       case '':
         return CountryDto.none;
       default:
-        return CountryDto.values[15];
+        return CountryDto.values[24];
     }
   }
 
@@ -95,6 +113,24 @@ class CountryDtoMapper extends EnumMapper<CountryDto> {
         return 'RU';
       case CountryDto.ukraine:
         return 'UA';
+      case CountryDto.latvia:
+        return 'LV';
+      case CountryDto.lithuania:
+        return 'LT';
+      case CountryDto.estonia:
+        return 'EE';
+      case CountryDto.poland:
+        return 'PL';
+      case CountryDto.czechRepublic:
+        return 'CZ';
+      case CountryDto.hungary:
+        return 'HU';
+      case CountryDto.greece:
+        return 'GR';
+      case CountryDto.turkey:
+        return 'TR';
+      case CountryDto.mexico:
+        return 'MX';
       case CountryDto.none:
         return '';
     }
