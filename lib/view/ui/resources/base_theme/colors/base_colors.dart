@@ -20,9 +20,9 @@ abstract final class _BaseColors {
   static const btnElevPrimFgDis = Color(0xFFBDBDBD);
   static const btnElevPrimBgDis = Color(0xFFE0E0E0);
 
-  static const btnOutPrimFg = Color(0xFF6200EA);
+  static const btnOutPrimFg = Color(0xFF0296E5);
   static const btnOutPrimBg = Colors.transparent;
-  static const btnOutPrimFgPress = Color(0xFF3700B3);
+  static const btnOutPrimFgPress = Color(0xFF036fac);
   static const btnOutPrimBgPress = Color(0xFFEDE7F6);
   static const btnOutPrimFgDis = Color(0xFFBDBDBD);
   static const btnOutPrimBgDis = Color(0xFFE0E0E0);
@@ -34,12 +34,12 @@ abstract final class _BaseColors {
   static const btnFillPrimFgDis = Color(0xFFBDBDBD);
   static const btnFillPrimBgDis = Color(0xFFE0E0E0);
 
-  static const btnTextPrimFg = Color(0xFF6200EA);
+  static const btnTextPrimFg = Color(0xFF0296E5);
   static const btnTextPrimBg = Colors.transparent;
-  static const btnTextPrimFgPress = Color(0xFF3700B3);
+  static const btnTextPrimFgPress = Color(0xFF036fac);
   static const btnTextPrimBgPress = Colors.transparent;
   static const btnTextPrimFgDis = Color(0xFFBDBDBD);
-  static const btnTextPrimBgDis = Color(0xFFE0E0E0);
+  static const btnTextPrimBgDis = Colors.transparent;
 
   static const btnFABFg = Colors.white;
   static const btnFABBg = Color(0xFF0296E5);
@@ -47,8 +47,13 @@ abstract final class _BaseColors {
 
   static const btnIconPrim = Color(0xFFFFFFFF);
 
+  static const btnIconSecFg = Color(0xFFFFFFFF);
+  static const btnIconSecBg = Color(0xFF0296E5);
+  static const btnIconSecBgPress = Color(0xFF036fac);
+
   // Loading Indicator
-  static const loadingIndicator = Color(0xFF0296E5);
+  static const loadingIndicatorFg = Color(0xFF0296E5);
+  static const loadingIndicatorBg = Color(0xFFE8E8EC);
 
   static const refreshIndicatorFg = Color(0xFF242A32);
   static const refreshIndicatorBg = Color(0xFFa1a3ac);
@@ -72,18 +77,20 @@ abstract final class _BaseColors {
   static const txtFldPrimLabel = Color(0xFF67686D);
   static const txtFldPrimBorder = Color(0xFF3a3f47);
   static const txtFldPrimBorderFocus = Color(0xFF3a3f47);
-  static const txtFldPrimBorderError = Color(0xFFB00020);
-  static const txtFldPrimError = Color(0xFFB00020);
+  static const txtFldPrimBorderError = Color(0xFFDA5353);
+  static const txtFldPrimError = Color(0xFFDA5353);
   static const txtFldPrimSuffixIcon = Color(0xFF67686D);
 
   // Keyboard Actions
-  static const kbdActionBar = Color(0xFFCCCED5);
+  static const kbdActionBarBg = Color(0xFFCCCED5);
+  static const kbdActionBarFg = Color(0xFF000000);
 
   // Dialogs
   static const dlgPrimBg = Color(0xFFFFFFFF);
   static const dlgPrimTitle = Color(0xFF000000);
   static const dlgPrimCont = Color(0xFF000000);
-  static const dlgPrimBtnFg = Color(0xFF6200EA);
+  static const dlgPrimBtnFg = Color(0xFFFFFFFF);
+  static const dlgSecBtnFg = Color(0xFF67686D);
 
   static const toastSuccessBg = Color(0xFFD6FFD3);
   static const toastInfoBg = Color(0xFFD9EEFF);
@@ -125,4 +132,20 @@ abstract final class _BaseColors {
   static const sliderThumbFill = Color(0xFFF7F7FC);
 
   static const removeRateBtn = Color(0xFF6f1919);
+  static const deleteAccountBtn = Color(0xff685a5a);
+
+  static const divider = Color(0xFF92929D);
+
+  static const contSwitchBg = Color(0xFF242A32);
+  static const contSwitchIndicator = Color(0xFF242A32);
+  static const contSwitchBorder = Color(0xFF0296E5);
+  static const contSwitchFg = Color(0xFF67686D);
+  static const contSwitchFgSelect = Color(0xFF0296E5);
+
+  static const filterPrimFg = Color(0xFF92929D);
+  static const filterSecFg = Color(0xFF92929D);
+
+  static const filterCtrlBarBg = Colors.white;
+  static const filterCtrlBarShadow = Color(0x12000000);
+  static const filterCtrlBarResetBtnOverlay = Color(0xff737d8e);
 }

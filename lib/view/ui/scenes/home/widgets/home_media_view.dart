@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
@@ -6,8 +9,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
+import '../../../base/refresh_view_model/refresh_state.dart';
+import '../../../base/refresh_view_model/refresh_view_model.dart';
+import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
+import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/blurred_bottom_sheet.dart';
+import '../../../widgets/language_bottom_sheet.dart';
+import '../home_view_model/home_state.dart';
 import '../home_view_model/home_view_model.dart';
 import '../model/media_tab.dart';
 import '../utils/jump_to_tab_start_position.dart';
@@ -36,12 +46,24 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
     final isSkeletonVisible = isLoading && !isInitialized;
 
     vsp.handleState(
+      listener:
+          (prev, next) => _handleState(
+            prev,
+            next,
+            context: context,
+            ref: ref,
+            isInitialized: isInitialized,
+          ),
+    );
+
+    final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
+
+    refreshVsp.handleState(
       listener: (prev, next) {
-        ref.baseStatusHandler.handleStatus(
-          prev,
-          next,
-          handleLoadingState: () => isInitialized,
-        );
+        if (_isLangUpdated(prev, next)) {
+          vsp.viewModel.loadInitialData(showLoader: false);
+          scrollController.jumpTo(0);
+        }
       },
     );
 
@@ -79,6 +101,15 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
               !isLoading
                   ? () => vsp.viewModel.loadInitialData(showLoader: false)
                   : null,
+          emptyTabListTitle:
+              contentMode.isMovies
+                  ? LocaleKeys.emptyTabMoviesTitle.tr()
+                  : LocaleKeys.emptyTabSeriesTitle.tr(),
+          emptySuggestionsListTitle:
+              contentMode.isMovies
+                  ? LocaleKeys.emptySuggestionsMoviesTitle.tr()
+                  : LocaleKeys.emptySuggestionsSeriesTitle.tr(),
+          emptyListSubtitle: LocaleKeys.homeEmptyListSubtitle.tr(),
           isSkeletonVisible: isSkeletonVisible,
           suggestionsContent: suggestionsContent,
           currentTab: currentTab,
@@ -87,6 +118,45 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
           onSuggestionItemSelect: (id) => _goToDetails(context, id),
           onTabItemSelect: (id) => _goToDetails(context, id),
         );
+  }
+
+  void _handleState(
+    HomeState<T>? prev,
+    HomeState<T> next, {
+    required BuildContext context,
+    required WidgetRef ref,
+    required bool isInitialized,
+  }) {
+    if (!next.isUpdate(prev, (s) => s?.status)) return;
+
+    ref.baseStatusHandler.handleStatus(
+      prev,
+      next,
+      handleLoadingState: () => isInitialized,
+    );
+
+    if (_shouldShowLangDialog(next)) {
+      _showLangDialog(context);
+    }
+  }
+
+  void _showLangDialog(BuildContext context) {
+    showBlurredBottomSheet(
+      isDismissible: false,
+      context: context,
+      useRootNavigator: true,
+      child: LanguageBottomSheet(),
+    );
+  }
+
+  bool _shouldShowLangDialog(HomeState<T> next) {
+    return next.status is FirstLaunchStatus &&
+        Platform.localeName.startsWith('ru');
+  }
+
+  bool _isLangUpdated(RefreshState? prev, RefreshState next) {
+    return next.isUpdate(prev, (s) => s?.status) &&
+        next.status is LangUpdatedStatus;
   }
 
   PaginationState _getPaginationState(HomeVSP vsp) {

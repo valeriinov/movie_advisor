@@ -1,4 +1,5 @@
 import '../../../common/constants/db_constants.dart';
+import '../../dto/country_dto.dart';
 import '../../dto/movie/movie_data_dto.dart';
 import '../../dto/movie/movie_genre_dto.dart';
 import '../../dto/movie/movie_rate_filter_data_dto.dart';
@@ -90,7 +91,10 @@ class HomeService {
       queryParameters: queryParams,
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   String _buildMoviesGenreIdsStr(List<MovieGenreDto>? targetGenres) {
@@ -122,7 +126,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<MoviesResponseDataDto> getUpcomingMovies({required int page}) async {
@@ -131,7 +138,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<MoviesResponseDataDto> getTopRatedMovies({required int page}) async {
@@ -140,7 +150,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<MoviesResponseDataDto> getPopularMovies({required int page}) async {
@@ -149,7 +162,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(result);
+    return _responseHandler.handleMoviesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<SeriesResponseDataDto> getSuggestedSeries(
@@ -222,7 +238,10 @@ class HomeService {
       queryParameters: queryParams,
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   String _buildSeriesGenresFilterString(List<SeriesGenreDto>? targetGenres) {
@@ -230,8 +249,8 @@ class HomeService {
         '';
   }
 
-  String _buildCountryFilterString(List<String>? targetCountries) {
-    return targetCountries?.join('|') ?? '';
+  String _buildCountryFilterString(List<CountryDto>? targetCountries) {
+    return targetCountries?.map((e) => e.toValue()).join('|') ?? '';
   }
 
   Map<String, dynamic> _buildQueryParams(
@@ -283,7 +302,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<SeriesResponseDataDto> getOnTheAirSeries({required int page}) async {
@@ -292,7 +314,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<SeriesResponseDataDto> getTopRatedSeries({required int page}) async {
@@ -301,7 +326,10 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 
   Future<SeriesResponseDataDto> getPopularSeries({required int page}) async {
@@ -310,6 +338,9 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(result);
+    return _responseHandler.handleSeriesResponse(
+      result,
+      removeWithoutPoster: true,
+    );
   }
 }

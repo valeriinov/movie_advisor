@@ -1,4 +1,4 @@
-import '../../../dto/cast/credits_data_dto.dart';
+import '../../../dto/credits/credits_data_dto.dart';
 import '../../../dto/movie/movie_data_dto.dart';
 import '../../../dto/series/series_data_dto.dart';
 import '../../constants/movies_api_constants.dart';
@@ -8,9 +8,8 @@ import 'image_url_handler.dart';
 class ImplImageUrlHandler implements ImageUrlHandler {
   final EnvProvider _envProvider;
 
-  ImplImageUrlHandler({
-    required EnvProvider envProvider,
-  }) : _envProvider = envProvider;
+  ImplImageUrlHandler({required EnvProvider envProvider})
+    : _envProvider = envProvider;
 
   @override
   MovieDataDto handleMovieImages(MovieDataDto movie) {
@@ -50,11 +49,22 @@ class ImplImageUrlHandler implements ImageUrlHandler {
 
   CreditsDataDto? _handleCreditsImages(CreditsDataDto? credits) {
     return credits?.copyWith(
-      cast: credits.cast
-          ?.map((cast) => cast.copyWith(
-                profilePath: _getCastImageUrl(cast.profilePath),
-              ))
-          .toList(),
+      cast:
+          credits.cast
+              ?.map(
+                (cast) => cast.copyWith(
+                  profilePath: _getCreditsImageUrl(cast.profilePath),
+                ),
+              )
+              .toList(),
+      crew:
+          credits.crew
+              ?.map(
+                (crew) => crew.copyWith(
+                  profilePath: _getCreditsImageUrl(crew.profilePath),
+                ),
+              )
+              .toList(),
     );
   }
 
@@ -70,9 +80,9 @@ class ImplImageUrlHandler implements ImageUrlHandler {
         : '';
   }
 
-  String _getCastImageUrl(String? profilePath) {
+  String _getCreditsImageUrl(String? profilePath) {
     return profilePath != null
-        ? '${_envProvider.imageUrl}${MoviesApiConstants.castSize}$profilePath'
+        ? '${_envProvider.imageUrl}${MoviesApiConstants.creditsSize}$profilePath'
         : '';
   }
 }

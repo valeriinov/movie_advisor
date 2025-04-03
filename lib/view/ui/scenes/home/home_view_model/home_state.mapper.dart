@@ -60,7 +60,8 @@ class HomeStateMapper extends ClassMapperBase<HomeState> {
 
 mixin HomeStateMappable<T> {
   HomeStateCopyWith<HomeState<T>, HomeState<T>, HomeState<T>, T> get copyWith =>
-      _HomeStateCopyWithImpl(this as HomeState<T>, $identity, $identity);
+      _HomeStateCopyWithImpl<HomeState<T>, HomeState<T>, T>(
+          this as HomeState<T>, $identity, $identity);
   @override
   String toString() {
     return HomeStateMapper.ensureInitialized()
@@ -82,7 +83,7 @@ mixin HomeStateMappable<T> {
 extension HomeStateValueCopy<$R, $Out, T>
     on ObjectCopyWith<$R, HomeState<T>, $Out> {
   HomeStateCopyWith<$R, HomeState<T>, $Out, T> get $asHomeState =>
-      $base.as((v, t, t2) => _HomeStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _HomeStateCopyWithImpl<$R, $Out, T>(v, t, t2));
 }
 
 abstract class HomeStateCopyWith<$R, $In extends HomeState<T>, $Out, T>
@@ -137,7 +138,7 @@ class _HomeStateCopyWithImpl<$R, $Out, T>
   @override
   HomeStateCopyWith<$R2, HomeState<T>, $Out2, T> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _HomeStateCopyWithImpl($value, $cast, t);
+      _HomeStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }
 
 class HomeBaseStatusMapper extends ClassMapperBase<HomeBaseStatus> {
@@ -184,8 +185,9 @@ class HomeBaseStatusMapper extends ClassMapperBase<HomeBaseStatus> {
 
 mixin HomeBaseStatusMappable {
   HomeBaseStatusCopyWith<HomeBaseStatus, HomeBaseStatus, HomeBaseStatus>
-      get copyWith => _HomeBaseStatusCopyWithImpl(
-          this as HomeBaseStatus, $identity, $identity);
+      get copyWith =>
+          _HomeBaseStatusCopyWithImpl<HomeBaseStatus, HomeBaseStatus>(
+              this as HomeBaseStatus, $identity, $identity);
   @override
   String toString() {
     return HomeBaseStatusMapper.ensureInitialized()
@@ -208,7 +210,7 @@ mixin HomeBaseStatusMappable {
 extension HomeBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, HomeBaseStatus, $Out> {
   HomeBaseStatusCopyWith<$R, HomeBaseStatus, $Out> get $asHomeBaseStatus =>
-      $base.as((v, t, t2) => _HomeBaseStatusCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _HomeBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class HomeBaseStatusCopyWith<$R, $In extends HomeBaseStatus, $Out>
@@ -245,7 +247,7 @@ class _HomeBaseStatusCopyWithImpl<$R, $Out>
   @override
   HomeBaseStatusCopyWith<$R2, HomeBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _HomeBaseStatusCopyWithImpl($value, $cast, t);
+      _HomeBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class HomeBaseInitStatusMapper extends ClassMapperBase<HomeBaseInitStatus> {
@@ -293,8 +295,8 @@ class HomeBaseInitStatusMapper extends ClassMapperBase<HomeBaseInitStatus> {
 mixin HomeBaseInitStatusMappable {
   HomeBaseInitStatusCopyWith<HomeBaseInitStatus, HomeBaseInitStatus,
           HomeBaseInitStatus>
-      get copyWith => _HomeBaseInitStatusCopyWithImpl(
-          this as HomeBaseInitStatus, $identity, $identity);
+      get copyWith => _HomeBaseInitStatusCopyWithImpl<HomeBaseInitStatus,
+          HomeBaseInitStatus>(this as HomeBaseInitStatus, $identity, $identity);
   @override
   String toString() {
     return HomeBaseInitStatusMapper.ensureInitialized()
@@ -317,8 +319,8 @@ mixin HomeBaseInitStatusMappable {
 extension HomeBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, HomeBaseInitStatus, $Out> {
   HomeBaseInitStatusCopyWith<$R, HomeBaseInitStatus, $Out>
-      get $asHomeBaseInitStatus =>
-          $base.as((v, t, t2) => _HomeBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asHomeBaseInitStatus => $base.as(
+          (v, t, t2) => _HomeBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class HomeBaseInitStatusCopyWith<$R, $In extends HomeBaseInitStatus,
@@ -355,5 +357,116 @@ class _HomeBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   HomeBaseInitStatusCopyWith<$R2, HomeBaseInitStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _HomeBaseInitStatusCopyWithImpl($value, $cast, t);
+      _HomeBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class FirstLaunchStatusMapper extends ClassMapperBase<FirstLaunchStatus> {
+  FirstLaunchStatusMapper._();
+
+  static FirstLaunchStatusMapper? _instance;
+  static FirstLaunchStatusMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = FirstLaunchStatusMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'FirstLaunchStatus';
+
+  static bool _$isLoading(FirstLaunchStatus v) => v.isLoading;
+  static const Field<FirstLaunchStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
+  static String? _$errorMessage(FirstLaunchStatus v) => v.errorMessage;
+  static const Field<FirstLaunchStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
+  static bool _$isInitialized(FirstLaunchStatus v) => v.isInitialized;
+  static const Field<FirstLaunchStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
+
+  @override
+  final MappableFields<FirstLaunchStatus> fields = const {
+    #isLoading: _f$isLoading,
+    #errorMessage: _f$errorMessage,
+    #isInitialized: _f$isInitialized,
+  };
+
+  static FirstLaunchStatus _instantiate(DecodingData data) {
+    return FirstLaunchStatus(
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+}
+
+mixin FirstLaunchStatusMappable {
+  FirstLaunchStatusCopyWith<FirstLaunchStatus, FirstLaunchStatus,
+          FirstLaunchStatus>
+      get copyWith =>
+          _FirstLaunchStatusCopyWithImpl<FirstLaunchStatus, FirstLaunchStatus>(
+              this as FirstLaunchStatus, $identity, $identity);
+  @override
+  String toString() {
+    return FirstLaunchStatusMapper.ensureInitialized()
+        .stringifyValue(this as FirstLaunchStatus);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return FirstLaunchStatusMapper.ensureInitialized()
+        .equalsValue(this as FirstLaunchStatus, other);
+  }
+
+  @override
+  int get hashCode {
+    return FirstLaunchStatusMapper.ensureInitialized()
+        .hashValue(this as FirstLaunchStatus);
+  }
+}
+
+extension FirstLaunchStatusValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, FirstLaunchStatus, $Out> {
+  FirstLaunchStatusCopyWith<$R, FirstLaunchStatus, $Out>
+      get $asFirstLaunchStatus => $base
+          .as((v, t, t2) => _FirstLaunchStatusCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class FirstLaunchStatusCopyWith<$R, $In extends FirstLaunchStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
+  FirstLaunchStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
+}
+
+class _FirstLaunchStatusCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, FirstLaunchStatus, $Out>
+    implements FirstLaunchStatusCopyWith<$R, FirstLaunchStatus, $Out> {
+  _FirstLaunchStatusCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<FirstLaunchStatus> $mapper =
+      FirstLaunchStatusMapper.ensureInitialized();
+  @override
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
+  @override
+  FirstLaunchStatus $make(CopyWithData data) => FirstLaunchStatus(
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+
+  @override
+  FirstLaunchStatusCopyWith<$R2, FirstLaunchStatus, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
+      _FirstLaunchStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

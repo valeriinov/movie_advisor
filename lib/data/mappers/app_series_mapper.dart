@@ -2,27 +2,31 @@ import '../../common/utils/ext/int/pagination_handler.dart';
 import '../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../../domain/entities/series/series_data.dart';
-import '../../domain/entities/series/series_genre.dart';
 import '../../domain/entities/series/series_short_data.dart';
 import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_data_dto.dart';
-import '../dto/series/series_genre_dto.dart';
 import '../dto/series/series_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../dto/series/series_short_response_data_dto.dart';
-import 'app_cast_mapper.dart';
+import 'app_countries_mapper_ext.dart';
+import 'app_credits_mapper.dart';
+import 'app_genres_mapper_ext.dart';
 import 'app_mapper.dart';
 import 'app_rating_mapper.dart';
+import 'app_video_mapper.dart';
 
 final class AppSeriesMapper extends AppMapper {
   final AppRatingMapper _ratingMapper;
-  final AppCastMapper _castMapper;
+  final AppCreditsMapper _creditsMapper;
+  final AppVideoMapper _videoMapper;
 
   AppSeriesMapper({
     required AppRatingMapper ratingMapper,
-    required AppCastMapper castMapper,
+    required AppCreditsMapper creditsMapper,
+    required AppVideoMapper videoMapper,
   }) : _ratingMapper = ratingMapper,
-       _castMapper = castMapper;
+       _creditsMapper = creditsMapper,
+       _videoMapper = videoMapper;
 
   PaginatedSeries mapSeriesShortResponseDataToDomain(
     SeriesShortResponseDataDto dto,
@@ -51,8 +55,8 @@ final class AppSeriesMapper extends AppMapper {
       id: dto.id ?? -1,
       backdropUrl: dto.backdropPath ?? '',
       posterUrl: dto.posterPath ?? '',
-      genres: _mapSeriesGenresDtoToDomain(dto.genres ?? dto.genresAlt),
-      originCountry: dto.originCountry ?? [],
+      genres: (dto.genres ?? dto.genresAlt).toDomain(),
+      originCountry: dto.originCountry.toDomain(),
       originalLanguage: dto.originalLanguage ?? '',
       originalTitle: dto.originalName ?? '',
       premiereDate: dto.firstAirDate,
@@ -61,7 +65,15 @@ final class AppSeriesMapper extends AppMapper {
       tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
       cast:
           dto.credits != null
-              ? _castMapper.mapCreditsDataDtoToDomain(dto.credits!)
+              ? _creditsMapper.mapCreditsDataDtoToCastDataList(dto.credits!)
+              : [],
+      crew:
+          dto.credits != null
+              ? _creditsMapper.mapCreditsDataDtoToCrewDataList(dto.credits!)
+              : [],
+      videos:
+          dto.videos != null
+              ? _videoMapper.mapVideosDataDtoTiDomain(dto.videos!)
               : [],
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
@@ -79,8 +91,8 @@ final class AppSeriesMapper extends AppMapper {
     return SeriesShortData(
       id: dto.id ?? -1,
       posterUrl: dto.posterPath ?? '',
-      genres: _mapSeriesGenresDtoToDomain(dto.genres),
-      originCountry: dto.originCountry ?? [],
+      genres: dto.genres.toDomain(),
+      originCountry: dto.originCountry.toDomain(),
       premiereDate: dto.firstAirDate,
       title: dto.name ?? '',
       tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
@@ -100,8 +112,8 @@ final class AppSeriesMapper extends AppMapper {
     return SeriesShortData(
       id: dto.id ?? -1,
       posterUrl: dto.posterUrl ?? '',
-      genres: _mapSeriesGenresDtoToDomain(dto.genres),
-      originCountry: dto.originCountry ?? [],
+      genres: dto.genres.toDomain(),
+      originCountry: dto.originCountry.toDomain(),
       premiereDate: dto.premiereDate,
       title: dto.title ?? '',
       tmdbRating: _ratingMapper.mapRatingDtoToTMDBRating(dto.tmdbRating),
@@ -111,23 +123,12 @@ final class AppSeriesMapper extends AppMapper {
     );
   }
 
-  List<SeriesGenre> _mapSeriesGenresDtoToDomain(List<SeriesGenreDto>? dtos) {
-    return dtos?.map(_mapSeriesGenreDtoToDomain).toList() ?? [];
-  }
-
-  SeriesGenre _mapSeriesGenreDtoToDomain(SeriesGenreDto? dto) {
-    return SeriesGenre.values.firstWhere(
-      (e) => e.name == dto?.name,
-      orElse: () => SeriesGenre.none,
-    );
-  }
-
   SeriesShortDataDto mapSeriesShortDataToDto(SeriesShortData data) {
     return SeriesShortDataDto(
       id: data.id,
       posterUrl: data.posterUrl,
-      genres: _mapSeriesGenresToDto(data.genres),
-      originCountry: data.originCountry,
+      genres: data.genres.toDto(),
+      originCountry: data.originCountry.toDto(),
       premiereDate: data.premiereDate,
       title: data.title,
       tmdbRating: _mapRatingToDto(data.tmdbRating),
@@ -142,17 +143,6 @@ final class AppSeriesMapper extends AppMapper {
       popularity: rating.popularity,
       voteAverage: rating.voteAverage,
       voteCount: rating.voteCount,
-    );
-  }
-
-  List<SeriesGenreDto> _mapSeriesGenresToDto(List<SeriesGenre> genres) {
-    return genres.map(_mapSeriesGenreToDto).toList();
-  }
-
-  SeriesGenreDto _mapSeriesGenreToDto(SeriesGenre genre) {
-    return SeriesGenreDto.values.firstWhere(
-      (e) => e.name == genre.name,
-      orElse: () => SeriesGenreDto.none,
     );
   }
 }

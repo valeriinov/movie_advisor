@@ -9,12 +9,14 @@ class EmptyListContainer extends StatelessWidget {
   final String imagePath;
   final String title;
   final String subtitle;
+  final double? height;
 
   const EmptyListContainer({
     super.key,
     required this.imagePath,
     required this.title,
     required this.subtitle,
+    this.height,
   });
 
   @override
@@ -22,8 +24,8 @@ class EmptyListContainer extends StatelessWidget {
     final dimens = context.baseDimens;
     final styles = context.baseComponentsStyles;
 
-    return SliverFillRemaining(
-      hasScrollBody: false,
+    return SizedBox(
+      height: height,
       child: Center(
         child: Container(
           padding: dimens.spExtLarge.insVert(),
@@ -31,10 +33,7 @@ class EmptyListContainer extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ImageWithLoader(
-                imagePath: imagePath,
-                size: Size(76, 76),
-              ),
+              ImageWithLoader(imagePath: imagePath, size: Size(76, 76)),
               dimens.spMedium.gapVert(),
               Text(
                 title,

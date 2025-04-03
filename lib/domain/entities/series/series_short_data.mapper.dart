@@ -31,8 +31,8 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
   static List<SeriesGenre> _$genres(SeriesShortData v) => v.genres;
   static const Field<SeriesShortData, List<SeriesGenre>> _f$genres =
       Field('genres', _$genres, opt: true, def: const []);
-  static List<String> _$originCountry(SeriesShortData v) => v.originCountry;
-  static const Field<SeriesShortData, List<String>> _f$originCountry =
+  static List<Country> _$originCountry(SeriesShortData v) => v.originCountry;
+  static const Field<SeriesShortData, List<Country>> _f$originCountry =
       Field('originCountry', _$originCountry, opt: true, def: const []);
   static DateTime? _$premiereDate(SeriesShortData v) => v.premiereDate;
   static const Field<SeriesShortData, DateTime> _f$premiereDate =
@@ -87,8 +87,9 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
 
 mixin SeriesShortDataMappable {
   SeriesShortDataCopyWith<SeriesShortData, SeriesShortData, SeriesShortData>
-      get copyWith => _SeriesShortDataCopyWithImpl(
-          this as SeriesShortData, $identity, $identity);
+      get copyWith =>
+          _SeriesShortDataCopyWithImpl<SeriesShortData, SeriesShortData>(
+              this as SeriesShortData, $identity, $identity);
   @override
   String toString() {
     return SeriesShortDataMapper.ensureInitialized()
@@ -111,7 +112,7 @@ mixin SeriesShortDataMappable {
 extension SeriesShortDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesShortData, $Out> {
   SeriesShortDataCopyWith<$R, SeriesShortData, $Out> get $asSeriesShortData =>
-      $base.as((v, t, t2) => _SeriesShortDataCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _SeriesShortDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesShortDataCopyWith<$R, $In extends SeriesShortData, $Out>
@@ -119,7 +120,7 @@ abstract class SeriesShortDataCopyWith<$R, $In extends SeriesShortData, $Out>
   ListCopyWith<$R, SeriesGenre, ObjectCopyWith<$R, SeriesGenre, SeriesGenre>>
       get genres;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get originCountry;
   @override
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
@@ -128,7 +129,7 @@ abstract class SeriesShortDataCopyWith<$R, $In extends SeriesShortData, $Out>
       {int? id,
       String? posterUrl,
       List<SeriesGenre>? genres,
-      List<String>? originCountry,
+      List<Country>? originCountry,
       DateTime? premiereDate,
       String? title,
       TMDBRating? tmdbRating,
@@ -152,7 +153,7 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
       get genres => ListCopyWith($value.genres,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v));
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get originCountry => ListCopyWith(
           $value.originCountry,
           (v, t) => ObjectCopyWith(v, $identity, t),
@@ -165,7 +166,7 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
           {int? id,
           String? posterUrl,
           List<SeriesGenre>? genres,
-          List<String>? originCountry,
+          List<Country>? originCountry,
           Object? premiereDate = $none,
           String? title,
           TMDBRating? tmdbRating,
@@ -200,5 +201,5 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
   @override
   SeriesShortDataCopyWith<$R2, SeriesShortData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SeriesShortDataCopyWithImpl($value, $cast, t);
+      _SeriesShortDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

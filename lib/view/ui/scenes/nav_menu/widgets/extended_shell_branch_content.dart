@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../navigation/utils/extended_shell_branch.dart';
+import '../../../navigation/utils/branch_handler_mixin.dart';
 
 /// {@category Widgets}
 ///
@@ -14,7 +15,8 @@ import '../../../navigation/utils/extended_shell_branch.dart';
 /// This widget is specifically designed to be used as part of a
 /// [StatefulShellRoute] with branches of type [ExtendedShellBranch]. It is not
 /// intended for standalone usage.
-class ExtendedShellBranchContent extends StatelessWidget {
+class ExtendedShellBranchContent extends StatelessWidget
+    with BranchHandlerMixin {
   /// Whether the branch content is currently active.
   final bool isActive;
 
@@ -29,19 +31,13 @@ class ExtendedShellBranchContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final branch = (child as dynamic).branch as ExtendedShellBranch;
+    final saveState = shouldBranchSaveState(child);
 
-    return branch.saveState
+    return saveState
         ? Offstage(
-            offstage: !isActive,
-            child: TickerMode(
-              enabled: isActive,
-              child: child,
-            ),
-          )
-        : Visibility(
-            visible: isActive,
-            child: child,
-          );
+          offstage: !isActive,
+          child: TickerMode(enabled: isActive, child: child),
+        )
+        : Visibility(visible: isActive, child: child);
   }
 }

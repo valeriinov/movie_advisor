@@ -16,4 +16,12 @@ enum SeriesGenre {
   warAndPolitics,
   western,
   none;
+
+  static List<SeriesGenre> get valuesWithoutNone =>
+      values.where((e) => e != none).toList();
+
+  factory SeriesGenre.fromIndex(int index) {
+    if (index < 0 || index >= values.length) return none;
+    return values[index];
+  }
 }

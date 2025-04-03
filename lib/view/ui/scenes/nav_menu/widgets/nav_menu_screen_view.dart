@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../navigation/utils/branch_handler_mixin.dart';
+import '../../../widgets/update_alert_wrapper/update_allert_wrapper.dart';
 import 'nav_bar_container.dart';
 import 'nav_branch_container.dart';
 
-class NavMenuScreenView extends StatelessWidget {
+class NavMenuScreenView extends StatelessWidget with BranchHandlerMixin {
   final StatefulNavigationShell navShell;
   final List<Widget> children;
 
-  const NavMenuScreenView(
-      {super.key, required this.navShell, required this.children});
+  const NavMenuScreenView({
+    super.key,
+    required this.navShell,
+    required this.children,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +27,11 @@ class NavMenuScreenView extends StatelessWidget {
       },
       canPop: currentIndex == 0,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: NavBranchContainer(
-          currentIndex: currentIndex,
-          children: children,
+        body: UpdateAlertWrapper(
+          child: NavBranchContainer(
+            currentIndex: currentIndex,
+            children: children,
+          ),
         ),
         bottomNavigationBar: NavBarContainer(
           currentIndex: currentIndex,
@@ -38,12 +44,16 @@ class NavMenuScreenView extends StatelessWidget {
   void _switchBranch(int index) {
     navShell.goBranch(
       index,
-      // A common pattern when using bottom navigation bars is to support
-      // navigating to the initial location when tapping the item that is
-      // already active. This example demonstrates how to support this behavior,
-      // using the initialLocation parameter of goBranch.
-      initialLocation: index == navShell.currentIndex,
+      initialLocation:
+          _branchWithoutSaveState(index) || _tapOnActiveItem(index),
     );
   }
-}  
-  
+
+  bool _branchWithoutSaveState(int index) {
+    return !shouldBranchSaveState(children[index]);
+  }
+
+  bool _tapOnActiveItem(int index) {
+    return index == navShell.currentIndex;
+  }
+}

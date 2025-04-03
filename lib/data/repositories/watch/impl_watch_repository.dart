@@ -11,49 +11,60 @@ import '../../../domain/repositories/watch_repository.dart';
 import '../../mappers/app_movies_mapper.dart';
 import '../../mappers/app_series_mapper.dart';
 import 'watch_local_data_source.dart';
+import 'watch_remote_data_source.dart';
 
 class ImplWatchRepository implements WatchRepository {
-  final WatchLocalDataSource _dataSource;
+  final WatchLocalDataSource _localDataSource;
+  final WatchRemoteDataSource _remoteDataSource;
   final AppMoviesMapper _moviesMapper;
   final AppSeriesMapper _seriesMapper;
 
-  ImplWatchRepository(
-      {required WatchLocalDataSource dataSource,
-      required AppMoviesMapper moviesMapper,
-      required AppSeriesMapper seriesMapper})
-      : _dataSource = dataSource,
-        _moviesMapper = moviesMapper,
-        _seriesMapper = seriesMapper;
+  ImplWatchRepository({
+    required WatchLocalDataSource localDataSource,
+    required WatchRemoteDataSource remoteDataSource,
+    required AppMoviesMapper moviesMapper,
+    required AppSeriesMapper seriesMapper,
+  }) : _localDataSource = localDataSource,
+       _remoteDataSource = remoteDataSource,
+       _moviesMapper = moviesMapper,
+       _seriesMapper = seriesMapper;
 
   @override
   Stream<Result<MovieShortData>> watchChangesMovies() {
-    return _dataSource.watchChangesMovies().transform(
-          StreamTransformer.fromHandlers(
-            handleData: (data, sink) => sink
-                .add(Right(_moviesMapper.mapMovieShortDataDtoToDomain(data))),
-            handleError: (error, _, sink) =>
+    return _localDataSource.watchChangesMovies().transform(
+      StreamTransformer.fromHandlers(
+        handleData:
+            (data, sink) => sink.add(
+              Right(_moviesMapper.mapMovieShortDataDtoToDomain(data)),
+            ),
+        handleError:
+            (error, _, sink) =>
                 sink.add(Left(Failure(message: error.toString()))),
-          ),
-        );
+      ),
+    );
   }
 
   @override
   Stream<Result<SeriesShortData>> watchChangesSeries() {
-    return _dataSource.watchChangesSeries().transform(
-          StreamTransformer.fromHandlers(
-            handleData: (data, sink) => sink
-                .add(Right(_seriesMapper.mapSeriesShortDataDtoToDomain(data))),
-            handleError: (error, _, sink) =>
+    return _localDataSource.watchChangesSeries().transform(
+      StreamTransformer.fromHandlers(
+        handleData:
+            (data, sink) => sink.add(
+              Right(_seriesMapper.mapSeriesShortDataDtoToDomain(data)),
+            ),
+        handleError:
+            (error, _, sink) =>
                 sink.add(Left(Failure(message: error.toString()))),
-          ),
-        );
+      ),
+    );
   }
 
   @override
-  Future<Result<PaginatedMovies>> getWatchlistMovies(
-      {required int page}) async {
+  Future<Result<PaginatedMovies>> getWatchlistMovies({
+    required int page,
+  }) async {
     try {
-      final result = await _dataSource.getWatchlistMovies(page: page);
+      final result = await _localDataSource.getWatchlistMovies(page: page);
 
       return Right(_moviesMapper.mapMoviesShortResponseDataToDomain(result));
     } catch (e) {
@@ -64,7 +75,7 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<PaginatedMovies>> getWatchedMovies({required int page}) async {
     try {
-      final result = await _dataSource.getWatchedMovies(page: page);
+      final result = await _localDataSource.getWatchedMovies(page: page);
 
       return Right(_moviesMapper.mapMoviesShortResponseDataToDomain(result));
     } catch (e) {
@@ -73,10 +84,11 @@ class ImplWatchRepository implements WatchRepository {
   }
 
   @override
-  Future<Result<PaginatedSeries>> getWatchlistSeries(
-      {required int page}) async {
+  Future<Result<PaginatedSeries>> getWatchlistSeries({
+    required int page,
+  }) async {
     try {
-      final result = await _dataSource.getWatchlistSeries(page: page);
+      final result = await _localDataSource.getWatchlistSeries(page: page);
 
       return Right(_seriesMapper.mapSeriesShortResponseDataToDomain(result));
     } catch (e) {
@@ -87,7 +99,7 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<PaginatedSeries>> getWatchedSeries({required int page}) async {
     try {
-      final result = await _dataSource.getWatchedSeries(page: page);
+      final result = await _localDataSource.getWatchedSeries(page: page);
 
       return Right(_seriesMapper.mapSeriesShortResponseDataToDomain(result));
     } catch (e) {
@@ -98,8 +110,14 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> addToWatchlistMovie(MovieShortData data) async {
     try {
-      await _dataSource
-          .addToWatchlistMovie(_moviesMapper.mapMovieShortDataToDto(data));
+      final preparedData = data.copyWith(isInWatchlist: true);
+      final dto = _moviesMapper.mapMovieShortDataToDto(preparedData);
+
+      final preparedDto = await _remoteDataSource.getLocalizedMovie(dto);
+
+      await _localDataSource.addToWatchlistMovie(preparedDto);
+
+      await _remoteDataSource.addToWatchlistMovie(preparedDto);
 
       return Right(null);
     } catch (e) {
@@ -110,8 +128,14 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> addToWatchedMovie(MovieShortData data) async {
     try {
-      await _dataSource
-          .addToWatchedMovie(_moviesMapper.mapMovieShortDataToDto(data));
+      final preparedData = data.copyWith(isWatched: true);
+      final dto = _moviesMapper.mapMovieShortDataToDto(preparedData);
+
+      final preparedDto = await _remoteDataSource.getLocalizedMovie(dto);
+
+      await _localDataSource.addToWatchedMovie(preparedDto);
+
+      await _remoteDataSource.addToWatchedMovie(preparedDto);
 
       return Right(null);
     } catch (e) {
@@ -122,7 +146,9 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> removeFromWatchlistMovie(int id) async {
     try {
-      await _dataSource.removeFromWatchlistMovie(id);
+      await _localDataSource.removeFromWatchlistMovie(id);
+
+      await _remoteDataSource.removeFromWatchlistMovie(id);
 
       return Right(null);
     } catch (e) {
@@ -133,7 +159,9 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> removeFromWatchedMovie(int id) async {
     try {
-      await _dataSource.removeFromWatchedMovie(id);
+      await _localDataSource.removeFromWatchedMovie(id);
+
+      await _remoteDataSource.removeFromWatchedMovie(id);
 
       return Right(null);
     } catch (e) {
@@ -144,8 +172,14 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> addToWatchlistSeries(SeriesShortData data) async {
     try {
-      await _dataSource
-          .addToWatchlistSeries(_seriesMapper.mapSeriesShortDataToDto(data));
+      final preparedData = data.copyWith(isInWatchlist: true);
+      final dto = _seriesMapper.mapSeriesShortDataToDto(preparedData);
+
+      final preparedDto = await _remoteDataSource.getLocalizedSeries(dto);
+
+      await _localDataSource.addToWatchlistSeries(preparedDto);
+
+      await _remoteDataSource.addToWatchlistSeries(preparedDto);
 
       return Right(null);
     } catch (e) {
@@ -156,8 +190,14 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> addToWatchedSeries(SeriesShortData data) async {
     try {
-      await _dataSource
-          .addToWatchedSeries(_seriesMapper.mapSeriesShortDataToDto(data));
+      final preparedData = data.copyWith(isWatched: true);
+      final dto = _seriesMapper.mapSeriesShortDataToDto(preparedData);
+
+      final preparedDto = await _remoteDataSource.getLocalizedSeries(dto);
+
+      await _localDataSource.addToWatchedSeries(preparedDto);
+
+      await _remoteDataSource.addToWatchedSeries(preparedDto);
 
       return Right(null);
     } catch (e) {
@@ -168,7 +208,9 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> removeFromWatchlistSeries(int id) async {
     try {
-      await _dataSource.removeFromWatchlistSeries(id);
+      await _localDataSource.removeFromWatchlistSeries(id);
+
+      await _remoteDataSource.removeFromWatchlistSeries(id);
 
       return Right(null);
     } catch (e) {
@@ -179,7 +221,9 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> removeFromWatchedSeries(int id) async {
     try {
-      await _dataSource.removeFromWatchedSeries(id);
+      await _localDataSource.removeFromWatchedSeries(id);
+
+      await _remoteDataSource.removeFromWatchedSeries(id);
 
       return Right(null);
     } catch (e) {

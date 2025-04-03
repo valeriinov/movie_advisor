@@ -8,7 +8,7 @@ class NoAlwaysScrollWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: _NoAlwaysScrollBehavior(),
+      behavior: _NoAlwaysScrollBehavior().copyWith(overscroll: false),
       child: child,
     );
   }
@@ -17,6 +17,6 @@ class NoAlwaysScrollWrapper extends StatelessWidget {
 class _NoAlwaysScrollBehavior extends ScrollBehavior {
   @override
   ScrollPhysics getScrollPhysics(BuildContext context) {
-    return const BouncingScrollPhysics();
+    return const ClampingScrollPhysics();
   }
 }

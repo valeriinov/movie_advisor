@@ -7,7 +7,7 @@ import '../../../resources/base_theme/colors/base_colors_ext.dart';
 import '../../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/bottom_sheet_close_button.dart';
+import '../../../widgets/bottom_sheet/bottom_sheet_close_button.dart';
 
 class RateBottomSheet extends HookWidget {
   final String title;

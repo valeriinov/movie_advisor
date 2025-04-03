@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../base/content_mode_view_model/content_mode.dart';
+import '../../scenes/filter/filter_screen.dart';
 import '../../scenes/home/home_screen.dart';
 import '../../scenes/search/search_screen.dart';
 import '../app_routes.dart';
@@ -9,9 +9,13 @@ import '../utils/transition_builder_mixin.dart';
 
 part 'home_routes.g.dart';
 
-@TypedGoRoute<HomeRoute>(path: AppRoutes.home, routes: [
-  TypedGoRoute<SearchRoute>(path: AppRoutes.search),
-])
+@TypedGoRoute<HomeRoute>(
+  path: AppRoutes.home,
+  routes: [
+    TypedGoRoute<SearchRoute>(path: AppRoutes.search),
+    TypedGoRoute<FilterRoute>(path: AppRoutes.filter),
+  ],
+)
 class HomeRoute extends GoRouteData {
   @override
   Page<void> buildPage(context, state) {
@@ -24,16 +28,28 @@ class HomeRoute extends GoRouteData {
 }
 
 class SearchRoute extends GoRouteData with TransitionBuilderMixin {
-  final ContentMode contentMode;
-
-  SearchRoute({required this.contentMode});
+  SearchRoute();
 
   @override
   Page<void> buildPage(context, state) {
     return CustomTransitionPage(
       key: state.pageKey,
       name: state.fullPath,
-      child: SearchScreen(initContentMode: contentMode),
+      child: SearchScreen(),
+      transitionsBuilder: fadeTransitionBuilder,
+    );
+  }
+}
+
+class FilterRoute extends GoRouteData with TransitionBuilderMixin {
+  FilterRoute();
+
+  @override
+  Page<void> buildPage(context, state) {
+    return CustomTransitionPage(
+      key: state.pageKey,
+      name: state.fullPath,
+      child: FilterScreen(),
       transitionsBuilder: fadeTransitionBuilder,
     );
   }

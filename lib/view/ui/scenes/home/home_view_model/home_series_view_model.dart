@@ -30,18 +30,38 @@ final class HomeSeriesViewModel extends HomeViewModel<SeriesShortData> {
   HomeSeriesState build() {
     _homeUseCase = ref.read(homeSeriesUseCasePr);
     _watchUseCase = ref.read(watchSeriesUseCasePr);
+    _syncUseCase = ref.read(syncUseCasePr);
+    _refreshUseCase = ref.read(refreshUseCasePr);
+    _settingsUseCase = ref.read(settingsUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
       _handleWatchChanges,
     );
 
+    _refreshSubscription = _refreshUseCase
+        .shouldRefreshContent(isMovies: true)
+        .listen(_handleRefresh);
+
     ref.onDispose(() {
       cancelSafeOperations();
       _watchChangesSubscription.cancel();
+      _refreshSubscription.cancel();
     });
 
-    scheduleCall(loadInitialData);
+    scheduleCall(() async {
+      await loadInitialData();
+      await _handleFirstLaunch();
+    });
 
     return HomeSeriesState();
+  }
+
+  @override
+  Future<void> loadInitialData({bool showLoader = true}) async {
+    _updateStatus(HomeBaseStatus(isLoading: showLoader));
+
+    await _syncUseCase.syncSeries();
+
+    return super.loadInitialData(showLoader: showLoader);
   }
 }

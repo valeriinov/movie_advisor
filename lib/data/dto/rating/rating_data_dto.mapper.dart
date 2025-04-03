@@ -70,7 +70,7 @@ mixin RatingDataDtoMappable {
   }
 
   RatingDataDtoCopyWith<RatingDataDto, RatingDataDto, RatingDataDto>
-      get copyWith => _RatingDataDtoCopyWithImpl(
+      get copyWith => _RatingDataDtoCopyWithImpl<RatingDataDto, RatingDataDto>(
           this as RatingDataDto, $identity, $identity);
   @override
   String toString() {
@@ -94,7 +94,7 @@ mixin RatingDataDtoMappable {
 extension RatingDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RatingDataDto, $Out> {
   RatingDataDtoCopyWith<$R, RatingDataDto, $Out> get $asRatingDataDto =>
-      $base.as((v, t, t2) => _RatingDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _RatingDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RatingDataDtoCopyWith<$R, $In extends RatingDataDto, $Out>
@@ -130,5 +130,5 @@ class _RatingDataDtoCopyWithImpl<$R, $Out>
   @override
   RatingDataDtoCopyWith<$R2, RatingDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _RatingDataDtoCopyWithImpl($value, $cast, t);
+      _RatingDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

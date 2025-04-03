@@ -77,7 +77,8 @@ mixin SeriesShortResponseDataDtoMappable {
 
   SeriesShortResponseDataDtoCopyWith<SeriesShortResponseDataDto,
           SeriesShortResponseDataDto, SeriesShortResponseDataDto>
-      get copyWith => _SeriesShortResponseDataDtoCopyWithImpl(
+      get copyWith => _SeriesShortResponseDataDtoCopyWithImpl<
+              SeriesShortResponseDataDto, SeriesShortResponseDataDto>(
           this as SeriesShortResponseDataDto, $identity, $identity);
   @override
   String toString() {
@@ -101,8 +102,8 @@ mixin SeriesShortResponseDataDtoMappable {
 extension SeriesShortResponseDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesShortResponseDataDto, $Out> {
   SeriesShortResponseDataDtoCopyWith<$R, SeriesShortResponseDataDto, $Out>
-      get $asSeriesShortResponseDataDto => $base
-          .as((v, t, t2) => _SeriesShortResponseDataDtoCopyWithImpl(v, t, t2));
+      get $asSeriesShortResponseDataDto => $base.as((v, t, t2) =>
+          _SeriesShortResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesShortResponseDataDtoCopyWith<
@@ -158,5 +159,5 @@ class _SeriesShortResponseDataDtoCopyWithImpl<$R, $Out>
   @override
   SeriesShortResponseDataDtoCopyWith<$R2, SeriesShortResponseDataDto, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _SeriesShortResponseDataDtoCopyWithImpl($value, $cast, t);
+          _SeriesShortResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

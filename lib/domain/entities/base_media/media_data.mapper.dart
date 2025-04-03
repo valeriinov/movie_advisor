@@ -15,6 +15,8 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
       MapperContainer.globals.use(_instance = MediaDataMapper._());
       TMDBRatingMapper.ensureInitialized();
       CastDataMapper.ensureInitialized();
+      CrewDataMapper.ensureInitialized();
+      VideoDataMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -30,8 +32,8 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
   static String _$posterUrl(MediaData v) => v.posterUrl;
   static const Field<MediaData, String> _f$posterUrl =
       Field('posterUrl', _$posterUrl);
-  static List<String> _$originCountry(MediaData v) => v.originCountry;
-  static const Field<MediaData, List<String>> _f$originCountry =
+  static List<Country> _$originCountry(MediaData v) => v.originCountry;
+  static const Field<MediaData, List<Country>> _f$originCountry =
       Field('originCountry', _$originCountry);
   static String _$originalLanguage(MediaData v) => v.originalLanguage;
   static const Field<MediaData, String> _f$originalLanguage =
@@ -52,6 +54,11 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
       Field('tmdbRating', _$tmdbRating);
   static List<CastData> _$cast(MediaData v) => v.cast;
   static const Field<MediaData, List<CastData>> _f$cast = Field('cast', _$cast);
+  static List<CrewData> _$crew(MediaData v) => v.crew;
+  static const Field<MediaData, List<CrewData>> _f$crew = Field('crew', _$crew);
+  static List<VideoData> _$videos(MediaData v) => v.videos;
+  static const Field<MediaData, List<VideoData>> _f$videos =
+      Field('videos', _$videos);
   static int _$userRating(MediaData v) => v.userRating;
   static const Field<MediaData, int> _f$userRating =
       Field('userRating', _$userRating);
@@ -75,6 +82,8 @@ class MediaDataMapper extends ClassMapperBase<MediaData> {
     #overview: _f$overview,
     #tmdbRating: _f$tmdbRating,
     #cast: _f$cast,
+    #crew: _f$crew,
+    #videos: _f$videos,
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
@@ -94,15 +103,18 @@ mixin MediaDataMappable {
 
 abstract class MediaDataCopyWith<$R, $In extends MediaData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>
+  ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get originCountry;
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
   ListCopyWith<$R, CastData, CastDataCopyWith<$R, CastData, CastData>> get cast;
+  ListCopyWith<$R, CrewData, CrewDataCopyWith<$R, CrewData, CrewData>> get crew;
+  ListCopyWith<$R, VideoData, VideoDataCopyWith<$R, VideoData, VideoData>>
+      get videos;
   $R call(
       {int? id,
       String? backdropUrl,
       String? posterUrl,
-      List<String>? originCountry,
+      List<Country>? originCountry,
       String? originalLanguage,
       String? originalTitle,
       DateTime? premiereDate,
@@ -110,6 +122,8 @@ abstract class MediaDataCopyWith<$R, $In extends MediaData, $Out>
       String? overview,
       TMDBRating? tmdbRating,
       List<CastData>? cast,
+      List<CrewData>? crew,
+      List<VideoData>? videos,
       int? userRating,
       bool? isInWatchlist,
       bool? isWatched});

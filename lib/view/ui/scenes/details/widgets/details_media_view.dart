@@ -5,17 +5,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../../../domain/entities/movie/movie_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/app_bar/main_app_bar.dart';
 import '../../../widgets/blurred_bottom_sheet.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../details_view_model/details_state.dart';
 import '../details_view_model/details_view_model.dart';
 import '../model/details_tab.dart';
-import 'details_app_bar.dart';
 import 'details_content_skeleton.dart';
 import 'details_screen_content.dart';
 import 'rate_bottom_sheet.dart';
@@ -43,11 +44,10 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
     final isInitialized = vsp.isInitialized;
     final isSkeletonVisible = isLoading && !isInitialized;
 
-    vsp.handleState(
-      listener: (prev, next) => _handleStatus(prev, next, ref, isInitialized),
-    );
+    vsp.handleState(listener: (prev, next) => _handleStatus(prev, next, ref));
 
     final data = vsp.selectWatch((s) => s.data);
+    final status = vsp.selectWatch((s) => s.status);
     final currentTab = vsp.selectWatch((s) => s.currentTab);
 
     final scrollController = useScrollController();
@@ -56,22 +56,17 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
       scrollController: scrollController,
       builder:
           (_, isFabVisible) => Scaffold(
-            appBar: DetailsAppBar(
-              title: appBarTitle,
-              isInWatchlist: data.isInWatchlist,
-              isWatched: data.isWatched,
-              onWatchlistTap:
-                  isSkeletonVisible ? null : () => _onWatchlistTap(vsp),
-              onWatchedTap:
-                  isSkeletonVisible ? null : () => _onWatchedTap(context, vsp),
-            ),
+            appBar: MainAppBar(title: Text(appBarTitle)),
             body:
                 isSkeletonVisible
-                    ? const DetailsContentSkeleton()
+                    ? DetailsContentSkeleton(isMovie: T is MovieData)
                     : DetailsScreenContent(
                       data: data,
+                      status: status,
                       currentTab: currentTab,
                       scrollController: scrollController,
+                      onWatchlistTap: () => _onWatchlistTap(vsp),
+                      onWatchedTap: () => _onWatchedTap(context, vsp),
                       onTabSelect: (index) => _onTabSelect(vsp, index),
                       onRefresh:
                           !isLoading
@@ -88,18 +83,13 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
     );
   }
 
-  void _handleStatus(
-    DetailsState? prev,
-    DetailsState next,
-    WidgetRef ref,
-    bool isInitialized,
-  ) {
+  void _handleStatus(DetailsState? prev, DetailsState next, WidgetRef ref) {
     if (!next.isUpdate(prev, (s) => s?.status)) return;
 
     ref.baseStatusHandler.handleStatus(
       prev,
       next,
-      handleLoadingState: () => isInitialized,
+      handleLoadingState: () => false,
     );
 
     _showToast(ref, next.status);

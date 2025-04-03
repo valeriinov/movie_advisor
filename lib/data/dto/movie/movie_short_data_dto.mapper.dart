@@ -14,7 +14,9 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MovieShortDataDtoMapper._());
       MovieGenreDtoMapper.ensureInitialized();
+      CountryDtoMapper.ensureInitialized();
       RatingDataDtoMapper.ensureInitialized();
+      LocalizedStringMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -31,13 +33,15 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
   static List<MovieGenreDto>? _$genres(MovieShortDataDto v) => v.genres;
   static const Field<MovieShortDataDto, List<MovieGenreDto>> _f$genres =
       Field('genres', _$genres, opt: true);
-  static List<String>? _$originCountry(MovieShortDataDto v) => v.originCountry;
-  static const Field<MovieShortDataDto, List<String>> _f$originCountry = Field(
-      'originCountry', _$originCountry,
-      key: r'origin_country', opt: true);
+  static List<CountryDto>? _$originCountry(MovieShortDataDto v) =>
+      v.originCountry;
+  static const Field<MovieShortDataDto, List<CountryDto>> _f$originCountry =
+      Field('originCountry', _$originCountry,
+          key: r'origin_country', opt: true);
   static DateTime? _$premiereDate(MovieShortDataDto v) => v.premiereDate;
-  static const Field<MovieShortDataDto, DateTime> _f$premiereDate =
-      Field('premiereDate', _$premiereDate, key: r'premiere_date', opt: true);
+  static const Field<MovieShortDataDto, DateTime> _f$premiereDate = Field(
+      'premiereDate', _$premiereDate,
+      key: r'premiere_date', opt: true, hook: DateMapperHook());
   static String? _$title(MovieShortDataDto v) => v.title;
   static const Field<MovieShortDataDto, String> _f$title =
       Field('title', _$title, opt: true);
@@ -54,6 +58,20 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
   static bool? _$isWatched(MovieShortDataDto v) => v.isWatched;
   static const Field<MovieShortDataDto, bool> _f$isWatched =
       Field('isWatched', _$isWatched, key: r'is_watched', opt: true);
+  static DateTime? _$updatedAt(MovieShortDataDto v) => v.updatedAt;
+  static const Field<MovieShortDataDto, DateTime> _f$updatedAt = Field(
+      'updatedAt', _$updatedAt,
+      key: r'updated_at', opt: true, hook: DateMapperHook());
+  static LocalizedString? _$localizedTitle(MovieShortDataDto v) =>
+      v.localizedTitle;
+  static const Field<MovieShortDataDto, LocalizedString> _f$localizedTitle =
+      Field('localizedTitle', _$localizedTitle,
+          key: r'localized_title', opt: true);
+  static LocalizedString? _$localizedPosterUrl(MovieShortDataDto v) =>
+      v.localizedPosterUrl;
+  static const Field<MovieShortDataDto, LocalizedString> _f$localizedPosterUrl =
+      Field('localizedPosterUrl', _$localizedPosterUrl,
+          key: r'localized_poster_url', opt: true);
 
   @override
   final MappableFields<MovieShortDataDto> fields = const {
@@ -67,6 +85,9 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
+    #updatedAt: _f$updatedAt,
+    #localizedTitle: _f$localizedTitle,
+    #localizedPosterUrl: _f$localizedPosterUrl,
   };
   @override
   final bool ignoreNull = true;
@@ -82,7 +103,10 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
         tmdbRating: data.dec(_f$tmdbRating),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
-        isWatched: data.dec(_f$isWatched));
+        isWatched: data.dec(_f$isWatched),
+        updatedAt: data.dec(_f$updatedAt),
+        localizedTitle: data.dec(_f$localizedTitle),
+        localizedPosterUrl: data.dec(_f$localizedPosterUrl));
   }
 
   @override
@@ -110,8 +134,9 @@ mixin MovieShortDataDtoMappable {
 
   MovieShortDataDtoCopyWith<MovieShortDataDto, MovieShortDataDto,
           MovieShortDataDto>
-      get copyWith => _MovieShortDataDtoCopyWithImpl(
-          this as MovieShortDataDto, $identity, $identity);
+      get copyWith =>
+          _MovieShortDataDtoCopyWithImpl<MovieShortDataDto, MovieShortDataDto>(
+              this as MovieShortDataDto, $identity, $identity);
   @override
   String toString() {
     return MovieShortDataDtoMapper.ensureInitialized()
@@ -134,28 +159,35 @@ mixin MovieShortDataDtoMappable {
 extension MovieShortDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MovieShortDataDto, $Out> {
   MovieShortDataDtoCopyWith<$R, MovieShortDataDto, $Out>
-      get $asMovieShortDataDto =>
-          $base.as((v, t, t2) => _MovieShortDataDtoCopyWithImpl(v, t, t2));
+      get $asMovieShortDataDto => $base
+          .as((v, t, t2) => _MovieShortDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MovieShortDataDtoCopyWith<$R, $In extends MovieShortDataDto,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, MovieGenreDto,
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get genres;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry;
   RatingDataDtoCopyWith<$R, RatingDataDto, RatingDataDto>? get tmdbRating;
+  LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
+      get localizedTitle;
+  LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
+      get localizedPosterUrl;
   $R call(
       {int? id,
       String? posterUrl,
       List<MovieGenreDto>? genres,
-      List<String>? originCountry,
+      List<CountryDto>? originCountry,
       DateTime? premiereDate,
       String? title,
       RatingDataDto? tmdbRating,
       int? userRating,
       bool? isInWatchlist,
-      bool? isWatched});
+      bool? isWatched,
+      DateTime? updatedAt,
+      LocalizedString? localizedTitle,
+      LocalizedString? localizedPosterUrl});
   MovieShortDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -176,7 +208,7 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
               (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(genres: v))
           : null;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry => $value.originCountry != null
           ? ListCopyWith(
               $value.originCountry!,
@@ -186,6 +218,14 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
   @override
   RatingDataDtoCopyWith<$R, RatingDataDto, RatingDataDto>? get tmdbRating =>
       $value.tmdbRating?.copyWith.$chain((v) => call(tmdbRating: v));
+  @override
+  LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
+      get localizedTitle => $value.localizedTitle?.copyWith
+          .$chain((v) => call(localizedTitle: v));
+  @override
+  LocalizedStringCopyWith<$R, LocalizedString, LocalizedString>?
+      get localizedPosterUrl => $value.localizedPosterUrl?.copyWith
+          .$chain((v) => call(localizedPosterUrl: v));
   @override
   $R call(
           {Object? id = $none,
@@ -197,7 +237,10 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
           Object? tmdbRating = $none,
           Object? userRating = $none,
           Object? isInWatchlist = $none,
-          Object? isWatched = $none}) =>
+          Object? isWatched = $none,
+          Object? updatedAt = $none,
+          Object? localizedTitle = $none,
+          Object? localizedPosterUrl = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (posterUrl != $none) #posterUrl: posterUrl,
@@ -208,7 +251,10 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
         if (tmdbRating != $none) #tmdbRating: tmdbRating,
         if (userRating != $none) #userRating: userRating,
         if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
-        if (isWatched != $none) #isWatched: isWatched
+        if (isWatched != $none) #isWatched: isWatched,
+        if (updatedAt != $none) #updatedAt: updatedAt,
+        if (localizedTitle != $none) #localizedTitle: localizedTitle,
+        if (localizedPosterUrl != $none) #localizedPosterUrl: localizedPosterUrl
       }));
   @override
   MovieShortDataDto $make(CopyWithData data) => MovieShortDataDto(
@@ -221,10 +267,14 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
-      isWatched: data.get(#isWatched, or: $value.isWatched));
+      isWatched: data.get(#isWatched, or: $value.isWatched),
+      updatedAt: data.get(#updatedAt, or: $value.updatedAt),
+      localizedTitle: data.get(#localizedTitle, or: $value.localizedTitle),
+      localizedPosterUrl:
+          data.get(#localizedPosterUrl, or: $value.localizedPosterUrl));
 
   @override
   MovieShortDataDtoCopyWith<$R2, MovieShortDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _MovieShortDataDtoCopyWithImpl($value, $cast, t);
+      _MovieShortDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

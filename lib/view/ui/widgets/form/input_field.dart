@@ -8,7 +8,9 @@ import '../../resources/app_images.dart';
 import '../../resources/base_theme/inputs/base_inputs_styles_ext.dart';
 import '../../resources/locale_keys.g.dart';
 import '../app_svg_asset.dart';
+import 'utils/app_validators.dart';
 import 'utils/clear_button_builder.dart';
+import 'widgets/field_label.dart';
 
 /// {@category Widgets}
 ///
@@ -45,40 +47,41 @@ class InputField extends StatelessWidget {
     VoidCallback? onClear,
     final TextEditingController? controller,
   }) : this._(
-          key: key,
-          child: TextFieldBuilderExtended(
-            controller: controller,
-            builder: (props) {
-              final styles = props.context.baseInputsStyles;
+         key: key,
+         child: TextFieldBuilderExtended(
+           controller: controller,
+           builder: (props) {
+             final styles = props.context.baseInputsStyles;
 
-              return Hero(
-                tag: 'search',
-                flightShuttleBuilder: (_, animation, __, ___, toHeroCtx) =>
-                    _flightShuttleWithAutofocusHandling(
-                  animation,
-                  toHeroCtx.widget,
-                  props: props,
-                  autoFocus: autoFocus,
-                ),
-                child: TextFormField(
-                  enabled: enabled,
-                  style: styles.txtFlsPrimInpTextStyle,
-                  onChanged: onSearch,
-                  focusNode: props.focusNode,
-                  controller: props.controller,
-                  decoration: InputDecoration(
-                    hintText: hintText ?? LocaleKeys.searchHint.tr(),
-                    suffixIconConstraints: const BoxConstraints(
-                      minWidth: 16,
-                      minHeight: 16,
-                    ),
-                    suffixIcon: _searchSuffixIcon(props, onClear),
-                  ),
-                ),
-              );
-            },
-          ),
-        );
+             return Hero(
+               tag: 'search',
+               flightShuttleBuilder:
+                   (_, animation, __, ___, toHeroCtx) =>
+                       _flightShuttleWithAutofocusHandling(
+                         animation,
+                         toHeroCtx.widget,
+                         props: props,
+                         autoFocus: autoFocus,
+                       ),
+               child: TextFormField(
+                 enabled: enabled,
+                 style: styles.txtFlsPrimInpTextStyle,
+                 onChanged: onSearch,
+                 focusNode: props.focusNode,
+                 controller: props.controller,
+                 decoration: InputDecoration(
+                   hintText: hintText ?? LocaleKeys.searchHint.tr(),
+                   suffixIconConstraints: const BoxConstraints(
+                     minWidth: 16,
+                     minHeight: 16,
+                   ),
+                   suffixIcon: _searchSuffixIcon(props, onClear),
+                 ),
+               ),
+             );
+           },
+         ),
+       );
 
   /// Handles the flight transition for a Hero animation and requests focus
   /// on the text field once the animation completes if `autoFocus` is enabled.
@@ -108,7 +111,9 @@ class InputField extends StatelessWidget {
 
   /// Requests focus on the text field after the Hero animation completes.
   static void _animationStatusListener(
-      AnimationStatus status, BuilderProps<FormFieldState> props) {
+    AnimationStatus status,
+    BuilderProps<FormFieldState> props,
+  ) {
     if (status != AnimationStatus.completed) return;
 
     // Defer focus request until the next frame to avoid UI inconsistencies.
@@ -120,7 +125,9 @@ class InputField extends StatelessWidget {
   }
 
   static Widget? _searchSuffixIcon(
-      BuilderProps<FormFieldState> props, VoidCallback? onClear) {
+    BuilderProps<FormFieldState> props,
+    VoidCallback? onClear,
+  ) {
     final styles = props.context.baseInputsStyles;
     final rightPadding = styles.txtFldPrimContPadding.right;
 
@@ -130,60 +137,16 @@ class InputField extends StatelessWidget {
 
     return showSearchIcon
         ? Padding(
-            padding: EdgeInsets.only(right: rightPadding),
-            child: AppSvgAsset(path: AppImages.searchIcon),
-          )
+          padding: EdgeInsets.only(right: rightPadding),
+          child: AppSvgAsset(path: AppImages.searchIcon),
+        )
         : ClearButtonBuilder.buildClearButton(
-            props.controller,
-            '',
-            props.focusNode.hasFocus,
-            onClear: onClear,
-          );
+          props.controller,
+          '',
+          props.focusNode.hasFocus,
+          onClear: onClear,
+        );
   }
-
-  InputField.name(
-      {Key? key,
-      required String name,
-      FocusNode? focusNode,
-      dynamic Function(bool)? onFocusChanged,
-      bool isRequired = true,
-      VoidCallback? onEditingComplete,
-      TextInputAction textInputAction = TextInputAction.next,
-      String initialValue = ''})
-      : this._(
-            key: key,
-            child: TextFieldBuilderExtended(
-                initialValue: initialValue,
-                focusNode: focusNode,
-                onFocusChanged: onFocusChanged,
-                builder: (props) {
-                  final validator = MinLengthValidator(
-                          LocaleKeys.invalidNameError.tr(),
-                          minLength: 2,
-                          isRequired: isRequired)
-                      .validate;
-
-                  return FormBuilderTextField(
-                    name: name,
-                    controller: props.controller,
-                    focusNode: props.focusNode,
-                    scrollPadding: _getScrollPadding(props.context),
-                    decoration: _buildBaseDecoration(
-                      labelText: LocaleKeys.nameFieldHint.tr(),
-                      hintText: LocaleKeys.nameFieldHint.tr(),
-                      suffixIcon: _buildTextFieldClearSuffixButton(
-                          props.controller,
-                          initialValue,
-                          props.focusNode.hasFocus),
-                    ),
-                    textCapitalization: TextCapitalization.words,
-                    validator: validator,
-                    textInputAction: textInputAction,
-                    onEditingComplete: () => _onEditingComplete(
-                        textInputAction, props.focusNode,
-                        onEditingComplete: onEditingComplete),
-                  );
-                }));
 
   InputField.email({
     Key? key,
@@ -195,37 +158,48 @@ class InputField extends StatelessWidget {
     TextInputAction textInputAction = TextInputAction.next,
     String initialValue = '',
   }) : this._(
-            key: key,
-            child: TextFieldBuilderExtended(
-                initialValue: initialValue,
-                focusNode: focusNode,
-                onFocusChanged: onFocusChanged,
-                builder: (props) {
-                  final validator = EmailValidator(
-                          LocaleKeys.invalidEmailError.tr(),
-                          isRequired: isRequired)
-                      .validate;
+         key: key,
+         child: TextFieldBuilderExtended(
+           initialValue: initialValue,
+           focusNode: focusNode,
+           onFocusChanged: onFocusChanged,
+           builder: (props) {
+             final validator =
+                 AppEmailValidator(
+                   LocaleKeys.invalidEmailError.tr(),
+                   requiredErrorText: LocaleKeys.requiredFieldError.tr(),
+                   isRequired: isRequired,
+                 ).validate;
 
-                  return FormBuilderTextField(
-                    name: name,
-                    controller: props.controller,
-                    focusNode: props.focusNode,
-                    scrollPadding: _getScrollPadding(props.context),
-                    decoration: _buildBaseDecoration(
-                        labelText: LocaleKeys.emailFieldHint.tr(),
-                        hintText: LocaleKeys.emailFieldHint.tr(),
-                        suffixIcon: _buildTextFieldClearSuffixButton(
-                            props.controller,
-                            initialValue,
-                            props.focusNode.hasFocus)),
-                    validator: validator,
-                    textInputAction: textInputAction,
-                    keyboardType: TextInputType.emailAddress,
-                    onEditingComplete: () => _onEditingComplete(
-                        textInputAction, props.focusNode,
-                        onEditingComplete: onEditingComplete),
-                  );
-                }));
+             return FormBuilderTextField(
+               name: name,
+               controller: props.controller,
+               focusNode: props.focusNode,
+               scrollPadding: _getScrollPadding(props.context),
+               decoration: _buildBaseDecoration(
+                 labelText: LocaleKeys.emailFieldHint.tr(),
+                 hintText: LocaleKeys.emailFieldHint.tr(),
+                 props: props,
+                 isRequired: isRequired,
+                 suffixIcon: _buildTextFieldClearSuffixButton(
+                   props.controller,
+                   initialValue,
+                   props.focusNode.hasFocus,
+                 ),
+               ),
+               validator: validator,
+               textInputAction: textInputAction,
+               keyboardType: TextInputType.emailAddress,
+               onEditingComplete:
+                   () => _onEditingComplete(
+                     textInputAction,
+                     props.focusNode,
+                     onEditingComplete: onEditingComplete,
+                   ),
+             );
+           },
+         ),
+       );
 
   InputField.pass({
     Key? key,
@@ -235,44 +209,57 @@ class InputField extends StatelessWidget {
     bool isRequired = true,
     VoidCallback? onEditingComplete,
     TextInputAction textInputAction = TextInputAction.next,
+    String? labelText,
+    String? hintText,
     String initialValue = '',
   }) : this._(
-            key: key,
-            child: TextFieldBuilderExtended(
-                isObscured: true,
-                initialValue: initialValue,
-                focusNode: focusNode,
-                onFocusChanged: onFocusChanged,
-                builder: (props) {
-                  final validator = PasswordValidator(
-                          LocaleKeys.invalidPassError.tr(),
-                          isRequired: isRequired)
-                      .validate;
+         key: key,
+         child: TextFieldBuilderExtended(
+           isObscured: true,
+           initialValue: initialValue,
+           focusNode: focusNode,
+           onFocusChanged: onFocusChanged,
+           builder: (props) {
+             final validator =
+                 AppPasswordValidator(
+                   LocaleKeys.invalidPassError.tr(),
+                   requiredErrorText: LocaleKeys.requiredFieldError.tr(),
+                   isRequired: isRequired,
+                 ).validate;
 
-                  return FormBuilderTextField(
-                    name: name,
-                    controller: props.controller,
-                    focusNode: props.focusNode,
-                    scrollPadding: _getScrollPadding(props.context),
-                    obscureText: props.isObscured,
-                    obscuringCharacter: '•',
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    decoration: _buildBaseDecoration(
-                        labelText: LocaleKeys.passFieldHint.tr(),
-                        hintText: LocaleKeys.passFieldHint.tr(),
-                        suffixIcon: _buildObscureTextSuffixButton(
-                            props.isEdited,
-                            props.isObscured,
-                            props.setObscured)),
-                    validator: validator,
-                    textInputAction: textInputAction,
-                    keyboardType: TextInputType.visiblePassword,
-                    onEditingComplete: () => _onEditingComplete(
-                        textInputAction, props.focusNode,
-                        onEditingComplete: onEditingComplete),
-                  );
-                }));
+             return FormBuilderTextField(
+               name: name,
+               controller: props.controller,
+               focusNode: props.focusNode,
+               scrollPadding: _getScrollPadding(props.context),
+               obscureText: props.isObscured,
+               obscuringCharacter: '•',
+               enableSuggestions: false,
+               autocorrect: false,
+               decoration: _buildBaseDecoration(
+                 labelText: labelText ?? LocaleKeys.passFieldHint.tr(),
+                 hintText: hintText ?? LocaleKeys.passFieldHint.tr(),
+                 props: props,
+                 isRequired: isRequired,
+                 suffixIcon: _buildObscureTextSuffixButton(
+                   props.isEdited,
+                   props.isObscured,
+                   props.setObscured,
+                 ),
+               ),
+               validator: validator,
+               textInputAction: textInputAction,
+               keyboardType: TextInputType.visiblePassword,
+               onEditingComplete:
+                   () => _onEditingComplete(
+                     textInputAction,
+                     props.focusNode,
+                     onEditingComplete: onEditingComplete,
+                   ),
+             );
+           },
+         ),
+       );
 
   InputField.confirmPass({
     Key? key,
@@ -284,49 +271,58 @@ class InputField extends StatelessWidget {
     String initialValue = '',
     required String Function() getPassValue,
   }) : this._(
-            key: key,
-            child: TextFieldBuilderExtended(
-                isObscured: true,
-                initialValue: initialValue,
-                focusNode: focusNode,
-                onFocusChanged: onFocusChanged,
-                builder: (props) {
-                  String? validator(String? val) {
-                    final currentPass = getPassValue();
-                    final isValid = val == currentPass;
+         key: key,
+         child: TextFieldBuilderExtended(
+           isObscured: true,
+           initialValue: initialValue,
+           focusNode: focusNode,
+           onFocusChanged: onFocusChanged,
+           builder: (props) {
+             String? validator(String? val) {
+               final currentPass = getPassValue();
+               final isValid = val == currentPass;
 
-                    return isValid
-                        ? null
-                        : LocaleKeys.invalidConfirmPassError.tr();
-                  }
+               return isValid ? null : LocaleKeys.invalidConfirmPassError.tr();
+             }
 
-                  return FormBuilderTextField(
-                    name: name,
-                    controller: props.controller,
-                    focusNode: props.focusNode,
-                    scrollPadding: _getScrollPadding(props.context),
-                    obscureText: props.isObscured,
-                    obscuringCharacter: '•',
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    decoration: _buildBaseDecoration(
-                        labelText: LocaleKeys.confirmPassFieldHint.tr(),
-                        hintText: LocaleKeys.confirmPassFieldHint.tr(),
-                        suffixIcon: _buildObscureTextSuffixButton(
-                            props.isEdited,
-                            props.isObscured,
-                            props.setObscured)),
-                    validator: validator,
-                    textInputAction: textInputAction,
-                    keyboardType: TextInputType.visiblePassword,
-                    onEditingComplete: () => _onEditingComplete(
-                        textInputAction, props.focusNode,
-                        onEditingComplete: onEditingComplete),
-                  );
-                }));
+             return FormBuilderTextField(
+               name: name,
+               controller: props.controller,
+               focusNode: props.focusNode,
+               scrollPadding: _getScrollPadding(props.context),
+               obscureText: props.isObscured,
+               obscuringCharacter: '•',
+               enableSuggestions: false,
+               autocorrect: false,
+               decoration: _buildBaseDecoration(
+                 labelText: LocaleKeys.confirmPassFieldHint.tr(),
+                 hintText: LocaleKeys.confirmPassFieldHint.tr(),
+                 props: props,
+                 suffixIcon: _buildObscureTextSuffixButton(
+                   props.isEdited,
+                   props.isObscured,
+                   props.setObscured,
+                 ),
+               ),
+               validator: validator,
+               textInputAction: textInputAction,
+               keyboardType: TextInputType.visiblePassword,
+               onEditingComplete:
+                   () => _onEditingComplete(
+                     textInputAction,
+                     props.focusNode,
+                     onEditingComplete: onEditingComplete,
+                   ),
+             );
+           },
+         ),
+       );
 
   static Widget? _buildObscureTextSuffixButton(
-      bool isEdited, bool setObscured, Function(bool) setObscure) {
+    bool isEdited,
+    bool setObscured,
+    Function(bool) setObscure,
+  ) {
     if (!isEdited) return null;
 
     return IconButton(
@@ -339,19 +335,31 @@ class InputField extends StatelessWidget {
     final viewInsets = context.viewInsets;
 
     return EdgeInsets.only(
-        bottom: viewInsets.bottom + 70, top: viewInsets.top + 30);
+      bottom: viewInsets.bottom + 70,
+      top: viewInsets.top + 30,
+    );
   }
 
   static InputDecoration _buildBaseDecoration({
     required String labelText,
     required String hintText,
+    required BuilderProps props,
+    bool isRequired = false,
     Widget? suffixIcon,
     FloatingLabelBehavior floatingLabelBehavior = FloatingLabelBehavior.auto,
     EdgeInsetsGeometry? contentPadding,
     bool alignLabelWithHint = true,
   }) {
+    final isFocused = props.focusNode.hasFocus;
+    final isNotEmpty = props.controller.text.isNotEmpty;
+    final isFloating = isFocused || isNotEmpty;
+
     return InputDecoration(
-      label: Text(labelText),
+      label: FieldLabel(
+        color: isFloating ? null : Colors.transparent,
+        isRequired: isRequired,
+        content: Text(isFloating ? labelText : hintText),
+      ),
       suffixIcon: suffixIcon,
       floatingLabelBehavior: floatingLabelBehavior,
       hintText: hintText,
@@ -361,13 +369,18 @@ class InputField extends StatelessWidget {
   }
 
   static Widget? _buildTextFieldClearSuffixButton(
-      TextEditingController ctrl, String? initialValue, bool isFocused) {
+    TextEditingController ctrl,
+    String? initialValue,
+    bool isFocused,
+  ) {
     return ClearButtonBuilder.buildClearButton(ctrl, initialValue, isFocused);
   }
 
   static void _onEditingComplete(
-      TextInputAction textInputAction, FocusNode node,
-      {VoidCallback? onEditingComplete}) {
+    TextInputAction textInputAction,
+    FocusNode node, {
+    VoidCallback? onEditingComplete,
+  }) {
     if (textInputAction == TextInputAction.next) {
       node.nextFocus();
     } else {

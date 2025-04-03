@@ -15,6 +15,24 @@ abstract final class AppRoutes {
   // Home/Search
   static const String search = 'search';
 
+  // Home/Filter
+  static const String filter = 'filter';
+
   // More/About Us
   static const String aboutUs = 'about-us';
+
+  // More/Auth
+  static const String auth = 'auth';
+
+  // More/Auth/Registration
+  static const String reg = 'reg';
+
+  // More/Auth/Reset Password
+  static const String resetPass = 'reset-pass';
+
+  // More/Delete Account
+  static const String deleteAccount = 'delete-account';
+
+  // More/Settings
+  static const String settings = 'settings';
 }

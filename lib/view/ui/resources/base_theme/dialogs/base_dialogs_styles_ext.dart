@@ -21,6 +21,9 @@ abstract final class BaseDialogsStylesFactory {
       dlgPrimBtnTextStyle: _BaseDialogsStyles.dlgPrimBtnTextStyle(
         colors.dlgPrimBtnFg,
       ),
+      dlgSecBtnTextStyle: _BaseDialogsStyles.dlgSecBtnTextStyle(
+        colors.dlgSecBtnFg,
+      ),
       dlgPrimActPadding: _BaseDialogsStyles.dlgPrimActPadding,
       dlgPrimInsPadding: _BaseDialogsStyles.dlgPrimInsPadding,
       dlgPrimShape: _BaseDialogsStyles.dlgPrimShape,
@@ -48,6 +51,10 @@ class BaseDialogsStyles extends ThemeExtension<BaseDialogsStyles>
   /// Primary TextStyle of the dialog button
   @override
   final TextStyle dlgPrimBtnTextStyle;
+
+  /// Secondary TextStyle of the dialog button
+  @override
+  final TextStyle dlgSecBtnTextStyle;
 
   /// Primary padding of the dialog actions
   @override
@@ -89,6 +96,7 @@ class BaseDialogsStyles extends ThemeExtension<BaseDialogsStyles>
     required this.dlgPrimTitleTextStyle,
     required this.dlgPrimContTextStyle,
     required this.dlgPrimBtnTextStyle,
+    required this.dlgSecBtnTextStyle,
     required this.dlgPrimActPadding,
     required this.dlgPrimInsPadding,
     required this.dlgPrimShape,

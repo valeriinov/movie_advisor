@@ -14,7 +14,9 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SeriesDataDtoMapper._());
       SeriesGenreDtoMapper.ensureInitialized();
+      CountryDtoMapper.ensureInitialized();
       CreditsDataDtoMapper.ensureInitialized();
+      VideosDataDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -34,8 +36,8 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static const Field<SeriesDataDto, List<SeriesGenreDto>> _f$genresAlt = Field(
       'genresAlt', _$genresAlt,
       key: r'genres', opt: true, hook: SeriesGenreHook());
-  static List<String>? _$originCountry(SeriesDataDto v) => v.originCountry;
-  static const Field<SeriesDataDto, List<String>> _f$originCountry = Field(
+  static List<CountryDto>? _$originCountry(SeriesDataDto v) => v.originCountry;
+  static const Field<SeriesDataDto, List<CountryDto>> _f$originCountry = Field(
       'originCountry', _$originCountry,
       key: r'origin_country', opt: true);
   static String? _$originalLanguage(SeriesDataDto v) => v.originalLanguage;
@@ -70,6 +72,9 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
   static CreditsDataDto? _$credits(SeriesDataDto v) => v.credits;
   static const Field<SeriesDataDto, CreditsDataDto> _f$credits =
       Field('credits', _$credits, opt: true);
+  static VideosDataDto? _$videos(SeriesDataDto v) => v.videos;
+  static const Field<SeriesDataDto, VideosDataDto> _f$videos =
+      Field('videos', _$videos, opt: true);
   static int? _$userRating(SeriesDataDto v) => v.userRating;
   static const Field<SeriesDataDto, int> _f$userRating =
       Field('userRating', _$userRating, key: r'user_rating', opt: true);
@@ -98,6 +103,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
     #voteAverage: _f$voteAverage,
     #voteCount: _f$voteCount,
     #credits: _f$credits,
+    #videos: _f$videos,
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
@@ -122,6 +128,7 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
         voteAverage: data.dec(_f$voteAverage),
         voteCount: data.dec(_f$voteCount),
         credits: data.dec(_f$credits),
+        videos: data.dec(_f$videos),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
         isWatched: data.dec(_f$isWatched));
@@ -151,7 +158,7 @@ mixin SeriesDataDtoMappable {
   }
 
   SeriesDataDtoCopyWith<SeriesDataDto, SeriesDataDto, SeriesDataDto>
-      get copyWith => _SeriesDataDtoCopyWithImpl(
+      get copyWith => _SeriesDataDtoCopyWithImpl<SeriesDataDto, SeriesDataDto>(
           this as SeriesDataDto, $identity, $identity);
   @override
   String toString() {
@@ -175,7 +182,7 @@ mixin SeriesDataDtoMappable {
 extension SeriesDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesDataDto, $Out> {
   SeriesDataDtoCopyWith<$R, SeriesDataDto, $Out> get $asSeriesDataDto =>
-      $base.as((v, t, t2) => _SeriesDataDtoCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _SeriesDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
@@ -184,15 +191,16 @@ abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
       ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get genres;
   ListCopyWith<$R, SeriesGenreDto,
       ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get genresAlt;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry;
   CreditsDataDtoCopyWith<$R, CreditsDataDto, CreditsDataDto>? get credits;
+  VideosDataDtoCopyWith<$R, VideosDataDto, VideosDataDto>? get videos;
   $R call(
       {int? id,
       String? backdropPath,
       List<SeriesGenreDto>? genres,
       List<SeriesGenreDto>? genresAlt,
-      List<String>? originCountry,
+      List<CountryDto>? originCountry,
       String? originalLanguage,
       String? originalName,
       String? overview,
@@ -203,6 +211,7 @@ abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
       double? voteAverage,
       int? voteCount,
       CreditsDataDto? credits,
+      VideosDataDto? videos,
       int? userRating,
       bool? isInWatchlist,
       bool? isWatched});
@@ -234,7 +243,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
               (v) => call(genresAlt: v))
           : null;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get originCountry => $value.originCountry != null
           ? ListCopyWith(
               $value.originCountry!,
@@ -244,6 +253,9 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
   @override
   CreditsDataDtoCopyWith<$R, CreditsDataDto, CreditsDataDto>? get credits =>
       $value.credits?.copyWith.$chain((v) => call(credits: v));
+  @override
+  VideosDataDtoCopyWith<$R, VideosDataDto, VideosDataDto>? get videos =>
+      $value.videos?.copyWith.$chain((v) => call(videos: v));
   @override
   $R call(
           {Object? id = $none,
@@ -261,6 +273,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
           Object? voteAverage = $none,
           Object? voteCount = $none,
           Object? credits = $none,
+          Object? videos = $none,
           Object? userRating = $none,
           Object? isInWatchlist = $none,
           Object? isWatched = $none}) =>
@@ -280,6 +293,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
         if (voteAverage != $none) #voteAverage: voteAverage,
         if (voteCount != $none) #voteCount: voteCount,
         if (credits != $none) #credits: credits,
+        if (videos != $none) #videos: videos,
         if (userRating != $none) #userRating: userRating,
         if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
         if (isWatched != $none) #isWatched: isWatched
@@ -302,6 +316,7 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
       voteAverage: data.get(#voteAverage, or: $value.voteAverage),
       voteCount: data.get(#voteCount, or: $value.voteCount),
       credits: data.get(#credits, or: $value.credits),
+      videos: data.get(#videos, or: $value.videos),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
       isWatched: data.get(#isWatched, or: $value.isWatched));
@@ -309,5 +324,5 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
   @override
   SeriesDataDtoCopyWith<$R2, SeriesDataDto, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SeriesDataDtoCopyWithImpl($value, $cast, t);
+      _SeriesDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

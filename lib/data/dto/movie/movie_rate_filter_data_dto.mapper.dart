@@ -15,6 +15,7 @@ class MovieRateFilterDataDtoMapper
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MovieRateFilterDataDtoMapper._());
       MovieGenreDtoMapper.ensureInitialized();
+      CountryDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -30,10 +31,10 @@ class MovieRateFilterDataDtoMapper
   static const Field<MovieRateFilterDataDto, List<MovieGenreDto>>
       _f$targetGenres =
       Field('targetGenres', _$targetGenres, key: r'target_genres', opt: true);
-  static List<String>? _$targetCountries(MovieRateFilterDataDto v) =>
+  static List<CountryDto>? _$targetCountries(MovieRateFilterDataDto v) =>
       v.targetCountries;
-  static const Field<MovieRateFilterDataDto, List<String>> _f$targetCountries =
-      Field('targetCountries', _$targetCountries,
+  static const Field<MovieRateFilterDataDto, List<CountryDto>>
+      _f$targetCountries = Field('targetCountries', _$targetCountries,
           key: r'target_countries', opt: true);
 
   @override
@@ -77,7 +78,8 @@ mixin MovieRateFilterDataDtoMappable {
 
   MovieRateFilterDataDtoCopyWith<MovieRateFilterDataDto, MovieRateFilterDataDto,
           MovieRateFilterDataDto>
-      get copyWith => _MovieRateFilterDataDtoCopyWithImpl(
+      get copyWith => _MovieRateFilterDataDtoCopyWithImpl<
+              MovieRateFilterDataDto, MovieRateFilterDataDto>(
           this as MovieRateFilterDataDto, $identity, $identity);
   @override
   String toString() {
@@ -101,8 +103,8 @@ mixin MovieRateFilterDataDtoMappable {
 extension MovieRateFilterDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MovieRateFilterDataDto, $Out> {
   MovieRateFilterDataDtoCopyWith<$R, MovieRateFilterDataDto, $Out>
-      get $asMovieRateFilterDataDto =>
-          $base.as((v, t, t2) => _MovieRateFilterDataDtoCopyWithImpl(v, t, t2));
+      get $asMovieRateFilterDataDto => $base.as((v, t, t2) =>
+          _MovieRateFilterDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MovieRateFilterDataDtoCopyWith<
@@ -112,12 +114,12 @@ abstract class MovieRateFilterDataDtoCopyWith<
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get excludeIds;
   ListCopyWith<$R, MovieGenreDto,
       ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get targetGenres;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get targetCountries;
   $R call(
       {List<int>? excludeIds,
       List<MovieGenreDto>? targetGenres,
-      List<String>? targetCountries});
+      List<CountryDto>? targetCountries});
   MovieRateFilterDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -149,7 +151,7 @@ class _MovieRateFilterDataDtoCopyWithImpl<$R, $Out>
               (v) => call(targetGenres: v))
           : null;
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
       get targetCountries => $value.targetCountries != null
           ? ListCopyWith(
               $value.targetCountries!,
@@ -175,5 +177,5 @@ class _MovieRateFilterDataDtoCopyWithImpl<$R, $Out>
   @override
   MovieRateFilterDataDtoCopyWith<$R2, MovieRateFilterDataDto, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _MovieRateFilterDataDtoCopyWithImpl($value, $cast, t);
+          _MovieRateFilterDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

@@ -39,8 +39,9 @@ class SearchFilterDataMapper extends ClassMapperBase<SearchFilterData> {
 
 mixin SearchFilterDataMappable {
   SearchFilterDataCopyWith<SearchFilterData, SearchFilterData, SearchFilterData>
-      get copyWith => _SearchFilterDataCopyWithImpl(
-          this as SearchFilterData, $identity, $identity);
+      get copyWith =>
+          _SearchFilterDataCopyWithImpl<SearchFilterData, SearchFilterData>(
+              this as SearchFilterData, $identity, $identity);
   @override
   String toString() {
     return SearchFilterDataMapper.ensureInitialized()
@@ -63,8 +64,8 @@ mixin SearchFilterDataMappable {
 extension SearchFilterDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchFilterData, $Out> {
   SearchFilterDataCopyWith<$R, SearchFilterData, $Out>
-      get $asSearchFilterData =>
-          $base.as((v, t, t2) => _SearchFilterDataCopyWithImpl(v, t, t2));
+      get $asSearchFilterData => $base
+          .as((v, t, t2) => _SearchFilterDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchFilterDataCopyWith<$R, $In extends SearchFilterData, $Out>
@@ -92,5 +93,5 @@ class _SearchFilterDataCopyWithImpl<$R, $Out>
   @override
   SearchFilterDataCopyWith<$R2, SearchFilterData, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SearchFilterDataCopyWithImpl($value, $cast, t);
+      _SearchFilterDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

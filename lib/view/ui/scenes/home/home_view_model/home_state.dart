@@ -28,8 +28,8 @@ final class HomeState<T> extends BaseState<HomeStatus>
     MediaLoadInfo<T>? sugCont,
     MediaLoadInfo<T>? tabCont,
     this.status = const HomeBaseStatus(),
-  })  : sugCont = sugCont ?? MediaLoadInfo<T>(),
-        tabCont = tabCont ?? MediaLoadInfo<T>();
+  }) : sugCont = sugCont ?? MediaLoadInfo<T>(),
+       tabCont = tabCont ?? MediaLoadInfo<T>();
 
   HomeState<T> copyWithUpdSugCont({
     HomeStatus? status,
@@ -45,10 +45,7 @@ final class HomeState<T> extends BaseState<HomeStatus>
       data: data,
     );
 
-    return copyWith(
-      status: status ?? this.status,
-      sugCont: updatedData,
-    );
+    return copyWith(status: status ?? this.status, sugCont: updatedData);
   }
 
   HomeState<T> copyWithUpdTabCont({
@@ -65,10 +62,7 @@ final class HomeState<T> extends BaseState<HomeStatus>
       data: data,
     );
 
-    return copyWith(
-      status: status ?? this.status,
-      tabCont: updatedData,
-    );
+    return copyWith(status: status ?? this.status, tabCont: updatedData);
   }
 }
 
@@ -86,8 +80,11 @@ sealed class HomeStatus extends BaseStatus {
 /// Used before it has completed its setup.
 @mappableEntity
 final class HomeBaseStatus extends HomeStatus with HomeBaseStatusMappable {
-  const HomeBaseStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const HomeBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -97,6 +94,19 @@ final class HomeBaseStatus extends HomeStatus with HomeBaseStatusMappable {
 @mappableEntity
 final class HomeBaseInitStatus extends HomeStatus
     with HomeBaseInitStatusMappable {
-  const HomeBaseInitStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const HomeBaseInitStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
+}
+
+@mappableEntity
+final class FirstLaunchStatus extends HomeStatus
+    with FirstLaunchStatusMappable {
+  const FirstLaunchStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }

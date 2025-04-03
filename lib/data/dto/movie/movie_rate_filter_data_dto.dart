@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import '../country_dto.dart';
 import 'movie_genre_dto.dart';
 
 part 'movie_rate_filter_data_dto.mapper.dart';
@@ -8,7 +9,7 @@ part 'movie_rate_filter_data_dto.mapper.dart';
 class MovieRateFilterDataDto with MovieRateFilterDataDtoMappable {
   final List<int>? excludeIds;
   final List<MovieGenreDto>? targetGenres;
-  final List<String>? targetCountries;
+  final List<CountryDto>? targetCountries;
 
   const MovieRateFilterDataDto({
     this.excludeIds,

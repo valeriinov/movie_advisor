@@ -7,94 +7,112 @@ part 'base_colors_ext.tailor.dart';
 
 abstract final class BaseColorsFactory {
   static BaseColors createColors() => BaseColors(
-        seed: _BaseColors.seed,
-        scaffoldBg: _BaseColors.scaffoldBg,
-        splashColor: _BaseColors.splashColor,
-        highlightColor: _BaseColors.highlightColor,
-        textThemePrim: _BaseColors.textThemePrim,
-        textThemeSec: _BaseColors.textThemeSec,
-        btnElevPrimFg: _BaseColors.btnElevPrimFg,
-        btnElevPrimBg: _BaseColors.btnElevPrimBg,
-        btnElevPrimFgPress: _BaseColors.btnElevPrimFgPress,
-        btnElevPrimBgPress: _BaseColors.btnElevPrimBgPress,
-        btnElevPrimFgDis: _BaseColors.btnElevPrimFgDis,
-        btnElevPrimBgDis: _BaseColors.btnElevPrimBgDis,
-        btnOutPrimFg: _BaseColors.btnOutPrimFg,
-        btnOutPrimBg: _BaseColors.btnOutPrimBg,
-        btnOutPrimFgPress: _BaseColors.btnOutPrimFgPress,
-        btnOutPrimBgPress: _BaseColors.btnOutPrimBgPress,
-        btnOutPrimFgDis: _BaseColors.btnOutPrimFgDis,
-        btnOutPrimBgDis: _BaseColors.btnOutPrimBgDis,
-        btnFillPrimFg: _BaseColors.btnFillPrimFg,
-        btnFillPrimBg: _BaseColors.btnFillPrimBg,
-        btnFillPrimFgPress: _BaseColors.btnFillPrimFgPress,
-        btnFillPrimBgPress: _BaseColors.btnFillPrimBgPress,
-        btnFillPrimFgDis: _BaseColors.btnFillPrimFgDis,
-        btnFillPrimBgDis: _BaseColors.btnFillPrimBgDis,
-        btnTextPrimFg: _BaseColors.btnTextPrimFg,
-        btnTextPrimBg: _BaseColors.btnTextPrimBg,
-        btnTextPrimFgPress: _BaseColors.btnTextPrimFgPress,
-        btnTextPrimBgPress: _BaseColors.btnTextPrimBgPress,
-        btnTextPrimFgDis: _BaseColors.btnTextPrimFgDis,
-        btnTextPrimBgDis: _BaseColors.btnTextPrimBgDis,
-        btnFABFg: _BaseColors.btnFABFg,
-        btnFABBg: _BaseColors.btnFABBg,
-        btnFABFgSplash: _BaseColors.btnFABFgSplash,
-        btnIconPrim: _BaseColors.btnIconPrim,
-        loadingIndicator: _BaseColors.loadingIndicator,
-        refreshIndicatorFg: _BaseColors.refreshIndicatorFg,
-        refreshIndicatorBg: _BaseColors.refreshIndicatorBg,
-        skeletonFrom: _BaseColors.skeletonFrom,
-        skeletonTo: _BaseColors.skeletonTo,
-        appBarPrimFg: _BaseColors.appBarPrimFg,
-        appBarPrimBg: _BaseColors.appBarPrimBg,
-        botNavBarBg: _BaseColors.botNavBarBg,
-        botNavBarFgSelect: _BaseColors.botNavBarFgSelect,
-        botNavBarFgUnselect: _BaseColors.botNavBarFgUnselect,
-        navBarDivider: _BaseColors.navBarDivider,
-        txtFldPrimFill: _BaseColors.txtFldPrimFill,
-        txtFldPrimInput: _BaseColors.txtFldPrimInput,
-        txtFldPrimLabel: _BaseColors.txtFldPrimLabel,
-        txtFldPrimBorder: _BaseColors.txtFldPrimBorder,
-        txtFldPrimBorderFocus: _BaseColors.txtFldPrimBorderFocus,
-        txtFldPrimBorderError: _BaseColors.txtFldPrimBorderError,
-        txtFldPrimError: _BaseColors.txtFldPrimError,
-        txtFldPrimSuffixIcon: _BaseColors.txtFldPrimSuffixIcon,
-        kbdActionBar: _BaseColors.kbdActionBar,
-        dlgPrimBg: _BaseColors.dlgPrimBg,
-        dlgPrimTitle: _BaseColors.dlgPrimTitle,
-        dlgPrimCont: _BaseColors.dlgPrimCont,
-        dlgPrimBtnFg: _BaseColors.dlgPrimBtnFg,
-        toastSuccessBg: _BaseColors.toastSuccessBg,
-        toastInfoBg: _BaseColors.toastInfoBg,
-        toastErrorBg: _BaseColors.toastErrorBg,
-        toastFg: _BaseColors.toastFg,
-        cardPrimBg: _BaseColors.cardPrimBg,
-        cardPrimSurfTint: _BaseColors.cardPrimSurfTint,
-        cardPrimBorder: _BaseColors.cardPrimBorder,
-        cardPrimShadow: _BaseColors.cardPrimShadow,
-        listTilePrimTitle: _BaseColors.listTilePrimTitle,
-        listTilePrimSubtitle: _BaseColors.listTilePrimSubtitle,
-        listTileSecTitle: _BaseColors.listTileSecTitle,
-        listTileSecSubtitle: _BaseColors.listTileSecSubtitle,
-        avatarPrimBg: _BaseColors.avatarPrimBg,
-        avatarPrimFg: _BaseColors.avatarPrimFg,
-        suggestNumFill: _BaseColors.suggestNumFill,
-        suggestNumStroke: _BaseColors.suggestNumStroke,
-        suggestNumBlur: _BaseColors.suggestNumBlur,
-        tabUnderSelect: _BaseColors.tabUnderSelect,
-        infoCardRating: _BaseColors.infoCardRating,
-        backdropRatingBg: _BaseColors.backdropRatingBg,
-        botSheetBg: _BaseColors.botSheetBg,
-        botSheetFg: _BaseColors.botSheetFg,
-        botSheetIcon: _BaseColors.botSheetIcon,
-        botSheetBarrier: _BaseColors.botSheetBarrier,
-        sliderVal: _BaseColors.sliderVal,
-        sliderTrackFg: _BaseColors.sliderTrackFg,
-        sliderTrackBg: _BaseColors.sliderTrackBg,
-        sliderThumbFill: _BaseColors.sliderThumbFill,
-        removeRateBtn: _BaseColors.removeRateBtn,
-      );
+    seed: _BaseColors.seed,
+    scaffoldBg: _BaseColors.scaffoldBg,
+    splashColor: _BaseColors.splashColor,
+    highlightColor: _BaseColors.highlightColor,
+    textThemePrim: _BaseColors.textThemePrim,
+    textThemeSec: _BaseColors.textThemeSec,
+    btnElevPrimFg: _BaseColors.btnElevPrimFg,
+    btnElevPrimBg: _BaseColors.btnElevPrimBg,
+    btnElevPrimFgPress: _BaseColors.btnElevPrimFgPress,
+    btnElevPrimBgPress: _BaseColors.btnElevPrimBgPress,
+    btnElevPrimFgDis: _BaseColors.btnElevPrimFgDis,
+    btnElevPrimBgDis: _BaseColors.btnElevPrimBgDis,
+    btnOutPrimFg: _BaseColors.btnOutPrimFg,
+    btnOutPrimBg: _BaseColors.btnOutPrimBg,
+    btnOutPrimFgPress: _BaseColors.btnOutPrimFgPress,
+    btnOutPrimBgPress: _BaseColors.btnOutPrimBgPress,
+    btnOutPrimFgDis: _BaseColors.btnOutPrimFgDis,
+    btnOutPrimBgDis: _BaseColors.btnOutPrimBgDis,
+    btnFillPrimFg: _BaseColors.btnFillPrimFg,
+    btnFillPrimBg: _BaseColors.btnFillPrimBg,
+    btnFillPrimFgPress: _BaseColors.btnFillPrimFgPress,
+    btnFillPrimBgPress: _BaseColors.btnFillPrimBgPress,
+    btnFillPrimFgDis: _BaseColors.btnFillPrimFgDis,
+    btnFillPrimBgDis: _BaseColors.btnFillPrimBgDis,
+    btnTextPrimFg: _BaseColors.btnTextPrimFg,
+    btnTextPrimBg: _BaseColors.btnTextPrimBg,
+    btnTextPrimFgPress: _BaseColors.btnTextPrimFgPress,
+    btnTextPrimBgPress: _BaseColors.btnTextPrimBgPress,
+    btnTextPrimFgDis: _BaseColors.btnTextPrimFgDis,
+    btnTextPrimBgDis: _BaseColors.btnTextPrimBgDis,
+    btnFABFg: _BaseColors.btnFABFg,
+    btnFABBg: _BaseColors.btnFABBg,
+    btnFABFgSplash: _BaseColors.btnFABFgSplash,
+    btnIconPrim: _BaseColors.btnIconPrim,
+    btnIconSecFg: _BaseColors.btnIconSecFg,
+    btnIconSecBg: _BaseColors.btnIconSecBg,
+    btnIconSecBgPress: _BaseColors.btnIconSecBgPress,
+    loadingIndicatorFg: _BaseColors.loadingIndicatorFg,
+    loadingIndicatorBg: _BaseColors.loadingIndicatorBg,
+    refreshIndicatorFg: _BaseColors.refreshIndicatorFg,
+    refreshIndicatorBg: _BaseColors.refreshIndicatorBg,
+    skeletonFrom: _BaseColors.skeletonFrom,
+    skeletonTo: _BaseColors.skeletonTo,
+    appBarPrimFg: _BaseColors.appBarPrimFg,
+    appBarPrimBg: _BaseColors.appBarPrimBg,
+    botNavBarBg: _BaseColors.botNavBarBg,
+    botNavBarFgSelect: _BaseColors.botNavBarFgSelect,
+    botNavBarFgUnselect: _BaseColors.botNavBarFgUnselect,
+    navBarDivider: _BaseColors.navBarDivider,
+    txtFldPrimFill: _BaseColors.txtFldPrimFill,
+    txtFldPrimInput: _BaseColors.txtFldPrimInput,
+    txtFldPrimLabel: _BaseColors.txtFldPrimLabel,
+    txtFldPrimBorder: _BaseColors.txtFldPrimBorder,
+    txtFldPrimBorderFocus: _BaseColors.txtFldPrimBorderFocus,
+    txtFldPrimBorderError: _BaseColors.txtFldPrimBorderError,
+    txtFldPrimError: _BaseColors.txtFldPrimError,
+    txtFldPrimSuffixIcon: _BaseColors.txtFldPrimSuffixIcon,
+    kbdActionBarBg: _BaseColors.kbdActionBarBg,
+    kbdActionBarFg: _BaseColors.kbdActionBarFg,
+    dlgPrimBg: _BaseColors.dlgPrimBg,
+    dlgPrimTitle: _BaseColors.dlgPrimTitle,
+    dlgPrimCont: _BaseColors.dlgPrimCont,
+    dlgPrimBtnFg: _BaseColors.dlgPrimBtnFg,
+    dlgSecBtnFg: _BaseColors.dlgSecBtnFg,
+    toastSuccessBg: _BaseColors.toastSuccessBg,
+    toastInfoBg: _BaseColors.toastInfoBg,
+    toastErrorBg: _BaseColors.toastErrorBg,
+    toastFg: _BaseColors.toastFg,
+    cardPrimBg: _BaseColors.cardPrimBg,
+    cardPrimSurfTint: _BaseColors.cardPrimSurfTint,
+    cardPrimBorder: _BaseColors.cardPrimBorder,
+    cardPrimShadow: _BaseColors.cardPrimShadow,
+    listTilePrimTitle: _BaseColors.listTilePrimTitle,
+    listTilePrimSubtitle: _BaseColors.listTilePrimSubtitle,
+    listTileSecTitle: _BaseColors.listTileSecTitle,
+    listTileSecSubtitle: _BaseColors.listTileSecSubtitle,
+    avatarPrimBg: _BaseColors.avatarPrimBg,
+    avatarPrimFg: _BaseColors.avatarPrimFg,
+    suggestNumFill: _BaseColors.suggestNumFill,
+    suggestNumStroke: _BaseColors.suggestNumStroke,
+    suggestNumBlur: _BaseColors.suggestNumBlur,
+    tabUnderSelect: _BaseColors.tabUnderSelect,
+    infoCardRating: _BaseColors.infoCardRating,
+    backdropRatingBg: _BaseColors.backdropRatingBg,
+    botSheetBg: _BaseColors.botSheetBg,
+    botSheetFg: _BaseColors.botSheetFg,
+    botSheetIcon: _BaseColors.botSheetIcon,
+    botSheetBarrier: _BaseColors.botSheetBarrier,
+    sliderVal: _BaseColors.sliderVal,
+    sliderTrackFg: _BaseColors.sliderTrackFg,
+    sliderTrackBg: _BaseColors.sliderTrackBg,
+    sliderThumbFill: _BaseColors.sliderThumbFill,
+    removeRateBtn: _BaseColors.removeRateBtn,
+    deleteAccountBtn: _BaseColors.deleteAccountBtn,
+    divider: _BaseColors.divider,
+    contSwitchBg: _BaseColors.contSwitchBg,
+    contSwitchIndicator: _BaseColors.contSwitchIndicator,
+    contSwitchBorder: _BaseColors.contSwitchBorder,
+    contSwitchFg: _BaseColors.contSwitchFg,
+    contSwitchFgSelect: _BaseColors.contSwitchFgSelect,
+    filterPrimFg: _BaseColors.filterPrimFg,
+    filterSecFg: _BaseColors.filterSecFg,
+    filterCtrlBarBg: _BaseColors.filterCtrlBarBg,
+    filterCtrlBarShadow: _BaseColors.filterCtrlBarShadow,
+    filterCtrlBarResetBtnOverlay: _BaseColors.filterCtrlBarResetBtnOverlay,
+  );
 }
 
 @TailorMixin()
@@ -240,11 +258,27 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color btnIconPrim;
 
+  /// Icon button secondary foreground color.
+  @override
+  final Color btnIconSecFg;
+
+  /// Icon button secondary background color.
+  @override
+  final Color btnIconSecBg;
+
+  /// Icon button secondary background color (pressed state).
+  @override
+  final Color btnIconSecBgPress;
+
   // LOADING INDICATOR
 
-  /// Loading indicator color.
+  /// Loading indicator foreground color.
   @override
-  final Color loadingIndicator;
+  final Color loadingIndicatorFg;
+
+  /// Loading indicator background color.
+  @override
+  final Color loadingIndicatorBg;
 
   /// Refresh indicator foreground color.
   @override
@@ -324,9 +358,13 @@ class BaseColors extends ThemeExtension<BaseColors>
 
   // KEYBOARD ACTIONS
 
-  /// Keyboard action bar color.
+  /// Keyboard action bar background color.
   @override
-  final Color kbdActionBar;
+  final Color kbdActionBarBg;
+
+  /// Keyboard action bar foreground color.
+  @override
+  final Color kbdActionBarFg;
 
   // DIALOGS
 
@@ -345,6 +383,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Dialog primary button foreground color.
   @override
   final Color dlgPrimBtnFg;
+
+  /// Dialog secondary button foreground color.
+  @override
+  final Color dlgSecBtnFg;
 
   /// Toast success background color.
   @override
@@ -464,6 +506,54 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color removeRateBtn;
 
+  /// Delete account button color.
+  @override
+  final Color deleteAccountBtn;
+
+  /// Divider color.
+  @override
+  final Color divider;
+
+  /// Container switch background color.
+  @override
+  final Color contSwitchBg;
+
+  /// Container switch indicator color.
+  @override
+  final Color contSwitchIndicator;
+
+  /// Container switch border color.
+  @override
+  final Color contSwitchBorder;
+
+  /// Container switch foreground color.
+  @override
+  final Color contSwitchFg;
+
+  /// Container switch foreground color (selected state).
+  @override
+  final Color contSwitchFgSelect;
+
+  /// Filter primary foreground color.
+  @override
+  final Color filterPrimFg;
+
+  /// Filter secondary foreground color.
+  @override
+  final Color filterSecFg;
+
+  /// Filter control bar background color.
+  @override
+  final Color filterCtrlBarBg;
+
+  /// Filter control bar shadow color.
+  @override
+  final Color filterCtrlBarShadow;
+
+  /// Filter control bar reset button overlay color.
+  @override
+  final Color filterCtrlBarResetBtnOverlay;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -503,7 +593,11 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.btnFABBg,
     required this.btnFABFgSplash,
     required this.btnIconPrim,
-    required this.loadingIndicator,
+    required this.btnIconSecFg,
+    required this.btnIconSecBg,
+    required this.btnIconSecBgPress,
+    required this.loadingIndicatorFg,
+    required this.loadingIndicatorBg,
     required this.refreshIndicatorFg,
     required this.refreshIndicatorBg,
     required this.skeletonFrom,
@@ -522,11 +616,13 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.txtFldPrimBorderError,
     required this.txtFldPrimError,
     required this.txtFldPrimSuffixIcon,
-    required this.kbdActionBar,
+    required this.kbdActionBarBg,
+    required this.kbdActionBarFg,
     required this.dlgPrimBg,
     required this.dlgPrimTitle,
     required this.dlgPrimCont,
     required this.dlgPrimBtnFg,
+    required this.dlgSecBtnFg,
     required this.toastSuccessBg,
     required this.toastInfoBg,
     required this.toastErrorBg,
@@ -556,5 +652,17 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.sliderTrackBg,
     required this.sliderThumbFill,
     required this.removeRateBtn,
+    required this.deleteAccountBtn,
+    required this.divider,
+    required this.contSwitchBg,
+    required this.contSwitchIndicator,
+    required this.contSwitchBorder,
+    required this.contSwitchFg,
+    required this.contSwitchFgSelect,
+    required this.filterPrimFg,
+    required this.filterSecFg,
+    required this.filterCtrlBarBg,
+    required this.filterCtrlBarShadow,
+    required this.filterCtrlBarResetBtnOverlay,
   });
 }

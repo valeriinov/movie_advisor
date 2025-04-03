@@ -8,11 +8,9 @@ import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
+import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
-import '../../../base/content_mode_view_model/content_mode.dart';
-import '../../../base/content_mode_view_model/content_mode_state.dart';
-import '../../../base/content_mode_view_model/content_mode_view_model.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
@@ -21,12 +19,6 @@ import 'watched_state.dart';
 part 'watched_movies_view_model.dart';
 
 part 'watched_series_view_model.dart';
-
-final watchedContModeViewModelPr = AutoDisposeNotifierProvider.family<
-  ContentModeViewModel,
-  ContentModeState,
-  ContentMode
->(ContentModeViewModel.new);
 
 /// {@category StateManagement}
 ///
@@ -41,7 +33,6 @@ typedef WatchedVSP = ASP<WatchedViewModel, WatchedState>;
 typedef WatchedVMProvider<T extends MediaShortData> =
     AutoDisposeNotifierProvider<WatchedViewModel<T>, WatchedState<T>>;
 
-
 /// {@category StateManagement}
 ///
 /// A base view model for managing `watched`-specific logic and state.
@@ -51,6 +42,7 @@ abstract base class WatchedViewModel<T extends MediaShortData>
     extends AutoDisposeNotifier<WatchedState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final WatchUseCase<T> _watchUseCase;
+  late final SyncUseCase _syncUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
 
   void _handleWatchChanges(Result<T> event) {

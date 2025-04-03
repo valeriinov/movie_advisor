@@ -13,6 +13,7 @@ class MoreStateMapper extends ClassMapperBase<MoreState> {
   static MoreStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MoreStateMapper._());
+      UserDataMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,17 +21,22 @@ class MoreStateMapper extends ClassMapperBase<MoreState> {
   @override
   final String id = 'MoreState';
 
+  static UserData? _$user(MoreState v) => v.user;
+  static const Field<MoreState, UserData> _f$user =
+      Field('user', _$user, opt: true);
   static MoreStatus _$status(MoreState v) => v.status;
-  static const Field<MoreState, MoreStatus> _f$status =
-      Field('status', _$status, opt: true, def: const MoreBaseStatus());
+  static const Field<MoreState, MoreStatus> _f$status = Field(
+      'status', _$status,
+      opt: true, def: const MoreBaseStatus(isLoading: true));
 
   @override
   final MappableFields<MoreState> fields = const {
+    #user: _f$user,
     #status: _f$status,
   };
 
   static MoreState _instantiate(DecodingData data) {
-    return MoreState(status: data.dec(_f$status));
+    return MoreState(user: data.dec(_f$user), status: data.dec(_f$status));
   }
 
   @override
@@ -39,7 +45,8 @@ class MoreStateMapper extends ClassMapperBase<MoreState> {
 
 mixin MoreStateMappable {
   MoreStateCopyWith<MoreState, MoreState, MoreState> get copyWith =>
-      _MoreStateCopyWithImpl(this as MoreState, $identity, $identity);
+      _MoreStateCopyWithImpl<MoreState, MoreState>(
+          this as MoreState, $identity, $identity);
   @override
   String toString() {
     return MoreStateMapper.ensureInitialized()
@@ -60,12 +67,13 @@ mixin MoreStateMappable {
 
 extension MoreStateValueCopy<$R, $Out> on ObjectCopyWith<$R, MoreState, $Out> {
   MoreStateCopyWith<$R, MoreState, $Out> get $asMoreState =>
-      $base.as((v, t, t2) => _MoreStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _MoreStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MoreStateCopyWith<$R, $In extends MoreState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({MoreStatus? status});
+  UserDataCopyWith<$R, UserData, UserData>? get user;
+  $R call({UserData? user, MoreStatus? status});
   MoreStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -78,16 +86,23 @@ class _MoreStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MoreState> $mapper =
       MoreStateMapper.ensureInitialized();
   @override
-  $R call({MoreStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  UserDataCopyWith<$R, UserData, UserData>? get user =>
+      $value.user?.copyWith.$chain((v) => call(user: v));
   @override
-  MoreState $make(CopyWithData data) =>
-      MoreState(status: data.get(#status, or: $value.status));
+  $R call({Object? user = $none, MoreStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (user != $none) #user: user,
+        if (status != null) #status: status
+      }));
+  @override
+  MoreState $make(CopyWithData data) => MoreState(
+      user: data.get(#user, or: $value.user),
+      status: data.get(#status, or: $value.status));
 
   @override
   MoreStateCopyWith<$R2, MoreState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _MoreStateCopyWithImpl($value, $cast, t);
+      _MoreStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class MoreBaseStatusMapper extends ClassMapperBase<MoreBaseStatus> {
@@ -134,8 +149,9 @@ class MoreBaseStatusMapper extends ClassMapperBase<MoreBaseStatus> {
 
 mixin MoreBaseStatusMappable {
   MoreBaseStatusCopyWith<MoreBaseStatus, MoreBaseStatus, MoreBaseStatus>
-      get copyWith => _MoreBaseStatusCopyWithImpl(
-          this as MoreBaseStatus, $identity, $identity);
+      get copyWith =>
+          _MoreBaseStatusCopyWithImpl<MoreBaseStatus, MoreBaseStatus>(
+              this as MoreBaseStatus, $identity, $identity);
   @override
   String toString() {
     return MoreBaseStatusMapper.ensureInitialized()
@@ -158,7 +174,7 @@ mixin MoreBaseStatusMappable {
 extension MoreBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MoreBaseStatus, $Out> {
   MoreBaseStatusCopyWith<$R, MoreBaseStatus, $Out> get $asMoreBaseStatus =>
-      $base.as((v, t, t2) => _MoreBaseStatusCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _MoreBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MoreBaseStatusCopyWith<$R, $In extends MoreBaseStatus, $Out>
@@ -195,7 +211,7 @@ class _MoreBaseStatusCopyWithImpl<$R, $Out>
   @override
   MoreBaseStatusCopyWith<$R2, MoreBaseStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _MoreBaseStatusCopyWithImpl($value, $cast, t);
+      _MoreBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class MoreBaseInitStatusMapper extends ClassMapperBase<MoreBaseInitStatus> {
@@ -243,8 +259,8 @@ class MoreBaseInitStatusMapper extends ClassMapperBase<MoreBaseInitStatus> {
 mixin MoreBaseInitStatusMappable {
   MoreBaseInitStatusCopyWith<MoreBaseInitStatus, MoreBaseInitStatus,
           MoreBaseInitStatus>
-      get copyWith => _MoreBaseInitStatusCopyWithImpl(
-          this as MoreBaseInitStatus, $identity, $identity);
+      get copyWith => _MoreBaseInitStatusCopyWithImpl<MoreBaseInitStatus,
+          MoreBaseInitStatus>(this as MoreBaseInitStatus, $identity, $identity);
   @override
   String toString() {
     return MoreBaseInitStatusMapper.ensureInitialized()
@@ -267,8 +283,8 @@ mixin MoreBaseInitStatusMappable {
 extension MoreBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MoreBaseInitStatus, $Out> {
   MoreBaseInitStatusCopyWith<$R, MoreBaseInitStatus, $Out>
-      get $asMoreBaseInitStatus =>
-          $base.as((v, t, t2) => _MoreBaseInitStatusCopyWithImpl(v, t, t2));
+      get $asMoreBaseInitStatus => $base.as(
+          (v, t, t2) => _MoreBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class MoreBaseInitStatusCopyWith<$R, $In extends MoreBaseInitStatus,
@@ -305,5 +321,5 @@ class _MoreBaseInitStatusCopyWithImpl<$R, $Out>
   @override
   MoreBaseInitStatusCopyWith<$R2, MoreBaseInitStatus, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _MoreBaseInitStatusCopyWithImpl($value, $cast, t);
+      _MoreBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

@@ -10,11 +10,11 @@ import '../../../../../domain/entities/pagination/list_with_pagination_data.dart
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../../../domain/usecases/home/home_use_case.dart';
+import '../../../../../domain/usecases/refresh_use_case.dart';
+import '../../../../../domain/usecases/settings_use_case.dart';
+import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
-import '../../../base/content_mode_view_model/content_mode.dart';
-import '../../../base/content_mode_view_model/content_mode_state.dart';
-import '../../../base/content_mode_view_model/content_mode_view_model.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
@@ -24,12 +24,6 @@ import 'home_state.dart';
 part 'home_movies_view_model.dart';
 
 part 'home_series_view_model.dart';
-
-final homeContModeViewModelPr = AutoDisposeNotifierProvider.family<
-  ContentModeViewModel,
-  ContentModeState,
-  ContentMode
->(ContentModeViewModel.new);
 
 /// {@category StateManagement}
 ///
@@ -58,7 +52,11 @@ abstract base class HomeViewModel<T extends MediaShortData>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final HomeUseCase<T> _homeUseCase;
   late final WatchUseCase<T> _watchUseCase;
+  late final SyncUseCase _syncUseCase;
+  late final RefreshUseCase _refreshUseCase;
+  late final SettingsUseCase _settingsUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
+  late final StreamSubscription<Result<bool>> _refreshSubscription;
   CancelableOperation<Result<ListWithPaginationData<T>>>? _loadTabOperation;
 
   void _handleWatchChanges(Result<T> event) {
@@ -79,6 +77,28 @@ abstract base class HomeViewModel<T extends MediaShortData>
       tabCont: state.tabCont.copyWith(
         mediaData: tabData.copyWith(items: tabItems),
       ),
+    );
+  }
+
+  void _handleRefresh(Result<bool> event) {
+    final shouldRefresh = event.fold((_) => null, (value) => value);
+
+    if (shouldRefresh == true && !state.status.isLoading) {
+      loadInitialData(showLoader: false);
+    }
+  }
+
+  Future<void> _handleFirstLaunch() {
+    return safeCall(
+      _settingsUseCase.isFirstLaunch,
+      onResult: (result) {
+        result.fold((_) {}, (isFirstLaunch) async {
+          if (!isFirstLaunch) return;
+
+          _settingsUseCase.setFirstLaunch();
+          _updateStatus(FirstLaunchStatus());
+        });
+      },
     );
   }
 

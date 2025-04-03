@@ -6,27 +6,30 @@ part of 'home_routes.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [
-      $homeRoute,
-    ];
+List<RouteBase> get $appRoutes => [$homeRoute];
 
 RouteBase get $homeRoute => GoRouteData.$route(
-      path: '/home',
-      factory: $HomeRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: 'search',
-          factory: $SearchRouteExtension._fromState,
-        ),
-      ],
-    );
+  path: '/home',
+
+  factory: $HomeRouteExtension._fromState,
+  routes: [
+    GoRouteData.$route(
+      path: 'search',
+
+      factory: $SearchRouteExtension._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'filter',
+
+      factory: $FilterRouteExtension._fromState,
+    ),
+  ],
+);
 
 extension $HomeRouteExtension on HomeRoute {
   static HomeRoute _fromState(GoRouterState state) => HomeRoute();
 
-  String get location => GoRouteData.$location(
-        '/home',
-      );
+  String get location => GoRouteData.$location('/home');
 
   void go(BuildContext context) => context.go(location);
 
@@ -39,17 +42,9 @@ extension $HomeRouteExtension on HomeRoute {
 }
 
 extension $SearchRouteExtension on SearchRoute {
-  static SearchRoute _fromState(GoRouterState state) => SearchRoute(
-        contentMode: _$ContentModeEnumMap
-            ._$fromName(state.uri.queryParameters['content-mode']!),
-      );
+  static SearchRoute _fromState(GoRouterState state) => SearchRoute();
 
-  String get location => GoRouteData.$location(
-        '/home/search',
-        queryParams: {
-          'content-mode': _$ContentModeEnumMap[contentMode],
-        },
-      );
+  String get location => GoRouteData.$location('/home/search');
 
   void go(BuildContext context) => context.go(location);
 
@@ -61,12 +56,17 @@ extension $SearchRouteExtension on SearchRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-const _$ContentModeEnumMap = {
-  ContentMode.movies: 'movies',
-  ContentMode.series: 'series',
-};
+extension $FilterRouteExtension on FilterRoute {
+  static FilterRoute _fromState(GoRouterState state) => FilterRoute();
 
-extension<T extends Enum> on Map<T, String> {
-  T _$fromName(String value) =>
-      entries.singleWhere((element) => element.value == value).key;
+  String get location => GoRouteData.$location('/home/filter');
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }

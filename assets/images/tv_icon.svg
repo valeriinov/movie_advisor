@@ -1,0 +1,8 @@
+<svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- TV screen -->
+    <rect x="2.5" y="8" width="17" height="12" rx="2" stroke="#67686D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Left antenna diverging from the center -->
+    <path d="M11 8 L7 4" stroke="#67686D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Right antenna diverging from the center -->
+    <path d="M11 8 L15 4" stroke="#67686D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

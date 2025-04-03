@@ -2,7 +2,9 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../utils/date_mapper_hook.dart';
 import '../../utils/genres_hook.dart';
-import '../cast/credits_data_dto.dart';
+import '../credits/credits_data_dto.dart';
+import '../country_dto.dart';
+import '../video/videos_data_dto.dart';
 import 'series_genre_dto.dart';
 
 part 'series_data_dto.mapper.dart';
@@ -15,7 +17,7 @@ class SeriesDataDto with SeriesDataDtoMappable {
   final List<SeriesGenreDto>? genres;
   @MappableField(key: 'genres', hook: SeriesGenreHook())
   final List<SeriesGenreDto>? genresAlt;
-  final List<String>? originCountry;
+  final List<CountryDto>? originCountry;
   final String? originalLanguage;
   final String? originalName;
   final String? overview;
@@ -27,6 +29,7 @@ class SeriesDataDto with SeriesDataDtoMappable {
   final double? voteAverage;
   final int? voteCount;
   final CreditsDataDto? credits;
+  final VideosDataDto? videos;
   final int? userRating;
   final bool? isInWatchlist;
   final bool? isWatched;
@@ -47,6 +50,7 @@ class SeriesDataDto with SeriesDataDtoMappable {
     this.voteAverage,
     this.voteCount,
     this.credits,
+    this.videos,
     this.userRating,
     this.isInWatchlist,
     this.isWatched,

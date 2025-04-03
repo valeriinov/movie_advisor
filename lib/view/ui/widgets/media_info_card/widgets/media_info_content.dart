@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
-import '../../../../../common/utils/ext/double/to_rating.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../resources/app_images.dart';
+import '../../../resources/app_rate_format.dart';
 import '../../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../../resources/ext/media_date_str.dart';
 import '../../../resources/ext/media_genres_str.dart';
@@ -35,7 +35,10 @@ class MediaInfoContent extends StatelessWidget {
             14.gapVert(),
             MediaInfoTile(
               iconPath: AppImages.starIcon,
-              description: voteAverage.toRatingString(),
+              description: AppRateFormat.createRateString(
+                voteAverage,
+                itemData.userRating,
+              ),
               textStyle: styles.infoCardRatingTextStyle,
             ),
             5.gapVert(),

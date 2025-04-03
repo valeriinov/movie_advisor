@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element, unnecessary_cast
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'base_dialogs_styles_ext.dart';
 
@@ -12,6 +13,7 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
   TextStyle get dlgPrimTitleTextStyle;
   TextStyle get dlgPrimContTextStyle;
   TextStyle get dlgPrimBtnTextStyle;
+  TextStyle get dlgSecBtnTextStyle;
   EdgeInsets get dlgPrimActPadding;
   EdgeInsets get dlgPrimInsPadding;
   ShapeBorder get dlgPrimShape;
@@ -27,6 +29,7 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
     TextStyle? dlgPrimTitleTextStyle,
     TextStyle? dlgPrimContTextStyle,
     TextStyle? dlgPrimBtnTextStyle,
+    TextStyle? dlgSecBtnTextStyle,
     EdgeInsets? dlgPrimActPadding,
     EdgeInsets? dlgPrimInsPadding,
     ShapeBorder? dlgPrimShape,
@@ -42,6 +45,7 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
           dlgPrimTitleTextStyle ?? this.dlgPrimTitleTextStyle,
       dlgPrimContTextStyle: dlgPrimContTextStyle ?? this.dlgPrimContTextStyle,
       dlgPrimBtnTextStyle: dlgPrimBtnTextStyle ?? this.dlgPrimBtnTextStyle,
+      dlgSecBtnTextStyle: dlgSecBtnTextStyle ?? this.dlgSecBtnTextStyle,
       dlgPrimActPadding: dlgPrimActPadding ?? this.dlgPrimActPadding,
       dlgPrimInsPadding: dlgPrimInsPadding ?? this.dlgPrimInsPadding,
       dlgPrimShape: dlgPrimShape ?? this.dlgPrimShape,
@@ -56,15 +60,23 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
 
   @override
   BaseDialogsStyles lerp(
-      covariant ThemeExtension<BaseDialogsStyles>? other, double t) {
+    covariant ThemeExtension<BaseDialogsStyles>? other,
+    double t,
+  ) {
     if (other is! BaseDialogsStyles) return this as BaseDialogsStyles;
     return BaseDialogsStyles(
-      dlgPrimTitleTextStyle: TextStyle.lerp(
-          dlgPrimTitleTextStyle, other.dlgPrimTitleTextStyle, t)!,
+      dlgPrimTitleTextStyle:
+          TextStyle.lerp(
+            dlgPrimTitleTextStyle,
+            other.dlgPrimTitleTextStyle,
+            t,
+          )!,
       dlgPrimContTextStyle:
           TextStyle.lerp(dlgPrimContTextStyle, other.dlgPrimContTextStyle, t)!,
       dlgPrimBtnTextStyle:
           TextStyle.lerp(dlgPrimBtnTextStyle, other.dlgPrimBtnTextStyle, t)!,
+      dlgSecBtnTextStyle:
+          TextStyle.lerp(dlgSecBtnTextStyle, other.dlgSecBtnTextStyle, t)!,
       dlgPrimActPadding: t < 0.5 ? dlgPrimActPadding : other.dlgPrimActPadding,
       dlgPrimInsPadding: t < 0.5 ? dlgPrimInsPadding : other.dlgPrimInsPadding,
       dlgPrimShape: t < 0.5 ? dlgPrimShape : other.dlgPrimShape,
@@ -82,30 +94,58 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BaseDialogsStyles &&
-            const DeepCollectionEquality()
-                .equals(dlgPrimTitleTextStyle, other.dlgPrimTitleTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(dlgPrimContTextStyle, other.dlgPrimContTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(dlgPrimBtnTextStyle, other.dlgPrimBtnTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(dlgPrimActPadding, other.dlgPrimActPadding) &&
-            const DeepCollectionEquality()
-                .equals(dlgPrimInsPadding, other.dlgPrimInsPadding) &&
-            const DeepCollectionEquality()
-                .equals(dlgPrimShape, other.dlgPrimShape) &&
-            const DeepCollectionEquality()
-                .equals(toastBorderRadius, other.toastBorderRadius) &&
-            const DeepCollectionEquality()
-                .equals(toastBotMargin, other.toastBotMargin) &&
-            const DeepCollectionEquality()
-                .equals(toastHorMargin, other.toastHorMargin) &&
-            const DeepCollectionEquality()
-                .equals(toastMinHeight, other.toastMinHeight) &&
-            const DeepCollectionEquality()
-                .equals(toastContPadding, other.toastContPadding) &&
-            const DeepCollectionEquality()
-                .equals(toastTextStyle, other.toastTextStyle));
+            const DeepCollectionEquality().equals(
+              dlgPrimTitleTextStyle,
+              other.dlgPrimTitleTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgPrimContTextStyle,
+              other.dlgPrimContTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgPrimBtnTextStyle,
+              other.dlgPrimBtnTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgSecBtnTextStyle,
+              other.dlgSecBtnTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgPrimActPadding,
+              other.dlgPrimActPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgPrimInsPadding,
+              other.dlgPrimInsPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dlgPrimShape,
+              other.dlgPrimShape,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastBorderRadius,
+              other.toastBorderRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastBotMargin,
+              other.toastBotMargin,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastHorMargin,
+              other.toastHorMargin,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastMinHeight,
+              other.toastMinHeight,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastContPadding,
+              other.toastContPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              toastTextStyle,
+              other.toastTextStyle,
+            ));
   }
 
   @override
@@ -115,6 +155,7 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
       const DeepCollectionEquality().hash(dlgPrimTitleTextStyle),
       const DeepCollectionEquality().hash(dlgPrimContTextStyle),
       const DeepCollectionEquality().hash(dlgPrimBtnTextStyle),
+      const DeepCollectionEquality().hash(dlgSecBtnTextStyle),
       const DeepCollectionEquality().hash(dlgPrimActPadding),
       const DeepCollectionEquality().hash(dlgPrimInsPadding),
       const DeepCollectionEquality().hash(dlgPrimShape),

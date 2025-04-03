@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../resources/base_theme/colors/base_colors_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 
 /// {@category Widgets}
@@ -22,12 +23,16 @@ class KeyboardActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.baseColors;
+
     return TextButton(
       onPressed: onButtonPressed,
       child: Text(
         buttonText ?? LocaleKeys.keyboardDoneButton.tr(),
-        style:
-            const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+        style: TextStyle(
+          color: colors.kbdActionBarFg,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

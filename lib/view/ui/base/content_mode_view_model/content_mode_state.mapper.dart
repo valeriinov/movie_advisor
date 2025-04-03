@@ -44,8 +44,9 @@ class ContentModeStateMapper extends ClassMapperBase<ContentModeState> {
 
 mixin ContentModeStateMappable {
   ContentModeStateCopyWith<ContentModeState, ContentModeState, ContentModeState>
-      get copyWith => _ContentModeStateCopyWithImpl(
-          this as ContentModeState, $identity, $identity);
+      get copyWith =>
+          _ContentModeStateCopyWithImpl<ContentModeState, ContentModeState>(
+              this as ContentModeState, $identity, $identity);
   @override
   String toString() {
     return ContentModeStateMapper.ensureInitialized()
@@ -68,8 +69,8 @@ mixin ContentModeStateMappable {
 extension ContentModeStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ContentModeState, $Out> {
   ContentModeStateCopyWith<$R, ContentModeState, $Out>
-      get $asContentModeState =>
-          $base.as((v, t, t2) => _ContentModeStateCopyWithImpl(v, t, t2));
+      get $asContentModeState => $base
+          .as((v, t, t2) => _ContentModeStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ContentModeStateCopyWith<$R, $In extends ContentModeState, $Out>
@@ -101,7 +102,7 @@ class _ContentModeStateCopyWithImpl<$R, $Out>
   @override
   ContentModeStateCopyWith<$R2, ContentModeState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _ContentModeStateCopyWithImpl($value, $cast, t);
+      _ContentModeStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class ContentModeBaseStatusMapper
@@ -149,9 +150,9 @@ class ContentModeBaseStatusMapper
 
 mixin ContentModeBaseStatusMappable {
   ContentModeBaseStatusCopyWith<ContentModeBaseStatus, ContentModeBaseStatus,
-          ContentModeBaseStatus>
-      get copyWith => _ContentModeBaseStatusCopyWithImpl(
-          this as ContentModeBaseStatus, $identity, $identity);
+      ContentModeBaseStatus> get copyWith => _ContentModeBaseStatusCopyWithImpl<
+          ContentModeBaseStatus, ContentModeBaseStatus>(
+      this as ContentModeBaseStatus, $identity, $identity);
   @override
   String toString() {
     return ContentModeBaseStatusMapper.ensureInitialized()
@@ -174,8 +175,8 @@ mixin ContentModeBaseStatusMappable {
 extension ContentModeBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ContentModeBaseStatus, $Out> {
   ContentModeBaseStatusCopyWith<$R, ContentModeBaseStatus, $Out>
-      get $asContentModeBaseStatus =>
-          $base.as((v, t, t2) => _ContentModeBaseStatusCopyWithImpl(v, t, t2));
+      get $asContentModeBaseStatus => $base.as(
+          (v, t, t2) => _ContentModeBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class ContentModeBaseStatusCopyWith<
@@ -214,5 +215,5 @@ class _ContentModeBaseStatusCopyWithImpl<$R, $Out>
   @override
   ContentModeBaseStatusCopyWith<$R2, ContentModeBaseStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _ContentModeBaseStatusCopyWithImpl($value, $cast, t);
+          _ContentModeBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

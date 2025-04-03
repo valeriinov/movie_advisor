@@ -10,7 +10,7 @@ class FloatingSearchBar extends StatelessWidget {
   final bool autoFocus;
   final void Function(String?)? onSearch;
   final VoidCallback? onSearchTap;
-  final VoidCallback? onMoreTap;
+  final VoidCallback? onFilterTap;
   final TextEditingController? textController;
 
   const FloatingSearchBar({
@@ -19,23 +19,28 @@ class FloatingSearchBar extends StatelessWidget {
     this.autoFocus = true,
     this.onSearch,
     this.onSearchTap,
-    this.onMoreTap,
+    this.onFilterTap,
     this.textController,
   });
 
   @override
   Widget build(BuildContext context) {
     final dimens = context.baseDimens;
+    final isFilterButtonVisible = onFilterTap != null;
+
+    final fixedHeight = kToolbarHeight + (dimens.spLarge / 2);
 
     return SliverAppBar(
       floating: true,
       snap: true,
       primary: false,
       automaticallyImplyLeading: false,
-      toolbarHeight: kToolbarHeight + (dimens.spLarge / 2),
+      toolbarHeight: fixedHeight,
+      expandedHeight: fixedHeight,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(
           left: dimens.padHorPrim,
+          right: isFilterButtonVisible ? 0 : dimens.padHorPrim,
           bottom: dimens.spLarge / 2,
         ),
         title: Row(
@@ -52,10 +57,11 @@ class FloatingSearchBar extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(
-              onPressed: onMoreTap,
-              icon: AppSvgAsset(path: AppImages.moreVertIcon),
-            ),
+            if (isFilterButtonVisible)
+              IconButton(
+                onPressed: onFilterTap,
+                icon: AppSvgAsset(path: AppImages.filterIcon),
+              ),
           ],
         ),
       ),

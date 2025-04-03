@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 
 import '../../common/constants/db_constants.dart';
+import '../dto/country_dto.dart';
 import '../dto/movie/movie_data_dto.dart';
 import '../dto/movie/movie_genre_dto.dart';
 import '../dto/movie/movie_rate_filter_data_dto.dart';
@@ -15,17 +16,21 @@ import '../dto/series/series_short_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../local/utils/ext/media_table_mapper.dart';
 import '../repositories/media_local_data_source.dart';
+import '../repositories/settings_provider.dart';
 import '../utils/media_merger/media_merger.dart';
 
 class ImplMediaLocalDataSource implements MediaLocalDataSource {
   final AppLocalDatabase _database;
   final MediaMerger _mediaMerger;
+  final SettingsProvider _settingsProvider;
 
   ImplMediaLocalDataSource({
     required AppLocalDatabase database,
     required MediaMerger mediaMerger,
+    required SettingsProvider settingsProvider,
   }) : _database = database,
-       _mediaMerger = mediaMerger;
+       _mediaMerger = mediaMerger,
+       _settingsProvider = settingsProvider;
 
   @override
   Future<MoviesResponseDataDto> addLocalDataToMoviesResponse(
@@ -82,7 +87,7 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final movies = await query.get();
 
-    return movies.map((m) => m.toDto()).toList();
+    return movies.map((m) => m.toDto(_settingsProvider.currentLocale)).toList();
   }
 
   @override
@@ -92,7 +97,7 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final series = await query.get();
 
-    return series.map((s) => s.toDto()).toList();
+    return series.map((s) => s.toDto(_settingsProvider.currentLocale)).toList();
   }
 
   @override
@@ -129,7 +134,7 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final movies = await query.get();
 
-    return movies.map((m) => m.toDto()).toList();
+    return movies.map((m) => m.toDto(_settingsProvider.currentLocale)).toList();
   }
 
   List<MovieGenreDto> _calculateTargetMovieGenres(
@@ -152,10 +157,12 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
         .toList();
   }
 
-  List<String> _calculateTopMovieCountries(List<MovieShortDataDto> movieList) {
+  List<CountryDto> _calculateTopMovieCountries(
+    List<MovieShortDataDto> movieList,
+  ) {
     final frequency = movieList
-        .expand((movie) => movie.originCountry ?? <String>[])
-        .fold<Map<String, int>>({}, (map, country) {
+        .expand((movie) => movie.originCountry ?? <CountryDto>[])
+        .fold<Map<CountryDto, int>>({}, (map, country) {
           map[country] = (map[country] ?? 0) + 1;
           return map;
         });
@@ -203,7 +210,9 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
 
     final seriesList = await query.get();
 
-    return seriesList.map((s) => s.toDto()).toList();
+    return seriesList
+        .map((s) => s.toDto(_settingsProvider.currentLocale))
+        .toList();
   }
 
   List<SeriesGenreDto> _calculateTargetSeriesGenres(
@@ -226,12 +235,12 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
         .toList();
   }
 
-  List<String> _calculateTopSeriesCountries(
+  List<CountryDto> _calculateTopSeriesCountries(
     List<SeriesShortDataDto> seriesList,
   ) {
     final frequency = seriesList
-        .expand((series) => series.originCountry ?? <String>[])
-        .fold<Map<String, int>>({}, (map, country) {
+        .expand((series) => series.originCountry ?? <CountryDto>[])
+        .fold<Map<CountryDto, int>>({}, (map, country) {
           map[country] = (map[country] ?? 0) + 1;
           return map;
         });

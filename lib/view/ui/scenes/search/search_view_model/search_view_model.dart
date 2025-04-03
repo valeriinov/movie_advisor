@@ -13,11 +13,6 @@ import '../../../../../domain/entities/series/series_short_data.dart';
 import '../../../../../domain/usecases/search/search_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
 import '../../../../di/injector.dart';
-import '../../../base/content_mode_view_model/content_mode.dart';
-import '../../../base/content_mode_view_model/content_mode_state.dart';
-import '../../../base/content_mode_view_model/content_mode_view_model.dart';
-import '../../../base/filter_view_model/filter_state.dart';
-import '../../../base/filter_view_model/filter_view_model.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import 'search_state.dart';
@@ -25,17 +20,6 @@ import 'search_state.dart';
 part 'search_movies_view_model.dart';
 
 part 'search_series_view_model.dart';
-
-final searchContModeViewModelPr = AutoDisposeNotifierProvider.family<
-  ContentModeViewModel,
-  ContentModeState,
-  ContentMode
->(ContentModeViewModel.new);
-
-final searchFilterViewModelPr =
-    AutoDisposeNotifierProvider<FilterViewModel, FilterState>(
-      FilterViewModel.new,
-    );
 
 /// {@category StateManagement}
 ///
@@ -81,7 +65,7 @@ abstract base class SearchViewModel<T extends MediaShortData>
   }
 
   Future<void> loadByFilter(SearchFilterData filter, {bool showLoader = true}) {
-    _updateStatus(SearchBaseInitStatus(isLoading: showLoader));
+    _updateStatus(SearchBaseStatus(isLoading: showLoader));
 
     return _loadSearchResult(filter);
   }

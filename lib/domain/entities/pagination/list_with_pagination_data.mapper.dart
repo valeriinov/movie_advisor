@@ -55,8 +55,10 @@ class ListWithPaginationDataMapper
 mixin ListWithPaginationDataMappable<T> {
   ListWithPaginationDataCopyWith<ListWithPaginationData<T>,
           ListWithPaginationData<T>, ListWithPaginationData<T>, T>
-      get copyWith => _ListWithPaginationDataCopyWithImpl(
-          this as ListWithPaginationData<T>, $identity, $identity);
+      get copyWith => _ListWithPaginationDataCopyWithImpl<
+          ListWithPaginationData<T>,
+          ListWithPaginationData<T>,
+          T>(this as ListWithPaginationData<T>, $identity, $identity);
   @override
   String toString() {
     return ListWithPaginationDataMapper.ensureInitialized()
@@ -79,8 +81,8 @@ mixin ListWithPaginationDataMappable<T> {
 extension ListWithPaginationDataValueCopy<$R, $Out, T>
     on ObjectCopyWith<$R, ListWithPaginationData<T>, $Out> {
   ListWithPaginationDataCopyWith<$R, ListWithPaginationData<T>, $Out, T>
-      get $asListWithPaginationData =>
-          $base.as((v, t, t2) => _ListWithPaginationDataCopyWithImpl(v, t, t2));
+      get $asListWithPaginationData => $base.as((v, t, t2) =>
+          _ListWithPaginationDataCopyWithImpl<$R, $Out, T>(v, t, t2));
 }
 
 abstract class ListWithPaginationDataCopyWith<
@@ -124,5 +126,5 @@ class _ListWithPaginationDataCopyWithImpl<$R, $Out, T>
   @override
   ListWithPaginationDataCopyWith<$R2, ListWithPaginationData<T>, $Out2, T>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _ListWithPaginationDataCopyWithImpl($value, $cast, t);
+          _ListWithPaginationDataCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }
