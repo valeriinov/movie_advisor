@@ -8,7 +8,7 @@ class WatchMovieUseCase implements WatchUseCase<MovieShortData> {
   final WatchRepository _repository;
 
   WatchMovieUseCase({required WatchRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   @override
   Stream<Result<MovieShortData>> watchChanges() {
@@ -31,8 +31,14 @@ class WatchMovieUseCase implements WatchUseCase<MovieShortData> {
   }
 
   @override
-  Future<Result<void>> addToWatched(MovieShortData data) {
-    return _repository.addToWatchedMovie(data);
+  Future<Result<void>> addToWatched(
+    MovieShortData data, {
+    bool deleteFromWatchlistIfExists = false,
+  }) {
+    return _repository.addToWatchedMovie(
+      data,
+      deleteFromWatchlistIfExists: deleteFromWatchlistIfExists,
+    );
   }
 
   @override

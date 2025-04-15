@@ -8,7 +8,7 @@ class WatchSeriesUseCase implements WatchUseCase<SeriesShortData> {
   final WatchRepository _repository;
 
   WatchSeriesUseCase({required WatchRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   @override
   Stream<Result<SeriesShortData>> watchChanges() {
@@ -31,8 +31,14 @@ class WatchSeriesUseCase implements WatchUseCase<SeriesShortData> {
   }
 
   @override
-  Future<Result<void>> addToWatched(SeriesShortData data) {
-    return _repository.addToWatchedSeries(data);
+  Future<Result<void>> addToWatched(
+    SeriesShortData data, {
+    bool deleteFromWatchlistIfExists = false,
+  }) {
+    return _repository.addToWatchedSeries(
+      data,
+      deleteFromWatchlistIfExists: deleteFromWatchlistIfExists,
+    );
   }
 
   @override

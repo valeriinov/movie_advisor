@@ -210,5 +210,6 @@ abstract class  LocaleKeys {
   static const emptyCastTab = 'emptyCastTab';
   static const crewJobDirector = 'crewJobDirector';
   static const crewJobProducer = 'crewJobProducer';
+  static const deleteFromWatchlist = 'deleteFromWatchlist';
 
 }
