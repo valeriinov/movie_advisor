@@ -1214,7 +1214,7 @@ packages:
     source: hosted
     version: "0.2.12"
   source_gen:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: source_gen
       sha256: "35c8150ece9e8c8d263337a265153c3329667640850b9304861faea59fc98f6b"
