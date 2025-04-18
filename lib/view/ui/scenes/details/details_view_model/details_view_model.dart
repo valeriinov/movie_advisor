@@ -91,14 +91,24 @@ abstract base class DetailsViewModel<
     );
   }
 
-  Future<void> addToWatched(int userRating) async {
+  Future<void> addToWatched(
+    int userRating, {
+    required bool deleteFromWatchlistIfExists,
+  }) async {
     _updateStatus(WatchedLoadingStatus());
 
-    final data =
+    T data =
         state.data.copyWith(isWatched: true, userRating: userRating) as T;
 
+    if (deleteFromWatchlistIfExists) {
+      data = data.copyWith(isInWatchlist: false) as T;
+    }
+
     await safeCall(
-      () => _watchUseCase.addToWatched(data.toShortData()),
+      () => _watchUseCase.addToWatched(
+        data.toShortData(),
+        deleteFromWatchlistIfExists: deleteFromWatchlistIfExists,
+      ),
       onResult:
           (r) => _handleResult(r, () {
             state = state.copyWith(status: AddedToWatchedStatus(), data: data);

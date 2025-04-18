@@ -98,6 +98,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get botSheetFg;
   Color get botSheetIcon;
   Color get botSheetBarrier;
+  Color get botSheetCheckboxBorder;
+  Color get botSheetCheckboxFill;
   Color get sliderVal;
   Color get sliderTrackFg;
   Color get sliderTrackBg;
@@ -206,6 +208,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? botSheetFg,
     Color? botSheetIcon,
     Color? botSheetBarrier,
+    Color? botSheetCheckboxBorder,
+    Color? botSheetCheckboxFill,
     Color? sliderVal,
     Color? sliderTrackFg,
     Color? sliderTrackBg,
@@ -315,6 +319,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       botSheetFg: botSheetFg ?? this.botSheetFg,
       botSheetIcon: botSheetIcon ?? this.botSheetIcon,
       botSheetBarrier: botSheetBarrier ?? this.botSheetBarrier,
+      botSheetCheckboxBorder:
+          botSheetCheckboxBorder ?? this.botSheetCheckboxBorder,
+      botSheetCheckboxFill: botSheetCheckboxFill ?? this.botSheetCheckboxFill,
       sliderVal: sliderVal ?? this.sliderVal,
       sliderTrackFg: sliderTrackFg ?? this.sliderTrackFg,
       sliderTrackBg: sliderTrackBg ?? this.sliderTrackBg,
@@ -460,6 +467,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       botSheetFg: Color.lerp(botSheetFg, other.botSheetFg, t)!,
       botSheetIcon: Color.lerp(botSheetIcon, other.botSheetIcon, t)!,
       botSheetBarrier: Color.lerp(botSheetBarrier, other.botSheetBarrier, t)!,
+      botSheetCheckboxBorder:
+          Color.lerp(botSheetCheckboxBorder, other.botSheetCheckboxBorder, t)!,
+      botSheetCheckboxFill:
+          Color.lerp(botSheetCheckboxFill, other.botSheetCheckboxFill, t)!,
       sliderVal: Color.lerp(sliderVal, other.sliderVal, t)!,
       sliderTrackFg: Color.lerp(sliderTrackFg, other.sliderTrackFg, t)!,
       sliderTrackBg: Color.lerp(sliderTrackBg, other.sliderTrackBg, t)!,
@@ -832,6 +843,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
               botSheetBarrier,
               other.botSheetBarrier,
             ) &&
+            const DeepCollectionEquality().equals(
+              botSheetCheckboxBorder,
+              other.botSheetCheckboxBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetCheckboxFill,
+              other.botSheetCheckboxFill,
+            ) &&
             const DeepCollectionEquality().equals(sliderVal, other.sliderVal) &&
             const DeepCollectionEquality().equals(
               sliderTrackFg,
@@ -988,6 +1007,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(botSheetFg),
       const DeepCollectionEquality().hash(botSheetIcon),
       const DeepCollectionEquality().hash(botSheetBarrier),
+      const DeepCollectionEquality().hash(botSheetCheckboxBorder),
+      const DeepCollectionEquality().hash(botSheetCheckboxFill),
       const DeepCollectionEquality().hash(sliderVal),
       const DeepCollectionEquality().hash(sliderTrackFg),
       const DeepCollectionEquality().hash(sliderTrackBg),

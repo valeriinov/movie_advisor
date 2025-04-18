@@ -174,7 +174,7 @@ packages:
     description:
       path: "packages/class_namer"
       ref: main
-      resolved-ref: "0171510b8dc8d9164e14f2c46e1af575fb4d7cb7"
+      resolved-ref: "1694d436a8420d7bdba773f7dc6087aa578b4e15"
       url: "https://github.com/valeriinov/class_namer.git"
     source: git
     version: "0.0.1"
@@ -183,7 +183,7 @@ packages:
     description:
       path: "packages/class_namer_annotation"
       ref: main
-      resolved-ref: "0171510b8dc8d9164e14f2c46e1af575fb4d7cb7"
+      resolved-ref: "1694d436a8420d7bdba773f7dc6087aa578b4e15"
       url: "https://github.com/valeriinov/class_namer.git"
     source: git
     version: "0.0.1"

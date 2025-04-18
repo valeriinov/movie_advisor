@@ -126,9 +126,17 @@ class ImplWatchRepository implements WatchRepository {
   }
 
   @override
-  Future<Result<void>> addToWatchedMovie(MovieShortData data) async {
+  Future<Result<void>> addToWatchedMovie(
+    MovieShortData data, {
+    required bool deleteFromWatchlistIfExists,
+  }) async {
     try {
-      final preparedData = data.copyWith(isWatched: true);
+      MovieShortData preparedData = data.copyWith(isWatched: true);
+
+      if (deleteFromWatchlistIfExists && preparedData.isInWatchlist) {
+        preparedData = preparedData.copyWith(isInWatchlist: false);
+      }
+
       final dto = _moviesMapper.mapMovieShortDataToDto(preparedData);
 
       final preparedDto = await _remoteDataSource.getLocalizedMovie(dto);
@@ -188,9 +196,17 @@ class ImplWatchRepository implements WatchRepository {
   }
 
   @override
-  Future<Result<void>> addToWatchedSeries(SeriesShortData data) async {
+  Future<Result<void>> addToWatchedSeries(
+    SeriesShortData data, {
+    required bool deleteFromWatchlistIfExists,
+  }) async {
     try {
-      final preparedData = data.copyWith(isWatched: true);
+      SeriesShortData preparedData = data.copyWith(isWatched: true);
+
+      if (deleteFromWatchlistIfExists && preparedData.isInWatchlist) {
+        preparedData = preparedData.copyWith(isInWatchlist: false);
+      }
+
       final dto = _seriesMapper.mapSeriesShortDataToDto(preparedData);
 
       final preparedDto = await _remoteDataSource.getLocalizedSeries(dto);

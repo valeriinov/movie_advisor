@@ -133,6 +133,7 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
 
   void _onWatchedTap(BuildContext context, DetailsAFSP vsp) {
     final isWatched = vsp.selectRead((s) => s.data.isWatched);
+    final isInWatchlist = vsp.selectRead((s) => s.data.isInWatchlist);
     final initRate = vsp.selectRead((s) => s.data.userRating);
 
     showBlurredBottomSheet(
@@ -141,7 +142,12 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
       child: RateBottomSheet(
         title: LocaleKeys.rateMovieTitle.tr(),
         initRate: initRate,
-        onRate: (rate) => vsp.viewModel.addToWatched(rate),
+        isInWatchlist: isInWatchlist,
+        onRate:
+            (rate, deleteFromWatchlistIfExists) => vsp.viewModel.addToWatched(
+              rate,
+              deleteFromWatchlistIfExists: deleteFromWatchlistIfExists,
+            ),
         removeRate: isWatched ? () => vsp.viewModel.removeFromWatched() : null,
       ),
     );
