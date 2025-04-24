@@ -16,6 +16,7 @@ import '../../data/mappers/app_credits_mapper.dart';
 import '../../data/mappers/app_filter_mapper.dart';
 import '../../data/mappers/app_mapper.dart';
 import '../../data/mappers/app_movies_mapper.dart';
+import '../../data/mappers/app_person_mapper.dart';
 import '../../data/mappers/app_rating_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
 import '../../data/mappers/app_series_mapper.dart';
@@ -31,6 +32,7 @@ import '../../data/network/services/details_service.dart';
 import '../../data/network/services/filter_service.dart';
 import '../../data/network/services/home_service.dart';
 import '../../data/network/services/media_service.dart';
+import '../../data/network/services/person_service.dart';
 import '../../data/network/services/search_service.dart';
 import '../../data/network/services/watch_service.dart';
 import '../../data/network/utils/image_url_handler/image_url_handler.dart';
@@ -48,6 +50,8 @@ import '../../data/repositories/filter/impl_filter_repository.dart';
 import '../../data/repositories/home/home_remote_data_source.dart';
 import '../../data/repositories/home/impl_home_repository.dart';
 import '../../data/repositories/media_local_data_source.dart';
+import '../../data/repositories/person/impl_person_repository.dart';
+import '../../data/repositories/person/person_remote_data_source.dart';
 import '../../data/repositories/refresh/impl_refresh_repository.dart';
 import '../../data/repositories/refresh/refresh_local_data_source.dart';
 import '../../data/repositories/search/impl_search_repository.dart';
@@ -67,6 +71,7 @@ import '../../data/sources/impl_filter_local_data_source.dart';
 import '../../data/sources/impl_filter_remote_data_source.dart';
 import '../../data/sources/impl_home_remote_data_source.dart';
 import '../../data/sources/impl_media_local_data_source.dart';
+import '../../data/sources/impl_person_remote_data_source.dart';
 import '../../data/sources/impl_refresh_local_data_source.dart';
 import '../../data/sources/impl_search_remote_data_source.dart';
 import '../../data/sources/impl_settings_local_data_source.dart';
@@ -80,6 +85,7 @@ import '../../domain/repositories/auth_repository.dart';
 import '../../domain/repositories/details_repository.dart';
 import '../../domain/repositories/filter_repository.dart';
 import '../../domain/repositories/home_repository.dart';
+import '../../domain/repositories/person_repository.dart';
 import '../../domain/repositories/refresh_repository.dart';
 import '../../domain/repositories/search_repository.dart';
 import '../../domain/repositories/settings_repository.dart';
@@ -92,6 +98,7 @@ import '../../domain/usecases/filter/filter_movies_use_case.dart';
 import '../../domain/usecases/filter/filter_series_use_case.dart';
 import '../../domain/usecases/home/home_movies_use_case.dart';
 import '../../domain/usecases/home/home_series_use_case.dart';
+import '../../domain/usecases/person_use_case.dart';
 import '../../domain/usecases/refresh_use_case.dart';
 import '../../domain/usecases/search/search_movies_use_case.dart';
 import '../../domain/usecases/search/search_series_use_case.dart';
@@ -449,6 +456,22 @@ final filterMoviesUseCasePr = Provider<FilterMoviesUseCase>(
 );
 final filterSeriesUseCasePr = Provider<FilterSeriesUseCase>(
   (ref) => FilterSeriesUseCase(repository: ref.read(filterRepositoryPr)),
+);
+
+// PERSON
+final personServicePr = Provider<PersonService>((_) => PersonService());
+final personRemoteDataSourcePr = Provider<PersonRemoteDataSource>(
+  (ref) => ImplPersonRemoteDataSource(service: ref.read(personServicePr)),
+);
+final personMapperPr = Provider<AppPersonMapper>((_) => AppPersonMapper());
+final personRepositoryPr = Provider<PersonRepository>(
+  (ref) => ImplPersonRepository(
+    dataSource: ref.read(personRemoteDataSourcePr),
+    mapper: ref.read(personMapperPr),
+  ),
+);
+final personUseCasePr = Provider<PersonUseCase>(
+  (ref) => PersonUseCase(repository: ref.read(personRepositoryPr)),
 );
 
 /// {@category Utils}

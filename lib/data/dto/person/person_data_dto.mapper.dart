@@ -22,7 +22,7 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
 
   static int? _$id(PersonDataDto v) => v.id;
   static const Field<PersonDataDto, int> _f$id = Field('id', _$id, opt: true);
-  static String? _$originalName(PersonDataDto v) => v.originalName;
+  static String? _$originalName(PersonDataDto v) => v.name;
   static const Field<PersonDataDto, String> _f$originalName =
       Field('originalName', _$originalName, key: r'original_name', opt: true);
   static String? _$profilePath(PersonDataDto v) => v.profilePath;
@@ -57,7 +57,7 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
   static PersonDataDto _instantiate(DecodingData data) {
     return PersonDataDto(
         id: data.dec(_f$id),
-        originalName: data.dec(_f$originalName),
+        name: data.dec(_f$originalName),
         profilePath: data.dec(_f$profilePath),
         placeOfBirth: data.dec(_f$placeOfBirth),
         biography: data.dec(_f$biography),
@@ -158,7 +158,7 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
   @override
   PersonDataDto $make(CopyWithData data) => PersonDataDto(
       id: data.get(#id, or: $value.id),
-      originalName: data.get(#originalName, or: $value.originalName),
+      name: data.get(#originalName, or: $value.name),
       profilePath: data.get(#profilePath, or: $value.profilePath),
       placeOfBirth: data.get(#placeOfBirth, or: $value.placeOfBirth),
       biography: data.get(#biography, or: $value.biography),

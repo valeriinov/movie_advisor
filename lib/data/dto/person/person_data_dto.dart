@@ -5,7 +5,7 @@ part 'person_data_dto.mapper.dart';
 @MappableClass(ignoreNull: true, caseStyle: CaseStyle.snakeCase)
 class PersonDataDto with PersonDataDtoMappable {
   final int? id;
-  final String? originalName;
+  final String? name;
   final String? profilePath;
   final String? placeOfBirth;
   final String? biography;
@@ -14,7 +14,7 @@ class PersonDataDto with PersonDataDtoMappable {
 
   const PersonDataDto({
     this.id,
-    this.originalName,
+    this.name,
     this.profilePath,
     this.placeOfBirth,
     this.biography,

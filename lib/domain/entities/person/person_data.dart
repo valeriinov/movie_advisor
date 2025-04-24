@@ -7,7 +7,7 @@ part 'person_data.mapper.dart';
 @mappableEntity
 class PersonData with PersonDataMappable {
   final int id;
-  final String originalName;
+  final String name;
   final String profilePath;
   final String placeOfBirth;
   final String biography;
@@ -16,7 +16,7 @@ class PersonData with PersonDataMappable {
 
   const PersonData({
     this.id = -1,
-    this.originalName = '',
+    this.name = '',
     this.profilePath = '',
     this.placeOfBirth = '',
     this.biography = '',

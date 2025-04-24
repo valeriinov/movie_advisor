@@ -23,7 +23,7 @@ class PersonDataMapper extends ClassMapperBase<PersonData> {
   static int _$id(PersonData v) => v.id;
   static const Field<PersonData, int> _f$id =
       Field('id', _$id, opt: true, def: -1);
-  static String _$originalName(PersonData v) => v.originalName;
+  static String _$originalName(PersonData v) => v.name;
   static const Field<PersonData, String> _f$originalName =
       Field('originalName', _$originalName, opt: true, def: '');
   static String _$profilePath(PersonData v) => v.profilePath;
@@ -56,7 +56,7 @@ class PersonDataMapper extends ClassMapperBase<PersonData> {
   static PersonData _instantiate(DecodingData data) {
     return PersonData(
         id: data.dec(_f$id),
-        originalName: data.dec(_f$originalName),
+        name: data.dec(_f$originalName),
         profilePath: data.dec(_f$profilePath),
         placeOfBirth: data.dec(_f$placeOfBirth),
         biography: data.dec(_f$biography),
@@ -138,7 +138,7 @@ class _PersonDataCopyWithImpl<$R, $Out>
   @override
   PersonData $make(CopyWithData data) => PersonData(
       id: data.get(#id, or: $value.id),
-      originalName: data.get(#originalName, or: $value.originalName),
+      name: data.get(#originalName, or: $value.name),
       profilePath: data.get(#profilePath, or: $value.profilePath),
       placeOfBirth: data.get(#placeOfBirth, or: $value.placeOfBirth),
       biography: data.get(#biography, or: $value.biography),
