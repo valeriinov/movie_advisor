@@ -459,7 +459,12 @@ final filterSeriesUseCasePr = Provider<FilterSeriesUseCase>(
 );
 
 // PERSON
-final personServicePr = Provider<PersonService>((_) => PersonService());
+final personServicePr = Provider<PersonService>(
+  (ref) => PersonService(
+    mediaApiClient: ref.read(localizedMediaApiClientPr),
+    imageUrlHandler: ref.read(imageUrlHandlerPr),
+  ),
+);
 final personRemoteDataSourcePr = Provider<PersonRemoteDataSource>(
   (ref) => ImplPersonRemoteDataSource(service: ref.read(personServicePr)),
 );

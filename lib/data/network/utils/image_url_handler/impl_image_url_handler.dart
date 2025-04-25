@@ -1,5 +1,6 @@
 import '../../../dto/credits/credits_data_dto.dart';
 import '../../../dto/movie/movie_data_dto.dart';
+import '../../../dto/person/person_data_dto.dart';
 import '../../../dto/series/series_data_dto.dart';
 import '../../constants/movies_api_constants.dart';
 import '../../env_provider/env_provider.dart';
@@ -29,6 +30,13 @@ class ImplImageUrlHandler implements ImageUrlHandler {
   @override
   List<SeriesDataDto> handleSeriesListImages(List<SeriesDataDto> series) {
     return series.map(_handleSeriesImages).toList();
+  }
+
+  @override
+  PersonDataDto handlePersonImages(PersonDataDto person) {
+    return person.copyWith(
+      profilePath: _getCreditsImageUrl(person.profilePath),
+    );
   }
 
   MovieDataDto _handleMovieImages(MovieDataDto movie) {
