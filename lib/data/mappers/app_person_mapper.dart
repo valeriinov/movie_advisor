@@ -4,6 +4,7 @@ import '../../domain/entities/person/person_data.dart';
 import '../../domain/entities/person/person_mov_cred_data.dart';
 import '../../domain/entities/person/person_ser_cred_data.dart';
 import '../../domain/entities/rating/rating.dart';
+import '../dto/credits/crew_job_dto.dart';
 import '../dto/person/gender_dto.dart';
 import '../dto/person/person_credits_data_dto.dart';
 import '../dto/person/person_data_dto.dart';
@@ -30,9 +31,12 @@ final class AppPersonMapper extends AppMapper {
   }
 
   PersonCreditsMovie _mapMovieCreditsDtoToDomain(PersonCreditsMovieDto? dto) {
+    final crew =
+        dto?.crew?.where((e) => e.crewJob != CrewJobDto.unknown).toList();
+
     return PersonCreditsMovie(
       cast: _mapMovieCreditsDataDtoToDomain(dto?.cast),
-      crew: _mapMovieCreditsDataDtoToDomain(dto?.crew ?? []),
+      crew: _mapMovieCreditsDataDtoToDomain(crew ?? []),
     );
   }
 
@@ -65,9 +69,12 @@ final class AppPersonMapper extends AppMapper {
   PersonCreditsSeries _mapSeriesCreditsDtoToDomain(
     PersonCreditsSeriesDto? dto,
   ) {
+    final crew =
+        dto?.crew?.where((e) => e.crewJob != CrewJobDto.unknown).toList();
+
     return PersonCreditsSeries(
       cast: _mapSeriesCreditsDataDtoToDomain(dto?.cast),
-      crew: _mapSeriesCreditsDataDtoToDomain(dto?.crew ?? []),
+      crew: _mapSeriesCreditsDataDtoToDomain(crew ?? []),
     );
   }
 
