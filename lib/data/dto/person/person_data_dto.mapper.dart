@@ -22,9 +22,9 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
 
   static int? _$id(PersonDataDto v) => v.id;
   static const Field<PersonDataDto, int> _f$id = Field('id', _$id, opt: true);
-  static String? _$originalName(PersonDataDto v) => v.name;
-  static const Field<PersonDataDto, String> _f$originalName =
-      Field('originalName', _$originalName, key: r'original_name', opt: true);
+  static String? _$name(PersonDataDto v) => v.name;
+  static const Field<PersonDataDto, String> _f$name =
+      Field('name', _$name, opt: true);
   static String? _$profilePath(PersonDataDto v) => v.profilePath;
   static const Field<PersonDataDto, String> _f$profilePath =
       Field('profilePath', _$profilePath, key: r'profile_path', opt: true);
@@ -36,15 +36,16 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
       Field('biography', _$biography, opt: true);
   static DateTime? _$birthday(PersonDataDto v) => v.birthday;
   static const Field<PersonDataDto, DateTime> _f$birthday =
-      Field('birthday', _$birthday);
+      Field('birthday', _$birthday, hook: DateMapperHook());
   static DateTime? _$deathDay(PersonDataDto v) => v.deathDay;
-  static const Field<PersonDataDto, DateTime> _f$deathDay =
-      Field('deathDay', _$deathDay, key: r'death_day', opt: true);
+  static const Field<PersonDataDto, DateTime> _f$deathDay = Field(
+      'deathDay', _$deathDay,
+      key: r'death_day', opt: true, hook: DateMapperHook());
 
   @override
   final MappableFields<PersonDataDto> fields = const {
     #id: _f$id,
-    #originalName: _f$originalName,
+    #name: _f$name,
     #profilePath: _f$profilePath,
     #placeOfBirth: _f$placeOfBirth,
     #biography: _f$biography,
@@ -57,7 +58,7 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
   static PersonDataDto _instantiate(DecodingData data) {
     return PersonDataDto(
         id: data.dec(_f$id),
-        name: data.dec(_f$originalName),
+        name: data.dec(_f$name),
         profilePath: data.dec(_f$profilePath),
         placeOfBirth: data.dec(_f$placeOfBirth),
         biography: data.dec(_f$biography),
@@ -120,7 +121,7 @@ abstract class PersonDataDtoCopyWith<$R, $In extends PersonDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   $R call(
       {int? id,
-      String? originalName,
+      String? name,
       String? profilePath,
       String? placeOfBirth,
       String? biography,
@@ -140,7 +141,7 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          Object? originalName = $none,
+          Object? name = $none,
           Object? profilePath = $none,
           Object? placeOfBirth = $none,
           Object? biography = $none,
@@ -148,7 +149,7 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
           Object? deathDay = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (originalName != $none) #originalName: originalName,
+        if (name != $none) #name: name,
         if (profilePath != $none) #profilePath: profilePath,
         if (placeOfBirth != $none) #placeOfBirth: placeOfBirth,
         if (biography != $none) #biography: biography,
@@ -158,7 +159,7 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
   @override
   PersonDataDto $make(CopyWithData data) => PersonDataDto(
       id: data.get(#id, or: $value.id),
-      name: data.get(#originalName, or: $value.name),
+      name: data.get(#name, or: $value.name),
       profilePath: data.get(#profilePath, or: $value.profilePath),
       placeOfBirth: data.get(#placeOfBirth, or: $value.placeOfBirth),
       biography: data.get(#biography, or: $value.biography),

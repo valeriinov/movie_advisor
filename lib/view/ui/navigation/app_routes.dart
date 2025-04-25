@@ -11,6 +11,7 @@ abstract final class AppRoutes {
   static const String more = '/more';
 
   static const String details = '/details';
+  static const String person = '/person';
 
   // Home/Search
   static const String search = 'search';

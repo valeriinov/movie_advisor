@@ -10,7 +10,7 @@ final class AppPersonMapper extends AppMapper {
       profilePath: dto.profilePath ?? '',
       placeOfBirth: dto.placeOfBirth ?? '',
       biography: dto.biography ?? '',
-      birthday: dto.birthday ?? DateTime(0),
+      birthday: dto.birthday,
       deathDay: dto.deathDay,
     );
   }

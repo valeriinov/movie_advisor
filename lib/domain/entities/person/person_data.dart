@@ -11,7 +11,7 @@ class PersonData with PersonDataMappable {
   final String profilePath;
   final String placeOfBirth;
   final String biography;
-  final DateTime birthday;
+  final DateTime? birthday;
   final DateTime? deathDay;
 
   const PersonData({
@@ -20,7 +20,7 @@ class PersonData with PersonDataMappable {
     this.profilePath = '',
     this.placeOfBirth = '',
     this.biography = '',
-    required this.birthday,
+    this.birthday,
     this.deathDay,
   });
 }
