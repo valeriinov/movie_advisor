@@ -461,7 +461,9 @@ final filterSeriesUseCasePr = Provider<FilterSeriesUseCase>(
 // PERSON
 final personServicePr = Provider<PersonService>(
   (ref) => PersonService(
-    mediaApiClient: ref.read(localizedMediaApiClientPr),
+    localizedMediaApiClient: ref.read(localizedMediaApiClientPr),
+    mediaApiClient: ref.read(mediaApiClientPr),
+    settingsProvider: ref.read(settingsPr),
     imageUrlHandler: ref.read(imageUrlHandlerPr),
   ),
 );
