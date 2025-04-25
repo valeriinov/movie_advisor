@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../utils/date_mapper_hook.dart';
+import 'gender_dto.dart';
 
 part 'person_data_dto.mapper.dart';
 
@@ -10,6 +11,7 @@ class PersonDataDto with PersonDataDtoMappable {
   final String? name;
   final String? profilePath;
   final String? placeOfBirth;
+  final GenderDto? gender;
   final String? biography;
   @MappableField(hook: DateMapperHook())
   final DateTime? birthday;
@@ -21,6 +23,7 @@ class PersonDataDto with PersonDataDtoMappable {
     this.name,
     this.profilePath,
     this.placeOfBirth,
+    this.gender,
     this.biography,
     required this.birthday,
     this.deathDay,

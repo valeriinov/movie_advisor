@@ -13,6 +13,7 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
   static PersonDataDtoMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = PersonDataDtoMapper._());
+      GenderDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -31,6 +32,9 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
   static String? _$placeOfBirth(PersonDataDto v) => v.placeOfBirth;
   static const Field<PersonDataDto, String> _f$placeOfBirth =
       Field('placeOfBirth', _$placeOfBirth, key: r'place_of_birth', opt: true);
+  static GenderDto? _$gender(PersonDataDto v) => v.gender;
+  static const Field<PersonDataDto, GenderDto> _f$gender =
+      Field('gender', _$gender, opt: true);
   static String? _$biography(PersonDataDto v) => v.biography;
   static const Field<PersonDataDto, String> _f$biography =
       Field('biography', _$biography, opt: true);
@@ -48,6 +52,7 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
     #name: _f$name,
     #profilePath: _f$profilePath,
     #placeOfBirth: _f$placeOfBirth,
+    #gender: _f$gender,
     #biography: _f$biography,
     #birthday: _f$birthday,
     #deathDay: _f$deathDay,
@@ -61,6 +66,7 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
         name: data.dec(_f$name),
         profilePath: data.dec(_f$profilePath),
         placeOfBirth: data.dec(_f$placeOfBirth),
+        gender: data.dec(_f$gender),
         biography: data.dec(_f$biography),
         birthday: data.dec(_f$birthday),
         deathDay: data.dec(_f$deathDay));
@@ -124,6 +130,7 @@ abstract class PersonDataDtoCopyWith<$R, $In extends PersonDataDto, $Out>
       String? name,
       String? profilePath,
       String? placeOfBirth,
+      GenderDto? gender,
       String? biography,
       DateTime? birthday,
       DateTime? deathDay});
@@ -144,6 +151,7 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
           Object? name = $none,
           Object? profilePath = $none,
           Object? placeOfBirth = $none,
+          Object? gender = $none,
           Object? biography = $none,
           Object? birthday = $none,
           Object? deathDay = $none}) =>
@@ -152,6 +160,7 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
         if (name != $none) #name: name,
         if (profilePath != $none) #profilePath: profilePath,
         if (placeOfBirth != $none) #placeOfBirth: placeOfBirth,
+        if (gender != $none) #gender: gender,
         if (biography != $none) #biography: biography,
         if (birthday != $none) #birthday: birthday,
         if (deathDay != $none) #deathDay: deathDay
@@ -162,6 +171,7 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
       name: data.get(#name, or: $value.name),
       profilePath: data.get(#profilePath, or: $value.profilePath),
       placeOfBirth: data.get(#placeOfBirth, or: $value.placeOfBirth),
+      gender: data.get(#gender, or: $value.gender),
       biography: data.get(#biography, or: $value.biography),
       birthday: data.get(#birthday, or: $value.birthday),
       deathDay: data.get(#deathDay, or: $value.deathDay));

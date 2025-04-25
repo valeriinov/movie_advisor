@@ -32,6 +32,9 @@ class PersonDataMapper extends ClassMapperBase<PersonData> {
   static String _$placeOfBirth(PersonData v) => v.placeOfBirth;
   static const Field<PersonData, String> _f$placeOfBirth =
       Field('placeOfBirth', _$placeOfBirth, opt: true, def: '');
+  static Gender _$gender(PersonData v) => v.gender;
+  static const Field<PersonData, Gender> _f$gender =
+      Field('gender', _$gender, opt: true, def: Gender.none);
   static String _$biography(PersonData v) => v.biography;
   static const Field<PersonData, String> _f$biography =
       Field('biography', _$biography, opt: true, def: '');
@@ -48,6 +51,7 @@ class PersonDataMapper extends ClassMapperBase<PersonData> {
     #name: _f$name,
     #profilePath: _f$profilePath,
     #placeOfBirth: _f$placeOfBirth,
+    #gender: _f$gender,
     #biography: _f$biography,
     #birthday: _f$birthday,
     #deathDay: _f$deathDay,
@@ -59,6 +63,7 @@ class PersonDataMapper extends ClassMapperBase<PersonData> {
         name: data.dec(_f$name),
         profilePath: data.dec(_f$profilePath),
         placeOfBirth: data.dec(_f$placeOfBirth),
+        gender: data.dec(_f$gender),
         biography: data.dec(_f$biography),
         birthday: data.dec(_f$birthday),
         deathDay: data.dec(_f$deathDay));
@@ -103,6 +108,7 @@ abstract class PersonDataCopyWith<$R, $In extends PersonData, $Out>
       String? name,
       String? profilePath,
       String? placeOfBirth,
+      Gender? gender,
       String? biography,
       DateTime? birthday,
       DateTime? deathDay});
@@ -123,6 +129,7 @@ class _PersonDataCopyWithImpl<$R, $Out>
           String? name,
           String? profilePath,
           String? placeOfBirth,
+          Gender? gender,
           String? biography,
           Object? birthday = $none,
           Object? deathDay = $none}) =>
@@ -131,6 +138,7 @@ class _PersonDataCopyWithImpl<$R, $Out>
         if (name != null) #name: name,
         if (profilePath != null) #profilePath: profilePath,
         if (placeOfBirth != null) #placeOfBirth: placeOfBirth,
+        if (gender != null) #gender: gender,
         if (biography != null) #biography: biography,
         if (birthday != $none) #birthday: birthday,
         if (deathDay != $none) #deathDay: deathDay
@@ -141,6 +149,7 @@ class _PersonDataCopyWithImpl<$R, $Out>
       name: data.get(#name, or: $value.name),
       profilePath: data.get(#profilePath, or: $value.profilePath),
       placeOfBirth: data.get(#placeOfBirth, or: $value.placeOfBirth),
+      gender: data.get(#gender, or: $value.gender),
       biography: data.get(#biography, or: $value.biography),
       birthday: data.get(#birthday, or: $value.birthday),
       deathDay: data.get(#deathDay, or: $value.deathDay));

@@ -34,9 +34,7 @@ class ImplImageUrlHandler implements ImageUrlHandler {
 
   @override
   PersonDataDto handlePersonImages(PersonDataDto person) {
-    return person.copyWith(
-      profilePath: _getCreditsImageUrl(person.profilePath),
-    );
+    return person.copyWith(profilePath: _getPersonImageUrl(person.profilePath));
   }
 
   MovieDataDto _handleMovieImages(MovieDataDto movie) {
@@ -91,6 +89,12 @@ class ImplImageUrlHandler implements ImageUrlHandler {
   String _getCreditsImageUrl(String? profilePath) {
     return profilePath != null
         ? '${_envProvider.imageUrl}${MoviesApiConstants.creditsSize}$profilePath'
+        : '';
+  }
+
+  String _getPersonImageUrl(String? profilePath) {
+    return profilePath != null
+        ? '${_envProvider.imageUrl}${MoviesApiConstants.personSize}$profilePath'
         : '';
   }
 }

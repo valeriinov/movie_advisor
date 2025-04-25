@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../mappable_entity.dart';
+import 'gender.dart';
 
 part 'person_data.mapper.dart';
 
@@ -10,6 +11,7 @@ class PersonData with PersonDataMappable {
   final String name;
   final String profilePath;
   final String placeOfBirth;
+  final Gender gender;
   final String biography;
   final DateTime? birthday;
   final DateTime? deathDay;
@@ -19,6 +21,7 @@ class PersonData with PersonDataMappable {
     this.name = '',
     this.profilePath = '',
     this.placeOfBirth = '',
+    this.gender = Gender.none,
     this.biography = '',
     this.birthday,
     this.deathDay,
