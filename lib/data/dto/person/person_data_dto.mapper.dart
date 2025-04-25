@@ -14,6 +14,9 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = PersonDataDtoMapper._());
       GenderDtoMapper.ensureInitialized();
+      PersonCreditsDataDtoMapper.ensureInitialized();
+      PersonMovCredDataDtoMapper.ensureInitialized();
+      PersonSerCredDataDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -40,11 +43,23 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
       Field('biography', _$biography, opt: true);
   static DateTime? _$birthday(PersonDataDto v) => v.birthday;
   static const Field<PersonDataDto, DateTime> _f$birthday =
-      Field('birthday', _$birthday, hook: DateMapperHook());
+      Field('birthday', _$birthday, opt: true, hook: DateMapperHook());
   static DateTime? _$deathDay(PersonDataDto v) => v.deathDay;
   static const Field<PersonDataDto, DateTime> _f$deathDay = Field(
       'deathDay', _$deathDay,
       key: r'death_day', opt: true, hook: DateMapperHook());
+  static PersonCreditsDataDto<PersonMovCredDataDto>? _$movieCredits(
+          PersonDataDto v) =>
+      v.movieCredits;
+  static const Field<PersonDataDto, PersonCreditsDataDto<PersonMovCredDataDto>>
+      _f$movieCredits =
+      Field('movieCredits', _$movieCredits, key: r'movie_credits', opt: true);
+  static PersonCreditsDataDto<PersonSerCredDataDto>? _$seriesCredits(
+          PersonDataDto v) =>
+      v.seriesCredits;
+  static const Field<PersonDataDto, PersonCreditsDataDto<PersonSerCredDataDto>>
+      _f$seriesCredits = Field('seriesCredits', _$seriesCredits,
+          key: r'series_credits', opt: true);
 
   @override
   final MappableFields<PersonDataDto> fields = const {
@@ -56,6 +71,8 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
     #biography: _f$biography,
     #birthday: _f$birthday,
     #deathDay: _f$deathDay,
+    #movieCredits: _f$movieCredits,
+    #seriesCredits: _f$seriesCredits,
   };
   @override
   final bool ignoreNull = true;
@@ -69,7 +86,9 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
         gender: data.dec(_f$gender),
         biography: data.dec(_f$biography),
         birthday: data.dec(_f$birthday),
-        deathDay: data.dec(_f$deathDay));
+        deathDay: data.dec(_f$deathDay),
+        movieCredits: data.dec(_f$movieCredits),
+        seriesCredits: data.dec(_f$seriesCredits));
   }
 
   @override
@@ -125,6 +144,16 @@ extension PersonDataDtoValueCopy<$R, $Out>
 
 abstract class PersonDataDtoCopyWith<$R, $In extends PersonDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  PersonCreditsDataDtoCopyWith<
+      $R,
+      PersonCreditsDataDto<PersonMovCredDataDto>,
+      PersonCreditsDataDto<PersonMovCredDataDto>,
+      PersonMovCredDataDto>? get movieCredits;
+  PersonCreditsDataDtoCopyWith<
+      $R,
+      PersonCreditsDataDto<PersonSerCredDataDto>,
+      PersonCreditsDataDto<PersonSerCredDataDto>,
+      PersonSerCredDataDto>? get seriesCredits;
   $R call(
       {int? id,
       String? name,
@@ -133,7 +162,9 @@ abstract class PersonDataDtoCopyWith<$R, $In extends PersonDataDto, $Out>
       GenderDto? gender,
       String? biography,
       DateTime? birthday,
-      DateTime? deathDay});
+      DateTime? deathDay,
+      PersonCreditsDataDto<PersonMovCredDataDto>? movieCredits,
+      PersonCreditsDataDto<PersonSerCredDataDto>? seriesCredits});
   PersonDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -146,6 +177,16 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PersonDataDto> $mapper =
       PersonDataDtoMapper.ensureInitialized();
   @override
+  PersonCreditsDataDtoCopyWith<$R, PersonCreditsDataDto<PersonMovCredDataDto>,
+          PersonCreditsDataDto<PersonMovCredDataDto>, PersonMovCredDataDto>?
+      get movieCredits =>
+          $value.movieCredits?.copyWith.$chain((v) => call(movieCredits: v));
+  @override
+  PersonCreditsDataDtoCopyWith<$R, PersonCreditsDataDto<PersonSerCredDataDto>,
+          PersonCreditsDataDto<PersonSerCredDataDto>, PersonSerCredDataDto>?
+      get seriesCredits =>
+          $value.seriesCredits?.copyWith.$chain((v) => call(seriesCredits: v));
+  @override
   $R call(
           {Object? id = $none,
           Object? name = $none,
@@ -154,7 +195,9 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
           Object? gender = $none,
           Object? biography = $none,
           Object? birthday = $none,
-          Object? deathDay = $none}) =>
+          Object? deathDay = $none,
+          Object? movieCredits = $none,
+          Object? seriesCredits = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (name != $none) #name: name,
@@ -163,7 +206,9 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
         if (gender != $none) #gender: gender,
         if (biography != $none) #biography: biography,
         if (birthday != $none) #birthday: birthday,
-        if (deathDay != $none) #deathDay: deathDay
+        if (deathDay != $none) #deathDay: deathDay,
+        if (movieCredits != $none) #movieCredits: movieCredits,
+        if (seriesCredits != $none) #seriesCredits: seriesCredits
       }));
   @override
   PersonDataDto $make(CopyWithData data) => PersonDataDto(
@@ -174,7 +219,9 @@ class _PersonDataDtoCopyWithImpl<$R, $Out>
       gender: data.get(#gender, or: $value.gender),
       biography: data.get(#biography, or: $value.biography),
       birthday: data.get(#birthday, or: $value.birthday),
-      deathDay: data.get(#deathDay, or: $value.deathDay));
+      deathDay: data.get(#deathDay, or: $value.deathDay),
+      movieCredits: data.get(#movieCredits, or: $value.movieCredits),
+      seriesCredits: data.get(#seriesCredits, or: $value.seriesCredits));
 
   @override
   PersonDataDtoCopyWith<$R2, PersonDataDto, $Out2> $chain<$R2, $Out2>(

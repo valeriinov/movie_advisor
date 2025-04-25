@@ -1,6 +1,9 @@
 import '../../../dto/credits/credits_data_dto.dart';
 import '../../../dto/movie/movie_data_dto.dart';
+import '../../../dto/person/person_credits_data_dto.dart';
 import '../../../dto/person/person_data_dto.dart';
+import '../../../dto/person/person_mov_cred_data_dto.dart';
+import '../../../dto/person/person_ser_cred_data_dto.dart';
 import '../../../dto/series/series_data_dto.dart';
 import '../../constants/movies_api_constants.dart';
 import '../../env_provider/env_provider.dart';
@@ -34,7 +37,55 @@ class ImplImageUrlHandler implements ImageUrlHandler {
 
   @override
   PersonDataDto handlePersonImages(PersonDataDto person) {
-    return person.copyWith(profilePath: _getPersonImageUrl(person.profilePath));
+    return person.copyWith(
+      profilePath: _getPersonImageUrl(person.profilePath),
+      movieCredits: _handlePersonMovieCreditsImages(person.movieCredits),
+      seriesCredits: _handlePersonSeriesCreditsImages(person.seriesCredits),
+    );
+  }
+
+  PersonCreditsMovieDto? _handlePersonMovieCreditsImages(
+    PersonCreditsMovieDto? credits,
+  ) {
+    return credits?.copyWith(
+      cast: _handleMovieCreditsImages(credits.cast),
+      crew: _handleMovieCreditsImages(credits.crew),
+    );
+  }
+
+  List<PersonMovCredDataDto> _handleMovieCreditsImages(
+    List<PersonMovCredDataDto>? credits,
+  ) {
+    return credits
+            ?.map(
+              (credit) => credit.copyWith(
+                posterPath: _getPosterImageUrl(credit.posterPath),
+              ),
+            )
+            .toList() ??
+        [];
+  }
+
+  PersonCreditsSeriesDto? _handlePersonSeriesCreditsImages(
+    PersonCreditsSeriesDto? credits,
+  ) {
+    return credits?.copyWith(
+      cast: _handleSeriesCreditsImages(credits.cast),
+      crew: _handleSeriesCreditsImages(credits.crew),
+    );
+  }
+
+  List<PersonSerCredDataDto> _handleSeriesCreditsImages(
+    List<PersonSerCredDataDto>? credits,
+  ) {
+    return credits
+            ?.map(
+              (credit) => credit.copyWith(
+                posterPath: _getPosterImageUrl(credit.posterPath),
+              ),
+            )
+            .toList() ??
+        [];
   }
 
   MovieDataDto _handleMovieImages(MovieDataDto movie) {

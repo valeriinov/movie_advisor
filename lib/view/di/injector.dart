@@ -474,6 +474,7 @@ final personMapperPr = Provider<AppPersonMapper>((_) => AppPersonMapper());
 final personRepositoryPr = Provider<PersonRepository>(
   (ref) => ImplPersonRepository(
     dataSource: ref.read(personRemoteDataSourcePr),
+    localDataSource: ref.read(mediaLocalDataSourcePr),
     mapper: ref.read(personMapperPr),
   ),
 );

@@ -23,7 +23,7 @@ class PersonScreenView extends ConsumerWidget {
 
     final person = vsp.selectWatch((s) => s.person);
 
-    print('[PERSON] person: $person');
+    print('[PERSON] person: ${person.movieCredits}');
 
     return Scaffold(
       appBar: MainAppBar(title: Text('Person Screen')), // TODO: Localize title

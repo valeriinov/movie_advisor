@@ -2,6 +2,9 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../mappable_entity.dart';
 import 'gender.dart';
+import 'person_credits_data.dart';
+import 'person_mov_cred_data.dart';
+import 'person_ser_cred_data.dart';
 
 part 'person_data.mapper.dart';
 
@@ -15,6 +18,9 @@ class PersonData with PersonDataMappable {
   final String biography;
   final DateTime? birthday;
   final DateTime? deathDay;
+  final PersonCreditsMovie movieCredits;
+  @MappableField(key: 'tv_credits')
+  final PersonCreditsSeries seriesCredits;
 
   const PersonData({
     this.id = -1,
@@ -25,5 +31,7 @@ class PersonData with PersonDataMappable {
     this.biography = '',
     this.birthday,
     this.deathDay,
+    this.movieCredits = const PersonCreditsMovie(),
+    this.seriesCredits = const PersonCreditsSeries(),
   });
 }

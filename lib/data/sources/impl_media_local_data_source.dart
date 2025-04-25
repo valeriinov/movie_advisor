@@ -8,6 +8,8 @@ import '../dto/movie/movie_genre_dto.dart';
 import '../dto/movie/movie_rate_filter_data_dto.dart';
 import '../dto/movie/movie_short_data_dto.dart';
 import '../dto/movie/movies_response_data_dto.dart';
+import '../dto/person/person_mov_cred_data_dto.dart';
+import '../dto/person/person_ser_cred_data_dto.dart';
 import '../dto/series/series_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
 import '../dto/series/series_rate_filter_data_dto.dart';
@@ -252,5 +254,29 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
         .take(DbConstants.rateFilterCountriesCount)
         .map((entry) => entry.key)
         .toList();
+  }
+
+  @override
+  Future<List<PersonMovCredDataDto>> addLocalDataToPersonMovieCredits(
+    List<PersonMovCredDataDto> credits,
+  ) async {
+    final ids = credits.map((e) => e.id).nonNulls.toList();
+
+    final List<MovieShortDataDto> localMovies =
+        ids.isNotEmpty ? await getMoviesByIds(ids) : [];
+
+    return _mediaMerger.mergePersonMovieCredits(credits, localMovies);
+  }
+
+  @override
+  Future<List<PersonSerCredDataDto>> addLocalDataToPersonSeriesCredits(
+    List<PersonSerCredDataDto> credits,
+  ) async {
+    final ids = credits.map((e) => e.id).nonNulls.toList();
+
+    final List<SeriesShortDataDto> localSeries =
+        ids.isNotEmpty ? await getSeriesByIds(ids) : [];
+
+    return _mediaMerger.mergePersonSeriesCredits(credits, localSeries);
   }
 }

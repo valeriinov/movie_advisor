@@ -2,6 +2,9 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../utils/date_mapper_hook.dart';
 import 'gender_dto.dart';
+import 'person_credits_data_dto.dart';
+import 'person_mov_cred_data_dto.dart';
+import 'person_ser_cred_data_dto.dart';
 
 part 'person_data_dto.mapper.dart';
 
@@ -17,6 +20,8 @@ class PersonDataDto with PersonDataDtoMappable {
   final DateTime? birthday;
   @MappableField(hook: DateMapperHook())
   final DateTime? deathDay;
+  final PersonCreditsMovieDto? movieCredits;
+  final PersonCreditsSeriesDto? seriesCredits;
 
   const PersonDataDto({
     this.id,
@@ -25,8 +30,10 @@ class PersonDataDto with PersonDataDtoMappable {
     this.placeOfBirth,
     this.gender,
     this.biography,
-    required this.birthday,
+    this.birthday,
     this.deathDay,
+    this.movieCredits,
+    this.seriesCredits,
   });
 
   factory PersonDataDto.fromJson(Map<String, dynamic> json) =>
