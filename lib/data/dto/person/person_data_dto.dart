@@ -18,7 +18,7 @@ class PersonDataDto with PersonDataDtoMappable {
   final String? biography;
   @MappableField(hook: DateMapperHook())
   final DateTime? birthday;
-  @MappableField(hook: DateMapperHook())
+  @MappableField(key: 'deathday', hook: DateMapperHook())
   final DateTime? deathDay;
   final PersonCreditsMovieDto? movieCredits;
   final PersonCreditsSeriesDto? seriesCredits;

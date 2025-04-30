@@ -206,5 +206,7 @@
   "emptyCastTab": "No cast information yet. Stay tuned! \uD83C\uDF7F",
   "crewJobDirector": "Director",
   "crewJobProducer": "Producer",
-  "deleteFromWatchlist": "Delete from watchlist"
+  "deleteFromWatchlist": "Delete from watchlist",
+  "maleDesc": "Male",
+  "femaleDesc": "Female"
 }

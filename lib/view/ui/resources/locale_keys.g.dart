@@ -211,5 +211,7 @@ abstract class  LocaleKeys {
   static const crewJobDirector = 'crewJobDirector';
   static const crewJobProducer = 'crewJobProducer';
   static const deleteFromWatchlist = 'deleteFromWatchlist';
+  static const maleDesc = 'maleDesc';
+  static const femaleDesc = 'femaleDesc';
 
 }

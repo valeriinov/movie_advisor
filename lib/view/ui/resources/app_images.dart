@@ -29,6 +29,9 @@ abstract final class AppImages {
   static const placeholderImage = "${_imgPath}placeholder_image.png";
   static const signOutIcon = "${_imgPath}sign_out_icon.svg";
   static const emptyResultImage = "${_imgPath}empty_result_image.png";
+  static const genderIcon = "${_imgPath}gender_icon.svg";
+  static const deathIcon = "${_imgPath}death_icon.svg";
+  static const homelandIcon = "${_imgPath}homeland_icon.svg";
   static const watchedIcon = "${_imgPath}watched_icon.svg";
   static const toastSuccessIcon = "${_imgPath}toast_success_icon.svg";
   static const addWatchedFillIcon = "${_imgPath}add_watched_fill_icon.svg";
@@ -43,6 +46,7 @@ abstract final class AppImages {
   static const userIcon = "${_imgPath}user_icon.svg";
   static const filterIcon = "${_imgPath}filter_icon.svg";
   static const earthIcon = "${_imgPath}earth_icon.svg";
+  static const birthdayIcon = "${_imgPath}birthday_icon.svg";
   static const tvIcon = "${_imgPath}tv_icon.svg";
   static const addWatchedIcon = "${_imgPath}add_watched_icon.svg";
 }

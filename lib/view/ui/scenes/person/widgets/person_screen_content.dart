@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../domain/entities/person/person_data.dart';
 import 'person_back_button.dart';
 import 'person_header.dart';
+import 'person_props_container.dart';
 
 class PersonScreenContent extends StatelessWidget {
   final PersonData person;
@@ -22,6 +23,7 @@ class PersonScreenContent extends StatelessWidget {
           controller: scrollController,
           slivers: [
             PersonHeader(name: person.name, photoUrl: person.profilePath),
+            PersonPropsContainer(person: person),
           ],
         ),
         PersonBackButton(),

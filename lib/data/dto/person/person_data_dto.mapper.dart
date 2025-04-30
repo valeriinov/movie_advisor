@@ -47,7 +47,7 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
   static DateTime? _$deathDay(PersonDataDto v) => v.deathDay;
   static const Field<PersonDataDto, DateTime> _f$deathDay = Field(
       'deathDay', _$deathDay,
-      key: r'death_day', opt: true, hook: DateMapperHook());
+      key: r'deathday', opt: true, hook: DateMapperHook());
   static PersonCreditsDataDto<PersonMovCredDataDto>? _$movieCredits(
           PersonDataDto v) =>
       v.movieCredits;
