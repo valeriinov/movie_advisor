@@ -114,6 +114,8 @@ abstract final class BaseColorsFactory {
     filterCtrlBarBg: _BaseColors.filterCtrlBarBg,
     filterCtrlBarShadow: _BaseColors.filterCtrlBarShadow,
     filterCtrlBarResetBtnOverlay: _BaseColors.filterCtrlBarResetBtnOverlay,
+    backBtnSecBg: _BaseColors.backBtnSecBg,
+    backBtnSecFg: _BaseColors.backBtnSecFg,
   );
 }
 
@@ -564,6 +566,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color filterCtrlBarResetBtnOverlay;
 
+  /// Secondary back button background color.
+  @override
+  final Color backBtnSecBg;
+
+  /// Secondary back button foreground color.
+  @override
+  final Color backBtnSecFg;
+
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
       ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
@@ -676,5 +686,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.filterCtrlBarBg,
     required this.filterCtrlBarShadow,
     required this.filterCtrlBarResetBtnOverlay,
+    required this.backBtnSecBg,
+    required this.backBtnSecFg,
   });
 }

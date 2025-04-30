@@ -44,7 +44,10 @@ class PersonScreenView extends HookConsumerWidget {
           body:
               isSkeletonVisible
                   ? PersonContentSkeleton()
-                  : PersonScreenContent(person: person),
+                  : PersonScreenContent(
+                    person: person,
+                    scrollController: scrollController,
+                  ),
           floatingActionButton:
               isFabVisible
                   ? ScrollTopFab(scrollController: scrollController)

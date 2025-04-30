@@ -151,4 +151,7 @@ abstract final class _BaseColors {
   static const filterCtrlBarBg = Colors.white;
   static const filterCtrlBarShadow = Color(0x12000000);
   static const filterCtrlBarResetBtnOverlay = Color(0xff737d8e);
+
+  static final backBtnSecBg = Colors.white.withValues(alpha: 0.5);
+  static const backBtnSecFg = Color(0xFF242A32);
 }

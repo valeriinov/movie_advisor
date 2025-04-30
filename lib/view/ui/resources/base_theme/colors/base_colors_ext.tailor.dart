@@ -117,6 +117,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get filterCtrlBarBg;
   Color get filterCtrlBarShadow;
   Color get filterCtrlBarResetBtnOverlay;
+  Color get backBtnSecBg;
+  Color get backBtnSecFg;
 
   @override
   BaseColors copyWith({
@@ -227,6 +229,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? filterCtrlBarBg,
     Color? filterCtrlBarShadow,
     Color? filterCtrlBarResetBtnOverlay,
+    Color? backBtnSecBg,
+    Color? backBtnSecFg,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -340,6 +344,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       filterCtrlBarShadow: filterCtrlBarShadow ?? this.filterCtrlBarShadow,
       filterCtrlBarResetBtnOverlay:
           filterCtrlBarResetBtnOverlay ?? this.filterCtrlBarResetBtnOverlay,
+      backBtnSecBg: backBtnSecBg ?? this.backBtnSecBg,
+      backBtnSecFg: backBtnSecFg ?? this.backBtnSecFg,
     );
   }
 
@@ -498,6 +504,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             other.filterCtrlBarResetBtnOverlay,
             t,
           )!,
+      backBtnSecBg: Color.lerp(backBtnSecBg, other.backBtnSecBg, t)!,
+      backBtnSecFg: Color.lerp(backBtnSecFg, other.backBtnSecFg, t)!,
     );
   }
 
@@ -912,6 +920,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(
               filterCtrlBarResetBtnOverlay,
               other.filterCtrlBarResetBtnOverlay,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backBtnSecBg,
+              other.backBtnSecBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backBtnSecFg,
+              other.backBtnSecFg,
             ));
   }
 
@@ -1026,6 +1042,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(filterCtrlBarBg),
       const DeepCollectionEquality().hash(filterCtrlBarShadow),
       const DeepCollectionEquality().hash(filterCtrlBarResetBtnOverlay),
+      const DeepCollectionEquality().hash(backBtnSecBg),
+      const DeepCollectionEquality().hash(backBtnSecFg),
     ]);
   }
 }
