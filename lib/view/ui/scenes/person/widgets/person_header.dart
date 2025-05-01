@@ -14,7 +14,7 @@ class PersonHeader extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Stack(
         children: [
-          ImageWithLoader(imagePath: photoUrl),
+          ImageWithLoader(size: Size.fromHeight(632), imagePath: photoUrl),
           PersonName(name: name),
         ],
       ),
