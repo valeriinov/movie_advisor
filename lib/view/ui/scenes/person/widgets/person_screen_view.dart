@@ -6,6 +6,7 @@ import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
+import '../model/person_tab.dart';
 import '../person_view_model/person_view_model.dart';
 import 'person_content_skeleton.dart';
 import 'person_screen_content.dart';
@@ -34,6 +35,7 @@ class PersonScreenView extends HookConsumerWidget {
     );
 
     final person = vsp.selectWatch((s) => s.person);
+    final currentTab = vsp.selectWatch((s) => s.currentTab);
 
     final scrollController = useScrollController();
 
@@ -46,6 +48,8 @@ class PersonScreenView extends HookConsumerWidget {
                   ? PersonContentSkeleton()
                   : PersonScreenContent(
                     person: person,
+                    currentTab: currentTab,
+                    onTabSelect: (index) => _onTabSelect(vsp, index),
                     scrollController: scrollController,
                   ),
           floatingActionButton:
@@ -55,5 +59,11 @@ class PersonScreenView extends HookConsumerWidget {
         );
       },
     );
+  }
+
+  void _onTabSelect(PersonAFSP vsp, int index) {
+    final tab = PersonTab.fromIndex(index);
+
+    vsp.viewModel.updateCurrentTab(tab);
   }
 }

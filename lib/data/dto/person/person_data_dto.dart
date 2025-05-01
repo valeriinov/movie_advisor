@@ -21,6 +21,7 @@ class PersonDataDto with PersonDataDtoMappable {
   @MappableField(key: 'deathday', hook: DateMapperHook())
   final DateTime? deathDay;
   final PersonCreditsMovieDto? movieCredits;
+  @MappableField(key: 'tv_credits')
   final PersonCreditsSeriesDto? seriesCredits;
 
   const PersonDataDto({

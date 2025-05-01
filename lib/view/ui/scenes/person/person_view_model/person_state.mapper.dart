@@ -24,6 +24,9 @@ class PersonStateMapper extends ClassMapperBase<PersonState> {
   static PersonData _$person(PersonState v) => v.person;
   static const Field<PersonState, PersonData> _f$person =
       Field('person', _$person);
+  static PersonTab _$currentTab(PersonState v) => v.currentTab;
+  static const Field<PersonState, PersonTab> _f$currentTab =
+      Field('currentTab', _$currentTab, opt: true, def: PersonTab.biography);
   static PersonStatus _$status(PersonState v) => v.status;
   static const Field<PersonState, PersonStatus> _f$status =
       Field('status', _$status, opt: true, def: const PersonBaseStatus());
@@ -31,12 +34,15 @@ class PersonStateMapper extends ClassMapperBase<PersonState> {
   @override
   final MappableFields<PersonState> fields = const {
     #person: _f$person,
+    #currentTab: _f$currentTab,
     #status: _f$status,
   };
 
   static PersonState _instantiate(DecodingData data) {
     return PersonState(
-        person: data.dec(_f$person), status: data.dec(_f$status));
+        person: data.dec(_f$person),
+        currentTab: data.dec(_f$currentTab),
+        status: data.dec(_f$status));
   }
 
   @override
@@ -74,7 +80,7 @@ extension PersonStateValueCopy<$R, $Out>
 abstract class PersonStateCopyWith<$R, $In extends PersonState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   PersonDataCopyWith<$R, PersonData, PersonData> get person;
-  $R call({PersonData? person, PersonStatus? status});
+  $R call({PersonData? person, PersonTab? currentTab, PersonStatus? status});
   PersonStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -90,14 +96,16 @@ class _PersonStateCopyWithImpl<$R, $Out>
   PersonDataCopyWith<$R, PersonData, PersonData> get person =>
       $value.person.copyWith.$chain((v) => call(person: v));
   @override
-  $R call({PersonData? person, PersonStatus? status}) =>
+  $R call({PersonData? person, PersonTab? currentTab, PersonStatus? status}) =>
       $apply(FieldCopyWithData({
         if (person != null) #person: person,
+        if (currentTab != null) #currentTab: currentTab,
         if (status != null) #status: status
       }));
   @override
   PersonState $make(CopyWithData data) => PersonState(
       person: data.get(#person, or: $value.person),
+      currentTab: data.get(#currentTab, or: $value.currentTab),
       status: data.get(#status, or: $value.status));
 
   @override

@@ -4,9 +4,16 @@ import '../../../../../domain/entities/person/person_data.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/usecases/person_use_case.dart';
 import '../../../../di/injector.dart';
+import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
 import '../../../base/view_model/utils/schedule_operation_mixin.dart';
+import '../model/person_tab.dart';
 import 'person_state.dart';
+
+/// {@category StateManagement}
+///
+/// A type alias for [AFSP] with [DetailsViewModel], [DetailsState], and an integer ID.
+typedef PersonAFSP = AFSP<PersonViewModel, PersonState, int>;
 
 /// {@category StateManagement}
 ///
@@ -53,6 +60,12 @@ class PersonViewModel extends AutoDisposeFamilyNotifier<PersonState, int>
         state = state.copyWith(status: PersonBaseInitStatus(), person: person);
       },
     );
+  }
+
+  void updateCurrentTab(PersonTab tab) {
+    if (tab == state.currentTab) return;
+
+    state = state.copyWith(currentTab: tab);
   }
 
   void _updateStatus(PersonStatus status) {

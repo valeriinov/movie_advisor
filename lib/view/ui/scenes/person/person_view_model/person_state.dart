@@ -3,6 +3,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 import '../../../../../domain/entities/mappable_entity.dart';
 import '../../../../../domain/entities/person/person_data.dart';
 import '../../../base/view_model/base_state.dart';
+import '../model/person_tab.dart';
 
 part 'person_state.mapper.dart';
 
@@ -14,12 +15,14 @@ part 'person_state.mapper.dart';
 final class PersonState extends BaseState<PersonStatus>
     with PersonStateMappable {
   final PersonData person;
+  final PersonTab currentTab;
 
   @override
   final PersonStatus status;
 
   const PersonState({
     required this.person,
+    this.currentTab = PersonTab.biography,
     this.status = const PersonBaseStatus(),
   });
 }

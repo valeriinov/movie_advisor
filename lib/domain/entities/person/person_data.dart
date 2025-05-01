@@ -19,7 +19,6 @@ class PersonData with PersonDataMappable {
   final DateTime? birthday;
   final DateTime? deathDay;
   final PersonCreditsMovie movieCredits;
-  @MappableField(key: 'tv_credits')
   final PersonCreditsSeries seriesCredits;
 
   const PersonData({

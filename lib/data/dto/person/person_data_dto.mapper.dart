@@ -58,8 +58,8 @@ class PersonDataDtoMapper extends ClassMapperBase<PersonDataDto> {
           PersonDataDto v) =>
       v.seriesCredits;
   static const Field<PersonDataDto, PersonCreditsDataDto<PersonSerCredDataDto>>
-      _f$seriesCredits = Field('seriesCredits', _$seriesCredits,
-          key: r'series_credits', opt: true);
+      _f$seriesCredits =
+      Field('seriesCredits', _$seriesCredits, key: r'tv_credits', opt: true);
 
   @override
   final MappableFields<PersonDataDto> fields = const {

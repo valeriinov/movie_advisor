@@ -56,7 +56,7 @@ class PersonDataMapper extends ClassMapperBase<PersonData> {
       v.seriesCredits;
   static const Field<PersonData, PersonCreditsData<PersonSerCredData>>
       _f$seriesCredits = Field('seriesCredits', _$seriesCredits,
-          key: r'tv_credits', opt: true, def: const PersonCreditsSeries());
+          opt: true, def: const PersonCreditsSeries());
 
   @override
   final MappableFields<PersonData> fields = const {
