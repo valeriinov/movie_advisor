@@ -38,7 +38,7 @@ class CreditsInfoContent extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            6.gapVert(),
+            2.gapVert(),
             if (genres.isNotBlank)
               MediaInfoTile(
                 iconPath: AppImages.genreIcon,
