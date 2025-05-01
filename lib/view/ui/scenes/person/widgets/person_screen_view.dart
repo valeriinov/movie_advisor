@@ -50,6 +50,11 @@ class PersonScreenView extends HookConsumerWidget {
                     person: person,
                     currentTab: currentTab,
                     onTabSelect: (index) => _onTabSelect(vsp, index),
+                    onRefresh:
+                        !isLoading
+                            ? () =>
+                                vsp.viewModel.loadInitialData(showLoader: false)
+                            : null,
                     scrollController: scrollController,
                   ),
           floatingActionButton:
