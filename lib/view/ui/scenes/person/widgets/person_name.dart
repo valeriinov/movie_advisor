@@ -24,7 +24,7 @@ class PersonName extends StatelessWidget {
         height: 80,
         decoration: _buildGradientDecoration(context),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(left, 25, right, 0),
+          padding: EdgeInsets.fromLTRB(left, 35, right, 0),
           child: Text(
             name,
             maxLines: 1,
@@ -43,13 +43,19 @@ class PersonName extends StatelessWidget {
       gradient: LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
-        stops: [0.0, 0.1, 0.2, 0.4, 0.6, 1.0],
+        stops: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        tileMode: TileMode.mirror,
         colors: [
           Colors.transparent,
-          colors.scaffoldBg.withValues(alpha: 0.3),
-          colors.scaffoldBg.withValues(alpha: 0.5),
-          colors.scaffoldBg.withValues(alpha: 0.7),
+          colors.scaffoldBg.withValues(alpha: 0.05),
+          colors.scaffoldBg.withValues(alpha: 0.1),
+          colors.scaffoldBg.withValues(alpha: 0.2),
+          colors.scaffoldBg.withValues(alpha: 0.37),
+          colors.scaffoldBg.withValues(alpha: 0.6),
+          colors.scaffoldBg.withValues(alpha: 0.8),
           colors.scaffoldBg.withValues(alpha: 0.9),
+          colors.scaffoldBg.withValues(alpha: 0.95),
+          colors.scaffoldBg.withValues(alpha: 0.98),
           colors.scaffoldBg,
         ],
       ),
