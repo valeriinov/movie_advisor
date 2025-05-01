@@ -74,7 +74,15 @@ class MoviesTabContent extends HookWidget {
               : crewItem;
     }
 
-    return map.values.toList();
+    final result = map.values.toList();
+
+    result.sort((a, b) {
+      final dateA = a.premiereDate ?? DateTime(0);
+      final dateB = b.premiereDate ?? DateTime(0);
+      return dateB.compareTo(dateA);
+    });
+
+    return result;
   }
 
   String? _getGenres(List<MovieGenre> genres) {
