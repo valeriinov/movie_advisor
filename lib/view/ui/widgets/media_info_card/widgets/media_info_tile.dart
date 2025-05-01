@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/ext/flutter_ext/context/text_theme_provider.dart';
 import 'package:flutter_utils/ext/flutter_ext/widget/gap_creator.dart';
+import 'package:flutter_utils/ext/flutter_ext/widget/wrap_widget.dart';
 
 import '../../app_svg_asset.dart';
 
@@ -31,11 +32,11 @@ class MediaInfoTile extends StatelessWidget {
           child: Text(
             description,
             style: style,
-            maxLines: 2,
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
         ),
       ],
-    );
+    ).paddingOnly(right: 20);
   }
 }
