@@ -93,6 +93,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get suggestNumBlur;
   Color get tabUnderSelect;
   Color get infoCardRating;
+  Color get infoCardPrimFg;
   Color get backdropRatingBg;
   Color get botSheetBg;
   Color get botSheetFg;
@@ -205,6 +206,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? suggestNumBlur,
     Color? tabUnderSelect,
     Color? infoCardRating,
+    Color? infoCardPrimFg,
     Color? backdropRatingBg,
     Color? botSheetBg,
     Color? botSheetFg,
@@ -318,6 +320,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumBlur: suggestNumBlur ?? this.suggestNumBlur,
       tabUnderSelect: tabUnderSelect ?? this.tabUnderSelect,
       infoCardRating: infoCardRating ?? this.infoCardRating,
+      infoCardPrimFg: infoCardPrimFg ?? this.infoCardPrimFg,
       backdropRatingBg: backdropRatingBg ?? this.backdropRatingBg,
       botSheetBg: botSheetBg ?? this.botSheetBg,
       botSheetFg: botSheetFg ?? this.botSheetFg,
@@ -467,6 +470,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumBlur: Color.lerp(suggestNumBlur, other.suggestNumBlur, t)!,
       tabUnderSelect: Color.lerp(tabUnderSelect, other.tabUnderSelect, t)!,
       infoCardRating: Color.lerp(infoCardRating, other.infoCardRating, t)!,
+      infoCardPrimFg: Color.lerp(infoCardPrimFg, other.infoCardPrimFg, t)!,
       backdropRatingBg:
           Color.lerp(backdropRatingBg, other.backdropRatingBg, t)!,
       botSheetBg: Color.lerp(botSheetBg, other.botSheetBg, t)!,
@@ -832,6 +836,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
               other.infoCardRating,
             ) &&
             const DeepCollectionEquality().equals(
+              infoCardPrimFg,
+              other.infoCardPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
               backdropRatingBg,
               other.backdropRatingBg,
             ) &&
@@ -1018,6 +1026,7 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(suggestNumBlur),
       const DeepCollectionEquality().hash(tabUnderSelect),
       const DeepCollectionEquality().hash(infoCardRating),
+      const DeepCollectionEquality().hash(infoCardPrimFg),
       const DeepCollectionEquality().hash(backdropRatingBg),
       const DeepCollectionEquality().hash(botSheetBg),
       const DeepCollectionEquality().hash(botSheetFg),

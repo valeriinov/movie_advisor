@@ -12,8 +12,9 @@ class PersonSerCredDataDto with PersonSerCredDataDtoMappable {
   @MappableField(key: 'genre_ids')
   final List<SeriesGenreDto>? genres;
   final String? posterPath;
-  @MappableField(hook: DateMapperHook())
+  @MappableField(hook: DateMapperHook(), key: 'first_air_date')
   final DateTime? releaseDate;
+  @MappableField(key: 'name')
   final String? title;
   final double? popularity;
   final double? voteAverage;

@@ -7,12 +7,14 @@ import '../../app_svg_asset.dart';
 class MediaInfoTile extends StatelessWidget {
   final String iconPath;
   final String description;
+  final Color? iconColor;
   final TextStyle? textStyle;
 
   const MediaInfoTile({
     super.key,
     required this.iconPath,
     required this.description,
+    this.iconColor,
     this.textStyle,
   });
 
@@ -23,7 +25,7 @@ class MediaInfoTile extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppSvgAsset(path: iconPath),
+        AppSvgAsset(path: iconPath, color: iconColor, height: 16, width: 16),
         4.gapHor(),
         Expanded(
           child: Text(

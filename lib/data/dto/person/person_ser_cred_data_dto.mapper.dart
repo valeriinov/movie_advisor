@@ -34,10 +34,10 @@ class PersonSerCredDataDtoMapper extends ClassMapperBase<PersonSerCredDataDto> {
   static DateTime? _$releaseDate(PersonSerCredDataDto v) => v.releaseDate;
   static const Field<PersonSerCredDataDto, DateTime> _f$releaseDate = Field(
       'releaseDate', _$releaseDate,
-      key: r'release_date', opt: true, hook: DateMapperHook());
+      key: r'first_air_date', opt: true, hook: DateMapperHook());
   static String? _$title(PersonSerCredDataDto v) => v.title;
   static const Field<PersonSerCredDataDto, String> _f$title =
-      Field('title', _$title, opt: true);
+      Field('title', _$title, key: r'name', opt: true);
   static double? _$popularity(PersonSerCredDataDto v) => v.popularity;
   static const Field<PersonSerCredDataDto, double> _f$popularity =
       Field('popularity', _$popularity, opt: true);

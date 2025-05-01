@@ -1,3 +1,5 @@
+import 'package:flutter_utils/flutter_utils.dart';
+
 import '../../domain/entities/person/gender.dart';
 import '../../domain/entities/person/person_credits_data.dart';
 import '../../domain/entities/person/person_data.dart';
@@ -31,12 +33,13 @@ final class AppPersonMapper extends AppMapper {
   }
 
   PersonCreditsMovie _mapMovieCreditsDtoToDomain(PersonCreditsMovieDto? dto) {
+    final cast = dto?.cast?.where((e) => e.actCharacter.isNotBlank).toList();
     final crew =
         dto?.crew?.where((e) => e.crewJob != CrewJobDto.unknown).toList();
 
     return PersonCreditsMovie(
-      cast: _mapMovieCreditsDataDtoToDomain(dto?.cast),
-      crew: _mapMovieCreditsDataDtoToDomain(crew ?? []),
+      cast: _mapMovieCreditsDataDtoToDomain(cast),
+      crew: _mapMovieCreditsDataDtoToDomain(crew),
     );
   }
 
@@ -69,12 +72,13 @@ final class AppPersonMapper extends AppMapper {
   PersonCreditsSeries _mapSeriesCreditsDtoToDomain(
     PersonCreditsSeriesDto? dto,
   ) {
+    final cast = dto?.cast?.where((e) => e.actCharacter.isNotBlank).toList();
     final crew =
         dto?.crew?.where((e) => e.crewJob != CrewJobDto.unknown).toList();
 
     return PersonCreditsSeries(
-      cast: _mapSeriesCreditsDataDtoToDomain(dto?.cast),
-      crew: _mapSeriesCreditsDataDtoToDomain(crew ?? []),
+      cast: _mapSeriesCreditsDataDtoToDomain(cast),
+      crew: _mapSeriesCreditsDataDtoToDomain(crew),
     );
   }
 

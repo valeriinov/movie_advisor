@@ -8,6 +8,10 @@ enum CrewJobDto {
   director,
   @MappableValue('Producer')
   producer,
+  @MappableValue('Executive Producer')
+  executiveProducer,
+  @MappableValue('Creator')
+  creator,
   @MappableValue('')
   unknown,
 }

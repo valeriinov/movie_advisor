@@ -29,10 +29,14 @@ class CrewJobDtoMapper extends EnumMapper<CrewJobDto> {
         return CrewJobDto.director;
       case 'Producer':
         return CrewJobDto.producer;
+      case 'Executive Producer':
+        return CrewJobDto.executiveProducer;
+      case 'Creator':
+        return CrewJobDto.creator;
       case '':
         return CrewJobDto.unknown;
       default:
-        return CrewJobDto.values[2];
+        return CrewJobDto.values[4];
     }
   }
 
@@ -43,6 +47,10 @@ class CrewJobDtoMapper extends EnumMapper<CrewJobDto> {
         return 'Director';
       case CrewJobDto.producer:
         return 'Producer';
+      case CrewJobDto.executiveProducer:
+        return 'Executive Producer';
+      case CrewJobDto.creator:
+        return 'Creator';
       case CrewJobDto.unknown:
         return '';
     }

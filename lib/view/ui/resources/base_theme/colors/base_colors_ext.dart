@@ -90,6 +90,7 @@ abstract final class BaseColorsFactory {
     suggestNumBlur: _BaseColors.suggestNumBlur,
     tabUnderSelect: _BaseColors.tabUnderSelect,
     infoCardRating: _BaseColors.infoCardRating,
+    infoCardPrimFg: _BaseColors.infoCardPrimFg,
     backdropRatingBg: _BaseColors.backdropRatingBg,
     botSheetBg: _BaseColors.botSheetBg,
     botSheetFg: _BaseColors.botSheetFg,
@@ -470,6 +471,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color infoCardRating;
 
+  /// Info card primary foreground color.
+  @override
+  final Color infoCardPrimFg;
+
   /// Backdrop rating background color.
   @override
   final Color backdropRatingBg;
@@ -662,6 +667,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.suggestNumBlur,
     required this.tabUnderSelect,
     required this.infoCardRating,
+    required this.infoCardPrimFg,
     required this.backdropRatingBg,
     required this.botSheetBg,
     required this.botSheetFg,

@@ -8,6 +8,8 @@ extension CrewJobDesc on CrewJob {
     return switch (this) {
       CrewJob.director => LocaleKeys.crewJobDirector.tr(),
       CrewJob.producer => LocaleKeys.crewJobProducer.tr(),
+      CrewJob.executiveProducer => LocaleKeys.crewJobExecProducer.tr(),
+      CrewJob.creator => LocaleKeys.crewJobCreator.tr(),
       CrewJob.unknown => '',
     };
   }
