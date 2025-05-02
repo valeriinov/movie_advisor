@@ -28,9 +28,14 @@ class AppTabs extends StatelessWidget {
     final dimens = context.baseDimens;
     final colors = context.baseColors;
 
+    final tabBarHeight = 41 + (dimens.spLarge / 2);
+
     return SliverAppBar(
       pinned: isPinned,
-      expandedHeight: 41 + (dimens.spLarge / 2),
+      primary: false,
+      expandedHeight: tabBarHeight,
+      collapsedHeight: tabBarHeight,
+      toolbarHeight: tabBarHeight,
       automaticallyImplyLeading: false,
       flexibleSpace: FlexibleSpaceBar(
         background: Skeleton.keep(
