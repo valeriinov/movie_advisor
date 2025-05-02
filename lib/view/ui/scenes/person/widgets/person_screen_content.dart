@@ -38,17 +38,15 @@ class PersonScreenContent extends StatelessWidget {
           slivers: [
             SliverRefreshIndicator(onRefresh: onRefresh),
             PersonHeader(name: person.name, photoUrl: person.profilePath),
-            SliverPadding(padding: dimens.spSmall.insVert()),
+            SliverPadding(padding: dimens.spExtSmall.insVert()),
             PersonPropsContainer(person: person),
-            SliverPadding(padding: dimens.spSmall.insVert()),
-            SliverSafeArea(
-              sliver: AppTabs(
-                tabs: PersonTab.descriptions,
-                currentIndex: currentTab.index,
-                onSelect: onTabSelect,
-                isPinned: false,
-                isSkeletonKeep: false,
-              ),
+            SliverPadding(padding: dimens.spMedium.insVert()),
+            AppTabs(
+              tabs: PersonTab.descriptions,
+              currentIndex: currentTab.index,
+              onSelect: onTabSelect,
+              isPinned: false,
+              isSkeletonKeep: false,
             ),
             SliverPadding(padding: dimens.spSmall.insVert()),
             PersonTabContent(person: person, currentTab: currentTab),
