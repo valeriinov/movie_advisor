@@ -119,6 +119,7 @@ abstract final class _BaseColors {
   static const tabUnderSelect = Color(0xFF3A3F47);
 
   static const infoCardRating = Color(0xFFFF8700);
+  static const infoCardPrimFg = Colors.white;
   static final backdropRatingBg = Color(0xFF252836).withValues(alpha: 0.32);
 
   static const botSheetBg = Color(0xFFFFFFFF);
@@ -151,4 +152,7 @@ abstract final class _BaseColors {
   static const filterCtrlBarBg = Colors.white;
   static const filterCtrlBarShadow = Color(0x12000000);
   static const filterCtrlBarResetBtnOverlay = Color(0xff737d8e);
+
+  static final backBtnSecBg = Colors.white.withValues(alpha: 0.5);
+  static const backBtnSecFg = Color(0xFF242A32);
 }

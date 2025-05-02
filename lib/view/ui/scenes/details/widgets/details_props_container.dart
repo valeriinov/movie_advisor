@@ -14,7 +14,7 @@ import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/ext/media_countries_str.dart';
 import '../../../resources/ext/media_date_str.dart';
 import '../../../resources/ext/media_genres_str.dart';
-import 'details_props_tile.dart';
+import '../../../widgets/details_props_tile.dart';
 
 class DetailsPropsContainer extends StatelessWidget {
   final MediaData data;

@@ -8,43 +8,47 @@ import '../../../widgets/image_with_placeholder.dart';
 
 class CastProfile extends StatelessWidget {
   final CastData data;
+  final VoidCallback? onTap;
 
-  const CastProfile({super.key, required this.data});
+  const CastProfile({super.key, required this.data, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final dimens = context.baseDimens;
     final colors = context.baseColors;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ClipRRect(
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ClipRRect(
             borderRadius: BorderRadius.circular(50),
             child: SizedBox(
               height: 100,
               width: 100,
-              child: ImageWithPlaceholder(
-                imagePath: data.profilePath,
-              ),
-            )),
-        dimens.spSmall.gapVert(),
-        Text(
-          data.name,
-          style: context.labelMedium,
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        dimens.spExtSmall.gapVert(),
-        Text(
-          data.character,
-          style: context.bodySmall?.copyWith(color: colors.textThemeSec),
-          textAlign: TextAlign.center,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
+              child: ImageWithPlaceholder(imagePath: data.profilePath),
+            ),
+          ),
+          dimens.spSmall.gapVert(),
+          Text(
+            data.name,
+            style: context.labelMedium,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          dimens.spExtSmall.gapVert(),
+          Text(
+            data.character,
+            style: context.bodySmall?.copyWith(color: colors.textThemeSec),
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
     );
   }
 }

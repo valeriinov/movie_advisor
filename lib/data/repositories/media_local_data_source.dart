@@ -2,6 +2,8 @@ import '../dto/movie/movie_data_dto.dart';
 import '../dto/movie/movie_rate_filter_data_dto.dart';
 import '../dto/movie/movie_short_data_dto.dart';
 import '../dto/movie/movies_response_data_dto.dart';
+import '../dto/person/person_mov_cred_data_dto.dart';
+import '../dto/person/person_ser_cred_data_dto.dart';
 import '../dto/series/series_data_dto.dart';
 import '../dto/series/series_rate_filter_data_dto.dart';
 import '../dto/series/series_response_data_dto.dart';
@@ -27,4 +29,12 @@ abstract interface class MediaLocalDataSource {
   Future<MovieRateFilterDataDto> getMovieRateFilter();
 
   Future<SeriesRateFilterDataDto> getSeriesRateFilter();
+
+  Future<List<PersonMovCredDataDto>> addLocalDataToPersonMovieCredits(
+    List<PersonMovCredDataDto> credits,
+  );
+
+  Future<List<PersonSerCredDataDto>> addLocalDataToPersonSeriesCredits(
+    List<PersonSerCredDataDto> credits,
+  );
 }

@@ -206,5 +206,15 @@
   "emptyCastTab": "Інформації про акторів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
   "crewJobDirector": "Режисер",
   "crewJobProducer": "Продюсер",
-  "deleteFromWatchlist": "Видалити з обраного"
+  "crewJobExecProducer": "Виконавчий продюсер",
+  "crewJobCreator": "Творець",
+  "deleteFromWatchlist": "Видалити з обраного",
+  "maleDesc": "Чоловік",
+  "femaleDesc": "Жінка",
+  "personBiographyTab": "Біографія",
+  "personMoviesTab": "Фільми",
+  "personSeriesTab": "Серіали",
+  "emptyBiographyTab": "Біографії ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
+  "emptyMoviesTab": "Фільмів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
+  "emptySeriesTab": "Серіалів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F"
 }
