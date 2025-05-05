@@ -156,7 +156,11 @@ class DetailsActionsContainer extends HookConsumerWidget {
               () => ref.share.shareText(
                 AppOfficialResourcesUrls.detailsLink(data.id, contentMode),
               ),
-          icon: AppSvgAsset(path: AppImages.shareIcon, width: 22, height: 22),
+          icon: AppSvgAsset(
+            path: AppImages.shareIcon,
+            width: 22,
+            height: 22,
+          ).paddingOnly(right: 2),
         ).paddingOnly(top: 4),
       ),
     );
