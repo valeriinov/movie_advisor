@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../common/adapters/share_adapter/impl_share_adapter.dart';
+import '../../common/adapters/share_adapter/share_adapter.dart';
 import '../../common/adapters/url_launcher_adapter/impl_url_launcher_adapter.dart';
 import '../../common/adapters/url_launcher_adapter/url_launcher_adapter.dart';
 import '../../data/local/app_local_database.dart';
@@ -227,6 +229,8 @@ final mediaLocalDataSourcePr = Provider<MediaLocalDataSource>(
 final urlLauncherPr = Provider<UrlLauncherAdapter>(
   (_) => ImplUrlLauncherAdapter(),
 );
+
+final sharePr = Provider<ShareAdapter>((_) => ImplShareAdapter());
 
 final connectivityServicePr = Provider<ConnectivityService>(
   (_) => ConnectivityService(connectivity: Connectivity()),
@@ -512,6 +516,11 @@ extension CoreProvider on WidgetRef {
   ///
   /// Used for opening URLs in the default platform app.
   UrlLauncherAdapter get urlLauncher => read(urlLauncherPr);
+
+  /// Provides access to the share adapter.
+  ///
+  /// Used for sharing content with other apps.
+  ShareAdapter get share => read(sharePr);
 
   /// Provides access to the toast manager.
   ///
