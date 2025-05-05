@@ -85,7 +85,7 @@ dependencies:
   cloud_functions: ^5.5.0
 
   # Local storage
-  drift: ^2.26.0
+  drift: ^2.26.1
   drift_flutter: ^0.2.4
 
 
