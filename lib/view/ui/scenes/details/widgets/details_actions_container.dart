@@ -6,9 +6,12 @@ import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
+import '../../../../../domain/entities/movie/movie_data.dart';
 import '../../../../../domain/entities/video/video_type.dart';
 import '../../../../di/injector.dart';
+import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../resources/app_images.dart';
+import '../../../resources/app_official_recources_urls.dart';
 import '../../../resources/app_video_url.dart';
 import '../../../resources/base_theme/buttons/base_buttons_styles_ext.dart';
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
@@ -40,12 +43,13 @@ class DetailsActionsContainer extends HookConsumerWidget {
     return SliverToBoxAdapter(
       child: Padding(
         padding: dimens.padHorPrimIns,
-        child: Wrap(
+        child: Row(
           spacing: dimens.spMedium,
           children: [
             _buildWatchlistButton(),
             _buildWatchedButton(),
             if (trailerUrl != null) _buildPlayTrailerButton(ref, trailerUrl),
+            _buildShareButton(ref),
           ],
         ),
       ),
@@ -138,5 +142,27 @@ class DetailsActionsContainer extends HookConsumerWidget {
     if (trailer == null) return null;
 
     return AppVideoUrl.createUrl(trailer.key);
+  }
+
+  Widget _buildShareButton(WidgetRef ref) {
+    final contentMode =
+        data is MovieData ? ContentMode.movies : ContentMode.series;
+
+    return Flexible(
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: IconButton(
+          onPressed:
+              () => ref.share.shareText(
+                AppOfficialResourcesUrls.detailsLink(data.id, contentMode),
+              ),
+          icon: AppSvgAsset(
+            path: AppImages.shareIcon,
+            width: 22,
+            height: 22,
+          ).paddingOnly(right: 2),
+        ).paddingOnly(top: 4),
+      ),
+    );
   }
 }
