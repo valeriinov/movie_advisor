@@ -57,6 +57,13 @@ final class ImplAppRouter implements AppRouter {
         $detailsRoute,
         $personRoute,
       ],
+      errorBuilder: (context, _) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          context.go(AppRoutes.home);
+        });
+
+        return Scaffold(body: const SizedBox.shrink());
+      },
     );
   }
 }
