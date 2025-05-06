@@ -87,6 +87,8 @@ abstract final class _BaseComponentsStyles {
   );
 
   // Details
+  static const double detailsPropsIconSize = 19.5;
+
   static TextStyle detailsPropsTextStyle(Color color) => TextStyle(
     fontFamily: AppFonts.montserrat,
     fontWeight: FontWeight.w500,

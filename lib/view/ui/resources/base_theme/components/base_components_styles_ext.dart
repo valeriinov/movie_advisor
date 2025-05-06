@@ -55,6 +55,7 @@ abstract final class BaseComponentsStylesFactory {
       ),
       emptyListSubtitleTextStyle:
           _BaseComponentsStyles.emptyListSubtitleTextStyle(colors.textThemeSec),
+      detailsPropsIconSize: _BaseComponentsStyles.detailsPropsIconSize,
       detailsPropsTextStyle: _BaseComponentsStyles.detailsPropsTextStyle(
         colors.textThemeSec,
       ),
@@ -159,6 +160,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final TextStyle emptyListSubtitleTextStyle;
 
+  /// Icon size of the details properties.
+  @override
+  final double detailsPropsIconSize;
+
   /// TextStyle of the details properties.
   @override
   final TextStyle detailsPropsTextStyle;
@@ -225,6 +230,7 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.infoCardRatingTextStyle,
     required this.emptyListTitleTextStyle,
     required this.emptyListSubtitleTextStyle,
+    required this.detailsPropsIconSize,
     required this.detailsPropsTextStyle,
     required this.detailsPropsRateTextStyle,
     required this.botSheetBorderRadius,

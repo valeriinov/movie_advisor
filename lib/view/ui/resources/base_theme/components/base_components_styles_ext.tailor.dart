@@ -29,6 +29,7 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get infoCardRatingTextStyle;
   TextStyle get emptyListTitleTextStyle;
   TextStyle get emptyListSubtitleTextStyle;
+  double get detailsPropsIconSize;
   TextStyle get detailsPropsTextStyle;
   TextStyle get detailsPropsRateTextStyle;
   double get botSheetBorderRadius;
@@ -62,6 +63,7 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? infoCardRatingTextStyle,
     TextStyle? emptyListTitleTextStyle,
     TextStyle? emptyListSubtitleTextStyle,
+    double? detailsPropsIconSize,
     TextStyle? detailsPropsTextStyle,
     TextStyle? detailsPropsRateTextStyle,
     double? botSheetBorderRadius,
@@ -104,6 +106,7 @@ mixin _$BaseComponentsStylesTailorMixin
           emptyListTitleTextStyle ?? this.emptyListTitleTextStyle,
       emptyListSubtitleTextStyle:
           emptyListSubtitleTextStyle ?? this.emptyListSubtitleTextStyle,
+      detailsPropsIconSize: detailsPropsIconSize ?? this.detailsPropsIconSize,
       detailsPropsTextStyle:
           detailsPropsTextStyle ?? this.detailsPropsTextStyle,
       detailsPropsRateTextStyle:
@@ -197,6 +200,8 @@ mixin _$BaseComponentsStylesTailorMixin
             other.emptyListSubtitleTextStyle,
             t,
           )!,
+      detailsPropsIconSize:
+          t < 0.5 ? detailsPropsIconSize : other.detailsPropsIconSize,
       detailsPropsTextStyle:
           TextStyle.lerp(
             detailsPropsTextStyle,
@@ -310,6 +315,10 @@ mixin _$BaseComponentsStylesTailorMixin
               other.emptyListSubtitleTextStyle,
             ) &&
             const DeepCollectionEquality().equals(
+              detailsPropsIconSize,
+              other.detailsPropsIconSize,
+            ) &&
+            const DeepCollectionEquality().equals(
               detailsPropsTextStyle,
               other.detailsPropsTextStyle,
             ) &&
@@ -381,6 +390,7 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(infoCardRatingTextStyle),
       const DeepCollectionEquality().hash(emptyListTitleTextStyle),
       const DeepCollectionEquality().hash(emptyListSubtitleTextStyle),
+      const DeepCollectionEquality().hash(detailsPropsIconSize),
       const DeepCollectionEquality().hash(detailsPropsTextStyle),
       const DeepCollectionEquality().hash(detailsPropsRateTextStyle),
       const DeepCollectionEquality().hash(botSheetBorderRadius),
