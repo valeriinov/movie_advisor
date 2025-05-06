@@ -1357,6 +1357,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  tap_on_scroll:
+    dependency: "direct main"
+    description:
+      name: tap_on_scroll
+      sha256: "80d3e4e6a561a5ea6f614bbb62429b17563f81fcaf6365dda5001b2d17815f55"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   term_glyph:
     dependency: transitive
     description:

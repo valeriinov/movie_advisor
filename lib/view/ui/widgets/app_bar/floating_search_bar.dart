@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on_scroll/tap_on_scroll.dart';
 
 import '../../resources/app_images.dart';
 import '../../resources/base_theme/dimens/base_dimens_ext.dart';
@@ -43,26 +44,28 @@ class FloatingSearchBar extends StatelessWidget {
           right: isFilterButtonVisible ? 0 : dimens.padHorPrim,
           bottom: dimens.spLarge / 2,
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Expanded(
-              child: GestureDetector(
-                onTap: onSearchTap,
-                child: SearchFieldContainer(
-                  enabled: isSearchEnabled,
-                  autoFocus: autoFocus,
-                  onSearch: onSearch,
-                  controller: textController,
+        title: TappableArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: onSearchTap,
+                  child: SearchFieldContainer(
+                    enabled: isSearchEnabled,
+                    autoFocus: autoFocus,
+                    onSearch: onSearch,
+                    controller: textController,
+                  ),
                 ),
               ),
-            ),
-            if (isFilterButtonVisible)
-              IconButton(
-                onPressed: onFilterTap,
-                icon: AppSvgAsset(path: AppImages.filterIcon),
-              ),
-          ],
+              if (isFilterButtonVisible)
+                IconButton(
+                  onPressed: onFilterTap,
+                  icon: AppSvgAsset(path: AppImages.filterIcon),
+                ),
+            ],
+          ),
         ),
       ),
     );

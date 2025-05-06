@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tap_on_scroll/tap_on_scroll.dart';
 
 import '../../../base/content_mode_view_model/content_mode_view_model.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
@@ -55,18 +56,21 @@ class SearchScreenView extends HookConsumerWidget {
               ),
             ],
           ),
-          body: CustomScrollView(
-            controller: scrollController,
-            slivers: [
-              FloatingSearchBar(
-                onSearch: vspFilter.viewModel.updateSearchQuery,
-                textController: searchFieldController,
-              ),
-              SearchContentSwitcher(
-                scrollController: scrollController,
-                contMode: contMode,
-              ),
-            ],
+          body: TapInterceptor(
+            scrollController: scrollController,
+            child: CustomScrollView(
+              controller: scrollController,
+              slivers: [
+                FloatingSearchBar(
+                  onSearch: vspFilter.viewModel.updateSearchQuery,
+                  textController: searchFieldController,
+                ),
+                SearchContentSwitcher(
+                  scrollController: scrollController,
+                  contMode: contMode,
+                ),
+              ],
+            ),
           ),
           floatingActionButton:
               isFabVisible
