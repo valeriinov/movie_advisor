@@ -32,8 +32,8 @@ class DetailsPropsTile extends StatelessWidget {
         AppSvgAsset(
           path: iconPath,
           color: iconColor ?? colors.textThemeSec,
-          width: 19.5,
-          height: 19.5,
+          width: styles.detailsPropsIconSize,
+          height: styles.detailsPropsIconSize,
         ),
         dimens.spSmall.gapHor(),
         Flexible(

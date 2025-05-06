@@ -15,6 +15,7 @@ import '../../../resources/ext/media_countries_str.dart';
 import '../../../resources/ext/media_date_str.dart';
 import '../../../resources/ext/media_genres_str.dart';
 import '../../../widgets/details_props_tile.dart';
+import 'props_directors_tile.dart';
 
 class DetailsPropsContainer extends StatelessWidget {
   final MediaData data;
@@ -31,7 +32,7 @@ class DetailsPropsContainer extends StatelessWidget {
     final genres = data.getGenresStr();
     final countries = data.getCountriesStr();
     final premiereYear = data.getPremiereYearStr();
-    final directors = _getDirectorNames();
+    final directors = _getDirectors();
 
     return SliverToBoxAdapter(
       child: Padding(
@@ -70,19 +71,11 @@ class DetailsPropsContainer extends StatelessWidget {
                 iconPath: AppImages.dateIcon,
                 description: data.getPremiereYearStr(),
               ),
-            if (directors.isNotBlank)
-              DetailsPropsTile(
-                iconPath: AppImages.movieIcon,
-                description: directors,
-              ),
+            if (directors.isNotEmpty) PropsDirectorsTile(directors: directors),
           ],
         ),
       ),
     );
-  }
-
-  String _getDirectorNames() {
-    return _getDirectors().map((e) => e.name).join(', ');
   }
 
   List<CrewData> _getDirectors() {
