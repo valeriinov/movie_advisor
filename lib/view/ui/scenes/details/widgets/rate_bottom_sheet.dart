@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
@@ -93,6 +95,8 @@ class RateBottomSheet extends HookWidget {
             onChanged: (v) {
               final newRate = v.round();
               if (newRate != rate) {
+                _vibrate();
+
                 onChanged(newRate);
               }
             },
@@ -102,6 +106,12 @@ class RateBottomSheet extends HookWidget {
         );
       },
     );
+  }
+
+  void _vibrate() {
+    defaultTargetPlatform.isIOS
+        ? HapticFeedback.mediumImpact()
+        : HapticFeedback.vibrate();
   }
 
   Widget _buildDeleteFromWatchlistCheckbox(
