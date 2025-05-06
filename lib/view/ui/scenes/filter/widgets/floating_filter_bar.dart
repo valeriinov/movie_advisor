@@ -3,9 +3,10 @@ import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/ext/flutter_ext/widget/edge_insets_creator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tap_on_scroll/tap_on_scroll.dart';
 
-import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/base_media/country.dart';
+import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../../../domain/entities/filter/series_filter_data.dart';
@@ -57,90 +58,92 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
       automaticallyImplyLeading: false,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(bottom: dimens.spLarge / 2),
-        title: NoAlwaysScrollWrapper(
-          child: ListView(
-            key: const PageStorageKey('floating-filter-bar-scroll'),
-            scrollDirection: Axis.horizontal,
-            padding: 4.insHor(),
-            children: [
-              FilterButton(
-                iconPath: AppImages.sortIcon,
-                title: LocaleKeys.filterSortBy.tr(),
-                subtitle: filter.sortBy.desc,
-                onTap:
-                    () => _openSortByDialog(
-                      context,
-                      isMovies: filter is MoviesFilterData,
-                      currentSortBy: filter.sortBy,
-                      onSortByChanged: viewModel.updateSortBy,
-                    ),
-              ),
-              FilterButton(
-                iconPath: AppImages.genreIcon,
-                title: LocaleKeys.filterWithGenres.tr(),
-                subtitle: _getWithDescription(_getWithGenresCount(filter)),
-                onTap:
-                    () => _openGenresFilterDialog(
-                      context,
-                      title: LocaleKeys.withGenresDialog.tr(),
-                      filter: filter,
-                      genreIndexes: _getGenreIndexes(filter),
-                      selectedGenreIndexes: _getSelectedGenreIndexes(filter),
-                      onApply:
-                          (ids) => viewModel.updateWithGenres(
-                            _getGenresByIds(ids, filter),
-                          ),
-                    ),
-              ),
-              FilterButton(
-                iconPath: AppImages.genreIcon,
-                title: LocaleKeys.filterWithoutGenres.tr(),
-                subtitle: _getWithoutDescription(
-                  _getWithoutGenresCount(filter),
-                ),
-                onTap:
-                    () => _openGenresFilterDialog(
-                      context,
-                      title: LocaleKeys.withoutGenresDialog.tr(),
-                      filter: filter,
-                      genreIndexes: _getGenreIndexes(filter),
-                      selectedGenreIndexes: _getSelectedGenreIndexes(
-                        filter,
-                        withGenres: false,
+        title: TappableArea(
+          child: NoAlwaysScrollWrapper(
+            child: ListView(
+              key: const PageStorageKey('floating-filter-bar-scroll'),
+              scrollDirection: Axis.horizontal,
+              padding: 4.insHor(),
+              children: [
+                FilterButton(
+                  iconPath: AppImages.sortIcon,
+                  title: LocaleKeys.filterSortBy.tr(),
+                  subtitle: filter.sortBy.desc,
+                  onTap:
+                      () => _openSortByDialog(
+                        context,
+                        isMovies: filter is MoviesFilterData,
+                        currentSortBy: filter.sortBy,
+                        onSortByChanged: viewModel.updateSortBy,
                       ),
-                      onApply:
-                          (ids) => viewModel.updateWithoutGenres(
-                            _getGenresByIds(ids, filter),
-                          ),
-                    ),
-              ),
-              FilterButton(
-                iconPath: AppImages.earthIcon,
-                title: LocaleKeys.filterWithCountries.tr(),
-                subtitle: _getWithDescription(filter.withCountries.length),
-                onTap:
-                    () => _openCountriesFilterDialog(
-                      context,
-                      title: LocaleKeys.withCountriesDialog.tr(),
-                      selectedCountries: filter.withCountries,
-                      onApply: viewModel.updateWithCountries,
-                    ),
-              ),
-              FilterButton(
-                iconPath: AppImages.dateIcon,
-                title: LocaleKeys.filterYear.tr(),
-                subtitle:
-                    filter.year != null
-                        ? filter.year.toString()
-                        : LocaleKeys.filterDescAll.tr(),
-                onTap:
-                    () => _openYearDialog(
-                      context,
-                      currentYear: filter.year ?? DateTime.now().year,
-                      onYearChanged: viewModel.updateFilterYear,
-                    ),
-              ),
-            ],
+                ),
+                FilterButton(
+                  iconPath: AppImages.genreIcon,
+                  title: LocaleKeys.filterWithGenres.tr(),
+                  subtitle: _getWithDescription(_getWithGenresCount(filter)),
+                  onTap:
+                      () => _openGenresFilterDialog(
+                        context,
+                        title: LocaleKeys.withGenresDialog.tr(),
+                        filter: filter,
+                        genreIndexes: _getGenreIndexes(filter),
+                        selectedGenreIndexes: _getSelectedGenreIndexes(filter),
+                        onApply:
+                            (ids) => viewModel.updateWithGenres(
+                              _getGenresByIds(ids, filter),
+                            ),
+                      ),
+                ),
+                FilterButton(
+                  iconPath: AppImages.genreIcon,
+                  title: LocaleKeys.filterWithoutGenres.tr(),
+                  subtitle: _getWithoutDescription(
+                    _getWithoutGenresCount(filter),
+                  ),
+                  onTap:
+                      () => _openGenresFilterDialog(
+                        context,
+                        title: LocaleKeys.withoutGenresDialog.tr(),
+                        filter: filter,
+                        genreIndexes: _getGenreIndexes(filter),
+                        selectedGenreIndexes: _getSelectedGenreIndexes(
+                          filter,
+                          withGenres: false,
+                        ),
+                        onApply:
+                            (ids) => viewModel.updateWithoutGenres(
+                              _getGenresByIds(ids, filter),
+                            ),
+                      ),
+                ),
+                FilterButton(
+                  iconPath: AppImages.earthIcon,
+                  title: LocaleKeys.filterWithCountries.tr(),
+                  subtitle: _getWithDescription(filter.withCountries.length),
+                  onTap:
+                      () => _openCountriesFilterDialog(
+                        context,
+                        title: LocaleKeys.withCountriesDialog.tr(),
+                        selectedCountries: filter.withCountries,
+                        onApply: viewModel.updateWithCountries,
+                      ),
+                ),
+                FilterButton(
+                  iconPath: AppImages.dateIcon,
+                  title: LocaleKeys.filterYear.tr(),
+                  subtitle:
+                      filter.year != null
+                          ? filter.year.toString()
+                          : LocaleKeys.filterDescAll.tr(),
+                  onTap:
+                      () => _openYearDialog(
+                        context,
+                        currentYear: filter.year ?? DateTime.now().year,
+                        onYearChanged: viewModel.updateFilterYear,
+                      ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
