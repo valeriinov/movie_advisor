@@ -98,8 +98,10 @@ class FilterService {
       params['first_air_date_year'] = filter.year;
     }
 
-    if (filter.sortBy != null) {
-      params['sort_by'] = filter.sortBy!.toValue();
+    final sortBy = _createSeriesSortBy(filter.sortBy);
+
+    if (sortBy != null) {
+      params['sort_by'] = sortBy;
     }
 
     if (_isRatingSort(filter.sortBy)) {
@@ -120,6 +122,15 @@ class FilterService {
     }
 
     return params;
+  }
+
+  String? _createSeriesSortBy(SortByDto? sortBy) {
+    return switch (sortBy) {
+      SortByDto.releaseDateAsc => 'first_air_date.asc',
+      SortByDto.releaseDateDesc => 'first_air_date.desc',
+      SortByDto s? => s.toValue(),
+      _ => null,
+    };
   }
 
   bool _isRatingSort(SortByDto? sortBy) {
