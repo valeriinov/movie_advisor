@@ -514,7 +514,7 @@ extension CoreProvider on WidgetRef {
 
   /// Provides access to the url launcher.
   ///
-  /// Used for opening URLs in the default platform app.
+  /// Used for opening URLs in an in-app web view.
   UrlLauncherAdapter get urlLauncher => read(urlLauncherPr);
 
   /// Provides access to the share adapter.
