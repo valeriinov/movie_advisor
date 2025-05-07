@@ -37,7 +37,7 @@ class PersonPropsContainer extends StatelessWidget {
             if (person.birthday != null)
               DetailsPropsTile(
                 iconPath: AppImages.birthdayIcon,
-                iconTransform: Matrix4.translationValues(0, -3, 0),
+                iconTransform: Matrix4.translationValues(0, -2.5, 0),
                 description: AppDateFormats.dayMonthYearDotsFormat(
                   person.birthday!,
                 ),
