@@ -10,6 +10,7 @@ class DetailsPropsTile extends StatelessWidget {
   final String iconPath;
   final String description;
   final Color? iconColor;
+  final Matrix4? iconTransform;
   final TextStyle? descStyle;
 
   const DetailsPropsTile({
@@ -17,6 +18,7 @@ class DetailsPropsTile extends StatelessWidget {
     required this.iconPath,
     required this.description,
     this.iconColor,
+    this.iconTransform,
     this.descStyle,
   });
 
@@ -29,11 +31,14 @@ class DetailsPropsTile extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppSvgAsset(
-          path: iconPath,
-          color: iconColor ?? colors.textThemeSec,
-          width: styles.detailsPropsIconSize,
-          height: styles.detailsPropsIconSize,
+        Container(
+          transform: iconTransform,
+          child: AppSvgAsset(
+            path: iconPath,
+            color: iconColor ?? colors.textThemeSec,
+            width: styles.detailsPropsIconSize,
+            height: styles.detailsPropsIconSize,
+          ),
         ),
         dimens.spSmall.gapHor(),
         Flexible(

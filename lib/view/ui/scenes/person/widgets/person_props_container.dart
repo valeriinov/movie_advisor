@@ -28,11 +28,16 @@ class PersonPropsContainer extends StatelessWidget {
             if (person.gender != Gender.none)
               DetailsPropsTile(
                 iconPath: AppImages.genderIcon,
+                iconTransform:
+                    Matrix4.identity()
+                      ..translate(-1.5, -2.0)
+                      ..scale(1.3),
                 description: person.gender.desc,
               ),
             if (person.birthday != null)
               DetailsPropsTile(
                 iconPath: AppImages.birthdayIcon,
+                iconTransform: Matrix4.translationValues(0, -3, 0),
                 description: AppDateFormats.dayMonthYearDotsFormat(
                   person.birthday!,
                 ),
