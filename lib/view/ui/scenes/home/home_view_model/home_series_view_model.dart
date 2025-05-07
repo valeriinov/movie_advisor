@@ -53,7 +53,7 @@ final class HomeSeriesViewModel extends HomeViewModel<SeriesShortData> {
       await _handleFirstLaunch();
     });
 
-    return HomeSeriesState();
+    return HomeSeriesState(status: HomeBaseStatus(isLoading: true));
   }
 
   @override
