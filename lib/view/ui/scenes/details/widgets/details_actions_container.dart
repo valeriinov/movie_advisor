@@ -42,13 +42,17 @@ class DetailsActionsContainer extends HookConsumerWidget {
 
     return SliverToBoxAdapter(
       child: Padding(
-        padding: dimens.padHorPrimIns,
+        padding: EdgeInsets.fromLTRB(dimens.padHorPrim, 0, 8, 0),
         child: Row(
-          spacing: dimens.spMedium,
           children: [
             _buildWatchlistButton(),
+            dimens.spMedium.gapHor(),
             _buildWatchedButton(),
-            if (trailerUrl != null) _buildPlayTrailerButton(ref, trailerUrl),
+            if (trailerUrl != null) ...[
+              dimens.spSmall.gapHor(),
+              _buildPlayTrailerButton(ref, trailerUrl),
+            ],
+            dimens.spExtSmall.gapHor(),
             _buildShareButton(ref),
           ],
         ),
@@ -127,11 +131,25 @@ class DetailsActionsContainer extends HookConsumerWidget {
   Widget _buildPlayTrailerButton(WidgetRef ref, String trailerUrl) {
     final urlLauncher = ref.urlLauncher;
 
-    return TextButton.icon(
-      onPressed: () => urlLauncher.openUrl(trailerUrl),
-      icon: Icon(Icons.play_arrow_rounded, size: 28),
-      label: Text(LocaleKeys.playTrailerButton.tr()),
-    ).paddingOnly(top: 4);
+    return Expanded(
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.fromLTRB(6, 8, 12, 8),
+          ),
+          onPressed: () => urlLauncher.openUrl(trailerUrl),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.play_arrow_rounded, size: 28),
+              4.gapHor(),
+              Flexible(child: Text(LocaleKeys.playTrailerButton.tr())),
+            ],
+          ),
+        ).paddingOnly(top: 4),
+      ),
+    );
   }
 
   String? _getTrailerUrl() {
@@ -148,21 +166,16 @@ class DetailsActionsContainer extends HookConsumerWidget {
     final contentMode =
         data is MovieData ? ContentMode.movies : ContentMode.series;
 
-    return Flexible(
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: IconButton(
-          onPressed:
-              () => ref.share.shareText(
-                AppOfficialResourcesUrls.detailsLink(data.id, contentMode),
-              ),
-          icon: AppSvgAsset(
-            path: AppImages.shareIcon,
-            width: 22,
-            height: 22,
-          ).paddingOnly(right: 2),
-        ).paddingOnly(top: 4),
-      ),
-    );
+    return IconButton(
+      onPressed:
+          () => ref.share.shareText(
+            AppOfficialResourcesUrls.detailsLink(data.id, contentMode),
+          ),
+      icon: AppSvgAsset(
+        path: AppImages.shareIcon,
+        width: 22,
+        height: 22,
+      ).paddingOnly(right: 2),
+    ).paddingOnly(top: 4);
   }
 }
