@@ -103,6 +103,50 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   }
 
   @override
+  Future<List<int>> getMoviesIds({
+    bool includeWatched = true,
+    bool includeWatchlist = true,
+  }) async {
+    if (!includeWatched && !includeWatchlist) return [];
+
+    final query = _database.select(_database.moviesTable);
+
+    if (includeWatched) {
+      query.where((tbl) => tbl.isWatched.equals(true));
+    }
+
+    if (includeWatchlist) {
+      query.where((tbl) => tbl.isInWatchlist.equals(true));
+    }
+
+    final movies = await query.get();
+
+    return movies.map((movie) => movie.tmdbId).toList();
+  }
+
+  @override
+  Future<List<int>> getSeriesIds({
+    bool includeWatched = true,
+    bool includeWatchlist = true,
+  }) async {
+    if (!includeWatched && !includeWatchlist) return [];
+
+    final query = _database.select(_database.seriesTable);
+
+    if (includeWatched) {
+      query.where((tbl) => tbl.isWatched.equals(true));
+    }
+
+    if (includeWatchlist) {
+      query.where((tbl) => tbl.isInWatchlist.equals(true));
+    }
+
+    final series = await query.get();
+
+    return series.map((series) => series.tmdbId).toList();
+  }
+
+  @override
   Future<MovieRateFilterDataDto> getMovieRateFilter() async {
     final excludeIds = await _fetchExcludedMovieIds();
     final movieList = await _fetchFilteredMoviesData();
