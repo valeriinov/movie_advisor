@@ -88,8 +88,11 @@ class ImplFilterRepository implements FilterRepository {
     required int page,
   }) async {
     try {
+      final excludeIds = await _mediaLocalDataSource.getMoviesIds();
+
       final response = await _remoteDataSource.filterMovies(
         _filterMapper.mapMoviesFilterDataToDto(filter),
+        excludeIds: excludeIds,
         page: page,
       );
 
@@ -109,8 +112,11 @@ class ImplFilterRepository implements FilterRepository {
     required int page,
   }) async {
     try {
+      final excludeIds = await _mediaLocalDataSource.getSeriesIds();
+
       final response = await _remoteDataSource.filterSeries(
         _filterMapper.mapSeriesFilterDataToDto(filter),
+        excludeIds: excludeIds,
         page: page,
       );
 

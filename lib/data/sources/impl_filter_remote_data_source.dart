@@ -14,16 +14,18 @@ class ImplFilterRemoteDataSource implements FilterRemoteDataSource {
   @override
   Future<MoviesResponseDataDto> filterMovies(
     MoviesFilterDataDto filter, {
+    required List<int> excludeIds,
     required int page,
   }) {
-    return _service.filterMovies(filter, page: page);
+    return _service.filterMovies(filter, page: page, excludeIds: excludeIds);
   }
 
   @override
   Future<SeriesResponseDataDto> filterSeries(
     SeriesFilterDataDto filter, {
+    required List<int> excludeIds,
     required int page,
   }) {
-    return _service.filterSeries(filter, page: page);
+    return _service.filterSeries(filter, page: page, excludeIds: excludeIds);
   }
 }

@@ -16,6 +16,8 @@ import '../dto/series/series_rate_filter_data_dto.dart';
 import '../dto/series/series_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../local/app_local_database.dart';
+import '../local/tables/movies_table.dart';
+import '../local/tables/series_table.dart';
 import '../local/utils/ext/media_table_mapper.dart';
 import '../repositories/media_local_data_source.dart';
 import '../repositories/settings_provider.dart';
@@ -109,19 +111,27 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   }) async {
     if (!includeWatched && !includeWatchlist) return [];
 
-    final query = _database.select(_database.moviesTable);
-
-    if (includeWatched) {
-      query.where((tbl) => tbl.isWatched.equals(true));
-    }
-
-    if (includeWatchlist) {
-      query.where((tbl) => tbl.isInWatchlist.equals(true));
-    }
+    final query = _database.select(_database.moviesTable)
+      ..where((tbl) => _moviesPredicate(tbl, includeWatched, includeWatchlist));
 
     final movies = await query.get();
 
     return movies.map((movie) => movie.tmdbId).toList();
+  }
+
+  Expression<bool> _moviesPredicate(
+    MoviesTable tbl,
+    bool includeWatched,
+    bool includeWatchlist,
+  ) {
+    if (includeWatched && includeWatchlist) {
+      return tbl.isWatched.equals(includeWatched) |
+          tbl.isInWatchlist.equals(includeWatchlist);
+    }
+    if (includeWatched) {
+      return tbl.isWatched.equals(true);
+    }
+    return tbl.isInWatchlist.equals(true);
   }
 
   @override
@@ -131,19 +141,27 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   }) async {
     if (!includeWatched && !includeWatchlist) return [];
 
-    final query = _database.select(_database.seriesTable);
-
-    if (includeWatched) {
-      query.where((tbl) => tbl.isWatched.equals(true));
-    }
-
-    if (includeWatchlist) {
-      query.where((tbl) => tbl.isInWatchlist.equals(true));
-    }
+    final query = _database.select(_database.seriesTable)
+      ..where((tbl) => _seriesPredicate(tbl, includeWatched, includeWatchlist));
 
     final series = await query.get();
 
     return series.map((series) => series.tmdbId).toList();
+  }
+
+  Expression<bool> _seriesPredicate(
+    SeriesTable tbl,
+    bool includeWatched,
+    bool includeWatchlist,
+  ) {
+    if (includeWatched && includeWatchlist) {
+      return tbl.isWatched.equals(includeWatched) |
+          tbl.isInWatchlist.equals(includeWatchlist);
+    }
+    if (includeWatched) {
+      return tbl.isWatched.equals(true);
+    }
+    return tbl.isInWatchlist.equals(true);
   }
 
   @override
