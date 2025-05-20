@@ -210,5 +210,16 @@ abstract class  LocaleKeys {
   static const emptyCastTab = 'emptyCastTab';
   static const crewJobDirector = 'crewJobDirector';
   static const crewJobProducer = 'crewJobProducer';
+  static const crewJobExecProducer = 'crewJobExecProducer';
+  static const crewJobCreator = 'crewJobCreator';
+  static const deleteFromWatchlist = 'deleteFromWatchlist';
+  static const maleDesc = 'maleDesc';
+  static const femaleDesc = 'femaleDesc';
+  static const personBiographyTab = 'personBiographyTab';
+  static const personMoviesTab = 'personMoviesTab';
+  static const personSeriesTab = 'personSeriesTab';
+  static const emptyBiographyTab = 'emptyBiographyTab';
+  static const emptyMoviesTab = 'emptyMoviesTab';
+  static const emptySeriesTab = 'emptySeriesTab';
 
 }

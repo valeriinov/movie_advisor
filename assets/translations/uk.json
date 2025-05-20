@@ -150,7 +150,7 @@
   "settingsLanguageTitle": "Мова",
   "english": "English",
   "ukrainian": "Українська",
-  "playTrailerButton": "Відтворити трейлер",
+  "playTrailerButton": "Трейлер",
   "unitedStates": "Сполучені Штати",
   "unitedKingdom": "Велика Британія",
   "canada": "Канада",
@@ -205,5 +205,16 @@
   "emptyOverviewTab": "Опису ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
   "emptyCastTab": "Інформації про акторів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
   "crewJobDirector": "Режисер",
-  "crewJobProducer": "Продюсер"
+  "crewJobProducer": "Продюсер",
+  "crewJobExecProducer": "Виконавчий продюсер",
+  "crewJobCreator": "Творець",
+  "deleteFromWatchlist": "Видалити з обраного",
+  "maleDesc": "Чоловік",
+  "femaleDesc": "Жінка",
+  "personBiographyTab": "Біографія",
+  "personMoviesTab": "Фільми",
+  "personSeriesTab": "Серіали",
+  "emptyBiographyTab": "Біографії ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
+  "emptyMoviesTab": "Фільмів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
+  "emptySeriesTab": "Серіалів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F"
 }

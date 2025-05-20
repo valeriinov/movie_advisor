@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_utils/ext/flutter_ext/context/text_theme_provider.dart';
 
 import '../../../../../domain/entities/base_media/cast_data.dart';
+import '../../../navigation/routes/person_route.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/empty_tab_content.dart';
 import 'cast_profile.dart';
 
 class CastTabContent extends StatelessWidget {
@@ -32,18 +33,13 @@ class CastTabContent extends StatelessWidget {
             ) {
               final item = cast[index];
 
-              return CastProfile(data: item);
+              return CastProfile(
+                data: item,
+                onTap: () => PersonRoute(id: item.id).push(context),
+              );
             }),
           ),
         )
-        : SliverToBoxAdapter(
-          child: Padding(
-            padding: dimens.padHorPrimIns,
-            child: Text(
-              LocaleKeys.emptyCastTab.tr(),
-              style: context.bodyMedium?.copyWith(height: 1.8),
-            ),
-          ),
-        );
+        : EmptyTabContent(description: LocaleKeys.emptyCastTab.tr());
   }
 }

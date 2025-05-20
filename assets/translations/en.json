@@ -150,7 +150,7 @@
   "settingsLanguageTitle": "Language",
   "english": "English",
   "ukrainian": "Українська",
-  "playTrailerButton": "Play trailer",
+  "playTrailerButton": "Trailer",
   "unitedStates": "United States",
   "unitedKingdom": "United Kingdom",
   "canada": "Canada",
@@ -205,5 +205,16 @@
   "emptyOverviewTab": "No description yet. Stay tuned! \uD83C\uDF7F",
   "emptyCastTab": "No cast information yet. Stay tuned! \uD83C\uDF7F",
   "crewJobDirector": "Director",
-  "crewJobProducer": "Producer"
+  "crewJobProducer": "Producer",
+  "crewJobExecProducer": "Executive Producer",
+  "crewJobCreator": "Creator",
+  "deleteFromWatchlist": "Delete from watchlist",
+  "maleDesc": "Male",
+  "femaleDesc": "Female",
+  "personBiographyTab": "Biography",
+  "personMoviesTab": "Movies",
+  "personSeriesTab": "Series",
+  "emptyBiographyTab": "No biography yet. Stay tuned! \uD83C\uDF7F",
+  "emptyMoviesTab": "No movies yet. Stay tuned! \uD83C\uDF7F",
+  "emptySeriesTab": "No series yet. Stay tuned! \uD83C\uDF7F"
 }

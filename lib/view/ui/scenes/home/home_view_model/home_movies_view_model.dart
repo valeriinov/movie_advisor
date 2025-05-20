@@ -51,7 +51,7 @@ final class HomeMoviesViewModel extends HomeViewModel<MovieShortData> {
       await _handleFirstLaunch();
     });
 
-    return HomeMoviesState();
+    return HomeMoviesState(status: HomeBaseStatus(isLoading: true));
   }
 
   @override

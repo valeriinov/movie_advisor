@@ -1,1 +1,1 @@
-enum CrewJob { director, producer, unknown }
+enum CrewJob { director, producer, executiveProducer, creator, unknown }

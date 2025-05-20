@@ -6,9 +6,12 @@ import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
+import '../../../../../domain/entities/movie/movie_data.dart';
 import '../../../../../domain/entities/video/video_type.dart';
 import '../../../../di/injector.dart';
+import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../resources/app_images.dart';
+import '../../../resources/app_official_recources_urls.dart';
 import '../../../resources/app_video_url.dart';
 import '../../../resources/base_theme/buttons/base_buttons_styles_ext.dart';
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
@@ -39,13 +42,18 @@ class DetailsActionsContainer extends HookConsumerWidget {
 
     return SliverToBoxAdapter(
       child: Padding(
-        padding: dimens.padHorPrimIns,
-        child: Wrap(
-          spacing: dimens.spMedium,
+        padding: EdgeInsets.fromLTRB(dimens.padHorPrim, 0, 8, 0),
+        child: Row(
           children: [
             _buildWatchlistButton(),
+            dimens.spMedium.gapHor(),
             _buildWatchedButton(),
-            if (trailerUrl != null) _buildPlayTrailerButton(ref, trailerUrl),
+            if (trailerUrl != null) ...[
+              dimens.spSmall.gapHor(),
+              _buildPlayTrailerButton(ref, trailerUrl),
+            ],
+            dimens.spExtSmall.gapHor(),
+            _buildShareButton(ref),
           ],
         ),
       ),
@@ -123,11 +131,25 @@ class DetailsActionsContainer extends HookConsumerWidget {
   Widget _buildPlayTrailerButton(WidgetRef ref, String trailerUrl) {
     final urlLauncher = ref.urlLauncher;
 
-    return TextButton.icon(
-      onPressed: () => urlLauncher.openUrl(trailerUrl),
-      icon: Icon(Icons.play_arrow_rounded, size: 28),
-      label: Text(LocaleKeys.playTrailerButton.tr()),
-    ).paddingOnly(top: 4);
+    return Expanded(
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.fromLTRB(6, 8, 12, 8),
+          ),
+          onPressed: () => urlLauncher.openUrl(trailerUrl),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.play_arrow_rounded, size: 28),
+              4.gapHor(),
+              Flexible(child: Text(LocaleKeys.playTrailerButton.tr())),
+            ],
+          ),
+        ).paddingOnly(top: 4),
+      ),
+    );
   }
 
   String? _getTrailerUrl() {
@@ -138,5 +160,22 @@ class DetailsActionsContainer extends HookConsumerWidget {
     if (trailer == null) return null;
 
     return AppVideoUrl.createUrl(trailer.key);
+  }
+
+  Widget _buildShareButton(WidgetRef ref) {
+    final contentMode =
+        data is MovieData ? ContentMode.movies : ContentMode.series;
+
+    return IconButton(
+      onPressed:
+          () => ref.share.shareText(
+            AppOfficialResourcesUrls.detailsLink(data.id, contentMode),
+          ),
+      icon: AppSvgAsset(
+        path: AppImages.shareIcon,
+        width: 22,
+        height: 22,
+      ).paddingOnly(right: 2),
+    ).paddingOnly(top: 4);
   }
 }

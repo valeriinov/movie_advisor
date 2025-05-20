@@ -90,11 +90,14 @@ abstract final class BaseColorsFactory {
     suggestNumBlur: _BaseColors.suggestNumBlur,
     tabUnderSelect: _BaseColors.tabUnderSelect,
     infoCardRating: _BaseColors.infoCardRating,
+    infoCardPrimFg: _BaseColors.infoCardPrimFg,
     backdropRatingBg: _BaseColors.backdropRatingBg,
     botSheetBg: _BaseColors.botSheetBg,
     botSheetFg: _BaseColors.botSheetFg,
     botSheetIcon: _BaseColors.botSheetIcon,
     botSheetBarrier: _BaseColors.botSheetBarrier,
+    botSheetCheckboxBorder: _BaseColors.botSheetCheckboxBorder,
+    botSheetCheckboxFill: _BaseColors.botSheetCheckboxFill,
     sliderVal: _BaseColors.sliderVal,
     sliderTrackFg: _BaseColors.sliderTrackFg,
     sliderTrackBg: _BaseColors.sliderTrackBg,
@@ -112,6 +115,8 @@ abstract final class BaseColorsFactory {
     filterCtrlBarBg: _BaseColors.filterCtrlBarBg,
     filterCtrlBarShadow: _BaseColors.filterCtrlBarShadow,
     filterCtrlBarResetBtnOverlay: _BaseColors.filterCtrlBarResetBtnOverlay,
+    backBtnSecBg: _BaseColors.backBtnSecBg,
+    backBtnSecFg: _BaseColors.backBtnSecFg,
   );
 }
 
@@ -466,6 +471,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color infoCardRating;
 
+  /// Info card primary foreground color.
+  @override
+  final Color infoCardPrimFg;
+
   /// Backdrop rating background color.
   @override
   final Color backdropRatingBg;
@@ -485,6 +494,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Slider track foreground color.
   @override
   final Color botSheetBarrier;
+
+  /// Bottom sheet checkbox border color.
+  @override
+  final Color botSheetCheckboxBorder;
+
+  /// Bottom sheet checkbox fill color.
+  @override
+  final Color botSheetCheckboxFill;
 
   /// Slider track foreground color.
   @override
@@ -553,6 +570,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Filter control bar reset button overlay color.
   @override
   final Color filterCtrlBarResetBtnOverlay;
+
+  /// Secondary back button background color.
+  @override
+  final Color backBtnSecBg;
+
+  /// Secondary back button foreground color.
+  @override
+  final Color backBtnSecFg;
 
   /// Creates a color scheme from the seed color.
   ColorScheme createColorScheme({Brightness brightness = Brightness.light}) =>
@@ -642,11 +667,14 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.suggestNumBlur,
     required this.tabUnderSelect,
     required this.infoCardRating,
+    required this.infoCardPrimFg,
     required this.backdropRatingBg,
     required this.botSheetBg,
     required this.botSheetFg,
     required this.botSheetIcon,
     required this.botSheetBarrier,
+    required this.botSheetCheckboxBorder,
+    required this.botSheetCheckboxFill,
     required this.sliderVal,
     required this.sliderTrackFg,
     required this.sliderTrackBg,
@@ -664,5 +692,7 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.filterCtrlBarBg,
     required this.filterCtrlBarShadow,
     required this.filterCtrlBarResetBtnOverlay,
+    required this.backBtnSecBg,
+    required this.backBtnSecFg,
   });
 }

@@ -69,6 +69,7 @@
 		530F5D9C2D511C7800095B36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreenDev.storyboard; sourceTree = "<group>"; };
 		533412182D6CAB6D007124F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5334121A2D6CAB6D007124F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		53D1E0762DC52287009969CA /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		5402D45229C5E6396FF39D67 /* Pods-Runner.profile-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-dev.xcconfig"; sourceTree = "<group>"; };
 		5862A9484B5E0D27B500765C /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		599AB7FC98F3F088A2B933F4 /* Pods-Runner.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-prod.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +233,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				53D1E0762DC52287009969CA /* Runner.entitlements */,
 				530F5D992D511C7800095B36 /* LaunchScreenDev.storyboard */,
 				530F5D9A2D511C7800095B36 /* LaunchScreenProd.storyboard */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
@@ -741,6 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = A8R53836XG;
 				ENABLE_BITCODE = NO;
@@ -750,7 +753,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.movieAdvisor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -812,8 +815,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 519E668AA48F537F4F182DC6 /* Pods-Runner.debug-dev.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-dev";
@@ -822,8 +827,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5402D45229C5E6396FF39D67 /* Pods-Runner.profile-dev.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-dev";
@@ -832,8 +839,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BC4F0CF9135DD7796C9C29B /* Pods-Runner.release-dev.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-dev";
@@ -842,6 +851,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 599AB7FC98F3F088A2B933F4 /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
@@ -852,6 +862,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D43B0164F62214869402507B /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
@@ -862,6 +873,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1578F0B3EFDE71CD470F0DE6 /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
@@ -1180,6 +1192,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = A8R53836XG;
 				ENABLE_BITCODE = NO;
@@ -1189,7 +1202,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.movieAdvisor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1204,6 +1217,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = A8R53836XG;
 				ENABLE_BITCODE = NO;
@@ -1213,7 +1227,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.movieAdvisor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

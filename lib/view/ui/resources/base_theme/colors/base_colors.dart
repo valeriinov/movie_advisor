@@ -119,12 +119,16 @@ abstract final class _BaseColors {
   static const tabUnderSelect = Color(0xFF3A3F47);
 
   static const infoCardRating = Color(0xFFFF8700);
+  static const infoCardPrimFg = Colors.white;
   static final backdropRatingBg = Color(0xFF252836).withValues(alpha: 0.32);
 
   static const botSheetBg = Color(0xFFFFFFFF);
   static const botSheetFg = Color(0xFF4E4B66);
   static const botSheetIcon = Color(0xFFA0A3BD);
   static final botSheetBarrier = Color(0xFF14142B).withValues(alpha: 0.3);
+
+  static const botSheetCheckboxBorder = Color(0xFFA0A3BD);
+  static const botSheetCheckboxFill = Color(0xFFFF8700);
 
   static const sliderVal = Color(0xFF4E4B66);
   static const sliderTrackFg = Color(0xFFFF8700);
@@ -148,4 +152,7 @@ abstract final class _BaseColors {
   static const filterCtrlBarBg = Colors.white;
   static const filterCtrlBarShadow = Color(0x12000000);
   static const filterCtrlBarResetBtnOverlay = Color(0xff737d8e);
+
+  static final backBtnSecBg = Colors.white.withValues(alpha: 0.5);
+  static const backBtnSecFg = Color(0xFF242A32);
 }

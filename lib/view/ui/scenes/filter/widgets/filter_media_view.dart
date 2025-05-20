@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tap_on_scroll/tap_on_scroll.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
@@ -69,21 +70,24 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
 
     final results = vsp.selectWatch((s) => s.results);
 
-    return CustomScrollView(
-      controller: scrollController,
-      slivers: [
-        FloatingFilterBar(provider: provider),
-        FilterScreenContent(
-          isLoading: isLoading,
-          isInitialized: isInitialized,
-          results: results,
-          onItemSelect: (id) => _goToDetails(context, id),
-          onRefresh:
-              !isLoading
-                  ? () => vsp.viewModel.loadInitialData(showLoader: false)
-                  : null,
-        ),
-      ],
+    return TapInterceptor(
+      scrollController: scrollController,
+      child: CustomScrollView(
+        controller: scrollController,
+        slivers: [
+          FloatingFilterBar(provider: provider),
+          FilterScreenContent(
+            isLoading: isLoading,
+            isInitialized: isInitialized,
+            results: results,
+            onItemSelect: (id) => _goToDetails(context, id),
+            onRefresh:
+                !isLoading
+                    ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                    : null,
+          ),
+        ],
+      ),
     );
   }
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/ext/router_api_context_ext.dart';
 import '../../../../../domain/entities/base_media/media_data.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/movie/movie_data.dart';
@@ -56,7 +57,10 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
       scrollController: scrollController,
       builder:
           (_, isFabVisible) => Scaffold(
-            appBar: MainAppBar(title: Text(appBarTitle)),
+            appBar: MainAppBar(
+              title: Text(appBarTitle),
+              leading: BackButton(onPressed: context.goBackOrHome),
+            ),
             body:
                 isSkeletonVisible
                     ? DetailsContentSkeleton(isMovie: T is MovieData)
@@ -133,6 +137,7 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
 
   void _onWatchedTap(BuildContext context, DetailsAFSP vsp) {
     final isWatched = vsp.selectRead((s) => s.data.isWatched);
+    final isInWatchlist = vsp.selectRead((s) => s.data.isInWatchlist);
     final initRate = vsp.selectRead((s) => s.data.userRating);
 
     showBlurredBottomSheet(
@@ -141,7 +146,12 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
       child: RateBottomSheet(
         title: LocaleKeys.rateMovieTitle.tr(),
         initRate: initRate,
-        onRate: (rate) => vsp.viewModel.addToWatched(rate),
+        isInWatchlist: isInWatchlist,
+        onRate:
+            (rate, deleteFromWatchlistIfExists) => vsp.viewModel.addToWatched(
+              rate,
+              deleteFromWatchlistIfExists: deleteFromWatchlistIfExists,
+            ),
         removeRate: isWatched ? () => vsp.viewModel.removeFromWatched() : null,
       ),
     );

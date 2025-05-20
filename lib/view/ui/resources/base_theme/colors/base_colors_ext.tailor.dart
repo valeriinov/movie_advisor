@@ -93,11 +93,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get suggestNumBlur;
   Color get tabUnderSelect;
   Color get infoCardRating;
+  Color get infoCardPrimFg;
   Color get backdropRatingBg;
   Color get botSheetBg;
   Color get botSheetFg;
   Color get botSheetIcon;
   Color get botSheetBarrier;
+  Color get botSheetCheckboxBorder;
+  Color get botSheetCheckboxFill;
   Color get sliderVal;
   Color get sliderTrackFg;
   Color get sliderTrackBg;
@@ -115,6 +118,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get filterCtrlBarBg;
   Color get filterCtrlBarShadow;
   Color get filterCtrlBarResetBtnOverlay;
+  Color get backBtnSecBg;
+  Color get backBtnSecFg;
 
   @override
   BaseColors copyWith({
@@ -201,11 +206,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? suggestNumBlur,
     Color? tabUnderSelect,
     Color? infoCardRating,
+    Color? infoCardPrimFg,
     Color? backdropRatingBg,
     Color? botSheetBg,
     Color? botSheetFg,
     Color? botSheetIcon,
     Color? botSheetBarrier,
+    Color? botSheetCheckboxBorder,
+    Color? botSheetCheckboxFill,
     Color? sliderVal,
     Color? sliderTrackFg,
     Color? sliderTrackBg,
@@ -223,6 +231,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? filterCtrlBarBg,
     Color? filterCtrlBarShadow,
     Color? filterCtrlBarResetBtnOverlay,
+    Color? backBtnSecBg,
+    Color? backBtnSecFg,
   }) {
     return BaseColors(
       seed: seed ?? this.seed,
@@ -310,11 +320,15 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumBlur: suggestNumBlur ?? this.suggestNumBlur,
       tabUnderSelect: tabUnderSelect ?? this.tabUnderSelect,
       infoCardRating: infoCardRating ?? this.infoCardRating,
+      infoCardPrimFg: infoCardPrimFg ?? this.infoCardPrimFg,
       backdropRatingBg: backdropRatingBg ?? this.backdropRatingBg,
       botSheetBg: botSheetBg ?? this.botSheetBg,
       botSheetFg: botSheetFg ?? this.botSheetFg,
       botSheetIcon: botSheetIcon ?? this.botSheetIcon,
       botSheetBarrier: botSheetBarrier ?? this.botSheetBarrier,
+      botSheetCheckboxBorder:
+          botSheetCheckboxBorder ?? this.botSheetCheckboxBorder,
+      botSheetCheckboxFill: botSheetCheckboxFill ?? this.botSheetCheckboxFill,
       sliderVal: sliderVal ?? this.sliderVal,
       sliderTrackFg: sliderTrackFg ?? this.sliderTrackFg,
       sliderTrackBg: sliderTrackBg ?? this.sliderTrackBg,
@@ -333,6 +347,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       filterCtrlBarShadow: filterCtrlBarShadow ?? this.filterCtrlBarShadow,
       filterCtrlBarResetBtnOverlay:
           filterCtrlBarResetBtnOverlay ?? this.filterCtrlBarResetBtnOverlay,
+      backBtnSecBg: backBtnSecBg ?? this.backBtnSecBg,
+      backBtnSecFg: backBtnSecFg ?? this.backBtnSecFg,
     );
   }
 
@@ -454,12 +470,17 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       suggestNumBlur: Color.lerp(suggestNumBlur, other.suggestNumBlur, t)!,
       tabUnderSelect: Color.lerp(tabUnderSelect, other.tabUnderSelect, t)!,
       infoCardRating: Color.lerp(infoCardRating, other.infoCardRating, t)!,
+      infoCardPrimFg: Color.lerp(infoCardPrimFg, other.infoCardPrimFg, t)!,
       backdropRatingBg:
           Color.lerp(backdropRatingBg, other.backdropRatingBg, t)!,
       botSheetBg: Color.lerp(botSheetBg, other.botSheetBg, t)!,
       botSheetFg: Color.lerp(botSheetFg, other.botSheetFg, t)!,
       botSheetIcon: Color.lerp(botSheetIcon, other.botSheetIcon, t)!,
       botSheetBarrier: Color.lerp(botSheetBarrier, other.botSheetBarrier, t)!,
+      botSheetCheckboxBorder:
+          Color.lerp(botSheetCheckboxBorder, other.botSheetCheckboxBorder, t)!,
+      botSheetCheckboxFill:
+          Color.lerp(botSheetCheckboxFill, other.botSheetCheckboxFill, t)!,
       sliderVal: Color.lerp(sliderVal, other.sliderVal, t)!,
       sliderTrackFg: Color.lerp(sliderTrackFg, other.sliderTrackFg, t)!,
       sliderTrackBg: Color.lerp(sliderTrackBg, other.sliderTrackBg, t)!,
@@ -487,6 +508,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             other.filterCtrlBarResetBtnOverlay,
             t,
           )!,
+      backBtnSecBg: Color.lerp(backBtnSecBg, other.backBtnSecBg, t)!,
+      backBtnSecFg: Color.lerp(backBtnSecFg, other.backBtnSecFg, t)!,
     );
   }
 
@@ -813,6 +836,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
               other.infoCardRating,
             ) &&
             const DeepCollectionEquality().equals(
+              infoCardPrimFg,
+              other.infoCardPrimFg,
+            ) &&
+            const DeepCollectionEquality().equals(
               backdropRatingBg,
               other.backdropRatingBg,
             ) &&
@@ -831,6 +858,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(
               botSheetBarrier,
               other.botSheetBarrier,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetCheckboxBorder,
+              other.botSheetCheckboxBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetCheckboxFill,
+              other.botSheetCheckboxFill,
             ) &&
             const DeepCollectionEquality().equals(sliderVal, other.sliderVal) &&
             const DeepCollectionEquality().equals(
@@ -893,6 +928,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(
               filterCtrlBarResetBtnOverlay,
               other.filterCtrlBarResetBtnOverlay,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backBtnSecBg,
+              other.backBtnSecBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backBtnSecFg,
+              other.backBtnSecFg,
             ));
   }
 
@@ -983,11 +1026,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(suggestNumBlur),
       const DeepCollectionEquality().hash(tabUnderSelect),
       const DeepCollectionEquality().hash(infoCardRating),
+      const DeepCollectionEquality().hash(infoCardPrimFg),
       const DeepCollectionEquality().hash(backdropRatingBg),
       const DeepCollectionEquality().hash(botSheetBg),
       const DeepCollectionEquality().hash(botSheetFg),
       const DeepCollectionEquality().hash(botSheetIcon),
       const DeepCollectionEquality().hash(botSheetBarrier),
+      const DeepCollectionEquality().hash(botSheetCheckboxBorder),
+      const DeepCollectionEquality().hash(botSheetCheckboxFill),
       const DeepCollectionEquality().hash(sliderVal),
       const DeepCollectionEquality().hash(sliderTrackFg),
       const DeepCollectionEquality().hash(sliderTrackBg),
@@ -1005,6 +1051,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(filterCtrlBarBg),
       const DeepCollectionEquality().hash(filterCtrlBarShadow),
       const DeepCollectionEquality().hash(filterCtrlBarResetBtnOverlay),
+      const DeepCollectionEquality().hash(backBtnSecBg),
+      const DeepCollectionEquality().hash(backBtnSecFg),
     ]);
   }
 }
