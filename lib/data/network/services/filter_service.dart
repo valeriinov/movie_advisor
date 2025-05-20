@@ -9,31 +9,22 @@ import '../../dto/movie/movie_genre_dto.dart';
 import '../../dto/movie/movies_response_data_dto.dart';
 import '../../dto/series/series_genre_dto.dart';
 import '../../dto/series/series_response_data_dto.dart';
-import '../network_manager/network_manager.dart';
-import '../utils/media_response_handler/media_response_handler.dart';
+import '../utils/media_discoverer/media_discoverer.dart';
 
 class FilterService {
-  final NetworkManager _mediaApiClient;
-  final MediaResponseHandler _responseHandler;
+  final MediaDiscoverer _mediaDiscoverer;
 
-  FilterService({
-    required NetworkManager mediaApiClient,
-    required MediaResponseHandler responseHandler,
-  }) : _mediaApiClient = mediaApiClient,
-       _responseHandler = responseHandler;
+  FilterService({required MediaDiscoverer mediaDiscoverer})
+    : _mediaDiscoverer = mediaDiscoverer;
 
   Future<MoviesResponseDataDto> filterMovies(
     MoviesFilterDataDto filter, {
+    List<int> excludeIds = const [],
     required int page,
   }) async {
     final queryParameters = _buildMoviesQueryParameters(filter, page);
 
-    final result = await _mediaApiClient.get(
-      '/discover/movie',
-      queryParameters: queryParameters,
-    );
-
-    return _responseHandler.handleMoviesResponse(result);
+    return _mediaDiscoverer.discoverMovies(page, excludeIds, queryParameters);
   }
 
   Map<String, dynamic> _buildMoviesQueryParameters(
@@ -76,16 +67,12 @@ class FilterService {
 
   Future<SeriesResponseDataDto> filterSeries(
     SeriesFilterDataDto filter, {
+    List<int> excludeIds = const [],
     required int page,
   }) async {
     final queryParameters = _buildSeriesQueryParameters(filter, page);
 
-    final result = await _mediaApiClient.get(
-      '/discover/tv',
-      queryParameters: queryParameters,
-    );
-
-    return _responseHandler.handleSeriesResponse(result);
+    return _mediaDiscoverer.discoverSeries(page, excludeIds, queryParameters);
   }
 
   Map<String, dynamic> _buildSeriesQueryParameters(

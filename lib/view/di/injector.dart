@@ -39,6 +39,8 @@ import '../../data/network/services/search_service.dart';
 import '../../data/network/services/watch_service.dart';
 import '../../data/network/utils/image_url_handler/image_url_handler.dart';
 import '../../data/network/utils/image_url_handler/impl_image_url_handler.dart';
+import '../../data/network/utils/media_discoverer/impl_media_discoverer.dart';
+import '../../data/network/utils/media_discoverer/media_discoverer.dart';
 import '../../data/network/utils/media_response_handler/impl_media_response_handler.dart';
 import '../../data/network/utils/media_response_handler/media_response_handler.dart';
 import '../../data/repositories/auth/auth_local_data_source.dart';
@@ -252,6 +254,13 @@ final mediaSyncDataSourcePr = Provider<SyncDataSource>(
   ),
 );
 
+final mediaDiscovererPr = Provider<MediaDiscoverer>(
+  (ref) => ImplMediaDiscoverer(
+    mediaApiClient: ref.read(localizedMediaApiClientPr),
+    responseHandler: ref.read(mediaResponseHandlerPr),
+  ),
+);
+
 // HOME
 final homeServicePr = Provider<HomeService>(
   (ref) => HomeService(
@@ -433,10 +442,7 @@ final settingsUseCasePr = Provider<SettingsUseCase>(
 
 // FILTER
 final filterServicePr = Provider<FilterService>(
-  (ref) => FilterService(
-    mediaApiClient: ref.read(localizedMediaApiClientPr),
-    responseHandler: ref.read(mediaResponseHandlerPr),
-  ),
+  (ref) => FilterService(mediaDiscoverer: ref.read(mediaDiscovererPr)),
 );
 final filterRemoteDataSourcePr = Provider<FilterRemoteDataSource>(
   (ref) => ImplFilterRemoteDataSource(service: ref.read(filterServicePr)),
