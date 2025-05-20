@@ -121,6 +121,13 @@ abstract base class FilterViewModel<
               isInitialized: true,
               data: data,
             );
+
+            // Update the start page for pagination controller
+            if (page == 1) {
+              state = state.copyWith(
+                startPage: state.results.mediaData.currentPage,
+              );
+            }
           }),
     );
   }

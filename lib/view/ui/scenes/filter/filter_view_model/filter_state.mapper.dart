@@ -23,6 +23,9 @@ class FilterStateMapper extends ClassMapperBase<FilterState> {
   @override
   Function get typeFactory => <T, F>(f) => f<FilterState<T, F>>();
 
+  static int _$startPage(FilterState v) => v.startPage;
+  static const Field<FilterState, int> _f$startPage =
+      Field('startPage', _$startPage, opt: true, def: 1);
   static dynamic _$filter(FilterState v) => v.filter;
   static dynamic _arg$filter<T, F>(f) => f<F>();
   static const Field<FilterState, dynamic> _f$filter =
@@ -37,6 +40,7 @@ class FilterStateMapper extends ClassMapperBase<FilterState> {
 
   @override
   final MappableFields<FilterState> fields = const {
+    #startPage: _f$startPage,
     #filter: _f$filter,
     #results: _f$results,
     #status: _f$status,
@@ -44,6 +48,7 @@ class FilterStateMapper extends ClassMapperBase<FilterState> {
 
   static FilterState<T, F> _instantiate<T, F>(DecodingData data) {
     return FilterState(
+        startPage: data.dec(_f$startPage),
         filter: data.dec(_f$filter),
         results: data.dec(_f$results),
         status: data.dec(_f$status));
@@ -88,7 +93,11 @@ extension FilterStateValueCopy<$R, $Out, T, F>
 abstract class FilterStateCopyWith<$R, $In extends FilterState<T, F>, $Out, T,
     F> implements ClassCopyWith<$R, $In, $Out> {
   MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T> get results;
-  $R call({F? filter, MediaLoadInfo<T>? results, FilterStatus? status});
+  $R call(
+      {int? startPage,
+      F? filter,
+      MediaLoadInfo<T>? results,
+      FilterStatus? status});
   FilterStateCopyWith<$R2, $In, $Out2, T, F> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -108,16 +117,19 @@ class _FilterStateCopyWithImpl<$R, $Out, T, F>
           .$chain((v) => call(results: v));
   @override
   $R call(
-          {Object? filter = $none,
+          {int? startPage,
+          Object? filter = $none,
           Object? results = $none,
           FilterStatus? status}) =>
       $apply(FieldCopyWithData({
+        if (startPage != null) #startPage: startPage,
         if (filter != $none) #filter: filter,
         if (results != $none) #results: results,
         if (status != null) #status: status
       }));
   @override
   FilterState<T, F> $make(CopyWithData data) => FilterState(
+      startPage: data.get(#startPage, or: $value.startPage),
       filter: data.get(#filter, or: $value.filter),
       results: data.get(#results, or: $value.results),
       status: data.get(#status, or: $value.status));

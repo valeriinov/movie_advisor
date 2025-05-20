@@ -62,11 +62,13 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
       },
     );
 
+    final startPage = vsp.selectWatch((s) => s.startPage);
+
     useEffect(() {
       final paginationCtrl = _initPaginationController(vsp, scrollController);
 
       return paginationCtrl.dispose;
-    }, []);
+    }, [startPage]);
 
     final results = vsp.selectWatch((s) => s.results);
 
@@ -100,8 +102,11 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
     FilterVSP vsp,
     ScrollController scrollController,
   ) {
+    final startPage = vsp.selectRead((s) => s.startPage);
+
     final paginationCtrl = ScrollPaginationController(
       scrollController: scrollController,
+      startPage: startPage,
     );
 
     paginationCtrl.init(
