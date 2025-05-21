@@ -217,6 +217,8 @@ scripts:
   genScene: mason make riverpod_scene
   updFonts: mason make upd_fonts
   updImages: mason make upd_images
+  dbDump: dart run drift_dev schema dump lib/data/local/app_local_database.dart db_schemas
+  dbGenMigrationSteps: dart run drift_dev schema steps db_schemas lib/data/local/db_migration.dart
 
   # To add assets to your application, add an assets section, like this:
   # assets:
