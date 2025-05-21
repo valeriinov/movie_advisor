@@ -68,13 +68,28 @@ abstract base class FilterViewModel<
 
     final resultsData = state.results.mediaData;
 
-    final resultsItems = resultsData.items.updateItemInList(item);
+    final resultsItems =
+        _shouldDeleteItem(item, state.filter)
+            ? resultsData.items.deleteItemFromList(item)
+            : resultsData.items.updateItemInList(item);
 
     state = state.copyWith(
       results: state.results.copyWith(
         mediaData: resultsData.copyWith(items: resultsItems),
       ),
     );
+  }
+
+  bool _shouldDeleteItem(T item, F filter) {
+    return switch (item) {
+      final i
+          when (i.isInWatchlist && i.isWatched) &&
+              (filter.includeWatchlist || filter.includeWatched) =>
+        false,
+      final i when i.isInWatchlist && !filter.includeWatchlist => true,
+      final i when i.isWatched && !filter.includeWatched => true,
+      _ => false,
+    };
   }
 
   Future<void> loadInitialData({bool showLoader = true}) async {
