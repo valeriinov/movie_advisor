@@ -7,6 +7,7 @@ import '../dto/localized_string.dart';
 import '../dto/movie/movie_genre_dto.dart';
 import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
+import 'db_migration.dart';
 import 'tables/movies_filter_table.dart';
 import 'tables/movies_table.dart';
 import 'tables/series_filter_table.dart';
@@ -42,5 +43,34 @@ class AppLocalDatabase extends _$AppLocalDatabase {
     // `driftDatabase` from `package:drift_flutter` stores the database in
     // `getApplicationDocumentsDirectory()`.
     return driftDatabase(name: 'my_database');
+  }
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+    onCreate: _onCreate,
+    onUpgrade: stepByStep(from1To2: _migrateFrom1To2),
+  );
+
+  Future<void> _onCreate(Migrator m) async {
+    await m.createAll();
+  }
+
+  Future<void> _migrateFrom1To2(Migrator m, Schema2 schema) async {
+    await m.addColumn(
+      schema.moviesFilterTable,
+      schema.moviesFilterTable.includeWatched,
+    );
+    await m.addColumn(
+      schema.moviesFilterTable,
+      schema.moviesFilterTable.includeWatchlist,
+    );
+    await m.addColumn(
+      schema.seriesFilterTable,
+      schema.seriesFilterTable.includeWatched,
+    );
+    await m.addColumn(
+      schema.seriesFilterTable,
+      schema.seriesFilterTable.includeWatchlist,
+    );
   }
 }
