@@ -12,6 +12,8 @@ extension MoviesFilterMapper on MoviesFilterTableData {
       withCountries: withCountries,
       withGenres: withGenres,
       withoutGenres: withoutGenres,
+      includeWatched: includeWatched,
+      includeWatchlist: includeWatchlist,
     );
   }
 }
@@ -24,6 +26,8 @@ extension SeriesFilterMapper on SeriesFilterTableData {
       withCountries: withCountries,
       withGenres: withGenres,
       withoutGenres: withoutGenres,
+      includeWatched: includeWatched,
+      includeWatchlist: includeWatchlist,
     );
   }
 }
@@ -38,6 +42,8 @@ extension MoviesFilterTableMapper on MoviesFilterDataDto {
       withCountries: Value(withCountries),
       withGenres: Value(withGenres),
       withoutGenres: Value(withoutGenres),
+      includeWatched: Value(includeWatched),
+      includeWatchlist: Value(includeWatchlist),
     );
   }
 }
@@ -52,6 +58,8 @@ extension SeriesFilterTableMapper on SeriesFilterDataDto {
       withCountries: Value(withCountries),
       withGenres: Value(withGenres),
       withoutGenres: Value(withoutGenres),
+      includeWatched: Value(includeWatched),
+      includeWatchlist: Value(includeWatchlist),
     );
   }
 }
