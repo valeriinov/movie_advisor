@@ -155,8 +155,11 @@ class AppTheme {
     );
   }
 
-  CardTheme _createCardTheme(BaseColors colors, BaseComponentsStyles styles) {
-    return CardTheme(
+  CardThemeData _createCardTheme(
+    BaseColors colors,
+    BaseComponentsStyles styles,
+  ) {
+    return CardThemeData(
       surfaceTintColor: colors.cardPrimSurfTint,
       color: colors.cardPrimBg,
       shape: styles.cardPrimShape,
@@ -187,8 +190,11 @@ class AppTheme {
     );
   }
 
-  DialogTheme _createDialogTheme(BaseColors colors, BaseDialogsStyles styles) {
-    return DialogTheme(
+  DialogThemeData _createDialogTheme(
+    BaseColors colors,
+    BaseDialogsStyles styles,
+  ) {
+    return DialogThemeData(
       backgroundColor: colors.dlgPrimBg,
       shape: styles.dlgPrimShape,
       titleTextStyle: styles.dlgPrimTitleTextStyle,
