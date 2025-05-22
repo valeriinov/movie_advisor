@@ -14,6 +14,8 @@ part 'filter_state.mapper.dart';
 @mappableEntity
 final class FilterState<T, F> extends BaseState<FilterStatus>
     with FilterStateMappable<T, F> {
+  /// Start page for pagination controller
+  final int startPage;
   final F filter;
   final MediaLoadInfo<T> results;
 
@@ -21,6 +23,7 @@ final class FilterState<T, F> extends BaseState<FilterStatus>
   final FilterStatus status;
 
   FilterState({
+    this.startPage = 1,
     required this.filter,
     MediaLoadInfo<T>? results,
     this.status = const FilterBaseStatus(),

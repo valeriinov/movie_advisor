@@ -27,19 +27,29 @@ class FilterDataMapper extends ClassMapperBase<FilterData> {
   static List<Country> _$withCountries(FilterData v) => v.withCountries;
   static const Field<FilterData, List<Country>> _f$withCountries =
       Field('withCountries', _$withCountries);
+  static bool _$includeWatched(FilterData v) => v.includeWatched;
+  static const Field<FilterData, bool> _f$includeWatched =
+      Field('includeWatched', _$includeWatched);
+  static bool _$includeWatchlist(FilterData v) => v.includeWatchlist;
+  static const Field<FilterData, bool> _f$includeWatchlist =
+      Field('includeWatchlist', _$includeWatchlist);
 
   @override
   final MappableFields<FilterData> fields = const {
     #year: _f$year,
     #sortBy: _f$sortBy,
     #withCountries: _f$withCountries,
+    #includeWatched: _f$includeWatched,
+    #includeWatchlist: _f$includeWatchlist,
   };
 
   static FilterData _instantiate(DecodingData data) {
     return FilterData(
         year: data.dec(_f$year),
         sortBy: data.dec(_f$sortBy),
-        withCountries: data.dec(_f$withCountries));
+        withCountries: data.dec(_f$withCountries),
+        includeWatched: data.dec(_f$includeWatched),
+        includeWatchlist: data.dec(_f$includeWatchlist));
   }
 
   @override
@@ -78,7 +88,12 @@ abstract class FilterDataCopyWith<$R, $In extends FilterData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
       get withCountries;
-  $R call({int? year, SortBy? sortBy, List<Country>? withCountries});
+  $R call(
+      {int? year,
+      SortBy? sortBy,
+      List<Country>? withCountries,
+      bool? includeWatched,
+      bool? includeWatchlist});
   FilterDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -100,17 +115,24 @@ class _FilterDataCopyWithImpl<$R, $Out>
   $R call(
           {Object? year = $none,
           SortBy? sortBy,
-          List<Country>? withCountries}) =>
+          List<Country>? withCountries,
+          bool? includeWatched,
+          bool? includeWatchlist}) =>
       $apply(FieldCopyWithData({
         if (year != $none) #year: year,
         if (sortBy != null) #sortBy: sortBy,
-        if (withCountries != null) #withCountries: withCountries
+        if (withCountries != null) #withCountries: withCountries,
+        if (includeWatched != null) #includeWatched: includeWatched,
+        if (includeWatchlist != null) #includeWatchlist: includeWatchlist
       }));
   @override
   FilterData $make(CopyWithData data) => FilterData(
       year: data.get(#year, or: $value.year),
       sortBy: data.get(#sortBy, or: $value.sortBy),
-      withCountries: data.get(#withCountries, or: $value.withCountries));
+      withCountries: data.get(#withCountries, or: $value.withCountries),
+      includeWatched: data.get(#includeWatched, or: $value.includeWatched),
+      includeWatchlist:
+          data.get(#includeWatchlist, or: $value.includeWatchlist));
 
   @override
   FilterDataCopyWith<$R2, FilterData, $Out2> $chain<$R2, $Out2>(

@@ -29,6 +29,7 @@ import '../filter_view_model/filter_view_model.dart';
 import 'filter_bottom_sheet.dart';
 import 'filter_button.dart';
 import 'filter_chip.dart';
+import 'filter_user_lists_selector.dart';
 import 'filter_year_picker.dart';
 import 'sort_by_radio_group.dart';
 
@@ -142,6 +143,23 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
                         onYearChanged: viewModel.updateFilterYear,
                       ),
                 ),
+                FilterButton(
+                  iconPath: AppImages.addWatchlistIcon,
+                  title: LocaleKeys.filterYourListsDesc.tr(),
+                  subtitle: _getWatchlistDescription(
+                    filter.includeWatched,
+                    filter.includeWatchlist,
+                  ),
+                  iconSize: Size(24, 24),
+                  onTap:
+                      () => _openUserListsDialog(
+                        context,
+                        includeWatched: filter.includeWatched,
+                        includeWatchlist: filter.includeWatchlist,
+                        onUserListsFilterChanged:
+                            viewModel.updateUserListsFilter,
+                      ),
+                ),
               ],
             ),
           ),
@@ -208,6 +226,16 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
     return itemsCount == 0
         ? LocaleKeys.filterDescNone.tr()
         : '${LocaleKeys.filterSelectedDesc.tr()} ($itemsCount)';
+  }
+
+  String _getWatchlistDescription(bool includeWatched, bool includeWatchlist) {
+    if (includeWatched && includeWatchlist) {
+      return LocaleKeys.filterDescAll.tr();
+    } else if (includeWatched || includeWatchlist) {
+      return '${LocaleKeys.filterSelectedDesc.tr()} (1)';
+    } else {
+      return LocaleKeys.filterDescNone.tr();
+    }
   }
 
   void _openSortByDialog(
@@ -370,6 +398,32 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
         content: FilterYearPicker(
           year: currentYear,
           onYearChanged: onYearChanged,
+        ),
+      ),
+    );
+  }
+
+  void _openUserListsDialog(
+    BuildContext ctx, {
+    required bool includeWatched,
+    required bool includeWatchlist,
+    required void Function({
+      required bool includeWatched,
+      required bool includeWatchlist,
+    })
+    onUserListsFilterChanged,
+  }) {
+    showBlurredBottomSheet(
+      isDismissible: false,
+      context: ctx,
+      useRootNavigator: true,
+      child: FilterBottomSheet(
+        minHeight: 300,
+        title: LocaleKeys.includeYourListsDialog.tr(),
+        content: FilterUserListsSelector(
+          includeWatched: includeWatched,
+          includeWatchlist: includeWatchlist,
+          onApply: onUserListsFilterChanged,
         ),
       ),
     );

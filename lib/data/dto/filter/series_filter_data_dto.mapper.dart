@@ -43,6 +43,14 @@ class SeriesFilterDataDtoMapper extends ClassMapperBase<SeriesFilterDataDto> {
   static const Field<SeriesFilterDataDto, List<SeriesGenreDto>>
       _f$withoutGenres = Field('withoutGenres', _$withoutGenres,
           key: r'without_genres', opt: true);
+  static bool? _$includeWatched(SeriesFilterDataDto v) => v.includeWatched;
+  static const Field<SeriesFilterDataDto, bool> _f$includeWatched = Field(
+      'includeWatched', _$includeWatched,
+      key: r'include_watched', opt: true);
+  static bool? _$includeWatchlist(SeriesFilterDataDto v) => v.includeWatchlist;
+  static const Field<SeriesFilterDataDto, bool> _f$includeWatchlist = Field(
+      'includeWatchlist', _$includeWatchlist,
+      key: r'include_watchlist', opt: true);
 
   @override
   final MappableFields<SeriesFilterDataDto> fields = const {
@@ -51,6 +59,8 @@ class SeriesFilterDataDtoMapper extends ClassMapperBase<SeriesFilterDataDto> {
     #withCountries: _f$withCountries,
     #withGenres: _f$withGenres,
     #withoutGenres: _f$withoutGenres,
+    #includeWatched: _f$includeWatched,
+    #includeWatchlist: _f$includeWatchlist,
   };
   @override
   final bool ignoreNull = true;
@@ -61,7 +71,9 @@ class SeriesFilterDataDtoMapper extends ClassMapperBase<SeriesFilterDataDto> {
         sortBy: data.dec(_f$sortBy),
         withCountries: data.dec(_f$withCountries),
         withGenres: data.dec(_f$withGenres),
-        withoutGenres: data.dec(_f$withoutGenres));
+        withoutGenres: data.dec(_f$withoutGenres),
+        includeWatched: data.dec(_f$includeWatched),
+        includeWatchlist: data.dec(_f$includeWatchlist));
   }
 
   @override
@@ -130,7 +142,9 @@ abstract class SeriesFilterDataDtoCopyWith<$R, $In extends SeriesFilterDataDto,
       SortByDto? sortBy,
       List<CountryDto>? withCountries,
       List<SeriesGenreDto>? withGenres,
-      List<SeriesGenreDto>? withoutGenres});
+      List<SeriesGenreDto>? withoutGenres,
+      bool? includeWatched,
+      bool? includeWatchlist});
   SeriesFilterDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -175,13 +189,17 @@ class _SeriesFilterDataDtoCopyWithImpl<$R, $Out>
           Object? sortBy = $none,
           Object? withCountries = $none,
           Object? withGenres = $none,
-          Object? withoutGenres = $none}) =>
+          Object? withoutGenres = $none,
+          Object? includeWatched = $none,
+          Object? includeWatchlist = $none}) =>
       $apply(FieldCopyWithData({
         if (year != $none) #year: year,
         if (sortBy != $none) #sortBy: sortBy,
         if (withCountries != $none) #withCountries: withCountries,
         if (withGenres != $none) #withGenres: withGenres,
-        if (withoutGenres != $none) #withoutGenres: withoutGenres
+        if (withoutGenres != $none) #withoutGenres: withoutGenres,
+        if (includeWatched != $none) #includeWatched: includeWatched,
+        if (includeWatchlist != $none) #includeWatchlist: includeWatchlist
       }));
   @override
   SeriesFilterDataDto $make(CopyWithData data) => SeriesFilterDataDto(
@@ -189,7 +207,10 @@ class _SeriesFilterDataDtoCopyWithImpl<$R, $Out>
       sortBy: data.get(#sortBy, or: $value.sortBy),
       withCountries: data.get(#withCountries, or: $value.withCountries),
       withGenres: data.get(#withGenres, or: $value.withGenres),
-      withoutGenres: data.get(#withoutGenres, or: $value.withoutGenres));
+      withoutGenres: data.get(#withoutGenres, or: $value.withoutGenres),
+      includeWatched: data.get(#includeWatched, or: $value.includeWatched),
+      includeWatchlist:
+          data.get(#includeWatchlist, or: $value.includeWatchlist));
 
   @override
   SeriesFilterDataDtoCopyWith<$R2, SeriesFilterDataDto, $Out2>

@@ -28,4 +28,8 @@ extension MediaShortListManager<T extends MediaShortData> on List<T> {
   List<T> updateItemInList(T item) {
     return map((e) => e.id == item.id ? item : e).toList();
   }
+
+  List<T> deleteItemFromList(T item) {
+    return where((e) => e.id != item.id).toList();
+  }
 }

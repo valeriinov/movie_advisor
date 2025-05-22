@@ -1,8 +1,8 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
+import '../base_media/country.dart';
 import '../mappable_entity.dart';
 import '../movie/movie_genre.dart';
-import '../base_media/country.dart';
 import 'filter_data.dart';
 import 'sort_by.dart';
 
@@ -17,6 +17,8 @@ class MoviesFilterData extends FilterData with MoviesFilterDataMappable {
     super.year,
     super.sortBy = SortBy.popularityDesc,
     super.withCountries = const [],
+    super.includeWatched = true,
+    super.includeWatchlist = true,
     this.withGenres = const [],
     this.withoutGenres = const [],
   });
