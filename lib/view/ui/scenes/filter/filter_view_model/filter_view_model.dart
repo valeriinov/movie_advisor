@@ -192,6 +192,26 @@ abstract base class FilterViewModel<
     _loadFilterResult();
   }
 
+  void updateUserListsFilter({
+    required bool includeWatched,
+    required bool includeWatchlist,
+  }) {
+    _updateStatus(FilterBaseInitStatus(isLoading: true));
+
+    final filter =
+        state.filter.copyWith(
+              includeWatched: includeWatched,
+              includeWatchlist: includeWatchlist,
+            )
+            as F;
+
+    state = state.copyWith(filter: filter);
+
+    _saveFilter();
+
+    _loadFilterResult();
+  }
+
   void updateWithGenres(List<G> withGenres);
 
   void updateWithoutGenres(List<G> withoutGenres);
