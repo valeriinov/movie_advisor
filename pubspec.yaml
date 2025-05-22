@@ -16,11 +16,11 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.1.4+17
+version: 1.1.5+18
 
 environment:
-  sdk: ^3.7.2
-  flutter: ^3.29.3
+  sdk: ^3.8.0
+  flutter: ^3.32.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,10 +34,10 @@ dependencies:
 
   # UI
   theme_tailor_annotation: ^3.0.2
-  skeletonizer: 2.0.0-pre
+  skeletonizer: ^2.0.1
   flutter_animate: ^4.5.2
   extended_image: ^10.0.1
-  go_router: ^15.1.1
+  go_router: ^15.1.2
   keyboard_actions: ^4.2.0
   flutter_form_builder: ^10.0.1
   flutter_hooks: ^0.21.2
@@ -49,7 +49,7 @@ dependencies:
   fluttertoast: ^8.2.12
   animated_toggle_switch: ^0.8.5
   flutter_keyboard_visibility: ^6.0.0
-  upgrader: ^11.3.1
+  upgrader: ^11.4.0
   filter_list: ^1.0.3
   share_plus: ^11.0.0
   # https://github.com/flutter/flutter/issues/42588#issuecomment-2833651380
@@ -81,10 +81,10 @@ dependencies:
   connectivity_plus: ^6.1.4
 
   # Firebase
-  firebase_core: ^3.13.0
-  firebase_auth: ^5.5.3
-  cloud_firestore: ^5.6.7
-  cloud_functions: ^5.5.0
+  firebase_core: ^3.13.1
+  firebase_auth: ^5.5.4
+  cloud_firestore: ^5.6.8
+  cloud_functions: ^5.5.1
 
   # Local storage
   drift: ^2.26.1
@@ -100,7 +100,7 @@ dev_dependencies:
   dart_mappable_builder: ^4.5.0
   go_router_builder: ^2.9.0
   build_verify: ^3.1.0
-  flutter_flavorizr: ^2.4.0
+  flutter_flavorizr: ^2.4.1
   drift_dev: ^2.26.1
   class_namer:
     git:

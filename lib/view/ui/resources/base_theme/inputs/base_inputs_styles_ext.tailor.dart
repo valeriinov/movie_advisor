@@ -52,32 +52,33 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
   ) {
     if (other is! BaseInputsStyles) return this as BaseInputsStyles;
     return BaseInputsStyles(
-      txtFlsPrimInpTextStyle:
-          TextStyle.lerp(
-            txtFlsPrimInpTextStyle,
-            other.txtFlsPrimInpTextStyle,
-            t,
-          )!,
-      txtFldPrimErrorTextStyle:
-          TextStyle.lerp(
-            txtFldPrimErrorTextStyle,
-            other.txtFldPrimErrorTextStyle,
-            t,
-          )!,
-      txtFldPrimLabelTextStyle:
-          TextStyle.lerp(
-            txtFldPrimLabelTextStyle,
-            other.txtFldPrimLabelTextStyle,
-            t,
-          )!,
-      txtFldPrimContPadding:
-          t < 0.5 ? txtFldPrimContPadding : other.txtFldPrimContPadding,
-      txtFldPrimInpBorder:
-          t < 0.5 ? txtFldPrimInpBorder : other.txtFldPrimInpBorder,
-      txtFldPrimFocusBorder:
-          t < 0.5 ? txtFldPrimFocusBorder : other.txtFldPrimFocusBorder,
-      txtFldPrimErrorBorder:
-          t < 0.5 ? txtFldPrimErrorBorder : other.txtFldPrimErrorBorder,
+      txtFlsPrimInpTextStyle: TextStyle.lerp(
+        txtFlsPrimInpTextStyle,
+        other.txtFlsPrimInpTextStyle,
+        t,
+      )!,
+      txtFldPrimErrorTextStyle: TextStyle.lerp(
+        txtFldPrimErrorTextStyle,
+        other.txtFldPrimErrorTextStyle,
+        t,
+      )!,
+      txtFldPrimLabelTextStyle: TextStyle.lerp(
+        txtFldPrimLabelTextStyle,
+        other.txtFldPrimLabelTextStyle,
+        t,
+      )!,
+      txtFldPrimContPadding: t < 0.5
+          ? txtFldPrimContPadding
+          : other.txtFldPrimContPadding,
+      txtFldPrimInpBorder: t < 0.5
+          ? txtFldPrimInpBorder
+          : other.txtFldPrimInpBorder,
+      txtFldPrimFocusBorder: t < 0.5
+          ? txtFldPrimFocusBorder
+          : other.txtFldPrimFocusBorder,
+      txtFldPrimErrorBorder: t < 0.5
+          ? txtFldPrimErrorBorder
+          : other.txtFldPrimErrorBorder,
     );
   }
 
