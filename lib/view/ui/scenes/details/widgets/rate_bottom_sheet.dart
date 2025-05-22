@@ -10,6 +10,7 @@ import '../../../resources/base_theme/components/base_components_styles_ext.dart
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/bottom_sheet/bottom_sheet_close_button.dart';
+import '../../../widgets/bottom_sheet_checkbox.dart';
 
 class RateBottomSheet extends HookWidget {
   final String title;
@@ -119,44 +120,18 @@ class RateBottomSheet extends HookWidget {
     void Function(bool) onChanged,
   ) {
     return Flexible(
-      child: Builder(
-        builder: (context) {
-          final colors = context.baseColors;
-
-          return Align(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: IntrinsicWidth(
-                child: ListTileTheme(
-                  horizontalTitleGap: 0.0,
-                  child: CheckboxListTile(
-                    value: deleteFromWatchlist,
-                    checkboxScaleFactor: 1.1,
-                    onChanged: (v) => onChanged(v ?? deleteFromWatchlist),
-                    fillColor: WidgetStateResolver(
-                      selected: colors.botSheetCheckboxFill,
-                    ),
-                    checkboxShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    side: BorderSide(
-                      color: colors.botSheetCheckboxBorder,
-                      width: 1.5,
-                    ),
-                    title: Text(
-                      LocaleKeys.deleteFromWatchlist.tr(),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: colors.botSheetFg),
-                    ),
-                    controlAffinity: ListTileControlAffinity.leading,
-                  ),
-                ),
-              ),
+      child: Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: IntrinsicWidth(
+            child: BottomSheetCheckbox(
+              label: LocaleKeys.deleteFromWatchlist.tr(),
+              value: deleteFromWatchlist,
+              onChanged: (v) => onChanged(v ?? deleteFromWatchlist),
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

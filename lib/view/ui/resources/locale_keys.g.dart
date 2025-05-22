@@ -199,11 +199,15 @@ abstract class  LocaleKeys {
   static const filterDescAll = 'filterDescAll';
   static const filterDescNone = 'filterDescNone';
   static const filterSelectedDesc = 'filterSelectedDesc';
+  static const filterYourListsDesc = 'filterYourListsDesc';
   static const withGenresDialog = 'withGenresDialog';
   static const withoutGenresDialog = 'withoutGenresDialog';
   static const withCountriesDialog = 'withCountriesDialog';
   static const selectYearDialog = 'selectYearDialog';
   static const sortByDialog = 'sortByDialog';
+  static const includeYourListsDialog = 'includeYourListsDialog';
+  static const includeWatchedDesc = 'includeWatchedDesc';
+  static const includeWatchlistDesc = 'includeWatchlistDesc';
   static const filterResetButton = 'filterResetButton';
   static const filterApplyButton = 'filterApplyButton';
   static const emptyOverviewTab = 'emptyOverviewTab';
