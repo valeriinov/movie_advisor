@@ -264,6 +264,7 @@ final mediaDiscovererPr = Provider<MediaDiscoverer>(
 // HOME
 final homeServicePr = Provider<HomeService>(
   (ref) => HomeService(
+    mediaDiscoverer: ref.read(mediaDiscovererPr),
     mediaApiClient: ref.read(localizedMediaApiClientPr),
     responseHandler: ref.read(mediaResponseHandlerPr),
   ),
