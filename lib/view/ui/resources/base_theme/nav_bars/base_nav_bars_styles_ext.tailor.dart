@@ -40,26 +40,24 @@ mixin _$BaseNavBarsStylesTailorMixin on ThemeExtension<BaseNavBarsStyles> {
   ) {
     if (other is! BaseNavBarsStyles) return this as BaseNavBarsStyles;
     return BaseNavBarsStyles(
-      appBarPrimTitleTextStyle:
-          TextStyle.lerp(
-            appBarPrimTitleTextStyle,
-            other.appBarPrimTitleTextStyle,
-            t,
-          )!,
-      appBarSecTitleTextStyle:
-          TextStyle.lerp(
-            appBarSecTitleTextStyle,
-            other.appBarSecTitleTextStyle,
-            t,
-          )!,
-      botNavBarLabelTextStyle:
-          TextStyle.lerp(
-            botNavBarLabelTextStyle,
-            other.botNavBarLabelTextStyle,
-            t,
-          )!,
-      appBarPrimIconTheme:
-          t < 0.5 ? appBarPrimIconTheme : other.appBarPrimIconTheme,
+      appBarPrimTitleTextStyle: TextStyle.lerp(
+        appBarPrimTitleTextStyle,
+        other.appBarPrimTitleTextStyle,
+        t,
+      )!,
+      appBarSecTitleTextStyle: TextStyle.lerp(
+        appBarSecTitleTextStyle,
+        other.appBarSecTitleTextStyle,
+        t,
+      )!,
+      botNavBarLabelTextStyle: TextStyle.lerp(
+        botNavBarLabelTextStyle,
+        other.botNavBarLabelTextStyle,
+        t,
+      )!,
+      appBarPrimIconTheme: t < 0.5
+          ? appBarPrimIconTheme
+          : other.appBarPrimIconTheme,
     );
   }
 

@@ -65,18 +65,26 @@ mixin _$BaseDialogsStylesTailorMixin on ThemeExtension<BaseDialogsStyles> {
   ) {
     if (other is! BaseDialogsStyles) return this as BaseDialogsStyles;
     return BaseDialogsStyles(
-      dlgPrimTitleTextStyle:
-          TextStyle.lerp(
-            dlgPrimTitleTextStyle,
-            other.dlgPrimTitleTextStyle,
-            t,
-          )!,
-      dlgPrimContTextStyle:
-          TextStyle.lerp(dlgPrimContTextStyle, other.dlgPrimContTextStyle, t)!,
-      dlgPrimBtnTextStyle:
-          TextStyle.lerp(dlgPrimBtnTextStyle, other.dlgPrimBtnTextStyle, t)!,
-      dlgSecBtnTextStyle:
-          TextStyle.lerp(dlgSecBtnTextStyle, other.dlgSecBtnTextStyle, t)!,
+      dlgPrimTitleTextStyle: TextStyle.lerp(
+        dlgPrimTitleTextStyle,
+        other.dlgPrimTitleTextStyle,
+        t,
+      )!,
+      dlgPrimContTextStyle: TextStyle.lerp(
+        dlgPrimContTextStyle,
+        other.dlgPrimContTextStyle,
+        t,
+      )!,
+      dlgPrimBtnTextStyle: TextStyle.lerp(
+        dlgPrimBtnTextStyle,
+        other.dlgPrimBtnTextStyle,
+        t,
+      )!,
+      dlgSecBtnTextStyle: TextStyle.lerp(
+        dlgSecBtnTextStyle,
+        other.dlgSecBtnTextStyle,
+        t,
+      )!,
       dlgPrimActPadding: t < 0.5 ? dlgPrimActPadding : other.dlgPrimActPadding,
       dlgPrimInsPadding: t < 0.5 ? dlgPrimInsPadding : other.dlgPrimInsPadding,
       dlgPrimShape: t < 0.5 ? dlgPrimShape : other.dlgPrimShape,

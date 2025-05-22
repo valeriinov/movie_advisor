@@ -132,108 +132,115 @@ mixin _$BaseComponentsStylesTailorMixin
   ) {
     if (other is! BaseComponentsStyles) return this as BaseComponentsStyles;
     return BaseComponentsStyles(
-      cardPrimBorderRadius:
-          t < 0.5 ? cardPrimBorderRadius : other.cardPrimBorderRadius,
+      cardPrimBorderRadius: t < 0.5
+          ? cardPrimBorderRadius
+          : other.cardPrimBorderRadius,
       cardPrimShape: t < 0.5 ? cardPrimShape : other.cardPrimShape,
-      horizontalTitleGap:
-          t < 0.5 ? horizontalTitleGap : other.horizontalTitleGap,
-      listTilePrimTitleTextStyle:
-          TextStyle.lerp(
-            listTilePrimTitleTextStyle,
-            other.listTilePrimTitleTextStyle,
-            t,
-          )!,
-      listTilePrimSubtTextStyle:
-          TextStyle.lerp(
-            listTilePrimSubtTextStyle,
-            other.listTilePrimSubtTextStyle,
-            t,
-          )!,
-      listTileSecTitleTextStyle:
-          TextStyle.lerp(
-            listTileSecTitleTextStyle,
-            other.listTileSecTitleTextStyle,
-            t,
-          )!,
-      listTileSecSubtTextStyle:
-          TextStyle.lerp(
-            listTileSecSubtTextStyle,
-            other.listTileSecSubtTextStyle,
-            t,
-          )!,
-      listTileSecTitleTextStyleSelect:
-          TextStyle.lerp(
-            listTileSecTitleTextStyleSelect,
-            other.listTileSecTitleTextStyleSelect,
-            t,
-          )!,
-      listTileSecSubtTextStyleSelect:
-          TextStyle.lerp(
-            listTileSecSubtTextStyleSelect,
-            other.listTileSecSubtTextStyleSelect,
-            t,
-          )!,
-      avatarPrimTextStyle:
-          TextStyle.lerp(avatarPrimTextStyle, other.avatarPrimTextStyle, t)!,
-      posterBorderRadius:
-          t < 0.5 ? posterBorderRadius : other.posterBorderRadius,
-      backdrBorderRadius:
-          t < 0.5 ? backdrBorderRadius : other.backdrBorderRadius,
+      horizontalTitleGap: t < 0.5
+          ? horizontalTitleGap
+          : other.horizontalTitleGap,
+      listTilePrimTitleTextStyle: TextStyle.lerp(
+        listTilePrimTitleTextStyle,
+        other.listTilePrimTitleTextStyle,
+        t,
+      )!,
+      listTilePrimSubtTextStyle: TextStyle.lerp(
+        listTilePrimSubtTextStyle,
+        other.listTilePrimSubtTextStyle,
+        t,
+      )!,
+      listTileSecTitleTextStyle: TextStyle.lerp(
+        listTileSecTitleTextStyle,
+        other.listTileSecTitleTextStyle,
+        t,
+      )!,
+      listTileSecSubtTextStyle: TextStyle.lerp(
+        listTileSecSubtTextStyle,
+        other.listTileSecSubtTextStyle,
+        t,
+      )!,
+      listTileSecTitleTextStyleSelect: TextStyle.lerp(
+        listTileSecTitleTextStyleSelect,
+        other.listTileSecTitleTextStyleSelect,
+        t,
+      )!,
+      listTileSecSubtTextStyleSelect: TextStyle.lerp(
+        listTileSecSubtTextStyleSelect,
+        other.listTileSecSubtTextStyleSelect,
+        t,
+      )!,
+      avatarPrimTextStyle: TextStyle.lerp(
+        avatarPrimTextStyle,
+        other.avatarPrimTextStyle,
+        t,
+      )!,
+      posterBorderRadius: t < 0.5
+          ? posterBorderRadius
+          : other.posterBorderRadius,
+      backdrBorderRadius: t < 0.5
+          ? backdrBorderRadius
+          : other.backdrBorderRadius,
       posterSmallSize: t < 0.5 ? posterSmallSize : other.posterSmallSize,
       posterMediumSize: t < 0.5 ? posterMediumSize : other.posterMediumSize,
       posterLargeSize: t < 0.5 ? posterLargeSize : other.posterLargeSize,
-      infoCardRatingTextStyle:
-          TextStyle.lerp(
-            infoCardRatingTextStyle,
-            other.infoCardRatingTextStyle,
-            t,
-          )!,
-      emptyListTitleTextStyle:
-          TextStyle.lerp(
-            emptyListTitleTextStyle,
-            other.emptyListTitleTextStyle,
-            t,
-          )!,
-      emptyListSubtitleTextStyle:
-          TextStyle.lerp(
-            emptyListSubtitleTextStyle,
-            other.emptyListSubtitleTextStyle,
-            t,
-          )!,
-      detailsPropsIconSize:
-          t < 0.5 ? detailsPropsIconSize : other.detailsPropsIconSize,
-      detailsPropsTextStyle:
-          TextStyle.lerp(
-            detailsPropsTextStyle,
-            other.detailsPropsTextStyle,
-            t,
-          )!,
-      detailsPropsRateTextStyle:
-          TextStyle.lerp(
-            detailsPropsRateTextStyle,
-            other.detailsPropsRateTextStyle,
-            t,
-          )!,
-      botSheetBorderRadius:
-          t < 0.5 ? botSheetBorderRadius : other.botSheetBorderRadius,
-      botSheetContPadding:
-          t < 0.5 ? botSheetContPadding : other.botSheetContPadding,
+      infoCardRatingTextStyle: TextStyle.lerp(
+        infoCardRatingTextStyle,
+        other.infoCardRatingTextStyle,
+        t,
+      )!,
+      emptyListTitleTextStyle: TextStyle.lerp(
+        emptyListTitleTextStyle,
+        other.emptyListTitleTextStyle,
+        t,
+      )!,
+      emptyListSubtitleTextStyle: TextStyle.lerp(
+        emptyListSubtitleTextStyle,
+        other.emptyListSubtitleTextStyle,
+        t,
+      )!,
+      detailsPropsIconSize: t < 0.5
+          ? detailsPropsIconSize
+          : other.detailsPropsIconSize,
+      detailsPropsTextStyle: TextStyle.lerp(
+        detailsPropsTextStyle,
+        other.detailsPropsTextStyle,
+        t,
+      )!,
+      detailsPropsRateTextStyle: TextStyle.lerp(
+        detailsPropsRateTextStyle,
+        other.detailsPropsRateTextStyle,
+        t,
+      )!,
+      botSheetBorderRadius: t < 0.5
+          ? botSheetBorderRadius
+          : other.botSheetBorderRadius,
+      botSheetContPadding: t < 0.5
+          ? botSheetContPadding
+          : other.botSheetContPadding,
       botSheetMinHeight: t < 0.5 ? botSheetMinHeight : other.botSheetMinHeight,
       botSheetShape: t < 0.5 ? botSheetShape : other.botSheetShape,
-      botSheetTitleTextStyle:
-          TextStyle.lerp(
-            botSheetTitleTextStyle,
-            other.botSheetTitleTextStyle,
-            t,
-          )!,
+      botSheetTitleTextStyle: TextStyle.lerp(
+        botSheetTitleTextStyle,
+        other.botSheetTitleTextStyle,
+        t,
+      )!,
       sliderThumbRadius: t < 0.5 ? sliderThumbRadius : other.sliderThumbRadius,
       sliderTrackHeight: t < 0.5 ? sliderTrackHeight : other.sliderTrackHeight,
-      sliderValTextStyle:
-          TextStyle.lerp(sliderValTextStyle, other.sliderValTextStyle, t)!,
-      filterTitleTextStyle:
-          TextStyle.lerp(filterTitleTextStyle, other.filterTitleTextStyle, t)!,
-      filterSubtTextStyle:
-          TextStyle.lerp(filterSubtTextStyle, other.filterSubtTextStyle, t)!,
+      sliderValTextStyle: TextStyle.lerp(
+        sliderValTextStyle,
+        other.sliderValTextStyle,
+        t,
+      )!,
+      filterTitleTextStyle: TextStyle.lerp(
+        filterTitleTextStyle,
+        other.filterTitleTextStyle,
+        t,
+      )!,
+      filterSubtTextStyle: TextStyle.lerp(
+        filterSubtTextStyle,
+        other.filterSubtTextStyle,
+        t,
+      )!,
     );
   }
 
