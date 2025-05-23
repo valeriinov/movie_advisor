@@ -7,6 +7,7 @@ class SystemOverlayStyleWrapper extends StatelessWidget {
   final BaseColors colors;
   final Color? statusBarColor;
   final Color? systemNavigationBarColor;
+  final Brightness systemNavigationBarIconBrightness;
   final Widget child;
 
   const SystemOverlayStyleWrapper({
@@ -14,6 +15,7 @@ class SystemOverlayStyleWrapper extends StatelessWidget {
     required this.colors,
     this.statusBarColor,
     this.systemNavigationBarColor,
+    this.systemNavigationBarIconBrightness = Brightness.light,
     required this.child,
   });
 
@@ -23,6 +25,7 @@ class SystemOverlayStyleWrapper extends StatelessWidget {
       value: SystemUiOverlayStyle(
         statusBarColor: statusBarColor ?? colors.scaffoldBg,
         systemNavigationBarColor: systemNavigationBarColor ?? colors.scaffoldBg,
+        systemNavigationBarIconBrightness: systemNavigationBarIconBrightness,
       ),
       child: child,
     );

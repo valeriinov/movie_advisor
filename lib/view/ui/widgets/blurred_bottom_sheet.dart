@@ -39,6 +39,7 @@ Future<void> Function({
     builder: (context) => SystemOverlayStyleWrapper(
       colors: colors,
       systemNavigationBarColor: colors.botSheetBg,
+      systemNavigationBarIconBrightness: Brightness.dark,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         child: BackdropFilter(
