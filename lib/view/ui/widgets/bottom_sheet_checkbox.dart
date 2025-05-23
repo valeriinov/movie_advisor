@@ -6,12 +6,16 @@ import '../resources/base_theme/colors/base_colors_ext.dart';
 class BottomSheetCheckbox extends StatelessWidget {
   final String label;
   final bool value;
+  final double horizontalTitleGap;
+  final TextStyle? labelStyle;
   final ValueChanged<bool?>? onChanged;
 
   const BottomSheetCheckbox({
     super.key,
     required this.label,
     required this.value,
+    this.horizontalTitleGap = 10.0,
+    this.labelStyle,
     this.onChanged,
   });
 
@@ -20,7 +24,7 @@ class BottomSheetCheckbox extends StatelessWidget {
     final colors = context.baseColors;
 
     return ListTileTheme(
-      horizontalTitleGap: 0.0,
+      horizontalTitleGap: horizontalTitleGap,
       child: CheckboxListTile(
         value: value,
         checkboxScaleFactor: 1.1,
@@ -34,7 +38,7 @@ class BottomSheetCheckbox extends StatelessWidget {
           label,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(color: colors.botSheetFg),
+          style: labelStyle ?? TextStyle(color: colors.botSheetFg),
         ),
         controlAffinity: ListTileControlAffinity.leading,
       ),

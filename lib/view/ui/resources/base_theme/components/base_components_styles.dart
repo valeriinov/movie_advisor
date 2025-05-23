@@ -33,6 +33,7 @@ abstract final class _BaseComponentsStyles {
     fontFamily: AppFonts.montserrat,
     fontWeight: FontWeight.w500,
     fontSize: 16,
+    height: 20 / 16,
     color: color,
   );
 
@@ -47,6 +48,7 @@ abstract final class _BaseComponentsStyles {
     fontFamily: AppFonts.montserrat,
     fontWeight: FontWeight.w600,
     fontSize: 16,
+    height: 20 / 16,
     color: color,
   );
 

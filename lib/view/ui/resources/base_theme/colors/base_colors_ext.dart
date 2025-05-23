@@ -97,6 +97,8 @@ abstract final class BaseColorsFactory {
     botSheetIcon: _BaseColors.botSheetIcon,
     botSheetBarrier: _BaseColors.botSheetBarrier,
     botSheetCheckboxBorder: _BaseColors.botSheetCheckboxBorder,
+    botSheetRadio: _BaseColors.botSheetRadio,
+    botSheetRadioSelect: _BaseColors.botSheetRadioSelect,
     botSheetCheckboxFill: _BaseColors.botSheetCheckboxFill,
     sliderVal: _BaseColors.sliderVal,
     sliderTrackFg: _BaseColors.sliderTrackFg,
@@ -499,6 +501,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color botSheetCheckboxBorder;
 
+  /// Bottom sheet radio color.
+  @override
+  final Color botSheetRadio;
+
+  /// Bottom sheet radio selected color.
+  @override
+  final Color botSheetRadioSelect;
+
   /// Bottom sheet checkbox fill color.
   @override
   final Color botSheetCheckboxFill;
@@ -674,6 +684,8 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.botSheetIcon,
     required this.botSheetBarrier,
     required this.botSheetCheckboxBorder,
+    required this.botSheetRadio,
+    required this.botSheetRadioSelect,
     required this.botSheetCheckboxFill,
     required this.sliderVal,
     required this.sliderTrackFg,

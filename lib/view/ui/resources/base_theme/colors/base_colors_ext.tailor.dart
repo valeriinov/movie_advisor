@@ -100,6 +100,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get botSheetIcon;
   Color get botSheetBarrier;
   Color get botSheetCheckboxBorder;
+  Color get botSheetRadio;
+  Color get botSheetRadioSelect;
   Color get botSheetCheckboxFill;
   Color get sliderVal;
   Color get sliderTrackFg;
@@ -213,6 +215,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? botSheetIcon,
     Color? botSheetBarrier,
     Color? botSheetCheckboxBorder,
+    Color? botSheetRadio,
+    Color? botSheetRadioSelect,
     Color? botSheetCheckboxFill,
     Color? sliderVal,
     Color? sliderTrackFg,
@@ -328,6 +332,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       botSheetBarrier: botSheetBarrier ?? this.botSheetBarrier,
       botSheetCheckboxBorder:
           botSheetCheckboxBorder ?? this.botSheetCheckboxBorder,
+      botSheetRadio: botSheetRadio ?? this.botSheetRadio,
+      botSheetRadioSelect: botSheetRadioSelect ?? this.botSheetRadioSelect,
       botSheetCheckboxFill: botSheetCheckboxFill ?? this.botSheetCheckboxFill,
       sliderVal: sliderVal ?? this.sliderVal,
       sliderTrackFg: sliderTrackFg ?? this.sliderTrackFg,
@@ -576,6 +582,12 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       botSheetCheckboxBorder: Color.lerp(
         botSheetCheckboxBorder,
         other.botSheetCheckboxBorder,
+        t,
+      )!,
+      botSheetRadio: Color.lerp(botSheetRadio, other.botSheetRadio, t)!,
+      botSheetRadioSelect: Color.lerp(
+        botSheetRadioSelect,
+        other.botSheetRadioSelect,
         t,
       )!,
       botSheetCheckboxFill: Color.lerp(
@@ -980,6 +992,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
               other.botSheetCheckboxBorder,
             ) &&
             const DeepCollectionEquality().equals(
+              botSheetRadio,
+              other.botSheetRadio,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetRadioSelect,
+              other.botSheetRadioSelect,
+            ) &&
+            const DeepCollectionEquality().equals(
               botSheetCheckboxFill,
               other.botSheetCheckboxFill,
             ) &&
@@ -1149,6 +1169,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(botSheetIcon),
       const DeepCollectionEquality().hash(botSheetBarrier),
       const DeepCollectionEquality().hash(botSheetCheckboxBorder),
+      const DeepCollectionEquality().hash(botSheetRadio),
+      const DeepCollectionEquality().hash(botSheetRadioSelect),
       const DeepCollectionEquality().hash(botSheetCheckboxFill),
       const DeepCollectionEquality().hash(sliderVal),
       const DeepCollectionEquality().hash(sliderTrackFg),
