@@ -58,6 +58,7 @@ class AppTheme {
       textButtonTheme: _createTextBtnTheme(buttonsStyles),
       iconButtonTheme: _createIconButtonTheme(buttonsStyles),
       listTileTheme: _createListTileTheme(componentsStyles),
+      radioTheme: _createRadioTheme(colors),
       cardTheme: _createCardTheme(colors, componentsStyles),
       iconTheme: _createIconTheme(colors),
       primaryIconTheme: _createIconTheme(colors),
@@ -152,6 +153,15 @@ class AppTheme {
       horizontalTitleGap: styles.horizontalTitleGap,
       titleTextStyle: styles.listTilePrimTitleTextStyle,
       subtitleTextStyle: styles.listTilePrimSubtTextStyle,
+    );
+  }
+
+  RadioThemeData _createRadioTheme(BaseColors colors) {
+    return RadioThemeData(
+      fillColor: WidgetStateResolver(
+        defaultValue: colors.botSheetRadio,
+        selected: colors.botSheetRadioSelect,
+      ),
     );
   }
 
