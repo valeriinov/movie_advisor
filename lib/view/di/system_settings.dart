@@ -1,9 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:easy_localization/easy_localization.dart';
-
-import '../ui/resources/base_theme/colors/base_colors_ext.dart';
 
 /// {@category Utils}
 ///
@@ -34,14 +32,5 @@ abstract final class SystemSettings {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
-    // Set system UI overlay style
-    final colors = BaseColorsFactory.createColors();
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: colors.scaffoldBg,
-        systemNavigationBarColor: colors.scaffoldBg,
-      ),
-    );
   }
 }

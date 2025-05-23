@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../resources/base_theme/colors/base_colors_ext.dart';
+
+class SystemOverlayStyleWrapper extends StatelessWidget {
+  final BaseColors colors;
+  final Color? statusBarColor;
+  final Color? systemNavigationBarColor;
+  final Widget child;
+
+  const SystemOverlayStyleWrapper({
+    super.key,
+    required this.colors,
+    this.statusBarColor,
+    this.systemNavigationBarColor,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: statusBarColor ?? colors.scaffoldBg,
+        systemNavigationBarColor: systemNavigationBarColor ?? colors.scaffoldBg,
+      ),
+      child: child,
+    );
+  }
+}
