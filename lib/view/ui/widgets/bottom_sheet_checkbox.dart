@@ -6,12 +6,14 @@ import '../resources/base_theme/colors/base_colors_ext.dart';
 class BottomSheetCheckbox extends StatelessWidget {
   final String label;
   final bool value;
+  final TextStyle? labelStyle;
   final ValueChanged<bool?>? onChanged;
 
   const BottomSheetCheckbox({
     super.key,
     required this.label,
     required this.value,
+    this.labelStyle,
     this.onChanged,
   });
 
@@ -34,7 +36,7 @@ class BottomSheetCheckbox extends StatelessWidget {
           label,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(color: colors.botSheetFg),
+          style: labelStyle ?? TextStyle(color: colors.botSheetFg),
         ),
         controlAffinity: ListTileControlAffinity.leading,
       ),

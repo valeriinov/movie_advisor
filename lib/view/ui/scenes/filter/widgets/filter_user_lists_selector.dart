@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
+import '../../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/bottom_sheet_checkbox.dart';
@@ -33,6 +34,8 @@ class FilterUserListsSelector extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final dimens = context.baseDimens;
+    final styles = context.baseComponentsStyles;
+    final labelStyle = styles.listTileSecTitleTextStyle;
 
     final selectedIncludeWatched = useState(includeWatched);
     final selectedIncludeWatchlist = useState(includeWatchlist);
@@ -43,32 +46,30 @@ class FilterUserListsSelector extends HookWidget {
         BottomSheetCheckbox(
           label: LocaleKeys.includeWatchedDesc.tr(),
           value: selectedIncludeWatched.value,
+          labelStyle: labelStyle,
           onChanged: (v) => selectedIncludeWatched.value = v ?? true,
         ),
         dimens.spExtSmall.gapVert(),
         BottomSheetCheckbox(
           label: LocaleKeys.includeWatchlistDesc.tr(),
           value: selectedIncludeWatchlist.value,
+          labelStyle: labelStyle,
           onChanged: (v) => selectedIncludeWatchlist.value = v ?? true,
         ),
         dimens.spExtLarge.gapVert(),
         FilterControlButtons(
           popOnReset: false,
-          onApply:
-              () => onApply(
-                includeWatched: selectedIncludeWatched.value,
-                includeWatchlist: selectedIncludeWatchlist.value,
-              ),
-          onReset:
-              onReset != null
-                  ? () => onReset?.call(
-                    includeWatched: true,
-                    includeWatchlist: true,
-                  )
-                  : () {
-                    selectedIncludeWatched.value = true;
-                    selectedIncludeWatchlist.value = true;
-                  },
+          onApply: () => onApply(
+            includeWatched: selectedIncludeWatched.value,
+            includeWatchlist: selectedIncludeWatchlist.value,
+          ),
+          onReset: onReset != null
+              ? () =>
+                    onReset?.call(includeWatched: true, includeWatchlist: true)
+              : () {
+                  selectedIncludeWatched.value = true;
+                  selectedIncludeWatchlist.value = true;
+                },
         ),
         10.gapVert(),
       ],
