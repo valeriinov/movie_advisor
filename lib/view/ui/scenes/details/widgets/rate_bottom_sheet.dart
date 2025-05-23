@@ -126,6 +126,7 @@ class RateBottomSheet extends HookWidget {
           padding: const EdgeInsets.only(top: 10),
           child: IntrinsicWidth(
             child: BottomSheetCheckbox(
+              horizontalTitleGap: 0.0,
               label: LocaleKeys.deleteFromWatchlist.tr(),
               value: deleteFromWatchlist,
               onChanged: (v) => onChanged(v ?? deleteFromWatchlist),
@@ -147,13 +148,12 @@ class RateBottomSheet extends HookWidget {
           width: 220,
           padding: EdgeInsets.only(top: dimens.spLarge, bottom: dimens.spLarge),
           child: FilledButton(
-            onPressed:
-                isEnabled
-                    ? () {
-                      Navigator.of(context).pop();
-                      onRate?.call(rate, deleteFromWatchlist);
-                    }
-                    : null,
+            onPressed: isEnabled
+                ? () {
+                    Navigator.of(context).pop();
+                    onRate?.call(rate, deleteFromWatchlist);
+                  }
+                : null,
             child: Text(LocaleKeys.rateButton.tr()),
           ),
         );
@@ -166,25 +166,25 @@ class RateBottomSheet extends HookWidget {
 
     return isEnabled
         ? Builder(
-          builder: (context) {
-            final dimens = context.baseDimens;
-            final colors = context.baseColors;
+            builder: (context) {
+              final dimens = context.baseDimens;
+              final colors = context.baseColors;
 
-            return Padding(
-              padding: EdgeInsets.only(bottom: dimens.spMedium),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: colors.removeRateBtn,
+              return Padding(
+                padding: EdgeInsets.only(bottom: dimens.spMedium),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: colors.removeRateBtn,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    removeRate?.call();
+                  },
+                  child: Text(LocaleKeys.removeFromWatchedButton.tr()),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  removeRate?.call();
-                },
-                child: Text(LocaleKeys.removeFromWatchedButton.tr()),
-              ),
-            );
-          },
-        )
+              );
+            },
+          )
         : SizedBox.shrink();
   }
 }
