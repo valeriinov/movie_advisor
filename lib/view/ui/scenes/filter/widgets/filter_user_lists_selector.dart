@@ -56,7 +56,7 @@ class FilterUserListsSelector extends HookWidget {
           labelStyle: labelStyle,
           onChanged: (v) => selectedIncludeWatchlist.value = v ?? true,
         ),
-        dimens.spLarge.gapVert(),
+        dimens.spExtLarge.gapVert(),
         FilterControlButtons(
           popOnReset: false,
           onApply: () => onApply(
