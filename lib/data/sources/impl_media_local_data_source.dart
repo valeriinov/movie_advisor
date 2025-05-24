@@ -129,9 +129,9 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
           tbl.isInWatchlist.equals(includeWatchlist);
     }
     if (includeWatched) {
-      return tbl.isWatched.equals(true);
+      return tbl.isWatched.equals(true) & tbl.isInWatchlist.equals(false);
     }
-    return tbl.isInWatchlist.equals(true);
+    return tbl.isInWatchlist.equals(true) & tbl.isWatched.equals(false);
   }
 
   @override
@@ -159,9 +159,9 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
           tbl.isInWatchlist.equals(includeWatchlist);
     }
     if (includeWatched) {
-      return tbl.isWatched.equals(true);
+      return tbl.isWatched.equals(true) & tbl.isInWatchlist.equals(false);
     }
-    return tbl.isInWatchlist.equals(true);
+    return tbl.isInWatchlist.equals(true) & tbl.isWatched.equals(false);
   }
 
   @override
