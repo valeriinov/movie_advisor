@@ -29,8 +29,11 @@ final class ContentModeState extends BaseState<ContentModeStatus>
 /// A sealed class representing the possible statuses of a [ContentModeState].
 /// Provides properties for loading, initialization, and error handling.
 class ContentModeStatus extends BaseStatus {
-  const ContentModeStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const ContentModeStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -39,6 +42,9 @@ class ContentModeStatus extends BaseStatus {
 @mappableEntity
 final class ContentModeBaseStatus extends ContentModeStatus
     with ContentModeBaseStatusMappable {
-  const ContentModeBaseStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const ContentModeBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }

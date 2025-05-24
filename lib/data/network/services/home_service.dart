@@ -52,8 +52,10 @@ class HomeService {
       return _trimResults(initial, desiredCount);
     }
 
-    excludeIds =
-        {...excludeIds, ...initial.map((m) => m.id).whereType<int>()}.toList();
+    excludeIds = {
+      ...excludeIds,
+      ...initial.map((m) => m.id).whereType<int>(),
+    }.toList();
 
     final relaxed = await _fetchSuggestedMovies(
       filter,
@@ -89,10 +91,9 @@ class HomeService {
   }) {
     final genreFilter = _buildMoviesGenreIdsStr(filter.targetGenres);
 
-    final countryFilter =
-        useCountryFilter
-            ? _buildCountryFilterString(filter.targetCountries)
-            : '';
+    final countryFilter = useCountryFilter
+        ? _buildCountryFilterString(filter.targetCountries)
+        : '';
 
     return _buildQueryParams(genreFilter, countryFilter, page);
   }
@@ -176,8 +177,10 @@ class HomeService {
       return _trimResults(initial, desiredCount);
     }
 
-    excludeIds =
-        {...excludeIds, ...initial.map((s) => s.id).whereType<int>()}.toList();
+    excludeIds = {
+      ...excludeIds,
+      ...initial.map((s) => s.id).whereType<int>(),
+    }.toList();
 
     final relaxed = await _fetchSuggestedSeries(
       filter,
@@ -211,10 +214,9 @@ class HomeService {
   }) {
     final genreFilter = _buildSeriesGenresFilterString(filter.targetGenres);
 
-    final countryFilter =
-        useCountryFilter
-            ? _buildCountryFilterString(filter.targetCountries)
-            : '';
+    final countryFilter = useCountryFilter
+        ? _buildCountryFilterString(filter.targetCountries)
+        : '';
 
     return _buildQueryParams(genreFilter, countryFilter, page);
   }

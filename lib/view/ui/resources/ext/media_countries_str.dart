@@ -7,14 +7,10 @@ import 'country_desc.dart';
 extension MediaDataCountriesStr on MediaData {
   String getCountriesStr() {
     return switch (this) {
-      MovieData(originCountry: final c) => c
-          .where((e) => e != Country.none)
-          .map((e) => e.desc)
-          .join(', '),
-      SeriesData(originCountry: final c) => c
-          .where((e) => e != Country.none)
-          .map((e) => e.desc)
-          .join(', '),
+      MovieData(originCountry: final c) =>
+        c.where((e) => e != Country.none).map((e) => e.desc).join(', '),
+      SeriesData(originCountry: final c) =>
+        c.where((e) => e != Country.none).map((e) => e.desc).join(', '),
       _ => '',
     };
   }

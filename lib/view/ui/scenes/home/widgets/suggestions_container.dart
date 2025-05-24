@@ -35,29 +35,27 @@ class SuggestionsContainer extends StatelessWidget {
     return SliverToBoxAdapter(
       child: AnimatedSwitcher(
         duration: durations.animSwitchPrim,
-        child:
-            _isEmpty()
-                ? _buildEmptyList()
-                : SizedBox(
-                  height: posterSize.height + 25, // bottom number offset
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: suggestions.length,
-                    padding: dimens.padHorPrimIns,
-                    itemBuilder: (context, index) {
-                      final suggestion = suggestions[index];
-                      final number = index + 1;
+        child: _isEmpty()
+            ? _buildEmptyList()
+            : SizedBox(
+                height: posterSize.height + 25, // bottom number offset
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: suggestions.length,
+                  padding: dimens.padHorPrimIns,
+                  itemBuilder: (context, index) {
+                    final suggestion = suggestions[index];
+                    final number = index + 1;
 
-                      return SuggestionItem(
-                        number: number,
-                        posterUrl: suggestion.posterUrl,
-                        onTap:
-                            onTap != null ? () => onTap!(suggestion.id) : null,
-                      );
-                    },
-                    separatorBuilder: (_, __) => dimens.spLarge.gapHor(),
-                  ),
+                    return SuggestionItem(
+                      number: number,
+                      posterUrl: suggestion.posterUrl,
+                      onTap: onTap != null ? () => onTap!(suggestion.id) : null,
+                    );
+                  },
+                  separatorBuilder: (_, __) => dimens.spLarge.gapHor(),
                 ),
+              ),
       ),
     );
   }

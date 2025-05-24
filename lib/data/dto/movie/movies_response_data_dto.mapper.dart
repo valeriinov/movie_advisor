@@ -23,14 +23,21 @@ class MoviesResponseDataDtoMapper
   final String id = 'MoviesResponseDataDto';
 
   static int? _$page(MoviesResponseDataDto v) => v.page;
-  static const Field<MoviesResponseDataDto, int> _f$page =
-      Field('page', _$page, opt: true);
+  static const Field<MoviesResponseDataDto, int> _f$page = Field(
+    'page',
+    _$page,
+    opt: true,
+  );
   static List<MovieDataDto>? _$results(MoviesResponseDataDto v) => v.results;
   static const Field<MoviesResponseDataDto, List<MovieDataDto>> _f$results =
       Field('results', _$results, opt: true);
   static int? _$totalPages(MoviesResponseDataDto v) => v.totalPages;
-  static const Field<MoviesResponseDataDto, int> _f$totalPages =
-      Field('totalPages', _$totalPages, key: r'total_pages', opt: true);
+  static const Field<MoviesResponseDataDto, int> _f$totalPages = Field(
+    'totalPages',
+    _$totalPages,
+    key: r'total_pages',
+    opt: true,
+  );
 
   @override
   final MappableFields<MoviesResponseDataDto> fields = const {
@@ -43,9 +50,10 @@ class MoviesResponseDataDtoMapper
 
   static MoviesResponseDataDto _instantiate(DecodingData data) {
     return MoviesResponseDataDto(
-        page: data.dec(_f$page),
-        results: data.dec(_f$results),
-        totalPages: data.dec(_f$totalPages));
+      page: data.dec(_f$page),
+      results: data.dec(_f$results),
+      totalPages: data.dec(_f$totalPages),
+    );
   }
 
   @override
@@ -71,45 +79,63 @@ mixin MoviesResponseDataDtoMappable {
         .encodeMap<MoviesResponseDataDto>(this as MoviesResponseDataDto);
   }
 
-  MoviesResponseDataDtoCopyWith<MoviesResponseDataDto, MoviesResponseDataDto,
-      MoviesResponseDataDto> get copyWith => _MoviesResponseDataDtoCopyWithImpl<
-          MoviesResponseDataDto, MoviesResponseDataDto>(
-      this as MoviesResponseDataDto, $identity, $identity);
+  MoviesResponseDataDtoCopyWith<
+    MoviesResponseDataDto,
+    MoviesResponseDataDto,
+    MoviesResponseDataDto
+  >
+  get copyWith =>
+      _MoviesResponseDataDtoCopyWithImpl<
+        MoviesResponseDataDto,
+        MoviesResponseDataDto
+      >(this as MoviesResponseDataDto, $identity, $identity);
   @override
   String toString() {
-    return MoviesResponseDataDtoMapper.ensureInitialized()
-        .stringifyValue(this as MoviesResponseDataDto);
+    return MoviesResponseDataDtoMapper.ensureInitialized().stringifyValue(
+      this as MoviesResponseDataDto,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return MoviesResponseDataDtoMapper.ensureInitialized()
-        .equalsValue(this as MoviesResponseDataDto, other);
+    return MoviesResponseDataDtoMapper.ensureInitialized().equalsValue(
+      this as MoviesResponseDataDto,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return MoviesResponseDataDtoMapper.ensureInitialized()
-        .hashValue(this as MoviesResponseDataDto);
+    return MoviesResponseDataDtoMapper.ensureInitialized().hashValue(
+      this as MoviesResponseDataDto,
+    );
   }
 }
 
 extension MoviesResponseDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MoviesResponseDataDto, $Out> {
   MoviesResponseDataDtoCopyWith<$R, MoviesResponseDataDto, $Out>
-      get $asMoviesResponseDataDto => $base.as(
-          (v, t, t2) => _MoviesResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asMoviesResponseDataDto => $base.as(
+    (v, t, t2) => _MoviesResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
 abstract class MoviesResponseDataDtoCopyWith<
+  $R,
+  $In extends MoviesResponseDataDto,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
+  ListCopyWith<
     $R,
-    $In extends MoviesResponseDataDto,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, MovieDataDto,
-      MovieDataDtoCopyWith<$R, MovieDataDto, MovieDataDto>>? get results;
+    MovieDataDto,
+    MovieDataDtoCopyWith<$R, MovieDataDto, MovieDataDto>
+  >?
+  get results;
   $R call({int? page, List<MovieDataDto>? results, int? totalPages});
   MoviesResponseDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _MoviesResponseDataDtoCopyWithImpl<$R, $Out>
@@ -121,30 +147,39 @@ class _MoviesResponseDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MoviesResponseDataDto> $mapper =
       MoviesResponseDataDtoMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, MovieDataDto,
-          MovieDataDtoCopyWith<$R, MovieDataDto, MovieDataDto>>?
-      get results => $value.results != null
-          ? ListCopyWith($value.results!, (v, t) => v.copyWith.$chain(t),
-              (v) => call(results: v))
-          : null;
+  ListCopyWith<
+    $R,
+    MovieDataDto,
+    MovieDataDtoCopyWith<$R, MovieDataDto, MovieDataDto>
+  >?
+  get results => $value.results != null
+      ? ListCopyWith(
+          $value.results!,
+          (v, t) => v.copyWith.$chain(t),
+          (v) => call(results: v),
+        )
+      : null;
   @override
-  $R call(
-          {Object? page = $none,
-          Object? results = $none,
-          Object? totalPages = $none}) =>
-      $apply(FieldCopyWithData({
-        if (page != $none) #page: page,
-        if (results != $none) #results: results,
-        if (totalPages != $none) #totalPages: totalPages
-      }));
+  $R call({
+    Object? page = $none,
+    Object? results = $none,
+    Object? totalPages = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (page != $none) #page: page,
+      if (results != $none) #results: results,
+      if (totalPages != $none) #totalPages: totalPages,
+    }),
+  );
   @override
   MoviesResponseDataDto $make(CopyWithData data) => MoviesResponseDataDto(
-      page: data.get(#page, or: $value.page),
-      results: data.get(#results, or: $value.results),
-      totalPages: data.get(#totalPages, or: $value.totalPages));
+    page: data.get(#page, or: $value.page),
+    results: data.get(#results, or: $value.results),
+    totalPages: data.get(#totalPages, or: $value.totalPages),
+  );
 
   @override
   MoviesResponseDataDtoCopyWith<$R2, MoviesResponseDataDto, $Out2>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _MoviesResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _MoviesResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

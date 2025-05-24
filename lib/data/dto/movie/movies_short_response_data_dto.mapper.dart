@@ -13,8 +13,9 @@ class MoviesShortResponseDataDtoMapper
   static MoviesShortResponseDataDtoMapper? _instance;
   static MoviesShortResponseDataDtoMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals
-          .use(_instance = MoviesShortResponseDataDtoMapper._());
+      MapperContainer.globals.use(
+        _instance = MoviesShortResponseDataDtoMapper._(),
+      );
       MovieShortDataDtoMapper.ensureInitialized();
     }
     return _instance!;
@@ -24,15 +25,22 @@ class MoviesShortResponseDataDtoMapper
   final String id = 'MoviesShortResponseDataDto';
 
   static int? _$page(MoviesShortResponseDataDto v) => v.page;
-  static const Field<MoviesShortResponseDataDto, int> _f$page =
-      Field('page', _$page, opt: true);
+  static const Field<MoviesShortResponseDataDto, int> _f$page = Field(
+    'page',
+    _$page,
+    opt: true,
+  );
   static List<MovieShortDataDto>? _$results(MoviesShortResponseDataDto v) =>
       v.results;
   static const Field<MoviesShortResponseDataDto, List<MovieShortDataDto>>
-      _f$results = Field('results', _$results, opt: true);
+  _f$results = Field('results', _$results, opt: true);
   static int? _$totalPages(MoviesShortResponseDataDto v) => v.totalPages;
-  static const Field<MoviesShortResponseDataDto, int> _f$totalPages =
-      Field('totalPages', _$totalPages, key: r'total_pages', opt: true);
+  static const Field<MoviesShortResponseDataDto, int> _f$totalPages = Field(
+    'totalPages',
+    _$totalPages,
+    key: r'total_pages',
+    opt: true,
+  );
 
   @override
   final MappableFields<MoviesShortResponseDataDto> fields = const {
@@ -45,9 +53,10 @@ class MoviesShortResponseDataDtoMapper
 
   static MoviesShortResponseDataDto _instantiate(DecodingData data) {
     return MoviesShortResponseDataDto(
-        page: data.dec(_f$page),
-        results: data.dec(_f$results),
-        totalPages: data.dec(_f$totalPages));
+      page: data.dec(_f$page),
+      results: data.dec(_f$results),
+      totalPages: data.dec(_f$totalPages),
+    );
   }
 
   @override
@@ -66,94 +75,124 @@ mixin MoviesShortResponseDataDtoMappable {
   String toJsonString() {
     return MoviesShortResponseDataDtoMapper.ensureInitialized()
         .encodeJson<MoviesShortResponseDataDto>(
-            this as MoviesShortResponseDataDto);
+          this as MoviesShortResponseDataDto,
+        );
   }
 
   Map<String, dynamic> toJson() {
     return MoviesShortResponseDataDtoMapper.ensureInitialized()
         .encodeMap<MoviesShortResponseDataDto>(
-            this as MoviesShortResponseDataDto);
+          this as MoviesShortResponseDataDto,
+        );
   }
 
-  MoviesShortResponseDataDtoCopyWith<MoviesShortResponseDataDto,
-          MoviesShortResponseDataDto, MoviesShortResponseDataDto>
-      get copyWith => _MoviesShortResponseDataDtoCopyWithImpl<
-              MoviesShortResponseDataDto, MoviesShortResponseDataDto>(
-          this as MoviesShortResponseDataDto, $identity, $identity);
+  MoviesShortResponseDataDtoCopyWith<
+    MoviesShortResponseDataDto,
+    MoviesShortResponseDataDto,
+    MoviesShortResponseDataDto
+  >
+  get copyWith =>
+      _MoviesShortResponseDataDtoCopyWithImpl<
+        MoviesShortResponseDataDto,
+        MoviesShortResponseDataDto
+      >(this as MoviesShortResponseDataDto, $identity, $identity);
   @override
   String toString() {
-    return MoviesShortResponseDataDtoMapper.ensureInitialized()
-        .stringifyValue(this as MoviesShortResponseDataDto);
+    return MoviesShortResponseDataDtoMapper.ensureInitialized().stringifyValue(
+      this as MoviesShortResponseDataDto,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return MoviesShortResponseDataDtoMapper.ensureInitialized()
-        .equalsValue(this as MoviesShortResponseDataDto, other);
+    return MoviesShortResponseDataDtoMapper.ensureInitialized().equalsValue(
+      this as MoviesShortResponseDataDto,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return MoviesShortResponseDataDtoMapper.ensureInitialized()
-        .hashValue(this as MoviesShortResponseDataDto);
+    return MoviesShortResponseDataDtoMapper.ensureInitialized().hashValue(
+      this as MoviesShortResponseDataDto,
+    );
   }
 }
 
 extension MoviesShortResponseDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MoviesShortResponseDataDto, $Out> {
   MoviesShortResponseDataDtoCopyWith<$R, MoviesShortResponseDataDto, $Out>
-      get $asMoviesShortResponseDataDto => $base.as((v, t, t2) =>
-          _MoviesShortResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asMoviesShortResponseDataDto => $base.as(
+    (v, t, t2) => _MoviesShortResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
 abstract class MoviesShortResponseDataDtoCopyWith<
+  $R,
+  $In extends MoviesShortResponseDataDto,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
+  ListCopyWith<
     $R,
-    $In extends MoviesShortResponseDataDto,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, MovieShortDataDto,
-          MovieShortDataDtoCopyWith<$R, MovieShortDataDto, MovieShortDataDto>>?
-      get results;
+    MovieShortDataDto,
+    MovieShortDataDtoCopyWith<$R, MovieShortDataDto, MovieShortDataDto>
+  >?
+  get results;
   $R call({int? page, List<MovieShortDataDto>? results, int? totalPages});
   MoviesShortResponseDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _MoviesShortResponseDataDtoCopyWithImpl<$R, $Out>
     extends ClassCopyWithBase<$R, MoviesShortResponseDataDto, $Out>
     implements
-        MoviesShortResponseDataDtoCopyWith<$R, MoviesShortResponseDataDto,
-            $Out> {
+        MoviesShortResponseDataDtoCopyWith<
+          $R,
+          MoviesShortResponseDataDto,
+          $Out
+        > {
   _MoviesShortResponseDataDtoCopyWithImpl(super.value, super.then, super.then2);
 
   @override
   late final ClassMapperBase<MoviesShortResponseDataDto> $mapper =
       MoviesShortResponseDataDtoMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, MovieShortDataDto,
-          MovieShortDataDtoCopyWith<$R, MovieShortDataDto, MovieShortDataDto>>?
-      get results => $value.results != null
-          ? ListCopyWith($value.results!, (v, t) => v.copyWith.$chain(t),
-              (v) => call(results: v))
-          : null;
+  ListCopyWith<
+    $R,
+    MovieShortDataDto,
+    MovieShortDataDtoCopyWith<$R, MovieShortDataDto, MovieShortDataDto>
+  >?
+  get results => $value.results != null
+      ? ListCopyWith(
+          $value.results!,
+          (v, t) => v.copyWith.$chain(t),
+          (v) => call(results: v),
+        )
+      : null;
   @override
-  $R call(
-          {Object? page = $none,
-          Object? results = $none,
-          Object? totalPages = $none}) =>
-      $apply(FieldCopyWithData({
-        if (page != $none) #page: page,
-        if (results != $none) #results: results,
-        if (totalPages != $none) #totalPages: totalPages
-      }));
+  $R call({
+    Object? page = $none,
+    Object? results = $none,
+    Object? totalPages = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (page != $none) #page: page,
+      if (results != $none) #results: results,
+      if (totalPages != $none) #totalPages: totalPages,
+    }),
+  );
   @override
   MoviesShortResponseDataDto $make(CopyWithData data) =>
       MoviesShortResponseDataDto(
-          page: data.get(#page, or: $value.page),
-          results: data.get(#results, or: $value.results),
-          totalPages: data.get(#totalPages, or: $value.totalPages));
+        page: data.get(#page, or: $value.page),
+        results: data.get(#results, or: $value.results),
+        totalPages: data.get(#totalPages, or: $value.totalPages),
+      );
 
   @override
   MoviesShortResponseDataDtoCopyWith<$R2, MoviesShortResponseDataDto, $Out2>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _MoviesShortResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _MoviesShortResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

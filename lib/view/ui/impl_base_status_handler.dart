@@ -13,8 +13,8 @@ class ImplBaseStatusHandler implements BaseStatusHandler {
   ImplBaseStatusHandler({
     required LoadingDialogManager loadingDialogManager,
     required ToastManager toastManager,
-  })  : _loadingDialogManager = loadingDialogManager,
-        _toastManager = toastManager;
+  }) : _loadingDialogManager = loadingDialogManager,
+       _toastManager = toastManager;
 
   @override
   Future<void> handleStatus(
@@ -29,19 +29,24 @@ class ImplBaseStatusHandler implements BaseStatusHandler {
       await _toggleShowLoading(false);
       _toastManager.showErrorToast(next.status.errorMessage!);
     } else if (handleLoadingState?.call() ?? true) {
-      _toggleShowLoading(next.status.isLoading,
-          loadingDialogBuilder: loadingDialogBuilder);
+      _toggleShowLoading(
+        next.status.isLoading,
+        loadingDialogBuilder: loadingDialogBuilder,
+      );
     }
   }
 
   bool _hasNoChanges(BaseState? prev, BaseState next) {
-    return !next.isUpdateWithSelectors(
-        prev, [(s) => s?.status.hasError, (s) => s?.status.isLoading],
-        requireAll: false);
+    return !next.isUpdateWithSelectors(prev, [
+      (s) => s?.status.hasError,
+      (s) => s?.status.isLoading,
+    ], requireAll: false);
   }
 
-  Future<void> _toggleShowLoading(bool isLoading,
-      {Widget Function()? loadingDialogBuilder}) async {
+  Future<void> _toggleShowLoading(
+    bool isLoading, {
+    Widget Function()? loadingDialogBuilder,
+  }) async {
     if (isLoading) {
       _loadingDialogManager.showLoadingDialog(loadingDialogBuilder);
     } else {

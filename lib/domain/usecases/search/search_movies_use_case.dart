@@ -10,11 +10,13 @@ class SearchMoviesUseCase implements SearchUseCase<MovieShortData> {
   final SearchRepository _repository;
 
   SearchMoviesUseCase({required SearchRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   @override
-  Future<Result<PaginatedMovies>> search(SearchFilterData filter,
-      {int page = 1}) {
+  Future<Result<PaginatedMovies>> search(
+    SearchFilterData filter, {
+    int page = 1,
+  }) {
     return _repository.searchMovies(filter, page: page);
   }
 }

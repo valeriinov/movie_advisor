@@ -29,17 +29,17 @@ class HomeTabGrid extends StatelessWidget {
           crossAxisCount: 3,
           childAspectRatio: itemSize.width / itemSize.height,
         ),
-        delegate: SliverChildBuilderDelegate(
-          childCount: items.length,
-          (context, index) {
-            final item = items[index];
+        delegate: SliverChildBuilderDelegate(childCount: items.length, (
+          context,
+          index,
+        ) {
+          final item = items[index];
 
-            return Poster(
-              url: item.posterUrl,
-              onTap: onTap != null ? () => onTap!(item.id) : null,
-            );
-          },
-        ),
+          return Poster(
+            url: item.posterUrl,
+            onTap: onTap != null ? () => onTap!(item.id) : null,
+          );
+        }),
       ),
     );
   }

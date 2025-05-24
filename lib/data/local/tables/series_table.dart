@@ -14,8 +14,7 @@ class SeriesTable extends Table {
 
   TextColumn get genres => text().map(seriesGenresConverter).nullable()();
 
-  TextColumn get originCountry =>
-      text().map(countryConverter).nullable()();
+  TextColumn get originCountry => text().map(countryConverter).nullable()();
 
   DateTimeColumn get premiereDate => dateTime().nullable()();
 

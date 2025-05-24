@@ -2,8 +2,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'vm_state_provider_creator.dart';
 import '../base_state.dart';
 
-base mixin VMStateHandlerMixin<N, S extends BaseState,
-    P extends ProviderListenable<S>> on ViewModelStateProvider<N, S, P> {
+base mixin VMStateHandlerMixin<
+  N,
+  S extends BaseState,
+  P extends ProviderListenable<S>
+>
+    on ViewModelStateProvider<N, S, P> {
   @override
   BaseStatus get status => ref.watch(provider.select((s) => s.status));
 

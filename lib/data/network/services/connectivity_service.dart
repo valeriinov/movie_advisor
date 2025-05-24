@@ -20,8 +20,9 @@ class ConnectivityService {
   }
 
   bool _hasOnlineStatus(List<ConnectivityResult> connections) {
-    final result =
-        connections.where((e) => e != ConnectivityResult.none).isNotEmpty;
+    final result = connections
+        .where((e) => e != ConnectivityResult.none)
+        .isNotEmpty;
 
     debugLog('[IS ONLINE]: $result', name: _logTitle);
 

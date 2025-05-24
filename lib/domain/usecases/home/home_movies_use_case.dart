@@ -8,7 +8,7 @@ class HomeMoviesUseCase implements HomeUseCase<MovieShortData> {
   final HomeRepository _repository;
 
   HomeMoviesUseCase({required HomeRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   @override
   Future<Result<PaginatedMovies>> getSuggested() {

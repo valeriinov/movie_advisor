@@ -6,10 +6,9 @@ abstract final class _BaseComponentsStyles {
   static ShapeBorder cardPrimShape({Color? borderColor}) =>
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(cardPrimBorderRadius),
-        side:
-            borderColor != null
-                ? BorderSide(color: borderColor)
-                : BorderSide.none,
+        side: borderColor != null
+            ? BorderSide(color: borderColor)
+            : BorderSide.none,
       );
 
   static double horizontalTitleGap = 12;

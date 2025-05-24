@@ -78,15 +78,14 @@ class _KeyboardActionsWrapperState extends State<KeyboardActionsWrapper> {
           return acc;
         });
 
-    _keyboardActions =
-        _nodesDict.values
-            .map(
-              (node) => KeyboardActionsCreator.createActionItem(
-                focusNode: node,
-                onButtonPressed: () => node.unfocus(),
-              ),
-            )
-            .toList();
+    _keyboardActions = _nodesDict.values
+        .map(
+          (node) => KeyboardActionsCreator.createActionItem(
+            focusNode: node,
+            onButtonPressed: () => node.unfocus(),
+          ),
+        )
+        .toList();
   }
 
   @override

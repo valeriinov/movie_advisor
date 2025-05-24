@@ -5,9 +5,5 @@ abstract class DataListResponse<T> {
 
   final List<T>? results;
 
-  const DataListResponse({
-    this.page,
-    this.results,
-    this.totalPages,
-  });
+  const DataListResponse({this.page, this.results, this.totalPages});
 }

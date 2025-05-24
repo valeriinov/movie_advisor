@@ -4,8 +4,6 @@ import 'app_mapper.dart';
 
 final class AppSearchMapper extends AppMapper {
   SearchFilterDataDto mapSearchFilterDataToDto(SearchFilterData entity) {
-    return SearchFilterDataDto(
-      query: entity.query,
-    );
+    return SearchFilterDataDto(query: entity.query);
   }
 }

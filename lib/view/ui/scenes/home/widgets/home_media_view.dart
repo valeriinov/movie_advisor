@@ -46,14 +46,13 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
     final isSkeletonVisible = isLoading && !isInitialized;
 
     vsp.handleState(
-      listener:
-          (prev, next) => _handleState(
-            prev,
-            next,
-            context: context,
-            ref: ref,
-            isInitialized: isInitialized,
-          ),
+      listener: (prev, next) => _handleState(
+        prev,
+        next,
+        context: context,
+        ref: ref,
+        isInitialized: isInitialized,
+      ),
     );
 
     final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
@@ -97,27 +96,24 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
     return isSkeletonVisible
         ? HomeContentSkeleton()
         : HomeScreenContent(
-          onRefresh:
-              !isLoading
-                  ? () => vsp.viewModel.loadInitialData(showLoader: false)
-                  : null,
-          emptyTabListTitle:
-              contentMode.isMovies
-                  ? LocaleKeys.emptyTabMoviesTitle.tr()
-                  : LocaleKeys.emptyTabSeriesTitle.tr(),
-          emptySuggestionsListTitle:
-              contentMode.isMovies
-                  ? LocaleKeys.emptySuggestionsMoviesTitle.tr()
-                  : LocaleKeys.emptySuggestionsSeriesTitle.tr(),
-          emptyListSubtitle: LocaleKeys.homeEmptyListSubtitle.tr(),
-          isSkeletonVisible: isSkeletonVisible,
-          suggestionsContent: suggestionsContent,
-          currentTab: currentTab,
-          tabContent: tabContent,
-          onTabSelect: (index) => _onTabSelect(vsp, index),
-          onSuggestionItemSelect: (id) => _goToDetails(context, id),
-          onTabItemSelect: (id) => _goToDetails(context, id),
-        );
+            onRefresh: !isLoading
+                ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                : null,
+            emptyTabListTitle: contentMode.isMovies
+                ? LocaleKeys.emptyTabMoviesTitle.tr()
+                : LocaleKeys.emptyTabSeriesTitle.tr(),
+            emptySuggestionsListTitle: contentMode.isMovies
+                ? LocaleKeys.emptySuggestionsMoviesTitle.tr()
+                : LocaleKeys.emptySuggestionsSeriesTitle.tr(),
+            emptyListSubtitle: LocaleKeys.homeEmptyListSubtitle.tr(),
+            isSkeletonVisible: isSkeletonVisible,
+            suggestionsContent: suggestionsContent,
+            currentTab: currentTab,
+            tabContent: tabContent,
+            onTabSelect: (index) => _onTabSelect(vsp, index),
+            onSuggestionItemSelect: (id) => _goToDetails(context, id),
+            onTabItemSelect: (id) => _goToDetails(context, id),
+          );
   }
 
   void _handleState(

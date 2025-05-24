@@ -43,8 +43,9 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
     final remoteMovies = response.results ?? [];
     final ids = remoteMovies.map((e) => e.id).nonNulls.toList();
 
-    final List<MovieShortDataDto> localMovies =
-        ids.isNotEmpty ? await getMoviesByIds(ids) : [];
+    final List<MovieShortDataDto> localMovies = ids.isNotEmpty
+        ? await getMoviesByIds(ids)
+        : [];
 
     return response.copyWith(
       results: _mediaMerger.mergeMoviesList(remoteMovies, localMovies),
@@ -58,8 +59,9 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
     final remoteSeries = response.results ?? [];
     final ids = remoteSeries.map((e) => e.id).nonNulls.toList();
 
-    final List<SeriesShortDataDto> localSeries =
-        ids.isNotEmpty ? await getSeriesByIds(ids) : [];
+    final List<SeriesShortDataDto> localSeries = ids.isNotEmpty
+        ? await getSeriesByIds(ids)
+        : [];
 
     return response.copyWith(
       results: _mediaMerger.mergeSeriesList(remoteSeries, localSeries),
@@ -180,9 +182,10 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   }
 
   Future<List<int>> _fetchExcludedMovieIds() async {
-    final query = _database.select(_database.moviesTable)..where(
-      (tbl) => tbl.isWatched.equals(true) | tbl.isInWatchlist.equals(true),
-    );
+    final query = _database.select(_database.moviesTable)
+      ..where(
+        (tbl) => tbl.isWatched.equals(true) | tbl.isInWatchlist.equals(true),
+      );
 
     final movies = await query.get();
 
@@ -190,11 +193,12 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   }
 
   Future<List<MovieShortDataDto>> _fetchFilteredMoviesData() async {
-    final query = _database.select(_database.moviesTable)..where(
-      (tbl) =>
-          tbl.isWatched.equals(true) &
-          tbl.userRating.isBiggerThanValue(DbConstants.minTargetUserRate),
-    );
+    final query = _database.select(_database.moviesTable)
+      ..where(
+        (tbl) =>
+            tbl.isWatched.equals(true) &
+            tbl.userRating.isBiggerThanValue(DbConstants.minTargetUserRate),
+      );
 
     final movies = await query.get();
 
@@ -212,8 +216,8 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
           return map;
         });
 
-    final topGenres =
-        frequency.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+    final topGenres = frequency.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
 
     return topGenres
         .take(DbConstants.rateFilterGenresCount)
@@ -231,8 +235,8 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
           return map;
         });
 
-    final topCountries =
-        frequency.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+    final topCountries = frequency.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
 
     return topCountries
         .take(DbConstants.rateFilterCountriesCount)
@@ -256,9 +260,10 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   }
 
   Future<List<int>> _fetchExcludedSeriesIds() async {
-    final query = _database.select(_database.seriesTable)..where(
-      (tbl) => tbl.isWatched.equals(true) | tbl.isInWatchlist.equals(true),
-    );
+    final query = _database.select(_database.seriesTable)
+      ..where(
+        (tbl) => tbl.isWatched.equals(true) | tbl.isInWatchlist.equals(true),
+      );
 
     final seriesList = await query.get();
 
@@ -266,11 +271,12 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   }
 
   Future<List<SeriesShortDataDto>> _fetchFilteredSeriesData() async {
-    final query = _database.select(_database.seriesTable)..where(
-      (tbl) =>
-          tbl.isWatched.equals(true) &
-          tbl.userRating.isBiggerThanValue(DbConstants.minTargetUserRate),
-    );
+    final query = _database.select(_database.seriesTable)
+      ..where(
+        (tbl) =>
+            tbl.isWatched.equals(true) &
+            tbl.userRating.isBiggerThanValue(DbConstants.minTargetUserRate),
+      );
 
     final seriesList = await query.get();
 
@@ -290,8 +296,8 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
           return map;
         });
 
-    final topGenres =
-        frequency.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+    final topGenres = frequency.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
 
     return topGenres
         .take(DbConstants.rateFilterGenresCount)
@@ -309,8 +315,8 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
           return map;
         });
 
-    final topCountries =
-        frequency.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+    final topCountries = frequency.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
 
     return topCountries
         .take(DbConstants.rateFilterCountriesCount)
@@ -324,8 +330,9 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   ) async {
     final ids = credits.map((e) => e.id).nonNulls.toList();
 
-    final List<MovieShortDataDto> localMovies =
-        ids.isNotEmpty ? await getMoviesByIds(ids) : [];
+    final List<MovieShortDataDto> localMovies = ids.isNotEmpty
+        ? await getMoviesByIds(ids)
+        : [];
 
     return _mediaMerger.mergePersonMovieCredits(credits, localMovies);
   }
@@ -336,8 +343,9 @@ class ImplMediaLocalDataSource implements MediaLocalDataSource {
   ) async {
     final ids = credits.map((e) => e.id).nonNulls.toList();
 
-    final List<SeriesShortDataDto> localSeries =
-        ids.isNotEmpty ? await getSeriesByIds(ids) : [];
+    final List<SeriesShortDataDto> localSeries = ids.isNotEmpty
+        ? await getSeriesByIds(ids)
+        : [];
 
     return _mediaMerger.mergePersonSeriesCredits(credits, localSeries);
   }

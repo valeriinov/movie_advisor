@@ -20,18 +20,17 @@ class SignInOutTile extends StatelessWidget {
 
     return AnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child:
-          user == null
-              ? ListTile(
-                title: Text(LocaleKeys.signInTile.tr()),
-                leading: AppSvgAsset(path: AppImages.signInIcon),
-                onTap: () => AuthRoute().go(context),
-              )
-              : ListTile(
-                title: Text(LocaleKeys.signOutTile.tr()),
-                leading: AppSvgAsset(path: AppImages.signOutIcon),
-                onTap: onSignOut,
-              ),
+      child: user == null
+          ? ListTile(
+              title: Text(LocaleKeys.signInTile.tr()),
+              leading: AppSvgAsset(path: AppImages.signInIcon),
+              onTap: () => AuthRoute().go(context),
+            )
+          : ListTile(
+              title: Text(LocaleKeys.signOutTile.tr()),
+              leading: AppSvgAsset(path: AppImages.signOutIcon),
+              onTap: onSignOut,
+            ),
     );
   }
 }

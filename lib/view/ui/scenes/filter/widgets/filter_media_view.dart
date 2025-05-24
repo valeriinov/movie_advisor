@@ -83,10 +83,9 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
             isInitialized: isInitialized,
             results: results,
             onItemSelect: (id) => _goToDetails(context, id),
-            onRefresh:
-                !isLoading
-                    ? () => vsp.viewModel.loadInitialData(showLoader: false)
-                    : null,
+            onRefresh: !isLoading
+                ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                : null,
           ),
         ],
       ),

@@ -21,10 +21,12 @@ extension UserTableMapper on SyncUserDataDto {
       id: Value(1),
       uid: Value(id ?? ''),
       email: Value(email ?? ''),
-      moviesSyncedAt:
-          moviesSyncedAt != null ? Value(moviesSyncedAt!) : Value.absent(),
-      seriesSyncedAt:
-          seriesSyncedAt != null ? Value(seriesSyncedAt!) : Value.absent(),
+      moviesSyncedAt: moviesSyncedAt != null
+          ? Value(moviesSyncedAt!)
+          : Value.absent(),
+      seriesSyncedAt: seriesSyncedAt != null
+          ? Value(seriesSyncedAt!)
+          : Value.absent(),
     );
   }
 }

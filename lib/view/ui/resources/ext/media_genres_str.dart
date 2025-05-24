@@ -12,7 +12,7 @@ extension MediaDataGenresStr on MediaData {
     return switch (this) {
       MovieData(genres: final g) => g.map((e) => e.desc).join(', '),
       SeriesData(genres: final g) => g.map((e) => e.desc).join(', '),
-      _ => ''
+      _ => '',
     };
   }
 }
@@ -22,7 +22,7 @@ extension MediaShortDataGenresStr on MediaShortData {
     return switch (this) {
       MovieShortData(genres: final g) => g.map((e) => e.desc).join(', '),
       SeriesShortData(genres: final g) => g.map((e) => e.desc).join(', '),
-      _ => ''
+      _ => '',
     };
   }
 }

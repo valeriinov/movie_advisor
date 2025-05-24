@@ -14,8 +14,9 @@ class BiographyTabContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final dimens = context.baseDimens;
 
-    final content =
-        biography.isNotBlank ? biography : LocaleKeys.emptyBiographyTab.tr();
+    final content = biography.isNotBlank
+        ? biography
+        : LocaleKeys.emptyBiographyTab.tr();
 
     return SliverToBoxAdapter(
       child: Padding(

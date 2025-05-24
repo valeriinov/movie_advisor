@@ -34,8 +34,9 @@ final class AppPersonMapper extends AppMapper {
 
   PersonCreditsMovie _mapMovieCreditsDtoToDomain(PersonCreditsMovieDto? dto) {
     final cast = dto?.cast?.where((e) => e.actCharacter.isNotBlank).toList();
-    final crew =
-        dto?.crew?.where((e) => e.crewJob != CrewJobDto.unknown).toList();
+    final crew = dto?.crew
+        ?.where((e) => e.crewJob != CrewJobDto.unknown)
+        .toList();
 
     return PersonCreditsMovie(
       cast: _mapMovieCreditsDataDtoToDomain(cast),
@@ -73,8 +74,9 @@ final class AppPersonMapper extends AppMapper {
     PersonCreditsSeriesDto? dto,
   ) {
     final cast = dto?.cast?.where((e) => e.actCharacter.isNotBlank).toList();
-    final crew =
-        dto?.crew?.where((e) => e.crewJob != CrewJobDto.unknown).toList();
+    final crew = dto?.crew
+        ?.where((e) => e.crewJob != CrewJobDto.unknown)
+        .toList();
 
     return PersonCreditsSeries(
       cast: _mapSeriesCreditsDataDtoToDomain(cast),

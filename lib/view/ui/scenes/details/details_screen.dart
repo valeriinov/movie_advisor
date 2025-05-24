@@ -6,17 +6,10 @@ class DetailsScreen extends StatelessWidget {
   final int id;
   final ContentMode contentMode;
 
-  const DetailsScreen({
-    super.key,
-    required this.id,
-    required this.contentMode,
-  });
+  const DetailsScreen({super.key, required this.id, required this.contentMode});
 
   @override
   Widget build(BuildContext context) {
-    return DetailsScreenView(
-      id: id,
-      contentMode: contentMode,
-    );
+    return DetailsScreenView(id: id, contentMode: contentMode);
   }
 }

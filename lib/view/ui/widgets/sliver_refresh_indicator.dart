@@ -82,48 +82,52 @@ class _SliverRefreshIndicatorState extends State<SliverRefreshIndicator> {
   }
 
   Widget _buildPullIndicator(double progress) {
-    return Builder(builder: (context) {
-      final colors = context.baseColors;
+    return Builder(
+      builder: (context) {
+        final colors = context.baseColors;
 
-      return Transform.rotate(
-        angle: progress * pi,
-        child: Container(
+        return Transform.rotate(
+          angle: progress * pi,
+          child: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: colors.refreshIndicatorBg,
+            ),
+            padding: const EdgeInsets.all(2),
+            child: Icon(
+              Icons.refresh,
+              size: 34 * progress,
+              color: colors.refreshIndicatorFg,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildRefreshingIndicator() {
+    return Builder(
+      builder: (context) {
+        final colors = context.baseColors;
+
+        return Container(
+          height: 38,
+          width: 38,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: colors.refreshIndicatorBg,
           ),
-          padding: const EdgeInsets.all(2),
-          child: Icon(
-            Icons.refresh,
-            size: 34 * progress,
-            color: colors.refreshIndicatorFg,
-          ),
-        ),
-      );
-    });
-  }
-
-  Widget _buildRefreshingIndicator() {
-    return Builder(builder: (context) {
-      final colors = context.baseColors;
-
-      return Container(
-        height: 38,
-        width: 38,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: colors.refreshIndicatorBg,
-        ),
-        child: Center(
-          child: SizedBox(
-            height: 22,
-            width: 22,
-            child: CircularProgressIndicator(
-              color: colors.refreshIndicatorFg,
+          child: Center(
+            child: SizedBox(
+              height: 22,
+              width: 22,
+              child: CircularProgressIndicator(
+                color: colors.refreshIndicatorFg,
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

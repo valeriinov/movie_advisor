@@ -7,7 +7,7 @@ class ImplDetailsRemoteDataSource implements DetailsRemoteDataSource {
   final DetailsService _service;
 
   ImplDetailsRemoteDataSource({required DetailsService service})
-      : _service = service;
+    : _service = service;
 
   @override
   Future<MovieDataDto> getDetailsMovie(int id) {

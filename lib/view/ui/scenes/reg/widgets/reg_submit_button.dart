@@ -27,10 +27,9 @@ class RegSubmitButton extends ConsumerWidget {
 
     return SubmitButtonWithLoader(
       isLoading: vsp.isLoading,
-      onPressed:
-          formState.isFilled
-              ? () => _onSubmit(context, vsp, formKey, setAutoValidate)
-              : null,
+      onPressed: formState.isFilled
+          ? () => _onSubmit(context, vsp, formKey, setAutoValidate)
+          : null,
       child: Text(LocaleKeys.signUpButton.tr()),
     );
   }

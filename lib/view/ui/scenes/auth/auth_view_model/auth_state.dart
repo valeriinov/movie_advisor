@@ -37,8 +37,11 @@ sealed class AuthStatus extends BaseStatus {
 /// Used before it has completed its setup.
 @mappableEntity
 final class AuthBaseStatus extends AuthStatus with AuthBaseStatusMappable {
-  const AuthBaseStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const AuthBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -48,14 +51,19 @@ final class AuthBaseStatus extends AuthStatus with AuthBaseStatusMappable {
 @mappableEntity
 final class AuthBaseInitStatus extends AuthStatus
     with AuthBaseInitStatusMappable {
-  const AuthBaseInitStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const AuthBaseInitStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }
 
 @mappableEntity
 final class AuthSuccessStatus extends AuthStatus
     with AuthSuccessStatusMappable {
-  const AuthSuccessStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const AuthSuccessStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }
-  

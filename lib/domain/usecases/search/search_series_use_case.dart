@@ -9,11 +9,13 @@ class SearchSeriesUseCase implements SearchUseCase<SeriesShortData> {
   final SearchRepository _repository;
 
   SearchSeriesUseCase({required SearchRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   @override
-  Future<Result<PaginatedSeries>> search(SearchFilterData filter,
-      {int page = 1}) {
+  Future<Result<PaginatedSeries>> search(
+    SearchFilterData filter, {
+    int page = 1,
+  }) {
     return _repository.searchSeries(filter, page: page);
   }
 }

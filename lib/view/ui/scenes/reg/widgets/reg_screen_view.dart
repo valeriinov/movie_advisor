@@ -26,8 +26,8 @@ class RegScreenView extends ConsumerWidget {
     final vsp = ref.vspFromADProvider(regViewModelPr);
 
     vsp.handleState(
-      listener:
-          (prev, next) => _handleStatus(prev, next, context: context, ref: ref),
+      listener: (prev, next) =>
+          _handleStatus(prev, next, context: context, ref: ref),
     );
 
     return Scaffold(

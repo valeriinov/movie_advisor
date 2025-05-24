@@ -22,19 +22,18 @@ class SubmitButtonWithLoader extends StatelessWidget {
 
     return AnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child:
-          isLoading == true
-              ? FilledButton(
-                style: FilledButton.styleFrom(
-                  disabledBackgroundColor: colors.btnFillPrimBg,
-                  disabledForegroundColor: colors.btnFillPrimFg,
-                ),
-                onPressed: null,
-                child: Center(
-                  child: CircularProgressIndicator(color: colors.btnFillPrimFg),
-                ),
-              )
-              : FilledButton(onPressed: onPressed, child: child),
+      child: isLoading == true
+          ? FilledButton(
+              style: FilledButton.styleFrom(
+                disabledBackgroundColor: colors.btnFillPrimBg,
+                disabledForegroundColor: colors.btnFillPrimFg,
+              ),
+              onPressed: null,
+              child: Center(
+                child: CircularProgressIndicator(color: colors.btnFillPrimFg),
+              ),
+            )
+          : FilledButton(onPressed: onPressed, child: child),
     );
   }
 }

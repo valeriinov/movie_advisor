@@ -25,38 +25,36 @@ class AuthFormContent extends StatelessWidget {
         builder: (context, formKey, autoValidate, setAutoValidate) {
           return FormBuilder(
             key: formKey,
-            autovalidateMode:
-                autoValidate
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
+            autovalidateMode: autoValidate
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
             onChanged: () => _updateFormState(formKey),
             child: SizedBox(
               width: double.infinity,
               child: KeyboardActionsWrapper(
                 fieldNames: [emailFieldName, passFieldName],
-                builder:
-                    (context, nodesDict) => Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        InputField.email(
-                          name: emailFieldName,
-                          focusNode: nodesDict[emailFieldName],
-                        ),
-                        dimens.spLarge.gapVert(),
-                        InputField.pass(
-                          name: passFieldName,
-                          focusNode: nodesDict[passFieldName],
-                          textInputAction: TextInputAction.done,
-                        ),
-                        dimens.spSmall.gapVert(),
-                        AccountManagementButtons(),
-                        dimens.spSmall.gapVert(),
-                        AuthSubmitButton(
-                          formKey: formKey,
-                          setAutoValidate: setAutoValidate,
-                        ),
-                      ],
+                builder: (context, nodesDict) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    InputField.email(
+                      name: emailFieldName,
+                      focusNode: nodesDict[emailFieldName],
                     ),
+                    dimens.spLarge.gapVert(),
+                    InputField.pass(
+                      name: passFieldName,
+                      focusNode: nodesDict[passFieldName],
+                      textInputAction: TextInputAction.done,
+                    ),
+                    dimens.spSmall.gapVert(),
+                    AccountManagementButtons(),
+                    dimens.spSmall.gapVert(),
+                    AuthSubmitButton(
+                      formKey: formKey,
+                      setAutoValidate: setAutoValidate,
+                    ),
+                  ],
+                ),
               ),
             ),
           );

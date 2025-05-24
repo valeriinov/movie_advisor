@@ -22,7 +22,7 @@ class MoreAppBar extends StatelessWidget implements PreferredSizeWidget {
           height: _dividerHeight,
           thickness: _dividerHeight,
           color: colors.navBarDivider,
-        )
+        ),
       ],
     );
   }

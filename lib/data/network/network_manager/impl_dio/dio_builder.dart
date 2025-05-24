@@ -39,11 +39,11 @@ class DioBuilder {
   ///
   /// The [settingsProvider] is used to fetch tokens and locale information for headers.
   /// The [interceptors] parameter allows adding custom interceptors to the Dio instance.
-  DioBuilder(
-      {required SettingsProvider settingsProvider,
-      List<Interceptor> interceptors = const []})
-      : _settingsProvider = settingsProvider,
-        _interceptors = interceptors;
+  DioBuilder({
+    required SettingsProvider settingsProvider,
+    List<Interceptor> interceptors = const [],
+  }) : _settingsProvider = settingsProvider,
+       _interceptors = interceptors;
 
   Dio get _currentDio => _dio ??= Dio();
 
@@ -82,14 +82,16 @@ class DioBuilder {
   /// The logger outputs detailed request and response information,
   /// including headers and body content, for debugging purposes.
   DioBuilder logger() {
-    _currentDio.interceptors.add(PrettyDioLogger(
-      requestHeader: true,
-      requestBody: true,
-      responseBody: true,
-      responseHeader: false,
-      error: true,
-      compact: true,
-    ));
+    _currentDio.interceptors.add(
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: true,
+      ),
+    );
     return this;
   }
 

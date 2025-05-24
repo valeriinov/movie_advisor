@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const appName = 'appName';
   static const homeNavTab = 'homeNavTab';
   static const watchlistNavTab = 'watchlistNavTab';
@@ -141,7 +141,8 @@ abstract class  LocaleKeys {
   static const emptySuggestionsMoviesTitle = 'emptySuggestionsMoviesTitle';
   static const emptySuggestionsSeriesTitle = 'emptySuggestionsSeriesTitle';
   static const homeEmptyListSubtitle = 'homeEmptyListSubtitle';
-  static const updateAlertNewVersionAvailable = 'updateAlertNewVersionAvailable';
+  static const updateAlertNewVersionAvailable =
+      'updateAlertNewVersionAvailable';
   static const updateAlertNewVersion = 'updateAlertNewVersion';
   static const updateAlertCurrentVersion = 'updateAlertCurrentVersion';
   static const updateAlertIgnore = 'updateAlertIgnore';
@@ -225,5 +226,4 @@ abstract class  LocaleKeys {
   static const emptyBiographyTab = 'emptyBiographyTab';
   static const emptyMoviesTab = 'emptyMoviesTab';
   static const emptySeriesTab = 'emptySeriesTab';
-
 }

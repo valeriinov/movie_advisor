@@ -21,32 +21,31 @@ class UserEmailTile extends StatelessWidget {
 
     return AnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child:
-          user != null
-              ? Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListTile(
-                    title: Text(
-                      user!.email,
-                      style: styles.listTilePrimTitleTextStyle.copyWith(
-                        fontSize: 18,
-                      ),
-                    ),
-                    leading: AppSvgAsset(
-                      path: AppImages.userIcon,
-                      height: 28,
-                      width: 28,
+      child: user != null
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  title: Text(
+                    user!.email,
+                    style: styles.listTilePrimTitleTextStyle.copyWith(
+                      fontSize: 18,
                     ),
                   ),
-                  dimens.spSmall.gapVert(),
-                  Padding(
-                    padding: dimens.padHorPrimIns,
-                    child: Divider(height: 1),
+                  leading: AppSvgAsset(
+                    path: AppImages.userIcon,
+                    height: 28,
+                    width: 28,
                   ),
-                ],
-              )
-              : const SizedBox.shrink(),
+                ),
+                dimens.spSmall.gapVert(),
+                Padding(
+                  padding: dimens.padHorPrimIns,
+                  child: Divider(height: 1),
+                ),
+              ],
+            )
+          : const SizedBox.shrink(),
     );
   }
 }

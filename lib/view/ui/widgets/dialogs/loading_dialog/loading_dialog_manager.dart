@@ -10,7 +10,7 @@ class LoadingDialogManager {
   Completer<void>? _dialogCompleter;
 
   LoadingDialogManager({required GlobalKey<NavigatorState> rootNavKey})
-      : _rootNavKey = rootNavKey;
+    : _rootNavKey = rootNavKey;
 
   Future<void> showLoadingDialog([Widget Function()? dialogBuilder]) async {
     if (_isDialogVisible()) return;

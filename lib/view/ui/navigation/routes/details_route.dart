@@ -28,10 +28,7 @@ class DetailsRoute extends GoRouteData {
     return MaterialPage(
       key: state.pageKey,
       name: state.fullPath,
-      child: DetailsScreen(
-        id: id,
-        contentMode: contentMode,
-      ),
+      child: DetailsScreen(id: id, contentMode: contentMode),
     );
   }
 }
