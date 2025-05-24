@@ -11,7 +11,7 @@ extension MediaDataDateStr on MediaData {
     return switch (this) {
       MovieData(premiereDate: final d) => _getYear(d),
       SeriesData(premiereDate: final d) => _getYear(d),
-      _ => ''
+      _ => '',
     };
   }
 }
@@ -21,7 +21,7 @@ extension MediaShortDataDateStr on MediaShortData {
     return switch (this) {
       MovieShortData(premiereDate: final d) => _getYear(d),
       SeriesShortData(premiereDate: final d) => _getYear(d),
-      _ => ''
+      _ => '',
     };
   }
 }

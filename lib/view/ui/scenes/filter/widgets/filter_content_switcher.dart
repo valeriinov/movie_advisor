@@ -21,10 +21,9 @@ class FilterContentSwitcher extends StatelessWidget {
 
     return AnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child:
-          contMode.isMovies
-              ? FilterMoviesView(scrollController: scrollController)
-              : FilterSeriesView(scrollController: scrollController),
+      child: contMode.isMovies
+          ? FilterMoviesView(scrollController: scrollController)
+          : FilterSeriesView(scrollController: scrollController),
     );
   }
 }

@@ -9,8 +9,10 @@ import '../base_state.dart';
 ///
 /// [VMAutoDisposeStateProvider] wraps an [AutoDisposeNotifierProvider] to
 /// provide access to the view model and its state.
-final class VMAutoDisposeStateProvider<N extends AutoDisposeNotifier<S>,
-        S extends BaseState>
+final class VMAutoDisposeStateProvider<
+  N extends AutoDisposeNotifier<S>,
+  S extends BaseState
+>
     extends ViewModelStateProvider<N, S, AutoDisposeNotifierProvider<N, S>>
     with VMStateHandlerMixin {
   VMAutoDisposeStateProvider({required super.ref, required super.provider});

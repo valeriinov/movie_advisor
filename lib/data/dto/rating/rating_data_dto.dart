@@ -8,11 +8,7 @@ class RatingDataDto with RatingDataDtoMappable {
   final double? voteAverage;
   final int? voteCount;
 
-  const RatingDataDto({
-    this.popularity,
-    this.voteAverage,
-    this.voteCount,
-  });
+  const RatingDataDto({this.popularity, this.voteAverage, this.voteCount});
 
   factory RatingDataDto.fromJson(Map<String, dynamic> json) =>
       RatingDataDtoMapper.fromJson(json);

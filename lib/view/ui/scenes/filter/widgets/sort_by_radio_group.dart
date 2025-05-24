@@ -24,18 +24,13 @@ class SortByRadioGroup extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:
-              isMovies
-                  ? SortBy.values
-                      .map(
-                        (sortBy) => _buildSortByRadioListTile(context, sortBy),
-                      )
-                      .toList()
-                  : SortBy.valuesSeries
-                      .map(
-                        (sortBy) => _buildSortByRadioListTile(context, sortBy),
-                      )
-                      .toList(),
+          children: isMovies
+              ? SortBy.values
+                    .map((sortBy) => _buildSortByRadioListTile(context, sortBy))
+                    .toList()
+              : SortBy.valuesSeries
+                    .map((sortBy) => _buildSortByRadioListTile(context, sortBy))
+                    .toList(),
         ),
       ),
     );

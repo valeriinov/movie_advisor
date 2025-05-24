@@ -38,19 +38,17 @@ class FilterYearPicker extends HookWidget {
           child: CupertinoPicker(
             scrollController: scrollController,
             itemExtent: 32,
-            onSelectedItemChanged:
-                (index) => _onYearChanged(
-                  paddedYears[index],
-                  selectedYear,
-                  scrollController,
-                  minYear: _minYear,
-                  maxYear: maxYear,
-                  paddedYears: paddedYears,
-                ),
-            children:
-                paddedYears
-                    .map((y) => Center(child: Text(y.toString())))
-                    .toList(),
+            onSelectedItemChanged: (index) => _onYearChanged(
+              paddedYears[index],
+              selectedYear,
+              scrollController,
+              minYear: _minYear,
+              maxYear: maxYear,
+              paddedYears: paddedYears,
+            ),
+            children: paddedYears
+                .map((y) => Center(child: Text(y.toString())))
+                .toList(),
           ),
         ),
         dimens.spMedium.gapVert(),

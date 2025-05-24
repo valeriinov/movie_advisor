@@ -40,18 +40,15 @@ class MoreScreenView extends ConsumerWidget {
       appBar: MoreAppBar(),
       body: AnimatedSwitcher(
         duration: durations.animSwitchPrim,
-        child:
-            isLoaderVisible
-                ? Center(child: CircularProgressIndicator())
-                : MoreScreenContent(
-                  user: user,
-                  onRefresh:
-                      !isLoading
-                          ? () =>
-                              vsp.viewModel.loadInitialData(showLoader: false)
-                          : null,
-                  onSignOut: () => _showSignOutDialog(context, vsp),
-                ),
+        child: isLoaderVisible
+            ? Center(child: CircularProgressIndicator())
+            : MoreScreenContent(
+                user: user,
+                onRefresh: !isLoading
+                    ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                    : null,
+                onSignOut: () => _showSignOutDialog(context, vsp),
+              ),
       ),
     );
   }
@@ -59,11 +56,10 @@ class MoreScreenView extends ConsumerWidget {
   void _showSignOutDialog(BuildContext context, MoreVSP vsp) {
     showDialog(
       context: context,
-      builder:
-          (_) => QuestionDialog(
-            contentText: LocaleKeys.signOutDialog.tr(),
-            onOkButtonPressed: vsp.viewModel.signOut,
-          ),
+      builder: (_) => QuestionDialog(
+        contentText: LocaleKeys.signOutDialog.tr(),
+        onOkButtonPressed: vsp.viewModel.signOut,
+      ),
     );
   }
 }

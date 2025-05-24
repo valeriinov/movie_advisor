@@ -26,8 +26,8 @@ class ResetPassScreenView extends ConsumerWidget {
     final vsp = ref.vspFromADProvider(resetPassViewModelPr);
 
     vsp.handleState(
-      listener:
-          (prev, next) => _handleStatus(prev, next, context: context, ref: ref),
+      listener: (prev, next) =>
+          _handleStatus(prev, next, context: context, ref: ref),
     );
 
     return Scaffold(

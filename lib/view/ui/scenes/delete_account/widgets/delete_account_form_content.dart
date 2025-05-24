@@ -25,32 +25,30 @@ class DeleteAccountFormContent extends StatelessWidget {
         builder: (context, formKey, autoValidate, setAutoValidate) {
           return FormBuilder(
             key: formKey,
-            autovalidateMode:
-                autoValidate
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
+            autovalidateMode: autoValidate
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
             onChanged: () => _updateFormState(formKey),
             child: SizedBox(
               width: double.infinity,
               child: KeyboardActionsWrapper(
                 fieldNames: [passwordFieldName],
-                builder:
-                    (context, nodesDict) => Column(
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: dimens.spLarge,
-                      children: [
-                        InputField.pass(
-                          name: passwordFieldName,
-                          focusNode: nodesDict[passwordFieldName],
-                          hintText: LocaleKeys.deleteAccountPassLabel.tr(),
-                          textInputAction: TextInputAction.done,
-                        ),
-                        DeleteAccountSubmitButton(
-                          formKey: formKey,
-                          setAutoValidate: setAutoValidate,
-                        ),
-                      ],
+                builder: (context, nodesDict) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: dimens.spLarge,
+                  children: [
+                    InputField.pass(
+                      name: passwordFieldName,
+                      focusNode: nodesDict[passwordFieldName],
+                      hintText: LocaleKeys.deleteAccountPassLabel.tr(),
+                      textInputAction: TextInputAction.done,
                     ),
+                    DeleteAccountSubmitButton(
+                      formKey: formKey,
+                      setAutoValidate: setAutoValidate,
+                    ),
+                  ],
+                ),
               ),
             ),
           );

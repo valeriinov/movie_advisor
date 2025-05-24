@@ -19,27 +19,27 @@ class CastTabContent extends StatelessWidget {
 
     return cast.isNotEmpty
         ? SliverPadding(
-          padding: dimens.padHorSecIns,
-          sliver: SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: dimens.spSmall,
-              crossAxisSpacing: dimens.spLarge,
-              crossAxisCount: 2,
-              mainAxisExtent: 165,
-            ),
-            delegate: SliverChildBuilderDelegate(childCount: cast.length, (
-              context,
-              index,
-            ) {
-              final item = cast[index];
+            padding: dimens.padHorSecIns,
+            sliver: SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: dimens.spSmall,
+                crossAxisSpacing: dimens.spLarge,
+                crossAxisCount: 2,
+                mainAxisExtent: 165,
+              ),
+              delegate: SliverChildBuilderDelegate(childCount: cast.length, (
+                context,
+                index,
+              ) {
+                final item = cast[index];
 
-              return CastProfile(
-                data: item,
-                onTap: () => PersonRoute(id: item.id).push(context),
-              );
-            }),
-          ),
-        )
+                return CastProfile(
+                  data: item,
+                  onTap: () => PersonRoute(id: item.id).push(context),
+                );
+              }),
+            ),
+          )
         : EmptyTabContent(description: LocaleKeys.emptyCastTab.tr());
   }
 }

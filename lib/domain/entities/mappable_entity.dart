@@ -19,6 +19,6 @@ import 'package:dart_mappable/dart_mappable.dart';
 /// }
 /// ```
 const mappableEntity = MappableClass(
-    generateMethods: GenerateMethods.copy |
-        GenerateMethods.equals |
-        GenerateMethods.stringify);
+  generateMethods:
+      GenerateMethods.copy | GenerateMethods.equals | GenerateMethods.stringify,
+);

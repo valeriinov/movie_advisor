@@ -40,22 +40,23 @@ class ContentModeSwitch extends StatelessWidget {
             onChanged: (_) => toggleMode(),
             iconBuilder: (mode, isSelected) {
               final size = 18.0;
-              final color =
-                  isSelected ? colors.contSwitchFgSelect : colors.contSwitchFg;
+              final color = isSelected
+                  ? colors.contSwitchFgSelect
+                  : colors.contSwitchFg;
 
               return mode.isMovies
                   ? AppSvgAsset(
-                    path: AppImages.movieIcon,
-                    color: color,
-                    height: size,
-                    width: size,
-                  )
+                      path: AppImages.movieIcon,
+                      color: color,
+                      height: size,
+                      width: size,
+                    )
                   : AppSvgAsset(
-                    path: AppImages.tvIcon,
-                    color: color,
-                    height: size,
-                    width: size,
-                  );
+                      path: AppImages.tvIcon,
+                      color: color,
+                      height: size,
+                      width: size,
+                    );
             },
           ).paddingAll(8),
           Positioned.fill(child: GestureDetector(onTap: toggleMode)),

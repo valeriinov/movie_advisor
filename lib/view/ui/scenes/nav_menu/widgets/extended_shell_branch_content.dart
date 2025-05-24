@@ -35,9 +35,9 @@ class ExtendedShellBranchContent extends StatelessWidget
 
     return saveState
         ? Offstage(
-          offstage: !isActive,
-          child: TickerMode(enabled: isActive, child: child),
-        )
+            offstage: !isActive,
+            child: TickerMode(enabled: isActive, child: child),
+          )
         : Visibility(visible: isActive, child: child);
   }
 }

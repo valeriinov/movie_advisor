@@ -13,19 +13,25 @@ part 'base_inputs_styles_ext.tailor.dart';
 abstract final class BaseInputsStylesFactory {
   static BaseInputsStyles createInputsStyles(BaseColors colors) {
     return BaseInputsStyles(
-      txtFlsPrimInpTextStyle:
-          _BaseInputsStyles.txtFldPrimInpTextStyle(colors.txtFldPrimInput),
+      txtFlsPrimInpTextStyle: _BaseInputsStyles.txtFldPrimInpTextStyle(
+        colors.txtFldPrimInput,
+      ),
       txtFldPrimErrorTextStyle: _BaseInputsStyles.txtFldPrimErrorTextStyle(
-          colors.txtFldPrimBorderError),
-      txtFldPrimLabelTextStyle:
-          _BaseInputsStyles.txtFldPrimLabelTextStyle(colors.txtFldPrimLabel),
+        colors.txtFldPrimBorderError,
+      ),
+      txtFldPrimLabelTextStyle: _BaseInputsStyles.txtFldPrimLabelTextStyle(
+        colors.txtFldPrimLabel,
+      ),
       txtFldPrimContPadding: _BaseInputsStyles.txtFldPrimContPadding,
-      txtFldPrimInpBorder:
-          _BaseInputsStyles.txtFldPrimInpBorder(colors.txtFldPrimBorder),
-      txtFldPrimFocusBorder:
-          _BaseInputsStyles.txtFldPrimFocusBorder(colors.txtFldPrimBorderFocus),
-      txtFldPrimErrorBorder:
-          _BaseInputsStyles.txtFldPrimErrorBorder(colors.txtFldPrimBorderError),
+      txtFldPrimInpBorder: _BaseInputsStyles.txtFldPrimInpBorder(
+        colors.txtFldPrimBorder,
+      ),
+      txtFldPrimFocusBorder: _BaseInputsStyles.txtFldPrimFocusBorder(
+        colors.txtFldPrimBorderFocus,
+      ),
+      txtFldPrimErrorBorder: _BaseInputsStyles.txtFldPrimErrorBorder(
+        colors.txtFldPrimBorderError,
+      ),
     );
   }
 }

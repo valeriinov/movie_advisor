@@ -9,8 +9,5 @@ class NetReqOptions {
   /// Commonly used for specifying content types, authorization tokens, etc.
   final Map<String, dynamic>? headers;
 
-  const NetReqOptions({
-    this.timeout,
-    this.headers,
-  });
+  const NetReqOptions({this.timeout, this.headers});
 }

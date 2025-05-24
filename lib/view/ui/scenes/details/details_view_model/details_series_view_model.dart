@@ -14,11 +14,12 @@ typedef DetailsSeriesVSP =
 /// {@category StateManagement}
 ///
 /// A provider for the [DetailsSeriesViewModel] class.
-final detailsSeriesViewModelPr = AutoDisposeNotifierProvider.family<
-  DetailsSeriesViewModel,
-  DetailsSeriesState,
-  int
->(DetailsSeriesViewModel.new);
+final detailsSeriesViewModelPr =
+    AutoDisposeNotifierProvider.family<
+      DetailsSeriesViewModel,
+      DetailsSeriesState,
+      int
+    >(DetailsSeriesViewModel.new);
 
 /// {@category StateManagement}
 ///

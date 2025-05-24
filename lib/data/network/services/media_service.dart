@@ -19,12 +19,11 @@ class MediaService {
     final user = _firebaseAuth.currentUser;
     if (user == null) return [];
 
-    final snapshot =
-        await _firebaseFirestore
-            .collection(DbPath.usersMediaCollection)
-            .doc(user.uid)
-            .collection(DbPath.moviesCollection)
-            .get();
+    final snapshot = await _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.moviesCollection)
+        .get();
 
     return snapshot.docs
         .map((doc) => MovieShortDataDto.fromJson(doc.data()))
@@ -70,12 +69,11 @@ class MediaService {
     final user = _firebaseAuth.currentUser;
     if (user == null) return [];
 
-    final snapshot =
-        await _firebaseFirestore
-            .collection(DbPath.usersMediaCollection)
-            .doc(user.uid)
-            .collection(DbPath.seriesCollection)
-            .get();
+    final snapshot = await _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.seriesCollection)
+        .get();
 
     return snapshot.docs
         .map((doc) => SeriesShortDataDto.fromJson(doc.data()))

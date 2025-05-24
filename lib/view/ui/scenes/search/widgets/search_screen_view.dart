@@ -72,10 +72,9 @@ class SearchScreenView extends HookConsumerWidget {
               ],
             ),
           ),
-          floatingActionButton:
-              isFabVisible
-                  ? ScrollTopFab(scrollController: scrollController)
-                  : null,
+          floatingActionButton: isFabVisible
+              ? ScrollTopFab(scrollController: scrollController)
+              : null,
         );
       },
     );

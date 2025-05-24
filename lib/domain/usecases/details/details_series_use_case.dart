@@ -8,7 +8,7 @@ class DetailsSeriesUseCase implements DetailsUseCase<SeriesData> {
   final DetailsRepository _repository;
 
   DetailsSeriesUseCase({required DetailsRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   @override
   Future<Result<SeriesData>> getDetails(int id) {

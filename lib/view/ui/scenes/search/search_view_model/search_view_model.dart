@@ -91,15 +91,14 @@ abstract base class SearchViewModel<T extends MediaShortData>
 
         return _searchOperation?.valueOrCancellation();
       },
-      onResult:
-          (result) => _handleMediaResult(result, (data) {
-            state = state.copyWithUpdResults(
-              status: SearchBaseInitStatus(),
-              isNewPageLoaded: isNewPageLoaded,
-              isInitialized: true,
-              data: data,
-            );
-          }),
+      onResult: (result) => _handleMediaResult(result, (data) {
+        state = state.copyWithUpdResults(
+          status: SearchBaseInitStatus(),
+          isNewPageLoaded: isNewPageLoaded,
+          isInitialized: true,
+          data: data,
+        );
+      }),
     );
   }
 

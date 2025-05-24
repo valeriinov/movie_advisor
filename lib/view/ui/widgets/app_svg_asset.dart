@@ -23,8 +23,9 @@ class AppSvgAsset extends StatelessWidget {
         path,
         width: width,
         height: height,
-        colorFilter:
-            color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+        colorFilter: color != null
+            ? ColorFilter.mode(color!, BlendMode.srcIn)
+            : null,
       ),
     );
   }

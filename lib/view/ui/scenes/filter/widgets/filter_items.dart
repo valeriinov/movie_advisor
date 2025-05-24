@@ -22,8 +22,9 @@ class FilterItems extends StatelessWidget {
 
         return MediaInfoCard(
           itemData: item,
-          onTap:
-              onItemSelect != null ? () => onItemSelect?.call(item.id) : null,
+          onTap: onItemSelect != null
+              ? () => onItemSelect?.call(item.id)
+              : null,
         );
       },
       separatorBuilder: (_, __) => dimens.spLarge.gapVert(),

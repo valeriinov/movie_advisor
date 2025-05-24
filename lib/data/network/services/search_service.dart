@@ -11,11 +11,13 @@ class SearchService {
   SearchService({
     required NetworkManager mediaApiClient,
     required MediaResponseHandler responseHandler,
-  })  : _mediaApiClient = mediaApiClient,
-        _responseHandler = responseHandler;
+  }) : _mediaApiClient = mediaApiClient,
+       _responseHandler = responseHandler;
 
-  Future<MoviesResponseDataDto> searchMovies(SearchFilterDataDto filter,
-      {required int page}) async {
+  Future<MoviesResponseDataDto> searchMovies(
+    SearchFilterDataDto filter, {
+    required int page,
+  }) async {
     final queryParameters = _buildQueryParameters(filter, page);
 
     final result = await _mediaApiClient.get(
@@ -26,8 +28,10 @@ class SearchService {
     return _responseHandler.handleMoviesResponse(result);
   }
 
-  Future<SeriesResponseDataDto> searchSeries(SearchFilterDataDto filter,
-      {required int page}) async {
+  Future<SeriesResponseDataDto> searchSeries(
+    SearchFilterDataDto filter, {
+    required int page,
+  }) async {
     final queryParameters = _buildQueryParameters(filter, page);
 
     final result = await _mediaApiClient.get(
@@ -39,7 +43,9 @@ class SearchService {
   }
 
   Map<String, dynamic> _buildQueryParameters(
-      SearchFilterDataDto filter, int page) {
+    SearchFilterDataDto filter,
+    int page,
+  ) {
     final params = <String, dynamic>{'page': page};
 
     if (_hasQuery(filter)) {

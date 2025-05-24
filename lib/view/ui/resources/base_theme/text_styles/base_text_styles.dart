@@ -22,107 +22,107 @@ final class _BaseTextStyles {
   static const double bodySmallFontSize = 12;
 
   static TextStyle displayLarge(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
-        fontWeight: FontWeight.w400,
-        fontSize: displayLargeFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.roboto,
+    fontWeight: FontWeight.w400,
+    fontSize: displayLargeFontSize,
+    color: color,
+  );
 
   static TextStyle displayMedium(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
-        fontWeight: FontWeight.w400,
-        fontSize: displayMediumFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.roboto,
+    fontWeight: FontWeight.w400,
+    fontSize: displayMediumFontSize,
+    color: color,
+  );
 
   static TextStyle displaySmall(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
-        fontWeight: FontWeight.w400,
-        fontSize: displaySmallFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.roboto,
+    fontWeight: FontWeight.w400,
+    fontSize: displaySmallFontSize,
+    color: color,
+  );
 
   static TextStyle headlineLarge(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
-        fontWeight: FontWeight.w400,
-        fontSize: headlineLargeFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.roboto,
+    fontWeight: FontWeight.w400,
+    fontSize: headlineLargeFontSize,
+    color: color,
+  );
 
   static TextStyle headlineMedium(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
-        fontWeight: FontWeight.w400,
-        fontSize: headlineMediumFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.roboto,
+    fontWeight: FontWeight.w400,
+    fontSize: headlineMediumFontSize,
+    color: color,
+  );
 
   static TextStyle headlineSmall(Color color) => TextStyle(
-        fontFamily: AppFonts.roboto,
-        fontWeight: FontWeight.w400,
-        fontSize: headlineSmallFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.roboto,
+    fontWeight: FontWeight.w400,
+    fontSize: headlineSmallFontSize,
+    color: color,
+  );
 
   static TextStyle titleLarge(Color color) => TextStyle(
-        fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w500,
-        fontSize: titleLargeFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w500,
+    fontSize: titleLargeFontSize,
+    color: color,
+  );
 
   static TextStyle titleMedium(Color color) => TextStyle(
-        fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w600,
-        fontSize: titleMediumFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w600,
+    fontSize: titleMediumFontSize,
+    color: color,
+  );
 
   static TextStyle titleSmall(Color color) => TextStyle(
-        fontFamily: AppFonts.montserrat,
-        fontWeight: FontWeight.w500,
-        fontSize: titleSmallFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w500,
+    fontSize: titleSmallFontSize,
+    color: color,
+  );
 
   static TextStyle labelLarge(Color color) => TextStyle(
-        fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w500,
-        fontSize: labelLargeFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w500,
+    fontSize: labelLargeFontSize,
+    color: color,
+  );
 
   static TextStyle labelMedium(Color color) => TextStyle(
-        fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w500,
-        fontSize: labelMediumFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w500,
+    fontSize: labelMediumFontSize,
+    color: color,
+  );
 
   static TextStyle labelSmall(Color color) => TextStyle(
-        fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w500,
-        fontSize: labelSmallFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w500,
+    fontSize: labelSmallFontSize,
+    color: color,
+  );
 
   static TextStyle bodyLarge(Color color) => TextStyle(
-        fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w400,
-        fontSize: bodyLargeFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w400,
+    fontSize: bodyLargeFontSize,
+    color: color,
+  );
 
   static TextStyle bodyMedium(Color color) => TextStyle(
-        fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w400,
-        fontSize: bodyMediumFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w400,
+    fontSize: bodyMediumFontSize,
+    color: color,
+  );
 
   static TextStyle bodySmall(Color color) => TextStyle(
-        fontFamily: AppFonts.openSans,
-        fontWeight: FontWeight.w400,
-        fontSize: bodySmallFontSize,
-        color: color,
-      );
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w400,
+    fontSize: bodySmallFontSize,
+    color: color,
+  );
 }

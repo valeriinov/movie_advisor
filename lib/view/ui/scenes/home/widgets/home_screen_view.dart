@@ -70,10 +70,9 @@ class HomeScreenView extends HookConsumerWidget {
               ],
             ),
           ),
-          floatingActionButton:
-              isFabVisible
-                  ? ScrollTopFab(scrollController: scrollController)
-                  : null,
+          floatingActionButton: isFabVisible
+              ? ScrollTopFab(scrollController: scrollController)
+              : null,
         );
       },
     );

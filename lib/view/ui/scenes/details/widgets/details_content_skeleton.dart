@@ -16,8 +16,9 @@ class DetailsContentSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.baseColors;
 
-    final data =
-        isMovie ? MockMedia.createMovieData() : MockMedia.createSeriesData();
+    final data = isMovie
+        ? MockMedia.createMovieData()
+        : MockMedia.createSeriesData();
 
     return Skeletonizer(
       effect: PulseEffect(from: colors.skeletonFrom, to: colors.skeletonTo),

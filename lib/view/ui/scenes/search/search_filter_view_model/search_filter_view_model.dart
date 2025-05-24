@@ -4,9 +4,9 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import 'search_filter_state.dart';
 
 final searchFilterViewModelPr =
-AutoDisposeNotifierProvider<SearchFilterViewModel, SearchFilterState>(
-  SearchFilterViewModel.new,
-);
+    AutoDisposeNotifierProvider<SearchFilterViewModel, SearchFilterState>(
+      SearchFilterViewModel.new,
+    );
 
 /// {@category StateManagement}
 ///

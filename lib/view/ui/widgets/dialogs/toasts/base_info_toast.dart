@@ -26,23 +26,27 @@ class BaseInfoToast extends StatelessWidget {
 
     return SafeArea(
       child: Container(
-          width: double.infinity,
-          constraints: BoxConstraints(minHeight: styles.toastMinHeight),
-          margin: EdgeInsets.fromLTRB(hor, 10, hor, bottom),
-          padding: styles.toastContPadding,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(radius),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                  child: Text(content, style: styles.toastTextStyle)
-                      .paddingOnly(right: 10, top: 3)),
-              AppSvgAsset(path: iconPath, height: 28, width: 28),
-            ],
-          )),
+        width: double.infinity,
+        constraints: BoxConstraints(minHeight: styles.toastMinHeight),
+        margin: EdgeInsets.fromLTRB(hor, 10, hor, bottom),
+        padding: styles.toastContPadding,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(radius),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(
+                content,
+                style: styles.toastTextStyle,
+              ).paddingOnly(right: 10, top: 3),
+            ),
+            AppSvgAsset(path: iconPath, height: 28, width: 28),
+          ],
+        ),
+      ),
     );
   }
 }

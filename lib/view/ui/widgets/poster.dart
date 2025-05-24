@@ -33,10 +33,9 @@ class Poster extends StatelessWidget {
             width: imgSize.width,
             height: imgSize.height,
             child: ImageWithPlaceholder(
-              placeholder:
-                  transparentPlaceholder
-                      ? PlaceholderImageGenerator.generate()
-                      : null,
+              placeholder: transparentPlaceholder
+                  ? PlaceholderImageGenerator.generate()
+                  : null,
               imagePath: url,
               cacheWidth: imgSize.width.toInt(),
               cacheHeight: imgSize.height.toInt(),

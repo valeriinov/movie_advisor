@@ -8,9 +8,7 @@ part 'search_filter_data.mapper.dart';
 class SearchFilterData with SearchFilterDataMappable {
   final String? query;
 
-  const SearchFilterData({
-    this.query,
-  });
+  const SearchFilterData({this.query});
 
   bool get isDefault => this == SearchFilterData();
 }

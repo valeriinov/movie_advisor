@@ -38,7 +38,7 @@ class AppTab extends StatelessWidget {
                     thickness: 4,
                     height: 4,
                     color: colors.tabUnderSelect,
-                  )
+                  ),
               ],
             ),
           ),

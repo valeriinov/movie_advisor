@@ -21,14 +21,25 @@ class RatingDataDtoMapper extends ClassMapperBase<RatingDataDto> {
   final String id = 'RatingDataDto';
 
   static double? _$popularity(RatingDataDto v) => v.popularity;
-  static const Field<RatingDataDto, double> _f$popularity =
-      Field('popularity', _$popularity, opt: true);
+  static const Field<RatingDataDto, double> _f$popularity = Field(
+    'popularity',
+    _$popularity,
+    opt: true,
+  );
   static double? _$voteAverage(RatingDataDto v) => v.voteAverage;
-  static const Field<RatingDataDto, double> _f$voteAverage =
-      Field('voteAverage', _$voteAverage, key: r'vote_average', opt: true);
+  static const Field<RatingDataDto, double> _f$voteAverage = Field(
+    'voteAverage',
+    _$voteAverage,
+    key: r'vote_average',
+    opt: true,
+  );
   static int? _$voteCount(RatingDataDto v) => v.voteCount;
-  static const Field<RatingDataDto, int> _f$voteCount =
-      Field('voteCount', _$voteCount, key: r'vote_count', opt: true);
+  static const Field<RatingDataDto, int> _f$voteCount = Field(
+    'voteCount',
+    _$voteCount,
+    key: r'vote_count',
+    opt: true,
+  );
 
   @override
   final MappableFields<RatingDataDto> fields = const {
@@ -41,9 +52,10 @@ class RatingDataDtoMapper extends ClassMapperBase<RatingDataDto> {
 
   static RatingDataDto _instantiate(DecodingData data) {
     return RatingDataDto(
-        popularity: data.dec(_f$popularity),
-        voteAverage: data.dec(_f$voteAverage),
-        voteCount: data.dec(_f$voteCount));
+      popularity: data.dec(_f$popularity),
+      voteAverage: data.dec(_f$voteAverage),
+      voteCount: data.dec(_f$voteCount),
+    );
   }
 
   @override
@@ -60,34 +72,43 @@ class RatingDataDtoMapper extends ClassMapperBase<RatingDataDto> {
 
 mixin RatingDataDtoMappable {
   String toJsonString() {
-    return RatingDataDtoMapper.ensureInitialized()
-        .encodeJson<RatingDataDto>(this as RatingDataDto);
+    return RatingDataDtoMapper.ensureInitialized().encodeJson<RatingDataDto>(
+      this as RatingDataDto,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    return RatingDataDtoMapper.ensureInitialized()
-        .encodeMap<RatingDataDto>(this as RatingDataDto);
+    return RatingDataDtoMapper.ensureInitialized().encodeMap<RatingDataDto>(
+      this as RatingDataDto,
+    );
   }
 
   RatingDataDtoCopyWith<RatingDataDto, RatingDataDto, RatingDataDto>
-      get copyWith => _RatingDataDtoCopyWithImpl<RatingDataDto, RatingDataDto>(
-          this as RatingDataDto, $identity, $identity);
+  get copyWith => _RatingDataDtoCopyWithImpl<RatingDataDto, RatingDataDto>(
+    this as RatingDataDto,
+    $identity,
+    $identity,
+  );
   @override
   String toString() {
-    return RatingDataDtoMapper.ensureInitialized()
-        .stringifyValue(this as RatingDataDto);
+    return RatingDataDtoMapper.ensureInitialized().stringifyValue(
+      this as RatingDataDto,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return RatingDataDtoMapper.ensureInitialized()
-        .equalsValue(this as RatingDataDto, other);
+    return RatingDataDtoMapper.ensureInitialized().equalsValue(
+      this as RatingDataDto,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return RatingDataDtoMapper.ensureInitialized()
-        .hashValue(this as RatingDataDto);
+    return RatingDataDtoMapper.ensureInitialized().hashValue(
+      this as RatingDataDto,
+    );
   }
 }
 
@@ -112,23 +133,26 @@ class _RatingDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<RatingDataDto> $mapper =
       RatingDataDtoMapper.ensureInitialized();
   @override
-  $R call(
-          {Object? popularity = $none,
-          Object? voteAverage = $none,
-          Object? voteCount = $none}) =>
-      $apply(FieldCopyWithData({
-        if (popularity != $none) #popularity: popularity,
-        if (voteAverage != $none) #voteAverage: voteAverage,
-        if (voteCount != $none) #voteCount: voteCount
-      }));
+  $R call({
+    Object? popularity = $none,
+    Object? voteAverage = $none,
+    Object? voteCount = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (popularity != $none) #popularity: popularity,
+      if (voteAverage != $none) #voteAverage: voteAverage,
+      if (voteCount != $none) #voteCount: voteCount,
+    }),
+  );
   @override
   RatingDataDto $make(CopyWithData data) => RatingDataDto(
-      popularity: data.get(#popularity, or: $value.popularity),
-      voteAverage: data.get(#voteAverage, or: $value.voteAverage),
-      voteCount: data.get(#voteCount, or: $value.voteCount));
+    popularity: data.get(#popularity, or: $value.popularity),
+    voteAverage: data.get(#voteAverage, or: $value.voteAverage),
+    voteCount: data.get(#voteCount, or: $value.voteCount),
+  );
 
   @override
   RatingDataDtoCopyWith<$R2, RatingDataDto, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _RatingDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _RatingDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

@@ -68,10 +68,9 @@ abstract base class FilterViewModel<
 
     final resultsData = state.results.mediaData;
 
-    final resultsItems =
-        _shouldDeleteItem(item, state.filter)
-            ? resultsData.items.deleteItemFromList(item)
-            : resultsData.items.updateItemInList(item);
+    final resultsItems = _shouldDeleteItem(item, state.filter)
+        ? resultsData.items.deleteItemFromList(item)
+        : resultsData.items.updateItemInList(item);
 
     state = state.copyWith(
       results: state.results.copyWith(
@@ -128,22 +127,21 @@ abstract base class FilterViewModel<
 
         return _filterOperation?.valueOrCancellation();
       },
-      onResult:
-          (result) => _handleMediaResult(result, (data) {
-            state = state.copyWithUpdResults(
-              status: FilterBaseInitStatus(),
-              isNewPageLoaded: isNewPageLoaded,
-              isInitialized: true,
-              data: data,
-            );
+      onResult: (result) => _handleMediaResult(result, (data) {
+        state = state.copyWithUpdResults(
+          status: FilterBaseInitStatus(),
+          isNewPageLoaded: isNewPageLoaded,
+          isInitialized: true,
+          data: data,
+        );
 
-            // Update the start page for pagination controller
-            if (page == 1) {
-              state = state.copyWith(
-                startPage: state.results.mediaData.currentPage,
-              );
-            }
-          }),
+        // Update the start page for pagination controller
+        if (page == 1) {
+          state = state.copyWith(
+            startPage: state.results.mediaData.currentPage,
+          );
+        }
+      }),
     );
   }
 

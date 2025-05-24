@@ -9,24 +9,27 @@ import '../base_state.dart';
 /// AutoDispose State Provider.
 ///
 /// Alias for [VMAutoDisposeStateProvider].
-typedef ASP<N extends AutoDisposeNotifier<S>, S extends BaseState>
-    = VMAutoDisposeStateProvider<N, S>;
+typedef ASP<N extends AutoDisposeNotifier<S>, S extends BaseState> =
+    VMAutoDisposeStateProvider<N, S>;
 
 /// {@category StateManagement}
 ///
 /// AutoDispose Family State Provider.
 ///
 /// Alias for [VMAutoDisposeFamilyStateProvider].
-typedef AFSP<N extends AutoDisposeFamilyNotifier<S, A>, S extends BaseState, A>
-    = VMAutoDisposeFamilyStateProvider<N, S, A>;
+typedef AFSP<
+  N extends AutoDisposeFamilyNotifier<S, A>,
+  S extends BaseState,
+  A
+> = VMAutoDisposeFamilyStateProvider<N, S, A>;
 
 /// {@category StateManagement}
 ///
 /// Regular State Provider.
 ///
 /// Alias for [VMRegularStateProvider].
-typedef RSP<N extends Notifier<S>, S extends BaseState>
-    = VMRegularStateProvider<N, S>;
+typedef RSP<N extends Notifier<S>, S extends BaseState> =
+    VMRegularStateProvider<N, S>;
 
 /// An extension on [WidgetRef] that provides a convenient way to create
 /// [ViewModelStateProvider] instances.
@@ -52,9 +55,10 @@ extension VMStateProviderCreator on WidgetRef {
   /// that the associated state is automatically disposed of when no longer used.
   /// This method is suitable for view models with a shorter lifecycle that should be
   /// disposed of automatically when the widget leaves the widget tree.
-  ASP<N, S>
-      vspFromADProvider<N extends AutoDisposeNotifier<S>, S extends BaseState>(
-          AutoDisposeNotifierProvider<N, S> provider) {
+  ASP<N, S> vspFromADProvider<
+    N extends AutoDisposeNotifier<S>,
+    S extends BaseState
+  >(AutoDisposeNotifierProvider<N, S> provider) {
     return ASP<N, S>(ref: this, provider: provider);
   }
 
@@ -66,9 +70,10 @@ extension VMStateProviderCreator on WidgetRef {
   /// it ensures automatic disposal of the state. This method is particularly useful when
   /// state initialization depends on an input argument that varies per instance.
   AFSP<N, S, A> vspFromADFProvider<
-      N extends AutoDisposeFamilyNotifier<S, A>,
-      S extends BaseState,
-      A>(AutoDisposeFamilyNotifierProvider<N, S, A> provider) {
+    N extends AutoDisposeFamilyNotifier<S, A>,
+    S extends BaseState,
+    A
+  >(AutoDisposeFamilyNotifierProvider<N, S, A> provider) {
     return AFSP<N, S, A>(ref: this, provider: provider);
   }
 
@@ -80,7 +85,8 @@ extension VMStateProviderCreator on WidgetRef {
   /// or state that needs to persist throughout the application's lifecycle. Ensure proper
   /// disposal management manually if required.
   RSP<N, S> vspFromRProvider<N extends Notifier<S>, S extends BaseState>(
-      NotifierProvider<N, S> provider) {
+    NotifierProvider<N, S> provider,
+  ) {
     return RSP<N, S>(ref: this, provider: provider);
   }
 }

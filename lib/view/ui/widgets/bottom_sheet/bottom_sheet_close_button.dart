@@ -14,15 +14,10 @@ class BottomSheetCloseButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 6, top: 6),
         child: IconButton(
-            style: IconButton.styleFrom(
-              highlightColor: colors.highlightColor,
-            ),
-            onPressed: Navigator.of(context).pop,
-            icon: Icon(
-              Icons.close,
-              size: 32,
-              color: colors.botSheetIcon,
-            )),
+          style: IconButton.styleFrom(highlightColor: colors.highlightColor),
+          onPressed: Navigator.of(context).pop,
+          icon: Icon(Icons.close, size: 32, color: colors.botSheetIcon),
+        ),
       ),
     );
   }

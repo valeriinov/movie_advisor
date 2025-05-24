@@ -9,8 +9,5 @@ class AuthData with AuthDataMappable {
   final String email;
   final String password;
 
-  const AuthData({
-    this.email = '',
-    this.password = '',
-  });
+  const AuthData({this.email = '', this.password = ''});
 }

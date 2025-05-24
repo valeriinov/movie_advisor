@@ -106,22 +106,20 @@ class ImplImageUrlHandler implements ImageUrlHandler {
 
   CreditsDataDto? _handleCreditsImages(CreditsDataDto? credits) {
     return credits?.copyWith(
-      cast:
-          credits.cast
-              ?.map(
-                (cast) => cast.copyWith(
-                  profilePath: _getCreditsImageUrl(cast.profilePath),
-                ),
-              )
-              .toList(),
-      crew:
-          credits.crew
-              ?.map(
-                (crew) => crew.copyWith(
-                  profilePath: _getCreditsImageUrl(crew.profilePath),
-                ),
-              )
-              .toList(),
+      cast: credits.cast
+          ?.map(
+            (cast) => cast.copyWith(
+              profilePath: _getCreditsImageUrl(cast.profilePath),
+            ),
+          )
+          .toList(),
+      crew: credits.crew
+          ?.map(
+            (crew) => crew.copyWith(
+              profilePath: _getCreditsImageUrl(crew.profilePath),
+            ),
+          )
+          .toList(),
     );
   }
 

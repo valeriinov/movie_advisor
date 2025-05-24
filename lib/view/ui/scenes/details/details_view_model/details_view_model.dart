@@ -81,13 +81,12 @@ abstract base class DetailsViewModel<
 
     await safeCall(
       () => _watchUseCase.addToWatchlist(state.data.toShortData()),
-      onResult:
-          (r) => _handleResult(r, () {
-            state = state.copyWith(
-              status: AddedToWatchlistStatus(),
-              data: state.data.copyWith(isInWatchlist: true) as T,
-            );
-          }),
+      onResult: (r) => _handleResult(r, () {
+        state = state.copyWith(
+          status: AddedToWatchlistStatus(),
+          data: state.data.copyWith(isInWatchlist: true) as T,
+        );
+      }),
     );
   }
 
@@ -97,8 +96,7 @@ abstract base class DetailsViewModel<
   }) async {
     _updateStatus(WatchedLoadingStatus());
 
-    T data =
-        state.data.copyWith(isWatched: true, userRating: userRating) as T;
+    T data = state.data.copyWith(isWatched: true, userRating: userRating) as T;
 
     if (deleteFromWatchlistIfExists) {
       data = data.copyWith(isInWatchlist: false) as T;
@@ -109,10 +107,9 @@ abstract base class DetailsViewModel<
         data.toShortData(),
         deleteFromWatchlistIfExists: deleteFromWatchlistIfExists,
       ),
-      onResult:
-          (r) => _handleResult(r, () {
-            state = state.copyWith(status: AddedToWatchedStatus(), data: data);
-          }),
+      onResult: (r) => _handleResult(r, () {
+        state = state.copyWith(status: AddedToWatchedStatus(), data: data);
+      }),
     );
   }
 
@@ -121,13 +118,12 @@ abstract base class DetailsViewModel<
 
     await safeCall(
       () => _watchUseCase.removeFromWatchlist(state.data.id),
-      onResult:
-          (r) => _handleResult(r, () {
-            state = state.copyWith(
-              status: RemovedFromWatchlistStatus(),
-              data: state.data.copyWith(isInWatchlist: false) as T,
-            );
-          }),
+      onResult: (r) => _handleResult(r, () {
+        state = state.copyWith(
+          status: RemovedFromWatchlistStatus(),
+          data: state.data.copyWith(isInWatchlist: false) as T,
+        );
+      }),
     );
   }
 
@@ -136,13 +132,12 @@ abstract base class DetailsViewModel<
 
     await safeCall(
       () => _watchUseCase.removeFromWatched(state.data.id),
-      onResult:
-          (r) => _handleResult(r, () {
-            state = state.copyWith(
-              status: RemovedFromWatchedStatus(),
-              data: state.data.copyWith(userRating: 0, isWatched: false) as T,
-            );
-          }),
+      onResult: (r) => _handleResult(r, () {
+        state = state.copyWith(
+          status: RemovedFromWatchedStatus(),
+          data: state.data.copyWith(userRating: 0, isWatched: false) as T,
+        );
+      }),
     );
   }
 

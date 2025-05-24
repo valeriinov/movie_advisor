@@ -15,8 +15,9 @@ abstract final class BaseNavBarsStylesFactory {
       appBarPrimTitleTextStyle: _BaseNavBarsStyles.appBarPrimTitleTextStyle(),
       appBarSecTitleTextStyle: _BaseNavBarsStyles.appBarSecTitleTextStyle(),
       botNavBarLabelTextStyle: _BaseNavBarsStyles.botNavBarLabelTextStyle(),
-      appBarPrimIconTheme:
-          _BaseNavBarsStyles.appBarPrimIconTheme(colors.appBarPrimFg),
+      appBarPrimIconTheme: _BaseNavBarsStyles.appBarPrimIconTheme(
+        colors.appBarPrimFg,
+      ),
     );
   }
 }

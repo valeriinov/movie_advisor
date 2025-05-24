@@ -62,10 +62,9 @@ class DetailsActionsContainer extends HookConsumerWidget {
 
   Widget _buildWatchlistButton() {
     return _buildButton(
-      path:
-          data.isInWatchlist
-              ? AppImages.addWatchlistFillIcon
-              : AppImages.addWatchlistIcon,
+      path: data.isInWatchlist
+          ? AppImages.addWatchlistFillIcon
+          : AppImages.addWatchlistIcon,
       isFeatureLoading: status is WatchlistLoadingStatus,
       onTap: onWatchlistTap,
     );
@@ -73,10 +72,9 @@ class DetailsActionsContainer extends HookConsumerWidget {
 
   Widget _buildWatchedButton() {
     return _buildButton(
-      path:
-          data.isWatched
-              ? AppImages.addWatchedFillIcon
-              : AppImages.addWatchedIcon,
+      path: data.isWatched
+          ? AppImages.addWatchedFillIcon
+          : AppImages.addWatchedIcon,
       isFeatureLoading: status is WatchedLoadingStatus,
       onTap: onWatchedTap,
     );
@@ -163,14 +161,14 @@ class DetailsActionsContainer extends HookConsumerWidget {
   }
 
   Widget _buildShareButton(WidgetRef ref) {
-    final contentMode =
-        data is MovieData ? ContentMode.movies : ContentMode.series;
+    final contentMode = data is MovieData
+        ? ContentMode.movies
+        : ContentMode.series;
 
     return IconButton(
-      onPressed:
-          () => ref.share.shareText(
-            AppOfficialResourcesUrls.detailsLink(data.id, contentMode),
-          ),
+      onPressed: () => ref.share.shareText(
+        AppOfficialResourcesUrls.detailsLink(data.id, contentMode),
+      ),
       icon: AppSvgAsset(
         path: AppImages.shareIcon,
         width: 22,

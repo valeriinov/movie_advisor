@@ -28,11 +28,12 @@ class FlavorBanner extends StatelessWidget {
   /// The widget over which the banner will be displayed.
   final Widget child;
 
-  const FlavorBanner(
-      {super.key,
-      required this.name,
-      required this.isVisible,
-      required this.child});
+  const FlavorBanner({
+    super.key,
+    required this.name,
+    required this.isVisible,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {

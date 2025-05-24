@@ -38,10 +38,7 @@ final class SearchState<T> extends BaseState<SearchStatus>
       data: data,
     );
 
-    return copyWith(
-      status: status ?? this.status,
-      results: updatedData,
-    );
+    return copyWith(status: status ?? this.status, results: updatedData);
   }
 }
 
@@ -50,8 +47,11 @@ final class SearchState<T> extends BaseState<SearchStatus>
 /// A sealed class representing the possible statuses of a [SearchState].
 /// Provides properties for loading, initialization, and error handling.
 sealed class SearchStatus extends BaseStatus {
-  const SearchStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const SearchStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -61,8 +61,11 @@ sealed class SearchStatus extends BaseStatus {
 @mappableEntity
 final class SearchBaseStatus extends SearchStatus
     with SearchBaseStatusMappable {
-  const SearchBaseStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const SearchBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -72,6 +75,9 @@ final class SearchBaseStatus extends SearchStatus
 @mappableEntity
 final class SearchBaseInitStatus extends SearchStatus
     with SearchBaseInitStatusMappable {
-  const SearchBaseInitStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const SearchBaseInitStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }

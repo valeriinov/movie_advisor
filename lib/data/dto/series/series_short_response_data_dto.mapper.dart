@@ -13,8 +13,9 @@ class SeriesShortResponseDataDtoMapper
   static SeriesShortResponseDataDtoMapper? _instance;
   static SeriesShortResponseDataDtoMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals
-          .use(_instance = SeriesShortResponseDataDtoMapper._());
+      MapperContainer.globals.use(
+        _instance = SeriesShortResponseDataDtoMapper._(),
+      );
       SeriesShortDataDtoMapper.ensureInitialized();
     }
     return _instance!;
@@ -24,15 +25,22 @@ class SeriesShortResponseDataDtoMapper
   final String id = 'SeriesShortResponseDataDto';
 
   static int? _$page(SeriesShortResponseDataDto v) => v.page;
-  static const Field<SeriesShortResponseDataDto, int> _f$page =
-      Field('page', _$page, opt: true);
+  static const Field<SeriesShortResponseDataDto, int> _f$page = Field(
+    'page',
+    _$page,
+    opt: true,
+  );
   static List<SeriesShortDataDto>? _$results(SeriesShortResponseDataDto v) =>
       v.results;
   static const Field<SeriesShortResponseDataDto, List<SeriesShortDataDto>>
-      _f$results = Field('results', _$results, opt: true);
+  _f$results = Field('results', _$results, opt: true);
   static int? _$totalPages(SeriesShortResponseDataDto v) => v.totalPages;
-  static const Field<SeriesShortResponseDataDto, int> _f$totalPages =
-      Field('totalPages', _$totalPages, key: r'total_pages', opt: true);
+  static const Field<SeriesShortResponseDataDto, int> _f$totalPages = Field(
+    'totalPages',
+    _$totalPages,
+    key: r'total_pages',
+    opt: true,
+  );
 
   @override
   final MappableFields<SeriesShortResponseDataDto> fields = const {
@@ -45,9 +53,10 @@ class SeriesShortResponseDataDtoMapper
 
   static SeriesShortResponseDataDto _instantiate(DecodingData data) {
     return SeriesShortResponseDataDto(
-        page: data.dec(_f$page),
-        results: data.dec(_f$results),
-        totalPages: data.dec(_f$totalPages));
+      page: data.dec(_f$page),
+      results: data.dec(_f$results),
+      totalPages: data.dec(_f$totalPages),
+    );
   }
 
   @override
@@ -66,65 +75,84 @@ mixin SeriesShortResponseDataDtoMappable {
   String toJsonString() {
     return SeriesShortResponseDataDtoMapper.ensureInitialized()
         .encodeJson<SeriesShortResponseDataDto>(
-            this as SeriesShortResponseDataDto);
+          this as SeriesShortResponseDataDto,
+        );
   }
 
   Map<String, dynamic> toJson() {
     return SeriesShortResponseDataDtoMapper.ensureInitialized()
         .encodeMap<SeriesShortResponseDataDto>(
-            this as SeriesShortResponseDataDto);
+          this as SeriesShortResponseDataDto,
+        );
   }
 
-  SeriesShortResponseDataDtoCopyWith<SeriesShortResponseDataDto,
-          SeriesShortResponseDataDto, SeriesShortResponseDataDto>
-      get copyWith => _SeriesShortResponseDataDtoCopyWithImpl<
-              SeriesShortResponseDataDto, SeriesShortResponseDataDto>(
-          this as SeriesShortResponseDataDto, $identity, $identity);
+  SeriesShortResponseDataDtoCopyWith<
+    SeriesShortResponseDataDto,
+    SeriesShortResponseDataDto,
+    SeriesShortResponseDataDto
+  >
+  get copyWith =>
+      _SeriesShortResponseDataDtoCopyWithImpl<
+        SeriesShortResponseDataDto,
+        SeriesShortResponseDataDto
+      >(this as SeriesShortResponseDataDto, $identity, $identity);
   @override
   String toString() {
-    return SeriesShortResponseDataDtoMapper.ensureInitialized()
-        .stringifyValue(this as SeriesShortResponseDataDto);
+    return SeriesShortResponseDataDtoMapper.ensureInitialized().stringifyValue(
+      this as SeriesShortResponseDataDto,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return SeriesShortResponseDataDtoMapper.ensureInitialized()
-        .equalsValue(this as SeriesShortResponseDataDto, other);
+    return SeriesShortResponseDataDtoMapper.ensureInitialized().equalsValue(
+      this as SeriesShortResponseDataDto,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return SeriesShortResponseDataDtoMapper.ensureInitialized()
-        .hashValue(this as SeriesShortResponseDataDto);
+    return SeriesShortResponseDataDtoMapper.ensureInitialized().hashValue(
+      this as SeriesShortResponseDataDto,
+    );
   }
 }
 
 extension SeriesShortResponseDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesShortResponseDataDto, $Out> {
   SeriesShortResponseDataDtoCopyWith<$R, SeriesShortResponseDataDto, $Out>
-      get $asSeriesShortResponseDataDto => $base.as((v, t, t2) =>
-          _SeriesShortResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asSeriesShortResponseDataDto => $base.as(
+    (v, t, t2) => _SeriesShortResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
 abstract class SeriesShortResponseDataDtoCopyWith<
-    $R,
-    $In extends SeriesShortResponseDataDto,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R,
+  $In extends SeriesShortResponseDataDto,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<
-      $R,
-      SeriesShortDataDto,
-      SeriesShortDataDtoCopyWith<$R, SeriesShortDataDto,
-          SeriesShortDataDto>>? get results;
+    $R,
+    SeriesShortDataDto,
+    SeriesShortDataDtoCopyWith<$R, SeriesShortDataDto, SeriesShortDataDto>
+  >?
+  get results;
   $R call({int? page, List<SeriesShortDataDto>? results, int? totalPages});
   SeriesShortResponseDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _SeriesShortResponseDataDtoCopyWithImpl<$R, $Out>
     extends ClassCopyWithBase<$R, SeriesShortResponseDataDto, $Out>
     implements
-        SeriesShortResponseDataDtoCopyWith<$R, SeriesShortResponseDataDto,
-            $Out> {
+        SeriesShortResponseDataDtoCopyWith<
+          $R,
+          SeriesShortResponseDataDto,
+          $Out
+        > {
   _SeriesShortResponseDataDtoCopyWithImpl(super.value, super.then, super.then2);
 
   @override
@@ -132,32 +160,39 @@ class _SeriesShortResponseDataDtoCopyWithImpl<$R, $Out>
       SeriesShortResponseDataDtoMapper.ensureInitialized();
   @override
   ListCopyWith<
-      $R,
-      SeriesShortDataDto,
-      SeriesShortDataDtoCopyWith<$R, SeriesShortDataDto,
-          SeriesShortDataDto>>? get results => $value.results != null
-      ? ListCopyWith($value.results!, (v, t) => v.copyWith.$chain(t),
-          (v) => call(results: v))
+    $R,
+    SeriesShortDataDto,
+    SeriesShortDataDtoCopyWith<$R, SeriesShortDataDto, SeriesShortDataDto>
+  >?
+  get results => $value.results != null
+      ? ListCopyWith(
+          $value.results!,
+          (v, t) => v.copyWith.$chain(t),
+          (v) => call(results: v),
+        )
       : null;
   @override
-  $R call(
-          {Object? page = $none,
-          Object? results = $none,
-          Object? totalPages = $none}) =>
-      $apply(FieldCopyWithData({
-        if (page != $none) #page: page,
-        if (results != $none) #results: results,
-        if (totalPages != $none) #totalPages: totalPages
-      }));
+  $R call({
+    Object? page = $none,
+    Object? results = $none,
+    Object? totalPages = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (page != $none) #page: page,
+      if (results != $none) #results: results,
+      if (totalPages != $none) #totalPages: totalPages,
+    }),
+  );
   @override
   SeriesShortResponseDataDto $make(CopyWithData data) =>
       SeriesShortResponseDataDto(
-          page: data.get(#page, or: $value.page),
-          results: data.get(#results, or: $value.results),
-          totalPages: data.get(#totalPages, or: $value.totalPages));
+        page: data.get(#page, or: $value.page),
+        results: data.get(#results, or: $value.results),
+        totalPages: data.get(#totalPages, or: $value.totalPages),
+      );
 
   @override
   SeriesShortResponseDataDtoCopyWith<$R2, SeriesShortResponseDataDto, $Out2>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _SeriesShortResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _SeriesShortResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

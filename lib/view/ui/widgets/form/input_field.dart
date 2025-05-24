@@ -55,14 +55,13 @@ class InputField extends StatelessWidget {
 
              return Hero(
                tag: 'search',
-               flightShuttleBuilder:
-                   (_, animation, __, ___, toHeroCtx) =>
-                       _flightShuttleWithAutofocusHandling(
-                         animation,
-                         toHeroCtx.widget,
-                         props: props,
-                         autoFocus: autoFocus,
-                       ),
+               flightShuttleBuilder: (_, animation, __, ___, toHeroCtx) =>
+                   _flightShuttleWithAutofocusHandling(
+                     animation,
+                     toHeroCtx.widget,
+                     props: props,
+                     autoFocus: autoFocus,
+                   ),
                child: TextFormField(
                  enabled: enabled,
                  style: styles.txtFlsPrimInpTextStyle,
@@ -137,15 +136,15 @@ class InputField extends StatelessWidget {
 
     return showSearchIcon
         ? Padding(
-          padding: EdgeInsets.only(right: rightPadding),
-          child: AppSvgAsset(path: AppImages.searchIcon),
-        )
+            padding: EdgeInsets.only(right: rightPadding),
+            child: AppSvgAsset(path: AppImages.searchIcon),
+          )
         : ClearButtonBuilder.buildClearButton(
-          props.controller,
-          '',
-          props.focusNode.hasFocus,
-          onClear: onClear,
-        );
+            props.controller,
+            '',
+            props.focusNode.hasFocus,
+            onClear: onClear,
+          );
   }
 
   InputField.email({
@@ -164,12 +163,11 @@ class InputField extends StatelessWidget {
            focusNode: focusNode,
            onFocusChanged: onFocusChanged,
            builder: (props) {
-             final validator =
-                 AppEmailValidator(
-                   LocaleKeys.invalidEmailError.tr(),
-                   requiredErrorText: LocaleKeys.requiredFieldError.tr(),
-                   isRequired: isRequired,
-                 ).validate;
+             final validator = AppEmailValidator(
+               LocaleKeys.invalidEmailError.tr(),
+               requiredErrorText: LocaleKeys.requiredFieldError.tr(),
+               isRequired: isRequired,
+             ).validate;
 
              return FormBuilderTextField(
                name: name,
@@ -190,12 +188,11 @@ class InputField extends StatelessWidget {
                validator: validator,
                textInputAction: textInputAction,
                keyboardType: TextInputType.emailAddress,
-               onEditingComplete:
-                   () => _onEditingComplete(
-                     textInputAction,
-                     props.focusNode,
-                     onEditingComplete: onEditingComplete,
-                   ),
+               onEditingComplete: () => _onEditingComplete(
+                 textInputAction,
+                 props.focusNode,
+                 onEditingComplete: onEditingComplete,
+               ),
              );
            },
          ),
@@ -220,12 +217,11 @@ class InputField extends StatelessWidget {
            focusNode: focusNode,
            onFocusChanged: onFocusChanged,
            builder: (props) {
-             final validator =
-                 AppPasswordValidator(
-                   LocaleKeys.invalidPassError.tr(),
-                   requiredErrorText: LocaleKeys.requiredFieldError.tr(),
-                   isRequired: isRequired,
-                 ).validate;
+             final validator = AppPasswordValidator(
+               LocaleKeys.invalidPassError.tr(),
+               requiredErrorText: LocaleKeys.requiredFieldError.tr(),
+               isRequired: isRequired,
+             ).validate;
 
              return FormBuilderTextField(
                name: name,
@@ -250,12 +246,11 @@ class InputField extends StatelessWidget {
                validator: validator,
                textInputAction: textInputAction,
                keyboardType: TextInputType.visiblePassword,
-               onEditingComplete:
-                   () => _onEditingComplete(
-                     textInputAction,
-                     props.focusNode,
-                     onEditingComplete: onEditingComplete,
-                   ),
+               onEditingComplete: () => _onEditingComplete(
+                 textInputAction,
+                 props.focusNode,
+                 onEditingComplete: onEditingComplete,
+               ),
              );
            },
          ),
@@ -307,12 +302,11 @@ class InputField extends StatelessWidget {
                validator: validator,
                textInputAction: textInputAction,
                keyboardType: TextInputType.visiblePassword,
-               onEditingComplete:
-                   () => _onEditingComplete(
-                     textInputAction,
-                     props.focusNode,
-                     onEditingComplete: onEditingComplete,
-                   ),
+               onEditingComplete: () => _onEditingComplete(
+                 textInputAction,
+                 props.focusNode,
+                 onEditingComplete: onEditingComplete,
+               ),
              );
            },
          ),

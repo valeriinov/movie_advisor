@@ -8,5 +8,4 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthScreenView();
   }
-} 
-  
+}

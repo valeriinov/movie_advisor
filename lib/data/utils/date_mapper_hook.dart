@@ -19,20 +19,20 @@ class DateMapperHook extends MappingHook {
 
     return date.isUtc
         ? DateTime.utc(
-          date.year,
-          date.month,
-          date.day,
-          date.hour,
-          date.minute,
-          date.second,
-        )
+            date.year,
+            date.month,
+            date.day,
+            date.hour,
+            date.minute,
+            date.second,
+          )
         : DateTime(
-          date.year,
-          date.month,
-          date.day,
-          date.hour,
-          date.minute,
-          date.second,
-        );
+            date.year,
+            date.month,
+            date.day,
+            date.hour,
+            date.minute,
+            date.second,
+          );
   }
 }

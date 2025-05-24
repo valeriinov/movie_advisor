@@ -21,13 +21,15 @@ class RefreshStateMapper extends ClassMapperBase<RefreshState> {
   final String id = 'RefreshState';
 
   static RefreshStatus _$status(RefreshState v) => v.status;
-  static const Field<RefreshState, RefreshStatus> _f$status =
-      Field('status', _$status, opt: true, def: const RefreshBaseStatus());
+  static const Field<RefreshState, RefreshStatus> _f$status = Field(
+    'status',
+    _$status,
+    opt: true,
+    def: const RefreshBaseStatus(),
+  );
 
   @override
-  final MappableFields<RefreshState> fields = const {
-    #status: _f$status,
-  };
+  final MappableFields<RefreshState> fields = const {#status: _f$status};
 
   static RefreshState _instantiate(DecodingData data) {
     return RefreshState(status: data.dec(_f$status));
@@ -40,23 +42,30 @@ class RefreshStateMapper extends ClassMapperBase<RefreshState> {
 mixin RefreshStateMappable {
   RefreshStateCopyWith<RefreshState, RefreshState, RefreshState> get copyWith =>
       _RefreshStateCopyWithImpl<RefreshState, RefreshState>(
-          this as RefreshState, $identity, $identity);
+        this as RefreshState,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return RefreshStateMapper.ensureInitialized()
-        .stringifyValue(this as RefreshState);
+    return RefreshStateMapper.ensureInitialized().stringifyValue(
+      this as RefreshState,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return RefreshStateMapper.ensureInitialized()
-        .equalsValue(this as RefreshState, other);
+    return RefreshStateMapper.ensureInitialized().equalsValue(
+      this as RefreshState,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return RefreshStateMapper.ensureInitialized()
-        .hashValue(this as RefreshState);
+    return RefreshStateMapper.ensureInitialized().hashValue(
+      this as RefreshState,
+    );
   }
 }
 
@@ -89,8 +98,8 @@ class _RefreshStateCopyWithImpl<$R, $Out>
 
   @override
   RefreshStateCopyWith<$R2, RefreshState, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _RefreshStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _RefreshStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RefreshBaseStatusMapper extends ClassMapperBase<RefreshBaseStatus> {
@@ -108,14 +117,25 @@ class RefreshBaseStatusMapper extends ClassMapperBase<RefreshBaseStatus> {
   final String id = 'RefreshBaseStatus';
 
   static bool _$isLoading(RefreshBaseStatus v) => v.isLoading;
-  static const Field<RefreshBaseStatus, bool> _f$isLoading =
-      Field('isLoading', _$isLoading, opt: true, def: false);
+  static const Field<RefreshBaseStatus, bool> _f$isLoading = Field(
+    'isLoading',
+    _$isLoading,
+    opt: true,
+    def: false,
+  );
   static String? _$errorMessage(RefreshBaseStatus v) => v.errorMessage;
-  static const Field<RefreshBaseStatus, String> _f$errorMessage =
-      Field('errorMessage', _$errorMessage, opt: true);
+  static const Field<RefreshBaseStatus, String> _f$errorMessage = Field(
+    'errorMessage',
+    _$errorMessage,
+    opt: true,
+  );
   static bool _$isInitialized(RefreshBaseStatus v) => v.isInitialized;
-  static const Field<RefreshBaseStatus, bool> _f$isInitialized =
-      Field('isInitialized', _$isInitialized, opt: true, def: true);
+  static const Field<RefreshBaseStatus, bool> _f$isInitialized = Field(
+    'isInitialized',
+    _$isInitialized,
+    opt: true,
+    def: true,
+  );
 
   @override
   final MappableFields<RefreshBaseStatus> fields = const {
@@ -126,9 +146,10 @@ class RefreshBaseStatusMapper extends ClassMapperBase<RefreshBaseStatus> {
 
   static RefreshBaseStatus _instantiate(DecodingData data) {
     return RefreshBaseStatus(
-        isLoading: data.dec(_f$isLoading),
-        errorMessage: data.dec(_f$errorMessage),
-        isInitialized: data.dec(_f$isInitialized));
+      isLoading: data.dec(_f$isLoading),
+      errorMessage: data.dec(_f$errorMessage),
+      isInitialized: data.dec(_f$isInitialized),
+    );
   }
 
   @override
@@ -136,42 +157,58 @@ class RefreshBaseStatusMapper extends ClassMapperBase<RefreshBaseStatus> {
 }
 
 mixin RefreshBaseStatusMappable {
-  RefreshBaseStatusCopyWith<RefreshBaseStatus, RefreshBaseStatus,
-          RefreshBaseStatus>
-      get copyWith =>
-          _RefreshBaseStatusCopyWithImpl<RefreshBaseStatus, RefreshBaseStatus>(
-              this as RefreshBaseStatus, $identity, $identity);
+  RefreshBaseStatusCopyWith<
+    RefreshBaseStatus,
+    RefreshBaseStatus,
+    RefreshBaseStatus
+  >
+  get copyWith =>
+      _RefreshBaseStatusCopyWithImpl<RefreshBaseStatus, RefreshBaseStatus>(
+        this as RefreshBaseStatus,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return RefreshBaseStatusMapper.ensureInitialized()
-        .stringifyValue(this as RefreshBaseStatus);
+    return RefreshBaseStatusMapper.ensureInitialized().stringifyValue(
+      this as RefreshBaseStatus,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return RefreshBaseStatusMapper.ensureInitialized()
-        .equalsValue(this as RefreshBaseStatus, other);
+    return RefreshBaseStatusMapper.ensureInitialized().equalsValue(
+      this as RefreshBaseStatus,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return RefreshBaseStatusMapper.ensureInitialized()
-        .hashValue(this as RefreshBaseStatus);
+    return RefreshBaseStatusMapper.ensureInitialized().hashValue(
+      this as RefreshBaseStatus,
+    );
   }
 }
 
 extension RefreshBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RefreshBaseStatus, $Out> {
   RefreshBaseStatusCopyWith<$R, RefreshBaseStatus, $Out>
-      get $asRefreshBaseStatus => $base
-          .as((v, t, t2) => _RefreshBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asRefreshBaseStatus => $base.as(
+    (v, t, t2) => _RefreshBaseStatusCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
-abstract class RefreshBaseStatusCopyWith<$R, $In extends RefreshBaseStatus,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
+abstract class RefreshBaseStatusCopyWith<
+  $R,
+  $In extends RefreshBaseStatus,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   RefreshBaseStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _RefreshBaseStatusCopyWithImpl<$R, $Out>
@@ -183,25 +220,28 @@ class _RefreshBaseStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<RefreshBaseStatus> $mapper =
       RefreshBaseStatusMapper.ensureInitialized();
   @override
-  $R call(
-          {bool? isLoading,
-          Object? errorMessage = $none,
-          bool? isInitialized}) =>
-      $apply(FieldCopyWithData({
-        if (isLoading != null) #isLoading: isLoading,
-        if (errorMessage != $none) #errorMessage: errorMessage,
-        if (isInitialized != null) #isInitialized: isInitialized
-      }));
+  $R call({
+    bool? isLoading,
+    Object? errorMessage = $none,
+    bool? isInitialized,
+  }) => $apply(
+    FieldCopyWithData({
+      if (isLoading != null) #isLoading: isLoading,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+      if (isInitialized != null) #isInitialized: isInitialized,
+    }),
+  );
   @override
   RefreshBaseStatus $make(CopyWithData data) => RefreshBaseStatus(
-      isLoading: data.get(#isLoading, or: $value.isLoading),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+    isLoading: data.get(#isLoading, or: $value.isLoading),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
+  );
 
   @override
   RefreshBaseStatusCopyWith<$R2, RefreshBaseStatus, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _RefreshBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _RefreshBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class LangUpdatedStatusMapper extends ClassMapperBase<LangUpdatedStatus> {
@@ -219,14 +259,25 @@ class LangUpdatedStatusMapper extends ClassMapperBase<LangUpdatedStatus> {
   final String id = 'LangUpdatedStatus';
 
   static bool _$isLoading(LangUpdatedStatus v) => v.isLoading;
-  static const Field<LangUpdatedStatus, bool> _f$isLoading =
-      Field('isLoading', _$isLoading, opt: true, def: false);
+  static const Field<LangUpdatedStatus, bool> _f$isLoading = Field(
+    'isLoading',
+    _$isLoading,
+    opt: true,
+    def: false,
+  );
   static String? _$errorMessage(LangUpdatedStatus v) => v.errorMessage;
-  static const Field<LangUpdatedStatus, String> _f$errorMessage =
-      Field('errorMessage', _$errorMessage, opt: true);
+  static const Field<LangUpdatedStatus, String> _f$errorMessage = Field(
+    'errorMessage',
+    _$errorMessage,
+    opt: true,
+  );
   static bool _$isInitialized(LangUpdatedStatus v) => v.isInitialized;
-  static const Field<LangUpdatedStatus, bool> _f$isInitialized =
-      Field('isInitialized', _$isInitialized, opt: true, def: true);
+  static const Field<LangUpdatedStatus, bool> _f$isInitialized = Field(
+    'isInitialized',
+    _$isInitialized,
+    opt: true,
+    def: true,
+  );
 
   @override
   final MappableFields<LangUpdatedStatus> fields = const {
@@ -237,9 +288,10 @@ class LangUpdatedStatusMapper extends ClassMapperBase<LangUpdatedStatus> {
 
   static LangUpdatedStatus _instantiate(DecodingData data) {
     return LangUpdatedStatus(
-        isLoading: data.dec(_f$isLoading),
-        errorMessage: data.dec(_f$errorMessage),
-        isInitialized: data.dec(_f$isInitialized));
+      isLoading: data.dec(_f$isLoading),
+      errorMessage: data.dec(_f$errorMessage),
+      isInitialized: data.dec(_f$isInitialized),
+    );
   }
 
   @override
@@ -247,42 +299,58 @@ class LangUpdatedStatusMapper extends ClassMapperBase<LangUpdatedStatus> {
 }
 
 mixin LangUpdatedStatusMappable {
-  LangUpdatedStatusCopyWith<LangUpdatedStatus, LangUpdatedStatus,
-          LangUpdatedStatus>
-      get copyWith =>
-          _LangUpdatedStatusCopyWithImpl<LangUpdatedStatus, LangUpdatedStatus>(
-              this as LangUpdatedStatus, $identity, $identity);
+  LangUpdatedStatusCopyWith<
+    LangUpdatedStatus,
+    LangUpdatedStatus,
+    LangUpdatedStatus
+  >
+  get copyWith =>
+      _LangUpdatedStatusCopyWithImpl<LangUpdatedStatus, LangUpdatedStatus>(
+        this as LangUpdatedStatus,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return LangUpdatedStatusMapper.ensureInitialized()
-        .stringifyValue(this as LangUpdatedStatus);
+    return LangUpdatedStatusMapper.ensureInitialized().stringifyValue(
+      this as LangUpdatedStatus,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return LangUpdatedStatusMapper.ensureInitialized()
-        .equalsValue(this as LangUpdatedStatus, other);
+    return LangUpdatedStatusMapper.ensureInitialized().equalsValue(
+      this as LangUpdatedStatus,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return LangUpdatedStatusMapper.ensureInitialized()
-        .hashValue(this as LangUpdatedStatus);
+    return LangUpdatedStatusMapper.ensureInitialized().hashValue(
+      this as LangUpdatedStatus,
+    );
   }
 }
 
 extension LangUpdatedStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, LangUpdatedStatus, $Out> {
   LangUpdatedStatusCopyWith<$R, LangUpdatedStatus, $Out>
-      get $asLangUpdatedStatus => $base
-          .as((v, t, t2) => _LangUpdatedStatusCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asLangUpdatedStatus => $base.as(
+    (v, t, t2) => _LangUpdatedStatusCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
-abstract class LangUpdatedStatusCopyWith<$R, $In extends LangUpdatedStatus,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
+abstract class LangUpdatedStatusCopyWith<
+  $R,
+  $In extends LangUpdatedStatus,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   LangUpdatedStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _LangUpdatedStatusCopyWithImpl<$R, $Out>
@@ -294,23 +362,26 @@ class _LangUpdatedStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<LangUpdatedStatus> $mapper =
       LangUpdatedStatusMapper.ensureInitialized();
   @override
-  $R call(
-          {bool? isLoading,
-          Object? errorMessage = $none,
-          bool? isInitialized}) =>
-      $apply(FieldCopyWithData({
-        if (isLoading != null) #isLoading: isLoading,
-        if (errorMessage != $none) #errorMessage: errorMessage,
-        if (isInitialized != null) #isInitialized: isInitialized
-      }));
+  $R call({
+    bool? isLoading,
+    Object? errorMessage = $none,
+    bool? isInitialized,
+  }) => $apply(
+    FieldCopyWithData({
+      if (isLoading != null) #isLoading: isLoading,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+      if (isInitialized != null) #isInitialized: isInitialized,
+    }),
+  );
   @override
   LangUpdatedStatus $make(CopyWithData data) => LangUpdatedStatus(
-      isLoading: data.get(#isLoading, or: $value.isLoading),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+    isLoading: data.get(#isLoading, or: $value.isLoading),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
+  );
 
   @override
   LangUpdatedStatusCopyWith<$R2, LangUpdatedStatus, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _LangUpdatedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _LangUpdatedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

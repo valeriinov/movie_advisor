@@ -19,27 +19,25 @@ class AboutUsScreenView extends StatelessWidget {
     return Scaffold(
       appBar: MainAppBar(title: Text(LocaleKeys.aboutUsScreenTitle.tr())),
       body: Padding(
-          padding: dimens.padHorPrimIns,
-          child: NoAlwaysScrollWrapper(
-            child: CustomScrollView(
-              slivers: [
-                SliverPadding(padding: dimens.padTopPrimIns),
-                SliverList.list(
-                  children: [
-                    Text(LocaleKeys.aboutUsDescription.tr()),
-                    dimens.spLarge.gapVert(),
-                    Text(LocaleKeys.aboutUsTMDBAttribution.tr()),
-                    dimens.spExtLarge.gapVert(),
-                    AppSvgAsset(
-                      height: 27,
-                      path: AppImages.tmbdLogo,
-                    ),
-                  ],
-                ),
-                SliverPadding(padding: dimens.padBotPrimIns),
-              ],
-            ),
-          )),
+        padding: dimens.padHorPrimIns,
+        child: NoAlwaysScrollWrapper(
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(padding: dimens.padTopPrimIns),
+              SliverList.list(
+                children: [
+                  Text(LocaleKeys.aboutUsDescription.tr()),
+                  dimens.spLarge.gapVert(),
+                  Text(LocaleKeys.aboutUsTMDBAttribution.tr()),
+                  dimens.spExtLarge.gapVert(),
+                  AppSvgAsset(height: 27, path: AppImages.tmbdLogo),
+                ],
+              ),
+              SliverPadding(padding: dimens.padBotPrimIns),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

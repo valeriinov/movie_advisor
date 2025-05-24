@@ -23,8 +23,11 @@ class UserDataDtoMapper extends ClassMapperBase<UserDataDto> {
   static String? _$id(UserDataDto v) => v.id;
   static const Field<UserDataDto, String> _f$id = Field('id', _$id, opt: true);
   static String? _$email(UserDataDto v) => v.email;
-  static const Field<UserDataDto, String> _f$email =
-      Field('email', _$email, opt: true);
+  static const Field<UserDataDto, String> _f$email = Field(
+    'email',
+    _$email,
+    opt: true,
+  );
 
   @override
   final MappableFields<UserDataDto> fields = const {
@@ -52,28 +55,36 @@ class UserDataDtoMapper extends ClassMapperBase<UserDataDto> {
 
 mixin UserDataDtoMappable {
   String toJsonString() {
-    return UserDataDtoMapper.ensureInitialized()
-        .encodeJson<UserDataDto>(this as UserDataDto);
+    return UserDataDtoMapper.ensureInitialized().encodeJson<UserDataDto>(
+      this as UserDataDto,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    return UserDataDtoMapper.ensureInitialized()
-        .encodeMap<UserDataDto>(this as UserDataDto);
+    return UserDataDtoMapper.ensureInitialized().encodeMap<UserDataDto>(
+      this as UserDataDto,
+    );
   }
 
   UserDataDtoCopyWith<UserDataDto, UserDataDto, UserDataDto> get copyWith =>
       _UserDataDtoCopyWithImpl<UserDataDto, UserDataDto>(
-          this as UserDataDto, $identity, $identity);
+        this as UserDataDto,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return UserDataDtoMapper.ensureInitialized()
-        .stringifyValue(this as UserDataDto);
+    return UserDataDtoMapper.ensureInitialized().stringifyValue(
+      this as UserDataDto,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return UserDataDtoMapper.ensureInitialized()
-        .equalsValue(this as UserDataDto, other);
+    return UserDataDtoMapper.ensureInitialized().equalsValue(
+      this as UserDataDto,
+      other,
+    );
   }
 
   @override
@@ -103,16 +114,20 @@ class _UserDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<UserDataDto> $mapper =
       UserDataDtoMapper.ensureInitialized();
   @override
-  $R call({Object? id = $none, Object? email = $none}) =>
-      $apply(FieldCopyWithData(
-          {if (id != $none) #id: id, if (email != $none) #email: email}));
+  $R call({Object? id = $none, Object? email = $none}) => $apply(
+    FieldCopyWithData({
+      if (id != $none) #id: id,
+      if (email != $none) #email: email,
+    }),
+  );
   @override
   UserDataDto $make(CopyWithData data) => UserDataDto(
-      id: data.get(#id, or: $value.id),
-      email: data.get(#email, or: $value.email));
+    id: data.get(#id, or: $value.id),
+    email: data.get(#email, or: $value.email),
+  );
 
   @override
   UserDataDtoCopyWith<$R2, UserDataDto, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _UserDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _UserDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

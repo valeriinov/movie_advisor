@@ -55,35 +55,29 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
 
     return ScrollTopListener(
       scrollController: scrollController,
-      builder:
-          (_, isFabVisible) => Scaffold(
-            appBar: MainAppBar(
-              title: Text(appBarTitle),
-              leading: BackButton(onPressed: context.goBackOrHome),
-            ),
-            body:
-                isSkeletonVisible
-                    ? DetailsContentSkeleton(isMovie: T is MovieData)
-                    : DetailsScreenContent(
-                      data: data,
-                      status: status,
-                      currentTab: currentTab,
-                      scrollController: scrollController,
-                      onWatchlistTap: () => _onWatchlistTap(vsp),
-                      onWatchedTap: () => _onWatchedTap(context, vsp),
-                      onTabSelect: (index) => _onTabSelect(vsp, index),
-                      onRefresh:
-                          !isLoading
-                              ? () => vsp.viewModel.loadInitialData(
-                                showLoader: false,
-                              )
-                              : null,
-                    ),
-            floatingActionButton:
-                isFabVisible
-                    ? ScrollTopFab(scrollController: scrollController)
+      builder: (_, isFabVisible) => Scaffold(
+        appBar: MainAppBar(
+          title: Text(appBarTitle),
+          leading: BackButton(onPressed: context.goBackOrHome),
+        ),
+        body: isSkeletonVisible
+            ? DetailsContentSkeleton(isMovie: T is MovieData)
+            : DetailsScreenContent(
+                data: data,
+                status: status,
+                currentTab: currentTab,
+                scrollController: scrollController,
+                onWatchlistTap: () => _onWatchlistTap(vsp),
+                onWatchedTap: () => _onWatchedTap(context, vsp),
+                onTabSelect: (index) => _onTabSelect(vsp, index),
+                onRefresh: !isLoading
+                    ? () => vsp.viewModel.loadInitialData(showLoader: false)
                     : null,
-          ),
+              ),
+        floatingActionButton: isFabVisible
+            ? ScrollTopFab(scrollController: scrollController)
+            : null,
+      ),
     );
   }
 
@@ -147,8 +141,8 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
         title: LocaleKeys.rateMovieTitle.tr(),
         initRate: initRate,
         isInWatchlist: isInWatchlist,
-        onRate:
-            (rate, deleteFromWatchlistIfExists) => vsp.viewModel.addToWatched(
+        onRate: (rate, deleteFromWatchlistIfExists) =>
+            vsp.viewModel.addToWatched(
               rate,
               deleteFromWatchlistIfExists: deleteFromWatchlistIfExists,
             ),
