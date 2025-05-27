@@ -15,15 +15,15 @@ class ImplDetailsRepository implements DetailsRepository {
   final AppMoviesMapper _moviesMapper;
   final AppSeriesMapper _seriesMapper;
 
-  ImplDetailsRepository(
-      {required DetailsRemoteDataSource dataSource,
-      required MediaLocalDataSource localDataSource,
-      required AppMoviesMapper moviesMapper,
-      required AppSeriesMapper seriesMapper})
-      : _dataSource = dataSource,
-        _localDataSource = localDataSource,
-        _moviesMapper = moviesMapper,
-        _seriesMapper = seriesMapper;
+  ImplDetailsRepository({
+    required DetailsRemoteDataSource dataSource,
+    required MediaLocalDataSource localDataSource,
+    required AppMoviesMapper moviesMapper,
+    required AppSeriesMapper seriesMapper,
+  }) : _dataSource = dataSource,
+       _localDataSource = localDataSource,
+       _moviesMapper = moviesMapper,
+       _seriesMapper = seriesMapper;
 
   @override
   Future<Result<MovieData>> getDetailsMovie(int id) async {

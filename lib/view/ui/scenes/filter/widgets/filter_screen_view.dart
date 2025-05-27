@@ -52,10 +52,9 @@ class FilterScreenView extends HookConsumerWidget {
             scrollController: scrollController,
             contMode: contMode,
           ),
-          floatingActionButton:
-              isFabVisible
-                  ? ScrollTopFab(scrollController: scrollController)
-                  : null,
+          floatingActionButton: isFabVisible
+              ? ScrollTopFab(scrollController: scrollController)
+              : null,
         );
       },
     );

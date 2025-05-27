@@ -26,8 +26,8 @@ class AuthScreenView extends ConsumerWidget {
     final vsp = ref.vspFromADProvider(authViewModelPr);
 
     vsp.handleState(
-      listener:
-          (prev, next) => _handleStatus(prev, next, context: context, ref: ref),
+      listener: (prev, next) =>
+          _handleStatus(prev, next, context: context, ref: ref),
     );
 
     return Scaffold(

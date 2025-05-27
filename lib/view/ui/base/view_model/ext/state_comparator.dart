@@ -24,11 +24,15 @@ extension StateComparator<T extends BaseState> on T {
   ///
   /// Returns true if the selected values indicate a state change based
   /// on the given conditions.
-  bool isUpdateWithSelectors(T? prev, List<StateSelector<T>> selectors,
-      {bool notNull = false, bool requireAll = true}) {
+  bool isUpdateWithSelectors(
+    T? prev,
+    List<StateSelector<T>> selectors, {
+    bool notNull = false,
+    bool requireAll = true,
+  }) {
     return switch (requireAll) {
       true => selectors.every((s) => isUpdate(prev, s, notNull: notNull)),
-      false => selectors.any((s) => isUpdate(prev, s, notNull: notNull))
+      false => selectors.any((s) => isUpdate(prev, s, notNull: notNull)),
     };
   }
 

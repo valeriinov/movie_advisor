@@ -8,11 +8,7 @@ part 'series_response_data_dto.mapper.dart';
 @MappableClass(ignoreNull: true, caseStyle: CaseStyle.snakeCase)
 class SeriesResponseDataDto extends DataListResponse<SeriesDataDto>
     with SeriesResponseDataDtoMappable {
-  const SeriesResponseDataDto({
-    super.page,
-    super.results,
-    super.totalPages,
-  });
+  const SeriesResponseDataDto({super.page, super.results, super.totalPages});
 
   factory SeriesResponseDataDto.fromJson(Map<String, dynamic> json) =>
       SeriesResponseDataDtoMapper.fromJson(json);

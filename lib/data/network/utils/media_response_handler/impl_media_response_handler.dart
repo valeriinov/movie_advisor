@@ -16,10 +16,9 @@ class ImpMediaResponseHandler implements MediaResponseHandler {
     bool removeWithoutPoster = false,
   }) {
     final rawDto = MoviesResponseDataDto.fromJson(response.data);
-    final rawResults =
-        removeWithoutPoster
-            ? rawDto.results?.where((e) => e.posterPath != null).toList()
-            : rawDto.results;
+    final rawResults = removeWithoutPoster
+        ? rawDto.results?.where((e) => e.posterPath != null).toList()
+        : rawDto.results;
 
     final results = _imageUrlHandler.handleMoviesListImages(rawResults ?? []);
 
@@ -32,10 +31,9 @@ class ImpMediaResponseHandler implements MediaResponseHandler {
     bool removeWithoutPoster = false,
   }) {
     final rawDto = SeriesResponseDataDto.fromJson(response.data);
-    final rawResults =
-        removeWithoutPoster
-            ? rawDto.results?.where((e) => e.posterPath != null).toList()
-            : rawDto.results;
+    final rawResults = removeWithoutPoster
+        ? rawDto.results?.where((e) => e.posterPath != null).toList()
+        : rawDto.results;
 
     final results = _imageUrlHandler.handleSeriesListImages(rawResults ?? []);
 

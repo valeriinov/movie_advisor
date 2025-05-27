@@ -30,11 +30,12 @@ abstract final class KeyboardActionsCreator {
   ///
   /// Returns a [KeyboardActionsItem] which can be used to customize the keyboard
   /// toolbar for the given [FocusNode].
-  static KeyboardActionsItem createActionItem(
-      {required FocusNode focusNode,
-      String? buttonText,
-      VoidCallback? onButtonPressed,
-      bool displayArrows = true}) {
+  static KeyboardActionsItem createActionItem({
+    required FocusNode focusNode,
+    String? buttonText,
+    VoidCallback? onButtonPressed,
+    bool displayArrows = true,
+  }) {
     return KeyboardActionsItem(
       displayArrows: displayArrows,
       displayDoneButton: false,
@@ -42,9 +43,9 @@ abstract final class KeyboardActionsCreator {
       toolbarButtons: [
         if (onButtonPressed != null)
           (_) => KeyboardActionButton(
-                onButtonPressed: onButtonPressed,
-                buttonText: buttonText ?? LocaleKeys.keyboardCloseButton.tr(),
-              ),
+            onButtonPressed: onButtonPressed,
+            buttonText: buttonText ?? LocaleKeys.keyboardCloseButton.tr(),
+          ),
       ],
     );
   }

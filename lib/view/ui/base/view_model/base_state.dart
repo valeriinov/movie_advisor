@@ -60,8 +60,11 @@ abstract class BaseStatus {
   /// The [isLoading] parameter indicates if the status is currently loading.
   /// The [isInitialized] parameter indicates if the status is initialized.
   /// The [errorMessage] parameter holds an optional error message.
-  const BaseStatus(
-      {this.isLoading = false, this.isInitialized = false, this.errorMessage});
+  const BaseStatus({
+    this.isLoading = false,
+    this.isInitialized = false,
+    this.errorMessage,
+  });
 
   /// Whether the status has an error.
   ///

@@ -63,18 +63,15 @@ final class AppSeriesMapper extends AppMapper {
       title: dto.name ?? '',
       overview: dto.overview ?? '',
       tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
-      cast:
-          dto.credits != null
-              ? _creditsMapper.mapCreditsDataDtoToCastDataList(dto.credits!)
-              : [],
-      crew:
-          dto.credits != null
-              ? _creditsMapper.mapCreditsDataDtoToCrewDataList(dto.credits!)
-              : [],
-      videos:
-          dto.videos != null
-              ? _videoMapper.mapVideosDataDtoTiDomain(dto.videos!)
-              : [],
+      cast: dto.credits != null
+          ? _creditsMapper.mapCreditsDataDtoToCastDataList(dto.credits!)
+          : [],
+      crew: dto.credits != null
+          ? _creditsMapper.mapCreditsDataDtoToCrewDataList(dto.credits!)
+          : [],
+      videos: dto.videos != null
+          ? _videoMapper.mapVideosDataDtoTiDomain(dto.videos!)
+          : [],
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,

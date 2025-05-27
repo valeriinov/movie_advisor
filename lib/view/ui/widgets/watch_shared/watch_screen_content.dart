@@ -51,25 +51,24 @@ class WatchScreenContent extends StatelessWidget {
         controller: scrollController,
         slivers: [
           SliverAnimatedSwitcher(
-              duration: durations.animSwitchPrim,
-              child: switch (_hasEmptyList) {
-                true => _buildEmptyList(),
-                false when isLoading => SliverFillLoader(),
-                _ => MultiSliver(
-                    children: [
-                      SliverRefreshIndicator(
-                        onRefresh: onRefresh,
-                      ),
-                      SliverPadding(padding: dimens.padTopPrimIns),
-                      WatchItems(
-                        media: watchlist.mediaData.items,
-                        onItemSelect: onItemSelect,
-                      ),
-                      if (isNextPageLoading) NextPageLoader(),
-                      SliverPadding(padding: dimens.padBotPrimIns),
-                    ],
+            duration: durations.animSwitchPrim,
+            child: switch (_hasEmptyList) {
+              true => _buildEmptyList(),
+              false when isLoading => SliverFillLoader(),
+              _ => MultiSliver(
+                children: [
+                  SliverRefreshIndicator(onRefresh: onRefresh),
+                  SliverPadding(padding: dimens.padTopPrimIns),
+                  WatchItems(
+                    media: watchlist.mediaData.items,
+                    onItemSelect: onItemSelect,
                   ),
-              }),
+                  if (isNextPageLoading) NextPageLoader(),
+                  SliverPadding(padding: dimens.padBotPrimIns),
+                ],
+              ),
+            },
+          ),
         ],
       ),
     );
@@ -78,9 +77,7 @@ class WatchScreenContent extends StatelessWidget {
   Widget _buildEmptyList() {
     return MultiSliver(
       children: [
-        SliverRefreshIndicator(
-          onRefresh: onRefresh,
-        ),
+        SliverRefreshIndicator(onRefresh: onRefresh),
         SliverEmptyListContainer(
           imagePath: AppImages.emptyListImage,
           title: emptyListTitle,

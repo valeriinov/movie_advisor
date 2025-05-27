@@ -14,9 +14,8 @@ class KeyboardOpenedBottomGap extends StatelessWidget {
       child: AnimatedSize(
         duration: durations.animSwitchPrim,
         child: KeyboardVisibilityBuilder(
-          builder:
-              (_, isVisible) =>
-                  isVisible ? SizedBox(height: 40) : SizedBox.shrink(),
+          builder: (_, isVisible) =>
+              isVisible ? SizedBox(height: 40) : SizedBox.shrink(),
         ),
       ),
     );

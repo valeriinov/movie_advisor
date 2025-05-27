@@ -37,8 +37,9 @@ class ImplSyncDataSource implements SyncDataSource {
 
     try {
       final remoteMovies = await _remoteMediaService.getMovies();
-      final localMoviesList =
-          await _localDatabase.select(_localDatabase.moviesTable).get();
+      final localMoviesList = await _localDatabase
+          .select(_localDatabase.moviesTable)
+          .get();
 
       final Map<int, MoviesTableData> localMoviesMap = {
         for (final movie in localMoviesList) movie.tmdbId: movie,
@@ -97,11 +98,11 @@ class ImplSyncDataSource implements SyncDataSource {
 
     return localMovie != null
         ? _batchInsertMovieIfNeeded(
-          batch,
-          remoteMovie,
-          localMovie,
-          remoteUpdatedAt,
-        )
+            batch,
+            remoteMovie,
+            localMovie,
+            remoteUpdatedAt,
+          )
         : _batchInsertMovie(batch, remoteMovie, remoteUpdatedAt);
   }
 
@@ -182,8 +183,9 @@ class ImplSyncDataSource implements SyncDataSource {
 
     try {
       final remoteSeries = await _remoteMediaService.getSeries();
-      final localSeriesList =
-          await _localDatabase.select(_localDatabase.seriesTable).get();
+      final localSeriesList = await _localDatabase
+          .select(_localDatabase.seriesTable)
+          .get();
 
       final Map<int, SeriesTableData> localSeriesMap = {
         for (final series in localSeriesList) series.tmdbId: series,
@@ -242,11 +244,11 @@ class ImplSyncDataSource implements SyncDataSource {
 
     return localSeriesItem != null
         ? _batchInsertSeriesIfNeeded(
-          batch,
-          remoteSeriesItem,
-          localSeriesItem,
-          remoteUpdatedAt,
-        )
+            batch,
+            remoteSeriesItem,
+            localSeriesItem,
+            remoteUpdatedAt,
+          )
         : _batchInsertSeries(batch, remoteSeriesItem, remoteUpdatedAt);
   }
 
@@ -338,9 +340,9 @@ class ImplSyncDataSource implements SyncDataSource {
       return false;
     }
 
-    final syncUser =
-        await (_localDatabase.select(_localDatabase.syncUserTable)
-          ..where((tbl) => tbl.id.equals(1))).getSingleOrNull();
+    final syncUser = await (_localDatabase.select(
+      _localDatabase.syncUserTable,
+    )..where((tbl) => tbl.id.equals(1))).getSingleOrNull();
 
     if (syncUser != null && syncUser.uid != currentUser.id) {
       debugLog(

@@ -82,22 +82,36 @@ mixin _$BaseButtonStylesTailorMixin on ThemeExtension<BaseButtonStyles> {
   ) {
     if (other is! BaseButtonStyles) return this as BaseButtonStyles;
     return BaseButtonStyles(
-      btnPrimBorderRadius:
-          t < 0.5 ? btnPrimBorderRadius : other.btnPrimBorderRadius,
+      btnPrimBorderRadius: t < 0.5
+          ? btnPrimBorderRadius
+          : other.btnPrimBorderRadius,
       btnPrimHeight: t < 0.5 ? btnPrimHeight : other.btnPrimHeight,
-      btnSecBorderRadius:
-          t < 0.5 ? btnSecBorderRadius : other.btnSecBorderRadius,
+      btnSecBorderRadius: t < 0.5
+          ? btnSecBorderRadius
+          : other.btnSecBorderRadius,
       btnSecHeight: t < 0.5 ? btnSecHeight : other.btnSecHeight,
       btnPrimShape: t < 0.5 ? btnPrimShape : other.btnPrimShape,
       btnSecShape: t < 0.5 ? btnSecShape : other.btnSecShape,
-      elevBtnPrimTextStyle:
-          TextStyle.lerp(elevBtnPrimTextStyle, other.elevBtnPrimTextStyle, t)!,
-      outBtnPrimTextStyle:
-          TextStyle.lerp(outBtnPrimTextStyle, other.outBtnPrimTextStyle, t)!,
-      fillBtnPrimTextStyle:
-          TextStyle.lerp(fillBtnPrimTextStyle, other.fillBtnPrimTextStyle, t)!,
-      textBtnPrimTextStyle:
-          TextStyle.lerp(textBtnPrimTextStyle, other.textBtnPrimTextStyle, t)!,
+      elevBtnPrimTextStyle: TextStyle.lerp(
+        elevBtnPrimTextStyle,
+        other.elevBtnPrimTextStyle,
+        t,
+      )!,
+      outBtnPrimTextStyle: TextStyle.lerp(
+        outBtnPrimTextStyle,
+        other.outBtnPrimTextStyle,
+        t,
+      )!,
+      fillBtnPrimTextStyle: TextStyle.lerp(
+        fillBtnPrimTextStyle,
+        other.fillBtnPrimTextStyle,
+        t,
+      )!,
+      textBtnPrimTextStyle: TextStyle.lerp(
+        textBtnPrimTextStyle,
+        other.textBtnPrimTextStyle,
+        t,
+      )!,
       btnPrimMinSize: t < 0.5 ? btnPrimMinSize : other.btnPrimMinSize,
       btnSecMinSize: t < 0.5 ? btnSecMinSize : other.btnSecMinSize,
       elevBtnPrimStyle: t < 0.5 ? elevBtnPrimStyle : other.elevBtnPrimStyle,

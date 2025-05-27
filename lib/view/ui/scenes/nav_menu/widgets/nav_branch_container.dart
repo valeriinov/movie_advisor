@@ -46,14 +46,12 @@ class NavBranchContainer extends StatelessWidget {
       children: [
         IndexedStack(
           index: currentIndex,
-          children: children.mapIndexed(
-            (index, child) {
-              return ExtendedShellBranchContent(
-                isActive: currentIndex == index,
-                child: child,
-              );
-            },
-          ).toList(),
+          children: children.mapIndexed((index, child) {
+            return ExtendedShellBranchContent(
+              isActive: currentIndex == index,
+              child: child,
+            );
+          }).toList(),
         ),
         // if (!branch.saveState) children[currentIndex],
       ],

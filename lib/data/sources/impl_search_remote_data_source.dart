@@ -8,17 +8,21 @@ class ImplSearchRemoteDataSource implements SearchRemoteDataSource {
   final SearchService _service;
 
   ImplSearchRemoteDataSource({required SearchService service})
-      : _service = service;
+    : _service = service;
 
   @override
-  Future<MoviesResponseDataDto> searchMovies(SearchFilterDataDto filter,
-      {required int page}) {
+  Future<MoviesResponseDataDto> searchMovies(
+    SearchFilterDataDto filter, {
+    required int page,
+  }) {
     return _service.searchMovies(filter, page: page);
   }
 
   @override
-  Future<SeriesResponseDataDto> searchSeries(SearchFilterDataDto filter,
-      {required int page}) {
+  Future<SeriesResponseDataDto> searchSeries(
+    SearchFilterDataDto filter, {
+    required int page,
+  }) {
     return _service.searchSeries(filter, page: page);
   }
 }

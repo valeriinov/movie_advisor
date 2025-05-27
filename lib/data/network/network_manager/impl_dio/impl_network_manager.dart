@@ -10,8 +10,8 @@ class ImplNetworkManager implements NetworkManager {
   final DioErrorHandler _errorHandler;
 
   ImplNetworkManager({required Dio dio, required DioErrorHandler errorHandler})
-      : _dio = dio,
-        _errorHandler = errorHandler;
+    : _dio = dio,
+      _errorHandler = errorHandler;
 
   @override
   Future<NetResponse<T>> get<T>(
@@ -97,15 +97,17 @@ class ImplNetworkManager implements NetworkManager {
 
   Options _getOptions(NetReqOptions? reqOptions) {
     return Options(
-        receiveTimeout: reqOptions?.timeout,
-        sendTimeout: reqOptions?.timeout,
-        headers: reqOptions?.headers);
+      receiveTimeout: reqOptions?.timeout,
+      sendTimeout: reqOptions?.timeout,
+      headers: reqOptions?.headers,
+    );
   }
 
   NetResponse<T> _getNetResponse<T>(Response<T> response) {
     return NetResponse(
-        data: response.data,
-        statusCode: response.statusCode,
-        message: response.statusMessage);
+      data: response.data,
+      statusCode: response.statusCode,
+      message: response.statusMessage,
+    );
   }
 }

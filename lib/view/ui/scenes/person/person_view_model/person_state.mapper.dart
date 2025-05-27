@@ -22,14 +22,24 @@ class PersonStateMapper extends ClassMapperBase<PersonState> {
   final String id = 'PersonState';
 
   static PersonData _$person(PersonState v) => v.person;
-  static const Field<PersonState, PersonData> _f$person =
-      Field('person', _$person);
+  static const Field<PersonState, PersonData> _f$person = Field(
+    'person',
+    _$person,
+  );
   static PersonTab _$currentTab(PersonState v) => v.currentTab;
-  static const Field<PersonState, PersonTab> _f$currentTab =
-      Field('currentTab', _$currentTab, opt: true, def: PersonTab.biography);
+  static const Field<PersonState, PersonTab> _f$currentTab = Field(
+    'currentTab',
+    _$currentTab,
+    opt: true,
+    def: PersonTab.biography,
+  );
   static PersonStatus _$status(PersonState v) => v.status;
-  static const Field<PersonState, PersonStatus> _f$status =
-      Field('status', _$status, opt: true, def: const PersonBaseStatus());
+  static const Field<PersonState, PersonStatus> _f$status = Field(
+    'status',
+    _$status,
+    opt: true,
+    def: const PersonBaseStatus(),
+  );
 
   @override
   final MappableFields<PersonState> fields = const {
@@ -40,9 +50,10 @@ class PersonStateMapper extends ClassMapperBase<PersonState> {
 
   static PersonState _instantiate(DecodingData data) {
     return PersonState(
-        person: data.dec(_f$person),
-        currentTab: data.dec(_f$currentTab),
-        status: data.dec(_f$status));
+      person: data.dec(_f$person),
+      currentTab: data.dec(_f$currentTab),
+      status: data.dec(_f$status),
+    );
   }
 
   @override
@@ -52,17 +63,23 @@ class PersonStateMapper extends ClassMapperBase<PersonState> {
 mixin PersonStateMappable {
   PersonStateCopyWith<PersonState, PersonState, PersonState> get copyWith =>
       _PersonStateCopyWithImpl<PersonState, PersonState>(
-          this as PersonState, $identity, $identity);
+        this as PersonState,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return PersonStateMapper.ensureInitialized()
-        .stringifyValue(this as PersonState);
+    return PersonStateMapper.ensureInitialized().stringifyValue(
+      this as PersonState,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return PersonStateMapper.ensureInitialized()
-        .equalsValue(this as PersonState, other);
+    return PersonStateMapper.ensureInitialized().equalsValue(
+      this as PersonState,
+      other,
+    );
   }
 
   @override
@@ -97,21 +114,24 @@ class _PersonStateCopyWithImpl<$R, $Out>
       $value.person.copyWith.$chain((v) => call(person: v));
   @override
   $R call({PersonData? person, PersonTab? currentTab, PersonStatus? status}) =>
-      $apply(FieldCopyWithData({
-        if (person != null) #person: person,
-        if (currentTab != null) #currentTab: currentTab,
-        if (status != null) #status: status
-      }));
+      $apply(
+        FieldCopyWithData({
+          if (person != null) #person: person,
+          if (currentTab != null) #currentTab: currentTab,
+          if (status != null) #status: status,
+        }),
+      );
   @override
   PersonState $make(CopyWithData data) => PersonState(
-      person: data.get(#person, or: $value.person),
-      currentTab: data.get(#currentTab, or: $value.currentTab),
-      status: data.get(#status, or: $value.status));
+    person: data.get(#person, or: $value.person),
+    currentTab: data.get(#currentTab, or: $value.currentTab),
+    status: data.get(#status, or: $value.status),
+  );
 
   @override
   PersonStateCopyWith<$R2, PersonState, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _PersonStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _PersonStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class PersonBaseStatusMapper extends ClassMapperBase<PersonBaseStatus> {
@@ -129,14 +149,25 @@ class PersonBaseStatusMapper extends ClassMapperBase<PersonBaseStatus> {
   final String id = 'PersonBaseStatus';
 
   static bool _$isLoading(PersonBaseStatus v) => v.isLoading;
-  static const Field<PersonBaseStatus, bool> _f$isLoading =
-      Field('isLoading', _$isLoading, opt: true, def: false);
+  static const Field<PersonBaseStatus, bool> _f$isLoading = Field(
+    'isLoading',
+    _$isLoading,
+    opt: true,
+    def: false,
+  );
   static String? _$errorMessage(PersonBaseStatus v) => v.errorMessage;
-  static const Field<PersonBaseStatus, String> _f$errorMessage =
-      Field('errorMessage', _$errorMessage, opt: true);
+  static const Field<PersonBaseStatus, String> _f$errorMessage = Field(
+    'errorMessage',
+    _$errorMessage,
+    opt: true,
+  );
   static bool _$isInitialized(PersonBaseStatus v) => v.isInitialized;
-  static const Field<PersonBaseStatus, bool> _f$isInitialized =
-      Field('isInitialized', _$isInitialized, opt: true, def: false);
+  static const Field<PersonBaseStatus, bool> _f$isInitialized = Field(
+    'isInitialized',
+    _$isInitialized,
+    opt: true,
+    def: false,
+  );
 
   @override
   final MappableFields<PersonBaseStatus> fields = const {
@@ -147,9 +178,10 @@ class PersonBaseStatusMapper extends ClassMapperBase<PersonBaseStatus> {
 
   static PersonBaseStatus _instantiate(DecodingData data) {
     return PersonBaseStatus(
-        isLoading: data.dec(_f$isLoading),
-        errorMessage: data.dec(_f$errorMessage),
-        isInitialized: data.dec(_f$isInitialized));
+      isLoading: data.dec(_f$isLoading),
+      errorMessage: data.dec(_f$errorMessage),
+      isInitialized: data.dec(_f$isInitialized),
+    );
   }
 
   @override
@@ -158,40 +190,48 @@ class PersonBaseStatusMapper extends ClassMapperBase<PersonBaseStatus> {
 
 mixin PersonBaseStatusMappable {
   PersonBaseStatusCopyWith<PersonBaseStatus, PersonBaseStatus, PersonBaseStatus>
-      get copyWith =>
-          _PersonBaseStatusCopyWithImpl<PersonBaseStatus, PersonBaseStatus>(
-              this as PersonBaseStatus, $identity, $identity);
+  get copyWith =>
+      _PersonBaseStatusCopyWithImpl<PersonBaseStatus, PersonBaseStatus>(
+        this as PersonBaseStatus,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return PersonBaseStatusMapper.ensureInitialized()
-        .stringifyValue(this as PersonBaseStatus);
+    return PersonBaseStatusMapper.ensureInitialized().stringifyValue(
+      this as PersonBaseStatus,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return PersonBaseStatusMapper.ensureInitialized()
-        .equalsValue(this as PersonBaseStatus, other);
+    return PersonBaseStatusMapper.ensureInitialized().equalsValue(
+      this as PersonBaseStatus,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return PersonBaseStatusMapper.ensureInitialized()
-        .hashValue(this as PersonBaseStatus);
+    return PersonBaseStatusMapper.ensureInitialized().hashValue(
+      this as PersonBaseStatus,
+    );
   }
 }
 
 extension PersonBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, PersonBaseStatus, $Out> {
   PersonBaseStatusCopyWith<$R, PersonBaseStatus, $Out>
-      get $asPersonBaseStatus => $base
-          .as((v, t, t2) => _PersonBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asPersonBaseStatus =>
+      $base.as((v, t, t2) => _PersonBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class PersonBaseStatusCopyWith<$R, $In extends PersonBaseStatus, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   PersonBaseStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _PersonBaseStatusCopyWithImpl<$R, $Out>
@@ -203,25 +243,28 @@ class _PersonBaseStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PersonBaseStatus> $mapper =
       PersonBaseStatusMapper.ensureInitialized();
   @override
-  $R call(
-          {bool? isLoading,
-          Object? errorMessage = $none,
-          bool? isInitialized}) =>
-      $apply(FieldCopyWithData({
-        if (isLoading != null) #isLoading: isLoading,
-        if (errorMessage != $none) #errorMessage: errorMessage,
-        if (isInitialized != null) #isInitialized: isInitialized
-      }));
+  $R call({
+    bool? isLoading,
+    Object? errorMessage = $none,
+    bool? isInitialized,
+  }) => $apply(
+    FieldCopyWithData({
+      if (isLoading != null) #isLoading: isLoading,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+      if (isInitialized != null) #isInitialized: isInitialized,
+    }),
+  );
   @override
   PersonBaseStatus $make(CopyWithData data) => PersonBaseStatus(
-      isLoading: data.get(#isLoading, or: $value.isLoading),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+    isLoading: data.get(#isLoading, or: $value.isLoading),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
+  );
 
   @override
   PersonBaseStatusCopyWith<$R2, PersonBaseStatus, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _PersonBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _PersonBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class PersonBaseInitStatusMapper extends ClassMapperBase<PersonBaseInitStatus> {
@@ -239,14 +282,25 @@ class PersonBaseInitStatusMapper extends ClassMapperBase<PersonBaseInitStatus> {
   final String id = 'PersonBaseInitStatus';
 
   static bool _$isLoading(PersonBaseInitStatus v) => v.isLoading;
-  static const Field<PersonBaseInitStatus, bool> _f$isLoading =
-      Field('isLoading', _$isLoading, opt: true, def: false);
+  static const Field<PersonBaseInitStatus, bool> _f$isLoading = Field(
+    'isLoading',
+    _$isLoading,
+    opt: true,
+    def: false,
+  );
   static String? _$errorMessage(PersonBaseInitStatus v) => v.errorMessage;
-  static const Field<PersonBaseInitStatus, String> _f$errorMessage =
-      Field('errorMessage', _$errorMessage, opt: true);
+  static const Field<PersonBaseInitStatus, String> _f$errorMessage = Field(
+    'errorMessage',
+    _$errorMessage,
+    opt: true,
+  );
   static bool _$isInitialized(PersonBaseInitStatus v) => v.isInitialized;
-  static const Field<PersonBaseInitStatus, bool> _f$isInitialized =
-      Field('isInitialized', _$isInitialized, opt: true, def: true);
+  static const Field<PersonBaseInitStatus, bool> _f$isInitialized = Field(
+    'isInitialized',
+    _$isInitialized,
+    opt: true,
+    def: true,
+  );
 
   @override
   final MappableFields<PersonBaseInitStatus> fields = const {
@@ -257,9 +311,10 @@ class PersonBaseInitStatusMapper extends ClassMapperBase<PersonBaseInitStatus> {
 
   static PersonBaseInitStatus _instantiate(DecodingData data) {
     return PersonBaseInitStatus(
-        isLoading: data.dec(_f$isLoading),
-        errorMessage: data.dec(_f$errorMessage),
-        isInitialized: data.dec(_f$isInitialized));
+      isLoading: data.dec(_f$isLoading),
+      errorMessage: data.dec(_f$errorMessage),
+      isInitialized: data.dec(_f$isInitialized),
+    );
   }
 
   @override
@@ -267,43 +322,57 @@ class PersonBaseInitStatusMapper extends ClassMapperBase<PersonBaseInitStatus> {
 }
 
 mixin PersonBaseInitStatusMappable {
-  PersonBaseInitStatusCopyWith<PersonBaseInitStatus, PersonBaseInitStatus,
-      PersonBaseInitStatus> get copyWith => _PersonBaseInitStatusCopyWithImpl<
-          PersonBaseInitStatus, PersonBaseInitStatus>(
-      this as PersonBaseInitStatus, $identity, $identity);
+  PersonBaseInitStatusCopyWith<
+    PersonBaseInitStatus,
+    PersonBaseInitStatus,
+    PersonBaseInitStatus
+  >
+  get copyWith =>
+      _PersonBaseInitStatusCopyWithImpl<
+        PersonBaseInitStatus,
+        PersonBaseInitStatus
+      >(this as PersonBaseInitStatus, $identity, $identity);
   @override
   String toString() {
-    return PersonBaseInitStatusMapper.ensureInitialized()
-        .stringifyValue(this as PersonBaseInitStatus);
+    return PersonBaseInitStatusMapper.ensureInitialized().stringifyValue(
+      this as PersonBaseInitStatus,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return PersonBaseInitStatusMapper.ensureInitialized()
-        .equalsValue(this as PersonBaseInitStatus, other);
+    return PersonBaseInitStatusMapper.ensureInitialized().equalsValue(
+      this as PersonBaseInitStatus,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return PersonBaseInitStatusMapper.ensureInitialized()
-        .hashValue(this as PersonBaseInitStatus);
+    return PersonBaseInitStatusMapper.ensureInitialized().hashValue(
+      this as PersonBaseInitStatus,
+    );
   }
 }
 
 extension PersonBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, PersonBaseInitStatus, $Out> {
   PersonBaseInitStatusCopyWith<$R, PersonBaseInitStatus, $Out>
-      get $asPersonBaseInitStatus => $base.as(
-          (v, t, t2) => _PersonBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asPersonBaseInitStatus => $base.as(
+    (v, t, t2) => _PersonBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
 abstract class PersonBaseInitStatusCopyWith<
-    $R,
-    $In extends PersonBaseInitStatus,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R,
+  $In extends PersonBaseInitStatus,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   PersonBaseInitStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _PersonBaseInitStatusCopyWithImpl<$R, $Out>
@@ -315,23 +384,26 @@ class _PersonBaseInitStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PersonBaseInitStatus> $mapper =
       PersonBaseInitStatusMapper.ensureInitialized();
   @override
-  $R call(
-          {bool? isLoading,
-          Object? errorMessage = $none,
-          bool? isInitialized}) =>
-      $apply(FieldCopyWithData({
-        if (isLoading != null) #isLoading: isLoading,
-        if (errorMessage != $none) #errorMessage: errorMessage,
-        if (isInitialized != null) #isInitialized: isInitialized
-      }));
+  $R call({
+    bool? isLoading,
+    Object? errorMessage = $none,
+    bool? isInitialized,
+  }) => $apply(
+    FieldCopyWithData({
+      if (isLoading != null) #isLoading: isLoading,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+      if (isInitialized != null) #isInitialized: isInitialized,
+    }),
+  );
   @override
   PersonBaseInitStatus $make(CopyWithData data) => PersonBaseInitStatus(
-      isLoading: data.get(#isLoading, or: $value.isLoading),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+    isLoading: data.get(#isLoading, or: $value.isLoading),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
+  );
 
   @override
   PersonBaseInitStatusCopyWith<$R2, PersonBaseInitStatus, $Out2>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _PersonBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _PersonBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

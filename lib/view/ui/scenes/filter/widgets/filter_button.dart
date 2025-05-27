@@ -9,6 +9,7 @@ class FilterButton extends StatelessWidget {
   final String iconPath;
   final String title;
   final String subtitle;
+  final Size? iconSize;
   final Function()? onTap;
 
   const FilterButton({
@@ -16,6 +17,7 @@ class FilterButton extends StatelessWidget {
     required this.iconPath,
     required this.title,
     required this.subtitle,
+    this.iconSize,
     this.onTap,
   });
 
@@ -37,8 +39,8 @@ class FilterButton extends StatelessWidget {
             children: [
               AppSvgAsset(
                 path: iconPath,
-                height: 28,
-                width: 28,
+                height: iconSize?.height ?? 28,
+                width: iconSize?.width ?? 28,
                 color: colors.filterPrimFg,
               ),
               8.gapHor(),

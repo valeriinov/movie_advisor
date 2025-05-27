@@ -79,9 +79,8 @@ abstract base class WatchedViewModel<T extends MediaShortData>
   }) async {
     return safeCall(
       () => _watchUseCase.getWatched(page: page),
-      onResult:
-          (result) =>
-              _handleWatchedResult(result, isNewPageLoaded: isNewPageLoaded),
+      onResult: (result) =>
+          _handleWatchedResult(result, isNewPageLoaded: isNewPageLoaded),
     );
   }
 

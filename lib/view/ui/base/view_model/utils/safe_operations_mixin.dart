@@ -51,8 +51,10 @@ mixin SafeOperationsMixin {
   ///
   /// The [action] parameter is a function returning a [Future].
   /// The optional [onResult] parameter is a callback function that handles the result of [action].
-  Future<void> safeCall<T>(Future<T> Function() action,
-      {Function(T result)? onResult}) async {
+  Future<void> safeCall<T>(
+    Future<T> Function() action, {
+    Function(T result)? onResult,
+  }) async {
     final cancelableOperation = CancelableOperation.fromFuture(action());
 
     _safeOperations.add(cancelableOperation);

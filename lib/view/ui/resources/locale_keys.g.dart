@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const appName = 'appName';
   static const homeNavTab = 'homeNavTab';
   static const watchlistNavTab = 'watchlistNavTab';
@@ -141,7 +141,8 @@ abstract class  LocaleKeys {
   static const emptySuggestionsMoviesTitle = 'emptySuggestionsMoviesTitle';
   static const emptySuggestionsSeriesTitle = 'emptySuggestionsSeriesTitle';
   static const homeEmptyListSubtitle = 'homeEmptyListSubtitle';
-  static const updateAlertNewVersionAvailable = 'updateAlertNewVersionAvailable';
+  static const updateAlertNewVersionAvailable =
+      'updateAlertNewVersionAvailable';
   static const updateAlertNewVersion = 'updateAlertNewVersion';
   static const updateAlertCurrentVersion = 'updateAlertCurrentVersion';
   static const updateAlertIgnore = 'updateAlertIgnore';
@@ -199,11 +200,15 @@ abstract class  LocaleKeys {
   static const filterDescAll = 'filterDescAll';
   static const filterDescNone = 'filterDescNone';
   static const filterSelectedDesc = 'filterSelectedDesc';
+  static const filterYourListsDesc = 'filterYourListsDesc';
   static const withGenresDialog = 'withGenresDialog';
   static const withoutGenresDialog = 'withoutGenresDialog';
   static const withCountriesDialog = 'withCountriesDialog';
   static const selectYearDialog = 'selectYearDialog';
   static const sortByDialog = 'sortByDialog';
+  static const includeYourListsDialog = 'includeYourListsDialog';
+  static const includeWatchedDesc = 'includeWatchedDesc';
+  static const includeWatchlistDesc = 'includeWatchlistDesc';
   static const filterResetButton = 'filterResetButton';
   static const filterApplyButton = 'filterApplyButton';
   static const emptyOverviewTab = 'emptyOverviewTab';
@@ -221,5 +226,4 @@ abstract class  LocaleKeys {
   static const emptyBiographyTab = 'emptyBiographyTab';
   static const emptyMoviesTab = 'emptyMoviesTab';
   static const emptySeriesTab = 'emptySeriesTab';
-
 }

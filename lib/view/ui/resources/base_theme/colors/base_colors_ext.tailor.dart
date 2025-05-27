@@ -100,6 +100,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get botSheetIcon;
   Color get botSheetBarrier;
   Color get botSheetCheckboxBorder;
+  Color get botSheetRadio;
+  Color get botSheetRadioSelect;
   Color get botSheetCheckboxFill;
   Color get sliderVal;
   Color get sliderTrackFg;
@@ -213,6 +215,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? botSheetIcon,
     Color? botSheetBarrier,
     Color? botSheetCheckboxBorder,
+    Color? botSheetRadio,
+    Color? botSheetRadioSelect,
     Color? botSheetCheckboxFill,
     Color? sliderVal,
     Color? sliderTrackFg,
@@ -328,6 +332,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       botSheetBarrier: botSheetBarrier ?? this.botSheetBarrier,
       botSheetCheckboxBorder:
           botSheetCheckboxBorder ?? this.botSheetCheckboxBorder,
+      botSheetRadio: botSheetRadio ?? this.botSheetRadio,
+      botSheetRadioSelect: botSheetRadioSelect ?? this.botSheetRadioSelect,
       botSheetCheckboxFill: botSheetCheckboxFill ?? this.botSheetCheckboxFill,
       sliderVal: sliderVal ?? this.sliderVal,
       sliderTrackFg: sliderTrackFg ?? this.sliderTrackFg,
@@ -364,80 +370,155 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       textThemeSec: Color.lerp(textThemeSec, other.textThemeSec, t)!,
       btnElevPrimFg: Color.lerp(btnElevPrimFg, other.btnElevPrimFg, t)!,
       btnElevPrimBg: Color.lerp(btnElevPrimBg, other.btnElevPrimBg, t)!,
-      btnElevPrimFgPress:
-          Color.lerp(btnElevPrimFgPress, other.btnElevPrimFgPress, t)!,
-      btnElevPrimBgPress:
-          Color.lerp(btnElevPrimBgPress, other.btnElevPrimBgPress, t)!,
-      btnElevPrimFgDis:
-          Color.lerp(btnElevPrimFgDis, other.btnElevPrimFgDis, t)!,
-      btnElevPrimBgDis:
-          Color.lerp(btnElevPrimBgDis, other.btnElevPrimBgDis, t)!,
+      btnElevPrimFgPress: Color.lerp(
+        btnElevPrimFgPress,
+        other.btnElevPrimFgPress,
+        t,
+      )!,
+      btnElevPrimBgPress: Color.lerp(
+        btnElevPrimBgPress,
+        other.btnElevPrimBgPress,
+        t,
+      )!,
+      btnElevPrimFgDis: Color.lerp(
+        btnElevPrimFgDis,
+        other.btnElevPrimFgDis,
+        t,
+      )!,
+      btnElevPrimBgDis: Color.lerp(
+        btnElevPrimBgDis,
+        other.btnElevPrimBgDis,
+        t,
+      )!,
       btnOutPrimFg: Color.lerp(btnOutPrimFg, other.btnOutPrimFg, t)!,
       btnOutPrimBg: Color.lerp(btnOutPrimBg, other.btnOutPrimBg, t)!,
-      btnOutPrimFgPress:
-          Color.lerp(btnOutPrimFgPress, other.btnOutPrimFgPress, t)!,
-      btnOutPrimBgPress:
-          Color.lerp(btnOutPrimBgPress, other.btnOutPrimBgPress, t)!,
+      btnOutPrimFgPress: Color.lerp(
+        btnOutPrimFgPress,
+        other.btnOutPrimFgPress,
+        t,
+      )!,
+      btnOutPrimBgPress: Color.lerp(
+        btnOutPrimBgPress,
+        other.btnOutPrimBgPress,
+        t,
+      )!,
       btnOutPrimFgDis: Color.lerp(btnOutPrimFgDis, other.btnOutPrimFgDis, t)!,
       btnOutPrimBgDis: Color.lerp(btnOutPrimBgDis, other.btnOutPrimBgDis, t)!,
       btnFillPrimFg: Color.lerp(btnFillPrimFg, other.btnFillPrimFg, t)!,
       btnFillPrimBg: Color.lerp(btnFillPrimBg, other.btnFillPrimBg, t)!,
-      btnFillPrimFgPress:
-          Color.lerp(btnFillPrimFgPress, other.btnFillPrimFgPress, t)!,
-      btnFillPrimBgPress:
-          Color.lerp(btnFillPrimBgPress, other.btnFillPrimBgPress, t)!,
-      btnFillPrimFgDis:
-          Color.lerp(btnFillPrimFgDis, other.btnFillPrimFgDis, t)!,
-      btnFillPrimBgDis:
-          Color.lerp(btnFillPrimBgDis, other.btnFillPrimBgDis, t)!,
+      btnFillPrimFgPress: Color.lerp(
+        btnFillPrimFgPress,
+        other.btnFillPrimFgPress,
+        t,
+      )!,
+      btnFillPrimBgPress: Color.lerp(
+        btnFillPrimBgPress,
+        other.btnFillPrimBgPress,
+        t,
+      )!,
+      btnFillPrimFgDis: Color.lerp(
+        btnFillPrimFgDis,
+        other.btnFillPrimFgDis,
+        t,
+      )!,
+      btnFillPrimBgDis: Color.lerp(
+        btnFillPrimBgDis,
+        other.btnFillPrimBgDis,
+        t,
+      )!,
       btnTextPrimFg: Color.lerp(btnTextPrimFg, other.btnTextPrimFg, t)!,
       btnTextPrimBg: Color.lerp(btnTextPrimBg, other.btnTextPrimBg, t)!,
-      btnTextPrimFgPress:
-          Color.lerp(btnTextPrimFgPress, other.btnTextPrimFgPress, t)!,
-      btnTextPrimBgPress:
-          Color.lerp(btnTextPrimBgPress, other.btnTextPrimBgPress, t)!,
-      btnTextPrimFgDis:
-          Color.lerp(btnTextPrimFgDis, other.btnTextPrimFgDis, t)!,
-      btnTextPrimBgDis:
-          Color.lerp(btnTextPrimBgDis, other.btnTextPrimBgDis, t)!,
+      btnTextPrimFgPress: Color.lerp(
+        btnTextPrimFgPress,
+        other.btnTextPrimFgPress,
+        t,
+      )!,
+      btnTextPrimBgPress: Color.lerp(
+        btnTextPrimBgPress,
+        other.btnTextPrimBgPress,
+        t,
+      )!,
+      btnTextPrimFgDis: Color.lerp(
+        btnTextPrimFgDis,
+        other.btnTextPrimFgDis,
+        t,
+      )!,
+      btnTextPrimBgDis: Color.lerp(
+        btnTextPrimBgDis,
+        other.btnTextPrimBgDis,
+        t,
+      )!,
       btnFABFg: Color.lerp(btnFABFg, other.btnFABFg, t)!,
       btnFABBg: Color.lerp(btnFABBg, other.btnFABBg, t)!,
       btnFABFgSplash: Color.lerp(btnFABFgSplash, other.btnFABFgSplash, t)!,
       btnIconPrim: Color.lerp(btnIconPrim, other.btnIconPrim, t)!,
       btnIconSecFg: Color.lerp(btnIconSecFg, other.btnIconSecFg, t)!,
       btnIconSecBg: Color.lerp(btnIconSecBg, other.btnIconSecBg, t)!,
-      btnIconSecBgPress:
-          Color.lerp(btnIconSecBgPress, other.btnIconSecBgPress, t)!,
-      loadingIndicatorFg:
-          Color.lerp(loadingIndicatorFg, other.loadingIndicatorFg, t)!,
-      loadingIndicatorBg:
-          Color.lerp(loadingIndicatorBg, other.loadingIndicatorBg, t)!,
-      refreshIndicatorFg:
-          Color.lerp(refreshIndicatorFg, other.refreshIndicatorFg, t)!,
-      refreshIndicatorBg:
-          Color.lerp(refreshIndicatorBg, other.refreshIndicatorBg, t)!,
+      btnIconSecBgPress: Color.lerp(
+        btnIconSecBgPress,
+        other.btnIconSecBgPress,
+        t,
+      )!,
+      loadingIndicatorFg: Color.lerp(
+        loadingIndicatorFg,
+        other.loadingIndicatorFg,
+        t,
+      )!,
+      loadingIndicatorBg: Color.lerp(
+        loadingIndicatorBg,
+        other.loadingIndicatorBg,
+        t,
+      )!,
+      refreshIndicatorFg: Color.lerp(
+        refreshIndicatorFg,
+        other.refreshIndicatorFg,
+        t,
+      )!,
+      refreshIndicatorBg: Color.lerp(
+        refreshIndicatorBg,
+        other.refreshIndicatorBg,
+        t,
+      )!,
       skeletonFrom: Color.lerp(skeletonFrom, other.skeletonFrom, t)!,
       skeletonTo: Color.lerp(skeletonTo, other.skeletonTo, t)!,
       appBarPrimFg: Color.lerp(appBarPrimFg, other.appBarPrimFg, t)!,
       appBarPrimBg: Color.lerp(appBarPrimBg, other.appBarPrimBg, t)!,
       botNavBarBg: Color.lerp(botNavBarBg, other.botNavBarBg, t)!,
-      botNavBarFgSelect:
-          Color.lerp(botNavBarFgSelect, other.botNavBarFgSelect, t)!,
-      botNavBarFgUnselect:
-          Color.lerp(botNavBarFgUnselect, other.botNavBarFgUnselect, t)!,
+      botNavBarFgSelect: Color.lerp(
+        botNavBarFgSelect,
+        other.botNavBarFgSelect,
+        t,
+      )!,
+      botNavBarFgUnselect: Color.lerp(
+        botNavBarFgUnselect,
+        other.botNavBarFgUnselect,
+        t,
+      )!,
       navBarDivider: Color.lerp(navBarDivider, other.navBarDivider, t)!,
       txtFldPrimFill: Color.lerp(txtFldPrimFill, other.txtFldPrimFill, t)!,
       txtFldPrimInput: Color.lerp(txtFldPrimInput, other.txtFldPrimInput, t)!,
       txtFldPrimLabel: Color.lerp(txtFldPrimLabel, other.txtFldPrimLabel, t)!,
-      txtFldPrimBorder:
-          Color.lerp(txtFldPrimBorder, other.txtFldPrimBorder, t)!,
-      txtFldPrimBorderFocus:
-          Color.lerp(txtFldPrimBorderFocus, other.txtFldPrimBorderFocus, t)!,
-      txtFldPrimBorderError:
-          Color.lerp(txtFldPrimBorderError, other.txtFldPrimBorderError, t)!,
+      txtFldPrimBorder: Color.lerp(
+        txtFldPrimBorder,
+        other.txtFldPrimBorder,
+        t,
+      )!,
+      txtFldPrimBorderFocus: Color.lerp(
+        txtFldPrimBorderFocus,
+        other.txtFldPrimBorderFocus,
+        t,
+      )!,
+      txtFldPrimBorderError: Color.lerp(
+        txtFldPrimBorderError,
+        other.txtFldPrimBorderError,
+        t,
+      )!,
       txtFldPrimError: Color.lerp(txtFldPrimError, other.txtFldPrimError, t)!,
-      txtFldPrimSuffixIcon:
-          Color.lerp(txtFldPrimSuffixIcon, other.txtFldPrimSuffixIcon, t)!,
+      txtFldPrimSuffixIcon: Color.lerp(
+        txtFldPrimSuffixIcon,
+        other.txtFldPrimSuffixIcon,
+        t,
+      )!,
       kbdActionBarBg: Color.lerp(kbdActionBarBg, other.kbdActionBarBg, t)!,
       kbdActionBarFg: Color.lerp(kbdActionBarFg, other.kbdActionBarFg, t)!,
       dlgPrimBg: Color.lerp(dlgPrimBg, other.dlgPrimBg, t)!,
@@ -450,64 +531,111 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       toastErrorBg: Color.lerp(toastErrorBg, other.toastErrorBg, t)!,
       toastFg: Color.lerp(toastFg, other.toastFg, t)!,
       cardPrimBg: Color.lerp(cardPrimBg, other.cardPrimBg, t)!,
-      cardPrimSurfTint:
-          Color.lerp(cardPrimSurfTint, other.cardPrimSurfTint, t)!,
+      cardPrimSurfTint: Color.lerp(
+        cardPrimSurfTint,
+        other.cardPrimSurfTint,
+        t,
+      )!,
       cardPrimBorder: Color.lerp(cardPrimBorder, other.cardPrimBorder, t)!,
       cardPrimShadow: Color.lerp(cardPrimShadow, other.cardPrimShadow, t)!,
-      listTilePrimTitle:
-          Color.lerp(listTilePrimTitle, other.listTilePrimTitle, t)!,
-      listTilePrimSubtitle:
-          Color.lerp(listTilePrimSubtitle, other.listTilePrimSubtitle, t)!,
-      listTileSecTitle:
-          Color.lerp(listTileSecTitle, other.listTileSecTitle, t)!,
-      listTileSecSubtitle:
-          Color.lerp(listTileSecSubtitle, other.listTileSecSubtitle, t)!,
+      listTilePrimTitle: Color.lerp(
+        listTilePrimTitle,
+        other.listTilePrimTitle,
+        t,
+      )!,
+      listTilePrimSubtitle: Color.lerp(
+        listTilePrimSubtitle,
+        other.listTilePrimSubtitle,
+        t,
+      )!,
+      listTileSecTitle: Color.lerp(
+        listTileSecTitle,
+        other.listTileSecTitle,
+        t,
+      )!,
+      listTileSecSubtitle: Color.lerp(
+        listTileSecSubtitle,
+        other.listTileSecSubtitle,
+        t,
+      )!,
       avatarPrimBg: Color.lerp(avatarPrimBg, other.avatarPrimBg, t)!,
       avatarPrimFg: Color.lerp(avatarPrimFg, other.avatarPrimFg, t)!,
       suggestNumFill: Color.lerp(suggestNumFill, other.suggestNumFill, t)!,
-      suggestNumStroke:
-          Color.lerp(suggestNumStroke, other.suggestNumStroke, t)!,
+      suggestNumStroke: Color.lerp(
+        suggestNumStroke,
+        other.suggestNumStroke,
+        t,
+      )!,
       suggestNumBlur: Color.lerp(suggestNumBlur, other.suggestNumBlur, t)!,
       tabUnderSelect: Color.lerp(tabUnderSelect, other.tabUnderSelect, t)!,
       infoCardRating: Color.lerp(infoCardRating, other.infoCardRating, t)!,
       infoCardPrimFg: Color.lerp(infoCardPrimFg, other.infoCardPrimFg, t)!,
-      backdropRatingBg:
-          Color.lerp(backdropRatingBg, other.backdropRatingBg, t)!,
+      backdropRatingBg: Color.lerp(
+        backdropRatingBg,
+        other.backdropRatingBg,
+        t,
+      )!,
       botSheetBg: Color.lerp(botSheetBg, other.botSheetBg, t)!,
       botSheetFg: Color.lerp(botSheetFg, other.botSheetFg, t)!,
       botSheetIcon: Color.lerp(botSheetIcon, other.botSheetIcon, t)!,
       botSheetBarrier: Color.lerp(botSheetBarrier, other.botSheetBarrier, t)!,
-      botSheetCheckboxBorder:
-          Color.lerp(botSheetCheckboxBorder, other.botSheetCheckboxBorder, t)!,
-      botSheetCheckboxFill:
-          Color.lerp(botSheetCheckboxFill, other.botSheetCheckboxFill, t)!,
+      botSheetCheckboxBorder: Color.lerp(
+        botSheetCheckboxBorder,
+        other.botSheetCheckboxBorder,
+        t,
+      )!,
+      botSheetRadio: Color.lerp(botSheetRadio, other.botSheetRadio, t)!,
+      botSheetRadioSelect: Color.lerp(
+        botSheetRadioSelect,
+        other.botSheetRadioSelect,
+        t,
+      )!,
+      botSheetCheckboxFill: Color.lerp(
+        botSheetCheckboxFill,
+        other.botSheetCheckboxFill,
+        t,
+      )!,
       sliderVal: Color.lerp(sliderVal, other.sliderVal, t)!,
       sliderTrackFg: Color.lerp(sliderTrackFg, other.sliderTrackFg, t)!,
       sliderTrackBg: Color.lerp(sliderTrackBg, other.sliderTrackBg, t)!,
       sliderThumbFill: Color.lerp(sliderThumbFill, other.sliderThumbFill, t)!,
       removeRateBtn: Color.lerp(removeRateBtn, other.removeRateBtn, t)!,
-      deleteAccountBtn:
-          Color.lerp(deleteAccountBtn, other.deleteAccountBtn, t)!,
+      deleteAccountBtn: Color.lerp(
+        deleteAccountBtn,
+        other.deleteAccountBtn,
+        t,
+      )!,
       divider: Color.lerp(divider, other.divider, t)!,
       contSwitchBg: Color.lerp(contSwitchBg, other.contSwitchBg, t)!,
-      contSwitchIndicator:
-          Color.lerp(contSwitchIndicator, other.contSwitchIndicator, t)!,
-      contSwitchBorder:
-          Color.lerp(contSwitchBorder, other.contSwitchBorder, t)!,
+      contSwitchIndicator: Color.lerp(
+        contSwitchIndicator,
+        other.contSwitchIndicator,
+        t,
+      )!,
+      contSwitchBorder: Color.lerp(
+        contSwitchBorder,
+        other.contSwitchBorder,
+        t,
+      )!,
       contSwitchFg: Color.lerp(contSwitchFg, other.contSwitchFg, t)!,
-      contSwitchFgSelect:
-          Color.lerp(contSwitchFgSelect, other.contSwitchFgSelect, t)!,
+      contSwitchFgSelect: Color.lerp(
+        contSwitchFgSelect,
+        other.contSwitchFgSelect,
+        t,
+      )!,
       filterPrimFg: Color.lerp(filterPrimFg, other.filterPrimFg, t)!,
       filterSecFg: Color.lerp(filterSecFg, other.filterSecFg, t)!,
       filterCtrlBarBg: Color.lerp(filterCtrlBarBg, other.filterCtrlBarBg, t)!,
-      filterCtrlBarShadow:
-          Color.lerp(filterCtrlBarShadow, other.filterCtrlBarShadow, t)!,
-      filterCtrlBarResetBtnOverlay:
-          Color.lerp(
-            filterCtrlBarResetBtnOverlay,
-            other.filterCtrlBarResetBtnOverlay,
-            t,
-          )!,
+      filterCtrlBarShadow: Color.lerp(
+        filterCtrlBarShadow,
+        other.filterCtrlBarShadow,
+        t,
+      )!,
+      filterCtrlBarResetBtnOverlay: Color.lerp(
+        filterCtrlBarResetBtnOverlay,
+        other.filterCtrlBarResetBtnOverlay,
+        t,
+      )!,
       backBtnSecBg: Color.lerp(backBtnSecBg, other.backBtnSecBg, t)!,
       backBtnSecFg: Color.lerp(backBtnSecFg, other.backBtnSecFg, t)!,
     );
@@ -864,6 +992,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
               other.botSheetCheckboxBorder,
             ) &&
             const DeepCollectionEquality().equals(
+              botSheetRadio,
+              other.botSheetRadio,
+            ) &&
+            const DeepCollectionEquality().equals(
+              botSheetRadioSelect,
+              other.botSheetRadioSelect,
+            ) &&
+            const DeepCollectionEquality().equals(
               botSheetCheckboxFill,
               other.botSheetCheckboxFill,
             ) &&
@@ -1033,6 +1169,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(botSheetIcon),
       const DeepCollectionEquality().hash(botSheetBarrier),
       const DeepCollectionEquality().hash(botSheetCheckboxBorder),
+      const DeepCollectionEquality().hash(botSheetRadio),
+      const DeepCollectionEquality().hash(botSheetRadioSelect),
       const DeepCollectionEquality().hash(botSheetCheckboxFill),
       const DeepCollectionEquality().hash(sliderVal),
       const DeepCollectionEquality().hash(sliderTrackFg),

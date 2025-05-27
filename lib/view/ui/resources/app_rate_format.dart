@@ -9,10 +9,9 @@ abstract final class AppRateFormat {
       args: [tmdbRate.toRatingString()],
     );
 
-    final userRating =
-        userRate != null && userRate > 0
-            ? ' | ${LocaleKeys.ratingUserDesc.tr(args: [userRate.toDouble().toString()])}'
-            : '';
+    final userRating = userRate != null && userRate > 0
+        ? ' | ${LocaleKeys.ratingUserDesc.tr(args: [userRate.toDouble().toString()])}'
+        : '';
 
     return '$tmdbRating$userRating';
   }

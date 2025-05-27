@@ -130,6 +130,9 @@ abstract final class _BaseColors {
   static const botSheetCheckboxBorder = Color(0xFFA0A3BD);
   static const botSheetCheckboxFill = Color(0xFFFF8700);
 
+  static const botSheetRadio = Color(0xFFA0A3BD);
+  static const botSheetRadioSelect = Color(0xFFFF8700);
+
   static const sliderVal = Color(0xFF4E4B66);
   static const sliderTrackFg = Color(0xFFFF8700);
   static const sliderTrackBg = Color(0xFFD9DBE9);

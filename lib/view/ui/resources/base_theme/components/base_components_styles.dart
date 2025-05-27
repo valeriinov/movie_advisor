@@ -6,10 +6,9 @@ abstract final class _BaseComponentsStyles {
   static ShapeBorder cardPrimShape({Color? borderColor}) =>
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(cardPrimBorderRadius),
-        side:
-            borderColor != null
-                ? BorderSide(color: borderColor)
-                : BorderSide.none,
+        side: borderColor != null
+            ? BorderSide(color: borderColor)
+            : BorderSide.none,
       );
 
   static double horizontalTitleGap = 12;
@@ -33,6 +32,7 @@ abstract final class _BaseComponentsStyles {
     fontFamily: AppFonts.montserrat,
     fontWeight: FontWeight.w500,
     fontSize: 16,
+    height: 20 / 16,
     color: color,
   );
 
@@ -47,6 +47,7 @@ abstract final class _BaseComponentsStyles {
     fontFamily: AppFonts.montserrat,
     fontWeight: FontWeight.w600,
     fontSize: 16,
+    height: 20 / 16,
     color: color,
   );
 

@@ -8,7 +8,7 @@ class HomeSeriesUseCase implements HomeUseCase<SeriesShortData> {
   final HomeRepository _repository;
 
   HomeSeriesUseCase({required HomeRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   @override
   Future<Result<PaginatedSeries>> getSuggested() {

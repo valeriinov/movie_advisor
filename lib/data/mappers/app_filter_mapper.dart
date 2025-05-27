@@ -19,6 +19,8 @@ final class AppFilterMapper extends AppMapper {
       withCountries: _mapCountriesDtoToDomain(dto.withCountries),
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
+      includeWatchlist: dto.includeWatchlist ?? true,
+      includeWatched: dto.includeWatched ?? true,
     );
   }
 
@@ -29,6 +31,8 @@ final class AppFilterMapper extends AppMapper {
       withCountries: _mapCountriesToDto(data.withCountries),
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
+      includeWatchlist: data.includeWatchlist,
+      includeWatched: data.includeWatched,
     );
   }
 
@@ -41,6 +45,8 @@ final class AppFilterMapper extends AppMapper {
       withCountries: _mapCountriesDtoToDomain(dto.withCountries),
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
+      includeWatchlist: dto.includeWatchlist ?? true,
+      includeWatched: dto.includeWatched ?? true,
     );
   }
 
@@ -51,6 +57,8 @@ final class AppFilterMapper extends AppMapper {
       withCountries: _mapCountriesToDto(data.withCountries),
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
+      includeWatchlist: data.includeWatchlist,
+      includeWatched: data.includeWatched,
     );
   }
 

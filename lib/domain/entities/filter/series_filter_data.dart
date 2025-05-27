@@ -17,6 +17,8 @@ class SeriesFilterData extends FilterData with SeriesFilterDataMappable {
     super.year,
     super.sortBy = SortBy.popularityDesc,
     super.withCountries = const [],
+    super.includeWatched = true,
+    super.includeWatchlist = true,
     this.withGenres = const [],
     this.withoutGenres = const [],
   });

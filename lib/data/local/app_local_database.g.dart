@@ -43,15 +43,16 @@ class $MoviesTableTable extends MoviesTable
   ).withConverter<List<MovieGenreDto>?>($MoviesTableTable.$convertergenresn);
   @override
   late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
-  originCountry = GeneratedColumn<String>(
-    'origin_country',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<List<CountryDto>?>(
-    $MoviesTableTable.$converteroriginCountryn,
-  );
+  originCountry =
+      GeneratedColumn<String>(
+        'origin_country',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<List<CountryDto>?>(
+        $MoviesTableTable.$converteroriginCountryn,
+      );
   static const VerificationMeta _premiereDateMeta = const VerificationMeta(
     'premiereDate',
   );
@@ -137,26 +138,28 @@ class $MoviesTableTable extends MoviesTable
   );
   @override
   late final GeneratedColumnWithTypeConverter<LocalizedString?, String>
-  localizedTitle = GeneratedColumn<String>(
-    'localized_title',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<LocalizedString?>(
-    $MoviesTableTable.$converterlocalizedTitlen,
-  );
+  localizedTitle =
+      GeneratedColumn<String>(
+        'localized_title',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<LocalizedString?>(
+        $MoviesTableTable.$converterlocalizedTitlen,
+      );
   @override
   late final GeneratedColumnWithTypeConverter<LocalizedString?, String>
-  localizedPosterUrl = GeneratedColumn<String>(
-    'localized_poster_url',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<LocalizedString?>(
-    $MoviesTableTable.$converterlocalizedPosterUrln,
-  );
+  localizedPosterUrl =
+      GeneratedColumn<String>(
+        'localized_poster_url',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<LocalizedString?>(
+        $MoviesTableTable.$converterlocalizedPosterUrln,
+      );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -247,16 +250,14 @@ class $MoviesTableTable extends MoviesTable
   MoviesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return MoviesTableData(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
-      tmdbId:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}tmdb_id'],
-          )!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      tmdbId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}tmdb_id'],
+      )!,
       genres: $MoviesTableTable.$convertergenresn.fromSql(
         attachedDatabase.typeMapping.read(
           DriftSqlType.string,
@@ -291,16 +292,14 @@ class $MoviesTableTable extends MoviesTable
         DriftSqlType.bool,
         data['${effectivePrefix}is_watched'],
       ),
-      createdAt:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}created_at'],
-          )!,
-      updatedAt:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}updated_at'],
-          )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
       localizedTitle: $MoviesTableTable.$converterlocalizedTitlen.fromSql(
         attachedDatabase.typeMapping.read(
           DriftSqlType.string,
@@ -428,42 +427,35 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     return MoviesTableCompanion(
       id: Value(id),
       tmdbId: Value(tmdbId),
-      genres:
-          genres == null && nullToAbsent ? const Value.absent() : Value(genres),
-      originCountry:
-          originCountry == null && nullToAbsent
-              ? const Value.absent()
-              : Value(originCountry),
-      premiereDate:
-          premiereDate == null && nullToAbsent
-              ? const Value.absent()
-              : Value(premiereDate),
-      tmdbRating:
-          tmdbRating == null && nullToAbsent
-              ? const Value.absent()
-              : Value(tmdbRating),
-      userRating:
-          userRating == null && nullToAbsent
-              ? const Value.absent()
-              : Value(userRating),
-      isInWatchlist:
-          isInWatchlist == null && nullToAbsent
-              ? const Value.absent()
-              : Value(isInWatchlist),
-      isWatched:
-          isWatched == null && nullToAbsent
-              ? const Value.absent()
-              : Value(isWatched),
+      genres: genres == null && nullToAbsent
+          ? const Value.absent()
+          : Value(genres),
+      originCountry: originCountry == null && nullToAbsent
+          ? const Value.absent()
+          : Value(originCountry),
+      premiereDate: premiereDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(premiereDate),
+      tmdbRating: tmdbRating == null && nullToAbsent
+          ? const Value.absent()
+          : Value(tmdbRating),
+      userRating: userRating == null && nullToAbsent
+          ? const Value.absent()
+          : Value(userRating),
+      isInWatchlist: isInWatchlist == null && nullToAbsent
+          ? const Value.absent()
+          : Value(isInWatchlist),
+      isWatched: isWatched == null && nullToAbsent
+          ? const Value.absent()
+          : Value(isWatched),
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
-      localizedTitle:
-          localizedTitle == null && nullToAbsent
-              ? const Value.absent()
-              : Value(localizedTitle),
-      localizedPosterUrl:
-          localizedPosterUrl == null && nullToAbsent
-              ? const Value.absent()
-              : Value(localizedPosterUrl),
+      localizedTitle: localizedTitle == null && nullToAbsent
+          ? const Value.absent()
+          : Value(localizedTitle),
+      localizedPosterUrl: localizedPosterUrl == null && nullToAbsent
+          ? const Value.absent()
+          : Value(localizedPosterUrl),
     );
   }
 
@@ -534,55 +526,54 @@ class MoviesTableData extends DataClass implements Insertable<MoviesTableData> {
     id: id ?? this.id,
     tmdbId: tmdbId ?? this.tmdbId,
     genres: genres.present ? genres.value : this.genres,
-    originCountry:
-        originCountry.present ? originCountry.value : this.originCountry,
+    originCountry: originCountry.present
+        ? originCountry.value
+        : this.originCountry,
     premiereDate: premiereDate.present ? premiereDate.value : this.premiereDate,
     tmdbRating: tmdbRating.present ? tmdbRating.value : this.tmdbRating,
     userRating: userRating.present ? userRating.value : this.userRating,
-    isInWatchlist:
-        isInWatchlist.present ? isInWatchlist.value : this.isInWatchlist,
+    isInWatchlist: isInWatchlist.present
+        ? isInWatchlist.value
+        : this.isInWatchlist,
     isWatched: isWatched.present ? isWatched.value : this.isWatched,
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
-    localizedTitle:
-        localizedTitle.present ? localizedTitle.value : this.localizedTitle,
-    localizedPosterUrl:
-        localizedPosterUrl.present
-            ? localizedPosterUrl.value
-            : this.localizedPosterUrl,
+    localizedTitle: localizedTitle.present
+        ? localizedTitle.value
+        : this.localizedTitle,
+    localizedPosterUrl: localizedPosterUrl.present
+        ? localizedPosterUrl.value
+        : this.localizedPosterUrl,
   );
   MoviesTableData copyWithCompanion(MoviesTableCompanion data) {
     return MoviesTableData(
       id: data.id.present ? data.id.value : this.id,
       tmdbId: data.tmdbId.present ? data.tmdbId.value : this.tmdbId,
       genres: data.genres.present ? data.genres.value : this.genres,
-      originCountry:
-          data.originCountry.present
-              ? data.originCountry.value
-              : this.originCountry,
-      premiereDate:
-          data.premiereDate.present
-              ? data.premiereDate.value
-              : this.premiereDate,
-      tmdbRating:
-          data.tmdbRating.present ? data.tmdbRating.value : this.tmdbRating,
-      userRating:
-          data.userRating.present ? data.userRating.value : this.userRating,
-      isInWatchlist:
-          data.isInWatchlist.present
-              ? data.isInWatchlist.value
-              : this.isInWatchlist,
+      originCountry: data.originCountry.present
+          ? data.originCountry.value
+          : this.originCountry,
+      premiereDate: data.premiereDate.present
+          ? data.premiereDate.value
+          : this.premiereDate,
+      tmdbRating: data.tmdbRating.present
+          ? data.tmdbRating.value
+          : this.tmdbRating,
+      userRating: data.userRating.present
+          ? data.userRating.value
+          : this.userRating,
+      isInWatchlist: data.isInWatchlist.present
+          ? data.isInWatchlist.value
+          : this.isInWatchlist,
       isWatched: data.isWatched.present ? data.isWatched.value : this.isWatched,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
-      localizedTitle:
-          data.localizedTitle.present
-              ? data.localizedTitle.value
-              : this.localizedTitle,
-      localizedPosterUrl:
-          data.localizedPosterUrl.present
-              ? data.localizedPosterUrl.value
-              : this.localizedPosterUrl,
+      localizedTitle: data.localizedTitle.present
+          ? data.localizedTitle.value
+          : this.localizedTitle,
+      localizedPosterUrl: data.localizedPosterUrl.present
+          ? data.localizedPosterUrl.value
+          : this.localizedPosterUrl,
     );
   }
 
@@ -879,15 +870,16 @@ class $SeriesTableTable extends SeriesTable
   ).withConverter<List<SeriesGenreDto>?>($SeriesTableTable.$convertergenresn);
   @override
   late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
-  originCountry = GeneratedColumn<String>(
-    'origin_country',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<List<CountryDto>?>(
-    $SeriesTableTable.$converteroriginCountryn,
-  );
+  originCountry =
+      GeneratedColumn<String>(
+        'origin_country',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<List<CountryDto>?>(
+        $SeriesTableTable.$converteroriginCountryn,
+      );
   static const VerificationMeta _premiereDateMeta = const VerificationMeta(
     'premiereDate',
   );
@@ -982,26 +974,28 @@ class $SeriesTableTable extends SeriesTable
   );
   @override
   late final GeneratedColumnWithTypeConverter<LocalizedString?, String>
-  localizedTitle = GeneratedColumn<String>(
-    'localized_title',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<LocalizedString?>(
-    $SeriesTableTable.$converterlocalizedTitlen,
-  );
+  localizedTitle =
+      GeneratedColumn<String>(
+        'localized_title',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<LocalizedString?>(
+        $SeriesTableTable.$converterlocalizedTitlen,
+      );
   @override
   late final GeneratedColumnWithTypeConverter<LocalizedString?, String>
-  localizedPosterUrl = GeneratedColumn<String>(
-    'localized_poster_url',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<LocalizedString?>(
-    $SeriesTableTable.$converterlocalizedPosterUrln,
-  );
+  localizedPosterUrl =
+      GeneratedColumn<String>(
+        'localized_poster_url',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<LocalizedString?>(
+        $SeriesTableTable.$converterlocalizedPosterUrln,
+      );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1106,16 +1100,14 @@ class $SeriesTableTable extends SeriesTable
   SeriesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return SeriesTableData(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
-      tmdbId:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}tmdb_id'],
-          )!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      tmdbId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}tmdb_id'],
+      )!,
       posterUrl: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}poster_url'],
@@ -1158,16 +1150,14 @@ class $SeriesTableTable extends SeriesTable
         DriftSqlType.bool,
         data['${effectivePrefix}is_watched'],
       ),
-      createdAt:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}created_at'],
-          )!,
-      updatedAt:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}updated_at'],
-          )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
       localizedTitle: $SeriesTableTable.$converterlocalizedTitlen.fromSql(
         attachedDatabase.typeMapping.read(
           DriftSqlType.string,
@@ -1305,48 +1295,41 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
     return SeriesTableCompanion(
       id: Value(id),
       tmdbId: Value(tmdbId),
-      posterUrl:
-          posterUrl == null && nullToAbsent
-              ? const Value.absent()
-              : Value(posterUrl),
-      genres:
-          genres == null && nullToAbsent ? const Value.absent() : Value(genres),
-      originCountry:
-          originCountry == null && nullToAbsent
-              ? const Value.absent()
-              : Value(originCountry),
-      premiereDate:
-          premiereDate == null && nullToAbsent
-              ? const Value.absent()
-              : Value(premiereDate),
-      title:
-          title == null && nullToAbsent ? const Value.absent() : Value(title),
-      tmdbRating:
-          tmdbRating == null && nullToAbsent
-              ? const Value.absent()
-              : Value(tmdbRating),
-      userRating:
-          userRating == null && nullToAbsent
-              ? const Value.absent()
-              : Value(userRating),
-      isInWatchlist:
-          isInWatchlist == null && nullToAbsent
-              ? const Value.absent()
-              : Value(isInWatchlist),
-      isWatched:
-          isWatched == null && nullToAbsent
-              ? const Value.absent()
-              : Value(isWatched),
+      posterUrl: posterUrl == null && nullToAbsent
+          ? const Value.absent()
+          : Value(posterUrl),
+      genres: genres == null && nullToAbsent
+          ? const Value.absent()
+          : Value(genres),
+      originCountry: originCountry == null && nullToAbsent
+          ? const Value.absent()
+          : Value(originCountry),
+      premiereDate: premiereDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(premiereDate),
+      title: title == null && nullToAbsent
+          ? const Value.absent()
+          : Value(title),
+      tmdbRating: tmdbRating == null && nullToAbsent
+          ? const Value.absent()
+          : Value(tmdbRating),
+      userRating: userRating == null && nullToAbsent
+          ? const Value.absent()
+          : Value(userRating),
+      isInWatchlist: isInWatchlist == null && nullToAbsent
+          ? const Value.absent()
+          : Value(isInWatchlist),
+      isWatched: isWatched == null && nullToAbsent
+          ? const Value.absent()
+          : Value(isWatched),
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
-      localizedTitle:
-          localizedTitle == null && nullToAbsent
-              ? const Value.absent()
-              : Value(localizedTitle),
-      localizedPosterUrl:
-          localizedPosterUrl == null && nullToAbsent
-              ? const Value.absent()
-              : Value(localizedPosterUrl),
+      localizedTitle: localizedTitle == null && nullToAbsent
+          ? const Value.absent()
+          : Value(localizedTitle),
+      localizedPosterUrl: localizedPosterUrl == null && nullToAbsent
+          ? const Value.absent()
+          : Value(localizedPosterUrl),
     );
   }
 
@@ -1424,23 +1407,25 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
     tmdbId: tmdbId ?? this.tmdbId,
     posterUrl: posterUrl.present ? posterUrl.value : this.posterUrl,
     genres: genres.present ? genres.value : this.genres,
-    originCountry:
-        originCountry.present ? originCountry.value : this.originCountry,
+    originCountry: originCountry.present
+        ? originCountry.value
+        : this.originCountry,
     premiereDate: premiereDate.present ? premiereDate.value : this.premiereDate,
     title: title.present ? title.value : this.title,
     tmdbRating: tmdbRating.present ? tmdbRating.value : this.tmdbRating,
     userRating: userRating.present ? userRating.value : this.userRating,
-    isInWatchlist:
-        isInWatchlist.present ? isInWatchlist.value : this.isInWatchlist,
+    isInWatchlist: isInWatchlist.present
+        ? isInWatchlist.value
+        : this.isInWatchlist,
     isWatched: isWatched.present ? isWatched.value : this.isWatched,
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
-    localizedTitle:
-        localizedTitle.present ? localizedTitle.value : this.localizedTitle,
-    localizedPosterUrl:
-        localizedPosterUrl.present
-            ? localizedPosterUrl.value
-            : this.localizedPosterUrl,
+    localizedTitle: localizedTitle.present
+        ? localizedTitle.value
+        : this.localizedTitle,
+    localizedPosterUrl: localizedPosterUrl.present
+        ? localizedPosterUrl.value
+        : this.localizedPosterUrl,
   );
   SeriesTableData copyWithCompanion(SeriesTableCompanion data) {
     return SeriesTableData(
@@ -1448,34 +1433,31 @@ class SeriesTableData extends DataClass implements Insertable<SeriesTableData> {
       tmdbId: data.tmdbId.present ? data.tmdbId.value : this.tmdbId,
       posterUrl: data.posterUrl.present ? data.posterUrl.value : this.posterUrl,
       genres: data.genres.present ? data.genres.value : this.genres,
-      originCountry:
-          data.originCountry.present
-              ? data.originCountry.value
-              : this.originCountry,
-      premiereDate:
-          data.premiereDate.present
-              ? data.premiereDate.value
-              : this.premiereDate,
+      originCountry: data.originCountry.present
+          ? data.originCountry.value
+          : this.originCountry,
+      premiereDate: data.premiereDate.present
+          ? data.premiereDate.value
+          : this.premiereDate,
       title: data.title.present ? data.title.value : this.title,
-      tmdbRating:
-          data.tmdbRating.present ? data.tmdbRating.value : this.tmdbRating,
-      userRating:
-          data.userRating.present ? data.userRating.value : this.userRating,
-      isInWatchlist:
-          data.isInWatchlist.present
-              ? data.isInWatchlist.value
-              : this.isInWatchlist,
+      tmdbRating: data.tmdbRating.present
+          ? data.tmdbRating.value
+          : this.tmdbRating,
+      userRating: data.userRating.present
+          ? data.userRating.value
+          : this.userRating,
+      isInWatchlist: data.isInWatchlist.present
+          ? data.isInWatchlist.value
+          : this.isInWatchlist,
       isWatched: data.isWatched.present ? data.isWatched.value : this.isWatched,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
-      localizedTitle:
-          data.localizedTitle.present
-              ? data.localizedTitle.value
-              : this.localizedTitle,
-      localizedPosterUrl:
-          data.localizedPosterUrl.present
-              ? data.localizedPosterUrl.value
-              : this.localizedPosterUrl,
+      localizedTitle: data.localizedTitle.present
+          ? data.localizedTitle.value
+          : this.localizedTitle,
+      localizedPosterUrl: data.localizedPosterUrl.present
+          ? data.localizedPosterUrl.value
+          : this.localizedPosterUrl,
     );
   }
 
@@ -1880,31 +1862,26 @@ class $SyncUserTableTable extends SyncUserTable
   SyncUserTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return SyncUserTableData(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
-      uid:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}uid'],
-          )!,
-      email:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}email'],
-          )!,
-      moviesSyncedAt:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}movies_synced_at'],
-          )!,
-      seriesSyncedAt:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}series_synced_at'],
-          )!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      uid: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}uid'],
+      )!,
+      email: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}email'],
+      )!,
+      moviesSyncedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}movies_synced_at'],
+      )!,
+      seriesSyncedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}series_synced_at'],
+      )!,
     );
   }
 
@@ -1992,14 +1969,12 @@ class SyncUserTableData extends DataClass
       id: data.id.present ? data.id.value : this.id,
       uid: data.uid.present ? data.uid.value : this.uid,
       email: data.email.present ? data.email.value : this.email,
-      moviesSyncedAt:
-          data.moviesSyncedAt.present
-              ? data.moviesSyncedAt.value
-              : this.moviesSyncedAt,
-      seriesSyncedAt:
-          data.seriesSyncedAt.present
-              ? data.seriesSyncedAt.value
-              : this.seriesSyncedAt,
+      moviesSyncedAt: data.moviesSyncedAt.present
+          ? data.moviesSyncedAt.value
+          : this.moviesSyncedAt,
+      seriesSyncedAt: data.seriesSyncedAt.present
+          ? data.seriesSyncedAt.value
+          : this.seriesSyncedAt,
     );
   }
 
@@ -2184,11 +2159,10 @@ class $SettingsTableTable extends SettingsTable
   SettingsTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return SettingsTableData(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
       isFirstLaunch: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
         data['${effectivePrefix}is_first_launch'],
@@ -2220,10 +2194,9 @@ class SettingsTableData extends DataClass
   SettingsTableCompanion toCompanion(bool nullToAbsent) {
     return SettingsTableCompanion(
       id: Value(id),
-      isFirstLaunch:
-          isFirstLaunch == null && nullToAbsent
-              ? const Value.absent()
-              : Value(isFirstLaunch),
+      isFirstLaunch: isFirstLaunch == null && nullToAbsent
+          ? const Value.absent()
+          : Value(isFirstLaunch),
     );
   }
 
@@ -2251,16 +2224,16 @@ class SettingsTableData extends DataClass
     Value<bool?> isFirstLaunch = const Value.absent(),
   }) => SettingsTableData(
     id: id ?? this.id,
-    isFirstLaunch:
-        isFirstLaunch.present ? isFirstLaunch.value : this.isFirstLaunch,
+    isFirstLaunch: isFirstLaunch.present
+        ? isFirstLaunch.value
+        : this.isFirstLaunch,
   );
   SettingsTableData copyWithCompanion(SettingsTableCompanion data) {
     return SettingsTableData(
       id: data.id.present ? data.id.value : this.id,
-      isFirstLaunch:
-          data.isFirstLaunch.present
-              ? data.isFirstLaunch.value
-              : this.isFirstLaunch,
+      isFirstLaunch: data.isFirstLaunch.present
+          ? data.isFirstLaunch.value
+          : this.isFirstLaunch,
     );
   }
 
@@ -2375,36 +2348,67 @@ class $MoviesFilterTableTable extends MoviesFilterTable
       ).withConverter<SortByDto?>($MoviesFilterTableTable.$convertersortByn);
   @override
   late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
-  withCountries = GeneratedColumn<String>(
-    'with_countries',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<List<CountryDto>?>(
-    $MoviesFilterTableTable.$converterwithCountriesn,
-  );
+  withCountries =
+      GeneratedColumn<String>(
+        'with_countries',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<List<CountryDto>?>(
+        $MoviesFilterTableTable.$converterwithCountriesn,
+      );
   @override
   late final GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String>
-  withGenres = GeneratedColumn<String>(
-    'with_genres',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<List<MovieGenreDto>?>(
-    $MoviesFilterTableTable.$converterwithGenresn,
-  );
+  withGenres =
+      GeneratedColumn<String>(
+        'with_genres',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<List<MovieGenreDto>?>(
+        $MoviesFilterTableTable.$converterwithGenresn,
+      );
   @override
   late final GeneratedColumnWithTypeConverter<List<MovieGenreDto>?, String>
-  withoutGenres = GeneratedColumn<String>(
-    'without_genres',
+  withoutGenres =
+      GeneratedColumn<String>(
+        'without_genres',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<List<MovieGenreDto>?>(
+        $MoviesFilterTableTable.$converterwithoutGenresn,
+      );
+  static const VerificationMeta _includeWatchedMeta = const VerificationMeta(
+    'includeWatched',
+  );
+  @override
+  late final GeneratedColumn<bool> includeWatched = GeneratedColumn<bool>(
+    'include_watched',
     aliasedName,
     true,
-    type: DriftSqlType.string,
+    type: DriftSqlType.bool,
     requiredDuringInsert: false,
-  ).withConverter<List<MovieGenreDto>?>(
-    $MoviesFilterTableTable.$converterwithoutGenresn,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("include_watched" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _includeWatchlistMeta = const VerificationMeta(
+    'includeWatchlist',
+  );
+  @override
+  late final GeneratedColumn<bool> includeWatchlist = GeneratedColumn<bool>(
+    'include_watchlist',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("include_watchlist" IN (0, 1))',
+    ),
   );
   @override
   List<GeneratedColumn> get $columns => [
@@ -2414,6 +2418,8 @@ class $MoviesFilterTableTable extends MoviesFilterTable
     withCountries,
     withGenres,
     withoutGenres,
+    includeWatched,
+    includeWatchlist,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -2436,6 +2442,24 @@ class $MoviesFilterTableTable extends MoviesFilterTable
         year.isAcceptableOrUnknown(data['year']!, _yearMeta),
       );
     }
+    if (data.containsKey('include_watched')) {
+      context.handle(
+        _includeWatchedMeta,
+        includeWatched.isAcceptableOrUnknown(
+          data['include_watched']!,
+          _includeWatchedMeta,
+        ),
+      );
+    }
+    if (data.containsKey('include_watchlist')) {
+      context.handle(
+        _includeWatchlistMeta,
+        includeWatchlist.isAcceptableOrUnknown(
+          data['include_watchlist']!,
+          _includeWatchlistMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -2445,11 +2469,10 @@ class $MoviesFilterTableTable extends MoviesFilterTable
   MoviesFilterTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return MoviesFilterTableData(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
       year: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}year'],
@@ -2477,6 +2500,14 @@ class $MoviesFilterTableTable extends MoviesFilterTable
           DriftSqlType.string,
           data['${effectivePrefix}without_genres'],
         ),
+      ),
+      includeWatched: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}include_watched'],
+      ),
+      includeWatchlist: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}include_watchlist'],
       ),
     );
   }
@@ -2512,6 +2543,8 @@ class MoviesFilterTableData extends DataClass
   final List<CountryDto>? withCountries;
   final List<MovieGenreDto>? withGenres;
   final List<MovieGenreDto>? withoutGenres;
+  final bool? includeWatched;
+  final bool? includeWatchlist;
   const MoviesFilterTableData({
     required this.id,
     this.year,
@@ -2519,6 +2552,8 @@ class MoviesFilterTableData extends DataClass
     this.withCountries,
     this.withGenres,
     this.withoutGenres,
+    this.includeWatched,
+    this.includeWatchlist,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -2547,6 +2582,12 @@ class MoviesFilterTableData extends DataClass
         $MoviesFilterTableTable.$converterwithoutGenresn.toSql(withoutGenres),
       );
     }
+    if (!nullToAbsent || includeWatched != null) {
+      map['include_watched'] = Variable<bool>(includeWatched);
+    }
+    if (!nullToAbsent || includeWatchlist != null) {
+      map['include_watchlist'] = Variable<bool>(includeWatchlist);
+    }
     return map;
   }
 
@@ -2554,20 +2595,24 @@ class MoviesFilterTableData extends DataClass
     return MoviesFilterTableCompanion(
       id: Value(id),
       year: year == null && nullToAbsent ? const Value.absent() : Value(year),
-      sortBy:
-          sortBy == null && nullToAbsent ? const Value.absent() : Value(sortBy),
-      withCountries:
-          withCountries == null && nullToAbsent
-              ? const Value.absent()
-              : Value(withCountries),
-      withGenres:
-          withGenres == null && nullToAbsent
-              ? const Value.absent()
-              : Value(withGenres),
-      withoutGenres:
-          withoutGenres == null && nullToAbsent
-              ? const Value.absent()
-              : Value(withoutGenres),
+      sortBy: sortBy == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sortBy),
+      withCountries: withCountries == null && nullToAbsent
+          ? const Value.absent()
+          : Value(withCountries),
+      withGenres: withGenres == null && nullToAbsent
+          ? const Value.absent()
+          : Value(withGenres),
+      withoutGenres: withoutGenres == null && nullToAbsent
+          ? const Value.absent()
+          : Value(withoutGenres),
+      includeWatched: includeWatched == null && nullToAbsent
+          ? const Value.absent()
+          : Value(includeWatched),
+      includeWatchlist: includeWatchlist == null && nullToAbsent
+          ? const Value.absent()
+          : Value(includeWatchlist),
     );
   }
 
@@ -2587,6 +2632,8 @@ class MoviesFilterTableData extends DataClass
       withoutGenres: serializer.fromJson<List<MovieGenreDto>?>(
         json['withoutGenres'],
       ),
+      includeWatched: serializer.fromJson<bool?>(json['includeWatched']),
+      includeWatchlist: serializer.fromJson<bool?>(json['includeWatchlist']),
     );
   }
   @override
@@ -2599,6 +2646,8 @@ class MoviesFilterTableData extends DataClass
       'withCountries': serializer.toJson<List<CountryDto>?>(withCountries),
       'withGenres': serializer.toJson<List<MovieGenreDto>?>(withGenres),
       'withoutGenres': serializer.toJson<List<MovieGenreDto>?>(withoutGenres),
+      'includeWatched': serializer.toJson<bool?>(includeWatched),
+      'includeWatchlist': serializer.toJson<bool?>(includeWatchlist),
     };
   }
 
@@ -2609,31 +2658,46 @@ class MoviesFilterTableData extends DataClass
     Value<List<CountryDto>?> withCountries = const Value.absent(),
     Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
     Value<List<MovieGenreDto>?> withoutGenres = const Value.absent(),
+    Value<bool?> includeWatched = const Value.absent(),
+    Value<bool?> includeWatchlist = const Value.absent(),
   }) => MoviesFilterTableData(
     id: id ?? this.id,
     year: year.present ? year.value : this.year,
     sortBy: sortBy.present ? sortBy.value : this.sortBy,
-    withCountries:
-        withCountries.present ? withCountries.value : this.withCountries,
+    withCountries: withCountries.present
+        ? withCountries.value
+        : this.withCountries,
     withGenres: withGenres.present ? withGenres.value : this.withGenres,
-    withoutGenres:
-        withoutGenres.present ? withoutGenres.value : this.withoutGenres,
+    withoutGenres: withoutGenres.present
+        ? withoutGenres.value
+        : this.withoutGenres,
+    includeWatched: includeWatched.present
+        ? includeWatched.value
+        : this.includeWatched,
+    includeWatchlist: includeWatchlist.present
+        ? includeWatchlist.value
+        : this.includeWatchlist,
   );
   MoviesFilterTableData copyWithCompanion(MoviesFilterTableCompanion data) {
     return MoviesFilterTableData(
       id: data.id.present ? data.id.value : this.id,
       year: data.year.present ? data.year.value : this.year,
       sortBy: data.sortBy.present ? data.sortBy.value : this.sortBy,
-      withCountries:
-          data.withCountries.present
-              ? data.withCountries.value
-              : this.withCountries,
-      withGenres:
-          data.withGenres.present ? data.withGenres.value : this.withGenres,
-      withoutGenres:
-          data.withoutGenres.present
-              ? data.withoutGenres.value
-              : this.withoutGenres,
+      withCountries: data.withCountries.present
+          ? data.withCountries.value
+          : this.withCountries,
+      withGenres: data.withGenres.present
+          ? data.withGenres.value
+          : this.withGenres,
+      withoutGenres: data.withoutGenres.present
+          ? data.withoutGenres.value
+          : this.withoutGenres,
+      includeWatched: data.includeWatched.present
+          ? data.includeWatched.value
+          : this.includeWatched,
+      includeWatchlist: data.includeWatchlist.present
+          ? data.includeWatchlist.value
+          : this.includeWatchlist,
     );
   }
 
@@ -2645,14 +2709,24 @@ class MoviesFilterTableData extends DataClass
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
           ..write('withGenres: $withGenres, ')
-          ..write('withoutGenres: $withoutGenres')
+          ..write('withoutGenres: $withoutGenres, ')
+          ..write('includeWatched: $includeWatched, ')
+          ..write('includeWatchlist: $includeWatchlist')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, year, sortBy, withCountries, withGenres, withoutGenres);
+  int get hashCode => Object.hash(
+    id,
+    year,
+    sortBy,
+    withCountries,
+    withGenres,
+    withoutGenres,
+    includeWatched,
+    includeWatchlist,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2662,7 +2736,9 @@ class MoviesFilterTableData extends DataClass
           other.sortBy == this.sortBy &&
           other.withCountries == this.withCountries &&
           other.withGenres == this.withGenres &&
-          other.withoutGenres == this.withoutGenres);
+          other.withoutGenres == this.withoutGenres &&
+          other.includeWatched == this.includeWatched &&
+          other.includeWatchlist == this.includeWatchlist);
 }
 
 class MoviesFilterTableCompanion
@@ -2673,6 +2749,8 @@ class MoviesFilterTableCompanion
   final Value<List<CountryDto>?> withCountries;
   final Value<List<MovieGenreDto>?> withGenres;
   final Value<List<MovieGenreDto>?> withoutGenres;
+  final Value<bool?> includeWatched;
+  final Value<bool?> includeWatchlist;
   const MoviesFilterTableCompanion({
     this.id = const Value.absent(),
     this.year = const Value.absent(),
@@ -2680,6 +2758,8 @@ class MoviesFilterTableCompanion
     this.withCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
+    this.includeWatched = const Value.absent(),
+    this.includeWatchlist = const Value.absent(),
   });
   MoviesFilterTableCompanion.insert({
     this.id = const Value.absent(),
@@ -2688,6 +2768,8 @@ class MoviesFilterTableCompanion
     this.withCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
+    this.includeWatched = const Value.absent(),
+    this.includeWatchlist = const Value.absent(),
   });
   static Insertable<MoviesFilterTableData> custom({
     Expression<int>? id,
@@ -2696,6 +2778,8 @@ class MoviesFilterTableCompanion
     Expression<String>? withCountries,
     Expression<String>? withGenres,
     Expression<String>? withoutGenres,
+    Expression<bool>? includeWatched,
+    Expression<bool>? includeWatchlist,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -2704,6 +2788,8 @@ class MoviesFilterTableCompanion
       if (withCountries != null) 'with_countries': withCountries,
       if (withGenres != null) 'with_genres': withGenres,
       if (withoutGenres != null) 'without_genres': withoutGenres,
+      if (includeWatched != null) 'include_watched': includeWatched,
+      if (includeWatchlist != null) 'include_watchlist': includeWatchlist,
     });
   }
 
@@ -2714,6 +2800,8 @@ class MoviesFilterTableCompanion
     Value<List<CountryDto>?>? withCountries,
     Value<List<MovieGenreDto>?>? withGenres,
     Value<List<MovieGenreDto>?>? withoutGenres,
+    Value<bool?>? includeWatched,
+    Value<bool?>? includeWatchlist,
   }) {
     return MoviesFilterTableCompanion(
       id: id ?? this.id,
@@ -2722,6 +2810,8 @@ class MoviesFilterTableCompanion
       withCountries: withCountries ?? this.withCountries,
       withGenres: withGenres ?? this.withGenres,
       withoutGenres: withoutGenres ?? this.withoutGenres,
+      includeWatched: includeWatched ?? this.includeWatched,
+      includeWatchlist: includeWatchlist ?? this.includeWatchlist,
     );
   }
 
@@ -2758,6 +2848,12 @@ class MoviesFilterTableCompanion
         ),
       );
     }
+    if (includeWatched.present) {
+      map['include_watched'] = Variable<bool>(includeWatched.value);
+    }
+    if (includeWatchlist.present) {
+      map['include_watchlist'] = Variable<bool>(includeWatchlist.value);
+    }
     return map;
   }
 
@@ -2769,7 +2865,9 @@ class MoviesFilterTableCompanion
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
           ..write('withGenres: $withGenres, ')
-          ..write('withoutGenres: $withoutGenres')
+          ..write('withoutGenres: $withoutGenres, ')
+          ..write('includeWatched: $includeWatched, ')
+          ..write('includeWatchlist: $includeWatchlist')
           ..write(')'))
         .toString();
   }
@@ -2814,36 +2912,67 @@ class $SeriesFilterTableTable extends SeriesFilterTable
       ).withConverter<SortByDto?>($SeriesFilterTableTable.$convertersortByn);
   @override
   late final GeneratedColumnWithTypeConverter<List<CountryDto>?, String>
-  withCountries = GeneratedColumn<String>(
-    'with_countries',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<List<CountryDto>?>(
-    $SeriesFilterTableTable.$converterwithCountriesn,
-  );
+  withCountries =
+      GeneratedColumn<String>(
+        'with_countries',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<List<CountryDto>?>(
+        $SeriesFilterTableTable.$converterwithCountriesn,
+      );
   @override
   late final GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String>
-  withGenres = GeneratedColumn<String>(
-    'with_genres',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  ).withConverter<List<SeriesGenreDto>?>(
-    $SeriesFilterTableTable.$converterwithGenresn,
-  );
+  withGenres =
+      GeneratedColumn<String>(
+        'with_genres',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<List<SeriesGenreDto>?>(
+        $SeriesFilterTableTable.$converterwithGenresn,
+      );
   @override
   late final GeneratedColumnWithTypeConverter<List<SeriesGenreDto>?, String>
-  withoutGenres = GeneratedColumn<String>(
-    'without_genres',
+  withoutGenres =
+      GeneratedColumn<String>(
+        'without_genres',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<List<SeriesGenreDto>?>(
+        $SeriesFilterTableTable.$converterwithoutGenresn,
+      );
+  static const VerificationMeta _includeWatchedMeta = const VerificationMeta(
+    'includeWatched',
+  );
+  @override
+  late final GeneratedColumn<bool> includeWatched = GeneratedColumn<bool>(
+    'include_watched',
     aliasedName,
     true,
-    type: DriftSqlType.string,
+    type: DriftSqlType.bool,
     requiredDuringInsert: false,
-  ).withConverter<List<SeriesGenreDto>?>(
-    $SeriesFilterTableTable.$converterwithoutGenresn,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("include_watched" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _includeWatchlistMeta = const VerificationMeta(
+    'includeWatchlist',
+  );
+  @override
+  late final GeneratedColumn<bool> includeWatchlist = GeneratedColumn<bool>(
+    'include_watchlist',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("include_watchlist" IN (0, 1))',
+    ),
   );
   @override
   List<GeneratedColumn> get $columns => [
@@ -2853,6 +2982,8 @@ class $SeriesFilterTableTable extends SeriesFilterTable
     withCountries,
     withGenres,
     withoutGenres,
+    includeWatched,
+    includeWatchlist,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -2875,6 +3006,24 @@ class $SeriesFilterTableTable extends SeriesFilterTable
         year.isAcceptableOrUnknown(data['year']!, _yearMeta),
       );
     }
+    if (data.containsKey('include_watched')) {
+      context.handle(
+        _includeWatchedMeta,
+        includeWatched.isAcceptableOrUnknown(
+          data['include_watched']!,
+          _includeWatchedMeta,
+        ),
+      );
+    }
+    if (data.containsKey('include_watchlist')) {
+      context.handle(
+        _includeWatchlistMeta,
+        includeWatchlist.isAcceptableOrUnknown(
+          data['include_watchlist']!,
+          _includeWatchlistMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -2884,11 +3033,10 @@ class $SeriesFilterTableTable extends SeriesFilterTable
   SeriesFilterTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return SeriesFilterTableData(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
       year: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}year'],
@@ -2916,6 +3064,14 @@ class $SeriesFilterTableTable extends SeriesFilterTable
           DriftSqlType.string,
           data['${effectivePrefix}without_genres'],
         ),
+      ),
+      includeWatched: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}include_watched'],
+      ),
+      includeWatchlist: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}include_watchlist'],
       ),
     );
   }
@@ -2953,6 +3109,8 @@ class SeriesFilterTableData extends DataClass
   final List<CountryDto>? withCountries;
   final List<SeriesGenreDto>? withGenres;
   final List<SeriesGenreDto>? withoutGenres;
+  final bool? includeWatched;
+  final bool? includeWatchlist;
   const SeriesFilterTableData({
     required this.id,
     this.year,
@@ -2960,6 +3118,8 @@ class SeriesFilterTableData extends DataClass
     this.withCountries,
     this.withGenres,
     this.withoutGenres,
+    this.includeWatched,
+    this.includeWatchlist,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -2988,6 +3148,12 @@ class SeriesFilterTableData extends DataClass
         $SeriesFilterTableTable.$converterwithoutGenresn.toSql(withoutGenres),
       );
     }
+    if (!nullToAbsent || includeWatched != null) {
+      map['include_watched'] = Variable<bool>(includeWatched);
+    }
+    if (!nullToAbsent || includeWatchlist != null) {
+      map['include_watchlist'] = Variable<bool>(includeWatchlist);
+    }
     return map;
   }
 
@@ -2995,20 +3161,24 @@ class SeriesFilterTableData extends DataClass
     return SeriesFilterTableCompanion(
       id: Value(id),
       year: year == null && nullToAbsent ? const Value.absent() : Value(year),
-      sortBy:
-          sortBy == null && nullToAbsent ? const Value.absent() : Value(sortBy),
-      withCountries:
-          withCountries == null && nullToAbsent
-              ? const Value.absent()
-              : Value(withCountries),
-      withGenres:
-          withGenres == null && nullToAbsent
-              ? const Value.absent()
-              : Value(withGenres),
-      withoutGenres:
-          withoutGenres == null && nullToAbsent
-              ? const Value.absent()
-              : Value(withoutGenres),
+      sortBy: sortBy == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sortBy),
+      withCountries: withCountries == null && nullToAbsent
+          ? const Value.absent()
+          : Value(withCountries),
+      withGenres: withGenres == null && nullToAbsent
+          ? const Value.absent()
+          : Value(withGenres),
+      withoutGenres: withoutGenres == null && nullToAbsent
+          ? const Value.absent()
+          : Value(withoutGenres),
+      includeWatched: includeWatched == null && nullToAbsent
+          ? const Value.absent()
+          : Value(includeWatched),
+      includeWatchlist: includeWatchlist == null && nullToAbsent
+          ? const Value.absent()
+          : Value(includeWatchlist),
     );
   }
 
@@ -3030,6 +3200,8 @@ class SeriesFilterTableData extends DataClass
       withoutGenres: serializer.fromJson<List<SeriesGenreDto>?>(
         json['withoutGenres'],
       ),
+      includeWatched: serializer.fromJson<bool?>(json['includeWatched']),
+      includeWatchlist: serializer.fromJson<bool?>(json['includeWatchlist']),
     );
   }
   @override
@@ -3042,6 +3214,8 @@ class SeriesFilterTableData extends DataClass
       'withCountries': serializer.toJson<List<CountryDto>?>(withCountries),
       'withGenres': serializer.toJson<List<SeriesGenreDto>?>(withGenres),
       'withoutGenres': serializer.toJson<List<SeriesGenreDto>?>(withoutGenres),
+      'includeWatched': serializer.toJson<bool?>(includeWatched),
+      'includeWatchlist': serializer.toJson<bool?>(includeWatchlist),
     };
   }
 
@@ -3052,31 +3226,46 @@ class SeriesFilterTableData extends DataClass
     Value<List<CountryDto>?> withCountries = const Value.absent(),
     Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
     Value<List<SeriesGenreDto>?> withoutGenres = const Value.absent(),
+    Value<bool?> includeWatched = const Value.absent(),
+    Value<bool?> includeWatchlist = const Value.absent(),
   }) => SeriesFilterTableData(
     id: id ?? this.id,
     year: year.present ? year.value : this.year,
     sortBy: sortBy.present ? sortBy.value : this.sortBy,
-    withCountries:
-        withCountries.present ? withCountries.value : this.withCountries,
+    withCountries: withCountries.present
+        ? withCountries.value
+        : this.withCountries,
     withGenres: withGenres.present ? withGenres.value : this.withGenres,
-    withoutGenres:
-        withoutGenres.present ? withoutGenres.value : this.withoutGenres,
+    withoutGenres: withoutGenres.present
+        ? withoutGenres.value
+        : this.withoutGenres,
+    includeWatched: includeWatched.present
+        ? includeWatched.value
+        : this.includeWatched,
+    includeWatchlist: includeWatchlist.present
+        ? includeWatchlist.value
+        : this.includeWatchlist,
   );
   SeriesFilterTableData copyWithCompanion(SeriesFilterTableCompanion data) {
     return SeriesFilterTableData(
       id: data.id.present ? data.id.value : this.id,
       year: data.year.present ? data.year.value : this.year,
       sortBy: data.sortBy.present ? data.sortBy.value : this.sortBy,
-      withCountries:
-          data.withCountries.present
-              ? data.withCountries.value
-              : this.withCountries,
-      withGenres:
-          data.withGenres.present ? data.withGenres.value : this.withGenres,
-      withoutGenres:
-          data.withoutGenres.present
-              ? data.withoutGenres.value
-              : this.withoutGenres,
+      withCountries: data.withCountries.present
+          ? data.withCountries.value
+          : this.withCountries,
+      withGenres: data.withGenres.present
+          ? data.withGenres.value
+          : this.withGenres,
+      withoutGenres: data.withoutGenres.present
+          ? data.withoutGenres.value
+          : this.withoutGenres,
+      includeWatched: data.includeWatched.present
+          ? data.includeWatched.value
+          : this.includeWatched,
+      includeWatchlist: data.includeWatchlist.present
+          ? data.includeWatchlist.value
+          : this.includeWatchlist,
     );
   }
 
@@ -3088,14 +3277,24 @@ class SeriesFilterTableData extends DataClass
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
           ..write('withGenres: $withGenres, ')
-          ..write('withoutGenres: $withoutGenres')
+          ..write('withoutGenres: $withoutGenres, ')
+          ..write('includeWatched: $includeWatched, ')
+          ..write('includeWatchlist: $includeWatchlist')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, year, sortBy, withCountries, withGenres, withoutGenres);
+  int get hashCode => Object.hash(
+    id,
+    year,
+    sortBy,
+    withCountries,
+    withGenres,
+    withoutGenres,
+    includeWatched,
+    includeWatchlist,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -3105,7 +3304,9 @@ class SeriesFilterTableData extends DataClass
           other.sortBy == this.sortBy &&
           other.withCountries == this.withCountries &&
           other.withGenres == this.withGenres &&
-          other.withoutGenres == this.withoutGenres);
+          other.withoutGenres == this.withoutGenres &&
+          other.includeWatched == this.includeWatched &&
+          other.includeWatchlist == this.includeWatchlist);
 }
 
 class SeriesFilterTableCompanion
@@ -3116,6 +3317,8 @@ class SeriesFilterTableCompanion
   final Value<List<CountryDto>?> withCountries;
   final Value<List<SeriesGenreDto>?> withGenres;
   final Value<List<SeriesGenreDto>?> withoutGenres;
+  final Value<bool?> includeWatched;
+  final Value<bool?> includeWatchlist;
   const SeriesFilterTableCompanion({
     this.id = const Value.absent(),
     this.year = const Value.absent(),
@@ -3123,6 +3326,8 @@ class SeriesFilterTableCompanion
     this.withCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
+    this.includeWatched = const Value.absent(),
+    this.includeWatchlist = const Value.absent(),
   });
   SeriesFilterTableCompanion.insert({
     this.id = const Value.absent(),
@@ -3131,6 +3336,8 @@ class SeriesFilterTableCompanion
     this.withCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
+    this.includeWatched = const Value.absent(),
+    this.includeWatchlist = const Value.absent(),
   });
   static Insertable<SeriesFilterTableData> custom({
     Expression<int>? id,
@@ -3139,6 +3346,8 @@ class SeriesFilterTableCompanion
     Expression<String>? withCountries,
     Expression<String>? withGenres,
     Expression<String>? withoutGenres,
+    Expression<bool>? includeWatched,
+    Expression<bool>? includeWatchlist,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -3147,6 +3356,8 @@ class SeriesFilterTableCompanion
       if (withCountries != null) 'with_countries': withCountries,
       if (withGenres != null) 'with_genres': withGenres,
       if (withoutGenres != null) 'without_genres': withoutGenres,
+      if (includeWatched != null) 'include_watched': includeWatched,
+      if (includeWatchlist != null) 'include_watchlist': includeWatchlist,
     });
   }
 
@@ -3157,6 +3368,8 @@ class SeriesFilterTableCompanion
     Value<List<CountryDto>?>? withCountries,
     Value<List<SeriesGenreDto>?>? withGenres,
     Value<List<SeriesGenreDto>?>? withoutGenres,
+    Value<bool?>? includeWatched,
+    Value<bool?>? includeWatchlist,
   }) {
     return SeriesFilterTableCompanion(
       id: id ?? this.id,
@@ -3165,6 +3378,8 @@ class SeriesFilterTableCompanion
       withCountries: withCountries ?? this.withCountries,
       withGenres: withGenres ?? this.withGenres,
       withoutGenres: withoutGenres ?? this.withoutGenres,
+      includeWatched: includeWatched ?? this.includeWatched,
+      includeWatchlist: includeWatchlist ?? this.includeWatchlist,
     );
   }
 
@@ -3201,6 +3416,12 @@ class SeriesFilterTableCompanion
         ),
       );
     }
+    if (includeWatched.present) {
+      map['include_watched'] = Variable<bool>(includeWatched.value);
+    }
+    if (includeWatchlist.present) {
+      map['include_watchlist'] = Variable<bool>(includeWatchlist.value);
+    }
     return map;
   }
 
@@ -3212,7 +3433,9 @@ class SeriesFilterTableCompanion
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
           ..write('withGenres: $withGenres, ')
-          ..write('withoutGenres: $withoutGenres')
+          ..write('withoutGenres: $withoutGenres, ')
+          ..write('includeWatched: $includeWatched, ')
+          ..write('includeWatchlist: $includeWatchlist')
           ..write(')'))
         .toString();
   }
@@ -3529,13 +3752,12 @@ class $$MoviesTableTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$MoviesTableTableFilterComposer($db: db, $table: table),
-          createOrderingComposer:
-              () => $$MoviesTableTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer:
-              () =>
-                  $$MoviesTableTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer: () =>
+              $$MoviesTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MoviesTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MoviesTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
@@ -3598,16 +3820,9 @@ class $$MoviesTableTableTableManager
                 localizedTitle: localizedTitle,
                 localizedPosterUrl: localizedPosterUrl,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -3946,13 +4161,12 @@ class $$SeriesTableTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$SeriesTableTableFilterComposer($db: db, $table: table),
-          createOrderingComposer:
-              () => $$SeriesTableTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer:
-              () =>
-                  $$SeriesTableTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer: () =>
+              $$SeriesTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SeriesTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SeriesTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
@@ -4023,16 +4237,9 @@ class $$SeriesTableTableTableManager
                 localizedTitle: localizedTitle,
                 localizedPosterUrl: localizedPosterUrl,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -4200,16 +4407,12 @@ class $$SyncUserTableTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$SyncUserTableTableFilterComposer($db: db, $table: table),
-          createOrderingComposer:
-              () =>
-                  $$SyncUserTableTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer:
-              () => $$SyncUserTableTableAnnotationComposer(
-                $db: db,
-                $table: table,
-              ),
+          createFilteringComposer: () =>
+              $$SyncUserTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SyncUserTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SyncUserTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
@@ -4238,16 +4441,9 @@ class $$SyncUserTableTableTableManager
                 moviesSyncedAt: moviesSyncedAt,
                 seriesSyncedAt: seriesSyncedAt,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -4372,16 +4568,12 @@ class $$SettingsTableTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$SettingsTableTableFilterComposer($db: db, $table: table),
-          createOrderingComposer:
-              () =>
-                  $$SettingsTableTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer:
-              () => $$SettingsTableTableAnnotationComposer(
-                $db: db,
-                $table: table,
-              ),
+          createFilteringComposer: () =>
+              $$SettingsTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SettingsTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SettingsTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
@@ -4396,16 +4588,9 @@ class $$SettingsTableTableTableManager
                 id: id,
                 isFirstLaunch: isFirstLaunch,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -4440,6 +4625,8 @@ typedef $$MoviesFilterTableTableCreateCompanionBuilder =
       Value<List<CountryDto>?> withCountries,
       Value<List<MovieGenreDto>?> withGenres,
       Value<List<MovieGenreDto>?> withoutGenres,
+      Value<bool?> includeWatched,
+      Value<bool?> includeWatchlist,
     });
 typedef $$MoviesFilterTableTableUpdateCompanionBuilder =
     MoviesFilterTableCompanion Function({
@@ -4449,6 +4636,8 @@ typedef $$MoviesFilterTableTableUpdateCompanionBuilder =
       Value<List<CountryDto>?> withCountries,
       Value<List<MovieGenreDto>?> withGenres,
       Value<List<MovieGenreDto>?> withoutGenres,
+      Value<bool?> includeWatched,
+      Value<bool?> includeWatchlist,
     });
 
 class $$MoviesFilterTableTableFilterComposer
@@ -4501,6 +4690,16 @@ class $$MoviesFilterTableTableFilterComposer
     column: $table.withoutGenres,
     builder: (column) => ColumnWithTypeConverterFilters(column),
   );
+
+  ColumnFilters<bool> get includeWatched => $composableBuilder(
+    column: $table.includeWatched,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get includeWatchlist => $composableBuilder(
+    column: $table.includeWatchlist,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$MoviesFilterTableTableOrderingComposer
@@ -4541,6 +4740,16 @@ class $$MoviesFilterTableTableOrderingComposer
     column: $table.withoutGenres,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get includeWatched => $composableBuilder(
+    column: $table.includeWatched,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get includeWatchlist => $composableBuilder(
+    column: $table.includeWatchlist,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$MoviesFilterTableTableAnnotationComposer
@@ -4578,6 +4787,16 @@ class $$MoviesFilterTableTableAnnotationComposer
     column: $table.withoutGenres,
     builder: (column) => column,
   );
+
+  GeneratedColumn<bool> get includeWatched => $composableBuilder(
+    column: $table.includeWatched,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get includeWatchlist => $composableBuilder(
+    column: $table.includeWatchlist,
+    builder: (column) => column,
+  );
 }
 
 class $$MoviesFilterTableTableTableManager
@@ -4609,18 +4828,12 @@ class $$MoviesFilterTableTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$MoviesFilterTableTableFilterComposer(
-                $db: db,
-                $table: table,
-              ),
-          createOrderingComposer:
-              () => $$MoviesFilterTableTableOrderingComposer(
-                $db: db,
-                $table: table,
-              ),
-          createComputedFieldComposer:
-              () => $$MoviesFilterTableTableAnnotationComposer(
+          createFilteringComposer: () =>
+              $$MoviesFilterTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MoviesFilterTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MoviesFilterTableTableAnnotationComposer(
                 $db: db,
                 $table: table,
               ),
@@ -4633,6 +4846,8 @@ class $$MoviesFilterTableTableTableManager
                 Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
                 Value<List<MovieGenreDto>?> withoutGenres =
                     const Value.absent(),
+                Value<bool?> includeWatched = const Value.absent(),
+                Value<bool?> includeWatchlist = const Value.absent(),
               }) => MoviesFilterTableCompanion(
                 id: id,
                 year: year,
@@ -4640,6 +4855,8 @@ class $$MoviesFilterTableTableTableManager
                 withCountries: withCountries,
                 withGenres: withGenres,
                 withoutGenres: withoutGenres,
+                includeWatched: includeWatched,
+                includeWatchlist: includeWatchlist,
               ),
           createCompanionCallback:
               ({
@@ -4650,6 +4867,8 @@ class $$MoviesFilterTableTableTableManager
                 Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
                 Value<List<MovieGenreDto>?> withoutGenres =
                     const Value.absent(),
+                Value<bool?> includeWatched = const Value.absent(),
+                Value<bool?> includeWatchlist = const Value.absent(),
               }) => MoviesFilterTableCompanion.insert(
                 id: id,
                 year: year,
@@ -4657,17 +4876,12 @@ class $$MoviesFilterTableTableTableManager
                 withCountries: withCountries,
                 withGenres: withGenres,
                 withoutGenres: withoutGenres,
+                includeWatched: includeWatched,
+                includeWatchlist: includeWatchlist,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -4702,6 +4916,8 @@ typedef $$SeriesFilterTableTableCreateCompanionBuilder =
       Value<List<CountryDto>?> withCountries,
       Value<List<SeriesGenreDto>?> withGenres,
       Value<List<SeriesGenreDto>?> withoutGenres,
+      Value<bool?> includeWatched,
+      Value<bool?> includeWatchlist,
     });
 typedef $$SeriesFilterTableTableUpdateCompanionBuilder =
     SeriesFilterTableCompanion Function({
@@ -4711,6 +4927,8 @@ typedef $$SeriesFilterTableTableUpdateCompanionBuilder =
       Value<List<CountryDto>?> withCountries,
       Value<List<SeriesGenreDto>?> withGenres,
       Value<List<SeriesGenreDto>?> withoutGenres,
+      Value<bool?> includeWatched,
+      Value<bool?> includeWatchlist,
     });
 
 class $$SeriesFilterTableTableFilterComposer
@@ -4763,6 +4981,16 @@ class $$SeriesFilterTableTableFilterComposer
     column: $table.withoutGenres,
     builder: (column) => ColumnWithTypeConverterFilters(column),
   );
+
+  ColumnFilters<bool> get includeWatched => $composableBuilder(
+    column: $table.includeWatched,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get includeWatchlist => $composableBuilder(
+    column: $table.includeWatchlist,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$SeriesFilterTableTableOrderingComposer
@@ -4803,6 +5031,16 @@ class $$SeriesFilterTableTableOrderingComposer
     column: $table.withoutGenres,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get includeWatched => $composableBuilder(
+    column: $table.includeWatched,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get includeWatchlist => $composableBuilder(
+    column: $table.includeWatchlist,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SeriesFilterTableTableAnnotationComposer
@@ -4840,6 +5078,16 @@ class $$SeriesFilterTableTableAnnotationComposer
     column: $table.withoutGenres,
     builder: (column) => column,
   );
+
+  GeneratedColumn<bool> get includeWatched => $composableBuilder(
+    column: $table.includeWatched,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get includeWatchlist => $composableBuilder(
+    column: $table.includeWatchlist,
+    builder: (column) => column,
+  );
 }
 
 class $$SeriesFilterTableTableTableManager
@@ -4871,18 +5119,12 @@ class $$SeriesFilterTableTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$SeriesFilterTableTableFilterComposer(
-                $db: db,
-                $table: table,
-              ),
-          createOrderingComposer:
-              () => $$SeriesFilterTableTableOrderingComposer(
-                $db: db,
-                $table: table,
-              ),
-          createComputedFieldComposer:
-              () => $$SeriesFilterTableTableAnnotationComposer(
+          createFilteringComposer: () =>
+              $$SeriesFilterTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SeriesFilterTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SeriesFilterTableTableAnnotationComposer(
                 $db: db,
                 $table: table,
               ),
@@ -4895,6 +5137,8 @@ class $$SeriesFilterTableTableTableManager
                 Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
                 Value<List<SeriesGenreDto>?> withoutGenres =
                     const Value.absent(),
+                Value<bool?> includeWatched = const Value.absent(),
+                Value<bool?> includeWatchlist = const Value.absent(),
               }) => SeriesFilterTableCompanion(
                 id: id,
                 year: year,
@@ -4902,6 +5146,8 @@ class $$SeriesFilterTableTableTableManager
                 withCountries: withCountries,
                 withGenres: withGenres,
                 withoutGenres: withoutGenres,
+                includeWatched: includeWatched,
+                includeWatchlist: includeWatchlist,
               ),
           createCompanionCallback:
               ({
@@ -4912,6 +5158,8 @@ class $$SeriesFilterTableTableTableManager
                 Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
                 Value<List<SeriesGenreDto>?> withoutGenres =
                     const Value.absent(),
+                Value<bool?> includeWatched = const Value.absent(),
+                Value<bool?> includeWatchlist = const Value.absent(),
               }) => SeriesFilterTableCompanion.insert(
                 id: id,
                 year: year,
@@ -4919,17 +5167,12 @@ class $$SeriesFilterTableTableTableManager
                 withCountries: withCountries,
                 withGenres: withGenres,
                 withoutGenres: withoutGenres,
+                includeWatched: includeWatched,
+                includeWatchlist: includeWatchlist,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );

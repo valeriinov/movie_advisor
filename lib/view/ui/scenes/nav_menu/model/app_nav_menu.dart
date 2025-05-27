@@ -4,32 +4,21 @@ import '../../../resources/app_images.dart';
 import '../../../resources/locale_keys.g.dart';
 
 enum AppNavMenu {
-  home(
-    label: LocaleKeys.homeNavTab,
-    iconPath: AppImages.homeIcon,
-  ),
+  home(label: LocaleKeys.homeNavTab, iconPath: AppImages.homeIcon),
   watchList(
     label: LocaleKeys.watchlistNavTab,
     iconPath: AppImages.watchlistIcon,
   ),
-  watched(
-    label: LocaleKeys.watchedNavTab,
-    iconPath: AppImages.watchedIcon,
-  ),
-  more(
-    label: LocaleKeys.moreNavTab,
-    iconPath: AppImages.moreHorIcon,
-  );
+  watched(label: LocaleKeys.watchedNavTab, iconPath: AppImages.watchedIcon),
+  more(label: LocaleKeys.moreNavTab, iconPath: AppImages.moreHorIcon);
 
   final String _label;
   final String iconPath;
 
   String get label => _label.tr();
 
-  const AppNavMenu({
-    required String label,
-    required this.iconPath,
-  }) : _label = label;
+  const AppNavMenu({required String label, required this.iconPath})
+    : _label = label;
 
   factory AppNavMenu.fromIndex(int index) {
     return AppNavMenu.values.firstWhere(

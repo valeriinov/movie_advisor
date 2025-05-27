@@ -26,6 +26,16 @@ abstract interface class MediaLocalDataSource {
 
   Future<List<SeriesShortDataDto>> getSeriesByIds(List<int> ids);
 
+  Future<List<int>> getMoviesIds({
+    bool includeWatched = true,
+    bool includeWatchlist = true,
+  });
+
+  Future<List<int>> getSeriesIds({
+    bool includeWatched = true,
+    bool includeWatchlist = true,
+  });
+
   Future<MovieRateFilterDataDto> getMovieRateFilter();
 
   Future<SeriesRateFilterDataDto> getSeriesRateFilter();

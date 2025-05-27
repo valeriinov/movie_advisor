@@ -23,25 +23,24 @@ class DeleteAccountButton extends StatelessWidget {
 
     return SliverAnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child:
-          user != null
-              ? SliverFillRemaining(
-                hasScrollBody: false,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        foregroundColor: colors.deleteAccountBtn,
-                      ),
-                      onPressed: onDeleteAccount,
-                      child: Text(LocaleKeys.deleteAccountButton.tr()),
+      child: user != null
+          ? SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: colors.deleteAccountBtn,
                     ),
-                    dimens.padBotPrim.gapVert(),
-                  ],
-                ),
-              )
-              : SliverPadding(padding: dimens.padBotPrimIns),
+                    onPressed: onDeleteAccount,
+                    child: Text(LocaleKeys.deleteAccountButton.tr()),
+                  ),
+                  dimens.padBotPrim.gapVert(),
+                ],
+              ),
+            )
+          : SliverPadding(padding: dimens.padBotPrimIns),
     );
   }
 }

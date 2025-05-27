@@ -14,8 +14,9 @@ class AboutTabContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final dimens = context.baseDimens;
 
-    final content =
-        overview.isNotBlank ? overview : LocaleKeys.emptyOverviewTab.tr();
+    final content = overview.isNotBlank
+        ? overview
+        : LocaleKeys.emptyOverviewTab.tr();
 
     return SliverToBoxAdapter(
       child: Padding(

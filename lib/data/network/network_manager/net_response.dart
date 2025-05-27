@@ -14,9 +14,5 @@ class NetResponse<T> {
   /// This is often used for error messages or server-provided information.
   final String? message;
 
-  const NetResponse({
-    this.data,
-    this.statusCode,
-    this.message,
-  });
+  const NetResponse({this.data, this.statusCode, this.message});
 }

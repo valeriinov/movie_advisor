@@ -49,18 +49,16 @@ class MoreScreenContent extends ConsumerWidget {
             ListTile(
               title: Text(LocaleKeys.privacyPolicyTile.tr()),
               leading: AppSvgAsset(path: AppImages.privacyIcon),
-              onTap:
-                  () => urlLauncher.openUrl(
-                    AppOfficialResourcesUrls.privacyPolicyUrl,
-                  ),
+              onTap: () => urlLauncher.openUrl(
+                AppOfficialResourcesUrls.privacyPolicyUrl,
+              ),
             ),
             ListTile(
               title: Text(LocaleKeys.termsAndConditionsTile.tr()),
               leading: AppSvgAsset(path: AppImages.termsIcon),
-              onTap:
-                  () => urlLauncher.openUrl(
-                    AppOfficialResourcesUrls.termsAndConditionsUrl,
-                  ),
+              onTap: () => urlLauncher.openUrl(
+                AppOfficialResourcesUrls.termsAndConditionsUrl,
+              ),
             ),
             ListTile(
               title: Text(LocaleKeys.settingsTile.tr()),

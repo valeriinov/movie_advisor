@@ -17,29 +17,32 @@ class ImplSearchRepository implements SearchRepository {
   final AppMoviesMapper _moviesMapper;
   final AppSeriesMapper _seriesMapper;
 
-  ImplSearchRepository(
-      {required SearchRemoteDataSource dataSource,
-      required MediaLocalDataSource localDataSource,
-      required AppSearchMapper searchMapper,
-      required AppMoviesMapper moviesMapper,
-      required AppSeriesMapper seriesMapper})
-      : _dataSource = dataSource,
-        _localDataSource = localDataSource,
-        _searchMapper = searchMapper,
-        _moviesMapper = moviesMapper,
-        _seriesMapper = seriesMapper;
+  ImplSearchRepository({
+    required SearchRemoteDataSource dataSource,
+    required MediaLocalDataSource localDataSource,
+    required AppSearchMapper searchMapper,
+    required AppMoviesMapper moviesMapper,
+    required AppSeriesMapper seriesMapper,
+  }) : _dataSource = dataSource,
+       _localDataSource = localDataSource,
+       _searchMapper = searchMapper,
+       _moviesMapper = moviesMapper,
+       _seriesMapper = seriesMapper;
 
   @override
-  Future<Result<PaginatedMovies>> searchMovies(SearchFilterData filter,
-      {required int page}) async {
+  Future<Result<PaginatedMovies>> searchMovies(
+    SearchFilterData filter, {
+    required int page,
+  }) async {
     try {
       final response = await _dataSource.searchMovies(
         _searchMapper.mapSearchFilterDataToDto(filter),
         page: page,
       );
 
-      final result =
-          await _localDataSource.addLocalDataToMoviesResponse(response);
+      final result = await _localDataSource.addLocalDataToMoviesResponse(
+        response,
+      );
 
       return Right(_moviesMapper.mapMoviesResponseDataToDomain(result));
     } catch (e) {
@@ -48,16 +51,19 @@ class ImplSearchRepository implements SearchRepository {
   }
 
   @override
-  Future<Result<PaginatedSeries>> searchSeries(SearchFilterData filter,
-      {required int page}) async {
+  Future<Result<PaginatedSeries>> searchSeries(
+    SearchFilterData filter, {
+    required int page,
+  }) async {
     try {
       final response = await _dataSource.searchSeries(
         _searchMapper.mapSearchFilterDataToDto(filter),
         page: page,
       );
 
-      final result =
-          await _localDataSource.addLocalDataToSeriesResponse(response);
+      final result = await _localDataSource.addLocalDataToSeriesResponse(
+        response,
+      );
 
       return Right(_seriesMapper.mapSeriesResponseDataToDomain(result));
     } catch (e) {

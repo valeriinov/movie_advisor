@@ -33,10 +33,9 @@ class NavBarContainer extends StatelessWidget {
         ),
         child: BottomNavigationBar(
           currentIndex: currentIndex,
-          items:
-              AppNavMenu.values
-                  .map((item) => _buildNavBarItem(context, item, currentIndex))
-                  .toList(),
+          items: AppNavMenu.values
+              .map((item) => _buildNavBarItem(context, item, currentIndex))
+              .toList(),
           onTap: onTap,
         ),
       ),
@@ -52,8 +51,9 @@ class NavBarContainer extends StatelessWidget {
     final styles = context.baseNavBarsStyles;
 
     final isSelected = currentIndex == item.index;
-    final color =
-        isSelected ? colors.botNavBarFgSelect : colors.botNavBarFgUnselect;
+    final color = isSelected
+        ? colors.botNavBarFgSelect
+        : colors.botNavBarFgUnselect;
     final labelStyle = styles.botNavBarLabelTextStyle.copyWith(color: color);
 
     return BottomNavigationBarItem(

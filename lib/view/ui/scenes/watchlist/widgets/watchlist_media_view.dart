@@ -84,15 +84,13 @@ class WatchlistMediaView<T extends MediaShortData> extends HookConsumerWidget {
             emptyListSubtitle: emptyListSubtitle,
             scrollController: scrollController,
             onItemSelect: (id) => _goToDetails(context, id),
-            onRefresh:
-                !isLoading
-                    ? () => vsp.viewModel.loadInitialData(showLoader: false)
-                    : null,
+            onRefresh: !isLoading
+                ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                : null,
           ),
-          floatingActionButton:
-              isFabVisible
-                  ? ScrollTopFab(scrollController: scrollController)
-                  : null,
+          floatingActionButton: isFabVisible
+              ? ScrollTopFab(scrollController: scrollController)
+              : null,
         );
       },
     );

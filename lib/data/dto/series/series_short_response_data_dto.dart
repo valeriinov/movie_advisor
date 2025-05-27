@@ -12,7 +12,7 @@ class SeriesShortResponseDataDto extends DataListResponse<SeriesShortDataDto>
     super.page,
     super.results,
     super.totalPages,
-});
+  });
 
   factory SeriesShortResponseDataDto.fromJson(Map<String, dynamic> json) =>
       SeriesShortResponseDataDtoMapper.fromJson(json);

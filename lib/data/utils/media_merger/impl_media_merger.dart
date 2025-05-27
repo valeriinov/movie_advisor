@@ -75,10 +75,10 @@ class ImplMediaMerger implements MediaMerger {
 
       return localMovie != null
           ? remoteCredit.copyWith(
-            userRating: localMovie.userRating,
-            isWatched: localMovie.isWatched,
-            isInWatchlist: localMovie.isInWatchlist,
-          )
+              userRating: localMovie.userRating,
+              isWatched: localMovie.isWatched,
+              isInWatchlist: localMovie.isInWatchlist,
+            )
           : remoteCredit;
     }).toList();
   }
@@ -95,10 +95,10 @@ class ImplMediaMerger implements MediaMerger {
 
       return localSeries != null
           ? remoteCredit.copyWith(
-            userRating: localSeries.userRating,
-            isWatched: localSeries.isWatched,
-            isInWatchlist: localSeries.isInWatchlist,
-          )
+              userRating: localSeries.userRating,
+              isWatched: localSeries.isWatched,
+              isInWatchlist: localSeries.isInWatchlist,
+            )
           : remoteCredit;
     }).toList();
   }

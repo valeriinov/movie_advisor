@@ -58,6 +58,7 @@ class AppTheme {
       textButtonTheme: _createTextBtnTheme(buttonsStyles),
       iconButtonTheme: _createIconButtonTheme(buttonsStyles),
       listTileTheme: _createListTileTheme(componentsStyles),
+      radioTheme: _createRadioTheme(colors),
       cardTheme: _createCardTheme(colors, componentsStyles),
       iconTheme: _createIconTheme(colors),
       primaryIconTheme: _createIconTheme(colors),
@@ -155,8 +156,20 @@ class AppTheme {
     );
   }
 
-  CardTheme _createCardTheme(BaseColors colors, BaseComponentsStyles styles) {
-    return CardTheme(
+  RadioThemeData _createRadioTheme(BaseColors colors) {
+    return RadioThemeData(
+      fillColor: WidgetStateResolver(
+        defaultValue: colors.botSheetRadio,
+        selected: colors.botSheetRadioSelect,
+      ),
+    );
+  }
+
+  CardThemeData _createCardTheme(
+    BaseColors colors,
+    BaseComponentsStyles styles,
+  ) {
+    return CardThemeData(
       surfaceTintColor: colors.cardPrimSurfTint,
       color: colors.cardPrimBg,
       shape: styles.cardPrimShape,
@@ -187,8 +200,11 @@ class AppTheme {
     );
   }
 
-  DialogTheme _createDialogTheme(BaseColors colors, BaseDialogsStyles styles) {
-    return DialogTheme(
+  DialogThemeData _createDialogTheme(
+    BaseColors colors,
+    BaseDialogsStyles styles,
+  ) {
+    return DialogThemeData(
       backgroundColor: colors.dlgPrimBg,
       shape: styles.dlgPrimShape,
       titleTextStyle: styles.dlgPrimTitleTextStyle,

@@ -29,11 +29,7 @@ class SuggestionItem extends StatelessWidget {
       padding: EdgeInsets.only(left: padLeft),
       child: Stack(
         children: [
-          Poster(
-            url: posterUrl,
-            size: posterSize,
-            onTap: onTap,
-          ),
+          Poster(url: posterUrl, size: posterSize, onTap: onTap),
           Positioned(
             left: 0,
             bottom: 0,
@@ -41,7 +37,7 @@ class SuggestionItem extends StatelessWidget {
               transform: Matrix4.translationValues(-_numberOffset, 0, 0),
               child: SuggestionNumber(number: number),
             ),
-          )
+          ),
         ],
       ),
     );

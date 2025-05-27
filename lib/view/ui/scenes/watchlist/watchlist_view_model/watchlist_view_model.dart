@@ -79,9 +79,8 @@ abstract base class WatchlistViewModel<T extends MediaShortData>
   }) async {
     return safeCall(
       () => _watchUseCase.getWatchlist(page: page),
-      onResult:
-          (result) =>
-              _handleWatchlistResult(result, isNewPageLoaded: isNewPageLoaded),
+      onResult: (result) =>
+          _handleWatchlistResult(result, isNewPageLoaded: isNewPageLoaded),
     );
   }
 

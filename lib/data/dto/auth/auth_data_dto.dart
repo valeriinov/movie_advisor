@@ -7,10 +7,7 @@ class AuthDataDto with AuthDataDtoMappable {
   final String? email;
   final String? password;
 
-  const AuthDataDto({
-    this.email,
-    this.password,
-  });
+  const AuthDataDto({this.email, this.password});
 
   factory AuthDataDto.fromJson(Map<String, dynamic> json) =>
       AuthDataDtoMapper.fromJson(json);

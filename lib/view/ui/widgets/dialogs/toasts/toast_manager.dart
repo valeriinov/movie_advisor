@@ -11,35 +11,25 @@ class ToastManager {
 
   bool _isInitialized = false;
 
-  ToastManager(
-      {required GlobalKey<NavigatorState> rootNavigatorKey,
-      required FToast fToast})
-      : _rootNavigatorKey = rootNavigatorKey,
-        _fToast = fToast;
+  ToastManager({
+    required GlobalKey<NavigatorState> rootNavigatorKey,
+    required FToast fToast,
+  }) : _rootNavigatorKey = rootNavigatorKey,
+       _fToast = fToast;
 
-  void showSuccessToast(
-    String message, {
-    Duration? toastDuration,
-  }) {
+  void showSuccessToast(String message, {Duration? toastDuration}) {
     _showToast(
       message,
       toastDuration: toastDuration,
-      child: SuccessToast(
-        content: message,
-      ),
+      child: SuccessToast(content: message),
     );
   }
 
-  void showInfoToast(
-    String message, {
-    Duration? toastDuration,
-  }) {
+  void showInfoToast(String message, {Duration? toastDuration}) {
     _showToast(
       message,
       toastDuration: toastDuration,
-      child: InfoToast(
-        content: message,
-      ),
+      child: InfoToast(content: message),
     );
   }
 
@@ -51,9 +41,7 @@ class ToastManager {
     _showToast(
       message,
       toastDuration: toastDuration,
-      child: ErrorToast(
-        content: message,
-      ),
+      child: ErrorToast(content: message),
     );
   }
 
@@ -69,12 +57,7 @@ class ToastManager {
       gravity: ToastGravity.BOTTOM,
       toastDuration: toastDuration ?? const Duration(seconds: 2),
       positionedToastBuilder: (ctx, child, gravity) {
-        return Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: child,
-        );
+        return Positioned(bottom: 0, left: 0, right: 0, child: child);
       },
     );
   }

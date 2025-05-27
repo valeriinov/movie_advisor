@@ -30,10 +30,9 @@ class RegFormContent extends ConsumerWidget {
         builder: (context, formKey, autoValidate, setAutoValidate) {
           return FormBuilder(
             key: formKey,
-            autovalidateMode:
-                autoValidate
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
+            autovalidateMode: autoValidate
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
             onChanged: () => _updateFormState(formKey),
             child: SizedBox(
               width: double.infinity,
@@ -43,32 +42,31 @@ class RegFormContent extends ConsumerWidget {
                   passFieldName,
                   confirmPassFieldName,
                 ],
-                builder:
-                    (context, nodesDict) => Column(
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: dimens.spLarge,
-                      children: [
-                        InputField.email(
-                          name: emailFieldName,
-                          focusNode: nodesDict[emailFieldName],
-                        ),
-                        InputField.pass(
-                          name: passFieldName,
-                          focusNode: nodesDict[passFieldName],
-                        ),
-                        InputField.confirmPass(
-                          name: confirmPassFieldName,
-                          focusNode: nodesDict[confirmPassFieldName],
-                          textInputAction: TextInputAction.done,
-                          getPassValue:
-                              () => vsp.selectRead((s) => s.formState.password),
-                        ),
-                        RegSubmitButton(
-                          formKey: formKey,
-                          setAutoValidate: setAutoValidate,
-                        ),
-                      ],
+                builder: (context, nodesDict) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: dimens.spLarge,
+                  children: [
+                    InputField.email(
+                      name: emailFieldName,
+                      focusNode: nodesDict[emailFieldName],
                     ),
+                    InputField.pass(
+                      name: passFieldName,
+                      focusNode: nodesDict[passFieldName],
+                    ),
+                    InputField.confirmPass(
+                      name: confirmPassFieldName,
+                      focusNode: nodesDict[confirmPassFieldName],
+                      textInputAction: TextInputAction.done,
+                      getPassValue: () =>
+                          vsp.selectRead((s) => s.formState.password),
+                    ),
+                    RegSubmitButton(
+                      formKey: formKey,
+                      setAutoValidate: setAutoValidate,
+                    ),
+                  ],
+                ),
               ),
             ),
           );

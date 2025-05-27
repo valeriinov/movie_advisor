@@ -33,13 +33,10 @@ class ImplWatchRepository implements WatchRepository {
   Stream<Result<MovieShortData>> watchChangesMovies() {
     return _localDataSource.watchChangesMovies().transform(
       StreamTransformer.fromHandlers(
-        handleData:
-            (data, sink) => sink.add(
-              Right(_moviesMapper.mapMovieShortDataDtoToDomain(data)),
-            ),
-        handleError:
-            (error, _, sink) =>
-                sink.add(Left(Failure(message: error.toString()))),
+        handleData: (data, sink) =>
+            sink.add(Right(_moviesMapper.mapMovieShortDataDtoToDomain(data))),
+        handleError: (error, _, sink) =>
+            sink.add(Left(Failure(message: error.toString()))),
       ),
     );
   }
@@ -48,13 +45,10 @@ class ImplWatchRepository implements WatchRepository {
   Stream<Result<SeriesShortData>> watchChangesSeries() {
     return _localDataSource.watchChangesSeries().transform(
       StreamTransformer.fromHandlers(
-        handleData:
-            (data, sink) => sink.add(
-              Right(_seriesMapper.mapSeriesShortDataDtoToDomain(data)),
-            ),
-        handleError:
-            (error, _, sink) =>
-                sink.add(Left(Failure(message: error.toString()))),
+        handleData: (data, sink) =>
+            sink.add(Right(_seriesMapper.mapSeriesShortDataDtoToDomain(data))),
+        handleError: (error, _, sink) =>
+            sink.add(Left(Failure(message: error.toString()))),
       ),
     );
   }

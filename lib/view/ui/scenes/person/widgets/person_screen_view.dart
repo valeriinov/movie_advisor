@@ -43,24 +43,20 @@ class PersonScreenView extends HookConsumerWidget {
       scrollController: scrollController,
       builder: (_, isFabVisible) {
         return Scaffold(
-          body:
-              isSkeletonVisible
-                  ? PersonContentSkeleton()
-                  : PersonScreenContent(
-                    person: person,
-                    currentTab: currentTab,
-                    onTabSelect: (index) => _onTabSelect(vsp, index),
-                    onRefresh:
-                        !isLoading
-                            ? () =>
-                                vsp.viewModel.loadInitialData(showLoader: false)
-                            : null,
-                    scrollController: scrollController,
-                  ),
-          floatingActionButton:
-              isFabVisible
-                  ? ScrollTopFab(scrollController: scrollController)
-                  : null,
+          body: isSkeletonVisible
+              ? PersonContentSkeleton()
+              : PersonScreenContent(
+                  person: person,
+                  currentTab: currentTab,
+                  onTabSelect: (index) => _onTabSelect(vsp, index),
+                  onRefresh: !isLoading
+                      ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                      : null,
+                  scrollController: scrollController,
+                ),
+          floatingActionButton: isFabVisible
+              ? ScrollTopFab(scrollController: scrollController)
+              : null,
         );
       },
     );

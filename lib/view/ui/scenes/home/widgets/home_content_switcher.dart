@@ -23,10 +23,9 @@ class HomeContentSwitcher extends ConsumerWidget {
 
     return SliverAnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child:
-          contentMode.isMovies
-              ? HomeMoviesView(scrollController: scrollController)
-              : HomeSeriesView(scrollController: scrollController),
+      child: contentMode.isMovies
+          ? HomeMoviesView(scrollController: scrollController)
+          : HomeSeriesView(scrollController: scrollController),
     );
   }
 }

@@ -5,11 +5,11 @@ class ImplSettingsProvider implements SettingsProvider {
   final Function() _localeResolver; // = () => "en";
   final EnvProvider _envProvider;
 
-  ImplSettingsProvider(
-      {required String Function() localeResolver,
-      required EnvProvider envProvider})
-      : _envProvider = envProvider,
-        _localeResolver = localeResolver;
+  ImplSettingsProvider({
+    required String Function() localeResolver,
+    required EnvProvider envProvider,
+  }) : _envProvider = envProvider,
+       _localeResolver = localeResolver;
 
   @override
   Future<String> getAuthToken() async {

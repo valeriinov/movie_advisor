@@ -22,12 +22,18 @@ class MoreStateMapper extends ClassMapperBase<MoreState> {
   final String id = 'MoreState';
 
   static UserData? _$user(MoreState v) => v.user;
-  static const Field<MoreState, UserData> _f$user =
-      Field('user', _$user, opt: true);
+  static const Field<MoreState, UserData> _f$user = Field(
+    'user',
+    _$user,
+    opt: true,
+  );
   static MoreStatus _$status(MoreState v) => v.status;
   static const Field<MoreState, MoreStatus> _f$status = Field(
-      'status', _$status,
-      opt: true, def: const MoreBaseStatus(isLoading: true));
+    'status',
+    _$status,
+    opt: true,
+    def: const MoreBaseStatus(isLoading: true),
+  );
 
   @override
   final MappableFields<MoreState> fields = const {
@@ -46,17 +52,23 @@ class MoreStateMapper extends ClassMapperBase<MoreState> {
 mixin MoreStateMappable {
   MoreStateCopyWith<MoreState, MoreState, MoreState> get copyWith =>
       _MoreStateCopyWithImpl<MoreState, MoreState>(
-          this as MoreState, $identity, $identity);
+        this as MoreState,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return MoreStateMapper.ensureInitialized()
-        .stringifyValue(this as MoreState);
+    return MoreStateMapper.ensureInitialized().stringifyValue(
+      this as MoreState,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return MoreStateMapper.ensureInitialized()
-        .equalsValue(this as MoreState, other);
+    return MoreStateMapper.ensureInitialized().equalsValue(
+      this as MoreState,
+      other,
+    );
   }
 
   @override
@@ -89,20 +101,22 @@ class _MoreStateCopyWithImpl<$R, $Out>
   UserDataCopyWith<$R, UserData, UserData>? get user =>
       $value.user?.copyWith.$chain((v) => call(user: v));
   @override
-  $R call({Object? user = $none, MoreStatus? status}) =>
-      $apply(FieldCopyWithData({
-        if (user != $none) #user: user,
-        if (status != null) #status: status
-      }));
+  $R call({Object? user = $none, MoreStatus? status}) => $apply(
+    FieldCopyWithData({
+      if (user != $none) #user: user,
+      if (status != null) #status: status,
+    }),
+  );
   @override
   MoreState $make(CopyWithData data) => MoreState(
-      user: data.get(#user, or: $value.user),
-      status: data.get(#status, or: $value.status));
+    user: data.get(#user, or: $value.user),
+    status: data.get(#status, or: $value.status),
+  );
 
   @override
   MoreStateCopyWith<$R2, MoreState, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _MoreStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _MoreStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class MoreBaseStatusMapper extends ClassMapperBase<MoreBaseStatus> {
@@ -120,14 +134,25 @@ class MoreBaseStatusMapper extends ClassMapperBase<MoreBaseStatus> {
   final String id = 'MoreBaseStatus';
 
   static bool _$isLoading(MoreBaseStatus v) => v.isLoading;
-  static const Field<MoreBaseStatus, bool> _f$isLoading =
-      Field('isLoading', _$isLoading, opt: true, def: false);
+  static const Field<MoreBaseStatus, bool> _f$isLoading = Field(
+    'isLoading',
+    _$isLoading,
+    opt: true,
+    def: false,
+  );
   static String? _$errorMessage(MoreBaseStatus v) => v.errorMessage;
-  static const Field<MoreBaseStatus, String> _f$errorMessage =
-      Field('errorMessage', _$errorMessage, opt: true);
+  static const Field<MoreBaseStatus, String> _f$errorMessage = Field(
+    'errorMessage',
+    _$errorMessage,
+    opt: true,
+  );
   static bool _$isInitialized(MoreBaseStatus v) => v.isInitialized;
-  static const Field<MoreBaseStatus, bool> _f$isInitialized =
-      Field('isInitialized', _$isInitialized, opt: true, def: false);
+  static const Field<MoreBaseStatus, bool> _f$isInitialized = Field(
+    'isInitialized',
+    _$isInitialized,
+    opt: true,
+    def: false,
+  );
 
   @override
   final MappableFields<MoreBaseStatus> fields = const {
@@ -138,9 +163,10 @@ class MoreBaseStatusMapper extends ClassMapperBase<MoreBaseStatus> {
 
   static MoreBaseStatus _instantiate(DecodingData data) {
     return MoreBaseStatus(
-        isLoading: data.dec(_f$isLoading),
-        errorMessage: data.dec(_f$errorMessage),
-        isInitialized: data.dec(_f$isInitialized));
+      isLoading: data.dec(_f$isLoading),
+      errorMessage: data.dec(_f$errorMessage),
+      isInitialized: data.dec(_f$isInitialized),
+    );
   }
 
   @override
@@ -149,25 +175,31 @@ class MoreBaseStatusMapper extends ClassMapperBase<MoreBaseStatus> {
 
 mixin MoreBaseStatusMappable {
   MoreBaseStatusCopyWith<MoreBaseStatus, MoreBaseStatus, MoreBaseStatus>
-      get copyWith =>
-          _MoreBaseStatusCopyWithImpl<MoreBaseStatus, MoreBaseStatus>(
-              this as MoreBaseStatus, $identity, $identity);
+  get copyWith => _MoreBaseStatusCopyWithImpl<MoreBaseStatus, MoreBaseStatus>(
+    this as MoreBaseStatus,
+    $identity,
+    $identity,
+  );
   @override
   String toString() {
-    return MoreBaseStatusMapper.ensureInitialized()
-        .stringifyValue(this as MoreBaseStatus);
+    return MoreBaseStatusMapper.ensureInitialized().stringifyValue(
+      this as MoreBaseStatus,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return MoreBaseStatusMapper.ensureInitialized()
-        .equalsValue(this as MoreBaseStatus, other);
+    return MoreBaseStatusMapper.ensureInitialized().equalsValue(
+      this as MoreBaseStatus,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return MoreBaseStatusMapper.ensureInitialized()
-        .hashValue(this as MoreBaseStatus);
+    return MoreBaseStatusMapper.ensureInitialized().hashValue(
+      this as MoreBaseStatus,
+    );
   }
 }
 
@@ -181,7 +213,8 @@ abstract class MoreBaseStatusCopyWith<$R, $In extends MoreBaseStatus, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   MoreBaseStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _MoreBaseStatusCopyWithImpl<$R, $Out>
@@ -193,25 +226,28 @@ class _MoreBaseStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MoreBaseStatus> $mapper =
       MoreBaseStatusMapper.ensureInitialized();
   @override
-  $R call(
-          {bool? isLoading,
-          Object? errorMessage = $none,
-          bool? isInitialized}) =>
-      $apply(FieldCopyWithData({
-        if (isLoading != null) #isLoading: isLoading,
-        if (errorMessage != $none) #errorMessage: errorMessage,
-        if (isInitialized != null) #isInitialized: isInitialized
-      }));
+  $R call({
+    bool? isLoading,
+    Object? errorMessage = $none,
+    bool? isInitialized,
+  }) => $apply(
+    FieldCopyWithData({
+      if (isLoading != null) #isLoading: isLoading,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+      if (isInitialized != null) #isInitialized: isInitialized,
+    }),
+  );
   @override
   MoreBaseStatus $make(CopyWithData data) => MoreBaseStatus(
-      isLoading: data.get(#isLoading, or: $value.isLoading),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+    isLoading: data.get(#isLoading, or: $value.isLoading),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
+  );
 
   @override
   MoreBaseStatusCopyWith<$R2, MoreBaseStatus, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _MoreBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _MoreBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class MoreBaseInitStatusMapper extends ClassMapperBase<MoreBaseInitStatus> {
@@ -229,14 +265,25 @@ class MoreBaseInitStatusMapper extends ClassMapperBase<MoreBaseInitStatus> {
   final String id = 'MoreBaseInitStatus';
 
   static bool _$isLoading(MoreBaseInitStatus v) => v.isLoading;
-  static const Field<MoreBaseInitStatus, bool> _f$isLoading =
-      Field('isLoading', _$isLoading, opt: true, def: false);
+  static const Field<MoreBaseInitStatus, bool> _f$isLoading = Field(
+    'isLoading',
+    _$isLoading,
+    opt: true,
+    def: false,
+  );
   static String? _$errorMessage(MoreBaseInitStatus v) => v.errorMessage;
-  static const Field<MoreBaseInitStatus, String> _f$errorMessage =
-      Field('errorMessage', _$errorMessage, opt: true);
+  static const Field<MoreBaseInitStatus, String> _f$errorMessage = Field(
+    'errorMessage',
+    _$errorMessage,
+    opt: true,
+  );
   static bool _$isInitialized(MoreBaseInitStatus v) => v.isInitialized;
-  static const Field<MoreBaseInitStatus, bool> _f$isInitialized =
-      Field('isInitialized', _$isInitialized, opt: true, def: true);
+  static const Field<MoreBaseInitStatus, bool> _f$isInitialized = Field(
+    'isInitialized',
+    _$isInitialized,
+    opt: true,
+    def: true,
+  );
 
   @override
   final MappableFields<MoreBaseInitStatus> fields = const {
@@ -247,9 +294,10 @@ class MoreBaseInitStatusMapper extends ClassMapperBase<MoreBaseInitStatus> {
 
   static MoreBaseInitStatus _instantiate(DecodingData data) {
     return MoreBaseInitStatus(
-        isLoading: data.dec(_f$isLoading),
-        errorMessage: data.dec(_f$errorMessage),
-        isInitialized: data.dec(_f$isInitialized));
+      isLoading: data.dec(_f$isLoading),
+      errorMessage: data.dec(_f$errorMessage),
+      isInitialized: data.dec(_f$isInitialized),
+    );
   }
 
   @override
@@ -257,41 +305,58 @@ class MoreBaseInitStatusMapper extends ClassMapperBase<MoreBaseInitStatus> {
 }
 
 mixin MoreBaseInitStatusMappable {
-  MoreBaseInitStatusCopyWith<MoreBaseInitStatus, MoreBaseInitStatus,
-          MoreBaseInitStatus>
-      get copyWith => _MoreBaseInitStatusCopyWithImpl<MoreBaseInitStatus,
-          MoreBaseInitStatus>(this as MoreBaseInitStatus, $identity, $identity);
+  MoreBaseInitStatusCopyWith<
+    MoreBaseInitStatus,
+    MoreBaseInitStatus,
+    MoreBaseInitStatus
+  >
+  get copyWith =>
+      _MoreBaseInitStatusCopyWithImpl<MoreBaseInitStatus, MoreBaseInitStatus>(
+        this as MoreBaseInitStatus,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return MoreBaseInitStatusMapper.ensureInitialized()
-        .stringifyValue(this as MoreBaseInitStatus);
+    return MoreBaseInitStatusMapper.ensureInitialized().stringifyValue(
+      this as MoreBaseInitStatus,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return MoreBaseInitStatusMapper.ensureInitialized()
-        .equalsValue(this as MoreBaseInitStatus, other);
+    return MoreBaseInitStatusMapper.ensureInitialized().equalsValue(
+      this as MoreBaseInitStatus,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return MoreBaseInitStatusMapper.ensureInitialized()
-        .hashValue(this as MoreBaseInitStatus);
+    return MoreBaseInitStatusMapper.ensureInitialized().hashValue(
+      this as MoreBaseInitStatus,
+    );
   }
 }
 
 extension MoreBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MoreBaseInitStatus, $Out> {
   MoreBaseInitStatusCopyWith<$R, MoreBaseInitStatus, $Out>
-      get $asMoreBaseInitStatus => $base.as(
-          (v, t, t2) => _MoreBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asMoreBaseInitStatus => $base.as(
+    (v, t, t2) => _MoreBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
-abstract class MoreBaseInitStatusCopyWith<$R, $In extends MoreBaseInitStatus,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
+abstract class MoreBaseInitStatusCopyWith<
+  $R,
+  $In extends MoreBaseInitStatus,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   MoreBaseInitStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _MoreBaseInitStatusCopyWithImpl<$R, $Out>
@@ -303,23 +368,26 @@ class _MoreBaseInitStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MoreBaseInitStatus> $mapper =
       MoreBaseInitStatusMapper.ensureInitialized();
   @override
-  $R call(
-          {bool? isLoading,
-          Object? errorMessage = $none,
-          bool? isInitialized}) =>
-      $apply(FieldCopyWithData({
-        if (isLoading != null) #isLoading: isLoading,
-        if (errorMessage != $none) #errorMessage: errorMessage,
-        if (isInitialized != null) #isInitialized: isInitialized
-      }));
+  $R call({
+    bool? isLoading,
+    Object? errorMessage = $none,
+    bool? isInitialized,
+  }) => $apply(
+    FieldCopyWithData({
+      if (isLoading != null) #isLoading: isLoading,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+      if (isInitialized != null) #isInitialized: isInitialized,
+    }),
+  );
   @override
   MoreBaseInitStatus $make(CopyWithData data) => MoreBaseInitStatus(
-      isLoading: data.get(#isLoading, or: $value.isLoading),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
+    isLoading: data.get(#isLoading, or: $value.isLoading),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
+  );
 
   @override
   MoreBaseInitStatusCopyWith<$R2, MoreBaseInitStatus, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _MoreBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _MoreBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

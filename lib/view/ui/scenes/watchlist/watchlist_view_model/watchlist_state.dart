@@ -38,10 +38,7 @@ final class WatchlistState<T> extends BaseState<WatchlistStatus>
       data: data,
     );
 
-    return copyWith(
-      status: status ?? this.status,
-      watchlist: updatedData,
-    );
+    return copyWith(status: status ?? this.status, watchlist: updatedData);
   }
 }
 
@@ -50,8 +47,11 @@ final class WatchlistState<T> extends BaseState<WatchlistStatus>
 /// A sealed class representing the possible statuses of a [WatchlistState].
 /// Provides properties for loading, initialization, and error handling.
 sealed class WatchlistStatus extends BaseStatus {
-  const WatchlistStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const WatchlistStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -61,8 +61,11 @@ sealed class WatchlistStatus extends BaseStatus {
 @mappableEntity
 final class WatchlistBaseStatus extends WatchlistStatus
     with WatchlistBaseStatusMappable {
-  const WatchlistBaseStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized});
+  const WatchlistBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -72,6 +75,9 @@ final class WatchlistBaseStatus extends WatchlistStatus
 @mappableEntity
 final class WatchlistBaseInitStatus extends WatchlistStatus
     with WatchlistBaseInitStatusMappable {
-  const WatchlistBaseInitStatus(
-      {super.isLoading, super.errorMessage, super.isInitialized = true});
+  const WatchlistBaseInitStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }

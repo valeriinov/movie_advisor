@@ -33,30 +33,30 @@ class MoviesTabContent extends HookWidget {
 
     return movies.isNotEmpty
         ? SliverPadding(
-          padding: dimens.padHorPrimIns,
-          sliver: SliverList.separated(
-            itemCount: movies.length,
-            itemBuilder: (context, index) {
-              final item = movies[index];
+            padding: dimens.padHorPrimIns,
+            sliver: SliverList.separated(
+              itemCount: movies.length,
+              itemBuilder: (context, index) {
+                final item = movies[index];
 
-              final year = _getYear(item.premiereDate);
-              final genres = _getGenres(item.genres);
+                final year = _getYear(item.premiereDate);
+                final genres = _getGenres(item.genres);
 
-              return MediaInfoWrapper(
-                posterUrl: item.posterUrl,
-                onTap: () => _goToDetails(context, item.id),
-                mediaInfoContent: CreditsInfoContent(
-                  title: item.title,
-                  genres: genres,
-                  year: year,
-                  actCharacter: item.actCharacter,
-                  crewJob: item.crewJob?.desc,
-                ),
-              );
-            },
-            separatorBuilder: (_, __) => dimens.spLarge.gapVert(),
-          ),
-        )
+                return MediaInfoWrapper(
+                  posterUrl: item.posterUrl,
+                  onTap: () => _goToDetails(context, item.id),
+                  mediaInfoContent: CreditsInfoContent(
+                    title: item.title,
+                    genres: genres,
+                    year: year,
+                    actCharacter: item.actCharacter,
+                    crewJob: item.crewJob?.desc,
+                  ),
+                );
+              },
+              separatorBuilder: (_, __) => dimens.spLarge.gapVert(),
+            ),
+          )
         : EmptyTabContent(description: LocaleKeys.emptyMoviesTab.tr());
   }
 
@@ -68,10 +68,9 @@ class MoviesTabContent extends HookWidget {
     }
 
     for (final crewItem in credits.crew) {
-      map[crewItem.id] =
-          map.containsKey(crewItem.id)
-              ? map[crewItem.id]!.copyWith(crewJob: crewItem.crewJob)
-              : crewItem;
+      map[crewItem.id] = map.containsKey(crewItem.id)
+          ? map[crewItem.id]!.copyWith(crewJob: crewItem.crewJob)
+          : crewItem;
     }
 
     final result = map.values.toList();

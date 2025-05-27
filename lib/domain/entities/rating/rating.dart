@@ -4,8 +4,7 @@ import '../mappable_entity.dart';
 
 part 'rating.mapper.dart';
 
-
-sealed class Rating{
+sealed class Rating {
   final double? popularity;
   final double voteAverage;
   final int voteCount;

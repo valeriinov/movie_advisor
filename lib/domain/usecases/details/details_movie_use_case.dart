@@ -8,7 +8,7 @@ class DetailsMovieUseCase implements DetailsUseCase<MovieData> {
   final DetailsRepository _repository;
 
   DetailsMovieUseCase({required DetailsRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   @override
   Future<Result<MovieData>> getDetails(int id) {

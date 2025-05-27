@@ -58,8 +58,8 @@ class LanguageBottomSheet extends ConsumerWidget {
                 value: AppLocales.en.locale,
                 groupValue: currentLocale,
                 selected: isEn,
-                onChanged:
-                    (locale) => _onLanguageSelected(context, locale, vsp),
+                onChanged: (locale) =>
+                    _onLanguageSelected(context, locale, vsp),
               ),
               RadioListTile<Locale>(
                 title: Text(
@@ -69,8 +69,8 @@ class LanguageBottomSheet extends ConsumerWidget {
                 value: AppLocales.uk.locale,
                 groupValue: currentLocale,
                 selected: isUk,
-                onChanged:
-                    (locale) => _onLanguageSelected(context, locale, vsp),
+                onChanged: (locale) =>
+                    _onLanguageSelected(context, locale, vsp),
               ),
             ],
           ),

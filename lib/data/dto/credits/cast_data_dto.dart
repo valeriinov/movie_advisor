@@ -16,7 +16,7 @@ class CastDataDto with CastDataDtoMappable {
     this.profilePath,
     this.name,
     this.character,
-});
+  });
 
   factory CastDataDto.fromJson(Map<String, dynamic> json) =>
       CastDataDtoMapper.fromJson(json);

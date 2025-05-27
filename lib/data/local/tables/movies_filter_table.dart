@@ -11,10 +11,13 @@ class MoviesFilterTable extends Table {
 
   TextColumn get sortBy => text().map(filterSortByConverter).nullable()();
 
-  TextColumn get withCountries =>
-      text().map(countryConverter).nullable()();
+  TextColumn get withCountries => text().map(countryConverter).nullable()();
 
   TextColumn get withGenres => text().map(movieGenresConverter).nullable()();
 
   TextColumn get withoutGenres => text().map(movieGenresConverter).nullable()();
+
+  BoolColumn get includeWatched => boolean().nullable()();
+
+  BoolColumn get includeWatchlist => boolean().nullable()();
 }

@@ -4,6 +4,8 @@ import '../../entities/result.dart';
 import '../../entities/search/search_filter_data.dart';
 
 abstract interface class SearchUseCase<T> {
-  Future<Result<ListWithPaginationData<T>>> search(SearchFilterData filter,
-      {int page = 1});
+  Future<Result<ListWithPaginationData<T>>> search(
+    SearchFilterData filter, {
+    int page = 1,
+  });
 }

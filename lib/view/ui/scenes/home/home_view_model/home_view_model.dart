@@ -107,10 +107,9 @@ abstract base class HomeViewModel<T extends MediaShortData>
 
     await safeCall(
       _homeUseCase.getSuggested,
-      onResult:
-          (result) => _handleMediaResult(result, (data) {
-            state = state.copyWithUpdSugCont(isInitialized: true, data: data);
-          }),
+      onResult: (result) => _handleMediaResult(result, (data) {
+        state = state.copyWithUpdSugCont(isInitialized: true, data: data);
+      }),
     );
 
     await _loadTabCont();
@@ -149,15 +148,14 @@ abstract base class HomeViewModel<T extends MediaShortData>
 
         return _loadTabOperation?.valueOrCancellation();
       },
-      onResult:
-          (result) => _handleMediaResult(result, (data) {
-            state = state.copyWithUpdTabCont(
-              status: HomeBaseInitStatus(),
-              isNewPageLoaded: isNewPageLoaded,
-              isInitialized: true,
-              data: data,
-            );
-          }),
+      onResult: (result) => _handleMediaResult(result, (data) {
+        state = state.copyWithUpdTabCont(
+          status: HomeBaseInitStatus(),
+          isNewPageLoaded: isNewPageLoaded,
+          isInitialized: true,
+          data: data,
+        );
+      }),
     );
   }
 

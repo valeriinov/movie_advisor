@@ -8,7 +8,9 @@ import 'data/network/env_provider/impl_env_provider.dart';
 import 'flavors.dart';
 import 'view/di/injector.dart';
 import 'view/di/system_settings.dart';
+import 'view/ui/resources/base_theme/colors/base_colors_ext.dart';
 import 'view/ui/widgets/flavor_banner.dart';
+import 'view/ui/widgets/system_overlay_style_wrapper.dart';
 
 Future<void> main() async {
   _validateFlavor();
@@ -18,6 +20,8 @@ Future<void> main() async {
   final envProvider = ImplEnvProvider();
   await envProvider.init('${F.name}.env');
 
+  final colors = BaseColorsFactory.createColors();
+
   runApp(
     LocalizationWrapper(
       child: FlavorBanner(
@@ -25,7 +29,7 @@ Future<void> main() async {
         isVisible: F.appFlavor != Flavor.prod,
         child: Injector(
           envProvider: envProvider,
-          child: MyApp(),
+          child: SystemOverlayStyleWrapper(colors: colors, child: MyApp()),
         ),
       ),
     ),
@@ -69,10 +73,7 @@ class LocalizationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EasyLocalization(
-      supportedLocales: [
-        AppLocales.en.locale,
-        AppLocales.uk.locale,
-      ],
+      supportedLocales: [AppLocales.en.locale, AppLocales.uk.locale],
       path: 'assets/translations',
       fallbackLocale: AppLocales.en.locale,
       child: child,
@@ -82,7 +83,9 @@ class LocalizationWrapper extends StatelessWidget {
 
 void _validateFlavor() {
   if (F.appFlavor == null) {
-    throw ArgumentError('App flavor is not set. Ensure the application is run '
-        'with a specific flavor entry point (e.g., main_dev.dart or main_prod.dart).');
+    throw ArgumentError(
+      'App flavor is not set. Ensure the application is run '
+      'with a specific flavor entry point (e.g., main_dev.dart or main_prod.dart).',
+    );
   }
 }

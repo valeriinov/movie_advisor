@@ -22,13 +22,14 @@ class VideosDataDtoMapper extends ClassMapperBase<VideosDataDto> {
   final String id = 'VideosDataDto';
 
   static List<VideoDataDto>? _$results(VideosDataDto v) => v.results;
-  static const Field<VideosDataDto, List<VideoDataDto>> _f$results =
-      Field('results', _$results, opt: true);
+  static const Field<VideosDataDto, List<VideoDataDto>> _f$results = Field(
+    'results',
+    _$results,
+    opt: true,
+  );
 
   @override
-  final MappableFields<VideosDataDto> fields = const {
-    #results: _f$results,
-  };
+  final MappableFields<VideosDataDto> fields = const {#results: _f$results};
   @override
   final bool ignoreNull = true;
 
@@ -50,34 +51,43 @@ class VideosDataDtoMapper extends ClassMapperBase<VideosDataDto> {
 
 mixin VideosDataDtoMappable {
   String toJsonString() {
-    return VideosDataDtoMapper.ensureInitialized()
-        .encodeJson<VideosDataDto>(this as VideosDataDto);
+    return VideosDataDtoMapper.ensureInitialized().encodeJson<VideosDataDto>(
+      this as VideosDataDto,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    return VideosDataDtoMapper.ensureInitialized()
-        .encodeMap<VideosDataDto>(this as VideosDataDto);
+    return VideosDataDtoMapper.ensureInitialized().encodeMap<VideosDataDto>(
+      this as VideosDataDto,
+    );
   }
 
   VideosDataDtoCopyWith<VideosDataDto, VideosDataDto, VideosDataDto>
-      get copyWith => _VideosDataDtoCopyWithImpl<VideosDataDto, VideosDataDto>(
-          this as VideosDataDto, $identity, $identity);
+  get copyWith => _VideosDataDtoCopyWithImpl<VideosDataDto, VideosDataDto>(
+    this as VideosDataDto,
+    $identity,
+    $identity,
+  );
   @override
   String toString() {
-    return VideosDataDtoMapper.ensureInitialized()
-        .stringifyValue(this as VideosDataDto);
+    return VideosDataDtoMapper.ensureInitialized().stringifyValue(
+      this as VideosDataDto,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return VideosDataDtoMapper.ensureInitialized()
-        .equalsValue(this as VideosDataDto, other);
+    return VideosDataDtoMapper.ensureInitialized().equalsValue(
+      this as VideosDataDto,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return VideosDataDtoMapper.ensureInitialized()
-        .hashValue(this as VideosDataDto);
+    return VideosDataDtoMapper.ensureInitialized().hashValue(
+      this as VideosDataDto,
+    );
   }
 }
 
@@ -89,8 +99,12 @@ extension VideosDataDtoValueCopy<$R, $Out>
 
 abstract class VideosDataDtoCopyWith<$R, $In extends VideosDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, VideoDataDto,
-      VideoDataDtoCopyWith<$R, VideoDataDto, VideoDataDto>>? get results;
+  ListCopyWith<
+    $R,
+    VideoDataDto,
+    VideoDataDtoCopyWith<$R, VideoDataDto, VideoDataDto>
+  >?
+  get results;
   $R call({List<VideoDataDto>? results});
   VideosDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -104,12 +118,18 @@ class _VideosDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<VideosDataDto> $mapper =
       VideosDataDtoMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, VideoDataDto,
-          VideoDataDtoCopyWith<$R, VideoDataDto, VideoDataDto>>?
-      get results => $value.results != null
-          ? ListCopyWith($value.results!, (v, t) => v.copyWith.$chain(t),
-              (v) => call(results: v))
-          : null;
+  ListCopyWith<
+    $R,
+    VideoDataDto,
+    VideoDataDtoCopyWith<$R, VideoDataDto, VideoDataDto>
+  >?
+  get results => $value.results != null
+      ? ListCopyWith(
+          $value.results!,
+          (v, t) => v.copyWith.$chain(t),
+          (v) => call(results: v),
+        )
+      : null;
   @override
   $R call({Object? results = $none}) =>
       $apply(FieldCopyWithData({if (results != $none) #results: results}));
@@ -119,6 +139,6 @@ class _VideosDataDtoCopyWithImpl<$R, $Out>
 
   @override
   VideosDataDtoCopyWith<$R2, VideosDataDto, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _VideosDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _VideosDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
