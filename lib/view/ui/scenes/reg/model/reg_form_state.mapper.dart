@@ -21,26 +21,14 @@ class RegFormStateMapper extends ClassMapperBase<RegFormState> {
   final String id = 'RegFormState';
 
   static String _$email(RegFormState v) => v.email;
-  static const Field<RegFormState, String> _f$email = Field(
-    'email',
-    _$email,
-    opt: true,
-    def: '',
-  );
+  static const Field<RegFormState, String> _f$email =
+      Field('email', _$email, opt: true, def: '');
   static String _$password(RegFormState v) => v.password;
-  static const Field<RegFormState, String> _f$password = Field(
-    'password',
-    _$password,
-    opt: true,
-    def: '',
-  );
+  static const Field<RegFormState, String> _f$password =
+      Field('password', _$password, opt: true, def: '');
   static String _$confirmPassword(RegFormState v) => v.confirmPassword;
-  static const Field<RegFormState, String> _f$confirmPassword = Field(
-    'confirmPassword',
-    _$confirmPassword,
-    opt: true,
-    def: '',
-  );
+  static const Field<RegFormState, String> _f$confirmPassword =
+      Field('confirmPassword', _$confirmPassword, opt: true, def: '');
 
   @override
   final MappableFields<RegFormState> fields = const {
@@ -51,10 +39,9 @@ class RegFormStateMapper extends ClassMapperBase<RegFormState> {
 
   static RegFormState _instantiate(DecodingData data) {
     return RegFormState(
-      email: data.dec(_f$email),
-      password: data.dec(_f$password),
-      confirmPassword: data.dec(_f$confirmPassword),
-    );
+        email: data.dec(_f$email),
+        password: data.dec(_f$password),
+        confirmPassword: data.dec(_f$confirmPassword));
   }
 
   @override
@@ -71,43 +58,34 @@ class RegFormStateMapper extends ClassMapperBase<RegFormState> {
 
 mixin RegFormStateMappable {
   String toJsonString() {
-    return RegFormStateMapper.ensureInitialized().encodeJson<RegFormState>(
-      this as RegFormState,
-    );
+    return RegFormStateMapper.ensureInitialized()
+        .encodeJson<RegFormState>(this as RegFormState);
   }
 
   Map<String, dynamic> toJson() {
-    return RegFormStateMapper.ensureInitialized().encodeMap<RegFormState>(
-      this as RegFormState,
-    );
+    return RegFormStateMapper.ensureInitialized()
+        .encodeMap<RegFormState>(this as RegFormState);
   }
 
   RegFormStateCopyWith<RegFormState, RegFormState, RegFormState> get copyWith =>
       _RegFormStateCopyWithImpl<RegFormState, RegFormState>(
-        this as RegFormState,
-        $identity,
-        $identity,
-      );
+          this as RegFormState, $identity, $identity);
   @override
   String toString() {
-    return RegFormStateMapper.ensureInitialized().stringifyValue(
-      this as RegFormState,
-    );
+    return RegFormStateMapper.ensureInitialized()
+        .stringifyValue(this as RegFormState);
   }
 
   @override
   bool operator ==(Object other) {
-    return RegFormStateMapper.ensureInitialized().equalsValue(
-      this as RegFormState,
-      other,
-    );
+    return RegFormStateMapper.ensureInitialized()
+        .equalsValue(this as RegFormState, other);
   }
 
   @override
   int get hashCode {
-    return RegFormStateMapper.ensureInitialized().hashValue(
-      this as RegFormState,
-    );
+    return RegFormStateMapper.ensureInitialized()
+        .hashValue(this as RegFormState);
   }
 }
 
@@ -132,22 +110,20 @@ class _RegFormStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<RegFormState> $mapper =
       RegFormStateMapper.ensureInitialized();
   @override
-  $R call({String? email, String? password, String? confirmPassword}) => $apply(
-    FieldCopyWithData({
-      if (email != null) #email: email,
-      if (password != null) #password: password,
-      if (confirmPassword != null) #confirmPassword: confirmPassword,
-    }),
-  );
+  $R call({String? email, String? password, String? confirmPassword}) =>
+      $apply(FieldCopyWithData({
+        if (email != null) #email: email,
+        if (password != null) #password: password,
+        if (confirmPassword != null) #confirmPassword: confirmPassword
+      }));
   @override
   RegFormState $make(CopyWithData data) => RegFormState(
-    email: data.get(#email, or: $value.email),
-    password: data.get(#password, or: $value.password),
-    confirmPassword: data.get(#confirmPassword, or: $value.confirmPassword),
-  );
+      email: data.get(#email, or: $value.email),
+      password: data.get(#password, or: $value.password),
+      confirmPassword: data.get(#confirmPassword, or: $value.confirmPassword));
 
   @override
   RegFormStateCopyWith<$R2, RegFormState, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _RegFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _RegFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
