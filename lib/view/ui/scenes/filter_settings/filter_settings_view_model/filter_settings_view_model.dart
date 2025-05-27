@@ -82,12 +82,4 @@ abstract class FilterSettingsViewModel<F extends FilterData, G>
   void setApplyStatus() {
     state = state.copyWith(status: const ApplyFilterSettingsStatus());
   }
-
-  void setExitStatus() {
-    state = state.copyWith(status: const ExitFilterSettingsStatus());
-  }
-
-  void resetStatus() {
-    state = state.copyWith(status: const FilterSettingsBaseStatus());
-  }
 }

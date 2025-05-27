@@ -57,9 +57,3 @@ final class ApplyFilterSettingsStatus extends FilterSettingsStatus
     with ApplyFilterSettingsStatusMappable {
   const ApplyFilterSettingsStatus({super.isInitialized = false});
 }
-
-@mappableEntity
-final class ExitFilterSettingsStatus extends FilterSettingsStatus
-    with ExitFilterSettingsStatusMappable {
-  const ExitFilterSettingsStatus({super.isInitialized = false});
-}

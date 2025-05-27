@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
+import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
+import '../filter_settings_view_model/filter_settings_state.dart';
 import '../filter_settings_view_model/filter_settings_view_model.dart';
 import 'filter_settings_app_bar.dart';
 
@@ -33,6 +37,17 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
       return null;
     }, []);
 
+    vsp.handleState(
+      listener: (prev, next) {
+        if (!next.isUpdate(prev, (s) => s?.status)) return;
+
+        if (next.status is ApplyFilterSettingsStatus) {
+          final filter = vsp.selectRead((s) => s.filter);
+          // TODO: Apply filter
+        }
+      },
+    );
+
     final hasUnsavedChanges = vsp.selectWatch((s) => s.isFilterChanged);
 
     return Scaffold(
@@ -40,7 +55,14 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
         onReset: hasUnsavedChanges ? vsp.viewModel.resetFilter : null,
         onSave: hasUnsavedChanges ? vsp.viewModel.setApplyStatus : null,
       ),
-      body: Center(child: Text('FilterSettings Screen')),
+      body: PopScope(
+        onPopInvokedWithResult: (didPop, _) {
+          if (didPop) return;
+          _showExitDialog(context);
+        },
+        canPop: !hasUnsavedChanges,
+        child: Center(child: Text('FilterSettings Screen')),
+      ),
     );
   }
 
@@ -54,5 +76,12 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
       final initFilter = vspFilter.selectRead((s) => s.filter);
       vsp.viewModel.init(initFilter: initFilter);
     });
+  }
+
+  void _showExitDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => ExitDialog(onConfirm: context.pop),
+    );
   }
 }

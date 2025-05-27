@@ -5,6 +5,7 @@ import 'package:flutter_utils/ext/flutter_ext/widget/edge_insets_creator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tap_on_scroll/tap_on_scroll.dart';
 
+import '../../../../../common/utils/ext/selected_filters_handler.dart';
 import '../../../../../domain/entities/base_media/country.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
@@ -166,19 +167,11 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
   }
 
   String _getFilterSettingsDescription(F filter) {
-    final filtersCount = _getFiltersSelectedCount(filter);
+    final filtersCount = filter.getSelectedFiltersCount();
+
     return filtersCount == 0
         ? LocaleKeys.filterDescNone.tr()
         : '${LocaleKeys.filterSelectedDesc.tr()} ($filtersCount)';
-  }
-
-  int _getFiltersSelectedCount(F filter) {
-    return _getWithGenresCount(filter) +
-        _getWithoutGenresCount(filter) +
-        filter.withCountries.length +
-        (filter.year != null ? 1 : 0) +
-        (filter.includeWatched ? 0 : 1) +
-        (filter.includeWatchlist ? 0 : 1);
   }
 
   List<int> _getGenreIndexes(F filter) {
