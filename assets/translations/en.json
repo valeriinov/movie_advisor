@@ -188,6 +188,7 @@
   "emptyFilterTitle": "Sorry, No Results Found For Your Filter :(",
   "emptyFilterSubtitle": "Try  changing the filter settings.",
   "filterSortBy": "Sort",
+  "filterSettings": "Filter Settings",
   "filterWithGenres": "Include Genres",
   "filterWithoutGenres": "Exclude Genres",
   "filterWithCountries": "Include Countries",

@@ -14,6 +14,7 @@ import '../../../../../domain/entities/filter/sort_by.dart';
 import '../../../../../domain/entities/movie/movie_genre.dart';
 import '../../../../../domain/entities/series/series_genre.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../navigation/routes/home_routes.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/base_theme/buttons/base_buttons_styles_ext.dart';
 import '../../../resources/base_theme/colors/base_colors_ext.dart';
@@ -76,6 +77,12 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
                     currentSortBy: filter.sortBy,
                     onSortByChanged: viewModel.updateSortBy,
                   ),
+                ),
+                FilterButton(
+                  iconPath: AppImages.tuneIcon,
+                  title: LocaleKeys.filterSettings.tr(),
+                  subtitle: _getFilterSettingsDescription(filter),
+                  onTap: () => FilterSettingsRoute().push(context),
                 ),
                 FilterButton(
                   iconPath: AppImages.genreIcon,
@@ -156,6 +163,22 @@ class FloatingFilterBar<T extends MediaShortData, F extends FilterData, G>
         ),
       ),
     );
+  }
+
+  String _getFilterSettingsDescription(F filter) {
+    final filtersCount = _getFiltersSelectedCount(filter);
+    return filtersCount == 0
+        ? LocaleKeys.filterDescNone.tr()
+        : '${LocaleKeys.filterSelectedDesc.tr()} ($filtersCount)';
+  }
+
+  int _getFiltersSelectedCount(F filter) {
+    return _getWithGenresCount(filter) +
+        _getWithoutGenresCount(filter) +
+        filter.withCountries.length +
+        (filter.year != null ? 1 : 0) +
+        (filter.includeWatched ? 0 : 1) +
+        (filter.includeWatchlist ? 0 : 1);
   }
 
   List<int> _getGenreIndexes(F filter) {

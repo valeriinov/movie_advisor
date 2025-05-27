@@ -19,6 +19,9 @@ abstract final class AppRoutes {
   // Home/Filter
   static const String filter = 'filter';
 
+  // Home/Filter/Filter Settings
+  static const String filterSettings = '/filter-settings';
+
   // More/About Us
   static const String aboutUs = 'about-us';
 

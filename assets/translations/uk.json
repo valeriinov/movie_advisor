@@ -188,6 +188,7 @@
   "emptyFilterTitle": "Вибачте, Результатів За Вашим Фільтром Не Знайдено :(",
   "emptyFilterSubtitle": "Спробуйте змінити налаштування фільтра.",
   "filterSortBy": "Сортувати",
+  "filterSettings": "Налаштування фільтра",
   "filterWithGenres": "Включити жанри",
   "filterWithoutGenres": "Виключити жанри",
   "filterWithCountries": "Включити країни",
