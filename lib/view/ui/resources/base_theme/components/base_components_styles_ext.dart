@@ -81,6 +81,9 @@ abstract final class BaseComponentsStylesFactory {
       filterSubtTextStyle: _BaseComponentsStyles.filterSubtTextStyle(
         colors.filterSecFg,
       ),
+      filterSetActBtnTextStyle: _BaseComponentsStyles.filterSetActBtnTextStyle(
+        colors.textThemePrim,
+      ),
     );
   }
 }
@@ -211,6 +214,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final TextStyle filterSubtTextStyle;
 
+  /// TextStyle of the filter set action button.
+  @override
+  final TextStyle filterSetActBtnTextStyle;
+
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
     required this.cardPrimShape,
@@ -243,5 +250,6 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.sliderValTextStyle,
     required this.filterTitleTextStyle,
     required this.filterSubtTextStyle,
+    required this.filterSetActBtnTextStyle,
   });
 }

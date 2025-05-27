@@ -42,6 +42,7 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get sliderValTextStyle;
   TextStyle get filterTitleTextStyle;
   TextStyle get filterSubtTextStyle;
+  TextStyle get filterSetActBtnTextStyle;
 
   @override
   BaseComponentsStyles copyWith({
@@ -76,6 +77,7 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? sliderValTextStyle,
     TextStyle? filterTitleTextStyle,
     TextStyle? filterSubtTextStyle,
+    TextStyle? filterSetActBtnTextStyle,
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
@@ -122,6 +124,8 @@ mixin _$BaseComponentsStylesTailorMixin
       sliderValTextStyle: sliderValTextStyle ?? this.sliderValTextStyle,
       filterTitleTextStyle: filterTitleTextStyle ?? this.filterTitleTextStyle,
       filterSubtTextStyle: filterSubtTextStyle ?? this.filterSubtTextStyle,
+      filterSetActBtnTextStyle:
+          filterSetActBtnTextStyle ?? this.filterSetActBtnTextStyle,
     );
   }
 
@@ -239,6 +243,11 @@ mixin _$BaseComponentsStylesTailorMixin
       filterSubtTextStyle: TextStyle.lerp(
         filterSubtTextStyle,
         other.filterSubtTextStyle,
+        t,
+      )!,
+      filterSetActBtnTextStyle: TextStyle.lerp(
+        filterSetActBtnTextStyle,
+        other.filterSetActBtnTextStyle,
         t,
       )!,
     );
@@ -372,6 +381,10 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality().equals(
               filterSubtTextStyle,
               other.filterSubtTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              filterSetActBtnTextStyle,
+              other.filterSetActBtnTextStyle,
             ));
   }
 
@@ -410,6 +423,7 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(sliderValTextStyle),
       const DeepCollectionEquality().hash(filterTitleTextStyle),
       const DeepCollectionEquality().hash(filterSubtTextStyle),
+      const DeepCollectionEquality().hash(filterSetActBtnTextStyle),
     ]);
   }
 }

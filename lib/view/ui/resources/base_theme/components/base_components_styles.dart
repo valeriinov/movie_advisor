@@ -148,4 +148,12 @@ abstract final class _BaseComponentsStyles {
     fontSize: 12,
     color: color,
   );
+
+  // Filter settings
+  static TextStyle filterSetActBtnTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    color: color,
+  );
 }

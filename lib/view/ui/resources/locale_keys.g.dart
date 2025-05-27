@@ -226,5 +226,8 @@ abstract class  LocaleKeys {
   static const emptyBiographyTab = 'emptyBiographyTab';
   static const emptyMoviesTab = 'emptyMoviesTab';
   static const emptySeriesTab = 'emptySeriesTab';
+  static const filterSettingsResetBtn = 'filterSettingsResetBtn';
+  static const filterSettingsApplyBtn = 'filterSettingsApplyBtn';
+  static const filterSettingsCloseBtn = 'filterSettingsCloseBtn';
 
 }

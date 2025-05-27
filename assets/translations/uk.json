@@ -221,5 +221,8 @@
   "personSeriesTab": "Серіали",
   "emptyBiographyTab": "Біографії ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
   "emptyMoviesTab": "Фільмів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
-  "emptySeriesTab": "Серіалів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F"
+  "emptySeriesTab": "Серіалів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
+  "filterSettingsResetBtn": "Скинути",
+  "filterSettingsApplyBtn": "Застосувати",
+  "filterSettingsCloseBtn": "Закрити"
 }

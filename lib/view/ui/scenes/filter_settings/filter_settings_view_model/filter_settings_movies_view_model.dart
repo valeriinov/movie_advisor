@@ -17,7 +17,7 @@ typedef FilterSettingsMoviesVSP =
 final filterSettingsMoviesViewModelPr =
     AutoDisposeNotifierProvider<
       FilterSettingsMoviesViewModel,
-      FilterSettingsState
+      FilterSettingsMoviesState
     >(FilterSettingsMoviesViewModel.new);
 
 /// {@category StateManagement}

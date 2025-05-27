@@ -17,7 +17,7 @@ typedef FilterSettingsSeriesVSP =
 final filterSettingsSeriesViewModelPr =
     AutoDisposeNotifierProvider<
       FilterSettingsSeriesViewModel,
-      FilterSettingsState
+      FilterSettingsSeriesState
     >(FilterSettingsSeriesViewModel.new);
 
 /// {@category StateManagement}
