@@ -38,14 +38,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
     }, []);
 
     vsp.handleState(
-      listener: (prev, next) {
-        if (!next.isUpdate(prev, (s) => s?.status)) return;
-
-        if (next.status is ApplyFilterSettingsStatus) {
-          final filter = vsp.selectRead((s) => s.filter);
-          // TODO: Apply filter
-        }
-      },
+      listener: (prev, next) => _handleState(prev, next, context, vspFilter),
     );
 
     final hasUnsavedChanges = vsp.selectWatch((s) => s.isFilterChanged);
@@ -76,6 +69,22 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
       final initFilter = vspFilter.selectRead((s) => s.filter);
       vsp.viewModel.init(initFilter: initFilter);
     });
+  }
+
+  void _handleState(
+    FilterSettingsState<F>? prev,
+    FilterSettingsState<F> next,
+    BuildContext context,
+    FilterVSP vspFilter,
+  ) {
+    if (!next.isUpdate(prev, (s) => s?.status)) return;
+
+    if (next.status is ApplyFilterSettingsStatus) {
+      final filter = next.filter;
+      vspFilter.viewModel.updateFilter(filter);
+
+      context.pop();
+    }
   }
 
   void _showExitDialog(BuildContext context) {

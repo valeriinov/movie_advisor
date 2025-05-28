@@ -178,6 +178,16 @@ abstract base class FilterViewModel<
     _loadFilterResult();
   }
 
+  void updateFilter(F filter) {
+    _updateStatus(FilterBaseInitStatus(isLoading: true));
+
+    state = state.copyWith(filter: filter);
+
+    _saveFilter();
+
+    _loadFilterResult();
+  }
+
   void updateWithCountries(List<Country> withCountries) {
     _updateStatus(FilterBaseInitStatus(isLoading: true));
 
