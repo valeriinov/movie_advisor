@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -5,13 +6,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
+import '../../../../../domain/entities/filter/movies_filter_data.dart';
+import '../../../../../domain/entities/filter/series_filter_data.dart';
+import '../../../../../domain/entities/movie/movie_genre.dart';
+import '../../../../../domain/entities/series/series_genre.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
 import '../filter_settings_view_model/filter_settings_state.dart';
 import '../filter_settings_view_model/filter_settings_view_model.dart';
+import 'filter_genres_container.dart';
 import 'filter_settings_app_bar.dart';
 
 class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
@@ -30,6 +37,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
   @override
   Widget build(context, ref) {
     final vsp = ref.vspFromADProvider(filterSettingsProvider);
+    final viewModel = vsp.viewModel;
     final vspFilter = ref.vspFromADProvider(filterProvider);
 
     useEffect(() {
@@ -42,11 +50,12 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
     );
 
     final hasUnsavedChanges = vsp.selectWatch((s) => s.isFilterChanged);
+    final filter = vsp.selectWatch((s) => s.filter);
 
     return Scaffold(
       appBar: FilterSettingsAppBar(
-        onReset: hasUnsavedChanges ? vsp.viewModel.resetFilter : null,
-        onSave: hasUnsavedChanges ? vsp.viewModel.setApplyStatus : null,
+        onReset: hasUnsavedChanges ? viewModel.resetFilter : null,
+        onSave: hasUnsavedChanges ? viewModel.setApplyStatus : null,
       ),
       body: PopScope(
         onPopInvokedWithResult: (didPop, _) {
@@ -54,7 +63,25 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
           _showExitDialog(context);
         },
         canPop: !hasUnsavedChanges,
-        child: Center(child: Text('FilterSettings Screen')),
+        child: CustomScrollView(
+          slivers: [
+            FilterGenresContainer(
+              title: LocaleKeys.filterWithGenres.tr(),
+              contentMode: contentMode,
+              selectedGenreIds: _getSelectedGenreIndexes(filter),
+              onTapGenre: (i) => _updateWithGenres(vsp, i),
+            ),
+            FilterGenresContainer(
+              title: LocaleKeys.filterWithoutGenres.tr(),
+              contentMode: contentMode,
+              selectedGenreIds: _getSelectedGenreIndexes(
+                filter,
+                withGenres: false,
+              ),
+              onTapGenre: (i) => _updateWithoutGenres(vsp, i),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -92,5 +119,38 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
       context: context,
       builder: (_) => ExitDialog(onConfirm: context.pop),
     );
+  }
+
+  List<int> _getSelectedGenreIndexes(F filter, {bool withGenres = true}) {
+    return switch (filter) {
+      MoviesFilterData() =>
+        withGenres
+            ? filter.withGenres.map((e) => e.index)
+            : filter.withoutGenres.map((e) => e.index),
+      SeriesFilterData() =>
+        withGenres
+            ? filter.withGenres.map((e) => e.index)
+            : filter.withoutGenres.map((e) => e.index),
+      _ => <int>[],
+    }.toList();
+  }
+
+  void _updateWithGenres(FilterSettingsVSP vsp, int index) {
+    final genre = _getGenreFromIndex(index);
+
+    vsp.viewModel.updateWithGenres(genre);
+  }
+
+  void _updateWithoutGenres(FilterSettingsVSP vsp, int index) {
+    final genre = _getGenreFromIndex(index);
+
+    vsp.viewModel.updateWithoutGenres(genre);
+  }
+
+  G _getGenreFromIndex(int index) {
+    return switch (contentMode) {
+      ContentMode.movies => MovieGenre.fromIndex(index) as G,
+      ContentMode.series => SeriesGenre.fromIndex(index) as G,
+    };
   }
 }
