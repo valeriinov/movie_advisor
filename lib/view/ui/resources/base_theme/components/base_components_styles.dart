@@ -78,6 +78,13 @@ abstract final class _BaseComponentsStyles {
     color: color,
   );
 
+  // Checkbox
+  static OutlinedBorder checkboxPrimShape(Color borderColor) =>
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+        side: BorderSide(color: borderColor),
+      );
+
   // Poster and backdrop
   static const double posterBorderRadius = 16.0;
   static const double backdrBorderRadius = 16.0;

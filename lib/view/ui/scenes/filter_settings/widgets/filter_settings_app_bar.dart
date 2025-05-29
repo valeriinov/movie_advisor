@@ -30,17 +30,21 @@ class FilterSettingsAppBar extends StatelessWidget
   }
 
   Widget _buildResetButton(BuildContext context) {
+    final durations = context.baseDurations;
     final styles = context.baseComponentsStyles;
 
-    return onReset != null
-        ? TextButton(
-            onPressed: onReset,
-            child: Text(
-              LocaleKeys.filterSettingsResetBtn.tr(),
-              style: styles.filterSetActBtnTextStyle,
-            ),
-          )
-        : SizedBox();
+    return AnimatedSwitcher(
+      duration: durations.animSwitchPrim,
+      child: onReset != null
+          ? TextButton(
+              onPressed: onReset,
+              child: Text(
+                LocaleKeys.filterSettingsResetBtn.tr(),
+                style: styles.filterSetActBtnTextStyle,
+              ),
+            )
+          : SizedBox(),
+    );
   }
 
   Widget _buildSaveButton(BuildContext context) {

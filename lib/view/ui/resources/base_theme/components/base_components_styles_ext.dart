@@ -50,6 +50,9 @@ abstract final class BaseComponentsStylesFactory {
       expTileSubtTextStyle: _BaseComponentsStyles.expTileSubtTextStyle(
         colors.textThemeSec,
       ),
+      checkboxPrimShape: _BaseComponentsStyles.checkboxPrimShape(
+        colors.checkboxPrimBorder,
+      ),
       posterBorderRadius: _BaseComponentsStyles.posterBorderRadius,
       backdrBorderRadius: _BaseComponentsStyles.backdrBorderRadius,
       posterSmallSize: _BaseComponentsStyles.posterSmallSize,
@@ -90,7 +93,7 @@ abstract final class BaseComponentsStylesFactory {
         colors.filterSecFg,
       ),
       filterSetActBtnTextStyle: _BaseComponentsStyles.filterSetActBtnTextStyle(
-        colors.textThemePrim,
+        colors.btnTextPrimFg,
       ),
     );
   }
@@ -154,6 +157,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   /// TextStyle of the ExpansionTile subtitle.
   @override
   final TextStyle expTileSubtTextStyle;
+
+  /// BorderRadius of the primary checkbox.
+  @override
+  final OutlinedBorder checkboxPrimShape;
 
   /// BorderRadius of the poster.
   @override
@@ -257,6 +264,7 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.expTileShape,
     required this.expTileTitleTextStyle,
     required this.expTileSubtTextStyle,
+    required this.checkboxPrimShape,
     required this.posterBorderRadius,
     required this.backdrBorderRadius,
     required this.posterSmallSize,

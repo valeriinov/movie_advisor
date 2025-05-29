@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -9,6 +10,7 @@ import '../../../resources/base_theme/components/base_components_styles_ext.dart
 import '../../../resources/ext/movie_genre_desc.dart';
 import '../../../resources/ext/series_genre_desc.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/filter_checkbox_list_tile.dart';
 
 class FilterGenresContainer extends HookWidget {
   final String title;
@@ -34,15 +36,26 @@ class FilterGenresContainer extends HookWidget {
       title: Text(title, style: styles.expTileTitleTextStyle),
       subtitle: Text(_getSubtitle(), style: styles.expTileSubtTextStyle),
       children: descriptions
-          .map((desc) => ListTile(title: Text(desc)))
+          .mapIndexed(
+            (i, desc) => FilterCheckboxListTile(
+              label: desc,
+              value: selectedGenreIds.contains(i),
+              onChanged: (index) {
+                if (index == null) return;
+                onTapGenre(i);
+              },
+            ),
+          )
           .toList(),
     );
   }
 
   List<String> _getGenreDescriptions() {
     return switch (contentMode) {
-      ContentMode.movies => MovieGenre.values.map((e) => e.desc).toList(),
-      ContentMode.series => SeriesGenre.values.map((e) => e.desc).toList(),
+      ContentMode.movies =>
+        MovieGenre.valuesWithoutNone.map((e) => e.desc).toList(),
+      ContentMode.series =>
+        SeriesGenre.valuesWithoutNone.map((e) => e.desc).toList(),
     };
   }
 

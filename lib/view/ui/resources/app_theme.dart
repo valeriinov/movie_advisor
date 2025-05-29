@@ -59,6 +59,7 @@ class AppTheme {
       iconButtonTheme: _createIconButtonTheme(buttonsStyles),
       listTileTheme: _createListTileTheme(componentsStyles),
       expansionTileTheme: _createExpansionTileTheme(colors, componentsStyles),
+      checkboxTheme: _createCheckboxTheme(colors, componentsStyles),
       radioTheme: _createRadioTheme(colors),
       cardTheme: _createCardTheme(colors, componentsStyles),
       iconTheme: _createIconTheme(colors),
@@ -169,6 +170,16 @@ class AppTheme {
       tilePadding: styles.expTilePadding,
       shape: styles.expTileShape,
       collapsedShape: styles.expTileShape,
+    );
+  }
+
+  CheckboxThemeData _createCheckboxTheme(
+    BaseColors colors,
+    BaseComponentsStyles styles,
+  ) {
+    return CheckboxThemeData(
+      fillColor: WidgetStateResolver(selected: colors.checkboxPrimFillSelect),
+      shape: styles.checkboxPrimShape,
     );
   }
 

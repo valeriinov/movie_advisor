@@ -25,6 +25,7 @@ mixin _$BaseComponentsStylesTailorMixin
   ShapeBorder get expTileShape;
   TextStyle get expTileTitleTextStyle;
   TextStyle get expTileSubtTextStyle;
+  OutlinedBorder get checkboxPrimShape;
   double get posterBorderRadius;
   double get backdrBorderRadius;
   Size get posterSmallSize;
@@ -64,6 +65,7 @@ mixin _$BaseComponentsStylesTailorMixin
     ShapeBorder? expTileShape,
     TextStyle? expTileTitleTextStyle,
     TextStyle? expTileSubtTextStyle,
+    OutlinedBorder? checkboxPrimShape,
     double? posterBorderRadius,
     double? backdrBorderRadius,
     Size? posterSmallSize,
@@ -110,6 +112,7 @@ mixin _$BaseComponentsStylesTailorMixin
       expTileTitleTextStyle:
           expTileTitleTextStyle ?? this.expTileTitleTextStyle,
       expTileSubtTextStyle: expTileSubtTextStyle ?? this.expTileSubtTextStyle,
+      checkboxPrimShape: checkboxPrimShape ?? this.checkboxPrimShape,
       posterBorderRadius: posterBorderRadius ?? this.posterBorderRadius,
       backdrBorderRadius: backdrBorderRadius ?? this.backdrBorderRadius,
       posterSmallSize: posterSmallSize ?? this.posterSmallSize,
@@ -203,6 +206,7 @@ mixin _$BaseComponentsStylesTailorMixin
         other.expTileSubtTextStyle,
         t,
       )!,
+      checkboxPrimShape: t < 0.5 ? checkboxPrimShape : other.checkboxPrimShape,
       posterBorderRadius: t < 0.5
           ? posterBorderRadius
           : other.posterBorderRadius,
@@ -340,6 +344,10 @@ mixin _$BaseComponentsStylesTailorMixin
               other.expTileSubtTextStyle,
             ) &&
             const DeepCollectionEquality().equals(
+              checkboxPrimShape,
+              other.checkboxPrimShape,
+            ) &&
+            const DeepCollectionEquality().equals(
               posterBorderRadius,
               other.posterBorderRadius,
             ) &&
@@ -447,6 +455,7 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(expTileShape),
       const DeepCollectionEquality().hash(expTileTitleTextStyle),
       const DeepCollectionEquality().hash(expTileSubtTextStyle),
+      const DeepCollectionEquality().hash(checkboxPrimShape),
       const DeepCollectionEquality().hash(posterBorderRadius),
       const DeepCollectionEquality().hash(backdrBorderRadius),
       const DeepCollectionEquality().hash(posterSmallSize),
