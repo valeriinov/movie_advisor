@@ -229,5 +229,7 @@ abstract class  LocaleKeys {
   static const filterSettingsResetBtn = 'filterSettingsResetBtn';
   static const filterSettingsApplyBtn = 'filterSettingsApplyBtn';
   static const filterSettingsCloseBtn = 'filterSettingsCloseBtn';
+  static const filterFromYear = 'filterFromYear';
+  static const filterToYear = 'filterToYear';
 
 }

@@ -224,5 +224,7 @@
   "emptySeriesTab": "No series yet. Stay tuned! \uD83C\uDF7F",
   "filterSettingsResetBtn": "Reset",
   "filterSettingsApplyBtn": "Apply",
-  "filterSettingsCloseBtn": "Close"
+  "filterSettingsCloseBtn": "Close",
+  "filterFromYear": "From: ",
+  "filterToYear": "to: "
 }

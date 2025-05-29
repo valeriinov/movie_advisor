@@ -224,5 +224,7 @@
   "emptySeriesTab": "Серіалів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
   "filterSettingsResetBtn": "Скинути",
   "filterSettingsApplyBtn": "Застосувати",
-  "filterSettingsCloseBtn": "Закрити"
+  "filterSettingsCloseBtn": "Закрити",
+  "filterFromYear": "З:",
+  "filterToYear": "до:"
 }

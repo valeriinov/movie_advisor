@@ -79,6 +79,18 @@ abstract class FilterSettingsViewModel<F extends FilterData, G>
     state = state.copyWith(filter: filter);
   }
 
+  void updateFromDate(DateTime? fromDate) {
+    final filter = state.filter.copyWith(fromDate: fromDate) as F;
+
+    state = state.copyWith(filter: filter);
+  }
+
+  void updateToDate(DateTime? toDate) {
+    final filter = state.filter.copyWith(toDate: toDate) as F;
+
+    state = state.copyWith(filter: filter);
+  }
+
   void setApplyStatus() {
     state = state.copyWith(status: const ApplyFilterSettingsStatus());
   }

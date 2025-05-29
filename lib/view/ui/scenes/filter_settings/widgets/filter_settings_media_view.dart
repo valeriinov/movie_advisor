@@ -20,6 +20,7 @@ import '../../filter/filter_view_model/filter_view_model.dart';
 import '../filter_settings_view_model/filter_settings_state.dart';
 import '../filter_settings_view_model/filter_settings_view_model.dart';
 import 'filter_countries_container.dart';
+import 'filter_dates_container.dart';
 import 'filter_genres_container.dart';
 import 'filter_settings_app_bar.dart';
 import 'filter_user_lists_container.dart';
@@ -69,14 +70,14 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
         child: ListView(
           padding: _createScrPadding(context),
           children: [
-            Divider(),
+            _divider(),
             FilterGenresContainer(
               title: LocaleKeys.filterWithGenres.tr(),
               contentMode: contentMode,
               selectedGenreIds: _getSelectedGenreIndexes(filter),
               onTapGenre: (i) => _updateWithGenres(vsp, i),
             ),
-            Divider(),
+            _divider(),
             FilterGenresContainer(
               title: LocaleKeys.filterWithoutGenres.tr(),
               contentMode: contentMode,
@@ -86,23 +87,34 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               ),
               onTapGenre: (i) => _updateWithoutGenres(vsp, i),
             ),
-            Divider(),
+            _divider(),
             FilterCountriesContainer(
               selectedCountries: filter.withCountries,
               onTapCountry: viewModel.updateWithCountries,
             ),
-            Divider(),
+            _divider(),
             FilterUserListsContainer(
               includeWatched: filter.includeWatched,
               includeWatchlist: filter.includeWatchlist,
               onTapIncludeWatched: viewModel.updateIncludeWatched,
               onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
             ),
-            Divider(),
+            _divider(),
+            FilterDatesContainer(
+              fromDate: filter.fromDate,
+              toDate: filter.toDate,
+              onFromDateChanged: viewModel.updateFromDate,
+              onToDateChanged: viewModel.updateToDate,
+            ),
+            _divider(),
           ],
         ),
       ),
     );
+  }
+
+  Widget _divider() {
+    return const Divider(height: 1);
   }
 
   EdgeInsets _createScrPadding(BuildContext context) {
