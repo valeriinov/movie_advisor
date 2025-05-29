@@ -21,6 +21,10 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get listTileSecTitleTextStyleSelect;
   TextStyle get listTileSecSubtTextStyleSelect;
   TextStyle get avatarPrimTextStyle;
+  EdgeInsets get expTilePadding;
+  ShapeBorder get expTileShape;
+  TextStyle get expTileTitleTextStyle;
+  TextStyle get expTileSubtTextStyle;
   double get posterBorderRadius;
   double get backdrBorderRadius;
   Size get posterSmallSize;
@@ -56,6 +60,10 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? listTileSecTitleTextStyleSelect,
     TextStyle? listTileSecSubtTextStyleSelect,
     TextStyle? avatarPrimTextStyle,
+    EdgeInsets? expTilePadding,
+    ShapeBorder? expTileShape,
+    TextStyle? expTileTitleTextStyle,
+    TextStyle? expTileSubtTextStyle,
     double? posterBorderRadius,
     double? backdrBorderRadius,
     Size? posterSmallSize,
@@ -97,6 +105,11 @@ mixin _$BaseComponentsStylesTailorMixin
       listTileSecSubtTextStyleSelect:
           listTileSecSubtTextStyleSelect ?? this.listTileSecSubtTextStyleSelect,
       avatarPrimTextStyle: avatarPrimTextStyle ?? this.avatarPrimTextStyle,
+      expTilePadding: expTilePadding ?? this.expTilePadding,
+      expTileShape: expTileShape ?? this.expTileShape,
+      expTileTitleTextStyle:
+          expTileTitleTextStyle ?? this.expTileTitleTextStyle,
+      expTileSubtTextStyle: expTileSubtTextStyle ?? this.expTileSubtTextStyle,
       posterBorderRadius: posterBorderRadius ?? this.posterBorderRadius,
       backdrBorderRadius: backdrBorderRadius ?? this.backdrBorderRadius,
       posterSmallSize: posterSmallSize ?? this.posterSmallSize,
@@ -176,6 +189,18 @@ mixin _$BaseComponentsStylesTailorMixin
       avatarPrimTextStyle: TextStyle.lerp(
         avatarPrimTextStyle,
         other.avatarPrimTextStyle,
+        t,
+      )!,
+      expTilePadding: t < 0.5 ? expTilePadding : other.expTilePadding,
+      expTileShape: t < 0.5 ? expTileShape : other.expTileShape,
+      expTileTitleTextStyle: TextStyle.lerp(
+        expTileTitleTextStyle,
+        other.expTileTitleTextStyle,
+        t,
+      )!,
+      expTileSubtTextStyle: TextStyle.lerp(
+        expTileSubtTextStyle,
+        other.expTileSubtTextStyle,
         t,
       )!,
       posterBorderRadius: t < 0.5
@@ -299,6 +324,22 @@ mixin _$BaseComponentsStylesTailorMixin
               other.avatarPrimTextStyle,
             ) &&
             const DeepCollectionEquality().equals(
+              expTilePadding,
+              other.expTilePadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expTileShape,
+              other.expTileShape,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expTileTitleTextStyle,
+              other.expTileTitleTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expTileSubtTextStyle,
+              other.expTileSubtTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
               posterBorderRadius,
               other.posterBorderRadius,
             ) &&
@@ -402,6 +443,10 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(listTileSecTitleTextStyleSelect),
       const DeepCollectionEquality().hash(listTileSecSubtTextStyleSelect),
       const DeepCollectionEquality().hash(avatarPrimTextStyle),
+      const DeepCollectionEquality().hash(expTilePadding),
+      const DeepCollectionEquality().hash(expTileShape),
+      const DeepCollectionEquality().hash(expTileTitleTextStyle),
+      const DeepCollectionEquality().hash(expTileSubtTextStyle),
       const DeepCollectionEquality().hash(posterBorderRadius),
       const DeepCollectionEquality().hash(backdrBorderRadius),
       const DeepCollectionEquality().hash(posterSmallSize),

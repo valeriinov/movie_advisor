@@ -42,6 +42,14 @@ abstract final class BaseComponentsStylesFactory {
       avatarPrimTextStyle: _BaseComponentsStyles.avatarPrimTextStyle(
         colors.avatarPrimFg,
       ),
+      expTilePadding: _BaseComponentsStyles.expTilePadding,
+      expTileShape: _BaseComponentsStyles.expTileShape,
+      expTileTitleTextStyle: _BaseComponentsStyles.expTileTitleTextStyle(
+        colors.textThemeSec,
+      ),
+      expTileSubtTextStyle: _BaseComponentsStyles.expTileSubtTextStyle(
+        colors.textThemeSec,
+      ),
       posterBorderRadius: _BaseComponentsStyles.posterBorderRadius,
       backdrBorderRadius: _BaseComponentsStyles.backdrBorderRadius,
       posterSmallSize: _BaseComponentsStyles.posterSmallSize,
@@ -130,6 +138,22 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   /// Primary TextStyle of the avatar.
   @override
   final TextStyle avatarPrimTextStyle;
+
+  /// Padding of the ExpansionTile.
+  @override
+  final EdgeInsets expTilePadding;
+
+  /// ShapeBorder of the ExpansionTile.
+  @override
+  final ShapeBorder expTileShape;
+
+  /// TextStyle of the ExpansionTile title.
+  @override
+  final TextStyle expTileTitleTextStyle;
+
+  /// TextStyle of the ExpansionTile subtitle.
+  @override
+  final TextStyle expTileSubtTextStyle;
 
   /// BorderRadius of the poster.
   @override
@@ -229,6 +253,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.listTileSecTitleTextStyleSelect,
     required this.listTileSecSubtTextStyleSelect,
     required this.avatarPrimTextStyle,
+    required this.expTilePadding,
+    required this.expTileShape,
+    required this.expTileTitleTextStyle,
+    required this.expTileSubtTextStyle,
     required this.posterBorderRadius,
     required this.backdrBorderRadius,
     required this.posterSmallSize,

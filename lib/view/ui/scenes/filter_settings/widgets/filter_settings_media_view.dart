@@ -13,6 +13,7 @@ import '../../../../../domain/entities/series/series_genre.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
@@ -63,14 +64,17 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
           _showExitDialog(context);
         },
         canPop: !hasUnsavedChanges,
-        child: CustomScrollView(
-          slivers: [
+        child: ListView(
+          padding: _createScrPadding(context),
+          children: [
+            Divider(),
             FilterGenresContainer(
               title: LocaleKeys.filterWithGenres.tr(),
               contentMode: contentMode,
               selectedGenreIds: _getSelectedGenreIndexes(filter),
               onTapGenre: (i) => _updateWithGenres(vsp, i),
             ),
+            Divider(),
             FilterGenresContainer(
               title: LocaleKeys.filterWithoutGenres.tr(),
               contentMode: contentMode,
@@ -80,10 +84,16 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               ),
               onTapGenre: (i) => _updateWithoutGenres(vsp, i),
             ),
+            Divider(),
           ],
         ),
       ),
     );
+  }
+
+  EdgeInsets _createScrPadding(BuildContext context) {
+    final dimens = context.baseDimens;
+    return EdgeInsets.fromLTRB(0, dimens.padTopPrim, 0, dimens.padBotPrim);
   }
 
   void _scheduleInitFilter(

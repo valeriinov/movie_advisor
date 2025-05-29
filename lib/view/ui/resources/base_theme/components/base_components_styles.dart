@@ -56,6 +56,28 @@ abstract final class _BaseComponentsStyles {
 
   static TextStyle avatarPrimTextStyle(Color color) => TextStyle(color: color);
 
+  // Expansion tile
+  static const EdgeInsets expTilePadding = EdgeInsets.fromLTRB(16, 0, 16, 0);
+
+  static const ShapeBorder expTileShape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.zero,
+  );
+
+  static TextStyle expTileTitleTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    height: 22 / 16,
+    color: color,
+  );
+
+  static TextStyle expTileSubtTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: color,
+  );
+
   // Poster and backdrop
   static const double posterBorderRadius = 16.0;
   static const double backdrBorderRadius = 16.0;
