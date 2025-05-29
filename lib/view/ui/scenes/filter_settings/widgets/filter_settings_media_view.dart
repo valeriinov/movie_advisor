@@ -22,6 +22,7 @@ import '../filter_settings_view_model/filter_settings_view_model.dart';
 import 'filter_countries_container.dart';
 import 'filter_genres_container.dart';
 import 'filter_settings_app_bar.dart';
+import 'filter_user_lists_container.dart';
 
 class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
     extends HookConsumerWidget {
@@ -88,7 +89,14 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
             Divider(),
             FilterCountriesContainer(
               selectedCountries: filter.withCountries,
-              onTapCountry: vsp.viewModel.updateWithCountries,
+              onTapCountry: viewModel.updateWithCountries,
+            ),
+            Divider(),
+            FilterUserListsContainer(
+              includeWatched: filter.includeWatched,
+              includeWatchlist: filter.includeWatchlist,
+              onTapIncludeWatched: viewModel.updateIncludeWatched,
+              onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
             ),
             Divider(),
           ],
