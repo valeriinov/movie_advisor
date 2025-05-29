@@ -15,6 +15,8 @@ class MoviesFilterDataDto with MoviesFilterDataDtoMappable {
   final List<MovieGenreDto>? withoutGenres;
   final bool? includeWatched;
   final bool? includeWatchlist;
+  final DateTime? fromDate;
+  final DateTime? toDate;
 
   const MoviesFilterDataDto({
     this.year,
@@ -24,6 +26,8 @@ class MoviesFilterDataDto with MoviesFilterDataDtoMappable {
     this.withoutGenres,
     this.includeWatched,
     this.includeWatchlist,
+    this.fromDate,
+    this.toDate,
   });
 
   factory MoviesFilterDataDto.fromJson(Map<String, dynamic> json) =>

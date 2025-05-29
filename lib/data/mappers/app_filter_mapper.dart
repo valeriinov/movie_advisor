@@ -21,6 +21,8 @@ final class AppFilterMapper extends AppMapper {
       withoutGenres: dto.withoutGenres.toDomain(),
       includeWatchlist: dto.includeWatchlist ?? true,
       includeWatched: dto.includeWatched ?? true,
+      fromDate: dto.fromDate,
+      toDate: dto.toDate,
     );
   }
 
@@ -33,6 +35,8 @@ final class AppFilterMapper extends AppMapper {
       withoutGenres: data.withoutGenres.toDto(),
       includeWatchlist: data.includeWatchlist,
       includeWatched: data.includeWatched,
+      fromDate: data.fromDate,
+      toDate: data.toDate,
     );
   }
 
@@ -47,6 +51,8 @@ final class AppFilterMapper extends AppMapper {
       withoutGenres: dto.withoutGenres.toDomain(),
       includeWatchlist: dto.includeWatchlist ?? true,
       includeWatched: dto.includeWatched ?? true,
+      fromDate: dto.fromDate,
+      toDate: dto.toDate,
     );
   }
 
@@ -59,6 +65,8 @@ final class AppFilterMapper extends AppMapper {
       withoutGenres: data.withoutGenres.toDto(),
       includeWatchlist: data.includeWatchlist,
       includeWatched: data.includeWatched,
+      fromDate: data.fromDate,
+      toDate: data.toDate,
     );
   }
 
