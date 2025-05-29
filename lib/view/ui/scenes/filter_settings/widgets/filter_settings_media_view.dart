@@ -19,6 +19,7 @@ import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
 import '../filter_settings_view_model/filter_settings_state.dart';
 import '../filter_settings_view_model/filter_settings_view_model.dart';
+import 'filter_countries_container.dart';
 import 'filter_genres_container.dart';
 import 'filter_settings_app_bar.dart';
 
@@ -83,6 +84,11 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
                 withGenres: false,
               ),
               onTapGenre: (i) => _updateWithoutGenres(vsp, i),
+            ),
+            Divider(),
+            FilterCountriesContainer(
+              selectedCountries: filter.withCountries,
+              onTapCountry: vsp.viewModel.updateWithCountries,
             ),
             Divider(),
           ],
