@@ -3,13 +3,15 @@ import '../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../domain/entities/filter/series_filter_data.dart';
 
 extension SelectedFiltersHandler on FilterData {
-  int getSelectedFiltersCount() {
+  int? getSelectedFiltersCount() {
     return _getWithGenresCount() +
         _getWithoutGenresCount() +
         withCountries.length +
         (year != null ? 1 : 0) +
         (includeWatched ? 0 : 1) +
-        (includeWatchlist ? 0 : 1);
+        (includeWatchlist ? 0 : 1) +
+        (fromDate != null ? 1 : 0) +
+        (toDate != null ? 1 : 0);
   }
 
   int _getWithGenresCount() {
