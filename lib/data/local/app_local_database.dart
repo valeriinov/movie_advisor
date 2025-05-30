@@ -48,7 +48,10 @@ class AppLocalDatabase extends _$AppLocalDatabase {
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: _onCreate,
-    onUpgrade: stepByStep(from1To2: _migrateFrom1To2),
+    onUpgrade: stepByStep(
+      from1To2: _migrateFrom1To2,
+      from2To3: _migrateFrom2To3,
+    ),
   );
 
   Future<void> _onCreate(Migrator m) async {
@@ -71,6 +74,28 @@ class AppLocalDatabase extends _$AppLocalDatabase {
     await m.addColumn(
       schema.seriesFilterTable,
       schema.seriesFilterTable.includeWatchlist,
+    );
+  }
+
+  Future<void> _migrateFrom2To3(Migrator m, Schema3 schema) async {
+    await m.dropColumn(schema.moviesFilterTable, 'year');
+    await m.addColumn(
+      schema.moviesFilterTable,
+      schema.moviesFilterTable.fromDate,
+    );
+    await m.addColumn(
+      schema.moviesFilterTable,
+      schema.moviesFilterTable.toDate,
+    );
+
+    await m.dropColumn(schema.seriesFilterTable, 'year');
+    await m.addColumn(
+      schema.seriesFilterTable,
+      schema.seriesFilterTable.fromDate,
+    );
+    await m.addColumn(
+      schema.seriesFilterTable,
+      schema.seriesFilterTable.toDate,
     );
   }
 }
