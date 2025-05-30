@@ -52,11 +52,13 @@ class MoviesFilterDataDtoMapper extends ClassMapperBase<MoviesFilterDataDto> {
       'includeWatchlist', _$includeWatchlist,
       key: r'include_watchlist', opt: true);
   static DateTime? _$fromDate(MoviesFilterDataDto v) => v.fromDate;
-  static const Field<MoviesFilterDataDto, DateTime> _f$fromDate =
-      Field('fromDate', _$fromDate, key: r'from_date', opt: true);
+  static const Field<MoviesFilterDataDto, DateTime> _f$fromDate = Field(
+      'fromDate', _$fromDate,
+      key: r'from_date', opt: true, hook: DateMapperHook());
   static DateTime? _$toDate(MoviesFilterDataDto v) => v.toDate;
-  static const Field<MoviesFilterDataDto, DateTime> _f$toDate =
-      Field('toDate', _$toDate, key: r'to_date', opt: true);
+  static const Field<MoviesFilterDataDto, DateTime> _f$toDate = Field(
+      'toDate', _$toDate,
+      key: r'to_date', opt: true, hook: DateMapperHook());
 
   @override
   final MappableFields<MoviesFilterDataDto> fields = const {

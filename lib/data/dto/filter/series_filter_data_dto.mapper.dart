@@ -52,11 +52,13 @@ class SeriesFilterDataDtoMapper extends ClassMapperBase<SeriesFilterDataDto> {
       'includeWatchlist', _$includeWatchlist,
       key: r'include_watchlist', opt: true);
   static DateTime? _$fromDate(SeriesFilterDataDto v) => v.fromDate;
-  static const Field<SeriesFilterDataDto, DateTime> _f$fromDate =
-      Field('fromDate', _$fromDate, key: r'from_date', opt: true);
+  static const Field<SeriesFilterDataDto, DateTime> _f$fromDate = Field(
+      'fromDate', _$fromDate,
+      key: r'from_date', opt: true, hook: DateMapperHook());
   static DateTime? _$toDate(SeriesFilterDataDto v) => v.toDate;
-  static const Field<SeriesFilterDataDto, DateTime> _f$toDate =
-      Field('toDate', _$toDate, key: r'to_date', opt: true);
+  static const Field<SeriesFilterDataDto, DateTime> _f$toDate = Field(
+      'toDate', _$toDate,
+      key: r'to_date', opt: true, hook: DateMapperHook());
 
   @override
   final MappableFields<SeriesFilterDataDto> fields = const {
