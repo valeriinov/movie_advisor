@@ -201,6 +201,8 @@
   "withoutGenresDialog": "Exclude Genres",
   "withCountriesDialog": "Include Countries",
   "selectYearDialog": "Premiere Year",
+  "selectYearFromDialog": "Premiere Year From",
+  "selectYearToDialog": "Premiere Year To",
   "sortByDialog": "Sort by",
   "includeYourListsDialog": "Include your lists",
   "includeWatchedDesc": "Include watched",
@@ -225,6 +227,6 @@
   "filterSettingsResetBtn": "Reset",
   "filterSettingsApplyBtn": "Apply",
   "filterSettingsCloseBtn": "Close",
-  "filterFromYear": "From: ",
-  "filterToYear": "to: "
+  "filterFromYear": "From:",
+  "filterToYear": "to"
 }

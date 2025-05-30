@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
-import 'filter_control_buttons.dart';
+import '../../../widgets/filter_control_buttons.dart';
 
 class FilterYearPicker extends HookWidget {
   static const int _minYear = 1900;

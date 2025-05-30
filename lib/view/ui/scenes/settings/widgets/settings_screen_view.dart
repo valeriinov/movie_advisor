@@ -7,7 +7,7 @@ import '../../../resources/base_theme/colors/base_colors_ext.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
-import '../../../widgets/blurred_bottom_sheet.dart';
+import '../../../widgets/bottom_sheet/blurred_bottom_sheet.dart';
 import '../../../widgets/no_always_scroll_wrapper.dart';
 import '../../../widgets/language_bottom_sheet.dart';
 

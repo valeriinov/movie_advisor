@@ -12,7 +12,7 @@ import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
-import '../../../widgets/blurred_bottom_sheet.dart';
+import '../../../widgets/bottom_sheet/blurred_bottom_sheet.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../details_view_model/details_state.dart';

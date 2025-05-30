@@ -201,6 +201,8 @@
   "withoutGenresDialog": "Виключити жанри",
   "withCountriesDialog": "Включити країни",
   "selectYearDialog": "Рік випуску",
+  "selectYearFromDialog": "Рік випуску з",
+  "selectYearToDialog": "Рік випуску по",
   "sortByDialog": "Сортувати за",
   "includeYourListsDialog": "Включити ваші списки",
   "includeWatchedDesc": "Включити переглянуті",
@@ -226,5 +228,5 @@
   "filterSettingsApplyBtn": "Застосувати",
   "filterSettingsCloseBtn": "Закрити",
   "filterFromYear": "З:",
-  "filterToYear": "до:"
+  "filterToYear": "до"
 }

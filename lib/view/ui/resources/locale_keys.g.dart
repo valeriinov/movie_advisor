@@ -205,6 +205,8 @@ abstract class  LocaleKeys {
   static const withoutGenresDialog = 'withoutGenresDialog';
   static const withCountriesDialog = 'withCountriesDialog';
   static const selectYearDialog = 'selectYearDialog';
+  static const selectYearFromDialog = 'selectYearFromDialog';
+  static const selectYearToDialog = 'selectYearToDialog';
   static const sortByDialog = 'sortByDialog';
   static const includeYourListsDialog = 'includeYourListsDialog';
   static const includeWatchedDesc = 'includeWatchedDesc';
