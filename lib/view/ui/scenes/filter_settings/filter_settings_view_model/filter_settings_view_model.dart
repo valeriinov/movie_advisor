@@ -42,9 +42,7 @@ abstract class FilterSettingsViewModel<F extends FilterData, G>
     extends AutoDisposeNotifier<FilterSettingsState<F>> {
   void init({required F initFilter});
 
-  void resetFilter() {
-    state = state.copyWith(filter: state.initFilter);
-  }
+  void resetFilter();
 
   void updateWithGenres(G genre);
 

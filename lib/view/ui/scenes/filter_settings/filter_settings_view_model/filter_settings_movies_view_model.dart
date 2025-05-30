@@ -38,6 +38,13 @@ final class FilterSettingsMoviesViewModel
   }
 
   @override
+  void resetFilter() {
+    state = state.copyWith(
+      filter: MoviesFilterData().copyWith(sortBy: state.initFilter.sortBy),
+    );
+  }
+
+  @override
   void updateWithGenres(MovieGenre genre) {
     final withGenres = state.filter.withGenres.handleSelectionGenre(genre);
 

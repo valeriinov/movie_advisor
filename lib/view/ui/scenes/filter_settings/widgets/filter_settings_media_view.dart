@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/ext/default_filter_handler.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
@@ -58,7 +59,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
 
     return Scaffold(
       appBar: FilterSettingsAppBar(
-        onReset: hasUnsavedChanges ? viewModel.resetFilter : null,
+        onReset: !_isDefaultFilter(filter) ? viewModel.resetFilter : null,
         onSave: hasUnsavedChanges ? viewModel.setApplyStatus : null,
       ),
       body: PopScope(
@@ -120,6 +121,14 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
   EdgeInsets _createScrPadding(BuildContext context) {
     final dimens = context.baseDimens;
     return EdgeInsets.fromLTRB(0, dimens.padTopPrim, 0, dimens.padBotPrim);
+  }
+
+  bool _isDefaultFilter(F filter) {
+    return switch (filter) {
+      MoviesFilterData() => filter.isDefault,
+      SeriesFilterData() => filter.isDefault,
+      _ => false,
+    };
   }
 
   void _scheduleInitFilter(

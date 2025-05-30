@@ -38,6 +38,13 @@ final class FilterSettingsSeriesViewModel
   }
 
   @override
+  void resetFilter() {
+    state = state.copyWith(
+      filter: SeriesFilterData().copyWith(sortBy: state.initFilter.sortBy),
+    );
+  }
+
+  @override
   void updateWithGenres(SeriesGenre genre) {
     final withGenres = state.filter.withGenres.handleSelectionGenre(genre);
 
