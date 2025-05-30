@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../../../../domain/entities/base_media/country.dart';
 import '../../../resources/base_theme/components/base_components_styles_ext.dart';
+import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/ext/country_desc.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/filter_checkbox_list_tile.dart';
@@ -19,6 +21,7 @@ class FilterCountriesContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dimens = context.baseDimens;
     final styles = context.baseComponentsStyles;
 
     return ExpansionTile(
@@ -27,15 +30,16 @@ class FilterCountriesContainer extends StatelessWidget {
         style: styles.expTileTitleTextStyle,
       ),
       subtitle: Text(_getSubtitle(), style: styles.expTileSubtTextStyle),
-      children: Country.valuesWithoutNone
-          .map(
-            (country) => FilterCheckboxListTile(
-              label: country.desc,
-              value: selectedCountries.contains(country),
-              onChanged: (_) => onTapCountry(country),
-            ),
-          )
-          .toList(),
+      children: [
+        ...Country.valuesWithoutNone.map(
+          (country) => FilterCheckboxListTile(
+            label: country.desc,
+            value: selectedCountries.contains(country),
+            onChanged: (_) => onTapCountry(country),
+          ),
+        ),
+        dimens.spSmall.gapVert(),
+      ],
     );
   }
 

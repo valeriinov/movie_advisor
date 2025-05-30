@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
-
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../app_fonts.dart';
@@ -13,6 +12,7 @@ part 'base_inputs_styles_ext.tailor.dart';
 abstract final class BaseInputsStylesFactory {
   static BaseInputsStyles createInputsStyles(BaseColors colors) {
     return BaseInputsStyles(
+      txtFldBorderRadius: _BaseInputsStyles.txtFldBorderRadius,
       txtFlsPrimInpTextStyle: _BaseInputsStyles.txtFldPrimInpTextStyle(
         colors.txtFldPrimInput,
       ),
@@ -39,15 +39,19 @@ abstract final class BaseInputsStylesFactory {
 @TailorMixin()
 class BaseInputsStyles extends ThemeExtension<BaseInputsStyles>
     with _$BaseInputsStylesTailorMixin {
-  // Primary TextStyle of the input field
+  /// Border radius of the input field
+  @override
+  final double txtFldBorderRadius;
+
+  /// Primary TextStyle of the input field
   @override
   final TextStyle txtFlsPrimInpTextStyle;
 
-  // Primary TextStyle of the error message
+  /// Primary TextStyle of the error message
   @override
   final TextStyle txtFldPrimErrorTextStyle;
 
-  // Primary TextStyle of the label
+  /// Primary TextStyle of the label
   @override
   final TextStyle txtFldPrimLabelTextStyle;
 
@@ -55,19 +59,20 @@ class BaseInputsStyles extends ThemeExtension<BaseInputsStyles>
   @override
   final EdgeInsets txtFldPrimContPadding;
 
-  // Primary InputBorder
+  /// Primary InputBorder
   @override
   final InputBorder txtFldPrimInpBorder;
 
-  // Primary focused InputBorder
+  /// Primary focused InputBorder
   @override
   final InputBorder txtFldPrimFocusBorder;
 
-  // Primary error InputBorder
+  /// Primary error InputBorder
   @override
   final InputBorder txtFldPrimErrorBorder;
 
   BaseInputsStyles({
+    required this.txtFldBorderRadius,
     required this.txtFlsPrimInpTextStyle,
     required this.txtFldPrimErrorTextStyle,
     required this.txtFldPrimLabelTextStyle,

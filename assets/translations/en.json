@@ -228,5 +228,7 @@
   "filterSettingsApplyBtn": "Apply",
   "filterSettingsCloseBtn": "Close",
   "filterFromYear": "From:",
-  "filterToYear": "to"
+  "filterToYear": "to",
+  "filterFromLabel": "From",
+  "filterToLabel": "To"
 }

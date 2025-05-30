@@ -228,5 +228,7 @@
   "filterSettingsApplyBtn": "Застосувати",
   "filterSettingsCloseBtn": "Закрити",
   "filterFromYear": "З:",
-  "filterToYear": "до"
+  "filterToYear": "до",
+  "filterFromLabel": "З",
+  "filterToLabel": "До"
 }

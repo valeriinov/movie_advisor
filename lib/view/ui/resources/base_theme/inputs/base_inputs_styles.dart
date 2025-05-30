@@ -1,7 +1,7 @@
 part of 'base_inputs_styles_ext.dart';
 
 abstract final class _BaseInputsStyles {
-  static const double borderRadius = 16.0;
+  static const double txtFldBorderRadius = 16.0;
 
   static TextStyle txtFldPrimInpTextStyle(Color color) => TextStyle(
     fontFamily: AppFonts.openSans,
@@ -30,21 +30,21 @@ abstract final class _BaseInputsStyles {
   static InputBorder txtFldPrimInpBorder(Color color) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: color),
-      borderRadius: BorderRadiusCircular(borderRadius),
+      borderRadius: BorderRadiusCircular(txtFldBorderRadius),
     );
   }
 
   static InputBorder txtFldPrimFocusBorder(Color color) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: color),
-      borderRadius: BorderRadiusCircular(borderRadius),
+      borderRadius: BorderRadiusCircular(txtFldBorderRadius),
     );
   }
 
   static InputBorder txtFldPrimErrorBorder(Color color) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: color),
-      borderRadius: BorderRadiusCircular(borderRadius),
+      borderRadius: BorderRadiusCircular(txtFldBorderRadius),
     );
   }
 }
