@@ -53,21 +53,13 @@ class FilterSettingsAppBar extends StatelessWidget
 
     return AnimatedSwitcher(
       duration: durations.animSwitchPrim,
-      child: onSave != null
-          ? TextButton(
-              onPressed: onSave,
-              child: Text(
-                LocaleKeys.filterSettingsApplyBtn.tr(),
-                style: styles.filterSetActBtnTextStyle,
-              ),
-            )
-          : TextButton(
-              onPressed: context.pop,
-              child: Text(
-                LocaleKeys.filterSettingsCloseBtn.tr(),
-                style: styles.filterSetActBtnTextStyle,
-              ),
-            ),
+      child: TextButton(
+        onPressed: onSave ?? context.pop,
+        child: Text(
+          LocaleKeys.filterSettingsDoneBtn.tr(),
+          style: styles.filterSetActBtnTextStyle,
+        ),
+      ),
     );
   }
 
