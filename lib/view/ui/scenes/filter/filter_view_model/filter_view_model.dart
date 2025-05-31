@@ -4,7 +4,6 @@ import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../common/utils/ext/media_short_list_manager.dart';
-import '../../../../../domain/entities/base_media/country.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
@@ -154,18 +153,6 @@ abstract base class FilterViewModel<
     }, onSuccess);
   }
 
-  void updateFilterYear(int? year) {
-    _updateStatus(FilterBaseInitStatus(isLoading: true));
-
-    final filter = state.filter.copyWith(year: year) as F;
-
-    state = state.copyWith(filter: filter);
-
-    _saveFilter();
-
-    _loadFilterResult();
-  }
-
   void updateSortBy(SortBy sortBy) {
     _updateStatus(FilterBaseInitStatus(isLoading: true));
 
@@ -187,42 +174,6 @@ abstract base class FilterViewModel<
 
     _loadFilterResult();
   }
-
-  void updateWithCountries(List<Country> withCountries) {
-    _updateStatus(FilterBaseInitStatus(isLoading: true));
-
-    final filter = state.filter.copyWith(withCountries: withCountries) as F;
-
-    state = state.copyWith(filter: filter);
-
-    _saveFilter();
-
-    _loadFilterResult();
-  }
-
-  void updateUserListsFilter({
-    required bool includeWatched,
-    required bool includeWatchlist,
-  }) {
-    _updateStatus(FilterBaseInitStatus(isLoading: true));
-
-    final filter =
-        state.filter.copyWith(
-              includeWatched: includeWatched,
-              includeWatchlist: includeWatchlist,
-            )
-            as F;
-
-    state = state.copyWith(filter: filter);
-
-    _saveFilter();
-
-    _loadFilterResult();
-  }
-
-  void updateWithGenres(List<G> withGenres);
-
-  void updateWithoutGenres(List<G> withoutGenres);
 
   void _saveFilter() {
     _filterUseCase.saveFilter(state.filter);
