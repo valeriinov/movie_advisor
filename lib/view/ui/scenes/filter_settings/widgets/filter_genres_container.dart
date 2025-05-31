@@ -31,8 +31,6 @@ class FilterGenresContainer extends HookWidget {
     final styles = context.baseComponentsStyles;
     final langCode = context.locale.languageCode;
 
-    print('[LANG CODE] $langCode');
-
     final descriptions = useMemoized(() => _getGenreDescriptions(langCode), [
       contentMode,
       langCode,
