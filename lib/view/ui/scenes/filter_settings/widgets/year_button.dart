@@ -39,8 +39,18 @@ class YearButton extends HookWidget {
             scrollController: scrollController,
             decoration: InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintText: label,
-              label: FieldLabel(content: Text(label)),
+              label: FieldLabel(
+                content: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 3.0),
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
             ),
             enabled: false,
             readOnly: true,
