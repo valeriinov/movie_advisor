@@ -66,7 +66,7 @@ class MoreScreenContent extends ConsumerWidget {
               onTap: () => SettingsRoute().go(context),
             ),
             SignInOutTile(user: user, onSignOut: onSignOut),
-          ].addSeparators(context, (_, __) => dimens.spSmall.gapVert()),
+          ].addSeparators(context, (_, _) => dimens.spSmall.gapVert()),
         ),
         DeleteAccountButton(
           user: user,

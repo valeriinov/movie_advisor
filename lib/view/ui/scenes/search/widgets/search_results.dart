@@ -34,7 +34,7 @@ class SearchResults extends StatelessWidget {
                 : null,
           );
         },
-        separatorBuilder: (_, __) => dimens.spLarge.gapVert(),
+        separatorBuilder: (_, _) => dimens.spLarge.gapVert(),
       ),
     );
   }
