@@ -60,7 +60,7 @@ class AppTabs extends StatelessWidget {
                     onTap: onSelect != null ? () => onSelect!(index) : null,
                   );
                 },
-                separatorBuilder: (_, __) => 4.gapHor(),
+                separatorBuilder: (_, _) => 4.gapHor(),
               ),
             ),
           ),
