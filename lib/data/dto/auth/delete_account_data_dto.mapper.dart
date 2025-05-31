@@ -21,8 +21,11 @@ class DeleteAccountDataDtoMapper extends ClassMapperBase<DeleteAccountDataDto> {
   final String id = 'DeleteAccountDataDto';
 
   static String? _$password(DeleteAccountDataDto v) => v.password;
-  static const Field<DeleteAccountDataDto, String> _f$password =
-      Field('password', _$password, opt: true);
+  static const Field<DeleteAccountDataDto, String> _f$password = Field(
+    'password',
+    _$password,
+    opt: true,
+  );
 
   @override
   final MappableFields<DeleteAccountDataDto> fields = const {
@@ -58,43 +61,57 @@ mixin DeleteAccountDataDtoMappable {
         .encodeMap<DeleteAccountDataDto>(this as DeleteAccountDataDto);
   }
 
-  DeleteAccountDataDtoCopyWith<DeleteAccountDataDto, DeleteAccountDataDto,
-      DeleteAccountDataDto> get copyWith => _DeleteAccountDataDtoCopyWithImpl<
-          DeleteAccountDataDto, DeleteAccountDataDto>(
-      this as DeleteAccountDataDto, $identity, $identity);
+  DeleteAccountDataDtoCopyWith<
+    DeleteAccountDataDto,
+    DeleteAccountDataDto,
+    DeleteAccountDataDto
+  >
+  get copyWith =>
+      _DeleteAccountDataDtoCopyWithImpl<
+        DeleteAccountDataDto,
+        DeleteAccountDataDto
+      >(this as DeleteAccountDataDto, $identity, $identity);
   @override
   String toString() {
-    return DeleteAccountDataDtoMapper.ensureInitialized()
-        .stringifyValue(this as DeleteAccountDataDto);
+    return DeleteAccountDataDtoMapper.ensureInitialized().stringifyValue(
+      this as DeleteAccountDataDto,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return DeleteAccountDataDtoMapper.ensureInitialized()
-        .equalsValue(this as DeleteAccountDataDto, other);
+    return DeleteAccountDataDtoMapper.ensureInitialized().equalsValue(
+      this as DeleteAccountDataDto,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return DeleteAccountDataDtoMapper.ensureInitialized()
-        .hashValue(this as DeleteAccountDataDto);
+    return DeleteAccountDataDtoMapper.ensureInitialized().hashValue(
+      this as DeleteAccountDataDto,
+    );
   }
 }
 
 extension DeleteAccountDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DeleteAccountDataDto, $Out> {
   DeleteAccountDataDtoCopyWith<$R, DeleteAccountDataDto, $Out>
-      get $asDeleteAccountDataDto => $base.as(
-          (v, t, t2) => _DeleteAccountDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asDeleteAccountDataDto => $base.as(
+    (v, t, t2) => _DeleteAccountDataDtoCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
 abstract class DeleteAccountDataDtoCopyWith<
-    $R,
-    $In extends DeleteAccountDataDto,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R,
+  $In extends DeleteAccountDataDto,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call({String? password});
   DeleteAccountDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _DeleteAccountDataDtoCopyWithImpl<$R, $Out>
@@ -114,6 +131,6 @@ class _DeleteAccountDataDtoCopyWithImpl<$R, $Out>
 
   @override
   DeleteAccountDataDtoCopyWith<$R2, DeleteAccountDataDto, $Out2>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _DeleteAccountDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _DeleteAccountDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

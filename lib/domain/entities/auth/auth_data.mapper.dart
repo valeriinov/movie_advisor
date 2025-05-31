@@ -21,11 +21,19 @@ class AuthDataMapper extends ClassMapperBase<AuthData> {
   final String id = 'AuthData';
 
   static String _$email(AuthData v) => v.email;
-  static const Field<AuthData, String> _f$email =
-      Field('email', _$email, opt: true, def: '');
+  static const Field<AuthData, String> _f$email = Field(
+    'email',
+    _$email,
+    opt: true,
+    def: '',
+  );
   static String _$password(AuthData v) => v.password;
-  static const Field<AuthData, String> _f$password =
-      Field('password', _$password, opt: true, def: '');
+  static const Field<AuthData, String> _f$password = Field(
+    'password',
+    _$password,
+    opt: true,
+    def: '',
+  );
 
   @override
   final MappableFields<AuthData> fields = const {
@@ -44,7 +52,10 @@ class AuthDataMapper extends ClassMapperBase<AuthData> {
 mixin AuthDataMappable {
   AuthDataCopyWith<AuthData, AuthData, AuthData> get copyWith =>
       _AuthDataCopyWithImpl<AuthData, AuthData>(
-          this as AuthData, $identity, $identity);
+        this as AuthData,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
     return AuthDataMapper.ensureInitialized().stringifyValue(this as AuthData);
@@ -52,8 +63,10 @@ mixin AuthDataMappable {
 
   @override
   bool operator ==(Object other) {
-    return AuthDataMapper.ensureInitialized()
-        .equalsValue(this as AuthData, other);
+    return AuthDataMapper.ensureInitialized().equalsValue(
+      this as AuthData,
+      other,
+    );
   }
 
   @override
@@ -82,17 +95,20 @@ class _AuthDataCopyWithImpl<$R, $Out>
   late final ClassMapperBase<AuthData> $mapper =
       AuthDataMapper.ensureInitialized();
   @override
-  $R call({String? email, String? password}) => $apply(FieldCopyWithData({
-        if (email != null) #email: email,
-        if (password != null) #password: password
-      }));
+  $R call({String? email, String? password}) => $apply(
+    FieldCopyWithData({
+      if (email != null) #email: email,
+      if (password != null) #password: password,
+    }),
+  );
   @override
   AuthData $make(CopyWithData data) => AuthData(
-      email: data.get(#email, or: $value.email),
-      password: data.get(#password, or: $value.password));
+    email: data.get(#email, or: $value.email),
+    password: data.get(#password, or: $value.password),
+  );
 
   @override
   AuthDataCopyWith<$R2, AuthData, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _AuthDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _AuthDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

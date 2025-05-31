@@ -21,13 +21,15 @@ class ResetPassDataMapper extends ClassMapperBase<ResetPassData> {
   final String id = 'ResetPassData';
 
   static String _$email(ResetPassData v) => v.email;
-  static const Field<ResetPassData, String> _f$email =
-      Field('email', _$email, opt: true, def: '');
+  static const Field<ResetPassData, String> _f$email = Field(
+    'email',
+    _$email,
+    opt: true,
+    def: '',
+  );
 
   @override
-  final MappableFields<ResetPassData> fields = const {
-    #email: _f$email,
-  };
+  final MappableFields<ResetPassData> fields = const {#email: _f$email};
 
   static ResetPassData _instantiate(DecodingData data) {
     return ResetPassData(email: data.dec(_f$email));
@@ -39,24 +41,31 @@ class ResetPassDataMapper extends ClassMapperBase<ResetPassData> {
 
 mixin ResetPassDataMappable {
   ResetPassDataCopyWith<ResetPassData, ResetPassData, ResetPassData>
-      get copyWith => _ResetPassDataCopyWithImpl<ResetPassData, ResetPassData>(
-          this as ResetPassData, $identity, $identity);
+  get copyWith => _ResetPassDataCopyWithImpl<ResetPassData, ResetPassData>(
+    this as ResetPassData,
+    $identity,
+    $identity,
+  );
   @override
   String toString() {
-    return ResetPassDataMapper.ensureInitialized()
-        .stringifyValue(this as ResetPassData);
+    return ResetPassDataMapper.ensureInitialized().stringifyValue(
+      this as ResetPassData,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return ResetPassDataMapper.ensureInitialized()
-        .equalsValue(this as ResetPassData, other);
+    return ResetPassDataMapper.ensureInitialized().equalsValue(
+      this as ResetPassData,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return ResetPassDataMapper.ensureInitialized()
-        .hashValue(this as ResetPassData);
+    return ResetPassDataMapper.ensureInitialized().hashValue(
+      this as ResetPassData,
+    );
   }
 }
 
@@ -89,6 +98,6 @@ class _ResetPassDataCopyWithImpl<$R, $Out>
 
   @override
   ResetPassDataCopyWith<$R2, ResetPassData, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _ResetPassDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _ResetPassDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

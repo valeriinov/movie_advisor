@@ -22,8 +22,12 @@ class DeleteAccountFormStateMapper
   final String id = 'DeleteAccountFormState';
 
   static String _$password(DeleteAccountFormState v) => v.password;
-  static const Field<DeleteAccountFormState, String> _f$password =
-      Field('password', _$password, opt: true, def: '');
+  static const Field<DeleteAccountFormState, String> _f$password = Field(
+    'password',
+    _$password,
+    opt: true,
+    def: '',
+  );
 
   @override
   final MappableFields<DeleteAccountFormState> fields = const {
@@ -57,44 +61,57 @@ mixin DeleteAccountFormStateMappable {
         .encodeMap<DeleteAccountFormState>(this as DeleteAccountFormState);
   }
 
-  DeleteAccountFormStateCopyWith<DeleteAccountFormState, DeleteAccountFormState,
-          DeleteAccountFormState>
-      get copyWith => _DeleteAccountFormStateCopyWithImpl<
-              DeleteAccountFormState, DeleteAccountFormState>(
-          this as DeleteAccountFormState, $identity, $identity);
+  DeleteAccountFormStateCopyWith<
+    DeleteAccountFormState,
+    DeleteAccountFormState,
+    DeleteAccountFormState
+  >
+  get copyWith =>
+      _DeleteAccountFormStateCopyWithImpl<
+        DeleteAccountFormState,
+        DeleteAccountFormState
+      >(this as DeleteAccountFormState, $identity, $identity);
   @override
   String toString() {
-    return DeleteAccountFormStateMapper.ensureInitialized()
-        .stringifyValue(this as DeleteAccountFormState);
+    return DeleteAccountFormStateMapper.ensureInitialized().stringifyValue(
+      this as DeleteAccountFormState,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return DeleteAccountFormStateMapper.ensureInitialized()
-        .equalsValue(this as DeleteAccountFormState, other);
+    return DeleteAccountFormStateMapper.ensureInitialized().equalsValue(
+      this as DeleteAccountFormState,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return DeleteAccountFormStateMapper.ensureInitialized()
-        .hashValue(this as DeleteAccountFormState);
+    return DeleteAccountFormStateMapper.ensureInitialized().hashValue(
+      this as DeleteAccountFormState,
+    );
   }
 }
 
 extension DeleteAccountFormStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DeleteAccountFormState, $Out> {
   DeleteAccountFormStateCopyWith<$R, DeleteAccountFormState, $Out>
-      get $asDeleteAccountFormState => $base.as((v, t, t2) =>
-          _DeleteAccountFormStateCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asDeleteAccountFormState => $base.as(
+    (v, t, t2) => _DeleteAccountFormStateCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
 abstract class DeleteAccountFormStateCopyWith<
-    $R,
-    $In extends DeleteAccountFormState,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R,
+  $In extends DeleteAccountFormState,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call({String? password});
   DeleteAccountFormStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _DeleteAccountFormStateCopyWithImpl<$R, $Out>
@@ -111,10 +128,11 @@ class _DeleteAccountFormStateCopyWithImpl<$R, $Out>
       $apply(FieldCopyWithData({if (password != null) #password: password}));
   @override
   DeleteAccountFormState $make(CopyWithData data) => DeleteAccountFormState(
-      password: data.get(#password, or: $value.password));
+    password: data.get(#password, or: $value.password),
+  );
 
   @override
   DeleteAccountFormStateCopyWith<$R2, DeleteAccountFormState, $Out2>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _DeleteAccountFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _DeleteAccountFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

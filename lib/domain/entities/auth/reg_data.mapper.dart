@@ -21,11 +21,19 @@ class RegDataMapper extends ClassMapperBase<RegData> {
   final String id = 'RegData';
 
   static String _$email(RegData v) => v.email;
-  static const Field<RegData, String> _f$email =
-      Field('email', _$email, opt: true, def: '');
+  static const Field<RegData, String> _f$email = Field(
+    'email',
+    _$email,
+    opt: true,
+    def: '',
+  );
   static String _$password(RegData v) => v.password;
-  static const Field<RegData, String> _f$password =
-      Field('password', _$password, opt: true, def: '');
+  static const Field<RegData, String> _f$password = Field(
+    'password',
+    _$password,
+    opt: true,
+    def: '',
+  );
 
   @override
   final MappableFields<RegData> fields = const {
@@ -44,7 +52,10 @@ class RegDataMapper extends ClassMapperBase<RegData> {
 mixin RegDataMappable {
   RegDataCopyWith<RegData, RegData, RegData> get copyWith =>
       _RegDataCopyWithImpl<RegData, RegData>(
-          this as RegData, $identity, $identity);
+        this as RegData,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
     return RegDataMapper.ensureInitialized().stringifyValue(this as RegData);
@@ -52,8 +63,10 @@ mixin RegDataMappable {
 
   @override
   bool operator ==(Object other) {
-    return RegDataMapper.ensureInitialized()
-        .equalsValue(this as RegData, other);
+    return RegDataMapper.ensureInitialized().equalsValue(
+      this as RegData,
+      other,
+    );
   }
 
   @override
@@ -82,14 +95,17 @@ class _RegDataCopyWithImpl<$R, $Out>
   late final ClassMapperBase<RegData> $mapper =
       RegDataMapper.ensureInitialized();
   @override
-  $R call({String? email, String? password}) => $apply(FieldCopyWithData({
-        if (email != null) #email: email,
-        if (password != null) #password: password
-      }));
+  $R call({String? email, String? password}) => $apply(
+    FieldCopyWithData({
+      if (email != null) #email: email,
+      if (password != null) #password: password,
+    }),
+  );
   @override
   RegData $make(CopyWithData data) => RegData(
-      email: data.get(#email, or: $value.email),
-      password: data.get(#password, or: $value.password));
+    email: data.get(#email, or: $value.email),
+    password: data.get(#password, or: $value.password),
+  );
 
   @override
   RegDataCopyWith<$R2, RegData, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>

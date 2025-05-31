@@ -21,14 +21,25 @@ class TMDBRatingMapper extends ClassMapperBase<TMDBRating> {
   final String id = 'TMDBRating';
 
   static double? _$popularity(TMDBRating v) => v.popularity;
-  static const Field<TMDBRating, double> _f$popularity =
-      Field('popularity', _$popularity, opt: true);
+  static const Field<TMDBRating, double> _f$popularity = Field(
+    'popularity',
+    _$popularity,
+    opt: true,
+  );
   static double _$voteAverage(TMDBRating v) => v.voteAverage;
-  static const Field<TMDBRating, double> _f$voteAverage =
-      Field('voteAverage', _$voteAverage, opt: true, def: 0);
+  static const Field<TMDBRating, double> _f$voteAverage = Field(
+    'voteAverage',
+    _$voteAverage,
+    opt: true,
+    def: 0,
+  );
   static int _$voteCount(TMDBRating v) => v.voteCount;
-  static const Field<TMDBRating, int> _f$voteCount =
-      Field('voteCount', _$voteCount, opt: true, def: 0);
+  static const Field<TMDBRating, int> _f$voteCount = Field(
+    'voteCount',
+    _$voteCount,
+    opt: true,
+    def: 0,
+  );
 
   @override
   final MappableFields<TMDBRating> fields = const {
@@ -39,9 +50,10 @@ class TMDBRatingMapper extends ClassMapperBase<TMDBRating> {
 
   static TMDBRating _instantiate(DecodingData data) {
     return TMDBRating(
-        popularity: data.dec(_f$popularity),
-        voteAverage: data.dec(_f$voteAverage),
-        voteCount: data.dec(_f$voteCount));
+      popularity: data.dec(_f$popularity),
+      voteAverage: data.dec(_f$voteAverage),
+      voteCount: data.dec(_f$voteCount),
+    );
   }
 
   @override
@@ -51,17 +63,23 @@ class TMDBRatingMapper extends ClassMapperBase<TMDBRating> {
 mixin TMDBRatingMappable {
   TMDBRatingCopyWith<TMDBRating, TMDBRating, TMDBRating> get copyWith =>
       _TMDBRatingCopyWithImpl<TMDBRating, TMDBRating>(
-          this as TMDBRating, $identity, $identity);
+        this as TMDBRating,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return TMDBRatingMapper.ensureInitialized()
-        .stringifyValue(this as TMDBRating);
+    return TMDBRatingMapper.ensureInitialized().stringifyValue(
+      this as TMDBRating,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return TMDBRatingMapper.ensureInitialized()
-        .equalsValue(this as TMDBRating, other);
+    return TMDBRatingMapper.ensureInitialized().equalsValue(
+      this as TMDBRating,
+      other,
+    );
   }
 
   @override
@@ -92,19 +110,22 @@ class _TMDBRatingCopyWithImpl<$R, $Out>
       TMDBRatingMapper.ensureInitialized();
   @override
   $R call({Object? popularity = $none, double? voteAverage, int? voteCount}) =>
-      $apply(FieldCopyWithData({
-        if (popularity != $none) #popularity: popularity,
-        if (voteAverage != null) #voteAverage: voteAverage,
-        if (voteCount != null) #voteCount: voteCount
-      }));
+      $apply(
+        FieldCopyWithData({
+          if (popularity != $none) #popularity: popularity,
+          if (voteAverage != null) #voteAverage: voteAverage,
+          if (voteCount != null) #voteCount: voteCount,
+        }),
+      );
   @override
   TMDBRating $make(CopyWithData data) => TMDBRating(
-      popularity: data.get(#popularity, or: $value.popularity),
-      voteAverage: data.get(#voteAverage, or: $value.voteAverage),
-      voteCount: data.get(#voteCount, or: $value.voteCount));
+    popularity: data.get(#popularity, or: $value.popularity),
+    voteAverage: data.get(#voteAverage, or: $value.voteAverage),
+    voteCount: data.get(#voteCount, or: $value.voteCount),
+  );
 
   @override
   TMDBRatingCopyWith<$R2, TMDBRating, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _TMDBRatingCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _TMDBRatingCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
