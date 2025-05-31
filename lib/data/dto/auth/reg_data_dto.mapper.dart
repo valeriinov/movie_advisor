@@ -21,17 +21,11 @@ class RegDataDtoMapper extends ClassMapperBase<RegDataDto> {
   final String id = 'RegDataDto';
 
   static String? _$email(RegDataDto v) => v.email;
-  static const Field<RegDataDto, String> _f$email = Field(
-    'email',
-    _$email,
-    opt: true,
-  );
+  static const Field<RegDataDto, String> _f$email =
+      Field('email', _$email, opt: true);
   static String? _$password(RegDataDto v) => v.password;
-  static const Field<RegDataDto, String> _f$password = Field(
-    'password',
-    _$password,
-    opt: true,
-  );
+  static const Field<RegDataDto, String> _f$password =
+      Field('password', _$password, opt: true);
 
   @override
   final MappableFields<RegDataDto> fields = const {
@@ -43,9 +37,7 @@ class RegDataDtoMapper extends ClassMapperBase<RegDataDto> {
 
   static RegDataDto _instantiate(DecodingData data) {
     return RegDataDto(
-      email: data.dec(_f$email),
-      password: data.dec(_f$password),
-    );
+        email: data.dec(_f$email), password: data.dec(_f$password));
   }
 
   @override
@@ -62,36 +54,28 @@ class RegDataDtoMapper extends ClassMapperBase<RegDataDto> {
 
 mixin RegDataDtoMappable {
   String toJsonString() {
-    return RegDataDtoMapper.ensureInitialized().encodeJson<RegDataDto>(
-      this as RegDataDto,
-    );
+    return RegDataDtoMapper.ensureInitialized()
+        .encodeJson<RegDataDto>(this as RegDataDto);
   }
 
   Map<String, dynamic> toJson() {
-    return RegDataDtoMapper.ensureInitialized().encodeMap<RegDataDto>(
-      this as RegDataDto,
-    );
+    return RegDataDtoMapper.ensureInitialized()
+        .encodeMap<RegDataDto>(this as RegDataDto);
   }
 
   RegDataDtoCopyWith<RegDataDto, RegDataDto, RegDataDto> get copyWith =>
       _RegDataDtoCopyWithImpl<RegDataDto, RegDataDto>(
-        this as RegDataDto,
-        $identity,
-        $identity,
-      );
+          this as RegDataDto, $identity, $identity);
   @override
   String toString() {
-    return RegDataDtoMapper.ensureInitialized().stringifyValue(
-      this as RegDataDto,
-    );
+    return RegDataDtoMapper.ensureInitialized()
+        .stringifyValue(this as RegDataDto);
   }
 
   @override
   bool operator ==(Object other) {
-    return RegDataDtoMapper.ensureInitialized().equalsValue(
-      this as RegDataDto,
-      other,
-    );
+    return RegDataDtoMapper.ensureInitialized()
+        .equalsValue(this as RegDataDto, other);
   }
 
   @override
@@ -121,20 +105,18 @@ class _RegDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<RegDataDto> $mapper =
       RegDataDtoMapper.ensureInitialized();
   @override
-  $R call({Object? email = $none, Object? password = $none}) => $apply(
-    FieldCopyWithData({
-      if (email != $none) #email: email,
-      if (password != $none) #password: password,
-    }),
-  );
+  $R call({Object? email = $none, Object? password = $none}) =>
+      $apply(FieldCopyWithData({
+        if (email != $none) #email: email,
+        if (password != $none) #password: password
+      }));
   @override
   RegDataDto $make(CopyWithData data) => RegDataDto(
-    email: data.get(#email, or: $value.email),
-    password: data.get(#password, or: $value.password),
-  );
+      email: data.get(#email, or: $value.email),
+      password: data.get(#password, or: $value.password));
 
   @override
   RegDataDtoCopyWith<$R2, RegDataDto, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _RegDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _RegDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

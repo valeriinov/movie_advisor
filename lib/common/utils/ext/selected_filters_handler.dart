@@ -7,7 +7,6 @@ extension SelectedFiltersHandler on FilterData {
     return _getWithGenresCount() +
         _getWithoutGenresCount() +
         withCountries.length +
-        (year != null ? 1 : 0) +
         (includeWatched ? 0 : 1) +
         (includeWatchlist ? 0 : 1) +
         (fromDate != null ? 1 : 0) +

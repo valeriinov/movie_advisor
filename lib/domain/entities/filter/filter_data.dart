@@ -8,7 +8,6 @@ part 'filter_data.mapper.dart';
 
 @mappableEntity
 class FilterData with FilterDataMappable {
-  final int? year;
   final SortBy sortBy;
   final List<Country> withCountries;
   final bool includeWatched;
@@ -17,7 +16,6 @@ class FilterData with FilterDataMappable {
   final DateTime? toDate;
 
   const FilterData({
-    required this.year,
     required this.sortBy,
     required this.withCountries,
     required this.includeWatched,

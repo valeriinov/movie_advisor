@@ -21,30 +21,18 @@ class DetailsStateMapper extends ClassMapperBase<DetailsState> {
   @override
   final String id = 'DetailsState';
   @override
-  Function get typeFactory =>
-      <T extends MediaData>(f) => f<DetailsState<T>>();
+  Function get typeFactory => <T extends MediaData>(f) => f<DetailsState<T>>();
 
   static MediaData _$data(DetailsState v) => v.data;
   static dynamic _arg$data<T extends MediaData>(f) => f<T>();
-  static const Field<DetailsState, MediaData> _f$data = Field(
-    'data',
-    _$data,
-    arg: _arg$data,
-  );
+  static const Field<DetailsState, MediaData> _f$data =
+      Field('data', _$data, arg: _arg$data);
   static DetailsTab _$currentTab(DetailsState v) => v.currentTab;
-  static const Field<DetailsState, DetailsTab> _f$currentTab = Field(
-    'currentTab',
-    _$currentTab,
-    opt: true,
-    def: DetailsTab.about,
-  );
+  static const Field<DetailsState, DetailsTab> _f$currentTab =
+      Field('currentTab', _$currentTab, opt: true, def: DetailsTab.about);
   static DetailsStatus _$status(DetailsState v) => v.status;
-  static const Field<DetailsState, DetailsStatus> _f$status = Field(
-    'status',
-    _$status,
-    opt: true,
-    def: const DetailsBaseStatus(),
-  );
+  static const Field<DetailsState, DetailsStatus> _f$status =
+      Field('status', _$status, opt: true, def: const DetailsBaseStatus());
 
   @override
   final MappableFields<DetailsState> fields = const {
@@ -55,10 +43,9 @@ class DetailsStateMapper extends ClassMapperBase<DetailsState> {
 
   static DetailsState<T> _instantiate<T extends MediaData>(DecodingData data) {
     return DetailsState(
-      data: data.dec(_f$data),
-      currentTab: data.dec(_f$currentTab),
-      status: data.dec(_f$status),
-    );
+        data: data.dec(_f$data),
+        currentTab: data.dec(_f$currentTab),
+        status: data.dec(_f$status));
   }
 
   @override
@@ -67,32 +54,25 @@ class DetailsStateMapper extends ClassMapperBase<DetailsState> {
 
 mixin DetailsStateMappable<T extends MediaData> {
   DetailsStateCopyWith<DetailsState<T>, DetailsState<T>, DetailsState<T>, T>
-  get copyWith =>
-      _DetailsStateCopyWithImpl<DetailsState<T>, DetailsState<T>, T>(
-        this as DetailsState<T>,
-        $identity,
-        $identity,
-      );
+      get copyWith =>
+          _DetailsStateCopyWithImpl<DetailsState<T>, DetailsState<T>, T>(
+              this as DetailsState<T>, $identity, $identity);
   @override
   String toString() {
-    return DetailsStateMapper.ensureInitialized().stringifyValue(
-      this as DetailsState<T>,
-    );
+    return DetailsStateMapper.ensureInitialized()
+        .stringifyValue(this as DetailsState<T>);
   }
 
   @override
   bool operator ==(Object other) {
-    return DetailsStateMapper.ensureInitialized().equalsValue(
-      this as DetailsState<T>,
-      other,
-    );
+    return DetailsStateMapper.ensureInitialized()
+        .equalsValue(this as DetailsState<T>, other);
   }
 
   @override
   int get hashCode {
-    return DetailsStateMapper.ensureInitialized().hashValue(
-      this as DetailsState<T>,
-    );
+    return DetailsStateMapper.ensureInitialized()
+        .hashValue(this as DetailsState<T>);
   }
 }
 
@@ -102,17 +82,11 @@ extension DetailsStateValueCopy<$R, $Out, T extends MediaData>
       $base.as((v, t, t2) => _DetailsStateCopyWithImpl<$R, $Out, T>(v, t, t2));
 }
 
-abstract class DetailsStateCopyWith<
-  $R,
-  $In extends DetailsState<T>,
-  $Out,
-  T extends MediaData
->
-    implements ClassCopyWith<$R, $In, $Out> {
+abstract class DetailsStateCopyWith<$R, $In extends DetailsState<T>, $Out,
+    T extends MediaData> implements ClassCopyWith<$R, $In, $Out> {
   $R call({T? data, DetailsTab? currentTab, DetailsStatus? status});
   DetailsStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _DetailsStateCopyWithImpl<$R, $Out, T extends MediaData>
@@ -124,24 +98,22 @@ class _DetailsStateCopyWithImpl<$R, $Out, T extends MediaData>
   late final ClassMapperBase<DetailsState> $mapper =
       DetailsStateMapper.ensureInitialized();
   @override
-  $R call({T? data, DetailsTab? currentTab, DetailsStatus? status}) => $apply(
-    FieldCopyWithData({
-      if (data != null) #data: data,
-      if (currentTab != null) #currentTab: currentTab,
-      if (status != null) #status: status,
-    }),
-  );
+  $R call({T? data, DetailsTab? currentTab, DetailsStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (data != null) #data: data,
+        if (currentTab != null) #currentTab: currentTab,
+        if (status != null) #status: status
+      }));
   @override
   DetailsState<T> $make(CopyWithData data) => DetailsState(
-    data: data.get(#data, or: $value.data),
-    currentTab: data.get(#currentTab, or: $value.currentTab),
-    status: data.get(#status, or: $value.status),
-  );
+      data: data.get(#data, or: $value.data),
+      currentTab: data.get(#currentTab, or: $value.currentTab),
+      status: data.get(#status, or: $value.status));
 
   @override
   DetailsStateCopyWith<$R2, DetailsState<T>, $Out2, T> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _DetailsStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _DetailsStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }
 
 class DetailsBaseStatusMapper extends ClassMapperBase<DetailsBaseStatus> {
@@ -159,25 +131,14 @@ class DetailsBaseStatusMapper extends ClassMapperBase<DetailsBaseStatus> {
   final String id = 'DetailsBaseStatus';
 
   static bool _$isLoading(DetailsBaseStatus v) => v.isLoading;
-  static const Field<DetailsBaseStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<DetailsBaseStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(DetailsBaseStatus v) => v.errorMessage;
-  static const Field<DetailsBaseStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<DetailsBaseStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(DetailsBaseStatus v) => v.isInitialized;
-  static const Field<DetailsBaseStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: false,
-  );
+  static const Field<DetailsBaseStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: false);
 
   @override
   final MappableFields<DetailsBaseStatus> fields = const {
@@ -188,10 +149,9 @@ class DetailsBaseStatusMapper extends ClassMapperBase<DetailsBaseStatus> {
 
   static DetailsBaseStatus _instantiate(DecodingData data) {
     return DetailsBaseStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -199,58 +159,42 @@ class DetailsBaseStatusMapper extends ClassMapperBase<DetailsBaseStatus> {
 }
 
 mixin DetailsBaseStatusMappable {
-  DetailsBaseStatusCopyWith<
-    DetailsBaseStatus,
-    DetailsBaseStatus,
-    DetailsBaseStatus
-  >
-  get copyWith =>
-      _DetailsBaseStatusCopyWithImpl<DetailsBaseStatus, DetailsBaseStatus>(
-        this as DetailsBaseStatus,
-        $identity,
-        $identity,
-      );
+  DetailsBaseStatusCopyWith<DetailsBaseStatus, DetailsBaseStatus,
+          DetailsBaseStatus>
+      get copyWith =>
+          _DetailsBaseStatusCopyWithImpl<DetailsBaseStatus, DetailsBaseStatus>(
+              this as DetailsBaseStatus, $identity, $identity);
   @override
   String toString() {
-    return DetailsBaseStatusMapper.ensureInitialized().stringifyValue(
-      this as DetailsBaseStatus,
-    );
+    return DetailsBaseStatusMapper.ensureInitialized()
+        .stringifyValue(this as DetailsBaseStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return DetailsBaseStatusMapper.ensureInitialized().equalsValue(
-      this as DetailsBaseStatus,
-      other,
-    );
+    return DetailsBaseStatusMapper.ensureInitialized()
+        .equalsValue(this as DetailsBaseStatus, other);
   }
 
   @override
   int get hashCode {
-    return DetailsBaseStatusMapper.ensureInitialized().hashValue(
-      this as DetailsBaseStatus,
-    );
+    return DetailsBaseStatusMapper.ensureInitialized()
+        .hashValue(this as DetailsBaseStatus);
   }
 }
 
 extension DetailsBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DetailsBaseStatus, $Out> {
   DetailsBaseStatusCopyWith<$R, DetailsBaseStatus, $Out>
-  get $asDetailsBaseStatus => $base.as(
-    (v, t, t2) => _DetailsBaseStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asDetailsBaseStatus => $base
+          .as((v, t, t2) => _DetailsBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
-abstract class DetailsBaseStatusCopyWith<
-  $R,
-  $In extends DetailsBaseStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+abstract class DetailsBaseStatusCopyWith<$R, $In extends DetailsBaseStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   DetailsBaseStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _DetailsBaseStatusCopyWithImpl<$R, $Out>
@@ -262,28 +206,25 @@ class _DetailsBaseStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<DetailsBaseStatus> $mapper =
       DetailsBaseStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   DetailsBaseStatus $make(CopyWithData data) => DetailsBaseStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   DetailsBaseStatusCopyWith<$R2, DetailsBaseStatus, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _DetailsBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _DetailsBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class DetailsBaseInitStatusMapper
@@ -302,25 +243,14 @@ class DetailsBaseInitStatusMapper
   final String id = 'DetailsBaseInitStatus';
 
   static bool _$isLoading(DetailsBaseInitStatus v) => v.isLoading;
-  static const Field<DetailsBaseInitStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<DetailsBaseInitStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(DetailsBaseInitStatus v) => v.errorMessage;
-  static const Field<DetailsBaseInitStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<DetailsBaseInitStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(DetailsBaseInitStatus v) => v.isInitialized;
-  static const Field<DetailsBaseInitStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<DetailsBaseInitStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<DetailsBaseInitStatus> fields = const {
@@ -331,10 +261,9 @@ class DetailsBaseInitStatusMapper
 
   static DetailsBaseInitStatus _instantiate(DecodingData data) {
     return DetailsBaseInitStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -342,57 +271,43 @@ class DetailsBaseInitStatusMapper
 }
 
 mixin DetailsBaseInitStatusMappable {
-  DetailsBaseInitStatusCopyWith<
-    DetailsBaseInitStatus,
-    DetailsBaseInitStatus,
-    DetailsBaseInitStatus
-  >
-  get copyWith =>
-      _DetailsBaseInitStatusCopyWithImpl<
-        DetailsBaseInitStatus,
-        DetailsBaseInitStatus
-      >(this as DetailsBaseInitStatus, $identity, $identity);
+  DetailsBaseInitStatusCopyWith<DetailsBaseInitStatus, DetailsBaseInitStatus,
+      DetailsBaseInitStatus> get copyWith => _DetailsBaseInitStatusCopyWithImpl<
+          DetailsBaseInitStatus, DetailsBaseInitStatus>(
+      this as DetailsBaseInitStatus, $identity, $identity);
   @override
   String toString() {
-    return DetailsBaseInitStatusMapper.ensureInitialized().stringifyValue(
-      this as DetailsBaseInitStatus,
-    );
+    return DetailsBaseInitStatusMapper.ensureInitialized()
+        .stringifyValue(this as DetailsBaseInitStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return DetailsBaseInitStatusMapper.ensureInitialized().equalsValue(
-      this as DetailsBaseInitStatus,
-      other,
-    );
+    return DetailsBaseInitStatusMapper.ensureInitialized()
+        .equalsValue(this as DetailsBaseInitStatus, other);
   }
 
   @override
   int get hashCode {
-    return DetailsBaseInitStatusMapper.ensureInitialized().hashValue(
-      this as DetailsBaseInitStatus,
-    );
+    return DetailsBaseInitStatusMapper.ensureInitialized()
+        .hashValue(this as DetailsBaseInitStatus);
   }
 }
 
 extension DetailsBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, DetailsBaseInitStatus, $Out> {
   DetailsBaseInitStatusCopyWith<$R, DetailsBaseInitStatus, $Out>
-  get $asDetailsBaseInitStatus => $base.as(
-    (v, t, t2) => _DetailsBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asDetailsBaseInitStatus => $base.as(
+          (v, t, t2) => _DetailsBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class DetailsBaseInitStatusCopyWith<
-  $R,
-  $In extends DetailsBaseInitStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends DetailsBaseInitStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   DetailsBaseInitStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _DetailsBaseInitStatusCopyWithImpl<$R, $Out>
@@ -404,28 +319,25 @@ class _DetailsBaseInitStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<DetailsBaseInitStatus> $mapper =
       DetailsBaseInitStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   DetailsBaseInitStatus $make(CopyWithData data) => DetailsBaseInitStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   DetailsBaseInitStatusCopyWith<$R2, DetailsBaseInitStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _DetailsBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _DetailsBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class WatchlistLoadingStatusMapper
@@ -444,25 +356,14 @@ class WatchlistLoadingStatusMapper
   final String id = 'WatchlistLoadingStatus';
 
   static bool _$isLoading(WatchlistLoadingStatus v) => v.isLoading;
-  static const Field<WatchlistLoadingStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: true,
-  );
+  static const Field<WatchlistLoadingStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: true);
   static String? _$errorMessage(WatchlistLoadingStatus v) => v.errorMessage;
-  static const Field<WatchlistLoadingStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<WatchlistLoadingStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(WatchlistLoadingStatus v) => v.isInitialized;
-  static const Field<WatchlistLoadingStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<WatchlistLoadingStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<WatchlistLoadingStatus> fields = const {
@@ -473,10 +374,9 @@ class WatchlistLoadingStatusMapper
 
   static WatchlistLoadingStatus _instantiate(DecodingData data) {
     return WatchlistLoadingStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -484,57 +384,44 @@ class WatchlistLoadingStatusMapper
 }
 
 mixin WatchlistLoadingStatusMappable {
-  WatchlistLoadingStatusCopyWith<
-    WatchlistLoadingStatus,
-    WatchlistLoadingStatus,
-    WatchlistLoadingStatus
-  >
-  get copyWith =>
-      _WatchlistLoadingStatusCopyWithImpl<
-        WatchlistLoadingStatus,
-        WatchlistLoadingStatus
-      >(this as WatchlistLoadingStatus, $identity, $identity);
+  WatchlistLoadingStatusCopyWith<WatchlistLoadingStatus, WatchlistLoadingStatus,
+          WatchlistLoadingStatus>
+      get copyWith => _WatchlistLoadingStatusCopyWithImpl<
+              WatchlistLoadingStatus, WatchlistLoadingStatus>(
+          this as WatchlistLoadingStatus, $identity, $identity);
   @override
   String toString() {
-    return WatchlistLoadingStatusMapper.ensureInitialized().stringifyValue(
-      this as WatchlistLoadingStatus,
-    );
+    return WatchlistLoadingStatusMapper.ensureInitialized()
+        .stringifyValue(this as WatchlistLoadingStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return WatchlistLoadingStatusMapper.ensureInitialized().equalsValue(
-      this as WatchlistLoadingStatus,
-      other,
-    );
+    return WatchlistLoadingStatusMapper.ensureInitialized()
+        .equalsValue(this as WatchlistLoadingStatus, other);
   }
 
   @override
   int get hashCode {
-    return WatchlistLoadingStatusMapper.ensureInitialized().hashValue(
-      this as WatchlistLoadingStatus,
-    );
+    return WatchlistLoadingStatusMapper.ensureInitialized()
+        .hashValue(this as WatchlistLoadingStatus);
   }
 }
 
 extension WatchlistLoadingStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, WatchlistLoadingStatus, $Out> {
   WatchlistLoadingStatusCopyWith<$R, WatchlistLoadingStatus, $Out>
-  get $asWatchlistLoadingStatus => $base.as(
-    (v, t, t2) => _WatchlistLoadingStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asWatchlistLoadingStatus => $base.as((v, t, t2) =>
+          _WatchlistLoadingStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class WatchlistLoadingStatusCopyWith<
-  $R,
-  $In extends WatchlistLoadingStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends WatchlistLoadingStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   WatchlistLoadingStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _WatchlistLoadingStatusCopyWithImpl<$R, $Out>
@@ -547,28 +434,25 @@ class _WatchlistLoadingStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<WatchlistLoadingStatus> $mapper =
       WatchlistLoadingStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   WatchlistLoadingStatus $make(CopyWithData data) => WatchlistLoadingStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   WatchlistLoadingStatusCopyWith<$R2, WatchlistLoadingStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _WatchlistLoadingStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _WatchlistLoadingStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class AddedToWatchlistStatusMapper
@@ -587,25 +471,14 @@ class AddedToWatchlistStatusMapper
   final String id = 'AddedToWatchlistStatus';
 
   static bool _$isLoading(AddedToWatchlistStatus v) => v.isLoading;
-  static const Field<AddedToWatchlistStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<AddedToWatchlistStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(AddedToWatchlistStatus v) => v.errorMessage;
-  static const Field<AddedToWatchlistStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<AddedToWatchlistStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(AddedToWatchlistStatus v) => v.isInitialized;
-  static const Field<AddedToWatchlistStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<AddedToWatchlistStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<AddedToWatchlistStatus> fields = const {
@@ -616,10 +489,9 @@ class AddedToWatchlistStatusMapper
 
   static AddedToWatchlistStatus _instantiate(DecodingData data) {
     return AddedToWatchlistStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -627,57 +499,44 @@ class AddedToWatchlistStatusMapper
 }
 
 mixin AddedToWatchlistStatusMappable {
-  AddedToWatchlistStatusCopyWith<
-    AddedToWatchlistStatus,
-    AddedToWatchlistStatus,
-    AddedToWatchlistStatus
-  >
-  get copyWith =>
-      _AddedToWatchlistStatusCopyWithImpl<
-        AddedToWatchlistStatus,
-        AddedToWatchlistStatus
-      >(this as AddedToWatchlistStatus, $identity, $identity);
+  AddedToWatchlistStatusCopyWith<AddedToWatchlistStatus, AddedToWatchlistStatus,
+          AddedToWatchlistStatus>
+      get copyWith => _AddedToWatchlistStatusCopyWithImpl<
+              AddedToWatchlistStatus, AddedToWatchlistStatus>(
+          this as AddedToWatchlistStatus, $identity, $identity);
   @override
   String toString() {
-    return AddedToWatchlistStatusMapper.ensureInitialized().stringifyValue(
-      this as AddedToWatchlistStatus,
-    );
+    return AddedToWatchlistStatusMapper.ensureInitialized()
+        .stringifyValue(this as AddedToWatchlistStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return AddedToWatchlistStatusMapper.ensureInitialized().equalsValue(
-      this as AddedToWatchlistStatus,
-      other,
-    );
+    return AddedToWatchlistStatusMapper.ensureInitialized()
+        .equalsValue(this as AddedToWatchlistStatus, other);
   }
 
   @override
   int get hashCode {
-    return AddedToWatchlistStatusMapper.ensureInitialized().hashValue(
-      this as AddedToWatchlistStatus,
-    );
+    return AddedToWatchlistStatusMapper.ensureInitialized()
+        .hashValue(this as AddedToWatchlistStatus);
   }
 }
 
 extension AddedToWatchlistStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AddedToWatchlistStatus, $Out> {
   AddedToWatchlistStatusCopyWith<$R, AddedToWatchlistStatus, $Out>
-  get $asAddedToWatchlistStatus => $base.as(
-    (v, t, t2) => _AddedToWatchlistStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asAddedToWatchlistStatus => $base.as((v, t, t2) =>
+          _AddedToWatchlistStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AddedToWatchlistStatusCopyWith<
-  $R,
-  $In extends AddedToWatchlistStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends AddedToWatchlistStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   AddedToWatchlistStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _AddedToWatchlistStatusCopyWithImpl<$R, $Out>
@@ -690,28 +549,25 @@ class _AddedToWatchlistStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<AddedToWatchlistStatus> $mapper =
       AddedToWatchlistStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   AddedToWatchlistStatus $make(CopyWithData data) => AddedToWatchlistStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   AddedToWatchlistStatusCopyWith<$R2, AddedToWatchlistStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _AddedToWatchlistStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _AddedToWatchlistStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class WatchedLoadingStatusMapper extends ClassMapperBase<WatchedLoadingStatus> {
@@ -729,25 +585,14 @@ class WatchedLoadingStatusMapper extends ClassMapperBase<WatchedLoadingStatus> {
   final String id = 'WatchedLoadingStatus';
 
   static bool _$isLoading(WatchedLoadingStatus v) => v.isLoading;
-  static const Field<WatchedLoadingStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: true,
-  );
+  static const Field<WatchedLoadingStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: true);
   static String? _$errorMessage(WatchedLoadingStatus v) => v.errorMessage;
-  static const Field<WatchedLoadingStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<WatchedLoadingStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(WatchedLoadingStatus v) => v.isInitialized;
-  static const Field<WatchedLoadingStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<WatchedLoadingStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<WatchedLoadingStatus> fields = const {
@@ -758,10 +603,9 @@ class WatchedLoadingStatusMapper extends ClassMapperBase<WatchedLoadingStatus> {
 
   static WatchedLoadingStatus _instantiate(DecodingData data) {
     return WatchedLoadingStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -769,57 +613,43 @@ class WatchedLoadingStatusMapper extends ClassMapperBase<WatchedLoadingStatus> {
 }
 
 mixin WatchedLoadingStatusMappable {
-  WatchedLoadingStatusCopyWith<
-    WatchedLoadingStatus,
-    WatchedLoadingStatus,
-    WatchedLoadingStatus
-  >
-  get copyWith =>
-      _WatchedLoadingStatusCopyWithImpl<
-        WatchedLoadingStatus,
-        WatchedLoadingStatus
-      >(this as WatchedLoadingStatus, $identity, $identity);
+  WatchedLoadingStatusCopyWith<WatchedLoadingStatus, WatchedLoadingStatus,
+      WatchedLoadingStatus> get copyWith => _WatchedLoadingStatusCopyWithImpl<
+          WatchedLoadingStatus, WatchedLoadingStatus>(
+      this as WatchedLoadingStatus, $identity, $identity);
   @override
   String toString() {
-    return WatchedLoadingStatusMapper.ensureInitialized().stringifyValue(
-      this as WatchedLoadingStatus,
-    );
+    return WatchedLoadingStatusMapper.ensureInitialized()
+        .stringifyValue(this as WatchedLoadingStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return WatchedLoadingStatusMapper.ensureInitialized().equalsValue(
-      this as WatchedLoadingStatus,
-      other,
-    );
+    return WatchedLoadingStatusMapper.ensureInitialized()
+        .equalsValue(this as WatchedLoadingStatus, other);
   }
 
   @override
   int get hashCode {
-    return WatchedLoadingStatusMapper.ensureInitialized().hashValue(
-      this as WatchedLoadingStatus,
-    );
+    return WatchedLoadingStatusMapper.ensureInitialized()
+        .hashValue(this as WatchedLoadingStatus);
   }
 }
 
 extension WatchedLoadingStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, WatchedLoadingStatus, $Out> {
   WatchedLoadingStatusCopyWith<$R, WatchedLoadingStatus, $Out>
-  get $asWatchedLoadingStatus => $base.as(
-    (v, t, t2) => _WatchedLoadingStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asWatchedLoadingStatus => $base.as(
+          (v, t, t2) => _WatchedLoadingStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class WatchedLoadingStatusCopyWith<
-  $R,
-  $In extends WatchedLoadingStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends WatchedLoadingStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   WatchedLoadingStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _WatchedLoadingStatusCopyWithImpl<$R, $Out>
@@ -831,28 +661,25 @@ class _WatchedLoadingStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<WatchedLoadingStatus> $mapper =
       WatchedLoadingStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   WatchedLoadingStatus $make(CopyWithData data) => WatchedLoadingStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   WatchedLoadingStatusCopyWith<$R2, WatchedLoadingStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _WatchedLoadingStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _WatchedLoadingStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class AddedToWatchedStatusMapper extends ClassMapperBase<AddedToWatchedStatus> {
@@ -870,25 +697,14 @@ class AddedToWatchedStatusMapper extends ClassMapperBase<AddedToWatchedStatus> {
   final String id = 'AddedToWatchedStatus';
 
   static bool _$isLoading(AddedToWatchedStatus v) => v.isLoading;
-  static const Field<AddedToWatchedStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<AddedToWatchedStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(AddedToWatchedStatus v) => v.errorMessage;
-  static const Field<AddedToWatchedStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<AddedToWatchedStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(AddedToWatchedStatus v) => v.isInitialized;
-  static const Field<AddedToWatchedStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<AddedToWatchedStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<AddedToWatchedStatus> fields = const {
@@ -899,10 +715,9 @@ class AddedToWatchedStatusMapper extends ClassMapperBase<AddedToWatchedStatus> {
 
   static AddedToWatchedStatus _instantiate(DecodingData data) {
     return AddedToWatchedStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -910,57 +725,43 @@ class AddedToWatchedStatusMapper extends ClassMapperBase<AddedToWatchedStatus> {
 }
 
 mixin AddedToWatchedStatusMappable {
-  AddedToWatchedStatusCopyWith<
-    AddedToWatchedStatus,
-    AddedToWatchedStatus,
-    AddedToWatchedStatus
-  >
-  get copyWith =>
-      _AddedToWatchedStatusCopyWithImpl<
-        AddedToWatchedStatus,
-        AddedToWatchedStatus
-      >(this as AddedToWatchedStatus, $identity, $identity);
+  AddedToWatchedStatusCopyWith<AddedToWatchedStatus, AddedToWatchedStatus,
+      AddedToWatchedStatus> get copyWith => _AddedToWatchedStatusCopyWithImpl<
+          AddedToWatchedStatus, AddedToWatchedStatus>(
+      this as AddedToWatchedStatus, $identity, $identity);
   @override
   String toString() {
-    return AddedToWatchedStatusMapper.ensureInitialized().stringifyValue(
-      this as AddedToWatchedStatus,
-    );
+    return AddedToWatchedStatusMapper.ensureInitialized()
+        .stringifyValue(this as AddedToWatchedStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return AddedToWatchedStatusMapper.ensureInitialized().equalsValue(
-      this as AddedToWatchedStatus,
-      other,
-    );
+    return AddedToWatchedStatusMapper.ensureInitialized()
+        .equalsValue(this as AddedToWatchedStatus, other);
   }
 
   @override
   int get hashCode {
-    return AddedToWatchedStatusMapper.ensureInitialized().hashValue(
-      this as AddedToWatchedStatus,
-    );
+    return AddedToWatchedStatusMapper.ensureInitialized()
+        .hashValue(this as AddedToWatchedStatus);
   }
 }
 
 extension AddedToWatchedStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AddedToWatchedStatus, $Out> {
   AddedToWatchedStatusCopyWith<$R, AddedToWatchedStatus, $Out>
-  get $asAddedToWatchedStatus => $base.as(
-    (v, t, t2) => _AddedToWatchedStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asAddedToWatchedStatus => $base.as(
+          (v, t, t2) => _AddedToWatchedStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class AddedToWatchedStatusCopyWith<
-  $R,
-  $In extends AddedToWatchedStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends AddedToWatchedStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   AddedToWatchedStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _AddedToWatchedStatusCopyWithImpl<$R, $Out>
@@ -972,28 +773,25 @@ class _AddedToWatchedStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<AddedToWatchedStatus> $mapper =
       AddedToWatchedStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   AddedToWatchedStatus $make(CopyWithData data) => AddedToWatchedStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   AddedToWatchedStatusCopyWith<$R2, AddedToWatchedStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _AddedToWatchedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _AddedToWatchedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RemovedFromWatchlistStatusMapper
@@ -1003,9 +801,8 @@ class RemovedFromWatchlistStatusMapper
   static RemovedFromWatchlistStatusMapper? _instance;
   static RemovedFromWatchlistStatusMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals.use(
-        _instance = RemovedFromWatchlistStatusMapper._(),
-      );
+      MapperContainer.globals
+          .use(_instance = RemovedFromWatchlistStatusMapper._());
     }
     return _instance!;
   }
@@ -1014,22 +811,14 @@ class RemovedFromWatchlistStatusMapper
   final String id = 'RemovedFromWatchlistStatus';
 
   static bool _$isLoading(RemovedFromWatchlistStatus v) => v.isLoading;
-  static const Field<RemovedFromWatchlistStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<RemovedFromWatchlistStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(RemovedFromWatchlistStatus v) => v.errorMessage;
   static const Field<RemovedFromWatchlistStatus, String> _f$errorMessage =
       Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(RemovedFromWatchlistStatus v) => v.isInitialized;
-  static const Field<RemovedFromWatchlistStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<RemovedFromWatchlistStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<RemovedFromWatchlistStatus> fields = const {
@@ -1040,10 +829,9 @@ class RemovedFromWatchlistStatusMapper
 
   static RemovedFromWatchlistStatus _instantiate(DecodingData data) {
     return RemovedFromWatchlistStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -1051,96 +839,77 @@ class RemovedFromWatchlistStatusMapper
 }
 
 mixin RemovedFromWatchlistStatusMappable {
-  RemovedFromWatchlistStatusCopyWith<
-    RemovedFromWatchlistStatus,
-    RemovedFromWatchlistStatus,
-    RemovedFromWatchlistStatus
-  >
-  get copyWith =>
-      _RemovedFromWatchlistStatusCopyWithImpl<
-        RemovedFromWatchlistStatus,
-        RemovedFromWatchlistStatus
-      >(this as RemovedFromWatchlistStatus, $identity, $identity);
+  RemovedFromWatchlistStatusCopyWith<RemovedFromWatchlistStatus,
+          RemovedFromWatchlistStatus, RemovedFromWatchlistStatus>
+      get copyWith => _RemovedFromWatchlistStatusCopyWithImpl<
+              RemovedFromWatchlistStatus, RemovedFromWatchlistStatus>(
+          this as RemovedFromWatchlistStatus, $identity, $identity);
   @override
   String toString() {
-    return RemovedFromWatchlistStatusMapper.ensureInitialized().stringifyValue(
-      this as RemovedFromWatchlistStatus,
-    );
+    return RemovedFromWatchlistStatusMapper.ensureInitialized()
+        .stringifyValue(this as RemovedFromWatchlistStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return RemovedFromWatchlistStatusMapper.ensureInitialized().equalsValue(
-      this as RemovedFromWatchlistStatus,
-      other,
-    );
+    return RemovedFromWatchlistStatusMapper.ensureInitialized()
+        .equalsValue(this as RemovedFromWatchlistStatus, other);
   }
 
   @override
   int get hashCode {
-    return RemovedFromWatchlistStatusMapper.ensureInitialized().hashValue(
-      this as RemovedFromWatchlistStatus,
-    );
+    return RemovedFromWatchlistStatusMapper.ensureInitialized()
+        .hashValue(this as RemovedFromWatchlistStatus);
   }
 }
 
 extension RemovedFromWatchlistStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RemovedFromWatchlistStatus, $Out> {
   RemovedFromWatchlistStatusCopyWith<$R, RemovedFromWatchlistStatus, $Out>
-  get $asRemovedFromWatchlistStatus => $base.as(
-    (v, t, t2) => _RemovedFromWatchlistStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asRemovedFromWatchlistStatus => $base.as((v, t, t2) =>
+          _RemovedFromWatchlistStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RemovedFromWatchlistStatusCopyWith<
-  $R,
-  $In extends RemovedFromWatchlistStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends RemovedFromWatchlistStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   RemovedFromWatchlistStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _RemovedFromWatchlistStatusCopyWithImpl<$R, $Out>
     extends ClassCopyWithBase<$R, RemovedFromWatchlistStatus, $Out>
     implements
-        RemovedFromWatchlistStatusCopyWith<
-          $R,
-          RemovedFromWatchlistStatus,
-          $Out
-        > {
+        RemovedFromWatchlistStatusCopyWith<$R, RemovedFromWatchlistStatus,
+            $Out> {
   _RemovedFromWatchlistStatusCopyWithImpl(super.value, super.then, super.then2);
 
   @override
   late final ClassMapperBase<RemovedFromWatchlistStatus> $mapper =
       RemovedFromWatchlistStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   RemovedFromWatchlistStatus $make(CopyWithData data) =>
       RemovedFromWatchlistStatus(
-        isLoading: data.get(#isLoading, or: $value.isLoading),
-        errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-        isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-      );
+          isLoading: data.get(#isLoading, or: $value.isLoading),
+          errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+          isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   RemovedFromWatchlistStatusCopyWith<$R2, RemovedFromWatchlistStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _RemovedFromWatchlistStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _RemovedFromWatchlistStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class RemovedFromWatchedStatusMapper
@@ -1150,9 +919,8 @@ class RemovedFromWatchedStatusMapper
   static RemovedFromWatchedStatusMapper? _instance;
   static RemovedFromWatchedStatusMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals.use(
-        _instance = RemovedFromWatchedStatusMapper._(),
-      );
+      MapperContainer.globals
+          .use(_instance = RemovedFromWatchedStatusMapper._());
     }
     return _instance!;
   }
@@ -1161,25 +929,14 @@ class RemovedFromWatchedStatusMapper
   final String id = 'RemovedFromWatchedStatus';
 
   static bool _$isLoading(RemovedFromWatchedStatus v) => v.isLoading;
-  static const Field<RemovedFromWatchedStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<RemovedFromWatchedStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(RemovedFromWatchedStatus v) => v.errorMessage;
-  static const Field<RemovedFromWatchedStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<RemovedFromWatchedStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(RemovedFromWatchedStatus v) => v.isInitialized;
-  static const Field<RemovedFromWatchedStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<RemovedFromWatchedStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<RemovedFromWatchedStatus> fields = const {
@@ -1190,10 +947,9 @@ class RemovedFromWatchedStatusMapper
 
   static RemovedFromWatchedStatus _instantiate(DecodingData data) {
     return RemovedFromWatchedStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -1201,57 +957,44 @@ class RemovedFromWatchedStatusMapper
 }
 
 mixin RemovedFromWatchedStatusMappable {
-  RemovedFromWatchedStatusCopyWith<
-    RemovedFromWatchedStatus,
-    RemovedFromWatchedStatus,
-    RemovedFromWatchedStatus
-  >
-  get copyWith =>
-      _RemovedFromWatchedStatusCopyWithImpl<
-        RemovedFromWatchedStatus,
-        RemovedFromWatchedStatus
-      >(this as RemovedFromWatchedStatus, $identity, $identity);
+  RemovedFromWatchedStatusCopyWith<RemovedFromWatchedStatus,
+          RemovedFromWatchedStatus, RemovedFromWatchedStatus>
+      get copyWith => _RemovedFromWatchedStatusCopyWithImpl<
+              RemovedFromWatchedStatus, RemovedFromWatchedStatus>(
+          this as RemovedFromWatchedStatus, $identity, $identity);
   @override
   String toString() {
-    return RemovedFromWatchedStatusMapper.ensureInitialized().stringifyValue(
-      this as RemovedFromWatchedStatus,
-    );
+    return RemovedFromWatchedStatusMapper.ensureInitialized()
+        .stringifyValue(this as RemovedFromWatchedStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return RemovedFromWatchedStatusMapper.ensureInitialized().equalsValue(
-      this as RemovedFromWatchedStatus,
-      other,
-    );
+    return RemovedFromWatchedStatusMapper.ensureInitialized()
+        .equalsValue(this as RemovedFromWatchedStatus, other);
   }
 
   @override
   int get hashCode {
-    return RemovedFromWatchedStatusMapper.ensureInitialized().hashValue(
-      this as RemovedFromWatchedStatus,
-    );
+    return RemovedFromWatchedStatusMapper.ensureInitialized()
+        .hashValue(this as RemovedFromWatchedStatus);
   }
 }
 
 extension RemovedFromWatchedStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, RemovedFromWatchedStatus, $Out> {
   RemovedFromWatchedStatusCopyWith<$R, RemovedFromWatchedStatus, $Out>
-  get $asRemovedFromWatchedStatus => $base.as(
-    (v, t, t2) => _RemovedFromWatchedStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asRemovedFromWatchedStatus => $base.as((v, t, t2) =>
+          _RemovedFromWatchedStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class RemovedFromWatchedStatusCopyWith<
-  $R,
-  $In extends RemovedFromWatchedStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends RemovedFromWatchedStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   RemovedFromWatchedStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _RemovedFromWatchedStatusCopyWithImpl<$R, $Out>
@@ -1264,26 +1007,23 @@ class _RemovedFromWatchedStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<RemovedFromWatchedStatus> $mapper =
       RemovedFromWatchedStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   RemovedFromWatchedStatus $make(CopyWithData data) => RemovedFromWatchedStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   RemovedFromWatchedStatusCopyWith<$R2, RemovedFromWatchedStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _RemovedFromWatchedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _RemovedFromWatchedStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

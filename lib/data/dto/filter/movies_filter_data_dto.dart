@@ -9,7 +9,6 @@ part 'movies_filter_data_dto.mapper.dart';
 
 @MappableClass(ignoreNull: true, caseStyle: CaseStyle.snakeCase)
 class MoviesFilterDataDto with MoviesFilterDataDtoMappable {
-  final int? year;
   final SortByDto? sortBy;
   final List<CountryDto>? withCountries;
   final List<MovieGenreDto>? withGenres;
@@ -22,7 +21,6 @@ class MoviesFilterDataDto with MoviesFilterDataDtoMappable {
   final DateTime? toDate;
 
   const MoviesFilterDataDto({
-    this.year,
     this.sortBy,
     this.withCountries,
     this.withGenres,

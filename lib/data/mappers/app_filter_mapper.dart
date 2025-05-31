@@ -14,7 +14,6 @@ final class AppFilterMapper extends AppMapper {
     if (dto == null) return null;
 
     return MoviesFilterData(
-      year: dto.year,
       sortBy: _mapSortByDtoToDomain(dto.sortBy),
       withCountries: _mapCountriesDtoToDomain(dto.withCountries),
       withGenres: dto.withGenres.toDomain(),
@@ -28,7 +27,6 @@ final class AppFilterMapper extends AppMapper {
 
   MoviesFilterDataDto mapMoviesFilterDataToDto(MoviesFilterData data) {
     return MoviesFilterDataDto(
-      year: data.year,
       sortBy: _mapSortByToDto(data.sortBy),
       withCountries: _mapCountriesToDto(data.withCountries),
       withGenres: data.withGenres.toDto(),
@@ -44,7 +42,6 @@ final class AppFilterMapper extends AppMapper {
     if (dto == null) return null;
 
     return SeriesFilterData(
-      year: dto.year,
       sortBy: _mapSortByDtoToDomain(dto.sortBy),
       withCountries: _mapCountriesDtoToDomain(dto.withCountries),
       withGenres: dto.withGenres.toDomain(),
@@ -58,7 +55,6 @@ final class AppFilterMapper extends AppMapper {
 
   SeriesFilterDataDto mapSeriesFilterDataToDto(SeriesFilterData data) {
     return SeriesFilterDataDto(
-      year: data.year,
       sortBy: _mapSortByToDto(data.sortBy),
       withCountries: _mapCountriesToDto(data.withCountries),
       withGenres: data.withGenres.toDto(),

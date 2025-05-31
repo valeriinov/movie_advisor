@@ -9,7 +9,6 @@ part 'series_filter_data_dto.mapper.dart';
 
 @MappableClass(ignoreNull: true, caseStyle: CaseStyle.snakeCase)
 class SeriesFilterDataDto with SeriesFilterDataDtoMappable {
-  final int? year;
   final SortByDto? sortBy;
   final List<CountryDto>? withCountries;
   final List<SeriesGenreDto>? withGenres;
@@ -22,7 +21,6 @@ class SeriesFilterDataDto with SeriesFilterDataDtoMappable {
   final DateTime? toDate;
 
   const SeriesFilterDataDto({
-    this.year,
     this.sortBy,
     this.withCountries,
     this.withGenres,

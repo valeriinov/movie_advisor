@@ -23,28 +23,14 @@ class MoviesFilterDataDtoMapper extends ClassMapperBase<MoviesFilterDataDto> {
   @override
   final String id = 'MoviesFilterDataDto';
 
-  static int? _$year(MoviesFilterDataDto v) => v.year;
-  static const Field<MoviesFilterDataDto, int> _f$year = Field(
-    'year',
-    _$year,
-    opt: true,
-  );
   static SortByDto? _$sortBy(MoviesFilterDataDto v) => v.sortBy;
-  static const Field<MoviesFilterDataDto, SortByDto> _f$sortBy = Field(
-    'sortBy',
-    _$sortBy,
-    key: r'sort_by',
-    opt: true,
-  );
+  static const Field<MoviesFilterDataDto, SortByDto> _f$sortBy =
+      Field('sortBy', _$sortBy, key: r'sort_by', opt: true);
   static List<CountryDto>? _$withCountries(MoviesFilterDataDto v) =>
       v.withCountries;
   static const Field<MoviesFilterDataDto, List<CountryDto>> _f$withCountries =
-      Field(
-        'withCountries',
-        _$withCountries,
-        key: r'with_countries',
-        opt: true,
-      );
+      Field('withCountries', _$withCountries,
+          key: r'with_countries', opt: true);
   static List<MovieGenreDto>? _$withGenres(MoviesFilterDataDto v) =>
       v.withGenres;
   static const Field<MoviesFilterDataDto, List<MovieGenreDto>> _f$withGenres =
@@ -52,46 +38,27 @@ class MoviesFilterDataDtoMapper extends ClassMapperBase<MoviesFilterDataDto> {
   static List<MovieGenreDto>? _$withoutGenres(MoviesFilterDataDto v) =>
       v.withoutGenres;
   static const Field<MoviesFilterDataDto, List<MovieGenreDto>>
-  _f$withoutGenres = Field(
-    'withoutGenres',
-    _$withoutGenres,
-    key: r'without_genres',
-    opt: true,
-  );
+      _f$withoutGenres = Field('withoutGenres', _$withoutGenres,
+          key: r'without_genres', opt: true);
   static bool? _$includeWatched(MoviesFilterDataDto v) => v.includeWatched;
   static const Field<MoviesFilterDataDto, bool> _f$includeWatched = Field(
-    'includeWatched',
-    _$includeWatched,
-    key: r'include_watched',
-    opt: true,
-  );
+      'includeWatched', _$includeWatched,
+      key: r'include_watched', opt: true);
   static bool? _$includeWatchlist(MoviesFilterDataDto v) => v.includeWatchlist;
   static const Field<MoviesFilterDataDto, bool> _f$includeWatchlist = Field(
-    'includeWatchlist',
-    _$includeWatchlist,
-    key: r'include_watchlist',
-    opt: true,
-  );
+      'includeWatchlist', _$includeWatchlist,
+      key: r'include_watchlist', opt: true);
   static DateTime? _$fromDate(MoviesFilterDataDto v) => v.fromDate;
   static const Field<MoviesFilterDataDto, DateTime> _f$fromDate = Field(
-    'fromDate',
-    _$fromDate,
-    key: r'from_date',
-    opt: true,
-    hook: DateMapperHook(),
-  );
+      'fromDate', _$fromDate,
+      key: r'from_date', opt: true, hook: DateMapperHook());
   static DateTime? _$toDate(MoviesFilterDataDto v) => v.toDate;
   static const Field<MoviesFilterDataDto, DateTime> _f$toDate = Field(
-    'toDate',
-    _$toDate,
-    key: r'to_date',
-    opt: true,
-    hook: DateMapperHook(),
-  );
+      'toDate', _$toDate,
+      key: r'to_date', opt: true, hook: DateMapperHook());
 
   @override
   final MappableFields<MoviesFilterDataDto> fields = const {
-    #year: _f$year,
     #sortBy: _f$sortBy,
     #withCountries: _f$withCountries,
     #withGenres: _f$withGenres,
@@ -106,16 +73,14 @@ class MoviesFilterDataDtoMapper extends ClassMapperBase<MoviesFilterDataDto> {
 
   static MoviesFilterDataDto _instantiate(DecodingData data) {
     return MoviesFilterDataDto(
-      year: data.dec(_f$year),
-      sortBy: data.dec(_f$sortBy),
-      withCountries: data.dec(_f$withCountries),
-      withGenres: data.dec(_f$withGenres),
-      withoutGenres: data.dec(_f$withoutGenres),
-      includeWatched: data.dec(_f$includeWatched),
-      includeWatchlist: data.dec(_f$includeWatchlist),
-      fromDate: data.dec(_f$fromDate),
-      toDate: data.dec(_f$toDate),
-    );
+        sortBy: data.dec(_f$sortBy),
+        withCountries: data.dec(_f$withCountries),
+        withGenres: data.dec(_f$withGenres),
+        withoutGenres: data.dec(_f$withoutGenres),
+        includeWatched: data.dec(_f$includeWatched),
+        includeWatchlist: data.dec(_f$includeWatchlist),
+        fromDate: data.dec(_f$fromDate),
+        toDate: data.dec(_f$toDate));
   }
 
   @override
@@ -141,81 +106,55 @@ mixin MoviesFilterDataDtoMappable {
         .encodeMap<MoviesFilterDataDto>(this as MoviesFilterDataDto);
   }
 
-  MoviesFilterDataDtoCopyWith<
-    MoviesFilterDataDto,
-    MoviesFilterDataDto,
-    MoviesFilterDataDto
-  >
-  get copyWith =>
-      _MoviesFilterDataDtoCopyWithImpl<
-        MoviesFilterDataDto,
-        MoviesFilterDataDto
-      >(this as MoviesFilterDataDto, $identity, $identity);
+  MoviesFilterDataDtoCopyWith<MoviesFilterDataDto, MoviesFilterDataDto,
+      MoviesFilterDataDto> get copyWith => _MoviesFilterDataDtoCopyWithImpl<
+          MoviesFilterDataDto, MoviesFilterDataDto>(
+      this as MoviesFilterDataDto, $identity, $identity);
   @override
   String toString() {
-    return MoviesFilterDataDtoMapper.ensureInitialized().stringifyValue(
-      this as MoviesFilterDataDto,
-    );
+    return MoviesFilterDataDtoMapper.ensureInitialized()
+        .stringifyValue(this as MoviesFilterDataDto);
   }
 
   @override
   bool operator ==(Object other) {
-    return MoviesFilterDataDtoMapper.ensureInitialized().equalsValue(
-      this as MoviesFilterDataDto,
-      other,
-    );
+    return MoviesFilterDataDtoMapper.ensureInitialized()
+        .equalsValue(this as MoviesFilterDataDto, other);
   }
 
   @override
   int get hashCode {
-    return MoviesFilterDataDtoMapper.ensureInitialized().hashValue(
-      this as MoviesFilterDataDto,
-    );
+    return MoviesFilterDataDtoMapper.ensureInitialized()
+        .hashValue(this as MoviesFilterDataDto);
   }
 }
 
 extension MoviesFilterDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MoviesFilterDataDto, $Out> {
   MoviesFilterDataDtoCopyWith<$R, MoviesFilterDataDto, $Out>
-  get $asMoviesFilterDataDto => $base.as(
-    (v, t, t2) => _MoviesFilterDataDtoCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asMoviesFilterDataDto => $base.as(
+          (v, t, t2) => _MoviesFilterDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
-abstract class MoviesFilterDataDtoCopyWith<
-  $R,
-  $In extends MoviesFilterDataDto,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+abstract class MoviesFilterDataDtoCopyWith<$R, $In extends MoviesFilterDataDto,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
-  get withCountries;
-  ListCopyWith<
-    $R,
-    MovieGenreDto,
-    ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>
-  >?
-  get withGenres;
-  ListCopyWith<
-    $R,
-    MovieGenreDto,
-    ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>
-  >?
-  get withoutGenres;
-  $R call({
-    int? year,
-    SortByDto? sortBy,
-    List<CountryDto>? withCountries,
-    List<MovieGenreDto>? withGenres,
-    List<MovieGenreDto>? withoutGenres,
-    bool? includeWatched,
-    bool? includeWatchlist,
-    DateTime? fromDate,
-    DateTime? toDate,
-  });
+      get withCountries;
+  ListCopyWith<$R, MovieGenreDto,
+      ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get withGenres;
+  ListCopyWith<$R, MovieGenreDto,
+      ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>? get withoutGenres;
+  $R call(
+      {SortByDto? sortBy,
+      List<CountryDto>? withCountries,
+      List<MovieGenreDto>? withGenres,
+      List<MovieGenreDto>? withoutGenres,
+      bool? includeWatched,
+      bool? includeWatchlist,
+      DateTime? fromDate,
+      DateTime? toDate});
   MoviesFilterDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _MoviesFilterDataDtoCopyWithImpl<$R, $Out>
@@ -228,78 +167,64 @@ class _MoviesFilterDataDtoCopyWithImpl<$R, $Out>
       MoviesFilterDataDtoMapper.ensureInitialized();
   @override
   ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
-  get withCountries => $value.withCountries != null
-      ? ListCopyWith(
-          $value.withCountries!,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(withCountries: v),
-        )
-      : null;
+      get withCountries => $value.withCountries != null
+          ? ListCopyWith(
+              $value.withCountries!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(withCountries: v))
+          : null;
   @override
-  ListCopyWith<
-    $R,
-    MovieGenreDto,
-    ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>
-  >?
-  get withGenres => $value.withGenres != null
-      ? ListCopyWith(
-          $value.withGenres!,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(withGenres: v),
-        )
-      : null;
+  ListCopyWith<$R, MovieGenreDto,
+          ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>?
+      get withGenres => $value.withGenres != null
+          ? ListCopyWith(
+              $value.withGenres!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(withGenres: v))
+          : null;
   @override
-  ListCopyWith<
-    $R,
-    MovieGenreDto,
-    ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>
-  >?
-  get withoutGenres => $value.withoutGenres != null
-      ? ListCopyWith(
-          $value.withoutGenres!,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(withoutGenres: v),
-        )
-      : null;
+  ListCopyWith<$R, MovieGenreDto,
+          ObjectCopyWith<$R, MovieGenreDto, MovieGenreDto>>?
+      get withoutGenres => $value.withoutGenres != null
+          ? ListCopyWith(
+              $value.withoutGenres!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(withoutGenres: v))
+          : null;
   @override
-  $R call({
-    Object? year = $none,
-    Object? sortBy = $none,
-    Object? withCountries = $none,
-    Object? withGenres = $none,
-    Object? withoutGenres = $none,
-    Object? includeWatched = $none,
-    Object? includeWatchlist = $none,
-    Object? fromDate = $none,
-    Object? toDate = $none,
-  }) => $apply(
-    FieldCopyWithData({
-      if (year != $none) #year: year,
-      if (sortBy != $none) #sortBy: sortBy,
-      if (withCountries != $none) #withCountries: withCountries,
-      if (withGenres != $none) #withGenres: withGenres,
-      if (withoutGenres != $none) #withoutGenres: withoutGenres,
-      if (includeWatched != $none) #includeWatched: includeWatched,
-      if (includeWatchlist != $none) #includeWatchlist: includeWatchlist,
-      if (fromDate != $none) #fromDate: fromDate,
-      if (toDate != $none) #toDate: toDate,
-    }),
-  );
+  $R call(
+          {Object? sortBy = $none,
+          Object? withCountries = $none,
+          Object? withGenres = $none,
+          Object? withoutGenres = $none,
+          Object? includeWatched = $none,
+          Object? includeWatchlist = $none,
+          Object? fromDate = $none,
+          Object? toDate = $none}) =>
+      $apply(FieldCopyWithData({
+        if (sortBy != $none) #sortBy: sortBy,
+        if (withCountries != $none) #withCountries: withCountries,
+        if (withGenres != $none) #withGenres: withGenres,
+        if (withoutGenres != $none) #withoutGenres: withoutGenres,
+        if (includeWatched != $none) #includeWatched: includeWatched,
+        if (includeWatchlist != $none) #includeWatchlist: includeWatchlist,
+        if (fromDate != $none) #fromDate: fromDate,
+        if (toDate != $none) #toDate: toDate
+      }));
   @override
   MoviesFilterDataDto $make(CopyWithData data) => MoviesFilterDataDto(
-    year: data.get(#year, or: $value.year),
-    sortBy: data.get(#sortBy, or: $value.sortBy),
-    withCountries: data.get(#withCountries, or: $value.withCountries),
-    withGenres: data.get(#withGenres, or: $value.withGenres),
-    withoutGenres: data.get(#withoutGenres, or: $value.withoutGenres),
-    includeWatched: data.get(#includeWatched, or: $value.includeWatched),
-    includeWatchlist: data.get(#includeWatchlist, or: $value.includeWatchlist),
-    fromDate: data.get(#fromDate, or: $value.fromDate),
-    toDate: data.get(#toDate, or: $value.toDate),
-  );
+      sortBy: data.get(#sortBy, or: $value.sortBy),
+      withCountries: data.get(#withCountries, or: $value.withCountries),
+      withGenres: data.get(#withGenres, or: $value.withGenres),
+      withoutGenres: data.get(#withoutGenres, or: $value.withoutGenres),
+      includeWatched: data.get(#includeWatched, or: $value.includeWatched),
+      includeWatchlist:
+          data.get(#includeWatchlist, or: $value.includeWatchlist),
+      fromDate: data.get(#fromDate, or: $value.fromDate),
+      toDate: data.get(#toDate, or: $value.toDate));
 
   @override
   MoviesFilterDataDtoCopyWith<$R2, MoviesFilterDataDto, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _MoviesFilterDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _MoviesFilterDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

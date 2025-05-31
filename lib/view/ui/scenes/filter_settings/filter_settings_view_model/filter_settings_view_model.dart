@@ -58,12 +58,6 @@ abstract class FilterSettingsViewModel<F extends FilterData, G>
     state = state.copyWith(filter: filter);
   }
 
-  void updateFilterYear(int? year) {
-    final filter = state.filter.copyWith(year: year) as F;
-
-    state = state.copyWith(filter: filter);
-  }
-
   void updateIncludeWatched(bool includeWatched) {
     final filter = state.filter.copyWith(includeWatched: includeWatched) as F;
 
