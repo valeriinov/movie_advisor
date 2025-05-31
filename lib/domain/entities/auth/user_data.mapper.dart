@@ -21,22 +21,17 @@ class UserDataMapper extends ClassMapperBase<UserData> {
   final String id = 'UserData';
 
   static String _$id(UserData v) => v.id;
-  static const Field<UserData, String> _f$id = Field(
-    'id',
-    _$id,
-    opt: true,
-    def: '',
-  );
+  static const Field<UserData, String> _f$id =
+      Field('id', _$id, opt: true, def: '');
   static String _$email(UserData v) => v.email;
-  static const Field<UserData, String> _f$email = Field(
-    'email',
-    _$email,
-    opt: true,
-    def: '',
-  );
+  static const Field<UserData, String> _f$email =
+      Field('email', _$email, opt: true, def: '');
 
   @override
-  final MappableFields<UserData> fields = const {#id: _f$id, #email: _f$email};
+  final MappableFields<UserData> fields = const {
+    #id: _f$id,
+    #email: _f$email,
+  };
 
   static UserData _instantiate(DecodingData data) {
     return UserData(id: data.dec(_f$id), email: data.dec(_f$email));
@@ -49,10 +44,7 @@ class UserDataMapper extends ClassMapperBase<UserData> {
 mixin UserDataMappable {
   UserDataCopyWith<UserData, UserData, UserData> get copyWith =>
       _UserDataCopyWithImpl<UserData, UserData>(
-        this as UserData,
-        $identity,
-        $identity,
-      );
+          this as UserData, $identity, $identity);
   @override
   String toString() {
     return UserDataMapper.ensureInitialized().stringifyValue(this as UserData);
@@ -60,10 +52,8 @@ mixin UserDataMappable {
 
   @override
   bool operator ==(Object other) {
-    return UserDataMapper.ensureInitialized().equalsValue(
-      this as UserData,
-      other,
-    );
+    return UserDataMapper.ensureInitialized()
+        .equalsValue(this as UserData, other);
   }
 
   @override
@@ -92,20 +82,15 @@ class _UserDataCopyWithImpl<$R, $Out>
   late final ClassMapperBase<UserData> $mapper =
       UserDataMapper.ensureInitialized();
   @override
-  $R call({String? id, String? email}) => $apply(
-    FieldCopyWithData({
-      if (id != null) #id: id,
-      if (email != null) #email: email,
-    }),
-  );
+  $R call({String? id, String? email}) => $apply(FieldCopyWithData(
+      {if (id != null) #id: id, if (email != null) #email: email}));
   @override
   UserData $make(CopyWithData data) => UserData(
-    id: data.get(#id, or: $value.id),
-    email: data.get(#email, or: $value.email),
-  );
+      id: data.get(#id, or: $value.id),
+      email: data.get(#email, or: $value.email));
 
   @override
   UserDataCopyWith<$R2, UserData, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _UserDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _UserDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

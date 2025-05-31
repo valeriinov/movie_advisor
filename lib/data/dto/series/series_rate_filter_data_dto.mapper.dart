@@ -13,9 +13,8 @@ class SeriesRateFilterDataDtoMapper
   static SeriesRateFilterDataDtoMapper? _instance;
   static SeriesRateFilterDataDtoMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals.use(
-        _instance = SeriesRateFilterDataDtoMapper._(),
-      );
+      MapperContainer.globals
+          .use(_instance = SeriesRateFilterDataDtoMapper._());
       SeriesGenreDtoMapper.ensureInitialized();
       CountryDtoMapper.ensureInitialized();
     }
@@ -26,30 +25,18 @@ class SeriesRateFilterDataDtoMapper
   final String id = 'SeriesRateFilterDataDto';
 
   static List<int>? _$excludeIds(SeriesRateFilterDataDto v) => v.excludeIds;
-  static const Field<SeriesRateFilterDataDto, List<int>> _f$excludeIds = Field(
-    'excludeIds',
-    _$excludeIds,
-    key: r'exclude_ids',
-    opt: true,
-  );
+  static const Field<SeriesRateFilterDataDto, List<int>> _f$excludeIds =
+      Field('excludeIds', _$excludeIds, key: r'exclude_ids', opt: true);
   static List<SeriesGenreDto>? _$targetGenres(SeriesRateFilterDataDto v) =>
       v.targetGenres;
   static const Field<SeriesRateFilterDataDto, List<SeriesGenreDto>>
-  _f$targetGenres = Field(
-    'targetGenres',
-    _$targetGenres,
-    key: r'target_genres',
-    opt: true,
-  );
+      _f$targetGenres =
+      Field('targetGenres', _$targetGenres, key: r'target_genres', opt: true);
   static List<CountryDto>? _$targetCountries(SeriesRateFilterDataDto v) =>
       v.targetCountries;
   static const Field<SeriesRateFilterDataDto, List<CountryDto>>
-  _f$targetCountries = Field(
-    'targetCountries',
-    _$targetCountries,
-    key: r'target_countries',
-    opt: true,
-  );
+      _f$targetCountries = Field('targetCountries', _$targetCountries,
+          key: r'target_countries', opt: true);
 
   @override
   final MappableFields<SeriesRateFilterDataDto> fields = const {
@@ -62,10 +49,9 @@ class SeriesRateFilterDataDtoMapper
 
   static SeriesRateFilterDataDto _instantiate(DecodingData data) {
     return SeriesRateFilterDataDto(
-      excludeIds: data.dec(_f$excludeIds),
-      targetGenres: data.dec(_f$targetGenres),
-      targetCountries: data.dec(_f$targetCountries),
-    );
+        excludeIds: data.dec(_f$excludeIds),
+        targetGenres: data.dec(_f$targetGenres),
+        targetCountries: data.dec(_f$targetCountries));
   }
 
   @override
@@ -91,70 +77,52 @@ mixin SeriesRateFilterDataDtoMappable {
         .encodeMap<SeriesRateFilterDataDto>(this as SeriesRateFilterDataDto);
   }
 
-  SeriesRateFilterDataDtoCopyWith<
-    SeriesRateFilterDataDto,
-    SeriesRateFilterDataDto,
-    SeriesRateFilterDataDto
-  >
-  get copyWith =>
-      _SeriesRateFilterDataDtoCopyWithImpl<
-        SeriesRateFilterDataDto,
-        SeriesRateFilterDataDto
-      >(this as SeriesRateFilterDataDto, $identity, $identity);
+  SeriesRateFilterDataDtoCopyWith<SeriesRateFilterDataDto,
+          SeriesRateFilterDataDto, SeriesRateFilterDataDto>
+      get copyWith => _SeriesRateFilterDataDtoCopyWithImpl<
+              SeriesRateFilterDataDto, SeriesRateFilterDataDto>(
+          this as SeriesRateFilterDataDto, $identity, $identity);
   @override
   String toString() {
-    return SeriesRateFilterDataDtoMapper.ensureInitialized().stringifyValue(
-      this as SeriesRateFilterDataDto,
-    );
+    return SeriesRateFilterDataDtoMapper.ensureInitialized()
+        .stringifyValue(this as SeriesRateFilterDataDto);
   }
 
   @override
   bool operator ==(Object other) {
-    return SeriesRateFilterDataDtoMapper.ensureInitialized().equalsValue(
-      this as SeriesRateFilterDataDto,
-      other,
-    );
+    return SeriesRateFilterDataDtoMapper.ensureInitialized()
+        .equalsValue(this as SeriesRateFilterDataDto, other);
   }
 
   @override
   int get hashCode {
-    return SeriesRateFilterDataDtoMapper.ensureInitialized().hashValue(
-      this as SeriesRateFilterDataDto,
-    );
+    return SeriesRateFilterDataDtoMapper.ensureInitialized()
+        .hashValue(this as SeriesRateFilterDataDto);
   }
 }
 
 extension SeriesRateFilterDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesRateFilterDataDto, $Out> {
   SeriesRateFilterDataDtoCopyWith<$R, SeriesRateFilterDataDto, $Out>
-  get $asSeriesRateFilterDataDto => $base.as(
-    (v, t, t2) => _SeriesRateFilterDataDtoCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asSeriesRateFilterDataDto => $base.as((v, t, t2) =>
+          _SeriesRateFilterDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesRateFilterDataDtoCopyWith<
-  $R,
-  $In extends SeriesRateFilterDataDto,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get excludeIds;
-  ListCopyWith<
     $R,
-    SeriesGenreDto,
-    ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>
-  >?
-  get targetGenres;
+    $In extends SeriesRateFilterDataDto,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get excludeIds;
+  ListCopyWith<$R, SeriesGenreDto,
+      ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>? get targetGenres;
   ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
-  get targetCountries;
-  $R call({
-    List<int>? excludeIds,
-    List<SeriesGenreDto>? targetGenres,
-    List<CountryDto>? targetCountries,
-  });
+      get targetCountries;
+  $R call(
+      {List<int>? excludeIds,
+      List<SeriesGenreDto>? targetGenres,
+      List<CountryDto>? targetCountries});
   SeriesRateFilterDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _SeriesRateFilterDataDtoCopyWithImpl<$R, $Out>
@@ -169,55 +137,46 @@ class _SeriesRateFilterDataDtoCopyWithImpl<$R, $Out>
   @override
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get excludeIds =>
       $value.excludeIds != null
-      ? ListCopyWith(
-          $value.excludeIds!,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(excludeIds: v),
-        )
-      : null;
+          ? ListCopyWith(
+              $value.excludeIds!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(excludeIds: v))
+          : null;
   @override
-  ListCopyWith<
-    $R,
-    SeriesGenreDto,
-    ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>
-  >?
-  get targetGenres => $value.targetGenres != null
-      ? ListCopyWith(
-          $value.targetGenres!,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(targetGenres: v),
-        )
-      : null;
+  ListCopyWith<$R, SeriesGenreDto,
+          ObjectCopyWith<$R, SeriesGenreDto, SeriesGenreDto>>?
+      get targetGenres => $value.targetGenres != null
+          ? ListCopyWith(
+              $value.targetGenres!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(targetGenres: v))
+          : null;
   @override
   ListCopyWith<$R, CountryDto, ObjectCopyWith<$R, CountryDto, CountryDto>>?
-  get targetCountries => $value.targetCountries != null
-      ? ListCopyWith(
-          $value.targetCountries!,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(targetCountries: v),
-        )
-      : null;
+      get targetCountries => $value.targetCountries != null
+          ? ListCopyWith(
+              $value.targetCountries!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(targetCountries: v))
+          : null;
   @override
-  $R call({
-    Object? excludeIds = $none,
-    Object? targetGenres = $none,
-    Object? targetCountries = $none,
-  }) => $apply(
-    FieldCopyWithData({
-      if (excludeIds != $none) #excludeIds: excludeIds,
-      if (targetGenres != $none) #targetGenres: targetGenres,
-      if (targetCountries != $none) #targetCountries: targetCountries,
-    }),
-  );
+  $R call(
+          {Object? excludeIds = $none,
+          Object? targetGenres = $none,
+          Object? targetCountries = $none}) =>
+      $apply(FieldCopyWithData({
+        if (excludeIds != $none) #excludeIds: excludeIds,
+        if (targetGenres != $none) #targetGenres: targetGenres,
+        if (targetCountries != $none) #targetCountries: targetCountries
+      }));
   @override
   SeriesRateFilterDataDto $make(CopyWithData data) => SeriesRateFilterDataDto(
-    excludeIds: data.get(#excludeIds, or: $value.excludeIds),
-    targetGenres: data.get(#targetGenres, or: $value.targetGenres),
-    targetCountries: data.get(#targetCountries, or: $value.targetCountries),
-  );
+      excludeIds: data.get(#excludeIds, or: $value.excludeIds),
+      targetGenres: data.get(#targetGenres, or: $value.targetGenres),
+      targetCountries: data.get(#targetCountries, or: $value.targetCountries));
 
   @override
   SeriesRateFilterDataDtoCopyWith<$R2, SeriesRateFilterDataDto, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _SeriesRateFilterDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _SeriesRateFilterDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

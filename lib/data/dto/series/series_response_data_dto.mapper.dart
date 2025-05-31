@@ -23,21 +23,14 @@ class SeriesResponseDataDtoMapper
   final String id = 'SeriesResponseDataDto';
 
   static int? _$page(SeriesResponseDataDto v) => v.page;
-  static const Field<SeriesResponseDataDto, int> _f$page = Field(
-    'page',
-    _$page,
-    opt: true,
-  );
+  static const Field<SeriesResponseDataDto, int> _f$page =
+      Field('page', _$page, opt: true);
   static List<SeriesDataDto>? _$results(SeriesResponseDataDto v) => v.results;
   static const Field<SeriesResponseDataDto, List<SeriesDataDto>> _f$results =
       Field('results', _$results, opt: true);
   static int? _$totalPages(SeriesResponseDataDto v) => v.totalPages;
-  static const Field<SeriesResponseDataDto, int> _f$totalPages = Field(
-    'totalPages',
-    _$totalPages,
-    key: r'total_pages',
-    opt: true,
-  );
+  static const Field<SeriesResponseDataDto, int> _f$totalPages =
+      Field('totalPages', _$totalPages, key: r'total_pages', opt: true);
 
   @override
   final MappableFields<SeriesResponseDataDto> fields = const {
@@ -50,10 +43,9 @@ class SeriesResponseDataDtoMapper
 
   static SeriesResponseDataDto _instantiate(DecodingData data) {
     return SeriesResponseDataDto(
-      page: data.dec(_f$page),
-      results: data.dec(_f$results),
-      totalPages: data.dec(_f$totalPages),
-    );
+        page: data.dec(_f$page),
+        results: data.dec(_f$results),
+        totalPages: data.dec(_f$totalPages));
   }
 
   @override
@@ -79,63 +71,45 @@ mixin SeriesResponseDataDtoMappable {
         .encodeMap<SeriesResponseDataDto>(this as SeriesResponseDataDto);
   }
 
-  SeriesResponseDataDtoCopyWith<
-    SeriesResponseDataDto,
-    SeriesResponseDataDto,
-    SeriesResponseDataDto
-  >
-  get copyWith =>
-      _SeriesResponseDataDtoCopyWithImpl<
-        SeriesResponseDataDto,
-        SeriesResponseDataDto
-      >(this as SeriesResponseDataDto, $identity, $identity);
+  SeriesResponseDataDtoCopyWith<SeriesResponseDataDto, SeriesResponseDataDto,
+      SeriesResponseDataDto> get copyWith => _SeriesResponseDataDtoCopyWithImpl<
+          SeriesResponseDataDto, SeriesResponseDataDto>(
+      this as SeriesResponseDataDto, $identity, $identity);
   @override
   String toString() {
-    return SeriesResponseDataDtoMapper.ensureInitialized().stringifyValue(
-      this as SeriesResponseDataDto,
-    );
+    return SeriesResponseDataDtoMapper.ensureInitialized()
+        .stringifyValue(this as SeriesResponseDataDto);
   }
 
   @override
   bool operator ==(Object other) {
-    return SeriesResponseDataDtoMapper.ensureInitialized().equalsValue(
-      this as SeriesResponseDataDto,
-      other,
-    );
+    return SeriesResponseDataDtoMapper.ensureInitialized()
+        .equalsValue(this as SeriesResponseDataDto, other);
   }
 
   @override
   int get hashCode {
-    return SeriesResponseDataDtoMapper.ensureInitialized().hashValue(
-      this as SeriesResponseDataDto,
-    );
+    return SeriesResponseDataDtoMapper.ensureInitialized()
+        .hashValue(this as SeriesResponseDataDto);
   }
 }
 
 extension SeriesResponseDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SeriesResponseDataDto, $Out> {
   SeriesResponseDataDtoCopyWith<$R, SeriesResponseDataDto, $Out>
-  get $asSeriesResponseDataDto => $base.as(
-    (v, t, t2) => _SeriesResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asSeriesResponseDataDto => $base.as(
+          (v, t, t2) => _SeriesResponseDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SeriesResponseDataDtoCopyWith<
-  $R,
-  $In extends SeriesResponseDataDto,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<
     $R,
-    SeriesDataDto,
-    SeriesDataDtoCopyWith<$R, SeriesDataDto, SeriesDataDto>
-  >?
-  get results;
+    $In extends SeriesResponseDataDto,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  ListCopyWith<$R, SeriesDataDto,
+      SeriesDataDtoCopyWith<$R, SeriesDataDto, SeriesDataDto>>? get results;
   $R call({int? page, List<SeriesDataDto>? results, int? totalPages});
   SeriesResponseDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _SeriesResponseDataDtoCopyWithImpl<$R, $Out>
@@ -147,39 +121,30 @@ class _SeriesResponseDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<SeriesResponseDataDto> $mapper =
       SeriesResponseDataDtoMapper.ensureInitialized();
   @override
-  ListCopyWith<
-    $R,
-    SeriesDataDto,
-    SeriesDataDtoCopyWith<$R, SeriesDataDto, SeriesDataDto>
-  >?
-  get results => $value.results != null
-      ? ListCopyWith(
-          $value.results!,
-          (v, t) => v.copyWith.$chain(t),
-          (v) => call(results: v),
-        )
-      : null;
+  ListCopyWith<$R, SeriesDataDto,
+          SeriesDataDtoCopyWith<$R, SeriesDataDto, SeriesDataDto>>?
+      get results => $value.results != null
+          ? ListCopyWith($value.results!, (v, t) => v.copyWith.$chain(t),
+              (v) => call(results: v))
+          : null;
   @override
-  $R call({
-    Object? page = $none,
-    Object? results = $none,
-    Object? totalPages = $none,
-  }) => $apply(
-    FieldCopyWithData({
-      if (page != $none) #page: page,
-      if (results != $none) #results: results,
-      if (totalPages != $none) #totalPages: totalPages,
-    }),
-  );
+  $R call(
+          {Object? page = $none,
+          Object? results = $none,
+          Object? totalPages = $none}) =>
+      $apply(FieldCopyWithData({
+        if (page != $none) #page: page,
+        if (results != $none) #results: results,
+        if (totalPages != $none) #totalPages: totalPages
+      }));
   @override
   SeriesResponseDataDto $make(CopyWithData data) => SeriesResponseDataDto(
-    page: data.get(#page, or: $value.page),
-    results: data.get(#results, or: $value.results),
-    totalPages: data.get(#totalPages, or: $value.totalPages),
-  );
+      page: data.get(#page, or: $value.page),
+      results: data.get(#results, or: $value.results),
+      totalPages: data.get(#totalPages, or: $value.totalPages));
 
   @override
   SeriesResponseDataDtoCopyWith<$R2, SeriesResponseDataDto, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _SeriesResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _SeriesResponseDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

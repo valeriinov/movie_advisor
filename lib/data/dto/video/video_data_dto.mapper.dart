@@ -24,23 +24,14 @@ class VideoDataDtoMapper extends ClassMapperBase<VideoDataDto> {
   static String? _$id(VideoDataDto v) => v.id;
   static const Field<VideoDataDto, String> _f$id = Field('id', _$id, opt: true);
   static String? _$key(VideoDataDto v) => v.key;
-  static const Field<VideoDataDto, String> _f$key = Field(
-    'key',
-    _$key,
-    opt: true,
-  );
+  static const Field<VideoDataDto, String> _f$key =
+      Field('key', _$key, opt: true);
   static VideoTypeDto? _$type(VideoDataDto v) => v.type;
-  static const Field<VideoDataDto, VideoTypeDto> _f$type = Field(
-    'type',
-    _$type,
-    opt: true,
-  );
+  static const Field<VideoDataDto, VideoTypeDto> _f$type =
+      Field('type', _$type, opt: true);
   static bool? _$official(VideoDataDto v) => v.official;
-  static const Field<VideoDataDto, bool> _f$official = Field(
-    'official',
-    _$official,
-    opt: true,
-  );
+  static const Field<VideoDataDto, bool> _f$official =
+      Field('official', _$official, opt: true);
 
   @override
   final MappableFields<VideoDataDto> fields = const {
@@ -54,11 +45,10 @@ class VideoDataDtoMapper extends ClassMapperBase<VideoDataDto> {
 
   static VideoDataDto _instantiate(DecodingData data) {
     return VideoDataDto(
-      id: data.dec(_f$id),
-      key: data.dec(_f$key),
-      type: data.dec(_f$type),
-      official: data.dec(_f$official),
-    );
+        id: data.dec(_f$id),
+        key: data.dec(_f$key),
+        type: data.dec(_f$type),
+        official: data.dec(_f$official));
   }
 
   @override
@@ -75,43 +65,34 @@ class VideoDataDtoMapper extends ClassMapperBase<VideoDataDto> {
 
 mixin VideoDataDtoMappable {
   String toJsonString() {
-    return VideoDataDtoMapper.ensureInitialized().encodeJson<VideoDataDto>(
-      this as VideoDataDto,
-    );
+    return VideoDataDtoMapper.ensureInitialized()
+        .encodeJson<VideoDataDto>(this as VideoDataDto);
   }
 
   Map<String, dynamic> toJson() {
-    return VideoDataDtoMapper.ensureInitialized().encodeMap<VideoDataDto>(
-      this as VideoDataDto,
-    );
+    return VideoDataDtoMapper.ensureInitialized()
+        .encodeMap<VideoDataDto>(this as VideoDataDto);
   }
 
   VideoDataDtoCopyWith<VideoDataDto, VideoDataDto, VideoDataDto> get copyWith =>
       _VideoDataDtoCopyWithImpl<VideoDataDto, VideoDataDto>(
-        this as VideoDataDto,
-        $identity,
-        $identity,
-      );
+          this as VideoDataDto, $identity, $identity);
   @override
   String toString() {
-    return VideoDataDtoMapper.ensureInitialized().stringifyValue(
-      this as VideoDataDto,
-    );
+    return VideoDataDtoMapper.ensureInitialized()
+        .stringifyValue(this as VideoDataDto);
   }
 
   @override
   bool operator ==(Object other) {
-    return VideoDataDtoMapper.ensureInitialized().equalsValue(
-      this as VideoDataDto,
-      other,
-    );
+    return VideoDataDtoMapper.ensureInitialized()
+        .equalsValue(this as VideoDataDto, other);
   }
 
   @override
   int get hashCode {
-    return VideoDataDtoMapper.ensureInitialized().hashValue(
-      this as VideoDataDto,
-    );
+    return VideoDataDtoMapper.ensureInitialized()
+        .hashValue(this as VideoDataDto);
   }
 }
 
@@ -136,29 +117,26 @@ class _VideoDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<VideoDataDto> $mapper =
       VideoDataDtoMapper.ensureInitialized();
   @override
-  $R call({
-    Object? id = $none,
-    Object? key = $none,
-    Object? type = $none,
-    Object? official = $none,
-  }) => $apply(
-    FieldCopyWithData({
-      if (id != $none) #id: id,
-      if (key != $none) #key: key,
-      if (type != $none) #type: type,
-      if (official != $none) #official: official,
-    }),
-  );
+  $R call(
+          {Object? id = $none,
+          Object? key = $none,
+          Object? type = $none,
+          Object? official = $none}) =>
+      $apply(FieldCopyWithData({
+        if (id != $none) #id: id,
+        if (key != $none) #key: key,
+        if (type != $none) #type: type,
+        if (official != $none) #official: official
+      }));
   @override
   VideoDataDto $make(CopyWithData data) => VideoDataDto(
-    id: data.get(#id, or: $value.id),
-    key: data.get(#key, or: $value.key),
-    type: data.get(#type, or: $value.type),
-    official: data.get(#official, or: $value.official),
-  );
+      id: data.get(#id, or: $value.id),
+      key: data.get(#key, or: $value.key),
+      type: data.get(#type, or: $value.type),
+      official: data.get(#official, or: $value.official));
 
   @override
   VideoDataDtoCopyWith<$R2, VideoDataDto, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _VideoDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _VideoDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

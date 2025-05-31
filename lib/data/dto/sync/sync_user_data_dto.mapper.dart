@@ -21,31 +21,19 @@ class SyncUserDataDtoMapper extends ClassMapperBase<SyncUserDataDto> {
   final String id = 'SyncUserDataDto';
 
   static String? _$id(SyncUserDataDto v) => v.id;
-  static const Field<SyncUserDataDto, String> _f$id = Field(
-    'id',
-    _$id,
-    opt: true,
-  );
+  static const Field<SyncUserDataDto, String> _f$id =
+      Field('id', _$id, opt: true);
   static String? _$email(SyncUserDataDto v) => v.email;
-  static const Field<SyncUserDataDto, String> _f$email = Field(
-    'email',
-    _$email,
-    opt: true,
-  );
+  static const Field<SyncUserDataDto, String> _f$email =
+      Field('email', _$email, opt: true);
   static DateTime? _$moviesSyncedAt(SyncUserDataDto v) => v.moviesSyncedAt;
   static const Field<SyncUserDataDto, DateTime> _f$moviesSyncedAt = Field(
-    'moviesSyncedAt',
-    _$moviesSyncedAt,
-    key: r'movies_synced_at',
-    opt: true,
-  );
+      'moviesSyncedAt', _$moviesSyncedAt,
+      key: r'movies_synced_at', opt: true);
   static DateTime? _$seriesSyncedAt(SyncUserDataDto v) => v.seriesSyncedAt;
   static const Field<SyncUserDataDto, DateTime> _f$seriesSyncedAt = Field(
-    'seriesSyncedAt',
-    _$seriesSyncedAt,
-    key: r'series_synced_at',
-    opt: true,
-  );
+      'seriesSyncedAt', _$seriesSyncedAt,
+      key: r'series_synced_at', opt: true);
 
   @override
   final MappableFields<SyncUserDataDto> fields = const {
@@ -59,11 +47,10 @@ class SyncUserDataDtoMapper extends ClassMapperBase<SyncUserDataDto> {
 
   static SyncUserDataDto _instantiate(DecodingData data) {
     return SyncUserDataDto(
-      id: data.dec(_f$id),
-      email: data.dec(_f$email),
-      moviesSyncedAt: data.dec(_f$moviesSyncedAt),
-      seriesSyncedAt: data.dec(_f$seriesSyncedAt),
-    );
+        id: data.dec(_f$id),
+        email: data.dec(_f$email),
+        moviesSyncedAt: data.dec(_f$moviesSyncedAt),
+        seriesSyncedAt: data.dec(_f$seriesSyncedAt));
   }
 
   @override
@@ -85,38 +72,30 @@ mixin SyncUserDataDtoMappable {
   }
 
   Map<String, dynamic> toJson() {
-    return SyncUserDataDtoMapper.ensureInitialized().encodeMap<SyncUserDataDto>(
-      this as SyncUserDataDto,
-    );
+    return SyncUserDataDtoMapper.ensureInitialized()
+        .encodeMap<SyncUserDataDto>(this as SyncUserDataDto);
   }
 
   SyncUserDataDtoCopyWith<SyncUserDataDto, SyncUserDataDto, SyncUserDataDto>
-  get copyWith =>
-      _SyncUserDataDtoCopyWithImpl<SyncUserDataDto, SyncUserDataDto>(
-        this as SyncUserDataDto,
-        $identity,
-        $identity,
-      );
+      get copyWith =>
+          _SyncUserDataDtoCopyWithImpl<SyncUserDataDto, SyncUserDataDto>(
+              this as SyncUserDataDto, $identity, $identity);
   @override
   String toString() {
-    return SyncUserDataDtoMapper.ensureInitialized().stringifyValue(
-      this as SyncUserDataDto,
-    );
+    return SyncUserDataDtoMapper.ensureInitialized()
+        .stringifyValue(this as SyncUserDataDto);
   }
 
   @override
   bool operator ==(Object other) {
-    return SyncUserDataDtoMapper.ensureInitialized().equalsValue(
-      this as SyncUserDataDto,
-      other,
-    );
+    return SyncUserDataDtoMapper.ensureInitialized()
+        .equalsValue(this as SyncUserDataDto, other);
   }
 
   @override
   int get hashCode {
-    return SyncUserDataDtoMapper.ensureInitialized().hashValue(
-      this as SyncUserDataDto,
-    );
+    return SyncUserDataDtoMapper.ensureInitialized()
+        .hashValue(this as SyncUserDataDto);
   }
 }
 
@@ -128,15 +107,13 @@ extension SyncUserDataDtoValueCopy<$R, $Out>
 
 abstract class SyncUserDataDtoCopyWith<$R, $In extends SyncUserDataDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({
-    String? id,
-    String? email,
-    DateTime? moviesSyncedAt,
-    DateTime? seriesSyncedAt,
-  });
+  $R call(
+      {String? id,
+      String? email,
+      DateTime? moviesSyncedAt,
+      DateTime? seriesSyncedAt});
   SyncUserDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _SyncUserDataDtoCopyWithImpl<$R, $Out>
@@ -148,29 +125,26 @@ class _SyncUserDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<SyncUserDataDto> $mapper =
       SyncUserDataDtoMapper.ensureInitialized();
   @override
-  $R call({
-    Object? id = $none,
-    Object? email = $none,
-    Object? moviesSyncedAt = $none,
-    Object? seriesSyncedAt = $none,
-  }) => $apply(
-    FieldCopyWithData({
-      if (id != $none) #id: id,
-      if (email != $none) #email: email,
-      if (moviesSyncedAt != $none) #moviesSyncedAt: moviesSyncedAt,
-      if (seriesSyncedAt != $none) #seriesSyncedAt: seriesSyncedAt,
-    }),
-  );
+  $R call(
+          {Object? id = $none,
+          Object? email = $none,
+          Object? moviesSyncedAt = $none,
+          Object? seriesSyncedAt = $none}) =>
+      $apply(FieldCopyWithData({
+        if (id != $none) #id: id,
+        if (email != $none) #email: email,
+        if (moviesSyncedAt != $none) #moviesSyncedAt: moviesSyncedAt,
+        if (seriesSyncedAt != $none) #seriesSyncedAt: seriesSyncedAt
+      }));
   @override
   SyncUserDataDto $make(CopyWithData data) => SyncUserDataDto(
-    id: data.get(#id, or: $value.id),
-    email: data.get(#email, or: $value.email),
-    moviesSyncedAt: data.get(#moviesSyncedAt, or: $value.moviesSyncedAt),
-    seriesSyncedAt: data.get(#seriesSyncedAt, or: $value.seriesSyncedAt),
-  );
+      id: data.get(#id, or: $value.id),
+      email: data.get(#email, or: $value.email),
+      moviesSyncedAt: data.get(#moviesSyncedAt, or: $value.moviesSyncedAt),
+      seriesSyncedAt: data.get(#seriesSyncedAt, or: $value.seriesSyncedAt));
 
   @override
   SyncUserDataDtoCopyWith<$R2, SyncUserDataDto, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _SyncUserDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _SyncUserDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

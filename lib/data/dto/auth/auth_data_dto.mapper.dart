@@ -21,17 +21,11 @@ class AuthDataDtoMapper extends ClassMapperBase<AuthDataDto> {
   final String id = 'AuthDataDto';
 
   static String? _$email(AuthDataDto v) => v.email;
-  static const Field<AuthDataDto, String> _f$email = Field(
-    'email',
-    _$email,
-    opt: true,
-  );
+  static const Field<AuthDataDto, String> _f$email =
+      Field('email', _$email, opt: true);
   static String? _$password(AuthDataDto v) => v.password;
-  static const Field<AuthDataDto, String> _f$password = Field(
-    'password',
-    _$password,
-    opt: true,
-  );
+  static const Field<AuthDataDto, String> _f$password =
+      Field('password', _$password, opt: true);
 
   @override
   final MappableFields<AuthDataDto> fields = const {
@@ -43,9 +37,7 @@ class AuthDataDtoMapper extends ClassMapperBase<AuthDataDto> {
 
   static AuthDataDto _instantiate(DecodingData data) {
     return AuthDataDto(
-      email: data.dec(_f$email),
-      password: data.dec(_f$password),
-    );
+        email: data.dec(_f$email), password: data.dec(_f$password));
   }
 
   @override
@@ -62,36 +54,28 @@ class AuthDataDtoMapper extends ClassMapperBase<AuthDataDto> {
 
 mixin AuthDataDtoMappable {
   String toJsonString() {
-    return AuthDataDtoMapper.ensureInitialized().encodeJson<AuthDataDto>(
-      this as AuthDataDto,
-    );
+    return AuthDataDtoMapper.ensureInitialized()
+        .encodeJson<AuthDataDto>(this as AuthDataDto);
   }
 
   Map<String, dynamic> toJson() {
-    return AuthDataDtoMapper.ensureInitialized().encodeMap<AuthDataDto>(
-      this as AuthDataDto,
-    );
+    return AuthDataDtoMapper.ensureInitialized()
+        .encodeMap<AuthDataDto>(this as AuthDataDto);
   }
 
   AuthDataDtoCopyWith<AuthDataDto, AuthDataDto, AuthDataDto> get copyWith =>
       _AuthDataDtoCopyWithImpl<AuthDataDto, AuthDataDto>(
-        this as AuthDataDto,
-        $identity,
-        $identity,
-      );
+          this as AuthDataDto, $identity, $identity);
   @override
   String toString() {
-    return AuthDataDtoMapper.ensureInitialized().stringifyValue(
-      this as AuthDataDto,
-    );
+    return AuthDataDtoMapper.ensureInitialized()
+        .stringifyValue(this as AuthDataDto);
   }
 
   @override
   bool operator ==(Object other) {
-    return AuthDataDtoMapper.ensureInitialized().equalsValue(
-      this as AuthDataDto,
-      other,
-    );
+    return AuthDataDtoMapper.ensureInitialized()
+        .equalsValue(this as AuthDataDto, other);
   }
 
   @override
@@ -121,20 +105,18 @@ class _AuthDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<AuthDataDto> $mapper =
       AuthDataDtoMapper.ensureInitialized();
   @override
-  $R call({Object? email = $none, Object? password = $none}) => $apply(
-    FieldCopyWithData({
-      if (email != $none) #email: email,
-      if (password != $none) #password: password,
-    }),
-  );
+  $R call({Object? email = $none, Object? password = $none}) =>
+      $apply(FieldCopyWithData({
+        if (email != $none) #email: email,
+        if (password != $none) #password: password
+      }));
   @override
   AuthDataDto $make(CopyWithData data) => AuthDataDto(
-    email: data.get(#email, or: $value.email),
-    password: data.get(#password, or: $value.password),
-  );
+      email: data.get(#email, or: $value.email),
+      password: data.get(#password, or: $value.password));
 
   @override
   AuthDataDtoCopyWith<$R2, AuthDataDto, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _AuthDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _AuthDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
