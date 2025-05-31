@@ -188,6 +188,7 @@
   "emptyFilterTitle": "Sorry, No Results Found For Your Filter :(",
   "emptyFilterSubtitle": "Try  changing the filter settings.",
   "filterSortBy": "Sort",
+  "filterSettings": "Filters",
   "filterWithGenres": "Include Genres",
   "filterWithoutGenres": "Exclude Genres",
   "filterWithCountries": "Include Countries",
@@ -200,6 +201,8 @@
   "withoutGenresDialog": "Exclude Genres",
   "withCountriesDialog": "Include Countries",
   "selectYearDialog": "Premiere Year",
+  "selectYearFromDialog": "Premiere Year From",
+  "selectYearToDialog": "Premiere Year To",
   "sortByDialog": "Sort by",
   "includeYourListsDialog": "Include your lists",
   "includeWatchedDesc": "Include watched",
@@ -220,5 +223,11 @@
   "personSeriesTab": "Series",
   "emptyBiographyTab": "No biography yet. Stay tuned! \uD83C\uDF7F",
   "emptyMoviesTab": "No movies yet. Stay tuned! \uD83C\uDF7F",
-  "emptySeriesTab": "No series yet. Stay tuned! \uD83C\uDF7F"
+  "emptySeriesTab": "No series yet. Stay tuned! \uD83C\uDF7F",
+  "filterSettingsResetBtn": "Reset",
+  "filterSettingsDoneBtn": "Done",
+  "filterFromYear": "From:",
+  "filterToYear": "to",
+  "filterFromLabel": "From",
+  "filterToLabel": "To"
 }

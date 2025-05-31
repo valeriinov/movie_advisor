@@ -21,5 +21,7 @@ class MoviesFilterData extends FilterData with MoviesFilterDataMappable {
     super.includeWatchlist = true,
     this.withGenres = const [],
     this.withoutGenres = const [],
+    super.fromDate,
+    super.toDate,
   });
 }

@@ -10,6 +10,7 @@ part of 'base_inputs_styles_ext.dart';
 // **************************************************************************
 
 mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
+  double get txtFldBorderRadius;
   TextStyle get txtFlsPrimInpTextStyle;
   TextStyle get txtFldPrimErrorTextStyle;
   TextStyle get txtFldPrimLabelTextStyle;
@@ -20,6 +21,7 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
 
   @override
   BaseInputsStyles copyWith({
+    double? txtFldBorderRadius,
     TextStyle? txtFlsPrimInpTextStyle,
     TextStyle? txtFldPrimErrorTextStyle,
     TextStyle? txtFldPrimLabelTextStyle,
@@ -29,6 +31,7 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
     InputBorder? txtFldPrimErrorBorder,
   }) {
     return BaseInputsStyles(
+      txtFldBorderRadius: txtFldBorderRadius ?? this.txtFldBorderRadius,
       txtFlsPrimInpTextStyle:
           txtFlsPrimInpTextStyle ?? this.txtFlsPrimInpTextStyle,
       txtFldPrimErrorTextStyle:
@@ -52,6 +55,9 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
   ) {
     if (other is! BaseInputsStyles) return this as BaseInputsStyles;
     return BaseInputsStyles(
+      txtFldBorderRadius: t < 0.5
+          ? txtFldBorderRadius
+          : other.txtFldBorderRadius,
       txtFlsPrimInpTextStyle: TextStyle.lerp(
         txtFlsPrimInpTextStyle,
         other.txtFlsPrimInpTextStyle,
@@ -88,6 +94,10 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
         (other.runtimeType == runtimeType &&
             other is BaseInputsStyles &&
             const DeepCollectionEquality().equals(
+              txtFldBorderRadius,
+              other.txtFldBorderRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
               txtFlsPrimInpTextStyle,
               other.txtFlsPrimInpTextStyle,
             ) &&
@@ -121,6 +131,7 @@ mixin _$BaseInputsStylesTailorMixin on ThemeExtension<BaseInputsStyles> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(txtFldBorderRadius),
       const DeepCollectionEquality().hash(txtFlsPrimInpTextStyle),
       const DeepCollectionEquality().hash(txtFldPrimErrorTextStyle),
       const DeepCollectionEquality().hash(txtFldPrimLabelTextStyle),

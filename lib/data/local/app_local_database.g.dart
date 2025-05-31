@@ -2328,15 +2328,6 @@ class $MoviesFilterTableTable extends MoviesFilterTable
       'PRIMARY KEY AUTOINCREMENT',
     ),
   );
-  static const VerificationMeta _yearMeta = const VerificationMeta('year');
-  @override
-  late final GeneratedColumn<int> year = GeneratedColumn<int>(
-    'year',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-  );
   @override
   late final GeneratedColumnWithTypeConverter<SortByDto?, String> sortBy =
       GeneratedColumn<String>(
@@ -2410,16 +2401,37 @@ class $MoviesFilterTableTable extends MoviesFilterTable
       'CHECK ("include_watchlist" IN (0, 1))',
     ),
   );
+  static const VerificationMeta _fromDateMeta = const VerificationMeta(
+    'fromDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> fromDate = GeneratedColumn<DateTime>(
+    'from_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _toDateMeta = const VerificationMeta('toDate');
+  @override
+  late final GeneratedColumn<DateTime> toDate = GeneratedColumn<DateTime>(
+    'to_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
-    year,
     sortBy,
     withCountries,
     withGenres,
     withoutGenres,
     includeWatched,
     includeWatchlist,
+    fromDate,
+    toDate,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -2435,12 +2447,6 @@ class $MoviesFilterTableTable extends MoviesFilterTable
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('year')) {
-      context.handle(
-        _yearMeta,
-        year.isAcceptableOrUnknown(data['year']!, _yearMeta),
-      );
     }
     if (data.containsKey('include_watched')) {
       context.handle(
@@ -2460,6 +2466,18 @@ class $MoviesFilterTableTable extends MoviesFilterTable
         ),
       );
     }
+    if (data.containsKey('from_date')) {
+      context.handle(
+        _fromDateMeta,
+        fromDate.isAcceptableOrUnknown(data['from_date']!, _fromDateMeta),
+      );
+    }
+    if (data.containsKey('to_date')) {
+      context.handle(
+        _toDateMeta,
+        toDate.isAcceptableOrUnknown(data['to_date']!, _toDateMeta),
+      );
+    }
     return context;
   }
 
@@ -2473,10 +2491,6 @@ class $MoviesFilterTableTable extends MoviesFilterTable
         DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
-      year: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}year'],
-      ),
       sortBy: $MoviesFilterTableTable.$convertersortByn.fromSql(
         attachedDatabase.typeMapping.read(
           DriftSqlType.string,
@@ -2509,6 +2523,14 @@ class $MoviesFilterTableTable extends MoviesFilterTable
         DriftSqlType.bool,
         data['${effectivePrefix}include_watchlist'],
       ),
+      fromDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}from_date'],
+      ),
+      toDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}to_date'],
+      ),
     );
   }
 
@@ -2538,30 +2560,29 @@ class $MoviesFilterTableTable extends MoviesFilterTable
 class MoviesFilterTableData extends DataClass
     implements Insertable<MoviesFilterTableData> {
   final int id;
-  final int? year;
   final SortByDto? sortBy;
   final List<CountryDto>? withCountries;
   final List<MovieGenreDto>? withGenres;
   final List<MovieGenreDto>? withoutGenres;
   final bool? includeWatched;
   final bool? includeWatchlist;
+  final DateTime? fromDate;
+  final DateTime? toDate;
   const MoviesFilterTableData({
     required this.id,
-    this.year,
     this.sortBy,
     this.withCountries,
     this.withGenres,
     this.withoutGenres,
     this.includeWatched,
     this.includeWatchlist,
+    this.fromDate,
+    this.toDate,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
-    if (!nullToAbsent || year != null) {
-      map['year'] = Variable<int>(year);
-    }
     if (!nullToAbsent || sortBy != null) {
       map['sort_by'] = Variable<String>(
         $MoviesFilterTableTable.$convertersortByn.toSql(sortBy),
@@ -2588,13 +2609,18 @@ class MoviesFilterTableData extends DataClass
     if (!nullToAbsent || includeWatchlist != null) {
       map['include_watchlist'] = Variable<bool>(includeWatchlist);
     }
+    if (!nullToAbsent || fromDate != null) {
+      map['from_date'] = Variable<DateTime>(fromDate);
+    }
+    if (!nullToAbsent || toDate != null) {
+      map['to_date'] = Variable<DateTime>(toDate);
+    }
     return map;
   }
 
   MoviesFilterTableCompanion toCompanion(bool nullToAbsent) {
     return MoviesFilterTableCompanion(
       id: Value(id),
-      year: year == null && nullToAbsent ? const Value.absent() : Value(year),
       sortBy: sortBy == null && nullToAbsent
           ? const Value.absent()
           : Value(sortBy),
@@ -2613,6 +2639,12 @@ class MoviesFilterTableData extends DataClass
       includeWatchlist: includeWatchlist == null && nullToAbsent
           ? const Value.absent()
           : Value(includeWatchlist),
+      fromDate: fromDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fromDate),
+      toDate: toDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(toDate),
     );
   }
 
@@ -2623,7 +2655,6 @@ class MoviesFilterTableData extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return MoviesFilterTableData(
       id: serializer.fromJson<int>(json['id']),
-      year: serializer.fromJson<int?>(json['year']),
       sortBy: serializer.fromJson<SortByDto?>(json['sortBy']),
       withCountries: serializer.fromJson<List<CountryDto>?>(
         json['withCountries'],
@@ -2634,6 +2665,8 @@ class MoviesFilterTableData extends DataClass
       ),
       includeWatched: serializer.fromJson<bool?>(json['includeWatched']),
       includeWatchlist: serializer.fromJson<bool?>(json['includeWatchlist']),
+      fromDate: serializer.fromJson<DateTime?>(json['fromDate']),
+      toDate: serializer.fromJson<DateTime?>(json['toDate']),
     );
   }
   @override
@@ -2641,28 +2674,29 @@ class MoviesFilterTableData extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
-      'year': serializer.toJson<int?>(year),
       'sortBy': serializer.toJson<SortByDto?>(sortBy),
       'withCountries': serializer.toJson<List<CountryDto>?>(withCountries),
       'withGenres': serializer.toJson<List<MovieGenreDto>?>(withGenres),
       'withoutGenres': serializer.toJson<List<MovieGenreDto>?>(withoutGenres),
       'includeWatched': serializer.toJson<bool?>(includeWatched),
       'includeWatchlist': serializer.toJson<bool?>(includeWatchlist),
+      'fromDate': serializer.toJson<DateTime?>(fromDate),
+      'toDate': serializer.toJson<DateTime?>(toDate),
     };
   }
 
   MoviesFilterTableData copyWith({
     int? id,
-    Value<int?> year = const Value.absent(),
     Value<SortByDto?> sortBy = const Value.absent(),
     Value<List<CountryDto>?> withCountries = const Value.absent(),
     Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
     Value<List<MovieGenreDto>?> withoutGenres = const Value.absent(),
     Value<bool?> includeWatched = const Value.absent(),
     Value<bool?> includeWatchlist = const Value.absent(),
+    Value<DateTime?> fromDate = const Value.absent(),
+    Value<DateTime?> toDate = const Value.absent(),
   }) => MoviesFilterTableData(
     id: id ?? this.id,
-    year: year.present ? year.value : this.year,
     sortBy: sortBy.present ? sortBy.value : this.sortBy,
     withCountries: withCountries.present
         ? withCountries.value
@@ -2677,11 +2711,12 @@ class MoviesFilterTableData extends DataClass
     includeWatchlist: includeWatchlist.present
         ? includeWatchlist.value
         : this.includeWatchlist,
+    fromDate: fromDate.present ? fromDate.value : this.fromDate,
+    toDate: toDate.present ? toDate.value : this.toDate,
   );
   MoviesFilterTableData copyWithCompanion(MoviesFilterTableCompanion data) {
     return MoviesFilterTableData(
       id: data.id.present ? data.id.value : this.id,
-      year: data.year.present ? data.year.value : this.year,
       sortBy: data.sortBy.present ? data.sortBy.value : this.sortBy,
       withCountries: data.withCountries.present
           ? data.withCountries.value
@@ -2698,6 +2733,8 @@ class MoviesFilterTableData extends DataClass
       includeWatchlist: data.includeWatchlist.present
           ? data.includeWatchlist.value
           : this.includeWatchlist,
+      fromDate: data.fromDate.present ? data.fromDate.value : this.fromDate,
+      toDate: data.toDate.present ? data.toDate.value : this.toDate,
     );
   }
 
@@ -2705,13 +2742,14 @@ class MoviesFilterTableData extends DataClass
   String toString() {
     return (StringBuffer('MoviesFilterTableData(')
           ..write('id: $id, ')
-          ..write('year: $year, ')
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
           ..write('withGenres: $withGenres, ')
           ..write('withoutGenres: $withoutGenres, ')
           ..write('includeWatched: $includeWatched, ')
-          ..write('includeWatchlist: $includeWatchlist')
+          ..write('includeWatchlist: $includeWatchlist, ')
+          ..write('fromDate: $fromDate, ')
+          ..write('toDate: $toDate')
           ..write(')'))
         .toString();
   }
@@ -2719,99 +2757,108 @@ class MoviesFilterTableData extends DataClass
   @override
   int get hashCode => Object.hash(
     id,
-    year,
     sortBy,
     withCountries,
     withGenres,
     withoutGenres,
     includeWatched,
     includeWatchlist,
+    fromDate,
+    toDate,
   );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is MoviesFilterTableData &&
           other.id == this.id &&
-          other.year == this.year &&
           other.sortBy == this.sortBy &&
           other.withCountries == this.withCountries &&
           other.withGenres == this.withGenres &&
           other.withoutGenres == this.withoutGenres &&
           other.includeWatched == this.includeWatched &&
-          other.includeWatchlist == this.includeWatchlist);
+          other.includeWatchlist == this.includeWatchlist &&
+          other.fromDate == this.fromDate &&
+          other.toDate == this.toDate);
 }
 
 class MoviesFilterTableCompanion
     extends UpdateCompanion<MoviesFilterTableData> {
   final Value<int> id;
-  final Value<int?> year;
   final Value<SortByDto?> sortBy;
   final Value<List<CountryDto>?> withCountries;
   final Value<List<MovieGenreDto>?> withGenres;
   final Value<List<MovieGenreDto>?> withoutGenres;
   final Value<bool?> includeWatched;
   final Value<bool?> includeWatchlist;
+  final Value<DateTime?> fromDate;
+  final Value<DateTime?> toDate;
   const MoviesFilterTableCompanion({
     this.id = const Value.absent(),
-    this.year = const Value.absent(),
     this.sortBy = const Value.absent(),
     this.withCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
     this.includeWatched = const Value.absent(),
     this.includeWatchlist = const Value.absent(),
+    this.fromDate = const Value.absent(),
+    this.toDate = const Value.absent(),
   });
   MoviesFilterTableCompanion.insert({
     this.id = const Value.absent(),
-    this.year = const Value.absent(),
     this.sortBy = const Value.absent(),
     this.withCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
     this.includeWatched = const Value.absent(),
     this.includeWatchlist = const Value.absent(),
+    this.fromDate = const Value.absent(),
+    this.toDate = const Value.absent(),
   });
   static Insertable<MoviesFilterTableData> custom({
     Expression<int>? id,
-    Expression<int>? year,
     Expression<String>? sortBy,
     Expression<String>? withCountries,
     Expression<String>? withGenres,
     Expression<String>? withoutGenres,
     Expression<bool>? includeWatched,
     Expression<bool>? includeWatchlist,
+    Expression<DateTime>? fromDate,
+    Expression<DateTime>? toDate,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (year != null) 'year': year,
       if (sortBy != null) 'sort_by': sortBy,
       if (withCountries != null) 'with_countries': withCountries,
       if (withGenres != null) 'with_genres': withGenres,
       if (withoutGenres != null) 'without_genres': withoutGenres,
       if (includeWatched != null) 'include_watched': includeWatched,
       if (includeWatchlist != null) 'include_watchlist': includeWatchlist,
+      if (fromDate != null) 'from_date': fromDate,
+      if (toDate != null) 'to_date': toDate,
     });
   }
 
   MoviesFilterTableCompanion copyWith({
     Value<int>? id,
-    Value<int?>? year,
     Value<SortByDto?>? sortBy,
     Value<List<CountryDto>?>? withCountries,
     Value<List<MovieGenreDto>?>? withGenres,
     Value<List<MovieGenreDto>?>? withoutGenres,
     Value<bool?>? includeWatched,
     Value<bool?>? includeWatchlist,
+    Value<DateTime?>? fromDate,
+    Value<DateTime?>? toDate,
   }) {
     return MoviesFilterTableCompanion(
       id: id ?? this.id,
-      year: year ?? this.year,
       sortBy: sortBy ?? this.sortBy,
       withCountries: withCountries ?? this.withCountries,
       withGenres: withGenres ?? this.withGenres,
       withoutGenres: withoutGenres ?? this.withoutGenres,
       includeWatched: includeWatched ?? this.includeWatched,
       includeWatchlist: includeWatchlist ?? this.includeWatchlist,
+      fromDate: fromDate ?? this.fromDate,
+      toDate: toDate ?? this.toDate,
     );
   }
 
@@ -2820,9 +2867,6 @@ class MoviesFilterTableCompanion
     final map = <String, Expression>{};
     if (id.present) {
       map['id'] = Variable<int>(id.value);
-    }
-    if (year.present) {
-      map['year'] = Variable<int>(year.value);
     }
     if (sortBy.present) {
       map['sort_by'] = Variable<String>(
@@ -2854,6 +2898,12 @@ class MoviesFilterTableCompanion
     if (includeWatchlist.present) {
       map['include_watchlist'] = Variable<bool>(includeWatchlist.value);
     }
+    if (fromDate.present) {
+      map['from_date'] = Variable<DateTime>(fromDate.value);
+    }
+    if (toDate.present) {
+      map['to_date'] = Variable<DateTime>(toDate.value);
+    }
     return map;
   }
 
@@ -2861,13 +2911,14 @@ class MoviesFilterTableCompanion
   String toString() {
     return (StringBuffer('MoviesFilterTableCompanion(')
           ..write('id: $id, ')
-          ..write('year: $year, ')
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
           ..write('withGenres: $withGenres, ')
           ..write('withoutGenres: $withoutGenres, ')
           ..write('includeWatched: $includeWatched, ')
-          ..write('includeWatchlist: $includeWatchlist')
+          ..write('includeWatchlist: $includeWatchlist, ')
+          ..write('fromDate: $fromDate, ')
+          ..write('toDate: $toDate')
           ..write(')'))
         .toString();
   }
@@ -2891,15 +2942,6 @@ class $SeriesFilterTableTable extends SeriesFilterTable
     defaultConstraints: GeneratedColumn.constraintIsAlways(
       'PRIMARY KEY AUTOINCREMENT',
     ),
-  );
-  static const VerificationMeta _yearMeta = const VerificationMeta('year');
-  @override
-  late final GeneratedColumn<int> year = GeneratedColumn<int>(
-    'year',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
   );
   @override
   late final GeneratedColumnWithTypeConverter<SortByDto?, String> sortBy =
@@ -2974,16 +3016,37 @@ class $SeriesFilterTableTable extends SeriesFilterTable
       'CHECK ("include_watchlist" IN (0, 1))',
     ),
   );
+  static const VerificationMeta _fromDateMeta = const VerificationMeta(
+    'fromDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> fromDate = GeneratedColumn<DateTime>(
+    'from_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _toDateMeta = const VerificationMeta('toDate');
+  @override
+  late final GeneratedColumn<DateTime> toDate = GeneratedColumn<DateTime>(
+    'to_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
-    year,
     sortBy,
     withCountries,
     withGenres,
     withoutGenres,
     includeWatched,
     includeWatchlist,
+    fromDate,
+    toDate,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -2999,12 +3062,6 @@ class $SeriesFilterTableTable extends SeriesFilterTable
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('year')) {
-      context.handle(
-        _yearMeta,
-        year.isAcceptableOrUnknown(data['year']!, _yearMeta),
-      );
     }
     if (data.containsKey('include_watched')) {
       context.handle(
@@ -3024,6 +3081,18 @@ class $SeriesFilterTableTable extends SeriesFilterTable
         ),
       );
     }
+    if (data.containsKey('from_date')) {
+      context.handle(
+        _fromDateMeta,
+        fromDate.isAcceptableOrUnknown(data['from_date']!, _fromDateMeta),
+      );
+    }
+    if (data.containsKey('to_date')) {
+      context.handle(
+        _toDateMeta,
+        toDate.isAcceptableOrUnknown(data['to_date']!, _toDateMeta),
+      );
+    }
     return context;
   }
 
@@ -3037,10 +3106,6 @@ class $SeriesFilterTableTable extends SeriesFilterTable
         DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
-      year: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}year'],
-      ),
       sortBy: $SeriesFilterTableTable.$convertersortByn.fromSql(
         attachedDatabase.typeMapping.read(
           DriftSqlType.string,
@@ -3073,6 +3138,14 @@ class $SeriesFilterTableTable extends SeriesFilterTable
         DriftSqlType.bool,
         data['${effectivePrefix}include_watchlist'],
       ),
+      fromDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}from_date'],
+      ),
+      toDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}to_date'],
+      ),
     );
   }
 
@@ -3104,30 +3177,29 @@ class $SeriesFilterTableTable extends SeriesFilterTable
 class SeriesFilterTableData extends DataClass
     implements Insertable<SeriesFilterTableData> {
   final int id;
-  final int? year;
   final SortByDto? sortBy;
   final List<CountryDto>? withCountries;
   final List<SeriesGenreDto>? withGenres;
   final List<SeriesGenreDto>? withoutGenres;
   final bool? includeWatched;
   final bool? includeWatchlist;
+  final DateTime? fromDate;
+  final DateTime? toDate;
   const SeriesFilterTableData({
     required this.id,
-    this.year,
     this.sortBy,
     this.withCountries,
     this.withGenres,
     this.withoutGenres,
     this.includeWatched,
     this.includeWatchlist,
+    this.fromDate,
+    this.toDate,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
-    if (!nullToAbsent || year != null) {
-      map['year'] = Variable<int>(year);
-    }
     if (!nullToAbsent || sortBy != null) {
       map['sort_by'] = Variable<String>(
         $SeriesFilterTableTable.$convertersortByn.toSql(sortBy),
@@ -3154,13 +3226,18 @@ class SeriesFilterTableData extends DataClass
     if (!nullToAbsent || includeWatchlist != null) {
       map['include_watchlist'] = Variable<bool>(includeWatchlist);
     }
+    if (!nullToAbsent || fromDate != null) {
+      map['from_date'] = Variable<DateTime>(fromDate);
+    }
+    if (!nullToAbsent || toDate != null) {
+      map['to_date'] = Variable<DateTime>(toDate);
+    }
     return map;
   }
 
   SeriesFilterTableCompanion toCompanion(bool nullToAbsent) {
     return SeriesFilterTableCompanion(
       id: Value(id),
-      year: year == null && nullToAbsent ? const Value.absent() : Value(year),
       sortBy: sortBy == null && nullToAbsent
           ? const Value.absent()
           : Value(sortBy),
@@ -3179,6 +3256,12 @@ class SeriesFilterTableData extends DataClass
       includeWatchlist: includeWatchlist == null && nullToAbsent
           ? const Value.absent()
           : Value(includeWatchlist),
+      fromDate: fromDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fromDate),
+      toDate: toDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(toDate),
     );
   }
 
@@ -3189,7 +3272,6 @@ class SeriesFilterTableData extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return SeriesFilterTableData(
       id: serializer.fromJson<int>(json['id']),
-      year: serializer.fromJson<int?>(json['year']),
       sortBy: serializer.fromJson<SortByDto?>(json['sortBy']),
       withCountries: serializer.fromJson<List<CountryDto>?>(
         json['withCountries'],
@@ -3202,6 +3284,8 @@ class SeriesFilterTableData extends DataClass
       ),
       includeWatched: serializer.fromJson<bool?>(json['includeWatched']),
       includeWatchlist: serializer.fromJson<bool?>(json['includeWatchlist']),
+      fromDate: serializer.fromJson<DateTime?>(json['fromDate']),
+      toDate: serializer.fromJson<DateTime?>(json['toDate']),
     );
   }
   @override
@@ -3209,28 +3293,29 @@ class SeriesFilterTableData extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
-      'year': serializer.toJson<int?>(year),
       'sortBy': serializer.toJson<SortByDto?>(sortBy),
       'withCountries': serializer.toJson<List<CountryDto>?>(withCountries),
       'withGenres': serializer.toJson<List<SeriesGenreDto>?>(withGenres),
       'withoutGenres': serializer.toJson<List<SeriesGenreDto>?>(withoutGenres),
       'includeWatched': serializer.toJson<bool?>(includeWatched),
       'includeWatchlist': serializer.toJson<bool?>(includeWatchlist),
+      'fromDate': serializer.toJson<DateTime?>(fromDate),
+      'toDate': serializer.toJson<DateTime?>(toDate),
     };
   }
 
   SeriesFilterTableData copyWith({
     int? id,
-    Value<int?> year = const Value.absent(),
     Value<SortByDto?> sortBy = const Value.absent(),
     Value<List<CountryDto>?> withCountries = const Value.absent(),
     Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
     Value<List<SeriesGenreDto>?> withoutGenres = const Value.absent(),
     Value<bool?> includeWatched = const Value.absent(),
     Value<bool?> includeWatchlist = const Value.absent(),
+    Value<DateTime?> fromDate = const Value.absent(),
+    Value<DateTime?> toDate = const Value.absent(),
   }) => SeriesFilterTableData(
     id: id ?? this.id,
-    year: year.present ? year.value : this.year,
     sortBy: sortBy.present ? sortBy.value : this.sortBy,
     withCountries: withCountries.present
         ? withCountries.value
@@ -3245,11 +3330,12 @@ class SeriesFilterTableData extends DataClass
     includeWatchlist: includeWatchlist.present
         ? includeWatchlist.value
         : this.includeWatchlist,
+    fromDate: fromDate.present ? fromDate.value : this.fromDate,
+    toDate: toDate.present ? toDate.value : this.toDate,
   );
   SeriesFilterTableData copyWithCompanion(SeriesFilterTableCompanion data) {
     return SeriesFilterTableData(
       id: data.id.present ? data.id.value : this.id,
-      year: data.year.present ? data.year.value : this.year,
       sortBy: data.sortBy.present ? data.sortBy.value : this.sortBy,
       withCountries: data.withCountries.present
           ? data.withCountries.value
@@ -3266,6 +3352,8 @@ class SeriesFilterTableData extends DataClass
       includeWatchlist: data.includeWatchlist.present
           ? data.includeWatchlist.value
           : this.includeWatchlist,
+      fromDate: data.fromDate.present ? data.fromDate.value : this.fromDate,
+      toDate: data.toDate.present ? data.toDate.value : this.toDate,
     );
   }
 
@@ -3273,13 +3361,14 @@ class SeriesFilterTableData extends DataClass
   String toString() {
     return (StringBuffer('SeriesFilterTableData(')
           ..write('id: $id, ')
-          ..write('year: $year, ')
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
           ..write('withGenres: $withGenres, ')
           ..write('withoutGenres: $withoutGenres, ')
           ..write('includeWatched: $includeWatched, ')
-          ..write('includeWatchlist: $includeWatchlist')
+          ..write('includeWatchlist: $includeWatchlist, ')
+          ..write('fromDate: $fromDate, ')
+          ..write('toDate: $toDate')
           ..write(')'))
         .toString();
   }
@@ -3287,99 +3376,108 @@ class SeriesFilterTableData extends DataClass
   @override
   int get hashCode => Object.hash(
     id,
-    year,
     sortBy,
     withCountries,
     withGenres,
     withoutGenres,
     includeWatched,
     includeWatchlist,
+    fromDate,
+    toDate,
   );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is SeriesFilterTableData &&
           other.id == this.id &&
-          other.year == this.year &&
           other.sortBy == this.sortBy &&
           other.withCountries == this.withCountries &&
           other.withGenres == this.withGenres &&
           other.withoutGenres == this.withoutGenres &&
           other.includeWatched == this.includeWatched &&
-          other.includeWatchlist == this.includeWatchlist);
+          other.includeWatchlist == this.includeWatchlist &&
+          other.fromDate == this.fromDate &&
+          other.toDate == this.toDate);
 }
 
 class SeriesFilterTableCompanion
     extends UpdateCompanion<SeriesFilterTableData> {
   final Value<int> id;
-  final Value<int?> year;
   final Value<SortByDto?> sortBy;
   final Value<List<CountryDto>?> withCountries;
   final Value<List<SeriesGenreDto>?> withGenres;
   final Value<List<SeriesGenreDto>?> withoutGenres;
   final Value<bool?> includeWatched;
   final Value<bool?> includeWatchlist;
+  final Value<DateTime?> fromDate;
+  final Value<DateTime?> toDate;
   const SeriesFilterTableCompanion({
     this.id = const Value.absent(),
-    this.year = const Value.absent(),
     this.sortBy = const Value.absent(),
     this.withCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
     this.includeWatched = const Value.absent(),
     this.includeWatchlist = const Value.absent(),
+    this.fromDate = const Value.absent(),
+    this.toDate = const Value.absent(),
   });
   SeriesFilterTableCompanion.insert({
     this.id = const Value.absent(),
-    this.year = const Value.absent(),
     this.sortBy = const Value.absent(),
     this.withCountries = const Value.absent(),
     this.withGenres = const Value.absent(),
     this.withoutGenres = const Value.absent(),
     this.includeWatched = const Value.absent(),
     this.includeWatchlist = const Value.absent(),
+    this.fromDate = const Value.absent(),
+    this.toDate = const Value.absent(),
   });
   static Insertable<SeriesFilterTableData> custom({
     Expression<int>? id,
-    Expression<int>? year,
     Expression<String>? sortBy,
     Expression<String>? withCountries,
     Expression<String>? withGenres,
     Expression<String>? withoutGenres,
     Expression<bool>? includeWatched,
     Expression<bool>? includeWatchlist,
+    Expression<DateTime>? fromDate,
+    Expression<DateTime>? toDate,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (year != null) 'year': year,
       if (sortBy != null) 'sort_by': sortBy,
       if (withCountries != null) 'with_countries': withCountries,
       if (withGenres != null) 'with_genres': withGenres,
       if (withoutGenres != null) 'without_genres': withoutGenres,
       if (includeWatched != null) 'include_watched': includeWatched,
       if (includeWatchlist != null) 'include_watchlist': includeWatchlist,
+      if (fromDate != null) 'from_date': fromDate,
+      if (toDate != null) 'to_date': toDate,
     });
   }
 
   SeriesFilterTableCompanion copyWith({
     Value<int>? id,
-    Value<int?>? year,
     Value<SortByDto?>? sortBy,
     Value<List<CountryDto>?>? withCountries,
     Value<List<SeriesGenreDto>?>? withGenres,
     Value<List<SeriesGenreDto>?>? withoutGenres,
     Value<bool?>? includeWatched,
     Value<bool?>? includeWatchlist,
+    Value<DateTime?>? fromDate,
+    Value<DateTime?>? toDate,
   }) {
     return SeriesFilterTableCompanion(
       id: id ?? this.id,
-      year: year ?? this.year,
       sortBy: sortBy ?? this.sortBy,
       withCountries: withCountries ?? this.withCountries,
       withGenres: withGenres ?? this.withGenres,
       withoutGenres: withoutGenres ?? this.withoutGenres,
       includeWatched: includeWatched ?? this.includeWatched,
       includeWatchlist: includeWatchlist ?? this.includeWatchlist,
+      fromDate: fromDate ?? this.fromDate,
+      toDate: toDate ?? this.toDate,
     );
   }
 
@@ -3388,9 +3486,6 @@ class SeriesFilterTableCompanion
     final map = <String, Expression>{};
     if (id.present) {
       map['id'] = Variable<int>(id.value);
-    }
-    if (year.present) {
-      map['year'] = Variable<int>(year.value);
     }
     if (sortBy.present) {
       map['sort_by'] = Variable<String>(
@@ -3422,6 +3517,12 @@ class SeriesFilterTableCompanion
     if (includeWatchlist.present) {
       map['include_watchlist'] = Variable<bool>(includeWatchlist.value);
     }
+    if (fromDate.present) {
+      map['from_date'] = Variable<DateTime>(fromDate.value);
+    }
+    if (toDate.present) {
+      map['to_date'] = Variable<DateTime>(toDate.value);
+    }
     return map;
   }
 
@@ -3429,13 +3530,14 @@ class SeriesFilterTableCompanion
   String toString() {
     return (StringBuffer('SeriesFilterTableCompanion(')
           ..write('id: $id, ')
-          ..write('year: $year, ')
           ..write('sortBy: $sortBy, ')
           ..write('withCountries: $withCountries, ')
           ..write('withGenres: $withGenres, ')
           ..write('withoutGenres: $withoutGenres, ')
           ..write('includeWatched: $includeWatched, ')
-          ..write('includeWatchlist: $includeWatchlist')
+          ..write('includeWatchlist: $includeWatchlist, ')
+          ..write('fromDate: $fromDate, ')
+          ..write('toDate: $toDate')
           ..write(')'))
         .toString();
   }
@@ -4620,24 +4722,26 @@ typedef $$SettingsTableTableProcessedTableManager =
 typedef $$MoviesFilterTableTableCreateCompanionBuilder =
     MoviesFilterTableCompanion Function({
       Value<int> id,
-      Value<int?> year,
       Value<SortByDto?> sortBy,
       Value<List<CountryDto>?> withCountries,
       Value<List<MovieGenreDto>?> withGenres,
       Value<List<MovieGenreDto>?> withoutGenres,
       Value<bool?> includeWatched,
       Value<bool?> includeWatchlist,
+      Value<DateTime?> fromDate,
+      Value<DateTime?> toDate,
     });
 typedef $$MoviesFilterTableTableUpdateCompanionBuilder =
     MoviesFilterTableCompanion Function({
       Value<int> id,
-      Value<int?> year,
       Value<SortByDto?> sortBy,
       Value<List<CountryDto>?> withCountries,
       Value<List<MovieGenreDto>?> withGenres,
       Value<List<MovieGenreDto>?> withoutGenres,
       Value<bool?> includeWatched,
       Value<bool?> includeWatchlist,
+      Value<DateTime?> fromDate,
+      Value<DateTime?> toDate,
     });
 
 class $$MoviesFilterTableTableFilterComposer
@@ -4651,11 +4755,6 @@ class $$MoviesFilterTableTableFilterComposer
   });
   ColumnFilters<int> get id => $composableBuilder(
     column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get year => $composableBuilder(
-    column: $table.year,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -4700,6 +4799,16 @@ class $$MoviesFilterTableTableFilterComposer
     column: $table.includeWatchlist,
     builder: (column) => ColumnFilters(column),
   );
+
+  ColumnFilters<DateTime> get fromDate => $composableBuilder(
+    column: $table.fromDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get toDate => $composableBuilder(
+    column: $table.toDate,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$MoviesFilterTableTableOrderingComposer
@@ -4713,11 +4822,6 @@ class $$MoviesFilterTableTableOrderingComposer
   });
   ColumnOrderings<int> get id => $composableBuilder(
     column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get year => $composableBuilder(
-    column: $table.year,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -4750,6 +4854,16 @@ class $$MoviesFilterTableTableOrderingComposer
     column: $table.includeWatchlist,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<DateTime> get fromDate => $composableBuilder(
+    column: $table.fromDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get toDate => $composableBuilder(
+    column: $table.toDate,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$MoviesFilterTableTableAnnotationComposer
@@ -4763,9 +4877,6 @@ class $$MoviesFilterTableTableAnnotationComposer
   });
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumn<int> get year =>
-      $composableBuilder(column: $table.year, builder: (column) => column);
 
   GeneratedColumnWithTypeConverter<SortByDto?, String> get sortBy =>
       $composableBuilder(column: $table.sortBy, builder: (column) => column);
@@ -4797,6 +4908,12 @@ class $$MoviesFilterTableTableAnnotationComposer
     column: $table.includeWatchlist,
     builder: (column) => column,
   );
+
+  GeneratedColumn<DateTime> get fromDate =>
+      $composableBuilder(column: $table.fromDate, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get toDate =>
+      $composableBuilder(column: $table.toDate, builder: (column) => column);
 }
 
 class $$MoviesFilterTableTableTableManager
@@ -4840,7 +4957,6 @@ class $$MoviesFilterTableTableTableManager
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<int?> year = const Value.absent(),
                 Value<SortByDto?> sortBy = const Value.absent(),
                 Value<List<CountryDto>?> withCountries = const Value.absent(),
                 Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
@@ -4848,20 +4964,22 @@ class $$MoviesFilterTableTableTableManager
                     const Value.absent(),
                 Value<bool?> includeWatched = const Value.absent(),
                 Value<bool?> includeWatchlist = const Value.absent(),
+                Value<DateTime?> fromDate = const Value.absent(),
+                Value<DateTime?> toDate = const Value.absent(),
               }) => MoviesFilterTableCompanion(
                 id: id,
-                year: year,
                 sortBy: sortBy,
                 withCountries: withCountries,
                 withGenres: withGenres,
                 withoutGenres: withoutGenres,
                 includeWatched: includeWatched,
                 includeWatchlist: includeWatchlist,
+                fromDate: fromDate,
+                toDate: toDate,
               ),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<int?> year = const Value.absent(),
                 Value<SortByDto?> sortBy = const Value.absent(),
                 Value<List<CountryDto>?> withCountries = const Value.absent(),
                 Value<List<MovieGenreDto>?> withGenres = const Value.absent(),
@@ -4869,15 +4987,18 @@ class $$MoviesFilterTableTableTableManager
                     const Value.absent(),
                 Value<bool?> includeWatched = const Value.absent(),
                 Value<bool?> includeWatchlist = const Value.absent(),
+                Value<DateTime?> fromDate = const Value.absent(),
+                Value<DateTime?> toDate = const Value.absent(),
               }) => MoviesFilterTableCompanion.insert(
                 id: id,
-                year: year,
                 sortBy: sortBy,
                 withCountries: withCountries,
                 withGenres: withGenres,
                 withoutGenres: withoutGenres,
                 includeWatched: includeWatched,
                 includeWatchlist: includeWatchlist,
+                fromDate: fromDate,
+                toDate: toDate,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
@@ -4911,24 +5032,26 @@ typedef $$MoviesFilterTableTableProcessedTableManager =
 typedef $$SeriesFilterTableTableCreateCompanionBuilder =
     SeriesFilterTableCompanion Function({
       Value<int> id,
-      Value<int?> year,
       Value<SortByDto?> sortBy,
       Value<List<CountryDto>?> withCountries,
       Value<List<SeriesGenreDto>?> withGenres,
       Value<List<SeriesGenreDto>?> withoutGenres,
       Value<bool?> includeWatched,
       Value<bool?> includeWatchlist,
+      Value<DateTime?> fromDate,
+      Value<DateTime?> toDate,
     });
 typedef $$SeriesFilterTableTableUpdateCompanionBuilder =
     SeriesFilterTableCompanion Function({
       Value<int> id,
-      Value<int?> year,
       Value<SortByDto?> sortBy,
       Value<List<CountryDto>?> withCountries,
       Value<List<SeriesGenreDto>?> withGenres,
       Value<List<SeriesGenreDto>?> withoutGenres,
       Value<bool?> includeWatched,
       Value<bool?> includeWatchlist,
+      Value<DateTime?> fromDate,
+      Value<DateTime?> toDate,
     });
 
 class $$SeriesFilterTableTableFilterComposer
@@ -4942,11 +5065,6 @@ class $$SeriesFilterTableTableFilterComposer
   });
   ColumnFilters<int> get id => $composableBuilder(
     column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get year => $composableBuilder(
-    column: $table.year,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -4991,6 +5109,16 @@ class $$SeriesFilterTableTableFilterComposer
     column: $table.includeWatchlist,
     builder: (column) => ColumnFilters(column),
   );
+
+  ColumnFilters<DateTime> get fromDate => $composableBuilder(
+    column: $table.fromDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get toDate => $composableBuilder(
+    column: $table.toDate,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$SeriesFilterTableTableOrderingComposer
@@ -5004,11 +5132,6 @@ class $$SeriesFilterTableTableOrderingComposer
   });
   ColumnOrderings<int> get id => $composableBuilder(
     column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get year => $composableBuilder(
-    column: $table.year,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -5041,6 +5164,16 @@ class $$SeriesFilterTableTableOrderingComposer
     column: $table.includeWatchlist,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<DateTime> get fromDate => $composableBuilder(
+    column: $table.fromDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get toDate => $composableBuilder(
+    column: $table.toDate,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SeriesFilterTableTableAnnotationComposer
@@ -5054,9 +5187,6 @@ class $$SeriesFilterTableTableAnnotationComposer
   });
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumn<int> get year =>
-      $composableBuilder(column: $table.year, builder: (column) => column);
 
   GeneratedColumnWithTypeConverter<SortByDto?, String> get sortBy =>
       $composableBuilder(column: $table.sortBy, builder: (column) => column);
@@ -5088,6 +5218,12 @@ class $$SeriesFilterTableTableAnnotationComposer
     column: $table.includeWatchlist,
     builder: (column) => column,
   );
+
+  GeneratedColumn<DateTime> get fromDate =>
+      $composableBuilder(column: $table.fromDate, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get toDate =>
+      $composableBuilder(column: $table.toDate, builder: (column) => column);
 }
 
 class $$SeriesFilterTableTableTableManager
@@ -5131,7 +5267,6 @@ class $$SeriesFilterTableTableTableManager
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<int?> year = const Value.absent(),
                 Value<SortByDto?> sortBy = const Value.absent(),
                 Value<List<CountryDto>?> withCountries = const Value.absent(),
                 Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
@@ -5139,20 +5274,22 @@ class $$SeriesFilterTableTableTableManager
                     const Value.absent(),
                 Value<bool?> includeWatched = const Value.absent(),
                 Value<bool?> includeWatchlist = const Value.absent(),
+                Value<DateTime?> fromDate = const Value.absent(),
+                Value<DateTime?> toDate = const Value.absent(),
               }) => SeriesFilterTableCompanion(
                 id: id,
-                year: year,
                 sortBy: sortBy,
                 withCountries: withCountries,
                 withGenres: withGenres,
                 withoutGenres: withoutGenres,
                 includeWatched: includeWatched,
                 includeWatchlist: includeWatchlist,
+                fromDate: fromDate,
+                toDate: toDate,
               ),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<int?> year = const Value.absent(),
                 Value<SortByDto?> sortBy = const Value.absent(),
                 Value<List<CountryDto>?> withCountries = const Value.absent(),
                 Value<List<SeriesGenreDto>?> withGenres = const Value.absent(),
@@ -5160,15 +5297,18 @@ class $$SeriesFilterTableTableTableManager
                     const Value.absent(),
                 Value<bool?> includeWatched = const Value.absent(),
                 Value<bool?> includeWatchlist = const Value.absent(),
+                Value<DateTime?> fromDate = const Value.absent(),
+                Value<DateTime?> toDate = const Value.absent(),
               }) => SeriesFilterTableCompanion.insert(
                 id: id,
-                year: year,
                 sortBy: sortBy,
                 withCountries: withCountries,
                 withGenres: withGenres,
                 withoutGenres: withoutGenres,
                 includeWatched: includeWatched,
                 includeWatchlist: includeWatchlist,
+                fromDate: fromDate,
+                toDate: toDate,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

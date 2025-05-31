@@ -56,6 +56,35 @@ abstract final class _BaseComponentsStyles {
 
   static TextStyle avatarPrimTextStyle(Color color) => TextStyle(color: color);
 
+  // Expansion tile
+  static const EdgeInsets expTilePadding = EdgeInsets.fromLTRB(16, 0, 16, 0);
+
+  static const ShapeBorder expTileShape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.zero,
+  );
+
+  static TextStyle expTileTitleTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    height: 22 / 16,
+    color: color,
+  );
+
+  static TextStyle expTileSubtTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: color,
+  );
+
+  // Checkbox
+  static OutlinedBorder checkboxPrimShape(Color borderColor) =>
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+        side: BorderSide(color: borderColor),
+      );
+
   // Poster and backdrop
   static const double posterBorderRadius = 16.0;
   static const double backdrBorderRadius = 16.0;
@@ -146,6 +175,14 @@ abstract final class _BaseComponentsStyles {
     fontFamily: AppFonts.montserrat,
     fontWeight: FontWeight.w400,
     fontSize: 12,
+    color: color,
+  );
+
+  // Filter settings
+  static TextStyle filterSetActBtnTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.openSans,
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
     color: color,
   );
 }

@@ -43,26 +43,4 @@ final class FilterSeriesViewModel
 
     return FilterSeriesState(filter: SeriesFilterData());
   }
-
-  @override
-  void updateWithGenres(List<SeriesGenre> withGenres) {
-    final filter = state.filter.copyWith(withGenres: withGenres);
-
-    state = state.copyWith(filter: filter);
-
-    _saveFilter();
-
-    _loadFilterResult();
-  }
-
-  @override
-  void updateWithoutGenres(List<SeriesGenre> withoutGenres) {
-    final filter = state.filter.copyWith(withoutGenres: withoutGenres);
-
-    state = state.copyWith(filter: filter);
-
-    _saveFilter();
-
-    _loadFilterResult();
-  }
 }

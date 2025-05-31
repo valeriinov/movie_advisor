@@ -58,6 +58,8 @@ class AppTheme {
       textButtonTheme: _createTextBtnTheme(buttonsStyles),
       iconButtonTheme: _createIconButtonTheme(buttonsStyles),
       listTileTheme: _createListTileTheme(componentsStyles),
+      expansionTileTheme: _createExpansionTileTheme(colors, componentsStyles),
+      checkboxTheme: _createCheckboxTheme(colors, componentsStyles),
       radioTheme: _createRadioTheme(colors),
       cardTheme: _createCardTheme(colors, componentsStyles),
       iconTheme: _createIconTheme(colors),
@@ -153,6 +155,31 @@ class AppTheme {
       horizontalTitleGap: styles.horizontalTitleGap,
       titleTextStyle: styles.listTilePrimTitleTextStyle,
       subtitleTextStyle: styles.listTilePrimSubtTextStyle,
+    );
+  }
+
+  ExpansionTileThemeData _createExpansionTileTheme(
+    BaseColors colors,
+    BaseComponentsStyles styles,
+  ) {
+    return ExpansionTileThemeData(
+      iconColor: colors.textThemeSec,
+      textColor: colors.textThemeSec,
+      collapsedTextColor: colors.textThemeSec,
+      collapsedIconColor: colors.textThemeSec,
+      tilePadding: styles.expTilePadding,
+      shape: styles.expTileShape,
+      collapsedShape: styles.expTileShape,
+    );
+  }
+
+  CheckboxThemeData _createCheckboxTheme(
+    BaseColors colors,
+    BaseComponentsStyles styles,
+  ) {
+    return CheckboxThemeData(
+      fillColor: WidgetStateResolver(selected: colors.checkboxPrimFillSelect),
+      shape: styles.checkboxPrimShape,
     );
   }
 

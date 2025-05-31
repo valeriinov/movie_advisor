@@ -7,8 +7,6 @@ import '../utils/servies_genres_converter.dart';
 class SeriesFilterTable extends Table {
   IntColumn get id => integer().autoIncrement()();
 
-  IntColumn get year => integer().nullable()();
-
   TextColumn get sortBy => text().map(filterSortByConverter).nullable()();
 
   TextColumn get withCountries => text().map(countryConverter).nullable()();
@@ -21,4 +19,8 @@ class SeriesFilterTable extends Table {
   BoolColumn get includeWatched => boolean().nullable()();
 
   BoolColumn get includeWatchlist => boolean().nullable()();
+
+  DateTimeColumn get fromDate => dateTime().nullable()();
+
+  DateTimeColumn get toDate => dateTime().nullable()();
 }

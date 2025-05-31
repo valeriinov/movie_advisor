@@ -66,6 +66,18 @@ class MoviesFilterDataMapper extends ClassMapperBase<MoviesFilterData> {
       v.withoutGenres;
   static const Field<MoviesFilterData, List<MovieGenre>> _f$withoutGenres =
       Field('withoutGenres', _$withoutGenres, opt: true, def: const []);
+  static DateTime? _$fromDate(MoviesFilterData v) => v.fromDate;
+  static const Field<MoviesFilterData, DateTime> _f$fromDate = Field(
+    'fromDate',
+    _$fromDate,
+    opt: true,
+  );
+  static DateTime? _$toDate(MoviesFilterData v) => v.toDate;
+  static const Field<MoviesFilterData, DateTime> _f$toDate = Field(
+    'toDate',
+    _$toDate,
+    opt: true,
+  );
 
   @override
   final MappableFields<MoviesFilterData> fields = const {
@@ -76,6 +88,8 @@ class MoviesFilterDataMapper extends ClassMapperBase<MoviesFilterData> {
     #includeWatchlist: _f$includeWatchlist,
     #withGenres: _f$withGenres,
     #withoutGenres: _f$withoutGenres,
+    #fromDate: _f$fromDate,
+    #toDate: _f$toDate,
   };
 
   static MoviesFilterData _instantiate(DecodingData data) {
@@ -87,6 +101,8 @@ class MoviesFilterDataMapper extends ClassMapperBase<MoviesFilterData> {
       includeWatchlist: data.dec(_f$includeWatchlist),
       withGenres: data.dec(_f$withGenres),
       withoutGenres: data.dec(_f$withoutGenres),
+      fromDate: data.dec(_f$fromDate),
+      toDate: data.dec(_f$toDate),
     );
   }
 
@@ -150,6 +166,8 @@ abstract class MoviesFilterDataCopyWith<$R, $In extends MoviesFilterData, $Out>
     bool? includeWatchlist,
     List<MovieGenre>? withGenres,
     List<MovieGenre>? withoutGenres,
+    DateTime? fromDate,
+    DateTime? toDate,
   });
   MoviesFilterDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
@@ -194,6 +212,8 @@ class _MoviesFilterDataCopyWithImpl<$R, $Out>
     bool? includeWatchlist,
     List<MovieGenre>? withGenres,
     List<MovieGenre>? withoutGenres,
+    Object? fromDate = $none,
+    Object? toDate = $none,
   }) => $apply(
     FieldCopyWithData({
       if (year != $none) #year: year,
@@ -203,6 +223,8 @@ class _MoviesFilterDataCopyWithImpl<$R, $Out>
       if (includeWatchlist != null) #includeWatchlist: includeWatchlist,
       if (withGenres != null) #withGenres: withGenres,
       if (withoutGenres != null) #withoutGenres: withoutGenres,
+      if (fromDate != $none) #fromDate: fromDate,
+      if (toDate != $none) #toDate: toDate,
     }),
   );
   @override
@@ -214,6 +236,8 @@ class _MoviesFilterDataCopyWithImpl<$R, $Out>
     includeWatchlist: data.get(#includeWatchlist, or: $value.includeWatchlist),
     withGenres: data.get(#withGenres, or: $value.withGenres),
     withoutGenres: data.get(#withoutGenres, or: $value.withoutGenres),
+    fromDate: data.get(#fromDate, or: $value.fromDate),
+    toDate: data.get(#toDate, or: $value.toDate),
   );
 
   @override

@@ -56,6 +56,7 @@ final class ImplAppRouter implements AppRouter {
         ),
         $detailsRoute,
         $personRoute,
+        $filterSettingsRoute,
       ],
       errorBuilder: (context, _) {
         WidgetsBinding.instance.addPostFrameCallback((_) {

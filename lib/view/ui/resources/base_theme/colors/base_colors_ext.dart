@@ -83,6 +83,8 @@ abstract final class BaseColorsFactory {
     listTilePrimSubtitle: _BaseColors.listTilePrimSubtitle,
     listTileSecTitle: _BaseColors.listTileSecTitle,
     listTileSecSubtitle: _BaseColors.listTileSecSubtitle,
+    checkboxPrimFillSelect: _BaseColors.checkboxPrimFillSelect,
+    checkboxPrimBorder: _BaseColors.checkboxPrimBorder,
     avatarPrimBg: _BaseColors.avatarPrimBg,
     avatarPrimFg: _BaseColors.avatarPrimFg,
     suggestNumFill: _BaseColors.suggestNumFill,
@@ -445,6 +447,14 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color listTileSecSubtitle;
 
+  /// Checkbox primary fill color (selected state).
+  @override
+  final Color checkboxPrimFillSelect;
+
+  /// Checkbox primary border color.
+  @override
+  final Color checkboxPrimBorder;
+
   /// Avatar primary background color.
   @override
   final Color avatarPrimBg;
@@ -670,6 +680,8 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.listTilePrimSubtitle,
     required this.listTileSecTitle,
     required this.listTileSecSubtitle,
+    required this.checkboxPrimFillSelect,
+    required this.checkboxPrimBorder,
     required this.avatarPrimBg,
     required this.avatarPrimFg,
     required this.suggestNumFill,

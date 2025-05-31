@@ -16,6 +16,7 @@ abstract final class AppImages {
   static const errorListImage = "${_imgPath}error_list_image.png";
   static const privacyIcon = "${_imgPath}privacy_icon.svg";
   static const toastErrorIcon = "${_imgPath}toast_error_icon.svg";
+  static const tuneIcon = "${_imgPath}tune_icon.svg";
   static const tmbdLogo = "${_imgPath}tmbd_logo.svg";
   static const searchIcon = "${_imgPath}search_icon.svg";
   static const settingsIcon = "${_imgPath}settings_icon.svg";

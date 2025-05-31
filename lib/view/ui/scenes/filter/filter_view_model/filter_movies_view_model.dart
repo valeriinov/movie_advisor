@@ -43,30 +43,4 @@ final class FilterMoviesViewModel
 
     return FilterMoviesState(filter: MoviesFilterData());
   }
-
-  @override
-  void updateWithGenres(List<MovieGenre> withGenres) {
-    _updateStatus(FilterBaseInitStatus(isLoading: true));
-
-    final filter = state.filter.copyWith(withGenres: withGenres);
-
-    state = state.copyWith(filter: filter);
-
-    _saveFilter();
-
-    _loadFilterResult();
-  }
-
-  @override
-  void updateWithoutGenres(List<MovieGenre> withoutGenres) {
-    _updateStatus(FilterBaseInitStatus(isLoading: true));
-
-    final filter = state.filter.copyWith(withoutGenres: withoutGenres);
-
-    state = state.copyWith(filter: filter);
-
-    _saveFilter();
-
-    _loadFilterResult();
-  }
 }

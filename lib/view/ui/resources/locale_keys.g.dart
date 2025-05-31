@@ -193,6 +193,7 @@ abstract class LocaleKeys {
   static const emptyFilterTitle = 'emptyFilterTitle';
   static const emptyFilterSubtitle = 'emptyFilterSubtitle';
   static const filterSortBy = 'filterSortBy';
+  static const filterSettings = 'filterSettings';
   static const filterWithGenres = 'filterWithGenres';
   static const filterWithoutGenres = 'filterWithoutGenres';
   static const filterWithCountries = 'filterWithCountries';
@@ -205,6 +206,8 @@ abstract class LocaleKeys {
   static const withoutGenresDialog = 'withoutGenresDialog';
   static const withCountriesDialog = 'withCountriesDialog';
   static const selectYearDialog = 'selectYearDialog';
+  static const selectYearFromDialog = 'selectYearFromDialog';
+  static const selectYearToDialog = 'selectYearToDialog';
   static const sortByDialog = 'sortByDialog';
   static const includeYourListsDialog = 'includeYourListsDialog';
   static const includeWatchedDesc = 'includeWatchedDesc';
@@ -226,4 +229,10 @@ abstract class LocaleKeys {
   static const emptyBiographyTab = 'emptyBiographyTab';
   static const emptyMoviesTab = 'emptyMoviesTab';
   static const emptySeriesTab = 'emptySeriesTab';
+  static const filterSettingsResetBtn = 'filterSettingsResetBtn';
+  static const filterSettingsDoneBtn = 'filterSettingsDoneBtn';
+  static const filterFromYear = 'filterFromYear';
+  static const filterToYear = 'filterToYear';
+  static const filterFromLabel = 'filterFromLabel';
+  static const filterToLabel = 'filterToLabel';
 }

@@ -187,7 +187,8 @@
   "filterScreenSeriesTitle": "Фільтрувати серіали",
   "emptyFilterTitle": "Вибачте, Результатів За Вашим Фільтром Не Знайдено :(",
   "emptyFilterSubtitle": "Спробуйте змінити налаштування фільтра.",
-  "filterSortBy": "Сортувати",
+  "filterSortBy": "Сортування",
+  "filterSettings": "Фільтри",
   "filterWithGenres": "Включити жанри",
   "filterWithoutGenres": "Виключити жанри",
   "filterWithCountries": "Включити країни",
@@ -200,6 +201,8 @@
   "withoutGenresDialog": "Виключити жанри",
   "withCountriesDialog": "Включити країни",
   "selectYearDialog": "Рік випуску",
+  "selectYearFromDialog": "Рік випуску з",
+  "selectYearToDialog": "Рік випуску по",
   "sortByDialog": "Сортувати за",
   "includeYourListsDialog": "Включити ваші списки",
   "includeWatchedDesc": "Включити переглянуті",
@@ -220,5 +223,11 @@
   "personSeriesTab": "Серіали",
   "emptyBiographyTab": "Біографії ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
   "emptyMoviesTab": "Фільмів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
-  "emptySeriesTab": "Серіалів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F"
+  "emptySeriesTab": "Серіалів ще немає. Слідкуйте за оновленнями! \uD83C\uDF7F",
+  "filterSettingsResetBtn": "Скинути",
+  "filterSettingsDoneBtn": "Готово",
+  "filterFromYear": "З:",
+  "filterToYear": "до",
+  "filterFromLabel": "З",
+  "filterToLabel": "До"
 }

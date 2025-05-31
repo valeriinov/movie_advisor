@@ -50,7 +50,6 @@ dependencies:
   animated_toggle_switch: ^0.8.5
   flutter_keyboard_visibility: ^6.0.0
   upgrader: ^11.4.0
-  filter_list: ^1.0.3
   share_plus: ^11.0.0
   # https://github.com/flutter/flutter/issues/42588#issuecomment-2833651380
   tap_on_scroll: ^0.0.3

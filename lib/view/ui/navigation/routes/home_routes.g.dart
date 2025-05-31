@@ -6,7 +6,7 @@ part of 'home_routes.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [$homeRoute];
+List<RouteBase> get $appRoutes => [$homeRoute, $filterSettingsRoute];
 
 RouteBase get $homeRoute => GoRouteData.$route(
   path: '/home',
@@ -60,6 +60,28 @@ extension $FilterRouteExtension on FilterRoute {
   static FilterRoute _fromState(GoRouterState state) => FilterRoute();
 
   String get location => GoRouteData.$location('/home/filter');
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $filterSettingsRoute => GoRouteData.$route(
+  path: '/filter-settings',
+
+  factory: $FilterSettingsRouteExtension._fromState,
+);
+
+extension $FilterSettingsRouteExtension on FilterSettingsRoute {
+  static FilterSettingsRoute _fromState(GoRouterState state) =>
+      FilterSettingsRoute();
+
+  String get location => GoRouteData.$location('/filter-settings');
 
   void go(BuildContext context) => context.go(location);
 

@@ -39,6 +39,18 @@ class FilterDataMapper extends ClassMapperBase<FilterData> {
     'includeWatchlist',
     _$includeWatchlist,
   );
+  static DateTime? _$fromDate(FilterData v) => v.fromDate;
+  static const Field<FilterData, DateTime> _f$fromDate = Field(
+    'fromDate',
+    _$fromDate,
+    opt: true,
+  );
+  static DateTime? _$toDate(FilterData v) => v.toDate;
+  static const Field<FilterData, DateTime> _f$toDate = Field(
+    'toDate',
+    _$toDate,
+    opt: true,
+  );
 
   @override
   final MappableFields<FilterData> fields = const {
@@ -47,6 +59,8 @@ class FilterDataMapper extends ClassMapperBase<FilterData> {
     #withCountries: _f$withCountries,
     #includeWatched: _f$includeWatched,
     #includeWatchlist: _f$includeWatchlist,
+    #fromDate: _f$fromDate,
+    #toDate: _f$toDate,
   };
 
   static FilterData _instantiate(DecodingData data) {
@@ -56,6 +70,8 @@ class FilterDataMapper extends ClassMapperBase<FilterData> {
       withCountries: data.dec(_f$withCountries),
       includeWatched: data.dec(_f$includeWatched),
       includeWatchlist: data.dec(_f$includeWatchlist),
+      fromDate: data.dec(_f$fromDate),
+      toDate: data.dec(_f$toDate),
     );
   }
 
@@ -107,6 +123,8 @@ abstract class FilterDataCopyWith<$R, $In extends FilterData, $Out>
     List<Country>? withCountries,
     bool? includeWatched,
     bool? includeWatchlist,
+    DateTime? fromDate,
+    DateTime? toDate,
   });
   FilterDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -133,6 +151,8 @@ class _FilterDataCopyWithImpl<$R, $Out>
     List<Country>? withCountries,
     bool? includeWatched,
     bool? includeWatchlist,
+    Object? fromDate = $none,
+    Object? toDate = $none,
   }) => $apply(
     FieldCopyWithData({
       if (year != $none) #year: year,
@@ -140,6 +160,8 @@ class _FilterDataCopyWithImpl<$R, $Out>
       if (withCountries != null) #withCountries: withCountries,
       if (includeWatched != null) #includeWatched: includeWatched,
       if (includeWatchlist != null) #includeWatchlist: includeWatchlist,
+      if (fromDate != $none) #fromDate: fromDate,
+      if (toDate != $none) #toDate: toDate,
     }),
   );
   @override
@@ -149,6 +171,8 @@ class _FilterDataCopyWithImpl<$R, $Out>
     withCountries: data.get(#withCountries, or: $value.withCountries),
     includeWatched: data.get(#includeWatched, or: $value.includeWatched),
     includeWatchlist: data.get(#includeWatchlist, or: $value.includeWatchlist),
+    fromDate: data.get(#fromDate, or: $value.fromDate),
+    toDate: data.get(#toDate, or: $value.toDate),
   );
 
   @override

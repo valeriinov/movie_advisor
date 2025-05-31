@@ -13,6 +13,8 @@ class FilterData with FilterDataMappable {
   final List<Country> withCountries;
   final bool includeWatched;
   final bool includeWatchlist;
+  final DateTime? fromDate;
+  final DateTime? toDate;
 
   const FilterData({
     required this.year,
@@ -20,5 +22,7 @@ class FilterData with FilterDataMappable {
     required this.withCountries,
     required this.includeWatched,
     required this.includeWatchlist,
+    this.fromDate,
+    this.toDate,
   });
 }
