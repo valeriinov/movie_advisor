@@ -43,8 +43,8 @@ class FilterGenresContainer extends HookWidget {
           (i, desc) => FilterCheckboxListTile(
             label: desc,
             value: selectedGenreIds.contains(i),
-            onChanged: (index) {
-              if (index == null) return;
+            onChanged: (value) {
+              if (value == null) return;
               onTapGenre(i);
             },
           ),

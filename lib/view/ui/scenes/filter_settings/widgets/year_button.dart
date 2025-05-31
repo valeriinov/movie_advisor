@@ -24,6 +24,8 @@ class YearButton extends HookWidget {
       text: date?.year.toString() ?? '',
     );
 
+    final scrollController = useScrollController(keepScrollOffset: false);
+
     useEffect(() {
       controller.text = date?.year.toString() ?? '';
       return null;
@@ -34,6 +36,7 @@ class YearButton extends HookWidget {
         children: [
           TextField(
             controller: controller,
+            scrollController: scrollController,
             decoration: InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.always,
               hintText: label,

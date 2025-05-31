@@ -17,6 +17,7 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
+import '../../../widgets/no_always_scroll_wrapper.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
 import '../filter_settings_view_model/filter_settings_state.dart';
 import '../filter_settings_view_model/filter_settings_view_model.dart';
@@ -68,47 +69,54 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
           _showExitDialog(context);
         },
         canPop: !hasUnsavedChanges,
-        child: ListView(
-          padding: _createScrPadding(context),
-          children: [
-            _divider(),
-            FilterGenresContainer(
-              title: LocaleKeys.filterWithGenres.tr(),
-              contentMode: contentMode,
-              selectedGenreIds: _getSelectedGenreIndexes(filter),
-              onTapGenre: (i) => _updateWithGenres(vsp, i),
-            ),
-            _divider(),
-            FilterGenresContainer(
-              title: LocaleKeys.filterWithoutGenres.tr(),
-              contentMode: contentMode,
-              selectedGenreIds: _getSelectedGenreIndexes(
-                filter,
-                withGenres: false,
+        child: NoAlwaysScrollWrapper(
+          child: ListView(
+            padding: _createScrPadding(context),
+            children: [
+              _divider(),
+              FilterGenresContainer(
+                key: const PageStorageKey('filter-with-genres'),
+                title: LocaleKeys.filterWithGenres.tr(),
+                contentMode: contentMode,
+                selectedGenreIds: _getSelectedGenreIndexes(filter),
+                onTapGenre: (i) => _updateWithGenres(vsp, i),
               ),
-              onTapGenre: (i) => _updateWithoutGenres(vsp, i),
-            ),
-            _divider(),
-            FilterCountriesContainer(
-              selectedCountries: filter.withCountries,
-              onTapCountry: viewModel.updateWithCountries,
-            ),
-            _divider(),
-            FilterUserListsContainer(
-              includeWatched: filter.includeWatched,
-              includeWatchlist: filter.includeWatchlist,
-              onTapIncludeWatched: viewModel.updateIncludeWatched,
-              onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
-            ),
-            _divider(),
-            FilterDatesContainer(
-              fromDate: filter.fromDate,
-              toDate: filter.toDate,
-              onFromDateChanged: viewModel.updateFromDate,
-              onToDateChanged: viewModel.updateToDate,
-            ),
-            _divider(),
-          ],
+              _divider(),
+              FilterGenresContainer(
+                key: const PageStorageKey('filter-without-genres'),
+                title: LocaleKeys.filterWithoutGenres.tr(),
+                contentMode: contentMode,
+                selectedGenreIds: _getSelectedGenreIndexes(
+                  filter,
+                  withGenres: false,
+                ),
+                onTapGenre: (i) => _updateWithoutGenres(vsp, i),
+              ),
+              _divider(),
+              FilterCountriesContainer(
+                key: const PageStorageKey('filter-with-countries'),
+                selectedCountries: filter.withCountries,
+                onTapCountry: viewModel.updateWithCountries,
+              ),
+              _divider(),
+              FilterUserListsContainer(
+                key: const PageStorageKey('filter-user-lists'),
+                includeWatched: filter.includeWatched,
+                includeWatchlist: filter.includeWatchlist,
+                onTapIncludeWatched: viewModel.updateIncludeWatched,
+                onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
+              ),
+              _divider(),
+              FilterDatesContainer(
+                key: const PageStorageKey('filter-dates'),
+                fromDate: filter.fromDate,
+                toDate: filter.toDate,
+                onFromDateChanged: viewModel.updateFromDate,
+                onToDateChanged: viewModel.updateToDate,
+              ),
+              _divider(),
+            ],
+          ),
         ),
       ),
     );
