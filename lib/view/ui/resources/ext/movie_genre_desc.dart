@@ -1,6 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-import '../../../../common/app_locales.dart';
+import '../../../../common/utils/ext/string/localized_sort_str.dart';
 import '../../../../domain/entities/movie/movie_genre.dart';
 import '../locale_keys.g.dart';
 
@@ -64,49 +65,10 @@ extension DescMovieGenre on String {
 
 abstract final class MovieGenreAlphabet {
   static List<MovieGenre> values(String langCode) {
-    return switch (langCode) {
-      final lang when lang == AppLocales.uk.name => [
-        MovieGenre.animation,
-        MovieGenre.action,
-        MovieGenre.western,
-        MovieGenre.war,
-        MovieGenre.documentary,
-        MovieGenre.drama,
-        MovieGenre.horror,
-        MovieGenre.history,
-        MovieGenre.comedy,
-        MovieGenre.crime,
-        MovieGenre.mystery,
-        MovieGenre.music,
-        MovieGenre.scienceFiction,
-        MovieGenre.adventure,
-        MovieGenre.romance,
-        MovieGenre.family,
-        MovieGenre.fantasy,
-        MovieGenre.tvMovie,
-        MovieGenre.thriller,
-      ],
-      _ => [
-        MovieGenre.action,
-        MovieGenre.adventure,
-        MovieGenre.animation,
-        MovieGenre.comedy,
-        MovieGenre.crime,
-        MovieGenre.documentary,
-        MovieGenre.drama,
-        MovieGenre.family,
-        MovieGenre.fantasy,
-        MovieGenre.history,
-        MovieGenre.horror,
-        MovieGenre.music,
-        MovieGenre.mystery,
-        MovieGenre.romance,
-        MovieGenre.scienceFiction,
-        MovieGenre.tvMovie,
-        MovieGenre.thriller,
-        MovieGenre.war,
-        MovieGenre.western,
-      ],
-    };
+    return MovieGenre.valuesWithoutNone.sorted(
+      (a, b) => a.desc
+          .localizedSortValue(langCode)
+          .compareTo(b.desc.localizedSortValue(langCode)),
+    );
   }
 }

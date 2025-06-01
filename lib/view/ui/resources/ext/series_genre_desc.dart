@@ -1,6 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-import '../../../../common/app_locales.dart';
+import '../../../../common/utils/ext/string/localized_sort_str.dart';
 import '../../../../domain/entities/series/series_genre.dart';
 import '../locale_keys.g.dart';
 
@@ -59,43 +60,10 @@ extension DescSeriesGenre on String {
 
 abstract final class SeriesGenreAlphabet {
   static List<SeriesGenre> values(String langCode) {
-    return switch (langCode) {
-      final lang when lang == AppLocales.uk.name => [
-        SeriesGenre.animation,
-        SeriesGenre.actionAndAdventure,
-        SeriesGenre.western,
-        SeriesGenre.warAndPolitics,
-        SeriesGenre.kids,
-        SeriesGenre.documentary,
-        SeriesGenre.drama,
-        SeriesGenre.comedy,
-        SeriesGenre.crime,
-        SeriesGenre.soap,
-        SeriesGenre.mystery,
-        SeriesGenre.sciFiAndFantasy,
-        SeriesGenre.news,
-        SeriesGenre.reality,
-        SeriesGenre.family,
-        SeriesGenre.talk,
-      ],
-      _ => [
-        SeriesGenre.actionAndAdventure,
-        SeriesGenre.animation,
-        SeriesGenre.comedy,
-        SeriesGenre.crime,
-        SeriesGenre.documentary,
-        SeriesGenre.drama,
-        SeriesGenre.family,
-        SeriesGenre.kids,
-        SeriesGenre.mystery,
-        SeriesGenre.news,
-        SeriesGenre.reality,
-        SeriesGenre.sciFiAndFantasy,
-        SeriesGenre.soap,
-        SeriesGenre.talk,
-        SeriesGenre.warAndPolitics,
-        SeriesGenre.western,
-      ],
-    };
+    return SeriesGenre.valuesWithoutNone.sorted(
+      (a, b) => a.desc
+          .localizedSortValue(langCode)
+          .compareTo(b.desc.localizedSortValue(langCode)),
+    );
   }
 }
