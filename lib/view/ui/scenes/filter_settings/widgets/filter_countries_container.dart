@@ -31,7 +31,7 @@ class FilterCountriesContainer extends StatelessWidget {
       ),
       subtitle: Text(_getSubtitle(), style: styles.expTileSubtTextStyle),
       children: [
-        ...Country.valuesWithoutNone.map(
+        ...CountryAlphabet.values(context.locale.languageCode).map(
           (country) => FilterCheckboxListTile(
             label: country.desc,
             value: selectedCountries.contains(country),

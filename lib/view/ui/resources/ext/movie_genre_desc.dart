@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../../../common/utils/ext/string/localized_sort_str.dart';
 import '../../../../domain/entities/movie/movie_genre.dart';
 import '../locale_keys.g.dart';
 
@@ -27,5 +29,46 @@ extension MovieGenreDesc on MovieGenre {
       MovieGenre.western => LocaleKeys.genreMovWestern.tr(),
       MovieGenre.none => '',
     };
+  }
+}
+
+extension DescMovieGenre on String {
+  MovieGenre moviesGenreFromDesc() {
+    return switch (this) {
+      final d when d == LocaleKeys.genreMovAction.tr() => MovieGenre.action,
+      final d when d == LocaleKeys.genreMovAdventure.tr() =>
+        MovieGenre.adventure,
+      final d when d == LocaleKeys.genreMovAnimation.tr() =>
+        MovieGenre.animation,
+      final d when d == LocaleKeys.genreMovComedy.tr() => MovieGenre.comedy,
+      final d when d == LocaleKeys.genreMovCrime.tr() => MovieGenre.crime,
+      final d when d == LocaleKeys.genreMovDocumentary.tr() =>
+        MovieGenre.documentary,
+      final d when d == LocaleKeys.genreMovDrama.tr() => MovieGenre.drama,
+      final d when d == LocaleKeys.genreMovFamily.tr() => MovieGenre.family,
+      final d when d == LocaleKeys.genreMovFantasy.tr() => MovieGenre.fantasy,
+      final d when d == LocaleKeys.genreMovHistory.tr() => MovieGenre.history,
+      final d when d == LocaleKeys.genreMovHorror.tr() => MovieGenre.horror,
+      final d when d == LocaleKeys.genreMovMusic.tr() => MovieGenre.music,
+      final d when d == LocaleKeys.genreMovMystery.tr() => MovieGenre.mystery,
+      final d when d == LocaleKeys.genreMovRomance.tr() => MovieGenre.romance,
+      final d when d == LocaleKeys.genreMovScienceFiction.tr() =>
+        MovieGenre.scienceFiction,
+      final d when d == LocaleKeys.genreMovTvMovie.tr() => MovieGenre.tvMovie,
+      final d when d == LocaleKeys.genreMovThriller.tr() => MovieGenre.thriller,
+      final d when d == LocaleKeys.genreMovWar.tr() => MovieGenre.war,
+      final d when d == LocaleKeys.genreMovWestern.tr() => MovieGenre.western,
+      _ => MovieGenre.none,
+    };
+  }
+}
+
+abstract final class MovieGenreAlphabet {
+  static List<MovieGenre> values(String langCode) {
+    return MovieGenre.valuesWithoutNone.sorted(
+      (a, b) => a.desc
+          .localizedSortValue(langCode)
+          .compareTo(b.desc.localizedSortValue(langCode)),
+    );
   }
 }

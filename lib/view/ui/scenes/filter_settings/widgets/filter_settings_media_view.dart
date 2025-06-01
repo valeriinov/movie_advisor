@@ -9,12 +9,12 @@ import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../../../domain/entities/filter/series_filter_data.dart';
-import '../../../../../domain/entities/movie/movie_genre.dart';
-import '../../../../../domain/entities/series/series_genre.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../../resources/ext/movie_genre_desc.dart';
+import '../../../resources/ext/series_genre_desc.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
@@ -76,19 +76,19 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               key: const PageStorageKey('filter-with-genres'),
               title: LocaleKeys.filterWithGenres.tr(),
               contentMode: contentMode,
-              selectedGenreIds: _getSelectedGenreIndexes(filter),
-              onTapGenre: (i) => _updateWithGenres(vsp, i),
+              selectedGenresDesc: _getSelectedGenreDescriptions(filter),
+              onTapGenre: (desc) => _updateWithGenres(vsp, desc),
             ),
             _divider(),
             FilterGenresContainer(
               key: const PageStorageKey('filter-without-genres'),
               title: LocaleKeys.filterWithoutGenres.tr(),
               contentMode: contentMode,
-              selectedGenreIds: _getSelectedGenreIndexes(
+              selectedGenresDesc: _getSelectedGenreDescriptions(
                 filter,
                 withGenres: false,
               ),
-              onTapGenre: (i) => _updateWithoutGenres(vsp, i),
+              onTapGenre: (desc) => _updateWithoutGenres(vsp, desc),
             ),
             _divider(),
             FilterCountriesContainer(
@@ -171,36 +171,39 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
     );
   }
 
-  List<int> _getSelectedGenreIndexes(F filter, {bool withGenres = true}) {
+  List<String> _getSelectedGenreDescriptions(
+    F filter, {
+    bool withGenres = true,
+  }) {
     return switch (filter) {
       MoviesFilterData() =>
         withGenres
-            ? filter.withGenres.map((e) => e.index)
-            : filter.withoutGenres.map((e) => e.index),
+            ? filter.withGenres.map((e) => e.desc)
+            : filter.withoutGenres.map((e) => e.desc),
       SeriesFilterData() =>
         withGenres
-            ? filter.withGenres.map((e) => e.index)
-            : filter.withoutGenres.map((e) => e.index),
-      _ => <int>[],
+            ? filter.withGenres.map((e) => e.desc)
+            : filter.withoutGenres.map((e) => e.desc),
+      _ => <String>[],
     }.toList();
   }
 
-  void _updateWithGenres(FilterSettingsVSP vsp, int index) {
-    final genre = _getGenreFromIndex(index);
+  void _updateWithGenres(FilterSettingsVSP vsp, String desc) {
+    final genre = _getGenreFromDesc(desc);
 
     vsp.viewModel.updateWithGenres(genre);
   }
 
-  void _updateWithoutGenres(FilterSettingsVSP vsp, int index) {
-    final genre = _getGenreFromIndex(index);
+  void _updateWithoutGenres(FilterSettingsVSP vsp, String desc) {
+    final genre = _getGenreFromDesc(desc);
 
     vsp.viewModel.updateWithoutGenres(genre);
   }
 
-  G _getGenreFromIndex(int index) {
+  G _getGenreFromDesc(String desc) {
     return switch (contentMode) {
-      ContentMode.movies => MovieGenre.fromIndex(index) as G,
-      ContentMode.series => SeriesGenre.fromIndex(index) as G,
+      ContentMode.movies => desc.moviesGenreFromDesc() as G,
+      ContentMode.series => desc.seriesGenreFromDesc() as G,
     };
   }
 }

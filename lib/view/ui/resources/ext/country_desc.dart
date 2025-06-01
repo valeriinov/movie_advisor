@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../../../common/utils/ext/string/localized_sort_str.dart';
 import '../../../../domain/entities/base_media/country.dart';
 import '../locale_keys.g.dart';
 
@@ -32,5 +34,15 @@ extension CountryDesc on Country {
       Country.mexico => LocaleKeys.mexico.tr(),
       Country.none => '',
     };
+  }
+}
+
+abstract final class CountryAlphabet {
+  static List<Country> values(String langCode) {
+    return Country.valuesWithoutNone.sorted(
+      (a, b) => a.desc
+          .localizedSortValue(langCode)
+          .compareTo(b.desc.localizedSortValue(langCode)),
+    );
   }
 }
