@@ -14,6 +14,7 @@ import '../../../widgets/filter_checkbox_list_tile.dart';
 class FilterGenresContainer extends HookWidget {
   final String title;
   final ContentMode contentMode;
+  final List<String> disabledGenresDesc;
   final List<String> selectedGenresDesc;
   final Function(String desc) onTapGenre;
 
@@ -21,6 +22,7 @@ class FilterGenresContainer extends HookWidget {
     super.key,
     required this.title,
     required this.contentMode,
+    required this.disabledGenresDesc,
     required this.selectedGenresDesc,
     required this.onTapGenre,
   });
@@ -44,7 +46,9 @@ class FilterGenresContainer extends HookWidget {
           (desc) => FilterCheckboxListTile(
             label: desc,
             value: selectedGenresDesc.contains(desc),
-            onChanged: (_) => onTapGenre(desc),
+            onChanged: !disabledGenresDesc.contains(desc)
+                ? (_) => onTapGenre(desc)
+                : null,
           ),
         ),
         dimens.spSmall.gapVert(),

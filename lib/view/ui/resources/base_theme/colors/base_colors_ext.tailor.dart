@@ -84,10 +84,12 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get cardPrimShadow;
   Color get listTilePrimTitle;
   Color get listTilePrimSubtitle;
+  Color get listTilePrimTitleDis;
   Color get listTileSecTitle;
   Color get listTileSecSubtitle;
   Color get checkboxPrimFillSelect;
   Color get checkboxPrimBorder;
+  Color get checkboxPrimBorderDis;
   Color get avatarPrimBg;
   Color get avatarPrimFg;
   Color get suggestNumFill;
@@ -201,10 +203,12 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? cardPrimShadow,
     Color? listTilePrimTitle,
     Color? listTilePrimSubtitle,
+    Color? listTilePrimTitleDis,
     Color? listTileSecTitle,
     Color? listTileSecSubtitle,
     Color? checkboxPrimFillSelect,
     Color? checkboxPrimBorder,
+    Color? checkboxPrimBorderDis,
     Color? avatarPrimBg,
     Color? avatarPrimFg,
     Color? suggestNumFill,
@@ -319,11 +323,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       cardPrimShadow: cardPrimShadow ?? this.cardPrimShadow,
       listTilePrimTitle: listTilePrimTitle ?? this.listTilePrimTitle,
       listTilePrimSubtitle: listTilePrimSubtitle ?? this.listTilePrimSubtitle,
+      listTilePrimTitleDis: listTilePrimTitleDis ?? this.listTilePrimTitleDis,
       listTileSecTitle: listTileSecTitle ?? this.listTileSecTitle,
       listTileSecSubtitle: listTileSecSubtitle ?? this.listTileSecSubtitle,
       checkboxPrimFillSelect:
           checkboxPrimFillSelect ?? this.checkboxPrimFillSelect,
       checkboxPrimBorder: checkboxPrimBorder ?? this.checkboxPrimBorder,
+      checkboxPrimBorderDis:
+          checkboxPrimBorderDis ?? this.checkboxPrimBorderDis,
       avatarPrimBg: avatarPrimBg ?? this.avatarPrimBg,
       avatarPrimFg: avatarPrimFg ?? this.avatarPrimFg,
       suggestNumFill: suggestNumFill ?? this.suggestNumFill,
@@ -555,6 +562,11 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
         other.listTilePrimSubtitle,
         t,
       )!,
+      listTilePrimTitleDis: Color.lerp(
+        listTilePrimTitleDis,
+        other.listTilePrimTitleDis,
+        t,
+      )!,
       listTileSecTitle: Color.lerp(
         listTileSecTitle,
         other.listTileSecTitle,
@@ -573,6 +585,11 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       checkboxPrimBorder: Color.lerp(
         checkboxPrimBorder,
         other.checkboxPrimBorder,
+        t,
+      )!,
+      checkboxPrimBorderDis: Color.lerp(
+        checkboxPrimBorderDis,
+        other.checkboxPrimBorderDis,
         t,
       )!,
       avatarPrimBg: Color.lerp(avatarPrimBg, other.avatarPrimBg, t)!,
@@ -945,6 +962,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
               other.listTilePrimSubtitle,
             ) &&
             const DeepCollectionEquality().equals(
+              listTilePrimTitleDis,
+              other.listTilePrimTitleDis,
+            ) &&
+            const DeepCollectionEquality().equals(
               listTileSecTitle,
               other.listTileSecTitle,
             ) &&
@@ -959,6 +980,10 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
             const DeepCollectionEquality().equals(
               checkboxPrimBorder,
               other.checkboxPrimBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
+              checkboxPrimBorderDis,
+              other.checkboxPrimBorderDis,
             ) &&
             const DeepCollectionEquality().equals(
               avatarPrimBg,
@@ -1178,10 +1203,12 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(cardPrimShadow),
       const DeepCollectionEquality().hash(listTilePrimTitle),
       const DeepCollectionEquality().hash(listTilePrimSubtitle),
+      const DeepCollectionEquality().hash(listTilePrimTitleDis),
       const DeepCollectionEquality().hash(listTileSecTitle),
       const DeepCollectionEquality().hash(listTileSecSubtitle),
       const DeepCollectionEquality().hash(checkboxPrimFillSelect),
       const DeepCollectionEquality().hash(checkboxPrimBorder),
+      const DeepCollectionEquality().hash(checkboxPrimBorderDis),
       const DeepCollectionEquality().hash(avatarPrimBg),
       const DeepCollectionEquality().hash(avatarPrimFg),
       const DeepCollectionEquality().hash(suggestNumFill),

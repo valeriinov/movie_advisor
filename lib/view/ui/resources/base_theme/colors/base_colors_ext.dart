@@ -81,10 +81,12 @@ abstract final class BaseColorsFactory {
     cardPrimShadow: _BaseColors.cardPrimShadow,
     listTilePrimTitle: _BaseColors.listTilePrimTitle,
     listTilePrimSubtitle: _BaseColors.listTilePrimSubtitle,
+    listTilePrimTitleDis: _BaseColors.listTilePrimTitleDis,
     listTileSecTitle: _BaseColors.listTileSecTitle,
     listTileSecSubtitle: _BaseColors.listTileSecSubtitle,
     checkboxPrimFillSelect: _BaseColors.checkboxPrimFillSelect,
     checkboxPrimBorder: _BaseColors.checkboxPrimBorder,
+    checkboxPrimBorderDis: _BaseColors.checkboxPrimBorderDis,
     avatarPrimBg: _BaseColors.avatarPrimBg,
     avatarPrimFg: _BaseColors.avatarPrimFg,
     suggestNumFill: _BaseColors.suggestNumFill,
@@ -439,6 +441,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color listTilePrimSubtitle;
 
+  /// ListTile primary title color (disabled state).
+  @override
+  final Color listTilePrimTitleDis;
+
   /// ListTile secondary title color.
   @override
   final Color listTileSecTitle;
@@ -454,6 +460,10 @@ class BaseColors extends ThemeExtension<BaseColors>
   /// Checkbox primary border color.
   @override
   final Color checkboxPrimBorder;
+
+  /// Checkbox primary border color (disabled state).
+  @override
+  final Color checkboxPrimBorderDis;
 
   /// Avatar primary background color.
   @override
@@ -678,10 +688,12 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.cardPrimShadow,
     required this.listTilePrimTitle,
     required this.listTilePrimSubtitle,
+    required this.listTilePrimTitleDis,
     required this.listTileSecTitle,
     required this.listTileSecSubtitle,
     required this.checkboxPrimFillSelect,
     required this.checkboxPrimBorder,
+    required this.checkboxPrimBorderDis,
     required this.avatarPrimBg,
     required this.avatarPrimFg,
     required this.suggestNumFill,

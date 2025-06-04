@@ -57,6 +57,15 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
     final hasUnsavedChanges = vsp.selectWatch((s) => s.isFilterChanged);
     final filter = vsp.selectWatch((s) => s.filter);
 
+    final selectedWithGenresDesc = useMemoized(
+      () => _getSelectedGenreDescriptions(filter),
+      [filter],
+    );
+    final selectedWithoutGenresDesc = useMemoized(
+      () => _getSelectedGenreDescriptions(filter, withGenres: false),
+      [filter],
+    );
+
     return Scaffold(
       appBar: FilterSettingsAppBar(
         onReset: !_isDefaultFilter(filter) ? viewModel.resetFilter : null,
@@ -76,7 +85,8 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               key: const PageStorageKey('filter-with-genres'),
               title: LocaleKeys.filterWithGenres.tr(),
               contentMode: contentMode,
-              selectedGenresDesc: _getSelectedGenreDescriptions(filter),
+              selectedGenresDesc: selectedWithGenresDesc,
+              disabledGenresDesc: selectedWithoutGenresDesc,
               onTapGenre: (desc) => _updateWithGenres(vsp, desc),
             ),
             _divider(),
@@ -84,10 +94,8 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               key: const PageStorageKey('filter-without-genres'),
               title: LocaleKeys.filterWithoutGenres.tr(),
               contentMode: contentMode,
-              selectedGenresDesc: _getSelectedGenreDescriptions(
-                filter,
-                withGenres: false,
-              ),
+              selectedGenresDesc: selectedWithoutGenresDesc,
+              disabledGenresDesc: selectedWithGenresDesc,
               onTapGenre: (desc) => _updateWithoutGenres(vsp, desc),
             ),
             _divider(),
