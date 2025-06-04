@@ -15,7 +15,7 @@ import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
 import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/blurred_bottom_sheet.dart';
+import '../../../widgets/bottom_sheet/blurred_bottom_sheet.dart';
 import '../../../widgets/language_bottom_sheet.dart';
 import '../home_view_model/home_state.dart';
 import '../home_view_model/home_view_model.dart';

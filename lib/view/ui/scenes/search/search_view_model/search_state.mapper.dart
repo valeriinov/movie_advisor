@@ -21,24 +21,15 @@ class SearchStateMapper extends ClassMapperBase<SearchState> {
   @override
   final String id = 'SearchState';
   @override
-  Function get typeFactory =>
-      <T>(f) => f<SearchState<T>>();
+  Function get typeFactory => <T>(f) => f<SearchState<T>>();
 
   static MediaLoadInfo<dynamic> _$results(SearchState v) => v.results;
   static dynamic _arg$results<T>(f) => f<MediaLoadInfo<T>>();
-  static const Field<SearchState, MediaLoadInfo<dynamic>> _f$results = Field(
-    'results',
-    _$results,
-    opt: true,
-    arg: _arg$results,
-  );
+  static const Field<SearchState, MediaLoadInfo<dynamic>> _f$results =
+      Field('results', _$results, opt: true, arg: _arg$results);
   static SearchStatus _$status(SearchState v) => v.status;
-  static const Field<SearchState, SearchStatus> _f$status = Field(
-    'status',
-    _$status,
-    opt: true,
-    def: const SearchBaseStatus(),
-  );
+  static const Field<SearchState, SearchStatus> _f$status =
+      Field('status', _$status, opt: true, def: const SearchBaseStatus());
 
   @override
   final MappableFields<SearchState> fields = const {
@@ -48,9 +39,7 @@ class SearchStateMapper extends ClassMapperBase<SearchState> {
 
   static SearchState<T> _instantiate<T>(DecodingData data) {
     return SearchState(
-      results: data.dec(_f$results),
-      status: data.dec(_f$status),
-    );
+        results: data.dec(_f$results), status: data.dec(_f$status));
   }
 
   @override
@@ -59,31 +48,25 @@ class SearchStateMapper extends ClassMapperBase<SearchState> {
 
 mixin SearchStateMappable<T> {
   SearchStateCopyWith<SearchState<T>, SearchState<T>, SearchState<T>, T>
-  get copyWith => _SearchStateCopyWithImpl<SearchState<T>, SearchState<T>, T>(
-    this as SearchState<T>,
-    $identity,
-    $identity,
-  );
+      get copyWith =>
+          _SearchStateCopyWithImpl<SearchState<T>, SearchState<T>, T>(
+              this as SearchState<T>, $identity, $identity);
   @override
   String toString() {
-    return SearchStateMapper.ensureInitialized().stringifyValue(
-      this as SearchState<T>,
-    );
+    return SearchStateMapper.ensureInitialized()
+        .stringifyValue(this as SearchState<T>);
   }
 
   @override
   bool operator ==(Object other) {
-    return SearchStateMapper.ensureInitialized().equalsValue(
-      this as SearchState<T>,
-      other,
-    );
+    return SearchStateMapper.ensureInitialized()
+        .equalsValue(this as SearchState<T>, other);
   }
 
   @override
   int get hashCode {
-    return SearchStateMapper.ensureInitialized().hashValue(
-      this as SearchState<T>,
-    );
+    return SearchStateMapper.ensureInitialized()
+        .hashValue(this as SearchState<T>);
   }
 }
 
@@ -98,8 +81,7 @@ abstract class SearchStateCopyWith<$R, $In extends SearchState<T>, $Out, T>
   MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T> get results;
   $R call({MediaLoadInfo<T>? results, SearchStatus? status});
   SearchStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _SearchStateCopyWithImpl<$R, $Out, T>
@@ -112,26 +94,24 @@ class _SearchStateCopyWithImpl<$R, $Out, T>
       SearchStateMapper.ensureInitialized();
   @override
   MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
-  get results => ($value.results as MediaLoadInfo<T>).copyWith.$chain(
-    (v) => call(results: v),
-  );
+      get results => ($value.results as MediaLoadInfo<T>)
+          .copyWith
+          .$chain((v) => call(results: v));
   @override
-  $R call({Object? results = $none, SearchStatus? status}) => $apply(
-    FieldCopyWithData({
-      if (results != $none) #results: results,
-      if (status != null) #status: status,
-    }),
-  );
+  $R call({Object? results = $none, SearchStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (results != $none) #results: results,
+        if (status != null) #status: status
+      }));
   @override
   SearchState<T> $make(CopyWithData data) => SearchState(
-    results: data.get(#results, or: $value.results),
-    status: data.get(#status, or: $value.status),
-  );
+      results: data.get(#results, or: $value.results),
+      status: data.get(#status, or: $value.status));
 
   @override
   SearchStateCopyWith<$R2, SearchState<T>, $Out2, T> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _SearchStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _SearchStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }
 
 class SearchBaseStatusMapper extends ClassMapperBase<SearchBaseStatus> {
@@ -149,25 +129,14 @@ class SearchBaseStatusMapper extends ClassMapperBase<SearchBaseStatus> {
   final String id = 'SearchBaseStatus';
 
   static bool _$isLoading(SearchBaseStatus v) => v.isLoading;
-  static const Field<SearchBaseStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<SearchBaseStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(SearchBaseStatus v) => v.errorMessage;
-  static const Field<SearchBaseStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<SearchBaseStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(SearchBaseStatus v) => v.isInitialized;
-  static const Field<SearchBaseStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: false,
-  );
+  static const Field<SearchBaseStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: false);
 
   @override
   final MappableFields<SearchBaseStatus> fields = const {
@@ -178,10 +147,9 @@ class SearchBaseStatusMapper extends ClassMapperBase<SearchBaseStatus> {
 
   static SearchBaseStatus _instantiate(DecodingData data) {
     return SearchBaseStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -190,48 +158,40 @@ class SearchBaseStatusMapper extends ClassMapperBase<SearchBaseStatus> {
 
 mixin SearchBaseStatusMappable {
   SearchBaseStatusCopyWith<SearchBaseStatus, SearchBaseStatus, SearchBaseStatus>
-  get copyWith =>
-      _SearchBaseStatusCopyWithImpl<SearchBaseStatus, SearchBaseStatus>(
-        this as SearchBaseStatus,
-        $identity,
-        $identity,
-      );
+      get copyWith =>
+          _SearchBaseStatusCopyWithImpl<SearchBaseStatus, SearchBaseStatus>(
+              this as SearchBaseStatus, $identity, $identity);
   @override
   String toString() {
-    return SearchBaseStatusMapper.ensureInitialized().stringifyValue(
-      this as SearchBaseStatus,
-    );
+    return SearchBaseStatusMapper.ensureInitialized()
+        .stringifyValue(this as SearchBaseStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return SearchBaseStatusMapper.ensureInitialized().equalsValue(
-      this as SearchBaseStatus,
-      other,
-    );
+    return SearchBaseStatusMapper.ensureInitialized()
+        .equalsValue(this as SearchBaseStatus, other);
   }
 
   @override
   int get hashCode {
-    return SearchBaseStatusMapper.ensureInitialized().hashValue(
-      this as SearchBaseStatus,
-    );
+    return SearchBaseStatusMapper.ensureInitialized()
+        .hashValue(this as SearchBaseStatus);
   }
 }
 
 extension SearchBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchBaseStatus, $Out> {
   SearchBaseStatusCopyWith<$R, SearchBaseStatus, $Out>
-  get $asSearchBaseStatus =>
-      $base.as((v, t, t2) => _SearchBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
+      get $asSearchBaseStatus => $base
+          .as((v, t, t2) => _SearchBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchBaseStatusCopyWith<$R, $In extends SearchBaseStatus, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   SearchBaseStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _SearchBaseStatusCopyWithImpl<$R, $Out>
@@ -243,28 +203,25 @@ class _SearchBaseStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<SearchBaseStatus> $mapper =
       SearchBaseStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   SearchBaseStatus $make(CopyWithData data) => SearchBaseStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   SearchBaseStatusCopyWith<$R2, SearchBaseStatus, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _SearchBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _SearchBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class SearchBaseInitStatusMapper extends ClassMapperBase<SearchBaseInitStatus> {
@@ -282,25 +239,14 @@ class SearchBaseInitStatusMapper extends ClassMapperBase<SearchBaseInitStatus> {
   final String id = 'SearchBaseInitStatus';
 
   static bool _$isLoading(SearchBaseInitStatus v) => v.isLoading;
-  static const Field<SearchBaseInitStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<SearchBaseInitStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(SearchBaseInitStatus v) => v.errorMessage;
-  static const Field<SearchBaseInitStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<SearchBaseInitStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(SearchBaseInitStatus v) => v.isInitialized;
-  static const Field<SearchBaseInitStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<SearchBaseInitStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<SearchBaseInitStatus> fields = const {
@@ -311,10 +257,9 @@ class SearchBaseInitStatusMapper extends ClassMapperBase<SearchBaseInitStatus> {
 
   static SearchBaseInitStatus _instantiate(DecodingData data) {
     return SearchBaseInitStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -322,57 +267,43 @@ class SearchBaseInitStatusMapper extends ClassMapperBase<SearchBaseInitStatus> {
 }
 
 mixin SearchBaseInitStatusMappable {
-  SearchBaseInitStatusCopyWith<
-    SearchBaseInitStatus,
-    SearchBaseInitStatus,
-    SearchBaseInitStatus
-  >
-  get copyWith =>
-      _SearchBaseInitStatusCopyWithImpl<
-        SearchBaseInitStatus,
-        SearchBaseInitStatus
-      >(this as SearchBaseInitStatus, $identity, $identity);
+  SearchBaseInitStatusCopyWith<SearchBaseInitStatus, SearchBaseInitStatus,
+      SearchBaseInitStatus> get copyWith => _SearchBaseInitStatusCopyWithImpl<
+          SearchBaseInitStatus, SearchBaseInitStatus>(
+      this as SearchBaseInitStatus, $identity, $identity);
   @override
   String toString() {
-    return SearchBaseInitStatusMapper.ensureInitialized().stringifyValue(
-      this as SearchBaseInitStatus,
-    );
+    return SearchBaseInitStatusMapper.ensureInitialized()
+        .stringifyValue(this as SearchBaseInitStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return SearchBaseInitStatusMapper.ensureInitialized().equalsValue(
-      this as SearchBaseInitStatus,
-      other,
-    );
+    return SearchBaseInitStatusMapper.ensureInitialized()
+        .equalsValue(this as SearchBaseInitStatus, other);
   }
 
   @override
   int get hashCode {
-    return SearchBaseInitStatusMapper.ensureInitialized().hashValue(
-      this as SearchBaseInitStatus,
-    );
+    return SearchBaseInitStatusMapper.ensureInitialized()
+        .hashValue(this as SearchBaseInitStatus);
   }
 }
 
 extension SearchBaseInitStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchBaseInitStatus, $Out> {
   SearchBaseInitStatusCopyWith<$R, SearchBaseInitStatus, $Out>
-  get $asSearchBaseInitStatus => $base.as(
-    (v, t, t2) => _SearchBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asSearchBaseInitStatus => $base.as(
+          (v, t, t2) => _SearchBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchBaseInitStatusCopyWith<
-  $R,
-  $In extends SearchBaseInitStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends SearchBaseInitStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   SearchBaseInitStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _SearchBaseInitStatusCopyWithImpl<$R, $Out>
@@ -384,26 +315,23 @@ class _SearchBaseInitStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<SearchBaseInitStatus> $mapper =
       SearchBaseInitStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   SearchBaseInitStatus $make(CopyWithData data) => SearchBaseInitStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   SearchBaseInitStatusCopyWith<$R2, SearchBaseInitStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _SearchBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _SearchBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

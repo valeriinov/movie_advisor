@@ -86,6 +86,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get listTilePrimSubtitle;
   Color get listTileSecTitle;
   Color get listTileSecSubtitle;
+  Color get checkboxPrimFillSelect;
+  Color get checkboxPrimBorder;
   Color get avatarPrimBg;
   Color get avatarPrimFg;
   Color get suggestNumFill;
@@ -201,6 +203,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? listTilePrimSubtitle,
     Color? listTileSecTitle,
     Color? listTileSecSubtitle,
+    Color? checkboxPrimFillSelect,
+    Color? checkboxPrimBorder,
     Color? avatarPrimBg,
     Color? avatarPrimFg,
     Color? suggestNumFill,
@@ -317,6 +321,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       listTilePrimSubtitle: listTilePrimSubtitle ?? this.listTilePrimSubtitle,
       listTileSecTitle: listTileSecTitle ?? this.listTileSecTitle,
       listTileSecSubtitle: listTileSecSubtitle ?? this.listTileSecSubtitle,
+      checkboxPrimFillSelect:
+          checkboxPrimFillSelect ?? this.checkboxPrimFillSelect,
+      checkboxPrimBorder: checkboxPrimBorder ?? this.checkboxPrimBorder,
       avatarPrimBg: avatarPrimBg ?? this.avatarPrimBg,
       avatarPrimFg: avatarPrimFg ?? this.avatarPrimFg,
       suggestNumFill: suggestNumFill ?? this.suggestNumFill,
@@ -556,6 +563,16 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       listTileSecSubtitle: Color.lerp(
         listTileSecSubtitle,
         other.listTileSecSubtitle,
+        t,
+      )!,
+      checkboxPrimFillSelect: Color.lerp(
+        checkboxPrimFillSelect,
+        other.checkboxPrimFillSelect,
+        t,
+      )!,
+      checkboxPrimBorder: Color.lerp(
+        checkboxPrimBorder,
+        other.checkboxPrimBorder,
         t,
       )!,
       avatarPrimBg: Color.lerp(avatarPrimBg, other.avatarPrimBg, t)!,
@@ -936,6 +953,14 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
               other.listTileSecSubtitle,
             ) &&
             const DeepCollectionEquality().equals(
+              checkboxPrimFillSelect,
+              other.checkboxPrimFillSelect,
+            ) &&
+            const DeepCollectionEquality().equals(
+              checkboxPrimBorder,
+              other.checkboxPrimBorder,
+            ) &&
+            const DeepCollectionEquality().equals(
               avatarPrimBg,
               other.avatarPrimBg,
             ) &&
@@ -1155,6 +1180,8 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(listTilePrimSubtitle),
       const DeepCollectionEquality().hash(listTileSecTitle),
       const DeepCollectionEquality().hash(listTileSecSubtitle),
+      const DeepCollectionEquality().hash(checkboxPrimFillSelect),
+      const DeepCollectionEquality().hash(checkboxPrimBorder),
       const DeepCollectionEquality().hash(avatarPrimBg),
       const DeepCollectionEquality().hash(avatarPrimFg),
       const DeepCollectionEquality().hash(suggestNumFill),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
-import '../../../widgets/bottom_sheet/bottom_sheet_close_button.dart';
-import '../../../widgets/bottom_sheet/bottom_sheet_title.dart';
-import '../../../widgets/no_always_scroll_wrapper.dart';
+import 'bottom_sheet/bottom_sheet_close_button.dart';
+import 'bottom_sheet/bottom_sheet_title.dart';
+import 'no_always_scroll_wrapper.dart';
 
 class FilterBottomSheet extends StatelessWidget {
   final String title;

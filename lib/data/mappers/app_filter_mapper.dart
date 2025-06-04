@@ -14,25 +14,27 @@ final class AppFilterMapper extends AppMapper {
     if (dto == null) return null;
 
     return MoviesFilterData(
-      year: dto.year,
       sortBy: _mapSortByDtoToDomain(dto.sortBy),
       withCountries: _mapCountriesDtoToDomain(dto.withCountries),
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
       includeWatchlist: dto.includeWatchlist ?? true,
       includeWatched: dto.includeWatched ?? true,
+      fromDate: dto.fromDate,
+      toDate: dto.toDate,
     );
   }
 
   MoviesFilterDataDto mapMoviesFilterDataToDto(MoviesFilterData data) {
     return MoviesFilterDataDto(
-      year: data.year,
       sortBy: _mapSortByToDto(data.sortBy),
       withCountries: _mapCountriesToDto(data.withCountries),
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
       includeWatchlist: data.includeWatchlist,
       includeWatched: data.includeWatched,
+      fromDate: data.fromDate,
+      toDate: data.toDate,
     );
   }
 
@@ -40,25 +42,27 @@ final class AppFilterMapper extends AppMapper {
     if (dto == null) return null;
 
     return SeriesFilterData(
-      year: dto.year,
       sortBy: _mapSortByDtoToDomain(dto.sortBy),
       withCountries: _mapCountriesDtoToDomain(dto.withCountries),
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
       includeWatchlist: dto.includeWatchlist ?? true,
       includeWatched: dto.includeWatched ?? true,
+      fromDate: dto.fromDate,
+      toDate: dto.toDate,
     );
   }
 
   SeriesFilterDataDto mapSeriesFilterDataToDto(SeriesFilterData data) {
     return SeriesFilterDataDto(
-      year: data.year,
       sortBy: _mapSortByToDto(data.sortBy),
       withCountries: _mapCountriesToDto(data.withCountries),
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
       includeWatchlist: data.includeWatchlist,
       includeWatched: data.includeWatched,
+      fromDate: data.fromDate,
+      toDate: data.toDate,
     );
   }
 

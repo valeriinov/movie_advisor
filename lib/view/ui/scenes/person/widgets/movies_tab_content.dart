@@ -54,7 +54,7 @@ class MoviesTabContent extends HookWidget {
                   ),
                 );
               },
-              separatorBuilder: (_, __) => dimens.spLarge.gapVert(),
+              separatorBuilder: (_, _) => dimens.spLarge.gapVert(),
             ),
           )
         : EmptyTabContent(description: LocaleKeys.emptyMoviesTab.tr());

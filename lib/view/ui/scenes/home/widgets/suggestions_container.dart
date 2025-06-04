@@ -53,7 +53,7 @@ class SuggestionsContainer extends StatelessWidget {
                       onTap: onTap != null ? () => onTap!(suggestion.id) : null,
                     );
                   },
-                  separatorBuilder: (_, __) => dimens.spLarge.gapHor(),
+                  separatorBuilder: (_, _) => dimens.spLarge.gapHor(),
                 ),
               ),
       ),

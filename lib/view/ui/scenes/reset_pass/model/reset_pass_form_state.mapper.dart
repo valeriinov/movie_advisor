@@ -21,15 +21,13 @@ class ResetPassFormStateMapper extends ClassMapperBase<ResetPassFormState> {
   final String id = 'ResetPassFormState';
 
   static String _$email(ResetPassFormState v) => v.email;
-  static const Field<ResetPassFormState, String> _f$email = Field(
-    'email',
-    _$email,
-    opt: true,
-    def: '',
-  );
+  static const Field<ResetPassFormState, String> _f$email =
+      Field('email', _$email, opt: true, def: '');
 
   @override
-  final MappableFields<ResetPassFormState> fields = const {#email: _f$email};
+  final MappableFields<ResetPassFormState> fields = const {
+    #email: _f$email,
+  };
 
   static ResetPassFormState _instantiate(DecodingData data) {
     return ResetPassFormState(email: data.dec(_f$email));
@@ -58,58 +56,41 @@ mixin ResetPassFormStateMappable {
         .encodeMap<ResetPassFormState>(this as ResetPassFormState);
   }
 
-  ResetPassFormStateCopyWith<
-    ResetPassFormState,
-    ResetPassFormState,
-    ResetPassFormState
-  >
-  get copyWith =>
-      _ResetPassFormStateCopyWithImpl<ResetPassFormState, ResetPassFormState>(
-        this as ResetPassFormState,
-        $identity,
-        $identity,
-      );
+  ResetPassFormStateCopyWith<ResetPassFormState, ResetPassFormState,
+          ResetPassFormState>
+      get copyWith => _ResetPassFormStateCopyWithImpl<ResetPassFormState,
+          ResetPassFormState>(this as ResetPassFormState, $identity, $identity);
   @override
   String toString() {
-    return ResetPassFormStateMapper.ensureInitialized().stringifyValue(
-      this as ResetPassFormState,
-    );
+    return ResetPassFormStateMapper.ensureInitialized()
+        .stringifyValue(this as ResetPassFormState);
   }
 
   @override
   bool operator ==(Object other) {
-    return ResetPassFormStateMapper.ensureInitialized().equalsValue(
-      this as ResetPassFormState,
-      other,
-    );
+    return ResetPassFormStateMapper.ensureInitialized()
+        .equalsValue(this as ResetPassFormState, other);
   }
 
   @override
   int get hashCode {
-    return ResetPassFormStateMapper.ensureInitialized().hashValue(
-      this as ResetPassFormState,
-    );
+    return ResetPassFormStateMapper.ensureInitialized()
+        .hashValue(this as ResetPassFormState);
   }
 }
 
 extension ResetPassFormStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, ResetPassFormState, $Out> {
   ResetPassFormStateCopyWith<$R, ResetPassFormState, $Out>
-  get $asResetPassFormState => $base.as(
-    (v, t, t2) => _ResetPassFormStateCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asResetPassFormState => $base.as(
+          (v, t, t2) => _ResetPassFormStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
-abstract class ResetPassFormStateCopyWith<
-  $R,
-  $In extends ResetPassFormState,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+abstract class ResetPassFormStateCopyWith<$R, $In extends ResetPassFormState,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({String? email});
   ResetPassFormStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _ResetPassFormStateCopyWithImpl<$R, $Out>
@@ -129,6 +110,6 @@ class _ResetPassFormStateCopyWithImpl<$R, $Out>
 
   @override
   ResetPassFormStateCopyWith<$R2, ResetPassFormState, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _ResetPassFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _ResetPassFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

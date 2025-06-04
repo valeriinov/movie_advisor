@@ -43,7 +43,7 @@ final class ImplAppRouter implements AppRouter {
       initialLocation: AppRoutes.home,
       routes: [
         StatefulShellRoute(
-          builder: (_, __, child) => child,
+          builder: (_, _, child) => child,
           navigatorContainerBuilder: (context, navShell, children) {
             return NavMenuScreen(navShell: navShell, children: children);
           },
@@ -56,6 +56,7 @@ final class ImplAppRouter implements AppRouter {
         ),
         $detailsRoute,
         $personRoute,
+        $filterSettingsRoute,
       ],
       errorBuilder: (context, _) {
         WidgetsBinding.instance.addPostFrameCallback((_) {

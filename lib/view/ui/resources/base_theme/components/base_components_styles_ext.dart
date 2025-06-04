@@ -42,6 +42,17 @@ abstract final class BaseComponentsStylesFactory {
       avatarPrimTextStyle: _BaseComponentsStyles.avatarPrimTextStyle(
         colors.avatarPrimFg,
       ),
+      expTilePadding: _BaseComponentsStyles.expTilePadding,
+      expTileShape: _BaseComponentsStyles.expTileShape,
+      expTileTitleTextStyle: _BaseComponentsStyles.expTileTitleTextStyle(
+        colors.textThemeSec,
+      ),
+      expTileSubtTextStyle: _BaseComponentsStyles.expTileSubtTextStyle(
+        colors.textThemeSec,
+      ),
+      checkboxPrimShape: _BaseComponentsStyles.checkboxPrimShape(
+        colors.checkboxPrimBorder,
+      ),
       posterBorderRadius: _BaseComponentsStyles.posterBorderRadius,
       backdrBorderRadius: _BaseComponentsStyles.backdrBorderRadius,
       posterSmallSize: _BaseComponentsStyles.posterSmallSize,
@@ -80,6 +91,9 @@ abstract final class BaseComponentsStylesFactory {
       ),
       filterSubtTextStyle: _BaseComponentsStyles.filterSubtTextStyle(
         colors.filterSecFg,
+      ),
+      filterSetActBtnTextStyle: _BaseComponentsStyles.filterSetActBtnTextStyle(
+        colors.btnTextPrimFg,
       ),
     );
   }
@@ -127,6 +141,26 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   /// Primary TextStyle of the avatar.
   @override
   final TextStyle avatarPrimTextStyle;
+
+  /// Padding of the ExpansionTile.
+  @override
+  final EdgeInsets expTilePadding;
+
+  /// ShapeBorder of the ExpansionTile.
+  @override
+  final ShapeBorder expTileShape;
+
+  /// TextStyle of the ExpansionTile title.
+  @override
+  final TextStyle expTileTitleTextStyle;
+
+  /// TextStyle of the ExpansionTile subtitle.
+  @override
+  final TextStyle expTileSubtTextStyle;
+
+  /// BorderRadius of the primary checkbox.
+  @override
+  final OutlinedBorder checkboxPrimShape;
 
   /// BorderRadius of the poster.
   @override
@@ -211,6 +245,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
   @override
   final TextStyle filterSubtTextStyle;
 
+  /// TextStyle of the filter set action button.
+  @override
+  final TextStyle filterSetActBtnTextStyle;
+
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
     required this.cardPrimShape,
@@ -222,6 +260,11 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.listTileSecTitleTextStyleSelect,
     required this.listTileSecSubtTextStyleSelect,
     required this.avatarPrimTextStyle,
+    required this.expTilePadding,
+    required this.expTileShape,
+    required this.expTileTitleTextStyle,
+    required this.expTileSubtTextStyle,
+    required this.checkboxPrimShape,
     required this.posterBorderRadius,
     required this.backdrBorderRadius,
     required this.posterSmallSize,
@@ -243,5 +286,6 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     required this.sliderValTextStyle,
     required this.filterTitleTextStyle,
     required this.filterSubtTextStyle,
+    required this.filterSetActBtnTextStyle,
   });
 }

@@ -21,19 +21,11 @@ class AuthFormStateMapper extends ClassMapperBase<AuthFormState> {
   final String id = 'AuthFormState';
 
   static String _$email(AuthFormState v) => v.email;
-  static const Field<AuthFormState, String> _f$email = Field(
-    'email',
-    _$email,
-    opt: true,
-    def: '',
-  );
+  static const Field<AuthFormState, String> _f$email =
+      Field('email', _$email, opt: true, def: '');
   static String _$password(AuthFormState v) => v.password;
-  static const Field<AuthFormState, String> _f$password = Field(
-    'password',
-    _$password,
-    opt: true,
-    def: '',
-  );
+  static const Field<AuthFormState, String> _f$password =
+      Field('password', _$password, opt: true, def: '');
 
   @override
   final MappableFields<AuthFormState> fields = const {
@@ -43,9 +35,7 @@ class AuthFormStateMapper extends ClassMapperBase<AuthFormState> {
 
   static AuthFormState _instantiate(DecodingData data) {
     return AuthFormState(
-      email: data.dec(_f$email),
-      password: data.dec(_f$password),
-    );
+        email: data.dec(_f$email), password: data.dec(_f$password));
   }
 
   @override
@@ -62,43 +52,34 @@ class AuthFormStateMapper extends ClassMapperBase<AuthFormState> {
 
 mixin AuthFormStateMappable {
   String toJsonString() {
-    return AuthFormStateMapper.ensureInitialized().encodeJson<AuthFormState>(
-      this as AuthFormState,
-    );
+    return AuthFormStateMapper.ensureInitialized()
+        .encodeJson<AuthFormState>(this as AuthFormState);
   }
 
   Map<String, dynamic> toJson() {
-    return AuthFormStateMapper.ensureInitialized().encodeMap<AuthFormState>(
-      this as AuthFormState,
-    );
+    return AuthFormStateMapper.ensureInitialized()
+        .encodeMap<AuthFormState>(this as AuthFormState);
   }
 
   AuthFormStateCopyWith<AuthFormState, AuthFormState, AuthFormState>
-  get copyWith => _AuthFormStateCopyWithImpl<AuthFormState, AuthFormState>(
-    this as AuthFormState,
-    $identity,
-    $identity,
-  );
+      get copyWith => _AuthFormStateCopyWithImpl<AuthFormState, AuthFormState>(
+          this as AuthFormState, $identity, $identity);
   @override
   String toString() {
-    return AuthFormStateMapper.ensureInitialized().stringifyValue(
-      this as AuthFormState,
-    );
+    return AuthFormStateMapper.ensureInitialized()
+        .stringifyValue(this as AuthFormState);
   }
 
   @override
   bool operator ==(Object other) {
-    return AuthFormStateMapper.ensureInitialized().equalsValue(
-      this as AuthFormState,
-      other,
-    );
+    return AuthFormStateMapper.ensureInitialized()
+        .equalsValue(this as AuthFormState, other);
   }
 
   @override
   int get hashCode {
-    return AuthFormStateMapper.ensureInitialized().hashValue(
-      this as AuthFormState,
-    );
+    return AuthFormStateMapper.ensureInitialized()
+        .hashValue(this as AuthFormState);
   }
 }
 
@@ -123,20 +104,17 @@ class _AuthFormStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<AuthFormState> $mapper =
       AuthFormStateMapper.ensureInitialized();
   @override
-  $R call({String? email, String? password}) => $apply(
-    FieldCopyWithData({
-      if (email != null) #email: email,
-      if (password != null) #password: password,
-    }),
-  );
+  $R call({String? email, String? password}) => $apply(FieldCopyWithData({
+        if (email != null) #email: email,
+        if (password != null) #password: password
+      }));
   @override
   AuthFormState $make(CopyWithData data) => AuthFormState(
-    email: data.get(#email, or: $value.email),
-    password: data.get(#password, or: $value.password),
-  );
+      email: data.get(#email, or: $value.email),
+      password: data.get(#password, or: $value.password));
 
   @override
   AuthFormStateCopyWith<$R2, AuthFormState, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _AuthFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _AuthFormStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

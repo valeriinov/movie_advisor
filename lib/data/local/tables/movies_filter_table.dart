@@ -7,8 +7,6 @@ import '../utils/movie_genres_converter.dart';
 class MoviesFilterTable extends Table {
   IntColumn get id => integer().autoIncrement()();
 
-  IntColumn get year => integer().nullable()();
-
   TextColumn get sortBy => text().map(filterSortByConverter).nullable()();
 
   TextColumn get withCountries => text().map(countryConverter).nullable()();
@@ -20,4 +18,8 @@ class MoviesFilterTable extends Table {
   BoolColumn get includeWatched => boolean().nullable()();
 
   BoolColumn get includeWatchlist => boolean().nullable()();
+
+  DateTimeColumn get fromDate => dateTime().nullable()();
+
+  DateTimeColumn get toDate => dateTime().nullable()();
 }

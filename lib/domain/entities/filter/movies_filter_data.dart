@@ -14,12 +14,13 @@ class MoviesFilterData extends FilterData with MoviesFilterDataMappable {
   final List<MovieGenre> withoutGenres;
 
   const MoviesFilterData({
-    super.year,
     super.sortBy = SortBy.popularityDesc,
     super.withCountries = const [],
     super.includeWatched = true,
     super.includeWatchlist = true,
     this.withGenres = const [],
     this.withoutGenres = const [],
+    super.fromDate,
+    super.toDate,
   });
 }

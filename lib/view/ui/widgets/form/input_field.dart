@@ -55,7 +55,7 @@ class InputField extends StatelessWidget {
 
              return Hero(
                tag: 'search',
-               flightShuttleBuilder: (_, animation, __, ___, toHeroCtx) =>
+               flightShuttleBuilder: (_, animation, _, _, toHeroCtx) =>
                    _flightShuttleWithAutofocusHandling(
                      animation,
                      toHeroCtx.widget,

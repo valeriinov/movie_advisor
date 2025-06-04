@@ -21,40 +21,20 @@ class CastDataMapper extends ClassMapperBase<CastData> {
   final String id = 'CastData';
 
   static int _$id(CastData v) => v.id;
-  static const Field<CastData, int> _f$id = Field(
-    'id',
-    _$id,
-    opt: true,
-    def: -1,
-  );
+  static const Field<CastData, int> _f$id =
+      Field('id', _$id, opt: true, def: -1);
   static String _$originalName(CastData v) => v.originalName;
-  static const Field<CastData, String> _f$originalName = Field(
-    'originalName',
-    _$originalName,
-    opt: true,
-    def: '',
-  );
+  static const Field<CastData, String> _f$originalName =
+      Field('originalName', _$originalName, opt: true, def: '');
   static String _$profilePath(CastData v) => v.profilePath;
-  static const Field<CastData, String> _f$profilePath = Field(
-    'profilePath',
-    _$profilePath,
-    opt: true,
-    def: '',
-  );
+  static const Field<CastData, String> _f$profilePath =
+      Field('profilePath', _$profilePath, opt: true, def: '');
   static String _$name(CastData v) => v.name;
-  static const Field<CastData, String> _f$name = Field(
-    'name',
-    _$name,
-    opt: true,
-    def: '',
-  );
+  static const Field<CastData, String> _f$name =
+      Field('name', _$name, opt: true, def: '');
   static String _$character(CastData v) => v.character;
-  static const Field<CastData, String> _f$character = Field(
-    'character',
-    _$character,
-    opt: true,
-    def: '',
-  );
+  static const Field<CastData, String> _f$character =
+      Field('character', _$character, opt: true, def: '');
 
   @override
   final MappableFields<CastData> fields = const {
@@ -67,12 +47,11 @@ class CastDataMapper extends ClassMapperBase<CastData> {
 
   static CastData _instantiate(DecodingData data) {
     return CastData(
-      id: data.dec(_f$id),
-      originalName: data.dec(_f$originalName),
-      profilePath: data.dec(_f$profilePath),
-      name: data.dec(_f$name),
-      character: data.dec(_f$character),
-    );
+        id: data.dec(_f$id),
+        originalName: data.dec(_f$originalName),
+        profilePath: data.dec(_f$profilePath),
+        name: data.dec(_f$name),
+        character: data.dec(_f$character));
   }
 
   @override
@@ -82,10 +61,7 @@ class CastDataMapper extends ClassMapperBase<CastData> {
 mixin CastDataMappable {
   CastDataCopyWith<CastData, CastData, CastData> get copyWith =>
       _CastDataCopyWithImpl<CastData, CastData>(
-        this as CastData,
-        $identity,
-        $identity,
-      );
+          this as CastData, $identity, $identity);
   @override
   String toString() {
     return CastDataMapper.ensureInitialized().stringifyValue(this as CastData);
@@ -93,10 +69,8 @@ mixin CastDataMappable {
 
   @override
   bool operator ==(Object other) {
-    return CastDataMapper.ensureInitialized().equalsValue(
-      this as CastData,
-      other,
-    );
+    return CastDataMapper.ensureInitialized()
+        .equalsValue(this as CastData, other);
   }
 
   @override
@@ -112,13 +86,12 @@ extension CastDataValueCopy<$R, $Out> on ObjectCopyWith<$R, CastData, $Out> {
 
 abstract class CastDataCopyWith<$R, $In extends CastData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({
-    int? id,
-    String? originalName,
-    String? profilePath,
-    String? name,
-    String? character,
-  });
+  $R call(
+      {int? id,
+      String? originalName,
+      String? profilePath,
+      String? name,
+      String? character});
   CastDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -131,32 +104,29 @@ class _CastDataCopyWithImpl<$R, $Out>
   late final ClassMapperBase<CastData> $mapper =
       CastDataMapper.ensureInitialized();
   @override
-  $R call({
-    int? id,
-    String? originalName,
-    String? profilePath,
-    String? name,
-    String? character,
-  }) => $apply(
-    FieldCopyWithData({
-      if (id != null) #id: id,
-      if (originalName != null) #originalName: originalName,
-      if (profilePath != null) #profilePath: profilePath,
-      if (name != null) #name: name,
-      if (character != null) #character: character,
-    }),
-  );
+  $R call(
+          {int? id,
+          String? originalName,
+          String? profilePath,
+          String? name,
+          String? character}) =>
+      $apply(FieldCopyWithData({
+        if (id != null) #id: id,
+        if (originalName != null) #originalName: originalName,
+        if (profilePath != null) #profilePath: profilePath,
+        if (name != null) #name: name,
+        if (character != null) #character: character
+      }));
   @override
   CastData $make(CopyWithData data) => CastData(
-    id: data.get(#id, or: $value.id),
-    originalName: data.get(#originalName, or: $value.originalName),
-    profilePath: data.get(#profilePath, or: $value.profilePath),
-    name: data.get(#name, or: $value.name),
-    character: data.get(#character, or: $value.character),
-  );
+      id: data.get(#id, or: $value.id),
+      originalName: data.get(#originalName, or: $value.originalName),
+      profilePath: data.get(#profilePath, or: $value.profilePath),
+      name: data.get(#name, or: $value.name),
+      character: data.get(#character, or: $value.character));
 
   @override
   CastDataCopyWith<$R2, CastData, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _CastDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _CastDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

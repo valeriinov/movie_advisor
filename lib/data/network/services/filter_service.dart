@@ -33,8 +33,13 @@ class FilterService {
   ) {
     final params = <String, dynamic>{'page': page};
 
-    if (filter.year != null) {
-      params['primary_release_year'] = filter.year;
+    if (filter.fromDate != null) {
+      params['primary_release_date.gte'] = filter.fromDate!.toIso8601String();
+    }
+
+    if (filter.toDate != null) {
+      final date = _adjustToDate(filter.toDate!);
+      params['primary_release_date.lte'] = date.toIso8601String();
     }
 
     if (filter.sortBy != null) {
@@ -81,8 +86,13 @@ class FilterService {
   ) {
     final params = <String, dynamic>{'page': page};
 
-    if (filter.year != null) {
-      params['first_air_date_year'] = filter.year;
+    if (filter.fromDate != null) {
+      params['first_air_date.gte'] = filter.fromDate!.toIso8601String();
+    }
+
+    if (filter.toDate != null) {
+      final date = _adjustToDate(filter.toDate!);
+      params['first_air_date.lte'] = date.toIso8601String();
     }
 
     final sortBy = _createSeriesSortBy(filter.sortBy);
@@ -109,6 +119,10 @@ class FilterService {
     }
 
     return params;
+  }
+
+  DateTime _adjustToDate(DateTime date) {
+    return DateTime(date.year + 1, date.month, date.day);
   }
 
   String? _createSeriesSortBy(SortByDto? sortBy) {

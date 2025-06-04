@@ -21,33 +21,20 @@ class MediaLoadInfoMapper extends ClassMapperBase<MediaLoadInfo> {
   @override
   final String id = 'MediaLoadInfo';
   @override
-  Function get typeFactory =>
-      <T>(f) => f<MediaLoadInfo<T>>();
+  Function get typeFactory => <T>(f) => f<MediaLoadInfo<T>>();
 
   static bool _$isInitialized(MediaLoadInfo v) => v.isInitialized;
-  static const Field<MediaLoadInfo, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: false,
-  );
+  static const Field<MediaLoadInfo, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: false);
   static bool _$isNextPageLoading(MediaLoadInfo v) => v.isNextPageLoading;
-  static const Field<MediaLoadInfo, bool> _f$isNextPageLoading = Field(
-    'isNextPageLoading',
-    _$isNextPageLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<MediaLoadInfo, bool> _f$isNextPageLoading =
+      Field('isNextPageLoading', _$isNextPageLoading, opt: true, def: false);
   static ListWithPaginationData<dynamic> _$mediaData(MediaLoadInfo v) =>
       v.mediaData;
   static dynamic _arg$mediaData<T>(f) => f<ListWithPaginationData<T>>();
   static const Field<MediaLoadInfo, ListWithPaginationData<dynamic>>
-  _f$mediaData = Field(
-    'mediaData',
-    _$mediaData,
-    opt: true,
-    arg: _arg$mediaData,
-  );
+      _f$mediaData =
+      Field('mediaData', _$mediaData, opt: true, arg: _arg$mediaData);
 
   @override
   final MappableFields<MediaLoadInfo> fields = const {
@@ -58,10 +45,9 @@ class MediaLoadInfoMapper extends ClassMapperBase<MediaLoadInfo> {
 
   static MediaLoadInfo<T> _instantiate<T>(DecodingData data) {
     return MediaLoadInfo(
-      isInitialized: data.dec(_f$isInitialized),
-      isNextPageLoading: data.dec(_f$isNextPageLoading),
-      mediaData: data.dec(_f$mediaData),
-    );
+        isInitialized: data.dec(_f$isInitialized),
+        isNextPageLoading: data.dec(_f$isNextPageLoading),
+        mediaData: data.dec(_f$mediaData));
   }
 
   @override
@@ -70,32 +56,25 @@ class MediaLoadInfoMapper extends ClassMapperBase<MediaLoadInfo> {
 
 mixin MediaLoadInfoMappable<T> {
   MediaLoadInfoCopyWith<MediaLoadInfo<T>, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
-  get copyWith =>
-      _MediaLoadInfoCopyWithImpl<MediaLoadInfo<T>, MediaLoadInfo<T>, T>(
-        this as MediaLoadInfo<T>,
-        $identity,
-        $identity,
-      );
+      get copyWith =>
+          _MediaLoadInfoCopyWithImpl<MediaLoadInfo<T>, MediaLoadInfo<T>, T>(
+              this as MediaLoadInfo<T>, $identity, $identity);
   @override
   String toString() {
-    return MediaLoadInfoMapper.ensureInitialized().stringifyValue(
-      this as MediaLoadInfo<T>,
-    );
+    return MediaLoadInfoMapper.ensureInitialized()
+        .stringifyValue(this as MediaLoadInfo<T>);
   }
 
   @override
   bool operator ==(Object other) {
-    return MediaLoadInfoMapper.ensureInitialized().equalsValue(
-      this as MediaLoadInfo<T>,
-      other,
-    );
+    return MediaLoadInfoMapper.ensureInitialized()
+        .equalsValue(this as MediaLoadInfo<T>, other);
   }
 
   @override
   int get hashCode {
-    return MediaLoadInfoMapper.ensureInitialized().hashValue(
-      this as MediaLoadInfo<T>,
-    );
+    return MediaLoadInfoMapper.ensureInitialized()
+        .hashValue(this as MediaLoadInfo<T>);
   }
 }
 
@@ -107,21 +86,14 @@ extension MediaLoadInfoValueCopy<$R, $Out, T>
 
 abstract class MediaLoadInfoCopyWith<$R, $In extends MediaLoadInfo<T>, $Out, T>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListWithPaginationDataCopyWith<
-    $R,
-    ListWithPaginationData<T>,
-    ListWithPaginationData<T>,
-    T
-  >
-  get mediaData;
-  $R call({
-    bool? isInitialized,
-    bool? isNextPageLoading,
-    ListWithPaginationData<T>? mediaData,
-  });
+  ListWithPaginationDataCopyWith<$R, ListWithPaginationData<T>,
+      ListWithPaginationData<T>, T> get mediaData;
+  $R call(
+      {bool? isInitialized,
+      bool? isNextPageLoading,
+      ListWithPaginationData<T>? mediaData});
   MediaLoadInfoCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _MediaLoadInfoCopyWithImpl<$R, $Out, T>
@@ -133,38 +105,30 @@ class _MediaLoadInfoCopyWithImpl<$R, $Out, T>
   late final ClassMapperBase<MediaLoadInfo> $mapper =
       MediaLoadInfoMapper.ensureInitialized();
   @override
-  ListWithPaginationDataCopyWith<
-    $R,
-    ListWithPaginationData<T>,
-    ListWithPaginationData<T>,
-    T
-  >
-  get mediaData => ($value.mediaData as ListWithPaginationData<T>).copyWith
-      .$chain((v) => call(mediaData: v));
+  ListWithPaginationDataCopyWith<$R, ListWithPaginationData<T>,
+          ListWithPaginationData<T>, T>
+      get mediaData => ($value.mediaData as ListWithPaginationData<T>)
+          .copyWith
+          .$chain((v) => call(mediaData: v));
   @override
-  $R call({
-    bool? isInitialized,
-    bool? isNextPageLoading,
-    Object? mediaData = $none,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isInitialized != null) #isInitialized: isInitialized,
-      if (isNextPageLoading != null) #isNextPageLoading: isNextPageLoading,
-      if (mediaData != $none) #mediaData: mediaData,
-    }),
-  );
+  $R call(
+          {bool? isInitialized,
+          bool? isNextPageLoading,
+          Object? mediaData = $none}) =>
+      $apply(FieldCopyWithData({
+        if (isInitialized != null) #isInitialized: isInitialized,
+        if (isNextPageLoading != null) #isNextPageLoading: isNextPageLoading,
+        if (mediaData != $none) #mediaData: mediaData
+      }));
   @override
   MediaLoadInfo<T> $make(CopyWithData data) => MediaLoadInfo(
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-    isNextPageLoading: data.get(
-      #isNextPageLoading,
-      or: $value.isNextPageLoading,
-    ),
-    mediaData: data.get(#mediaData, or: $value.mediaData),
-  );
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized),
+      isNextPageLoading:
+          data.get(#isNextPageLoading, or: $value.isNextPageLoading),
+      mediaData: data.get(#mediaData, or: $value.mediaData));
 
   @override
   MediaLoadInfoCopyWith<$R2, MediaLoadInfo<T>, $Out2, T> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _MediaLoadInfoCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _MediaLoadInfoCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
 }

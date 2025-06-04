@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
-import '../resources/base_theme/colors/base_colors_ext.dart';
-import '../resources/base_theme/components/base_components_styles_ext.dart';
-import 'system_overlay_style_wrapper.dart';
+import '../../resources/base_theme/colors/base_colors_ext.dart';
+import '../../resources/base_theme/components/base_components_styles_ext.dart';
+import '../system_overlay_style_wrapper.dart';
 
 Future<void> Function({
   required BuildContext context,

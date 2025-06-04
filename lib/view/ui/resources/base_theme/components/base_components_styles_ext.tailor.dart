@@ -21,6 +21,11 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get listTileSecTitleTextStyleSelect;
   TextStyle get listTileSecSubtTextStyleSelect;
   TextStyle get avatarPrimTextStyle;
+  EdgeInsets get expTilePadding;
+  ShapeBorder get expTileShape;
+  TextStyle get expTileTitleTextStyle;
+  TextStyle get expTileSubtTextStyle;
+  OutlinedBorder get checkboxPrimShape;
   double get posterBorderRadius;
   double get backdrBorderRadius;
   Size get posterSmallSize;
@@ -42,6 +47,7 @@ mixin _$BaseComponentsStylesTailorMixin
   TextStyle get sliderValTextStyle;
   TextStyle get filterTitleTextStyle;
   TextStyle get filterSubtTextStyle;
+  TextStyle get filterSetActBtnTextStyle;
 
   @override
   BaseComponentsStyles copyWith({
@@ -55,6 +61,11 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? listTileSecTitleTextStyleSelect,
     TextStyle? listTileSecSubtTextStyleSelect,
     TextStyle? avatarPrimTextStyle,
+    EdgeInsets? expTilePadding,
+    ShapeBorder? expTileShape,
+    TextStyle? expTileTitleTextStyle,
+    TextStyle? expTileSubtTextStyle,
+    OutlinedBorder? checkboxPrimShape,
     double? posterBorderRadius,
     double? backdrBorderRadius,
     Size? posterSmallSize,
@@ -76,6 +87,7 @@ mixin _$BaseComponentsStylesTailorMixin
     TextStyle? sliderValTextStyle,
     TextStyle? filterTitleTextStyle,
     TextStyle? filterSubtTextStyle,
+    TextStyle? filterSetActBtnTextStyle,
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
@@ -95,6 +107,12 @@ mixin _$BaseComponentsStylesTailorMixin
       listTileSecSubtTextStyleSelect:
           listTileSecSubtTextStyleSelect ?? this.listTileSecSubtTextStyleSelect,
       avatarPrimTextStyle: avatarPrimTextStyle ?? this.avatarPrimTextStyle,
+      expTilePadding: expTilePadding ?? this.expTilePadding,
+      expTileShape: expTileShape ?? this.expTileShape,
+      expTileTitleTextStyle:
+          expTileTitleTextStyle ?? this.expTileTitleTextStyle,
+      expTileSubtTextStyle: expTileSubtTextStyle ?? this.expTileSubtTextStyle,
+      checkboxPrimShape: checkboxPrimShape ?? this.checkboxPrimShape,
       posterBorderRadius: posterBorderRadius ?? this.posterBorderRadius,
       backdrBorderRadius: backdrBorderRadius ?? this.backdrBorderRadius,
       posterSmallSize: posterSmallSize ?? this.posterSmallSize,
@@ -122,6 +140,8 @@ mixin _$BaseComponentsStylesTailorMixin
       sliderValTextStyle: sliderValTextStyle ?? this.sliderValTextStyle,
       filterTitleTextStyle: filterTitleTextStyle ?? this.filterTitleTextStyle,
       filterSubtTextStyle: filterSubtTextStyle ?? this.filterSubtTextStyle,
+      filterSetActBtnTextStyle:
+          filterSetActBtnTextStyle ?? this.filterSetActBtnTextStyle,
     );
   }
 
@@ -174,6 +194,19 @@ mixin _$BaseComponentsStylesTailorMixin
         other.avatarPrimTextStyle,
         t,
       )!,
+      expTilePadding: t < 0.5 ? expTilePadding : other.expTilePadding,
+      expTileShape: t < 0.5 ? expTileShape : other.expTileShape,
+      expTileTitleTextStyle: TextStyle.lerp(
+        expTileTitleTextStyle,
+        other.expTileTitleTextStyle,
+        t,
+      )!,
+      expTileSubtTextStyle: TextStyle.lerp(
+        expTileSubtTextStyle,
+        other.expTileSubtTextStyle,
+        t,
+      )!,
+      checkboxPrimShape: t < 0.5 ? checkboxPrimShape : other.checkboxPrimShape,
       posterBorderRadius: t < 0.5
           ? posterBorderRadius
           : other.posterBorderRadius,
@@ -241,6 +274,11 @@ mixin _$BaseComponentsStylesTailorMixin
         other.filterSubtTextStyle,
         t,
       )!,
+      filterSetActBtnTextStyle: TextStyle.lerp(
+        filterSetActBtnTextStyle,
+        other.filterSetActBtnTextStyle,
+        t,
+      )!,
     );
   }
 
@@ -288,6 +326,26 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality().equals(
               avatarPrimTextStyle,
               other.avatarPrimTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expTilePadding,
+              other.expTilePadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expTileShape,
+              other.expTileShape,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expTileTitleTextStyle,
+              other.expTileTitleTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expTileSubtTextStyle,
+              other.expTileSubtTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              checkboxPrimShape,
+              other.checkboxPrimShape,
             ) &&
             const DeepCollectionEquality().equals(
               posterBorderRadius,
@@ -372,6 +430,10 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality().equals(
               filterSubtTextStyle,
               other.filterSubtTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              filterSetActBtnTextStyle,
+              other.filterSetActBtnTextStyle,
             ));
   }
 
@@ -389,6 +451,11 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(listTileSecTitleTextStyleSelect),
       const DeepCollectionEquality().hash(listTileSecSubtTextStyleSelect),
       const DeepCollectionEquality().hash(avatarPrimTextStyle),
+      const DeepCollectionEquality().hash(expTilePadding),
+      const DeepCollectionEquality().hash(expTileShape),
+      const DeepCollectionEquality().hash(expTileTitleTextStyle),
+      const DeepCollectionEquality().hash(expTileSubtTextStyle),
+      const DeepCollectionEquality().hash(checkboxPrimShape),
       const DeepCollectionEquality().hash(posterBorderRadius),
       const DeepCollectionEquality().hash(backdrBorderRadius),
       const DeepCollectionEquality().hash(posterSmallSize),
@@ -410,6 +477,7 @@ mixin _$BaseComponentsStylesTailorMixin
       const DeepCollectionEquality().hash(sliderValTextStyle),
       const DeepCollectionEquality().hash(filterTitleTextStyle),
       const DeepCollectionEquality().hash(filterSubtTextStyle),
+      const DeepCollectionEquality().hash(filterSetActBtnTextStyle),
     ]);
   }
 }

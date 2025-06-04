@@ -27,7 +27,7 @@ class ContentModeViewModel extends AutoDisposeNotifier<ContentModeState> {
   }
 
   /// Toggles the content mode between [ContentMode.movies] and [ContentMode.series].
-  toggleMode() {
+  void toggleMode() {
     final contentMode = state.mode.isMovies
         ? ContentMode.series
         : ContentMode.movies;

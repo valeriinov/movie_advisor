@@ -21,40 +21,20 @@ class CrewDataMapper extends ClassMapperBase<CrewData> {
   final String id = 'CrewData';
 
   static int _$id(CrewData v) => v.id;
-  static const Field<CrewData, int> _f$id = Field(
-    'id',
-    _$id,
-    opt: true,
-    def: -1,
-  );
+  static const Field<CrewData, int> _f$id =
+      Field('id', _$id, opt: true, def: -1);
   static String _$originalName(CrewData v) => v.originalName;
-  static const Field<CrewData, String> _f$originalName = Field(
-    'originalName',
-    _$originalName,
-    opt: true,
-    def: '',
-  );
+  static const Field<CrewData, String> _f$originalName =
+      Field('originalName', _$originalName, opt: true, def: '');
   static String _$profilePath(CrewData v) => v.profilePath;
-  static const Field<CrewData, String> _f$profilePath = Field(
-    'profilePath',
-    _$profilePath,
-    opt: true,
-    def: '',
-  );
+  static const Field<CrewData, String> _f$profilePath =
+      Field('profilePath', _$profilePath, opt: true, def: '');
   static String _$name(CrewData v) => v.name;
-  static const Field<CrewData, String> _f$name = Field(
-    'name',
-    _$name,
-    opt: true,
-    def: '',
-  );
+  static const Field<CrewData, String> _f$name =
+      Field('name', _$name, opt: true, def: '');
   static CrewJob _$job(CrewData v) => v.job;
-  static const Field<CrewData, CrewJob> _f$job = Field(
-    'job',
-    _$job,
-    opt: true,
-    def: CrewJob.unknown,
-  );
+  static const Field<CrewData, CrewJob> _f$job =
+      Field('job', _$job, opt: true, def: CrewJob.unknown);
 
   @override
   final MappableFields<CrewData> fields = const {
@@ -67,12 +47,11 @@ class CrewDataMapper extends ClassMapperBase<CrewData> {
 
   static CrewData _instantiate(DecodingData data) {
     return CrewData(
-      id: data.dec(_f$id),
-      originalName: data.dec(_f$originalName),
-      profilePath: data.dec(_f$profilePath),
-      name: data.dec(_f$name),
-      job: data.dec(_f$job),
-    );
+        id: data.dec(_f$id),
+        originalName: data.dec(_f$originalName),
+        profilePath: data.dec(_f$profilePath),
+        name: data.dec(_f$name),
+        job: data.dec(_f$job));
   }
 
   @override
@@ -82,10 +61,7 @@ class CrewDataMapper extends ClassMapperBase<CrewData> {
 mixin CrewDataMappable {
   CrewDataCopyWith<CrewData, CrewData, CrewData> get copyWith =>
       _CrewDataCopyWithImpl<CrewData, CrewData>(
-        this as CrewData,
-        $identity,
-        $identity,
-      );
+          this as CrewData, $identity, $identity);
   @override
   String toString() {
     return CrewDataMapper.ensureInitialized().stringifyValue(this as CrewData);
@@ -93,10 +69,8 @@ mixin CrewDataMappable {
 
   @override
   bool operator ==(Object other) {
-    return CrewDataMapper.ensureInitialized().equalsValue(
-      this as CrewData,
-      other,
-    );
+    return CrewDataMapper.ensureInitialized()
+        .equalsValue(this as CrewData, other);
   }
 
   @override
@@ -112,13 +86,12 @@ extension CrewDataValueCopy<$R, $Out> on ObjectCopyWith<$R, CrewData, $Out> {
 
 abstract class CrewDataCopyWith<$R, $In extends CrewData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({
-    int? id,
-    String? originalName,
-    String? profilePath,
-    String? name,
-    CrewJob? job,
-  });
+  $R call(
+      {int? id,
+      String? originalName,
+      String? profilePath,
+      String? name,
+      CrewJob? job});
   CrewDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -131,32 +104,29 @@ class _CrewDataCopyWithImpl<$R, $Out>
   late final ClassMapperBase<CrewData> $mapper =
       CrewDataMapper.ensureInitialized();
   @override
-  $R call({
-    int? id,
-    String? originalName,
-    String? profilePath,
-    String? name,
-    CrewJob? job,
-  }) => $apply(
-    FieldCopyWithData({
-      if (id != null) #id: id,
-      if (originalName != null) #originalName: originalName,
-      if (profilePath != null) #profilePath: profilePath,
-      if (name != null) #name: name,
-      if (job != null) #job: job,
-    }),
-  );
+  $R call(
+          {int? id,
+          String? originalName,
+          String? profilePath,
+          String? name,
+          CrewJob? job}) =>
+      $apply(FieldCopyWithData({
+        if (id != null) #id: id,
+        if (originalName != null) #originalName: originalName,
+        if (profilePath != null) #profilePath: profilePath,
+        if (name != null) #name: name,
+        if (job != null) #job: job
+      }));
   @override
   CrewData $make(CopyWithData data) => CrewData(
-    id: data.get(#id, or: $value.id),
-    originalName: data.get(#originalName, or: $value.originalName),
-    profilePath: data.get(#profilePath, or: $value.profilePath),
-    name: data.get(#name, or: $value.name),
-    job: data.get(#job, or: $value.job),
-  );
+      id: data.get(#id, or: $value.id),
+      originalName: data.get(#originalName, or: $value.originalName),
+      profilePath: data.get(#profilePath, or: $value.profilePath),
+      name: data.get(#name, or: $value.name),
+      job: data.get(#job, or: $value.job));
 
   @override
   CrewDataCopyWith<$R2, CrewData, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _CrewDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _CrewDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

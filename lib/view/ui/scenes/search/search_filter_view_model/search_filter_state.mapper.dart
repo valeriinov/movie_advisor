@@ -22,19 +22,11 @@ class SearchFilterStateMapper extends ClassMapperBase<SearchFilterState> {
   final String id = 'SearchFilterState';
 
   static SearchFilterData _$filter(SearchFilterState v) => v.filter;
-  static const Field<SearchFilterState, SearchFilterData> _f$filter = Field(
-    'filter',
-    _$filter,
-    opt: true,
-    def: const SearchFilterData(),
-  );
+  static const Field<SearchFilterState, SearchFilterData> _f$filter =
+      Field('filter', _$filter, opt: true, def: const SearchFilterData());
   static SearchFilterStatus _$status(SearchFilterState v) => v.status;
-  static const Field<SearchFilterState, SearchFilterStatus> _f$status = Field(
-    'status',
-    _$status,
-    opt: true,
-    def: const SearchFilterBaseStatus(),
-  );
+  static const Field<SearchFilterState, SearchFilterStatus> _f$status =
+      Field('status', _$status, opt: true, def: const SearchFilterBaseStatus());
 
   @override
   final MappableFields<SearchFilterState> fields = const {
@@ -44,9 +36,7 @@ class SearchFilterStateMapper extends ClassMapperBase<SearchFilterState> {
 
   static SearchFilterState _instantiate(DecodingData data) {
     return SearchFilterState(
-      filter: data.dec(_f$filter),
-      status: data.dec(_f$status),
-    );
+        filter: data.dec(_f$filter), status: data.dec(_f$status));
   }
 
   @override
@@ -54,59 +44,43 @@ class SearchFilterStateMapper extends ClassMapperBase<SearchFilterState> {
 }
 
 mixin SearchFilterStateMappable {
-  SearchFilterStateCopyWith<
-    SearchFilterState,
-    SearchFilterState,
-    SearchFilterState
-  >
-  get copyWith =>
-      _SearchFilterStateCopyWithImpl<SearchFilterState, SearchFilterState>(
-        this as SearchFilterState,
-        $identity,
-        $identity,
-      );
+  SearchFilterStateCopyWith<SearchFilterState, SearchFilterState,
+          SearchFilterState>
+      get copyWith =>
+          _SearchFilterStateCopyWithImpl<SearchFilterState, SearchFilterState>(
+              this as SearchFilterState, $identity, $identity);
   @override
   String toString() {
-    return SearchFilterStateMapper.ensureInitialized().stringifyValue(
-      this as SearchFilterState,
-    );
+    return SearchFilterStateMapper.ensureInitialized()
+        .stringifyValue(this as SearchFilterState);
   }
 
   @override
   bool operator ==(Object other) {
-    return SearchFilterStateMapper.ensureInitialized().equalsValue(
-      this as SearchFilterState,
-      other,
-    );
+    return SearchFilterStateMapper.ensureInitialized()
+        .equalsValue(this as SearchFilterState, other);
   }
 
   @override
   int get hashCode {
-    return SearchFilterStateMapper.ensureInitialized().hashValue(
-      this as SearchFilterState,
-    );
+    return SearchFilterStateMapper.ensureInitialized()
+        .hashValue(this as SearchFilterState);
   }
 }
 
 extension SearchFilterStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchFilterState, $Out> {
   SearchFilterStateCopyWith<$R, SearchFilterState, $Out>
-  get $asSearchFilterState => $base.as(
-    (v, t, t2) => _SearchFilterStateCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asSearchFilterState => $base
+          .as((v, t, t2) => _SearchFilterStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
-abstract class SearchFilterStateCopyWith<
-  $R,
-  $In extends SearchFilterState,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+abstract class SearchFilterStateCopyWith<$R, $In extends SearchFilterState,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   SearchFilterDataCopyWith<$R, SearchFilterData, SearchFilterData> get filter;
   $R call({SearchFilterData? filter, SearchFilterStatus? status});
   SearchFilterStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _SearchFilterStateCopyWithImpl<$R, $Out>
@@ -121,22 +95,20 @@ class _SearchFilterStateCopyWithImpl<$R, $Out>
   SearchFilterDataCopyWith<$R, SearchFilterData, SearchFilterData> get filter =>
       $value.filter.copyWith.$chain((v) => call(filter: v));
   @override
-  $R call({SearchFilterData? filter, SearchFilterStatus? status}) => $apply(
-    FieldCopyWithData({
-      if (filter != null) #filter: filter,
-      if (status != null) #status: status,
-    }),
-  );
+  $R call({SearchFilterData? filter, SearchFilterStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (filter != null) #filter: filter,
+        if (status != null) #status: status
+      }));
   @override
   SearchFilterState $make(CopyWithData data) => SearchFilterState(
-    filter: data.get(#filter, or: $value.filter),
-    status: data.get(#status, or: $value.status),
-  );
+      filter: data.get(#filter, or: $value.filter),
+      status: data.get(#status, or: $value.status));
 
   @override
   SearchFilterStateCopyWith<$R2, SearchFilterState, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _SearchFilterStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          Then<$Out2, $R2> t) =>
+      _SearchFilterStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class SearchFilterBaseStatusMapper
@@ -155,25 +127,14 @@ class SearchFilterBaseStatusMapper
   final String id = 'SearchFilterBaseStatus';
 
   static bool _$isLoading(SearchFilterBaseStatus v) => v.isLoading;
-  static const Field<SearchFilterBaseStatus, bool> _f$isLoading = Field(
-    'isLoading',
-    _$isLoading,
-    opt: true,
-    def: false,
-  );
+  static const Field<SearchFilterBaseStatus, bool> _f$isLoading =
+      Field('isLoading', _$isLoading, opt: true, def: false);
   static String? _$errorMessage(SearchFilterBaseStatus v) => v.errorMessage;
-  static const Field<SearchFilterBaseStatus, String> _f$errorMessage = Field(
-    'errorMessage',
-    _$errorMessage,
-    opt: true,
-  );
+  static const Field<SearchFilterBaseStatus, String> _f$errorMessage =
+      Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(SearchFilterBaseStatus v) => v.isInitialized;
-  static const Field<SearchFilterBaseStatus, bool> _f$isInitialized = Field(
-    'isInitialized',
-    _$isInitialized,
-    opt: true,
-    def: true,
-  );
+  static const Field<SearchFilterBaseStatus, bool> _f$isInitialized =
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<SearchFilterBaseStatus> fields = const {
@@ -184,10 +145,9 @@ class SearchFilterBaseStatusMapper
 
   static SearchFilterBaseStatus _instantiate(DecodingData data) {
     return SearchFilterBaseStatus(
-      isLoading: data.dec(_f$isLoading),
-      errorMessage: data.dec(_f$errorMessage),
-      isInitialized: data.dec(_f$isInitialized),
-    );
+        isLoading: data.dec(_f$isLoading),
+        errorMessage: data.dec(_f$errorMessage),
+        isInitialized: data.dec(_f$isInitialized));
   }
 
   @override
@@ -195,57 +155,44 @@ class SearchFilterBaseStatusMapper
 }
 
 mixin SearchFilterBaseStatusMappable {
-  SearchFilterBaseStatusCopyWith<
-    SearchFilterBaseStatus,
-    SearchFilterBaseStatus,
-    SearchFilterBaseStatus
-  >
-  get copyWith =>
-      _SearchFilterBaseStatusCopyWithImpl<
-        SearchFilterBaseStatus,
-        SearchFilterBaseStatus
-      >(this as SearchFilterBaseStatus, $identity, $identity);
+  SearchFilterBaseStatusCopyWith<SearchFilterBaseStatus, SearchFilterBaseStatus,
+          SearchFilterBaseStatus>
+      get copyWith => _SearchFilterBaseStatusCopyWithImpl<
+              SearchFilterBaseStatus, SearchFilterBaseStatus>(
+          this as SearchFilterBaseStatus, $identity, $identity);
   @override
   String toString() {
-    return SearchFilterBaseStatusMapper.ensureInitialized().stringifyValue(
-      this as SearchFilterBaseStatus,
-    );
+    return SearchFilterBaseStatusMapper.ensureInitialized()
+        .stringifyValue(this as SearchFilterBaseStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return SearchFilterBaseStatusMapper.ensureInitialized().equalsValue(
-      this as SearchFilterBaseStatus,
-      other,
-    );
+    return SearchFilterBaseStatusMapper.ensureInitialized()
+        .equalsValue(this as SearchFilterBaseStatus, other);
   }
 
   @override
   int get hashCode {
-    return SearchFilterBaseStatusMapper.ensureInitialized().hashValue(
-      this as SearchFilterBaseStatus,
-    );
+    return SearchFilterBaseStatusMapper.ensureInitialized()
+        .hashValue(this as SearchFilterBaseStatus);
   }
 }
 
 extension SearchFilterBaseStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchFilterBaseStatus, $Out> {
   SearchFilterBaseStatusCopyWith<$R, SearchFilterBaseStatus, $Out>
-  get $asSearchFilterBaseStatus => $base.as(
-    (v, t, t2) => _SearchFilterBaseStatusCopyWithImpl<$R, $Out>(v, t, t2),
-  );
+      get $asSearchFilterBaseStatus => $base.as((v, t, t2) =>
+          _SearchFilterBaseStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchFilterBaseStatusCopyWith<
-  $R,
-  $In extends SearchFilterBaseStatus,
-  $Out
->
-    implements ClassCopyWith<$R, $In, $Out> {
+    $R,
+    $In extends SearchFilterBaseStatus,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
   SearchFilterBaseStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  );
+      Then<$Out2, $R2> t);
 }
 
 class _SearchFilterBaseStatusCopyWithImpl<$R, $Out>
@@ -258,26 +205,23 @@ class _SearchFilterBaseStatusCopyWithImpl<$R, $Out>
   late final ClassMapperBase<SearchFilterBaseStatus> $mapper =
       SearchFilterBaseStatusMapper.ensureInitialized();
   @override
-  $R call({
-    bool? isLoading,
-    Object? errorMessage = $none,
-    bool? isInitialized,
-  }) => $apply(
-    FieldCopyWithData({
-      if (isLoading != null) #isLoading: isLoading,
-      if (errorMessage != $none) #errorMessage: errorMessage,
-      if (isInitialized != null) #isInitialized: isInitialized,
-    }),
-  );
+  $R call(
+          {bool? isLoading,
+          Object? errorMessage = $none,
+          bool? isInitialized}) =>
+      $apply(FieldCopyWithData({
+        if (isLoading != null) #isLoading: isLoading,
+        if (errorMessage != $none) #errorMessage: errorMessage,
+        if (isInitialized != null) #isInitialized: isInitialized
+      }));
   @override
   SearchFilterBaseStatus $make(CopyWithData data) => SearchFilterBaseStatus(
-    isLoading: data.get(#isLoading, or: $value.isLoading),
-    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
-    isInitialized: data.get(#isInitialized, or: $value.isInitialized),
-  );
+      isLoading: data.get(#isLoading, or: $value.isLoading),
+      errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+      isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
   SearchFilterBaseStatusCopyWith<$R2, SearchFilterBaseStatus, $Out2>
-  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _SearchFilterBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _SearchFilterBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
