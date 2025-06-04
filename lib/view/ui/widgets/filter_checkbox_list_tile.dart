@@ -20,7 +20,6 @@ class FilterCheckboxListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.baseColors;
 
     return ListTileTheme(
       horizontalTitleGap: horizontalTitleGap,
@@ -32,10 +31,20 @@ class FilterCheckboxListTile extends StatelessWidget {
           label,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: labelStyle ?? TextStyle(color: colors.textThemeSec),
+          style: labelStyle ?? _defaultLabelStyle(context),
         ),
         controlAffinity: ListTileControlAffinity.leading,
       ),
+    );
+  }
+
+  TextStyle _defaultLabelStyle(BuildContext context) {
+    final colors = context.baseColors;
+
+    return TextStyle(
+      color: onChanged != null
+          ? colors.listTilePrimSubtitle
+          : colors.listTilePrimTitleDis,
     );
   }
 }
