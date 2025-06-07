@@ -25,13 +25,13 @@ class WatchEventTypeDtoMapper extends EnumMapper<WatchEventTypeDto> {
   @override
   WatchEventTypeDto decode(dynamic value) {
     switch (value) {
-      case 0:
+      case r'watchlist_add':
         return WatchEventTypeDto.watchlistAdd;
-      case 1:
+      case r'watchlist_remove':
         return WatchEventTypeDto.watchlistRemove;
-      case 2:
+      case r'watch':
         return WatchEventTypeDto.watch;
-      case 3:
+      case r'none':
         return WatchEventTypeDto.none;
       default:
         return WatchEventTypeDto.values[3];
@@ -42,20 +42,20 @@ class WatchEventTypeDtoMapper extends EnumMapper<WatchEventTypeDto> {
   dynamic encode(WatchEventTypeDto self) {
     switch (self) {
       case WatchEventTypeDto.watchlistAdd:
-        return 0;
+        return r'watchlist_add';
       case WatchEventTypeDto.watchlistRemove:
-        return 1;
+        return r'watchlist_remove';
       case WatchEventTypeDto.watch:
-        return 2;
+        return r'watch';
       case WatchEventTypeDto.none:
-        return 3;
+        return r'none';
     }
   }
 }
 
 extension WatchEventTypeDtoMapperExtension on WatchEventTypeDto {
-  dynamic toValue() {
+  String toValue() {
     WatchEventTypeDtoMapper.ensureInitialized();
-    return MapperContainer.globals.toValue<WatchEventTypeDto>(this);
+    return MapperContainer.globals.toValue<WatchEventTypeDto>(this) as String;
   }
 }

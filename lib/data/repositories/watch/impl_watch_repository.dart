@@ -184,6 +184,7 @@ class ImplWatchRepository implements WatchRepository {
       id: _uuidAdapter.v4(),
       tmdbId: tmdbId,
       type: type,
+      at: DateTime.now(),
     );
 
     await _localDataSource.addMovieEvent(event);
@@ -280,6 +281,7 @@ class ImplWatchRepository implements WatchRepository {
       id: _uuidAdapter.v4(),
       tmdbId: tmdbId,
       type: type,
+      at: DateTime.now(),
     );
 
     await _localDataSource.addSeriesEvent(event);

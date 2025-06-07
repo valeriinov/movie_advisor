@@ -3,7 +3,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 part 'watch_event_type_dto.mapper.dart';
 
 @MappableEnum(
-  mode: ValuesMode.indexed,
+  mode: ValuesMode.named,
   caseStyle: CaseStyle.snakeCase,
   defaultValue: WatchEventTypeDto.none,
 )
