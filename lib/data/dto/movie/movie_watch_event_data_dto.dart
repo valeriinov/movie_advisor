@@ -10,10 +10,17 @@ class MovieWatchEventDataDto with MovieWatchEventDataDtoMappable {
   final int? id;
   final int? movieId;
   final WatchEventTypeDto? type;
+  final int? userRating;
   @MappableField(hook: DateMapperHook())
   final DateTime? at;
 
-  const MovieWatchEventDataDto({this.id, this.movieId, this.type, this.at});
+  const MovieWatchEventDataDto({
+    this.id,
+    this.movieId,
+    this.type,
+    this.userRating,
+    this.at,
+  });
 
   factory MovieWatchEventDataDto.fromJson(Map<String, dynamic> json) =>
       MovieWatchEventDataDtoMapper.fromJson(json);

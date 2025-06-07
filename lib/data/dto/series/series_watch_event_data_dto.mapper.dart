@@ -32,6 +32,9 @@ class SeriesWatchEventDataDtoMapper
   static WatchEventTypeDto? _$type(SeriesWatchEventDataDto v) => v.type;
   static const Field<SeriesWatchEventDataDto, WatchEventTypeDto> _f$type =
       Field('type', _$type, opt: true);
+  static int? _$userRating(SeriesWatchEventDataDto v) => v.userRating;
+  static const Field<SeriesWatchEventDataDto, int> _f$userRating =
+      Field('userRating', _$userRating, key: r'user_rating', opt: true);
   static DateTime? _$at(SeriesWatchEventDataDto v) => v.at;
   static const Field<SeriesWatchEventDataDto, DateTime> _f$at =
       Field('at', _$at, opt: true, hook: DateMapperHook());
@@ -41,6 +44,7 @@ class SeriesWatchEventDataDtoMapper
     #id: _f$id,
     #seriesId: _f$seriesId,
     #type: _f$type,
+    #userRating: _f$userRating,
     #at: _f$at,
   };
   @override
@@ -51,6 +55,7 @@ class SeriesWatchEventDataDtoMapper
         id: data.dec(_f$id),
         seriesId: data.dec(_f$seriesId),
         type: data.dec(_f$type),
+        userRating: data.dec(_f$userRating),
         at: data.dec(_f$at));
   }
 
@@ -112,7 +117,12 @@ abstract class SeriesWatchEventDataDtoCopyWith<
     $R,
     $In extends SeriesWatchEventDataDto,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
-  $R call({int? id, int? seriesId, WatchEventTypeDto? type, DateTime? at});
+  $R call(
+      {int? id,
+      int? seriesId,
+      WatchEventTypeDto? type,
+      int? userRating,
+      DateTime? at});
   SeriesWatchEventDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -131,11 +141,13 @@ class _SeriesWatchEventDataDtoCopyWithImpl<$R, $Out>
           {Object? id = $none,
           Object? seriesId = $none,
           Object? type = $none,
+          Object? userRating = $none,
           Object? at = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (seriesId != $none) #seriesId: seriesId,
         if (type != $none) #type: type,
+        if (userRating != $none) #userRating: userRating,
         if (at != $none) #at: at
       }));
   @override
@@ -143,6 +155,7 @@ class _SeriesWatchEventDataDtoCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       seriesId: data.get(#seriesId, or: $value.seriesId),
       type: data.get(#type, or: $value.type),
+      userRating: data.get(#userRating, or: $value.userRating),
       at: data.get(#at, or: $value.at));
 
   @override

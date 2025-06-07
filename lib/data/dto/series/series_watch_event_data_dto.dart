@@ -10,10 +10,17 @@ class SeriesWatchEventDataDto with SeriesWatchEventDataDtoMappable {
   final int? id;
   final int? seriesId;
   final WatchEventTypeDto? type;
+  final int? userRating;
   @MappableField(hook: DateMapperHook())
   final DateTime? at;
 
-  const SeriesWatchEventDataDto({this.id, this.seriesId, this.type, this.at});
+  const SeriesWatchEventDataDto({
+    this.id,
+    this.seriesId,
+    this.type,
+    this.userRating,
+    this.at,
+  });
 
   factory SeriesWatchEventDataDto.fromJson(Map<String, dynamic> json) =>
       SeriesWatchEventDataDtoMapper.fromJson(json);
