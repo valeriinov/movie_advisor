@@ -69,8 +69,10 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
     final moviesQuery = (_database.select(_database.moviesTable)
       ..where((tbl) => tbl.isWatched.equals(true))
       ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.desc),
+        (tbl) => OrderingTerm(
+          expression: tbl.lastWatchedAt,
+          mode: OrderingMode.desc,
+        ),
       ])
       ..limit(DbConstants.pageSize, offset: offset));
 
@@ -100,8 +102,10 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
     final moviesQuery = (_database.select(_database.moviesTable)
       ..where((tbl) => tbl.isInWatchlist.equals(true))
       ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.asc),
+        (tbl) => OrderingTerm(
+          expression: tbl.watchlistAddedAt,
+          mode: OrderingMode.asc,
+        ),
       ])
       ..limit(DbConstants.pageSize, offset: offset));
 
@@ -131,8 +135,10 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
     final seriesQuery = (_database.select(_database.seriesTable)
       ..where((tbl) => tbl.isWatched.equals(true))
       ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.desc),
+        (tbl) => OrderingTerm(
+          expression: tbl.lastWatchedAt,
+          mode: OrderingMode.desc,
+        ),
       ])
       ..limit(DbConstants.pageSize, offset: offset));
 
@@ -162,8 +168,10 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
     final seriesQuery = (_database.select(_database.seriesTable)
       ..where((tbl) => tbl.isInWatchlist.equals(true))
       ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.asc),
+        (tbl) => OrderingTerm(
+          expression: tbl.watchlistAddedAt,
+          mode: OrderingMode.asc,
+        ),
       ])
       ..limit(DbConstants.pageSize, offset: offset));
 

@@ -104,7 +104,10 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> addToWatchlistMovie(MovieShortData data) async {
     try {
-      final preparedData = data.copyWith(isInWatchlist: true);
+      final preparedData = data.copyWith(
+        isInWatchlist: true,
+        watchlistAddedAt: DateTime.now(),
+      );
       final dto = _moviesMapper.mapMovieShortDataToDto(preparedData);
 
       final preparedDto = await _remoteDataSource.getLocalizedMovie(dto);
@@ -125,7 +128,10 @@ class ImplWatchRepository implements WatchRepository {
     required bool deleteFromWatchlistIfExists,
   }) async {
     try {
-      MovieShortData preparedData = data.copyWith(isWatched: true);
+      MovieShortData preparedData = data.copyWith(
+        isWatched: true,
+        lastWatchedAt: DateTime.now(),
+      );
 
       if (deleteFromWatchlistIfExists && preparedData.isInWatchlist) {
         preparedData = preparedData.copyWith(isInWatchlist: false);
@@ -174,7 +180,10 @@ class ImplWatchRepository implements WatchRepository {
   @override
   Future<Result<void>> addToWatchlistSeries(SeriesShortData data) async {
     try {
-      final preparedData = data.copyWith(isInWatchlist: true);
+      final preparedData = data.copyWith(
+        isInWatchlist: true,
+        watchlistAddedAt: DateTime.now(),
+      );
       final dto = _seriesMapper.mapSeriesShortDataToDto(preparedData);
 
       final preparedDto = await _remoteDataSource.getLocalizedSeries(dto);
@@ -195,7 +204,10 @@ class ImplWatchRepository implements WatchRepository {
     required bool deleteFromWatchlistIfExists,
   }) async {
     try {
-      SeriesShortData preparedData = data.copyWith(isWatched: true);
+      SeriesShortData preparedData = data.copyWith(
+        isWatched: true,
+        lastWatchedAt: DateTime.now(),
+      );
 
       if (deleteFromWatchlistIfExists && preparedData.isInWatchlist) {
         preparedData = preparedData.copyWith(isInWatchlist: false);

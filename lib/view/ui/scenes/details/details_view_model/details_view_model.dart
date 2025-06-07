@@ -172,6 +172,8 @@ extension _MediaToShortMapper on MediaData {
             userRating: d.userRating,
             isInWatchlist: d.isInWatchlist,
             isWatched: d.isWatched,
+            watchlistAddedAt: d.watchlistAddedAt,
+            lastWatchedAt: d.lastWatchedAt,
           ),
           SeriesData d => SeriesShortData(
             id: d.id,
@@ -184,6 +186,8 @@ extension _MediaToShortMapper on MediaData {
             userRating: d.userRating,
             isInWatchlist: d.isInWatchlist,
             isWatched: d.isWatched,
+            watchlistAddedAt: d.watchlistAddedAt,
+            lastWatchedAt: d.lastWatchedAt,
           ),
           _ => throw Exception('Unknown media type'),
         }
