@@ -7,6 +7,7 @@ import '../../app_local_database.dart';
 extension MoviesWatchEventMapper on MoviesEventsTableData {
   MovieWatchEventDataDto toDto() {
     return MovieWatchEventDataDto(
+      id: eventId,
       tmdbId: tmdbId,
       type: type,
       userRating: userRating,
@@ -18,6 +19,7 @@ extension MoviesWatchEventMapper on MoviesEventsTableData {
 extension SeriesWatchEventMapper on SeriesEventsTableData {
   SeriesWatchEventDataDto toDto() {
     return SeriesWatchEventDataDto(
+      id: eventId,
       tmdbId: tmdbId,
       type: type,
       userRating: userRating,
@@ -29,6 +31,7 @@ extension SeriesWatchEventMapper on SeriesEventsTableData {
 extension MoviesEventsTableMapper on MovieWatchEventDataDto {
   MoviesEventsTableCompanion toTableData() {
     return MoviesEventsTableCompanion(
+      eventId: id != null ? Value(id!) : const Value.absent(),
       tmdbId: tmdbId != null ? Value(tmdbId!) : const Value.absent(),
       type: Value(type),
       userRating: Value(userRating),
@@ -40,6 +43,7 @@ extension MoviesEventsTableMapper on MovieWatchEventDataDto {
 extension SeriesEventsTableMapper on SeriesWatchEventDataDto {
   SeriesEventsTableCompanion toTableData() {
     return SeriesEventsTableCompanion(
+      eventId: id != null ? Value(id!) : const Value.absent(),
       tmdbId: tmdbId != null ? Value(tmdbId!) : const Value.absent(),
       type: Value(type),
       userRating: Value(userRating),
