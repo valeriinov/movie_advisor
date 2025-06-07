@@ -109,6 +109,19 @@ class AppLocalDatabase extends _$AppLocalDatabase {
     await m.addColumn(schema.moviesTable, schema.moviesTable.lastWatchedAt);
     await m.addColumn(schema.seriesTable, schema.seriesTable.watchlistAddedAt);
     await m.addColumn(schema.seriesTable, schema.seriesTable.lastWatchedAt);
+
+    await customStatement('''
+      UPDATE ${schema.moviesTable.actualTableName}
+      SET watchlist_added_at = updated_at,
+          last_watched_at = updated_at;
+    ''');
+
+    await customStatement('''
+      UPDATE ${schema.seriesTable.actualTableName}
+      SET watchlist_added_at = updated_at,
+          last_watched_at  = updated_at;
+    ''');
+
     await m.createTable(schema.moviesEventsTable);
     await m.createTable(schema.seriesEventsTable);
   }
