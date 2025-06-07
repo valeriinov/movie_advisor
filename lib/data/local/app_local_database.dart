@@ -55,6 +55,7 @@ class AppLocalDatabase extends _$AppLocalDatabase {
     onUpgrade: stepByStep(
       from1To2: _migrateFrom1To2,
       from2To3: _migrateFrom2To3,
+      from3To4: _migrateFrom3To4,
     ),
   );
 
@@ -101,5 +102,14 @@ class AppLocalDatabase extends _$AppLocalDatabase {
       schema.seriesFilterTable,
       schema.seriesFilterTable.toDate,
     );
+  }
+
+  Future<void> _migrateFrom3To4(Migrator m, Schema4 schema) async {
+    await m.addColumn(schema.moviesTable, schema.moviesTable.watchlistAddedAt);
+    await m.addColumn(schema.moviesTable, schema.moviesTable.lastWatchedAt);
+    await m.addColumn(schema.seriesTable, schema.seriesTable.watchlistAddedAt);
+    await m.addColumn(schema.seriesTable, schema.seriesTable.lastWatchedAt);
+    await m.createTable(schema.moviesEventsTable);
+    await m.createTable(schema.seriesEventsTable);
   }
 }
