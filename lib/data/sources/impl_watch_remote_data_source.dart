@@ -58,12 +58,14 @@ class ImplWatchRemoteDataSource implements WatchRemoteDataSource {
 
   Map<String, dynamic> _removeWatchlistData() => {
     'is_in_watchlist': false,
+    'watchlist_added_at': null,
     'updated_at': DateTime.now(),
   };
 
   Map<String, dynamic> _removeWatchedData() => {
     'user_rating': 0,
     'is_watched': false,
+    'last_watched_at': null,
     'updated_at': DateTime.now(),
   };
 }

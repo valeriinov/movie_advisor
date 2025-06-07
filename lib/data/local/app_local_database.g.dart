@@ -3805,15 +3805,17 @@ class $MoviesEventsTableTable extends MoviesEventsTable
     $customConstraints:
         'NOT NULL REFERENCES movies_table(tmdb_id) ON DELETE CASCADE',
   );
-  static const VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
-  late final GeneratedColumn<String> type = GeneratedColumn<String>(
-    'type',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
+  late final GeneratedColumnWithTypeConverter<WatchEventTypeDto?, String> type =
+      GeneratedColumn<String>(
+        'type',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<WatchEventTypeDto?>(
+        $MoviesEventsTableTable.$convertertypen,
+      );
   static const VerificationMeta _userRatingMeta = const VerificationMeta(
     'userRating',
   );
@@ -3860,12 +3862,6 @@ class $MoviesEventsTableTable extends MoviesEventsTable
     } else if (isInserting) {
       context.missing(_tmdbIdMeta);
     }
-    if (data.containsKey('type')) {
-      context.handle(
-        _typeMeta,
-        type.isAcceptableOrUnknown(data['type']!, _typeMeta),
-      );
-    }
     if (data.containsKey('user_rating')) {
       context.handle(
         _userRatingMeta,
@@ -3892,9 +3888,11 @@ class $MoviesEventsTableTable extends MoviesEventsTable
         DriftSqlType.int,
         data['${effectivePrefix}tmdb_id'],
       )!,
-      type: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}type'],
+      type: $MoviesEventsTableTable.$convertertypen.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}type'],
+        ),
       ),
       userRating: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
@@ -3911,13 +3909,18 @@ class $MoviesEventsTableTable extends MoviesEventsTable
   $MoviesEventsTableTable createAlias(String alias) {
     return $MoviesEventsTableTable(attachedDatabase, alias);
   }
+
+  static TypeConverter<WatchEventTypeDto, String> $convertertype =
+      eventTypeConverter;
+  static TypeConverter<WatchEventTypeDto?, String?> $convertertypen =
+      NullAwareTypeConverter.wrap($convertertype);
 }
 
 class MoviesEventsTableData extends DataClass
     implements Insertable<MoviesEventsTableData> {
   final int id;
   final int tmdbId;
-  final String? type;
+  final WatchEventTypeDto? type;
   final int? userRating;
   final DateTime at;
   const MoviesEventsTableData({
@@ -3933,7 +3936,9 @@ class MoviesEventsTableData extends DataClass
     map['id'] = Variable<int>(id);
     map['tmdb_id'] = Variable<int>(tmdbId);
     if (!nullToAbsent || type != null) {
-      map['type'] = Variable<String>(type);
+      map['type'] = Variable<String>(
+        $MoviesEventsTableTable.$convertertypen.toSql(type),
+      );
     }
     if (!nullToAbsent || userRating != null) {
       map['user_rating'] = Variable<int>(userRating);
@@ -3962,7 +3967,7 @@ class MoviesEventsTableData extends DataClass
     return MoviesEventsTableData(
       id: serializer.fromJson<int>(json['id']),
       tmdbId: serializer.fromJson<int>(json['tmdbId']),
-      type: serializer.fromJson<String?>(json['type']),
+      type: serializer.fromJson<WatchEventTypeDto?>(json['type']),
       userRating: serializer.fromJson<int?>(json['userRating']),
       at: serializer.fromJson<DateTime>(json['at']),
     );
@@ -3973,7 +3978,7 @@ class MoviesEventsTableData extends DataClass
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'tmdbId': serializer.toJson<int>(tmdbId),
-      'type': serializer.toJson<String?>(type),
+      'type': serializer.toJson<WatchEventTypeDto?>(type),
       'userRating': serializer.toJson<int?>(userRating),
       'at': serializer.toJson<DateTime>(at),
     };
@@ -3982,7 +3987,7 @@ class MoviesEventsTableData extends DataClass
   MoviesEventsTableData copyWith({
     int? id,
     int? tmdbId,
-    Value<String?> type = const Value.absent(),
+    Value<WatchEventTypeDto?> type = const Value.absent(),
     Value<int?> userRating = const Value.absent(),
     DateTime? at,
   }) => MoviesEventsTableData(
@@ -4033,7 +4038,7 @@ class MoviesEventsTableCompanion
     extends UpdateCompanion<MoviesEventsTableData> {
   final Value<int> id;
   final Value<int> tmdbId;
-  final Value<String?> type;
+  final Value<WatchEventTypeDto?> type;
   final Value<int?> userRating;
   final Value<DateTime> at;
   const MoviesEventsTableCompanion({
@@ -4069,7 +4074,7 @@ class MoviesEventsTableCompanion
   MoviesEventsTableCompanion copyWith({
     Value<int>? id,
     Value<int>? tmdbId,
-    Value<String?>? type,
+    Value<WatchEventTypeDto?>? type,
     Value<int?>? userRating,
     Value<DateTime>? at,
   }) {
@@ -4092,7 +4097,9 @@ class MoviesEventsTableCompanion
       map['tmdb_id'] = Variable<int>(tmdbId.value);
     }
     if (type.present) {
-      map['type'] = Variable<String>(type.value);
+      map['type'] = Variable<String>(
+        $MoviesEventsTableTable.$convertertypen.toSql(type.value),
+      );
     }
     if (userRating.present) {
       map['user_rating'] = Variable<int>(userRating.value);
@@ -4146,15 +4153,17 @@ class $SeriesEventsTableTable extends SeriesEventsTable
     $customConstraints:
         'NOT NULL REFERENCES series_table(tmdb_id) ON DELETE CASCADE',
   );
-  static const VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
-  late final GeneratedColumn<String> type = GeneratedColumn<String>(
-    'type',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
+  late final GeneratedColumnWithTypeConverter<WatchEventTypeDto?, String> type =
+      GeneratedColumn<String>(
+        'type',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<WatchEventTypeDto?>(
+        $SeriesEventsTableTable.$convertertypen,
+      );
   static const VerificationMeta _userRatingMeta = const VerificationMeta(
     'userRating',
   );
@@ -4201,12 +4210,6 @@ class $SeriesEventsTableTable extends SeriesEventsTable
     } else if (isInserting) {
       context.missing(_tmdbIdMeta);
     }
-    if (data.containsKey('type')) {
-      context.handle(
-        _typeMeta,
-        type.isAcceptableOrUnknown(data['type']!, _typeMeta),
-      );
-    }
     if (data.containsKey('user_rating')) {
       context.handle(
         _userRatingMeta,
@@ -4233,9 +4236,11 @@ class $SeriesEventsTableTable extends SeriesEventsTable
         DriftSqlType.int,
         data['${effectivePrefix}tmdb_id'],
       )!,
-      type: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}type'],
+      type: $SeriesEventsTableTable.$convertertypen.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}type'],
+        ),
       ),
       userRating: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
@@ -4252,13 +4257,18 @@ class $SeriesEventsTableTable extends SeriesEventsTable
   $SeriesEventsTableTable createAlias(String alias) {
     return $SeriesEventsTableTable(attachedDatabase, alias);
   }
+
+  static TypeConverter<WatchEventTypeDto, String> $convertertype =
+      eventTypeConverter;
+  static TypeConverter<WatchEventTypeDto?, String?> $convertertypen =
+      NullAwareTypeConverter.wrap($convertertype);
 }
 
 class SeriesEventsTableData extends DataClass
     implements Insertable<SeriesEventsTableData> {
   final int id;
   final int tmdbId;
-  final String? type;
+  final WatchEventTypeDto? type;
   final int? userRating;
   final DateTime at;
   const SeriesEventsTableData({
@@ -4274,7 +4284,9 @@ class SeriesEventsTableData extends DataClass
     map['id'] = Variable<int>(id);
     map['tmdb_id'] = Variable<int>(tmdbId);
     if (!nullToAbsent || type != null) {
-      map['type'] = Variable<String>(type);
+      map['type'] = Variable<String>(
+        $SeriesEventsTableTable.$convertertypen.toSql(type),
+      );
     }
     if (!nullToAbsent || userRating != null) {
       map['user_rating'] = Variable<int>(userRating);
@@ -4303,7 +4315,7 @@ class SeriesEventsTableData extends DataClass
     return SeriesEventsTableData(
       id: serializer.fromJson<int>(json['id']),
       tmdbId: serializer.fromJson<int>(json['tmdbId']),
-      type: serializer.fromJson<String?>(json['type']),
+      type: serializer.fromJson<WatchEventTypeDto?>(json['type']),
       userRating: serializer.fromJson<int?>(json['userRating']),
       at: serializer.fromJson<DateTime>(json['at']),
     );
@@ -4314,7 +4326,7 @@ class SeriesEventsTableData extends DataClass
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'tmdbId': serializer.toJson<int>(tmdbId),
-      'type': serializer.toJson<String?>(type),
+      'type': serializer.toJson<WatchEventTypeDto?>(type),
       'userRating': serializer.toJson<int?>(userRating),
       'at': serializer.toJson<DateTime>(at),
     };
@@ -4323,7 +4335,7 @@ class SeriesEventsTableData extends DataClass
   SeriesEventsTableData copyWith({
     int? id,
     int? tmdbId,
-    Value<String?> type = const Value.absent(),
+    Value<WatchEventTypeDto?> type = const Value.absent(),
     Value<int?> userRating = const Value.absent(),
     DateTime? at,
   }) => SeriesEventsTableData(
@@ -4374,7 +4386,7 @@ class SeriesEventsTableCompanion
     extends UpdateCompanion<SeriesEventsTableData> {
   final Value<int> id;
   final Value<int> tmdbId;
-  final Value<String?> type;
+  final Value<WatchEventTypeDto?> type;
   final Value<int?> userRating;
   final Value<DateTime> at;
   const SeriesEventsTableCompanion({
@@ -4410,7 +4422,7 @@ class SeriesEventsTableCompanion
   SeriesEventsTableCompanion copyWith({
     Value<int>? id,
     Value<int>? tmdbId,
-    Value<String?>? type,
+    Value<WatchEventTypeDto?>? type,
     Value<int?>? userRating,
     Value<DateTime>? at,
   }) {
@@ -4433,7 +4445,9 @@ class SeriesEventsTableCompanion
       map['tmdb_id'] = Variable<int>(tmdbId.value);
     }
     if (type.present) {
-      map['type'] = Variable<String>(type.value);
+      map['type'] = Variable<String>(
+        $SeriesEventsTableTable.$convertertypen.toSql(type.value),
+      );
     }
     if (userRating.present) {
       map['user_rating'] = Variable<int>(userRating.value);
@@ -6584,7 +6598,7 @@ typedef $$MoviesEventsTableTableCreateCompanionBuilder =
     MoviesEventsTableCompanion Function({
       Value<int> id,
       required int tmdbId,
-      Value<String?> type,
+      Value<WatchEventTypeDto?> type,
       Value<int?> userRating,
       Value<DateTime> at,
     });
@@ -6592,7 +6606,7 @@ typedef $$MoviesEventsTableTableUpdateCompanionBuilder =
     MoviesEventsTableCompanion Function({
       Value<int> id,
       Value<int> tmdbId,
-      Value<String?> type,
+      Value<WatchEventTypeDto?> type,
       Value<int?> userRating,
       Value<DateTime> at,
     });
@@ -6647,9 +6661,10 @@ class $$MoviesEventsTableTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get type => $composableBuilder(
+  ColumnWithTypeConverterFilters<WatchEventTypeDto?, WatchEventTypeDto, String>
+  get type => $composableBuilder(
     column: $table.type,
-    builder: (column) => ColumnFilters(column),
+    builder: (column) => ColumnWithTypeConverterFilters(column),
   );
 
   ColumnFilters<int> get userRating => $composableBuilder(
@@ -6751,7 +6766,7 @@ class $$MoviesEventsTableTableAnnotationComposer
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<String> get type =>
+  GeneratedColumnWithTypeConverter<WatchEventTypeDto?, String> get type =>
       $composableBuilder(column: $table.type, builder: (column) => column);
 
   GeneratedColumn<int> get userRating => $composableBuilder(
@@ -6821,7 +6836,7 @@ class $$MoviesEventsTableTableTableManager
               ({
                 Value<int> id = const Value.absent(),
                 Value<int> tmdbId = const Value.absent(),
-                Value<String?> type = const Value.absent(),
+                Value<WatchEventTypeDto?> type = const Value.absent(),
                 Value<int?> userRating = const Value.absent(),
                 Value<DateTime> at = const Value.absent(),
               }) => MoviesEventsTableCompanion(
@@ -6835,7 +6850,7 @@ class $$MoviesEventsTableTableTableManager
               ({
                 Value<int> id = const Value.absent(),
                 required int tmdbId,
-                Value<String?> type = const Value.absent(),
+                Value<WatchEventTypeDto?> type = const Value.absent(),
                 Value<int?> userRating = const Value.absent(),
                 Value<DateTime> at = const Value.absent(),
               }) => MoviesEventsTableCompanion.insert(
@@ -6918,7 +6933,7 @@ typedef $$SeriesEventsTableTableCreateCompanionBuilder =
     SeriesEventsTableCompanion Function({
       Value<int> id,
       required int tmdbId,
-      Value<String?> type,
+      Value<WatchEventTypeDto?> type,
       Value<int?> userRating,
       Value<DateTime> at,
     });
@@ -6926,7 +6941,7 @@ typedef $$SeriesEventsTableTableUpdateCompanionBuilder =
     SeriesEventsTableCompanion Function({
       Value<int> id,
       Value<int> tmdbId,
-      Value<String?> type,
+      Value<WatchEventTypeDto?> type,
       Value<int?> userRating,
       Value<DateTime> at,
     });
@@ -6981,9 +6996,10 @@ class $$SeriesEventsTableTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get type => $composableBuilder(
+  ColumnWithTypeConverterFilters<WatchEventTypeDto?, WatchEventTypeDto, String>
+  get type => $composableBuilder(
     column: $table.type,
-    builder: (column) => ColumnFilters(column),
+    builder: (column) => ColumnWithTypeConverterFilters(column),
   );
 
   ColumnFilters<int> get userRating => $composableBuilder(
@@ -7085,7 +7101,7 @@ class $$SeriesEventsTableTableAnnotationComposer
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<String> get type =>
+  GeneratedColumnWithTypeConverter<WatchEventTypeDto?, String> get type =>
       $composableBuilder(column: $table.type, builder: (column) => column);
 
   GeneratedColumn<int> get userRating => $composableBuilder(
@@ -7155,7 +7171,7 @@ class $$SeriesEventsTableTableTableManager
               ({
                 Value<int> id = const Value.absent(),
                 Value<int> tmdbId = const Value.absent(),
-                Value<String?> type = const Value.absent(),
+                Value<WatchEventTypeDto?> type = const Value.absent(),
                 Value<int?> userRating = const Value.absent(),
                 Value<DateTime> at = const Value.absent(),
               }) => SeriesEventsTableCompanion(
@@ -7169,7 +7185,7 @@ class $$SeriesEventsTableTableTableManager
               ({
                 Value<int> id = const Value.absent(),
                 required int tmdbId,
-                Value<String?> type = const Value.absent(),
+                Value<WatchEventTypeDto?> type = const Value.absent(),
                 Value<int?> userRating = const Value.absent(),
                 Value<DateTime> at = const Value.absent(),
               }) => SeriesEventsTableCompanion.insert(
