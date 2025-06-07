@@ -12,6 +12,8 @@ import '../../common/adapters/share_adapter/impl_share_adapter.dart';
 import '../../common/adapters/share_adapter/share_adapter.dart';
 import '../../common/adapters/url_launcher_adapter/impl_url_launcher_adapter.dart';
 import '../../common/adapters/url_launcher_adapter/url_launcher_adapter.dart';
+import '../../common/adapters/uuid_adapter/impl_uuid_adapter.dart';
+import '../../common/adapters/uuid_adapter/uuid_adapter.dart';
 import '../../data/local/app_local_database.dart';
 import '../../data/mappers/app_auth_mapper.dart';
 import '../../data/mappers/app_credits_mapper.dart';
@@ -131,6 +133,8 @@ final appRouterPr = Provider<AppRouter>(
 );
 
 final appThemePr = Provider<AppTheme>((_) => AppTheme());
+
+final uuidPr = Provider<UuidAdapter>((_) => ImplUuidAdapter());
 
 final toastManagerPr = Provider<ToastManager>((ref) {
   final rootNavKey = ref.read(appRouterPr).rootNavKey;
@@ -368,6 +372,7 @@ final watchRepositoryPr = Provider<WatchRepository>(
     remoteDataSource: ref.read(watchRemoteDataSourcePr),
     moviesMapper: ref.read(moviesMapperPr),
     seriesMapper: ref.read(seriesMapperPr),
+    uuidAdapter: ref.read(uuidPr),
   ),
 );
 final watchMoviesUseCasePr = Provider<WatchMovieUseCase>(

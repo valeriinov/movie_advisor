@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../dto/movie/movie_short_data_dto.dart';
+import '../../dto/movie/movie_watch_event_data_dto.dart';
 import '../../dto/series/series_short_data_dto.dart';
+import '../../dto/series/series_watch_event_data_dto.dart';
 import '../constants/db_path.dart';
 
 class MediaService {
@@ -141,5 +143,35 @@ class MediaService {
         .doc(id.toString());
 
     await docRef.update(data);
+  }
+
+  Future<void> addMovieEvent(MovieWatchEventDataDto data) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null || data.tmdbId == null || data.id == null) return;
+
+    final docRef = _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.moviesCollection)
+        .doc(data.tmdbId.toString())
+        .collection(DbPath.eventsCollection)
+        .doc(data.id.toString());
+
+    await docRef.set(data.toJson(), SetOptions(merge: true));
+  }
+
+  Future<void> addSeriesEvent(SeriesWatchEventDataDto data) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null || data.tmdbId == null || data.id == null) return;
+
+    final docRef = _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.seriesCollection)
+        .doc(data.tmdbId.toString())
+        .collection(DbPath.eventsCollection)
+        .doc(data.id.toString());
+
+    await docRef.set(data.toJson(), SetOptions(merge: true));
   }
 }

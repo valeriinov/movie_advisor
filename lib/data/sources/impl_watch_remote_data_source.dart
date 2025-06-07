@@ -1,5 +1,7 @@
 import '../dto/movie/movie_short_data_dto.dart';
+import '../dto/movie/movie_watch_event_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
+import '../dto/series/series_watch_event_data_dto.dart';
 import '../network/services/media_service.dart';
 import '../network/services/watch_service.dart';
 import '../repositories/watch/watch_remote_data_source.dart';
@@ -68,4 +70,14 @@ class ImplWatchRemoteDataSource implements WatchRemoteDataSource {
     'last_watched_at': null,
     'updated_at': DateTime.now(),
   };
+
+  @override
+  Future<void> addMovieEvent(MovieWatchEventDataDto data) {
+    return _mediaService.addMovieEvent(data);
+  }
+
+  @override
+  Future<void> addSeriesEvent(SeriesWatchEventDataDto data) {
+    return _mediaService.addSeriesEvent(data);
+  }
 }

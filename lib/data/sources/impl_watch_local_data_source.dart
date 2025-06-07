@@ -2,10 +2,13 @@ import 'package:drift/drift.dart';
 
 import '../../common/constants/db_constants.dart';
 import '../dto/movie/movie_short_data_dto.dart';
+import '../dto/movie/movie_watch_event_data_dto.dart';
 import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../dto/series/series_short_response_data_dto.dart';
+import '../dto/series/series_watch_event_data_dto.dart';
 import '../local/app_local_database.dart';
+import '../local/utils/ext/media_events_table_mapper.dart';
 import '../local/utils/ext/media_table_mapper.dart';
 import '../repositories/settings_provider.dart';
 import '../repositories/watch/watch_local_data_source.dart';
@@ -301,5 +304,19 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
         updatedAt: Value(DateTime.now()),
       ),
     );
+  }
+
+  @override
+  Future<void> addMovieEvent(MovieWatchEventDataDto data) async {
+    await _database
+        .into(_database.moviesEventsTable)
+        .insert(data.toTableData());
+  }
+
+  @override
+  Future<void> addSeriesEvent(SeriesWatchEventDataDto data) async {
+    await _database
+        .into(_database.seriesEventsTable)
+        .insert(data.toTableData());
   }
 }

@@ -1,7 +1,9 @@
 import '../../dto/movie/movie_short_data_dto.dart';
+import '../../dto/movie/movie_watch_event_data_dto.dart';
 import '../../dto/movie/movies_short_response_data_dto.dart';
 import '../../dto/series/series_short_data_dto.dart';
 import '../../dto/series/series_short_response_data_dto.dart';
+import '../../dto/series/series_watch_event_data_dto.dart';
 
 abstract interface class WatchLocalDataSource {
   Stream<MovieShortDataDto> watchChangesMovies();
@@ -31,4 +33,8 @@ abstract interface class WatchLocalDataSource {
   Future<void> removeFromWatchlistSeries(int id);
 
   Future<void> removeFromWatchedSeries(int id);
+
+  Future<void> addMovieEvent(MovieWatchEventDataDto data);
+
+  Future<void> addSeriesEvent(SeriesWatchEventDataDto data);
 }

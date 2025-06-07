@@ -23,8 +23,8 @@ class SeriesWatchEventDataDtoMapper
   @override
   final String id = 'SeriesWatchEventDataDto';
 
-  static int? _$id(SeriesWatchEventDataDto v) => v.id;
-  static const Field<SeriesWatchEventDataDto, int> _f$id =
+  static String? _$id(SeriesWatchEventDataDto v) => v.id;
+  static const Field<SeriesWatchEventDataDto, String> _f$id =
       Field('id', _$id, opt: true);
   static int? _$tmdbId(SeriesWatchEventDataDto v) => v.tmdbId;
   static const Field<SeriesWatchEventDataDto, int> _f$tmdbId =
@@ -118,7 +118,7 @@ abstract class SeriesWatchEventDataDtoCopyWith<
     $In extends SeriesWatchEventDataDto,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call(
-      {int? id,
+      {String? id,
       int? tmdbId,
       WatchEventTypeDto? type,
       int? userRating,

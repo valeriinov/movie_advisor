@@ -7,7 +7,6 @@ import '../../app_local_database.dart';
 extension MoviesWatchEventMapper on MoviesEventsTableData {
   MovieWatchEventDataDto toDto() {
     return MovieWatchEventDataDto(
-      id: id,
       tmdbId: tmdbId,
       type: type,
       userRating: userRating,
@@ -19,7 +18,6 @@ extension MoviesWatchEventMapper on MoviesEventsTableData {
 extension SeriesWatchEventMapper on SeriesEventsTableData {
   SeriesWatchEventDataDto toDto() {
     return SeriesWatchEventDataDto(
-      id: id,
       tmdbId: tmdbId,
       type: type,
       userRating: userRating,

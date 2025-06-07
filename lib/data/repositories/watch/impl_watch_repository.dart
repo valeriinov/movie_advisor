@@ -2,12 +2,16 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 
+import '../../../common/adapters/uuid_adapter/uuid_adapter.dart';
 import '../../../domain/entities/failure.dart';
 import '../../../domain/entities/movie/movie_short_data.dart';
 import '../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../domain/entities/result.dart';
 import '../../../domain/entities/series/series_short_data.dart';
 import '../../../domain/repositories/watch_repository.dart';
+import '../../dto/movie/movie_watch_event_data_dto.dart';
+import '../../dto/series/series_watch_event_data_dto.dart';
+import '../../dto/watch_event_type_dto.dart';
 import '../../mappers/app_movies_mapper.dart';
 import '../../mappers/app_series_mapper.dart';
 import 'watch_local_data_source.dart';
@@ -18,16 +22,19 @@ class ImplWatchRepository implements WatchRepository {
   final WatchRemoteDataSource _remoteDataSource;
   final AppMoviesMapper _moviesMapper;
   final AppSeriesMapper _seriesMapper;
+  final UuidAdapter _uuidAdapter;
 
   ImplWatchRepository({
     required WatchLocalDataSource localDataSource,
     required WatchRemoteDataSource remoteDataSource,
     required AppMoviesMapper moviesMapper,
     required AppSeriesMapper seriesMapper,
+    required UuidAdapter uuidAdapter,
   }) : _localDataSource = localDataSource,
        _remoteDataSource = remoteDataSource,
        _moviesMapper = moviesMapper,
-       _seriesMapper = seriesMapper;
+       _seriesMapper = seriesMapper,
+       _uuidAdapter = uuidAdapter;
 
   @override
   Stream<Result<MovieShortData>> watchChangesMovies() {
@@ -116,6 +123,8 @@ class ImplWatchRepository implements WatchRepository {
 
       await _remoteDataSource.addToWatchlistMovie(preparedDto);
 
+      await _addMovieEvent(preparedDto.id, WatchEventTypeDto.watchlistAdd);
+
       return Right(null);
     } catch (e) {
       return Left(_moviesMapper.getException(e));
@@ -145,6 +154,8 @@ class ImplWatchRepository implements WatchRepository {
 
       await _remoteDataSource.addToWatchedMovie(preparedDto);
 
+      await _addMovieEvent(preparedDto.id, WatchEventTypeDto.watch);
+
       return Right(null);
     } catch (e) {
       return Left(_moviesMapper.getException(e));
@@ -158,10 +169,26 @@ class ImplWatchRepository implements WatchRepository {
 
       await _remoteDataSource.removeFromWatchlistMovie(id);
 
+      await _addMovieEvent(id, WatchEventTypeDto.watchlistRemove);
+
       return Right(null);
     } catch (e) {
       return Left(_moviesMapper.getException(e));
     }
+  }
+
+  Future<void> _addMovieEvent(int? tmdbId, WatchEventTypeDto type) async {
+    if (tmdbId == null) return;
+
+    final event = MovieWatchEventDataDto(
+      id: _uuidAdapter.v4(),
+      tmdbId: tmdbId,
+      type: type,
+    );
+
+    await _localDataSource.addMovieEvent(event);
+
+    await _remoteDataSource.addMovieEvent(event);
   }
 
   @override
@@ -192,6 +219,8 @@ class ImplWatchRepository implements WatchRepository {
 
       await _remoteDataSource.addToWatchlistSeries(preparedDto);
 
+      await _addSeriesEvent(preparedDto.id, WatchEventTypeDto.watchlistAdd);
+
       return Right(null);
     } catch (e) {
       return Left(_seriesMapper.getException(e));
@@ -221,6 +250,8 @@ class ImplWatchRepository implements WatchRepository {
 
       await _remoteDataSource.addToWatchedSeries(preparedDto);
 
+      await _addSeriesEvent(preparedDto.id, WatchEventTypeDto.watch);
+
       return Right(null);
     } catch (e) {
       return Left(_seriesMapper.getException(e));
@@ -234,10 +265,26 @@ class ImplWatchRepository implements WatchRepository {
 
       await _remoteDataSource.removeFromWatchlistSeries(id);
 
+      await _addSeriesEvent(id, WatchEventTypeDto.watchlistRemove);
+
       return Right(null);
     } catch (e) {
       return Left(_seriesMapper.getException(e));
     }
+  }
+
+  Future<void> _addSeriesEvent(int? tmdbId, WatchEventTypeDto type) async {
+    if (tmdbId == null) return;
+
+    final event = SeriesWatchEventDataDto(
+      id: _uuidAdapter.v4(),
+      tmdbId: tmdbId,
+      type: type,
+    );
+
+    await _localDataSource.addSeriesEvent(event);
+
+    await _remoteDataSource.addSeriesEvent(event);
   }
 
   @override
