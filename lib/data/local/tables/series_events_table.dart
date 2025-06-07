@@ -7,6 +7,8 @@ import 'series_table.dart'; // This import is necessary to reference the series_
 class SeriesEventsTable extends Table {
   IntColumn get id => integer().autoIncrement()();
 
+  TextColumn get eventId => text().unique()();
+
   IntColumn get tmdbId => integer().customConstraint(
     'NOT NULL REFERENCES series_table(tmdb_id) ON DELETE CASCADE',
   )();

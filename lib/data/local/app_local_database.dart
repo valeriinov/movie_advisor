@@ -43,7 +43,7 @@ class AppLocalDatabase extends _$AppLocalDatabase {
   AppLocalDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   static QueryExecutor _openConnection() {
     // `driftDatabase` from `package:drift_flutter` stores the database in
