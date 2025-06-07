@@ -58,6 +58,7 @@ class AppLocalDatabase extends _$AppLocalDatabase {
       from1To2: _migrateFrom1To2,
       from2To3: _migrateFrom2To3,
       from3To4: _migrateFrom3To4,
+      from4To5: _migrateFrom4To5,
     ),
   );
 
@@ -126,5 +127,16 @@ class AppLocalDatabase extends _$AppLocalDatabase {
 
     await m.createTable(schema.moviesEventsTable);
     await m.createTable(schema.seriesEventsTable);
+  }
+
+  Future<void> _migrateFrom4To5(Migrator m, Schema5 schema) async {
+    await m.addColumn(
+      schema.moviesEventsTable,
+      schema.moviesEventsTable.eventId,
+    );
+    await m.addColumn(
+      schema.seriesEventsTable,
+      schema.seriesEventsTable.eventId,
+    );
   }
 }
