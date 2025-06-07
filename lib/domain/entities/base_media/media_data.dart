@@ -27,6 +27,8 @@ abstract base class MediaData with MediaDataMappable {
   final int userRating;
   final bool isInWatchlist;
   final bool isWatched;
+  final DateTime? watchlistAddedAt;
+  final DateTime? lastWatchedAt;
 
   const MediaData({
     required this.id,
@@ -45,5 +47,7 @@ abstract base class MediaData with MediaDataMappable {
     required this.userRating,
     required this.isInWatchlist,
     required this.isWatched,
+    this.watchlistAddedAt,
+    this.lastWatchedAt,
   });
 }

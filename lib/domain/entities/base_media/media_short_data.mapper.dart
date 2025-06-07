@@ -46,6 +46,12 @@ class MediaShortDataMapper extends ClassMapperBase<MediaShortData> {
   static bool _$isWatched(MediaShortData v) => v.isWatched;
   static const Field<MediaShortData, bool> _f$isWatched =
       Field('isWatched', _$isWatched);
+  static DateTime? _$watchlistAddedAt(MediaShortData v) => v.watchlistAddedAt;
+  static const Field<MediaShortData, DateTime> _f$watchlistAddedAt =
+      Field('watchlistAddedAt', _$watchlistAddedAt, opt: true);
+  static DateTime? _$lastWatchedAt(MediaShortData v) => v.lastWatchedAt;
+  static const Field<MediaShortData, DateTime> _f$lastWatchedAt =
+      Field('lastWatchedAt', _$lastWatchedAt, opt: true);
 
   @override
   final MappableFields<MediaShortData> fields = const {
@@ -58,6 +64,8 @@ class MediaShortDataMapper extends ClassMapperBase<MediaShortData> {
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
+    #watchlistAddedAt: _f$watchlistAddedAt,
+    #lastWatchedAt: _f$lastWatchedAt,
   };
 
   static MediaShortData _instantiate(DecodingData data) {
@@ -87,7 +95,9 @@ abstract class MediaShortDataCopyWith<$R, $In extends MediaShortData, $Out>
       TMDBRating? tmdbRating,
       int? userRating,
       bool? isInWatchlist,
-      bool? isWatched});
+      bool? isWatched,
+      DateTime? watchlistAddedAt,
+      DateTime? lastWatchedAt});
   MediaShortDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }

@@ -1,10 +1,10 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../base_media/country.dart';
+import '../base_media/media_short_data.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 import 'series_genre.dart';
-import '../base_media/media_short_data.dart';
 
 part 'series_short_data.mapper.dart';
 
@@ -24,5 +24,7 @@ final class SeriesShortData extends MediaShortData
     super.userRating = 0,
     super.isInWatchlist = false,
     super.isWatched = false,
+    super.watchlistAddedAt,
+    super.lastWatchedAt,
   });
 }

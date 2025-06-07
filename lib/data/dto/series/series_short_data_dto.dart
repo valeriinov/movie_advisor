@@ -25,6 +25,10 @@ class SeriesShortDataDto with SeriesShortDataDtoMappable {
   final DateTime? updatedAt;
   final LocalizedString? localizedTitle;
   final LocalizedString? localizedPosterUrl;
+  @MappableField(hook: DateMapperHook())
+  final DateTime? watchlistAddedAt;
+  @MappableField(hook: DateMapperHook())
+  final DateTime? lastWatchedAt;
 
   const SeriesShortDataDto({
     this.id,
@@ -40,6 +44,8 @@ class SeriesShortDataDto with SeriesShortDataDtoMappable {
     this.updatedAt,
     this.localizedTitle,
     this.localizedPosterUrl,
+    this.watchlistAddedAt,
+    this.lastWatchedAt,
   });
 
   factory SeriesShortDataDto.fromJson(Map<String, dynamic> json) =>

@@ -25,6 +25,10 @@ class MovieShortDataDto with MovieShortDataDtoMappable {
   final DateTime? updatedAt;
   final LocalizedString? localizedTitle;
   final LocalizedString? localizedPosterUrl;
+  @MappableField(hook: DateMapperHook())
+  final DateTime? watchlistAddedAt;
+  @MappableField(hook: DateMapperHook())
+  final DateTime? lastWatchedAt;
 
   const MovieShortDataDto({
     this.id,
@@ -40,6 +44,8 @@ class MovieShortDataDto with MovieShortDataDtoMappable {
     this.updatedAt,
     this.localizedTitle,
     this.localizedPosterUrl,
+    this.watchlistAddedAt,
+    this.lastWatchedAt,
   });
 
   factory MovieShortDataDto.fromJson(Map<String, dynamic> json) =>
