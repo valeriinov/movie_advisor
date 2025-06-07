@@ -8,8 +8,10 @@ import '../dto/movie/movie_genre_dto.dart';
 import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
 import 'db_migration.dart';
+import 'tables/movies_events_table.dart';
 import 'tables/movies_filter_table.dart';
 import 'tables/movies_table.dart';
+import 'tables/series_events_table.dart';
 import 'tables/series_filter_table.dart';
 import 'tables/series_table.dart';
 import 'tables/settings_table.dart';
@@ -31,13 +33,15 @@ part 'app_local_database.g.dart';
     SettingsTable,
     MoviesFilterTable,
     SeriesFilterTable,
+    MoviesEventsTable,
+    SeriesEventsTable,
   ],
 )
 class AppLocalDatabase extends _$AppLocalDatabase {
   AppLocalDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   static QueryExecutor _openConnection() {
     // `driftDatabase` from `package:drift_flutter` stores the database in

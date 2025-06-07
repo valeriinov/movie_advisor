@@ -32,6 +32,10 @@ class SeriesTable extends Table {
 
   DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
 
+  DateTimeColumn get watchlistAddedAt => dateTime().nullable()();
+
+  DateTimeColumn get lastWatchedAt => dateTime().nullable()();
+
   TextColumn get localizedTitle =>
       text().map(localizedStringConverter).nullable()();
 
