@@ -8,7 +8,7 @@ part 'movie_watch_event_data_dto.mapper.dart';
 @MappableClass(ignoreNull: true, caseStyle: CaseStyle.snakeCase)
 class MovieWatchEventDataDto with MovieWatchEventDataDtoMappable {
   final int? id;
-  final int? movieId;
+  final int? tmdbId;
   final WatchEventTypeDto? type;
   final int? userRating;
   @MappableField(hook: DateMapperHook())
@@ -16,7 +16,7 @@ class MovieWatchEventDataDto with MovieWatchEventDataDtoMappable {
 
   const MovieWatchEventDataDto({
     this.id,
-    this.movieId,
+    this.tmdbId,
     this.type,
     this.userRating,
     this.at,

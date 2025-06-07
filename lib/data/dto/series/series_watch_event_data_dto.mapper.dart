@@ -26,9 +26,9 @@ class SeriesWatchEventDataDtoMapper
   static int? _$id(SeriesWatchEventDataDto v) => v.id;
   static const Field<SeriesWatchEventDataDto, int> _f$id =
       Field('id', _$id, opt: true);
-  static int? _$seriesId(SeriesWatchEventDataDto v) => v.seriesId;
-  static const Field<SeriesWatchEventDataDto, int> _f$seriesId =
-      Field('seriesId', _$seriesId, key: r'series_id', opt: true);
+  static int? _$tmdbId(SeriesWatchEventDataDto v) => v.tmdbId;
+  static const Field<SeriesWatchEventDataDto, int> _f$tmdbId =
+      Field('tmdbId', _$tmdbId, key: r'tmdb_id', opt: true);
   static WatchEventTypeDto? _$type(SeriesWatchEventDataDto v) => v.type;
   static const Field<SeriesWatchEventDataDto, WatchEventTypeDto> _f$type =
       Field('type', _$type, opt: true);
@@ -42,7 +42,7 @@ class SeriesWatchEventDataDtoMapper
   @override
   final MappableFields<SeriesWatchEventDataDto> fields = const {
     #id: _f$id,
-    #seriesId: _f$seriesId,
+    #tmdbId: _f$tmdbId,
     #type: _f$type,
     #userRating: _f$userRating,
     #at: _f$at,
@@ -53,7 +53,7 @@ class SeriesWatchEventDataDtoMapper
   static SeriesWatchEventDataDto _instantiate(DecodingData data) {
     return SeriesWatchEventDataDto(
         id: data.dec(_f$id),
-        seriesId: data.dec(_f$seriesId),
+        tmdbId: data.dec(_f$tmdbId),
         type: data.dec(_f$type),
         userRating: data.dec(_f$userRating),
         at: data.dec(_f$at));
@@ -119,7 +119,7 @@ abstract class SeriesWatchEventDataDtoCopyWith<
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call(
       {int? id,
-      int? seriesId,
+      int? tmdbId,
       WatchEventTypeDto? type,
       int? userRating,
       DateTime? at});
@@ -139,13 +139,13 @@ class _SeriesWatchEventDataDtoCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          Object? seriesId = $none,
+          Object? tmdbId = $none,
           Object? type = $none,
           Object? userRating = $none,
           Object? at = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (seriesId != $none) #seriesId: seriesId,
+        if (tmdbId != $none) #tmdbId: tmdbId,
         if (type != $none) #type: type,
         if (userRating != $none) #userRating: userRating,
         if (at != $none) #at: at
@@ -153,7 +153,7 @@ class _SeriesWatchEventDataDtoCopyWithImpl<$R, $Out>
   @override
   SeriesWatchEventDataDto $make(CopyWithData data) => SeriesWatchEventDataDto(
       id: data.get(#id, or: $value.id),
-      seriesId: data.get(#seriesId, or: $value.seriesId),
+      tmdbId: data.get(#tmdbId, or: $value.tmdbId),
       type: data.get(#type, or: $value.type),
       userRating: data.get(#userRating, or: $value.userRating),
       at: data.get(#at, or: $value.at));

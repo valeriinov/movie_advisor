@@ -25,9 +25,9 @@ class MovieWatchEventDataDtoMapper
   static int? _$id(MovieWatchEventDataDto v) => v.id;
   static const Field<MovieWatchEventDataDto, int> _f$id =
       Field('id', _$id, opt: true);
-  static int? _$movieId(MovieWatchEventDataDto v) => v.movieId;
-  static const Field<MovieWatchEventDataDto, int> _f$movieId =
-      Field('movieId', _$movieId, key: r'movie_id', opt: true);
+  static int? _$tmdbId(MovieWatchEventDataDto v) => v.tmdbId;
+  static const Field<MovieWatchEventDataDto, int> _f$tmdbId =
+      Field('tmdbId', _$tmdbId, key: r'tmdb_id', opt: true);
   static WatchEventTypeDto? _$type(MovieWatchEventDataDto v) => v.type;
   static const Field<MovieWatchEventDataDto, WatchEventTypeDto> _f$type =
       Field('type', _$type, opt: true);
@@ -41,7 +41,7 @@ class MovieWatchEventDataDtoMapper
   @override
   final MappableFields<MovieWatchEventDataDto> fields = const {
     #id: _f$id,
-    #movieId: _f$movieId,
+    #tmdbId: _f$tmdbId,
     #type: _f$type,
     #userRating: _f$userRating,
     #at: _f$at,
@@ -52,7 +52,7 @@ class MovieWatchEventDataDtoMapper
   static MovieWatchEventDataDto _instantiate(DecodingData data) {
     return MovieWatchEventDataDto(
         id: data.dec(_f$id),
-        movieId: data.dec(_f$movieId),
+        tmdbId: data.dec(_f$tmdbId),
         type: data.dec(_f$type),
         userRating: data.dec(_f$userRating),
         at: data.dec(_f$at));
@@ -118,7 +118,7 @@ abstract class MovieWatchEventDataDtoCopyWith<
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call(
       {int? id,
-      int? movieId,
+      int? tmdbId,
       WatchEventTypeDto? type,
       int? userRating,
       DateTime? at});
@@ -138,13 +138,13 @@ class _MovieWatchEventDataDtoCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          Object? movieId = $none,
+          Object? tmdbId = $none,
           Object? type = $none,
           Object? userRating = $none,
           Object? at = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (movieId != $none) #movieId: movieId,
+        if (tmdbId != $none) #tmdbId: tmdbId,
         if (type != $none) #type: type,
         if (userRating != $none) #userRating: userRating,
         if (at != $none) #at: at
@@ -152,7 +152,7 @@ class _MovieWatchEventDataDtoCopyWithImpl<$R, $Out>
   @override
   MovieWatchEventDataDto $make(CopyWithData data) => MovieWatchEventDataDto(
       id: data.get(#id, or: $value.id),
-      movieId: data.get(#movieId, or: $value.movieId),
+      tmdbId: data.get(#tmdbId, or: $value.tmdbId),
       type: data.get(#type, or: $value.type),
       userRating: data.get(#userRating, or: $value.userRating),
       at: data.get(#at, or: $value.at));
