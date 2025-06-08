@@ -174,4 +174,92 @@ class MediaService {
 
     await docRef.set(data.toJson(), SetOptions(merge: true));
   }
+
+  Future<List<MovieWatchEventDataDto>> getMovieEvents(int movieId) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return [];
+
+    final snapshot = await _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.moviesCollection)
+        .doc(movieId.toString())
+        .collection(DbPath.eventsCollection)
+        .get();
+
+    return snapshot.docs
+        .map((doc) => MovieWatchEventDataDto.fromJson(doc.data()))
+        .toList();
+  }
+
+  Future<List<SeriesWatchEventDataDto>> getSeriesEvents(int seriesId) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return [];
+
+    final snapshot = await _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.seriesCollection)
+        .doc(seriesId.toString())
+        .collection(DbPath.eventsCollection)
+        .get();
+
+    return snapshot.docs
+        .map((doc) => SeriesWatchEventDataDto.fromJson(doc.data()))
+        .toList();
+  }
+
+  Future<void> updateOrInsertMovieEvents(
+    int movieId,
+    List<MovieWatchEventDataDto> events,
+  ) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return;
+
+    final eventsCollectionRef = _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.moviesCollection)
+        .doc(movieId.toString())
+        .collection(DbPath.eventsCollection);
+
+    final batch = _firebaseFirestore.batch();
+
+    for (final event in events) {
+      if (event.id == null) continue;
+
+      final docRef = eventsCollectionRef.doc(event.id.toString());
+
+      batch.set(docRef, event.toJson(), SetOptions(merge: true));
+    }
+
+    await batch.commit();
+  }
+
+  Future<void> updateOrInsertSeriesEvents(
+    int seriesId,
+    List<SeriesWatchEventDataDto> events,
+  ) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return;
+
+    final eventsCollectionRef = _firebaseFirestore
+        .collection(DbPath.usersMediaCollection)
+        .doc(user.uid)
+        .collection(DbPath.seriesCollection)
+        .doc(seriesId.toString())
+        .collection(DbPath.eventsCollection);
+
+    final batch = _firebaseFirestore.batch();
+
+    for (final event in events) {
+      if (event.id == null) continue;
+
+      final docRef = eventsCollectionRef.doc(event.id.toString());
+
+      batch.set(docRef, event.toJson(), SetOptions(merge: true));
+    }
+
+    await batch.commit();
+  }
 }
