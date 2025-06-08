@@ -8,6 +8,8 @@ import '../dto/movie/movie_genre_dto.dart';
 import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_genre_dto.dart';
 import '../dto/watch_event_type_dto.dart';
+import '../dto/watched_filter/watched_sort_by_dto.dart';
+import '../dto/watchlist_filter/watchlist_sort_by_dto.dart';
 import 'db_migration.dart';
 import 'tables/movies_events_table.dart';
 import 'tables/movies_filter_table.dart';
@@ -17,6 +19,10 @@ import 'tables/series_filter_table.dart';
 import 'tables/series_table.dart';
 import 'tables/settings_table.dart';
 import 'tables/sync_user_table.dart';
+import 'tables/watched_movies_filter_table.dart';
+import 'tables/watched_series_filter_table.dart';
+import 'tables/watchlist_movies_filter_table.dart';
+import 'tables/watchlist_series_filter_table.dart';
 import 'utils/country_converter.dart';
 import 'utils/event_type_converter.dart';
 import 'utils/filter_sort_by_converter.dart';
@@ -24,6 +30,8 @@ import 'utils/localized_string_converter.dart';
 import 'utils/movie_genres_converter.dart';
 import 'utils/rating_converter.dart';
 import 'utils/servies_genres_converter.dart';
+import 'utils/watched_filter_sort_by_converter.dart';
+import 'utils/watchlist_filter_sort_by_converter.dart';
 
 part 'app_local_database.g.dart';
 
@@ -37,13 +45,17 @@ part 'app_local_database.g.dart';
     SeriesFilterTable,
     MoviesEventsTable,
     SeriesEventsTable,
+    WatchedMoviesFilterTable,
+    WatchedSeriesFilterTable,
+    WatchlistMoviesFilterTable,
+    WatchlistSeriesFilterTable,
   ],
 )
 class AppLocalDatabase extends _$AppLocalDatabase {
   AppLocalDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   static QueryExecutor _openConnection() {
     // `driftDatabase` from `package:drift_flutter` stores the database in
