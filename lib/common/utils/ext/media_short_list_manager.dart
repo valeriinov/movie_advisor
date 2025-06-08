@@ -3,9 +3,9 @@ import '../../../domain/entities/base_media/media_short_data.dart';
 extension MediaShortListManager<T extends MediaShortData> on List<T> {
   List<T> handleWatchedItem(T item) {
     if (item.isWatched) {
-      return _containsItemWithId(item.id)
-          ? updateItemInList(item)
-          : [item, ...this];
+      final preparedList = where((e) => e.id != item.id).toList();
+
+      return [item, ...preparedList];
     }
 
     return where((e) => e.id != item.id).toList();
