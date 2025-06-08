@@ -25,6 +25,7 @@ import '../../data/mappers/app_rating_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
 import '../../data/mappers/app_series_mapper.dart';
 import '../../data/mappers/app_video_mapper.dart';
+import '../../data/mappers/app_watch_filters_mapper.dart';
 import '../../data/network/env_provider/env_provider.dart';
 import '../../data/network/network_manager/impl_dio/dio_builder.dart';
 import '../../data/network/network_manager/impl_dio/dio_error_handler.dart';
@@ -366,12 +367,16 @@ final watchRemoteDataSourcePr = Provider<WatchRemoteDataSource>(
     watchService: ref.read(watchServicePr),
   ),
 );
+final watchFiltersMapperPr = Provider<AppWatchFiltersMapper>(
+  (_) => AppWatchFiltersMapper(),
+);
 final watchRepositoryPr = Provider<WatchRepository>(
   (ref) => ImplWatchRepository(
     localDataSource: ref.read(watchLocalDataSourcePr),
     remoteDataSource: ref.read(watchRemoteDataSourcePr),
     moviesMapper: ref.read(moviesMapperPr),
     seriesMapper: ref.read(seriesMapperPr),
+    watchFiltersMapper: ref.read(watchFiltersMapperPr),
     uuidAdapter: ref.read(uuidPr),
   ),
 );

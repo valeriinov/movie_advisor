@@ -7,6 +7,10 @@ import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../dto/series/series_short_response_data_dto.dart';
 import '../dto/series/series_watch_event_data_dto.dart';
+import '../dto/watched_filter/movies_watched_filter_data_dto.dart';
+import '../dto/watched_filter/series_watched_filter_data_dto.dart';
+import '../dto/watchlist_filter/movies_watchlist_filter_data_dto.dart';
+import '../dto/watchlist_filter/series_watchlist_filter_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../local/utils/ext/media_events_table_mapper.dart';
 import '../local/utils/ext/media_table_mapper.dart';
@@ -66,6 +70,7 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   @override
   Future<MoviesShortResponseDataDto> getWatchedMovies({
     required int page,
+    required MoviesWatchedFilterDataDto filter,
   }) async {
     final int offset = _calculateOffset(page);
 
@@ -99,6 +104,7 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   @override
   Future<MoviesShortResponseDataDto> getWatchlistMovies({
     required int page,
+    required MoviesWatchlistFilterDataDto filter,
   }) async {
     final int offset = _calculateOffset(page);
 
@@ -132,6 +138,7 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   @override
   Future<SeriesShortResponseDataDto> getWatchedSeries({
     required int page,
+    required SeriesWatchedFilterDataDto filter,
   }) async {
     final int offset = _calculateOffset(page);
 
@@ -165,6 +172,7 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   @override
   Future<SeriesShortResponseDataDto> getWatchlistSeries({
     required int page,
+    required SeriesWatchlistFilterDataDto filter,
   }) async {
     final int offset = _calculateOffset(page);
 

@@ -1,6 +1,8 @@
 import '../../entities/pagination/list_with_pagination_data.dart';
 import '../../entities/result.dart';
 import '../../entities/series/series_short_data.dart';
+import '../../entities/watched_filter/series_watched_filter_data.dart';
+import '../../entities/watchlist_filter/series_watchlist_filter_data.dart';
 import '../../repositories/watch_repository.dart';
 import 'watch_use_case.dart';
 
@@ -16,13 +18,19 @@ class WatchSeriesUseCase implements WatchUseCase<SeriesShortData> {
   }
 
   @override
-  Future<Result<PaginatedSeries>> getWatchlist({required int page}) {
-    return _repository.getWatchlistSeries(page: page);
+  Future<Result<PaginatedSeries>> getWatchlist({
+    required int page,
+    SeriesWatchlistFilterData filter = const SeriesWatchlistFilterData(),
+  }) {
+    return _repository.getWatchlistSeries(page: page, filter: filter);
   }
 
   @override
-  Future<Result<PaginatedSeries>> getWatched({required int page}) {
-    return _repository.getWatchedSeries(page: page);
+  Future<Result<PaginatedSeries>> getWatched({
+    required int page,
+    SeriesWatchedFilterData filter = const SeriesWatchedFilterData(),
+  }) {
+    return _repository.getWatchedSeries(page: page, filter: filter);
   }
 
   @override
