@@ -15,6 +15,8 @@ import '../../common/adapters/url_launcher_adapter/url_launcher_adapter.dart';
 import '../../common/adapters/uuid_adapter/impl_uuid_adapter.dart';
 import '../../common/adapters/uuid_adapter/uuid_adapter.dart';
 import '../../data/local/app_local_database.dart';
+import '../../data/local/utils/watch_filter_handler/impl_watch_filter_handler.dart';
+import '../../data/local/utils/watch_filter_handler/watch_filter_handler.dart';
 import '../../data/mappers/app_auth_mapper.dart';
 import '../../data/mappers/app_credits_mapper.dart';
 import '../../data/mappers/app_filter_mapper.dart';
@@ -355,9 +357,14 @@ final watchServicePr = Provider<WatchService>(
     imageUrlHandler: ref.read(imageUrlHandlerPr),
   ),
 );
+
+final watchFilterHandlerPr = Provider<WatchFilterHandler>(
+  (_) => ImplWatchFilterHandler(),
+);
 final watchLocalDataSourcePr = Provider<WatchLocalDataSource>(
   (ref) => ImplWatchLocalDataSource(
     database: ref.read(localDatabasePr),
+    filterHandler: ref.read(watchFilterHandlerPr),
     settingsProvider: ref.read(settingsPr),
   ),
 );

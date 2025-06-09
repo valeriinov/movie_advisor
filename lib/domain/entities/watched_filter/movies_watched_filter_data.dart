@@ -15,7 +15,7 @@ class MoviesWatchedFilterData extends WatchedFilterData
   final List<MovieGenre> withoutGenres;
 
   const MoviesWatchedFilterData({
-    super.sortBy = WatchedSortBy.watchedDateAsc,
+    super.sortBy = WatchedSortBy.watchedDateDesc,
     super.withCountries = const [],
     super.includeWatchlist = true,
     this.withGenres = const [],

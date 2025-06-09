@@ -14,17 +14,21 @@ import '../dto/watchlist_filter/series_watchlist_filter_data_dto.dart';
 import '../local/app_local_database.dart';
 import '../local/utils/ext/media_events_table_mapper.dart';
 import '../local/utils/ext/media_table_mapper.dart';
+import '../local/utils/watch_filter_handler/watch_filter_handler.dart';
 import '../repositories/settings_provider.dart';
 import '../repositories/watch/watch_local_data_source.dart';
 
 class ImplWatchLocalDataSource implements WatchLocalDataSource {
   final AppLocalDatabase _database;
+  final WatchFilterHandler _filterHandler;
   final SettingsProvider _settingsProvider;
 
   ImplWatchLocalDataSource({
     required AppLocalDatabase database,
+    required WatchFilterHandler filterHandler,
     required SettingsProvider settingsProvider,
   }) : _database = database,
+       _filterHandler = filterHandler,
        _settingsProvider = settingsProvider;
 
   @override
@@ -74,15 +78,12 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }) async {
     final int offset = _calculateOffset(page);
 
-    final moviesQuery = (_database.select(_database.moviesTable)
-      ..where((tbl) => tbl.isWatched.equals(true))
+    final moviesQuery = _database.select(_database.moviesTable)
+      ..where((tbl) => _filterHandler.moviesWatchedPredicate(tbl, filter))
       ..orderBy([
-        (tbl) => OrderingTerm(
-          expression: tbl.lastWatchedAt,
-          mode: OrderingMode.desc,
-        ),
+        (tbl) => _filterHandler.moviesWatchedOrder(tbl, filter.sortBy),
       ])
-      ..limit(DbConstants.pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset);
 
     final movies = await moviesQuery.get();
 
@@ -108,15 +109,12 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }) async {
     final int offset = _calculateOffset(page);
 
-    final moviesQuery = (_database.select(_database.moviesTable)
-      ..where((tbl) => tbl.isInWatchlist.equals(true))
+    final moviesQuery = _database.select(_database.moviesTable)
+      ..where((tbl) => _filterHandler.moviesWatchlistPredicate(tbl, filter))
       ..orderBy([
-        (tbl) => OrderingTerm(
-          expression: tbl.watchlistAddedAt,
-          mode: OrderingMode.asc,
-        ),
+        (tbl) => _filterHandler.moviesWatchlistOrder(tbl, filter.sortBy),
       ])
-      ..limit(DbConstants.pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset);
 
     final movies = await moviesQuery.get();
 
@@ -142,15 +140,12 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }) async {
     final int offset = _calculateOffset(page);
 
-    final seriesQuery = (_database.select(_database.seriesTable)
-      ..where((tbl) => tbl.isWatched.equals(true))
+    final seriesQuery = _database.select(_database.seriesTable)
+      ..where((tbl) => _filterHandler.seriesWatchedPredicate(tbl, filter))
       ..orderBy([
-        (tbl) => OrderingTerm(
-          expression: tbl.lastWatchedAt,
-          mode: OrderingMode.desc,
-        ),
+        (tbl) => _filterHandler.seriesWatchedOrder(tbl, filter.sortBy),
       ])
-      ..limit(DbConstants.pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset);
 
     final series = await seriesQuery.get();
 
@@ -176,15 +171,12 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   }) async {
     final int offset = _calculateOffset(page);
 
-    final seriesQuery = (_database.select(_database.seriesTable)
-      ..where((tbl) => tbl.isInWatchlist.equals(true))
+    final seriesQuery = _database.select(_database.seriesTable)
+      ..where((tbl) => _filterHandler.seriesWatchlistPredicate(tbl, filter))
       ..orderBy([
-        (tbl) => OrderingTerm(
-          expression: tbl.watchlistAddedAt,
-          mode: OrderingMode.asc,
-        ),
+        (tbl) => _filterHandler.seriesWatchlistOrder(tbl, filter.sortBy),
       ])
-      ..limit(DbConstants.pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset);
 
     final series = await seriesQuery.get();
 
