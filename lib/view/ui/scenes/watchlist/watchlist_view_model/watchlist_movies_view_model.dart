@@ -2,8 +2,9 @@ part of 'watchlist_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [WatchlistState] with [MovieShortData].
-typedef WatchlistMoviesState = WatchlistState<MovieShortData>;
+/// A type alias for [WatchlistState] with [MovieShortData] and [MoviesWatchlistFilterData].
+typedef WatchlistMoviesState =
+    WatchlistState<MovieShortData, MoviesWatchlistFilterData>;
 
 /// {@category StateManagement}
 ///
@@ -25,10 +26,11 @@ final watchlistMoviesViewModelPr =
 ///
 /// This class is responsible for coordinating `watchlist_movies` behavior and interacting with the UI.
 final class WatchlistMoviesViewModel
-    extends WatchlistViewModel<MovieShortData> {
+    extends WatchlistViewModel<MovieShortData, MoviesWatchlistFilterData> {
   @override
   WatchlistMoviesState build() {
     _watchUseCase = ref.read(watchMoviesUseCasePr);
+    _watchlistFilterUseCase = ref.read(watchlistMovieFilterUseCasePr);
     _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
@@ -42,7 +44,7 @@ final class WatchlistMoviesViewModel
 
     scheduleCall(loadInitialData);
 
-    return WatchlistMoviesState();
+    return WatchlistMoviesState(filter: MoviesWatchlistFilterData());
   }
 
   @override

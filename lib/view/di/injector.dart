@@ -115,6 +115,10 @@ import '../../domain/usecases/settings_use_case.dart';
 import '../../domain/usecases/sync_use_case.dart';
 import '../../domain/usecases/watch/watch_movie_use_case.dart';
 import '../../domain/usecases/watch/watch_series_use_case.dart';
+import '../../domain/usecases/watched_filter/watched_movie_filter_use_case.dart';
+import '../../domain/usecases/watched_filter/watched_series_filter_use_case.dart';
+import '../../domain/usecases/watchlist_filter/watchlist_movie_filter_use_case.dart';
+import '../../domain/usecases/watchlist_filter/watchlist_series_filter_use_case.dart';
 import '../ui/base/view_model/base_status_handler.dart';
 import '../ui/impl_base_status_handler.dart';
 import '../ui/navigation/app_router.dart';
@@ -392,6 +396,19 @@ final watchMoviesUseCasePr = Provider<WatchMovieUseCase>(
 );
 final watchSeriesUseCasePr = Provider<WatchSeriesUseCase>(
   (ref) => WatchSeriesUseCase(repository: ref.read(watchRepositoryPr)),
+);
+final watchedMovieFilterUseCasePr = Provider<WatchedMovieFilterUseCase>(
+  (ref) => WatchedMovieFilterUseCase(repository: ref.read(watchRepositoryPr)),
+);
+final watchedSeriesFilterUseCasePr = Provider<WatchedSeriesFilterUseCase>(
+  (ref) => WatchedSeriesFilterUseCase(repository: ref.read(watchRepositoryPr)),
+);
+final watchlistMovieFilterUseCasePr = Provider<WatchlistMovieFilterUseCase>(
+  (ref) => WatchlistMovieFilterUseCase(repository: ref.read(watchRepositoryPr)),
+);
+final watchlistSeriesFilterUseCasePr = Provider<WatchlistSeriesFilterUseCase>(
+  (ref) =>
+      WatchlistSeriesFilterUseCase(repository: ref.read(watchRepositoryPr)),
 );
 
 // AUTH

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:async/async.dart' hide Result;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../common/utils/ext/media_short_list_manager.dart';
@@ -8,8 +9,13 @@ import '../../../../../domain/entities/movie/movie_short_data.dart';
 import '../../../../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/entities/series/series_short_data.dart';
+import '../../../../../domain/entities/watched_filter/movies_watched_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/series_watched_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/watched_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/watched_sort_by.dart';
 import '../../../../../domain/usecases/sync_use_case.dart';
 import '../../../../../domain/usecases/watch/watch_use_case.dart';
+import '../../../../../domain/usecases/watched_filter/watched_filter_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../base/view_model/utils/safe_operations_mixin.dart';
@@ -30,20 +36,28 @@ typedef WatchedVSP = ASP<WatchedViewModel, WatchedState>;
 /// A type alias for [AutoDisposeNotifierProvider] used to provide an instance of [WatchedViewModel].
 ///
 /// The [T] parameter represents the [MediaShortData] type.
-typedef WatchedVMProvider<T extends MediaShortData> =
-    AutoDisposeNotifierProvider<WatchedViewModel<T>, WatchedState<T>>;
+/// The [F] parameter represents the [WatchedFilterData] type.
+typedef WatchedVMProvider<
+  T extends MediaShortData,
+  F extends WatchedFilterData
+> = AutoDisposeNotifierProvider<WatchedViewModel<T, F>, WatchedState<T, F>>;
 
 /// {@category StateManagement}
 ///
 /// A base view model for managing `watched`-specific logic and state.
 ///
 /// This class is responsible for coordinating `watched` behavior and interacting with the UI.
-abstract base class WatchedViewModel<T extends MediaShortData>
-    extends AutoDisposeNotifier<WatchedState<T>>
+abstract base class WatchedViewModel<
+  T extends MediaShortData,
+  F extends WatchedFilterData
+>
+    extends AutoDisposeNotifier<WatchedState<T, F>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final WatchUseCase<T> _watchUseCase;
+  late final WatchedFilterUseCase<T, F> _watchedFilterUseCase;
   late final SyncUseCase _syncUseCase;
   late final StreamSubscription<Result<T>> _watchChangesSubscription;
+  CancelableOperation<Result<ListWithPaginationData<T>>>? _filterOperation;
 
   void _handleWatchChanges(Result<T> event) {
     final item = event.fold((_) => null, (value) => value);
@@ -64,21 +78,31 @@ abstract base class WatchedViewModel<T extends MediaShortData>
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(WatchedBaseStatus(isLoading: showLoader));
 
-    await _loadWatched();
+    // TODO: Load filter from local db
+
+    await _loadFilterResult();
   }
 
   Future<void> loadNextPage(int page) {
     state = state.copyWithUpdWatched(isNextPageLoading: true);
 
-    return _loadWatched(page: page, isNewPageLoaded: true);
+    return _loadFilterResult(page: page, isNewPageLoaded: true);
   }
 
-  Future<void> _loadWatched({
+  Future<void> _loadFilterResult({
     int page = 1,
     bool isNewPageLoaded = false,
   }) async {
     return safeCall(
-      () => _watchUseCase.getWatched(page: page),
+      () async {
+        _filterOperation?.cancel();
+
+        _filterOperation = CancelableOperation.fromFuture(
+          _watchedFilterUseCase.getWatched(page: page, filter: state.filter),
+        );
+
+        return _filterOperation?.valueOrCancellation();
+      },
       onResult: (result) =>
           _handleWatchedResult(result, isNewPageLoaded: isNewPageLoaded),
     );
@@ -101,6 +125,32 @@ abstract base class WatchedViewModel<T extends MediaShortData>
         );
       },
     );
+  }
+
+  void updateSortBy(WatchedSortBy sortBy) {
+    _updateStatus(WatchedBaseInitStatus(isLoading: true));
+
+    final filter = state.filter.copyWith(sortBy: sortBy) as F;
+
+    state = state.copyWith(filter: filter);
+
+    _saveFilter();
+
+    _loadFilterResult();
+  }
+
+  void updateFilter(F filter) {
+    _updateStatus(WatchedBaseInitStatus(isLoading: true));
+
+    state = state.copyWith(filter: filter);
+
+    _saveFilter();
+
+    _loadFilterResult();
+  }
+
+  void _saveFilter() {
+    // TODO:save filter to local db
   }
 
   void _updateStatus(WatchedStatus status) {

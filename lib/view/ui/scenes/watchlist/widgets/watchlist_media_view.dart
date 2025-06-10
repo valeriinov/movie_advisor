@@ -4,6 +4,7 @@ import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../../../domain/entities/watchlist_filter/watchlist_filter_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/content_mode_view_model/content_mode_view_model.dart';
@@ -16,8 +17,12 @@ import '../../../widgets/scroll_top_listener.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
 import '../watchlist_view_model/watchlist_view_model.dart';
 
-class WatchlistMediaView<T extends MediaShortData> extends HookConsumerWidget {
-  final WatchlistVMProvider<T> provider;
+class WatchlistMediaView<
+  T extends MediaShortData,
+  F extends WatchlistFilterData
+>
+    extends HookConsumerWidget {
+  final WatchlistVMProvider<T, F> provider;
   final ContentMode contentMode;
   final String screenTitle;
   final String emptyListTitle;
