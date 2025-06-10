@@ -25,7 +25,7 @@ class MoviesWatchedFilterDataMapper
 
   static WatchedSortBy _$sortBy(MoviesWatchedFilterData v) => v.sortBy;
   static const Field<MoviesWatchedFilterData, WatchedSortBy> _f$sortBy =
-      Field('sortBy', _$sortBy, opt: true, def: WatchedSortBy.watchedDateAsc);
+      Field('sortBy', _$sortBy, opt: true, def: WatchedSortBy.watchedDateDesc);
   static List<Country> _$withCountries(MoviesWatchedFilterData v) =>
       v.withCountries;
   static const Field<MoviesWatchedFilterData, List<Country>> _f$withCountries =
