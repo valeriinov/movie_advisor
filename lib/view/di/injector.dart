@@ -73,6 +73,10 @@ import '../../data/repositories/sync/sync_data_source.dart';
 import '../../data/repositories/watch/impl_watch_repository.dart';
 import '../../data/repositories/watch/watch_local_data_source.dart';
 import '../../data/repositories/watch/watch_remote_data_source.dart';
+import '../../data/repositories/watched_filter/impl_watched_filter_repository.dart';
+import '../../data/repositories/watched_filter/watched_filter_local_data_source.dart';
+import '../../data/repositories/watchlist_filter/impl_watchlist_filter_repository.dart';
+import '../../data/repositories/watchlist_filter/watchlist_filter_local_data_source.dart';
 import '../../data/sources/impl_auth_local_data_source.dart';
 import '../../data/sources/impl_auth_remote_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
@@ -88,6 +92,8 @@ import '../../data/sources/impl_settings_provider.dart';
 import '../../data/sources/impl_sync_data_source.dart';
 import '../../data/sources/impl_watch_local_data_source.dart';
 import '../../data/sources/impl_watch_remote_data_source.dart';
+import '../../data/sources/impl_watched_filter_local_data_source.dart';
+import '../../data/sources/impl_watchlist_filter_local_data_source.dart';
 import '../../data/utils/media_merger/impl_media_merger.dart';
 import '../../data/utils/media_merger/media_merger.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -100,6 +106,8 @@ import '../../domain/repositories/search_repository.dart';
 import '../../domain/repositories/settings_repository.dart';
 import '../../domain/repositories/sync_repository.dart';
 import '../../domain/repositories/watch_repository.dart';
+import '../../domain/repositories/watched_filter_repository.dart';
+import '../../domain/repositories/watchlist_filter_repository.dart';
 import '../../domain/usecases/auth_use_case.dart';
 import '../../domain/usecases/details/details_movie_use_case.dart';
 import '../../domain/usecases/details/details_series_use_case.dart';
@@ -397,18 +405,53 @@ final watchMoviesUseCasePr = Provider<WatchMovieUseCase>(
 final watchSeriesUseCasePr = Provider<WatchSeriesUseCase>(
   (ref) => WatchSeriesUseCase(repository: ref.read(watchRepositoryPr)),
 );
+
+// WATCH FILTER
+final watchedFilterLocalDataSourcePr = Provider<WatchedFilterLocalDataSource>(
+  (ref) =>
+      ImplWatchedFilterLocalDataSource(database: ref.read(localDatabasePr)),
+);
+final watchedFilterRepositoryPr = Provider<WatchedFilterRepository>(
+  (ref) => ImplWatchedFilterRepository(
+    dataSource: ref.read(watchedFilterLocalDataSourcePr),
+    mapper: ref.read(watchFiltersMapperPr),
+  ),
+);
+final watchlistFilterLocalDataSourcePr =
+    Provider<WatchlistFilterLocalDataSource>(
+      (ref) => ImplWatchlistFilterLocalDataSource(
+        database: ref.read(localDatabasePr),
+      ),
+    );
+final watchlistFilterRepositoryPr = Provider<WatchlistFilterRepository>(
+  (ref) => ImplWatchlistFilterRepository(
+    dataSource: ref.read(watchlistFilterLocalDataSourcePr),
+    mapper: ref.read(watchFiltersMapperPr),
+  ),
+);
 final watchedMovieFilterUseCasePr = Provider<WatchedMovieFilterUseCase>(
-  (ref) => WatchedMovieFilterUseCase(repository: ref.read(watchRepositoryPr)),
+  (ref) => WatchedMovieFilterUseCase(
+    watchRepository: ref.read(watchRepositoryPr),
+    filterRepository: ref.read(watchedFilterRepositoryPr),
+  ),
 );
 final watchedSeriesFilterUseCasePr = Provider<WatchedSeriesFilterUseCase>(
-  (ref) => WatchedSeriesFilterUseCase(repository: ref.read(watchRepositoryPr)),
+  (ref) => WatchedSeriesFilterUseCase(
+    watchRepository: ref.read(watchRepositoryPr),
+    filterRepository: ref.read(watchedFilterRepositoryPr),
+  ),
 );
 final watchlistMovieFilterUseCasePr = Provider<WatchlistMovieFilterUseCase>(
-  (ref) => WatchlistMovieFilterUseCase(repository: ref.read(watchRepositoryPr)),
+  (ref) => WatchlistMovieFilterUseCase(
+    watchRepository: ref.read(watchRepositoryPr),
+    filterRepository: ref.read(watchlistFilterRepositoryPr),
+  ),
 );
 final watchlistSeriesFilterUseCasePr = Provider<WatchlistSeriesFilterUseCase>(
-  (ref) =>
-      WatchlistSeriesFilterUseCase(repository: ref.read(watchRepositoryPr)),
+  (ref) => WatchlistSeriesFilterUseCase(
+    watchRepository: ref.read(watchRepositoryPr),
+    filterRepository: ref.read(watchlistFilterRepositoryPr),
+  ),
 );
 
 // AUTH

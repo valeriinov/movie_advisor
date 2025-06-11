@@ -7,6 +7,10 @@ abstract interface class WatchedFilterUseCase<
   T extends MediaShortData,
   F extends WatchedFilterData
 > {
+  Future<Result<void>> saveFilter(F filter);
+
+  Future<Result<F?>> getSavedFilter();
+
   Future<Result<ListWithPaginationData<T>>> getWatched({
     required int page,
     required F filter,

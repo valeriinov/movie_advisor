@@ -78,7 +78,15 @@ abstract base class WatchedViewModel<
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(WatchedBaseStatus(isLoading: showLoader));
 
-    // TODO: Load filter from local db
+    await safeCall(
+      _watchedFilterUseCase.getSavedFilter,
+      onResult: (result) {
+        result.fold((_) {}, (filter) {
+          if (filter == null) return;
+          state = state.copyWith(filter: filter);
+        });
+      },
+    );
 
     await _loadFilterResult();
   }
@@ -150,7 +158,7 @@ abstract base class WatchedViewModel<
   }
 
   void _saveFilter() {
-    // TODO:save filter to local db
+    _watchedFilterUseCase.saveFilter(state.filter);
   }
 
   void _updateStatus(WatchedStatus status) {

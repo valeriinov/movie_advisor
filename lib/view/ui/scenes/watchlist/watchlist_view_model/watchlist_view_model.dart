@@ -78,7 +78,15 @@ abstract base class WatchlistViewModel<
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(WatchlistBaseStatus(isLoading: showLoader));
 
-    // TODO: Load filter from local db
+    await safeCall(
+      _watchlistFilterUseCase.getSavedFilter,
+      onResult: (result) {
+        result.fold((_) {}, (filter) {
+          if (filter == null) return;
+          state = state.copyWith(filter: filter);
+        });
+      },
+    );
 
     await _loadFilterResult();
   }
@@ -153,7 +161,7 @@ abstract base class WatchlistViewModel<
   }
 
   void _saveFilter() {
-    // TODO:save filter to local db
+    _watchlistFilterUseCase.saveFilter(state.filter);
   }
 
   void _updateStatus(WatchlistStatus status) {
