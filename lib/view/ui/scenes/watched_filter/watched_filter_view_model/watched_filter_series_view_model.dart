@@ -22,9 +22,9 @@ final watchedFilterSeriesViewModelPr =
 
 /// {@category StateManagement}
 ///
-/// A view model for managing `filter-settings-series`-specific logic and state.
+/// A view model for managing `watched filter series`-specific logic and state.
 ///
-/// This class is responsible for coordinating `filter-settings-series` behavior and interacting with the UI.
+/// This class is responsible for coordinating `watched filter series` behavior and interacting with the UI.
 final class WatchedFilterSeriesViewModel
     extends WatchedFilterViewModel<SeriesWatchedFilterData, SeriesGenre> {
   @override

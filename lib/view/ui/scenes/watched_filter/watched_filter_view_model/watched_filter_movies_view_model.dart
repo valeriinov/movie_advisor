@@ -9,22 +9,22 @@ typedef WatchedFilterMoviesState = WatchedFilterState<MoviesWatchedFilterData>;
 ///
 /// A type alias for [ASP] with [WatchedFilterMoviesViewModel] and [WatchedFilterState].
 typedef WatchedFilterMoviesVSP =
-ASP<WatchedFilterViewModel, WatchedFilterState>;
+    ASP<WatchedFilterMoviesViewModel, WatchedFilterMoviesState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [WatchedFilterMoviesViewModel] class.
 final watchedFilterMoviesViewModelPr =
-AutoDisposeNotifierProvider<
-    WatchedFilterMoviesViewModel,
-    WatchedFilterMoviesState
->(WatchedFilterMoviesViewModel.new);
+    AutoDisposeNotifierProvider<
+      WatchedFilterMoviesViewModel,
+      WatchedFilterMoviesState
+    >(WatchedFilterMoviesViewModel.new);
 
 /// {@category StateManagement}
 ///
-/// A view model for managing `filter-settings-movies`-specific logic and state.
+/// A view model for managing `watched filter movies`-specific logic and state.
 ///
-/// This class is responsible for coordinating `filter-settings-movies` behavior and interacting with the UI.
+/// This class is responsible for coordinating `watched filter movies` behavior and interacting with the UI.
 final class WatchedFilterMoviesViewModel
     extends WatchedFilterViewModel<MoviesWatchedFilterData, MovieGenre> {
   @override

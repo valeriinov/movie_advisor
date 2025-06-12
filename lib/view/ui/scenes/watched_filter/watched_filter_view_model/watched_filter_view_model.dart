@@ -1,5 +1,3 @@
-
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../common/utils/ext/country_list_manager.dart';
@@ -20,7 +18,7 @@ part 'watched_filter_series_view_model.dart';
 /// {@category StateManagement}
 ///
 /// A type alias for [ASP] with [WatchedFilterViewModel] and [WatchedFilterState].
-typedef FilterSettingsVSP = ASP<WatchedFilterViewModel, WatchedFilterState>;
+typedef WatchedFilterVSP = ASP<WatchedFilterViewModel, WatchedFilterState>;
 
 /// {@category StateManagement}
 ///
@@ -29,7 +27,7 @@ typedef FilterSettingsVSP = ASP<WatchedFilterViewModel, WatchedFilterState>;
 ///
 /// The [F] parameter represents the [WatchedFilterData] type.
 /// The [G] parameter represents the genre type.
-typedef WatchedFilterSettingsVMProvider<F extends WatchedFilterData, G> =
+typedef WatchedFilterVMProvider<F extends WatchedFilterData, G> =
     AutoDisposeNotifierProvider<
       WatchedFilterViewModel<F, G>,
       WatchedFilterState<F>
