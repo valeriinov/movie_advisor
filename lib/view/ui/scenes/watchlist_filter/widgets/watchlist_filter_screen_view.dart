@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../base/content_mode_view_model/content_mode_view_model.dart';
+import '../../../base/view_model/ext/vm_state_provider_creator.dart';
+import 'watchlist_filter_content_switcher.dart';
 
-class WatchlistFilterScreenView extends ConsumerWidget  {
+class WatchlistFilterScreenView extends ConsumerWidget {
   const WatchlistFilterScreenView({super.key});
 
   @override
   Widget build(context, ref) {
+    final vspContMode = ref.vspFromADProvider(contentModeViewModelPr);
 
-    return Scaffold(
-      appBar: MainAppBar(title: Text('WatchlistFilter Screen')), // TODO: Localize title
-      body: Center(child: Text('WatchlistFilter Screen')),
-    );
+    final contMode = vspContMode.selectWatch((s) => s.mode);
+
+    return WatchlistFilterContentSwitcher(contMode: contMode);
   }
 }

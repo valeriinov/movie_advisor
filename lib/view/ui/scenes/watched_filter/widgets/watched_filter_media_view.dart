@@ -4,11 +4,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../common/utils/ext/default_filter.dart';
+import '../../../../../common/utils/ext/watched_default_filter.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
-import '../../../../../domain/entities/filter/filter_data.dart';
-import '../../../../../domain/entities/filter/movies_filter_data.dart';
-import '../../../../../domain/entities/filter/series_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/movies_watched_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/series_watched_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/watched_filter_data.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
@@ -17,42 +17,45 @@ import '../../../resources/ext/movie_genre_desc.dart';
 import '../../../resources/ext/series_genre_desc.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
+import '../../../widgets/filter/filter_app_bar.dart';
 import '../../../widgets/filter/filter_countries_container.dart';
 import '../../../widgets/filter/filter_divider.dart';
 import '../../../widgets/filter/filter_genres_container.dart';
 import '../../../widgets/filter/filter_years_container.dart';
-import '../../filter/filter_view_model/filter_view_model.dart';
-import '../filter_settings_view_model/filter_settings_state.dart';
-import '../filter_settings_view_model/filter_settings_view_model.dart';
-import '../../../widgets/filter/filter_app_bar.dart';
-import 'filter_user_lists_container.dart';
+import '../../watched/watched_view_model/watched_view_model.dart';
+import '../watched_filter_view_model/watched_filter_state.dart';
+import '../watched_filter_view_model/watched_filter_view_model.dart';
 
-class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
+class WatchedFilterMediaView<
+  T extends MediaShortData,
+  F extends WatchedFilterData,
+  G
+>
     extends HookConsumerWidget {
-  final FilterSettingsVMProvider<F, G> filterSettingsProvider;
-  final FilterVMProvider<T, F, G> filterProvider;
+  final WatchedFilterVMProvider<F, G> filterProvider;
+  final WatchedVMProvider<T, F> watchedProvider;
   final ContentMode contentMode;
 
-  const FilterSettingsMediaView({
+  const WatchedFilterMediaView({
     super.key,
-    required this.filterSettingsProvider,
     required this.filterProvider,
+    required this.watchedProvider,
     required this.contentMode,
   });
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(filterSettingsProvider);
+    final vsp = ref.vspFromADProvider(filterProvider);
     final viewModel = vsp.viewModel;
-    final vspFilter = ref.vspFromADProvider(filterProvider);
+    final watchedVsp = ref.vspFromADProvider(watchedProvider);
 
     useEffect(() {
-      _scheduleInitFilter(context, vspFilter, vsp);
+      _scheduleInitFilter(context, watchedVsp, vsp);
       return null;
     }, []);
 
     vsp.handleState(
-      listener: (prev, next) => _handleState(prev, next, context, vspFilter),
+      listener: (prev, next) => _handleState(prev, next, context, watchedVsp),
     );
 
     final hasUnsavedChanges = vsp.selectWatch((s) => s.isFilterChanged);
@@ -83,7 +86,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
           children: [
             FilterDivider(),
             FilterGenresContainer(
-              key: const PageStorageKey('filter-with-genres'),
+              key: const PageStorageKey('watched-filter-with-genres'),
               title: LocaleKeys.filterWithGenres.tr(),
               contentMode: contentMode,
               selectedGenresDesc: selectedWithGenresDesc,
@@ -92,7 +95,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
             ),
             FilterDivider(),
             FilterGenresContainer(
-              key: const PageStorageKey('filter-without-genres'),
+              key: const PageStorageKey('watched-filter-without-genres'),
               title: LocaleKeys.filterWithoutGenres.tr(),
               contentMode: contentMode,
               selectedGenresDesc: selectedWithoutGenresDesc,
@@ -101,25 +104,17 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
             ),
             FilterDivider(),
             FilterCountriesContainer(
-              key: const PageStorageKey('filter-with-countries'),
+              key: const PageStorageKey('watched-filter-with-countries'),
               selectedCountries: filter.withCountries,
               onTapCountry: viewModel.updateWithCountries,
             ),
             FilterDivider(),
-            FilterUserListsContainer(
-              key: const PageStorageKey('filter-user-lists'),
-              includeWatched: filter.includeWatched,
-              includeWatchlist: filter.includeWatchlist,
-              onTapIncludeWatched: viewModel.updateIncludeWatched,
-              onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
-            ),
-            FilterDivider(),
             FilterYearsContainer(
-              key: const PageStorageKey('filter-dates'),
-              fromDate: filter.fromDate,
-              toDate: filter.toDate,
-              onFromDateChanged: viewModel.updateFromDate,
-              onToDateChanged: viewModel.updateToDate,
+              key: const PageStorageKey('watched-filter-dates'),
+              fromDate: filter.fromPremiereDate,
+              toDate: filter.toPremiereDate,
+              onFromDateChanged: viewModel.updateFromPremiereDate,
+              onToDateChanged: viewModel.updateToPremiereDate,
             ),
             FilterDivider(),
           ],
@@ -135,35 +130,35 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
 
   bool _isDefaultFilter(F filter) {
     return switch (filter) {
-      MoviesFilterData() => filter.isDefault,
-      SeriesFilterData() => filter.isDefault,
+      MoviesWatchedFilterData() => filter.isDefault,
+      SeriesWatchedFilterData() => filter.isDefault,
       _ => false,
     };
   }
 
   void _scheduleInitFilter(
     BuildContext context,
-    FilterVSP vspFilter,
-    FilterSettingsVSP vsp,
+    WatchedVSP vspWatched,
+    WatchedFilterVSP vsp,
   ) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!context.mounted) return;
-      final initFilter = vspFilter.selectRead((s) => s.filter);
+      final initFilter = vspWatched.selectRead((s) => s.filter);
       vsp.viewModel.init(initFilter: initFilter);
     });
   }
 
   void _handleState(
-    FilterSettingsState<F>? prev,
-    FilterSettingsState<F> next,
+    WatchedFilterState<F>? prev,
+    WatchedFilterState<F> next,
     BuildContext context,
-    FilterVSP vspFilter,
+    WatchedVSP vspWatched,
   ) {
     if (!next.isUpdate(prev, (s) => s?.status)) return;
 
-    if (next.status is ApplyFilterSettingsStatus) {
+    if (next.status is ApplyWatchedFilterStatus) {
       final filter = next.filter;
-      vspFilter.viewModel.updateFilter(filter);
+      vspWatched.viewModel.updateFilter(filter);
 
       context.pop();
     }
@@ -181,11 +176,11 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
     bool withGenres = true,
   }) {
     return switch (filter) {
-      MoviesFilterData() =>
+      MoviesWatchedFilterData() =>
         withGenres
             ? filter.withGenres.map((e) => e.desc)
             : filter.withoutGenres.map((e) => e.desc),
-      SeriesFilterData() =>
+      SeriesWatchedFilterData() =>
         withGenres
             ? filter.withGenres.map((e) => e.desc)
             : filter.withoutGenres.map((e) => e.desc),
@@ -193,13 +188,13 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
     }.toList();
   }
 
-  void _updateWithGenres(FilterSettingsVSP vsp, String desc) {
+  void _updateWithGenres(WatchedFilterVSP vsp, String desc) {
     final genre = _getGenreFromDesc(desc);
 
     vsp.viewModel.updateWithGenres(genre);
   }
 
-  void _updateWithoutGenres(FilterSettingsVSP vsp, String desc) {
+  void _updateWithoutGenres(WatchedFilterVSP vsp, String desc) {
     final genre = _getGenreFromDesc(desc);
 
     vsp.viewModel.updateWithoutGenres(genre);

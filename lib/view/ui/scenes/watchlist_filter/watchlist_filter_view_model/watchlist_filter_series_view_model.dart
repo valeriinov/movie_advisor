@@ -9,13 +9,13 @@ typedef WatchlistFilterSeriesState =
 /// {@category StateManagement}
 ///
 /// A type alias for [ASP] with [WatchlistFilterSeriesViewModel] and [WatchlistFilterSeriesState].
-typedef WatchedFilterSeriesVSP =
+typedef WatchlistFilterSeriesVSP =
     ASP<WatchlistFilterSeriesViewModel, WatchlistFilterSeriesState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [WatchlistFilterSeriesViewModel] class.
-final watchedFilterSeriesViewModelPr =
+final watchlistFilterSeriesViewModelPr =
     AutoDisposeNotifierProvider<
       WatchlistFilterSeriesViewModel,
       WatchlistFilterSeriesState

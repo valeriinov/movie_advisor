@@ -2,16 +2,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../resources/base_theme/components/base_components_styles_ext.dart';
-import '../../../resources/base_theme/durations/base_durations_ext.dart';
-import '../../../resources/locale_keys.g.dart';
+import '../../resources/base_theme/components/base_components_styles_ext.dart';
+import '../../resources/base_theme/durations/base_durations_ext.dart';
+import '../../resources/locale_keys.g.dart';
 
-class FilterSettingsAppBar extends StatelessWidget
+class FilterAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   final VoidCallback? onReset;
   final VoidCallback? onSave;
 
-  const FilterSettingsAppBar({super.key, this.onReset, this.onSave});
+  const FilterAppBar({super.key, this.onReset, this.onSave});
 
   @override
   Widget build(BuildContext context) {

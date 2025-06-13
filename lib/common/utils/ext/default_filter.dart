@@ -1,7 +1,7 @@
 import '../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../domain/entities/filter/series_filter_data.dart';
 
-extension DefaultMoviesFilterHandler on MoviesFilterData {
+extension DefaultMoviesFilter on MoviesFilterData {
   bool get isDefault {
     return withGenres.isEmpty &&
         withoutGenres.isEmpty &&
@@ -13,7 +13,7 @@ extension DefaultMoviesFilterHandler on MoviesFilterData {
   }
 }
 
-extension DefaultSeriesFilterHandler on SeriesFilterData {
+extension DefaultSeriesFilter on SeriesFilterData {
   bool get isDefault {
     return withGenres.isEmpty &&
         withoutGenres.isEmpty &&
