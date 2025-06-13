@@ -15,7 +15,7 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../navigation/routes/details_route.dart';
 import '../filter_view_model/filter_view_model.dart';
 import 'filter_screen_content.dart';
-import 'floating_filter_bar.dart';
+import 'filter_floating_bar_container.dart';
 
 class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
     extends HookConsumerWidget {
@@ -77,7 +77,7 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
       child: CustomScrollView(
         controller: scrollController,
         slivers: [
-          FloatingFilterBar(provider: provider),
+          FilterFloatingBarContainer(provider: provider),
           FilterScreenContent(
             isLoading: isLoading,
             isInitialized: isInitialized,

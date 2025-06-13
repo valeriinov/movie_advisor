@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/ext/flutter_ext/widget/gap_creator.dart';
 
-import '../../../base/content_mode_view_model/content_mode.dart';
-import '../../../resources/base_theme/components/base_components_styles_ext.dart';
-import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
-import '../../../resources/ext/movie_genre_desc.dart';
-import '../../../resources/ext/series_genre_desc.dart';
-import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/filter_checkbox_list_tile.dart';
+import '../../base/content_mode_view_model/content_mode.dart';
+import '../../resources/base_theme/components/base_components_styles_ext.dart';
+import '../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../resources/ext/movie_genre_desc.dart';
+import '../../resources/ext/series_genre_desc.dart';
+import '../../resources/locale_keys.g.dart';
+import 'filter_checkbox_list_tile.dart';
 
 class FilterGenresContainer extends HookWidget {
   final String title;

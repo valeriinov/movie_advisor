@@ -20,9 +20,9 @@ import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
 import '../filter_settings_view_model/filter_settings_state.dart';
 import '../filter_settings_view_model/filter_settings_view_model.dart';
-import 'filter_countries_container.dart';
-import 'filter_dates_container.dart';
-import 'filter_genres_container.dart';
+import '../../../widgets/filter/filter_countries_container.dart';
+import '../../../widgets/filter/filter_years_container.dart';
+import '../../../widgets/filter/filter_genres_container.dart';
 import 'filter_settings_app_bar.dart';
 import 'filter_user_lists_container.dart';
 
@@ -113,7 +113,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
             ),
             _divider(),
-            FilterDatesContainer(
+            FilterYearsContainer(
               key: const PageStorageKey('filter-dates'),
               fromDate: filter.fromDate,
               toDate: filter.toDate,

@@ -5,7 +5,7 @@ import 'package:flutter_utils/flutter_utils.dart';
 import '../../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/filter_checkbox_list_tile.dart';
+import '../../../widgets/filter/filter_checkbox_list_tile.dart';
 
 class FilterUserListsContainer extends StatelessWidget {
   final bool includeWatched;

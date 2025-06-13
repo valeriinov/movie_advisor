@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../resources/base_theme/colors/base_colors_ext.dart';
+import '../../resources/base_theme/colors/base_colors_ext.dart';
 
 class FilterCheckboxListTile extends StatelessWidget {
   final String label;

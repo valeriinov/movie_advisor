@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
-import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
-import '../../../widgets/filter_control_buttons.dart';
+import '../../resources/base_theme/dimens/base_dimens_ext.dart';
+import 'filter_control_buttons.dart';
 
-class FilterDatePicker extends HookWidget {
+class FilterYearPicker extends HookWidget {
   static const int _minYear = 1900;
 
   final int minYear;
@@ -13,7 +13,7 @@ class FilterDatePicker extends HookWidget {
   final DateTime? date;
   final ValueChanged<DateTime?> onDateChanged;
 
-  const FilterDatePicker({
+  const FilterYearPicker({
     super.key,
     required this.date,
     required this.onDateChanged,

@@ -2,22 +2,22 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
-import '../../../resources/app_date_formats.dart';
-import '../../../resources/base_theme/components/base_components_styles_ext.dart';
-import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
-import '../../../resources/locale_keys.g.dart';
-import '../../../widgets/bottom_sheet/blurred_bottom_sheet.dart';
-import '../../../widgets/filter_bottom_sheet.dart';
-import 'filter_date_picker.dart';
-import 'year_button.dart';
+import '../../resources/app_date_formats.dart';
+import '../../resources/base_theme/components/base_components_styles_ext.dart';
+import '../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../resources/locale_keys.g.dart';
+import '../bottom_sheet/blurred_bottom_sheet.dart';
+import 'filter_bottom_sheet.dart';
+import 'filter_year_picker.dart';
+import '../../scenes/filter_settings/widgets/year_button.dart';
 
-class FilterDatesContainer extends StatelessWidget {
+class FilterYearsContainer extends StatelessWidget {
   final DateTime? fromDate;
   final DateTime? toDate;
   final Function(DateTime?) onFromDateChanged;
   final Function(DateTime?) onToDateChanged;
 
-  const FilterDatesContainer({
+  const FilterYearsContainer({
     super.key,
     required this.fromDate,
     required this.toDate,
@@ -102,7 +102,7 @@ class FilterDatesContainer extends StatelessWidget {
       child: FilterBottomSheet(
         title: title,
         minHeight: 360,
-        content: FilterDatePicker(
+        content: FilterYearPicker(
           minYear: minYear,
           maxYear: maxYear,
           date: date,
