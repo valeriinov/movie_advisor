@@ -17,6 +17,7 @@ import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
 import '../watched_view_model/watched_view_model.dart';
+import 'watched_floating_bar_container.dart';
 
 class WatchedMediaView<T extends MediaShortData, F extends WatchedFilterData>
     extends HookConsumerWidget {
@@ -98,6 +99,7 @@ class WatchedMediaView<T extends MediaShortData, F extends WatchedFilterData>
             onRefresh: !isLoading
                 ? () => vsp.viewModel.loadInitialData(showLoader: false)
                 : null,
+            floatingBar: WatchedFloatingBarContainer(provider: provider),
           ),
           floatingActionButton: isFabVisible
               ? ScrollTopFab(scrollController: scrollController)

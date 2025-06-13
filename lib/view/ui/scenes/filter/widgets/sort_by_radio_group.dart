@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../domain/entities/filter/sort_by.dart';
-import '../../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../../resources/ext/sort_by_desc.dart';
+import '../../../widgets/filter/filter_sort_by_radio_wrapper.dart';
+import '../../../widgets/filter/filter_sort_by_tile.dart';
 
 class SortByRadioGroup extends StatelessWidget {
   final bool isMovies;
@@ -18,39 +19,25 @@ class SortByRadioGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Material(
-        type: MaterialType.transparency,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: isMovies
-              ? SortBy.values
-                    .map((sortBy) => _buildSortByRadioListTile(context, sortBy))
-                    .toList()
-              : SortBy.valuesSeries
-                    .map((sortBy) => _buildSortByRadioListTile(context, sortBy))
-                    .toList(),
-        ),
-      ),
+    return FilterSortByRadioWrapper(
+      children: isMovies
+          ? SortBy.values
+                .map((sortBy) => _buildSortByRadioListTile(context, sortBy))
+                .toList()
+          : SortBy.valuesSeries
+                .map((sortBy) => _buildSortByRadioListTile(context, sortBy))
+                .toList(),
     );
   }
 
   Widget _buildSortByRadioListTile(BuildContext context, SortBy sortBy) {
-    final styles = context.baseComponentsStyles;
-    final titleStyle = styles.listTileSecTitleTextStyle;
-    final selectedTitleStyle = styles.listTileSecTitleTextStyleSelect;
-
     final isSelected = currentSortBy == sortBy;
 
-    return RadioListTile<SortBy>(
-      title: Text(
-        sortBy.desc,
-        style: isSelected ? selectedTitleStyle : titleStyle,
-      ),
+    return FilterSortByTile(
+      title: sortBy.desc,
+      selected: isSelected,
       value: sortBy,
       groupValue: currentSortBy,
-      selected: isSelected,
       onChanged: (value) => _onSortSelected(context, value),
     );
   }

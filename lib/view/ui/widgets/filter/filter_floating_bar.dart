@@ -10,6 +10,7 @@ import '../../scenes/filter/widgets/filter_button.dart';
 import '../no_always_scroll_wrapper.dart';
 
 class FilterFloatingBar extends StatelessWidget {
+  final String keyId;
   final String sortBySubtitle;
   final String filterSubtitle;
   final VoidCallback? onSortByTap;
@@ -17,6 +18,7 @@ class FilterFloatingBar extends StatelessWidget {
 
   const FilterFloatingBar({
     super.key,
+    required this.keyId,
     required this.sortBySubtitle,
     required this.filterSubtitle,
     this.onSortByTap,
@@ -41,6 +43,7 @@ class FilterFloatingBar extends StatelessWidget {
         title: TappableArea(
           child: NoAlwaysScrollWrapper(
             child: ListView(
+              key: PageStorageKey(keyId),
               scrollDirection: Axis.horizontal,
               padding: 4.insHor(),
               children: [

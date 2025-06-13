@@ -16,6 +16,7 @@ import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
 import '../watchlist_view_model/watchlist_view_model.dart';
+import 'watchlist_floating_bar_container.dart';
 
 class WatchlistMediaView<
   T extends MediaShortData,
@@ -92,6 +93,7 @@ class WatchlistMediaView<
             onRefresh: !isLoading
                 ? () => vsp.viewModel.loadInitialData(showLoader: false)
                 : null,
+            floatingBar: WatchlistFloatingBarContainer(provider: provider),
           ),
           floatingActionButton: isFabVisible
               ? ScrollTopFab(scrollController: scrollController)

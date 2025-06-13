@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_utils/ext/flutter_ext/widget/edge_insets_creator.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../domain/entities/base_media/media_short_data.dart';
@@ -6,8 +7,8 @@ import '../../base/media_load_info.dart';
 import '../../resources/app_images.dart';
 import '../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../resources/base_theme/durations/base_durations_ext.dart';
-import '../sliver_empty_list_container.dart';
 import '../next_page_loader.dart';
+import '../sliver_empty_list_container.dart';
 import '../sliver_fill_loader.dart';
 import '../sliver_refresh_indicator.dart';
 import 'watch_items.dart';
@@ -18,6 +19,7 @@ class WatchScreenContent extends StatelessWidget {
   final MediaLoadInfo<MediaShortData> watchlist;
   final String emptyListTitle;
   final String emptyListSubtitle;
+  final Widget? floatingBar;
   final void Function(int id)? onItemSelect;
   final Future<void> Function()? onRefresh;
   final ScrollController? scrollController;
@@ -33,8 +35,9 @@ class WatchScreenContent extends StatelessWidget {
     required this.watchlist,
     required this.emptyListTitle,
     required this.emptyListSubtitle,
-    required this.onItemSelect,
-    required this.onRefresh,
+    this.floatingBar,
+    this.onItemSelect,
+    this.onRefresh,
     this.scrollController,
   });
 
@@ -45,12 +48,13 @@ class WatchScreenContent extends StatelessWidget {
 
     final isNextPageLoading = watchlist.isNextPageLoading;
 
-    return Padding(
-      padding: dimens.padHorPrimIns,
-      child: CustomScrollView(
-        controller: scrollController,
-        slivers: [
-          SliverAnimatedSwitcher(
+    return CustomScrollView(
+      controller: scrollController,
+      slivers: [
+        if (floatingBar != null) floatingBar!,
+        SliverPadding(
+          padding: dimens.padHorPrimIns,
+          sliver: SliverAnimatedSwitcher(
             duration: durations.animSwitchPrim,
             child: switch (_hasEmptyList) {
               true => _buildEmptyList(),
@@ -58,7 +62,7 @@ class WatchScreenContent extends StatelessWidget {
               _ => MultiSliver(
                 children: [
                   SliverRefreshIndicator(onRefresh: onRefresh),
-                  SliverPadding(padding: dimens.padTopPrimIns),
+                  SliverPadding(padding: (dimens.spLarge / 2).insTop()),
                   WatchItems(
                     media: watchlist.mediaData.items,
                     onItemSelect: onItemSelect,
@@ -69,8 +73,8 @@ class WatchScreenContent extends StatelessWidget {
               ),
             },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

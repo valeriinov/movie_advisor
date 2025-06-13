@@ -2,7 +2,7 @@ import '../../../domain/entities/filter/filter_data.dart';
 import '../../../domain/entities/filter/movies_filter_data.dart';
 import '../../../domain/entities/filter/series_filter_data.dart';
 
-extension SelectedFiltersHandler on FilterData {
+extension SelectedFilters on FilterData {
   int? getSelectedFiltersCount() {
     return _getWithGenresCount() +
         _getWithoutGenresCount() +
