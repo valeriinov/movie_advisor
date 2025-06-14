@@ -6,6 +6,7 @@ class FilterCheckboxListTile extends StatelessWidget {
   final String label;
   final bool value;
   final double horizontalTitleGap;
+  final EdgeInsets? contentPadding;
   final TextStyle? labelStyle;
   final ValueChanged<bool?>? onChanged;
 
@@ -14,6 +15,7 @@ class FilterCheckboxListTile extends StatelessWidget {
     required this.label,
     required this.value,
     this.horizontalTitleGap = 10.0,
+    this.contentPadding,
     this.labelStyle,
     this.onChanged,
   });
@@ -24,6 +26,7 @@ class FilterCheckboxListTile extends StatelessWidget {
     return ListTileTheme(
       horizontalTitleGap: horizontalTitleGap,
       child: CheckboxListTile(
+        contentPadding: contentPadding,
         value: value,
         checkboxScaleFactor: 1.1,
         onChanged: onChanged,

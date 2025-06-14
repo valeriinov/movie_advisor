@@ -18,6 +18,7 @@ import '../../../resources/ext/series_genre_desc.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../../widgets/filter/filter_app_bar.dart';
+import '../../../widgets/filter/filter_checkbox_list_tile.dart';
 import '../../../widgets/filter/filter_countries_container.dart';
 import '../../../widgets/filter/filter_date_container.dart';
 import '../../../widgets/filter/filter_divider.dart';
@@ -127,6 +128,15 @@ class WatchlistFilterMediaView<
               onToDateChanged: viewModel.updateToAddedDate,
             ),
             FilterDivider(),
+            FilterCheckboxListTile(
+              label: LocaleKeys.includeWatchedDesc.tr(),
+              contentPadding: EdgeInsets.all(5),
+              value: filter.includeWatched,
+              onChanged: (val) {
+                if (val == null) return;
+                viewModel.updateIncludeWatched(val);
+              },
+            ),
           ],
         ),
       ),
