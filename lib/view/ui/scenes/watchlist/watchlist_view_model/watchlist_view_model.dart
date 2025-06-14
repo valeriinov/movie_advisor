@@ -66,7 +66,10 @@ abstract base class WatchlistViewModel<
 
     final watchlistData = state.watchlist.mediaData;
 
-    final resultsItems = watchlistData.items.handleWatchlistItem(item);
+    final resultsItems = watchlistData.items.handleWatchlistItem(
+      item,
+      state.filter.sortBy,
+    );
 
     state = state.copyWith(
       watchlist: state.watchlist.copyWith(

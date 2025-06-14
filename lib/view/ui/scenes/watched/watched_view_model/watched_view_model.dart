@@ -66,7 +66,10 @@ abstract base class WatchedViewModel<
 
     final watchedData = state.watched.mediaData;
 
-    final resultsItems = watchedData.items.handleWatchedItem(item);
+    final resultsItems = watchedData.items.handleWatchedItem(
+      item,
+      state.filter.sortBy,
+    );
 
     state = state.copyWith(
       watched: state.watched.copyWith(
