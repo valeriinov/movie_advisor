@@ -11,14 +11,18 @@ class WatchlistFilterData with WatchlistFilterDataMappable {
   final WatchlistSortBy sortBy;
   final List<Country> withCountries;
   final bool includeWatched;
-  final DateTime? fromDate;
-  final DateTime? toDate;
+  final DateTime? fromPremiereDate;
+  final DateTime? toPremiereDate;
+  final DateTime? fromAddedDate;
+  final DateTime? toAddedDate;
 
   const WatchlistFilterData({
     required this.sortBy,
     required this.withCountries,
     required this.includeWatched,
-    this.fromDate,
-    this.toDate,
+    this.fromPremiereDate,
+    this.toPremiereDate,
+    this.fromAddedDate,
+    this.toAddedDate,
   });
 }

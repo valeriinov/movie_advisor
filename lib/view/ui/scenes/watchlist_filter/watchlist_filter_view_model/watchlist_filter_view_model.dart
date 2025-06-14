@@ -65,14 +65,26 @@ abstract class WatchlistFilterViewModel<F extends WatchlistFilterData, G>
     state = state.copyWith(filter: filter);
   }
 
-  void updateFromDate(DateTime? fromDate) {
-    final filter = state.filter.copyWith(fromDate: fromDate) as F;
+  void updateFromPremiereDate(DateTime? fromDate) {
+    final filter = state.filter.copyWith(fromPremiereDate: fromDate) as F;
 
     state = state.copyWith(filter: filter);
   }
 
-  void updateToDate(DateTime? toDate) {
-    final filter = state.filter.copyWith(toDate: toDate) as F;
+  void updateToPremiereDate(DateTime? toDate) {
+    final filter = state.filter.copyWith(toPremiereDate: toDate) as F;
+
+    state = state.copyWith(filter: filter);
+  }
+
+  void updateFromAddedDate(DateTime? fromDate) {
+    final filter = state.filter.copyWith(fromAddedDate: fromDate) as F;
+
+    state = state.copyWith(filter: filter);
+  }
+
+  void updateToAddedDate(DateTime? toDate) {
+    final filter = state.filter.copyWith(toAddedDate: toDate) as F;
 
     state = state.copyWith(filter: filter);
   }

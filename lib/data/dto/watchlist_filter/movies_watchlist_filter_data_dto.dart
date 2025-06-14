@@ -13,8 +13,10 @@ class MoviesWatchlistFilterDataDto with MoviesWatchlistFilterDataDtoMappable {
   final bool? includeWatched;
   final List<MovieGenreDto>? withGenres;
   final List<MovieGenreDto>? withoutGenres;
-  final DateTime? fromDate;
-  final DateTime? toDate;
+  final DateTime? fromPremiereDate;
+  final DateTime? toPremiereDate;
+  final DateTime? fromAddedDate;
+  final DateTime? toAddedDate;
 
   const MoviesWatchlistFilterDataDto({
     this.sortBy,
@@ -22,8 +24,10 @@ class MoviesWatchlistFilterDataDto with MoviesWatchlistFilterDataDtoMappable {
     this.includeWatched,
     this.withGenres,
     this.withoutGenres,
-    this.fromDate,
-    this.toDate,
+    this.fromPremiereDate,
+    this.toPremiereDate,
+    this.fromAddedDate,
+    this.toAddedDate,
   });
 
   factory MoviesWatchlistFilterDataDto.fromJson(Map<String, dynamic> json) =>

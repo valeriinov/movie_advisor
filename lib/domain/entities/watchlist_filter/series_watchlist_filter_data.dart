@@ -20,7 +20,9 @@ class SeriesWatchlistFilterData extends WatchlistFilterData
     super.includeWatched = true,
     this.withGenres = const [],
     this.withoutGenres = const [],
-    super.fromDate,
-    super.toDate,
+    super.fromPremiereDate,
+    super.toPremiereDate,
+    super.fromAddedDate,
+    super.toAddedDate,
   });
 }

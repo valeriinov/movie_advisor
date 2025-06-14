@@ -50,7 +50,7 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       _countries(table.originCountry, filter.withCountries),
       _genresInclude(table.genres, filter.withGenres),
       _genresExclude(table.genres, filter.withoutGenres),
-      _dateRange(table.watchlistAddedAt, filter.fromDate, filter.toDate),
+      _dateRange(table.watchlistAddedAt, filter.fromPremiereDate, filter.toPremiereDate),
     ]);
   }
 
@@ -89,7 +89,7 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       _countries(table.originCountry, filter.withCountries),
       _genresInclude(table.genres, filter.withGenres),
       _genresExclude(table.genres, filter.withoutGenres),
-      _dateRange(table.watchlistAddedAt, filter.fromDate, filter.toDate),
+      _dateRange(table.watchlistAddedAt, filter.fromPremiereDate, filter.toPremiereDate),
     ]);
   }
 

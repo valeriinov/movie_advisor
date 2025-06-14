@@ -30,20 +30,29 @@ class WatchlistFilterDataMapper extends ClassMapperBase<WatchlistFilterData> {
   static bool _$includeWatched(WatchlistFilterData v) => v.includeWatched;
   static const Field<WatchlistFilterData, bool> _f$includeWatched =
       Field('includeWatched', _$includeWatched);
-  static DateTime? _$fromDate(WatchlistFilterData v) => v.fromDate;
-  static const Field<WatchlistFilterData, DateTime> _f$fromDate =
-      Field('fromDate', _$fromDate, opt: true);
-  static DateTime? _$toDate(WatchlistFilterData v) => v.toDate;
-  static const Field<WatchlistFilterData, DateTime> _f$toDate =
-      Field('toDate', _$toDate, opt: true);
+  static DateTime? _$fromPremiereDate(WatchlistFilterData v) =>
+      v.fromPremiereDate;
+  static const Field<WatchlistFilterData, DateTime> _f$fromPremiereDate =
+      Field('fromPremiereDate', _$fromPremiereDate, opt: true);
+  static DateTime? _$toPremiereDate(WatchlistFilterData v) => v.toPremiereDate;
+  static const Field<WatchlistFilterData, DateTime> _f$toPremiereDate =
+      Field('toPremiereDate', _$toPremiereDate, opt: true);
+  static DateTime? _$fromAddedDate(WatchlistFilterData v) => v.fromAddedDate;
+  static const Field<WatchlistFilterData, DateTime> _f$fromAddedDate =
+      Field('fromAddedDate', _$fromAddedDate, opt: true);
+  static DateTime? _$toAddedDate(WatchlistFilterData v) => v.toAddedDate;
+  static const Field<WatchlistFilterData, DateTime> _f$toAddedDate =
+      Field('toAddedDate', _$toAddedDate, opt: true);
 
   @override
   final MappableFields<WatchlistFilterData> fields = const {
     #sortBy: _f$sortBy,
     #withCountries: _f$withCountries,
     #includeWatched: _f$includeWatched,
-    #fromDate: _f$fromDate,
-    #toDate: _f$toDate,
+    #fromPremiereDate: _f$fromPremiereDate,
+    #toPremiereDate: _f$toPremiereDate,
+    #fromAddedDate: _f$fromAddedDate,
+    #toAddedDate: _f$toAddedDate,
   };
 
   static WatchlistFilterData _instantiate(DecodingData data) {
@@ -51,8 +60,10 @@ class WatchlistFilterDataMapper extends ClassMapperBase<WatchlistFilterData> {
         sortBy: data.dec(_f$sortBy),
         withCountries: data.dec(_f$withCountries),
         includeWatched: data.dec(_f$includeWatched),
-        fromDate: data.dec(_f$fromDate),
-        toDate: data.dec(_f$toDate));
+        fromPremiereDate: data.dec(_f$fromPremiereDate),
+        toPremiereDate: data.dec(_f$toPremiereDate),
+        fromAddedDate: data.dec(_f$fromAddedDate),
+        toAddedDate: data.dec(_f$toAddedDate));
   }
 
   @override
@@ -98,8 +109,10 @@ abstract class WatchlistFilterDataCopyWith<$R, $In extends WatchlistFilterData,
       {WatchlistSortBy? sortBy,
       List<Country>? withCountries,
       bool? includeWatched,
-      DateTime? fromDate,
-      DateTime? toDate});
+      DateTime? fromPremiereDate,
+      DateTime? toPremiereDate,
+      DateTime? fromAddedDate,
+      DateTime? toAddedDate});
   WatchlistFilterDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -123,22 +136,29 @@ class _WatchlistFilterDataCopyWithImpl<$R, $Out>
           {WatchlistSortBy? sortBy,
           List<Country>? withCountries,
           bool? includeWatched,
-          Object? fromDate = $none,
-          Object? toDate = $none}) =>
+          Object? fromPremiereDate = $none,
+          Object? toPremiereDate = $none,
+          Object? fromAddedDate = $none,
+          Object? toAddedDate = $none}) =>
       $apply(FieldCopyWithData({
         if (sortBy != null) #sortBy: sortBy,
         if (withCountries != null) #withCountries: withCountries,
         if (includeWatched != null) #includeWatched: includeWatched,
-        if (fromDate != $none) #fromDate: fromDate,
-        if (toDate != $none) #toDate: toDate
+        if (fromPremiereDate != $none) #fromPremiereDate: fromPremiereDate,
+        if (toPremiereDate != $none) #toPremiereDate: toPremiereDate,
+        if (fromAddedDate != $none) #fromAddedDate: fromAddedDate,
+        if (toAddedDate != $none) #toAddedDate: toAddedDate
       }));
   @override
   WatchlistFilterData $make(CopyWithData data) => WatchlistFilterData(
       sortBy: data.get(#sortBy, or: $value.sortBy),
       withCountries: data.get(#withCountries, or: $value.withCountries),
       includeWatched: data.get(#includeWatched, or: $value.includeWatched),
-      fromDate: data.get(#fromDate, or: $value.fromDate),
-      toDate: data.get(#toDate, or: $value.toDate));
+      fromPremiereDate:
+          data.get(#fromPremiereDate, or: $value.fromPremiereDate),
+      toPremiereDate: data.get(#toPremiereDate, or: $value.toPremiereDate),
+      fromAddedDate: data.get(#fromAddedDate, or: $value.fromAddedDate),
+      toAddedDate: data.get(#toAddedDate, or: $value.toAddedDate));
 
   @override
   WatchlistFilterDataCopyWith<$R2, WatchlistFilterData, $Out2>

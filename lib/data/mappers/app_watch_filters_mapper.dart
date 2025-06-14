@@ -26,8 +26,10 @@ final class AppWatchFiltersMapper extends AppMapper {
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
       includeWatched: dto.includeWatched ?? true,
-      fromDate: dto.fromDate,
-      toDate: dto.toDate,
+      fromPremiereDate: dto.fromPremiereDate,
+      toPremiereDate: dto.toPremiereDate,
+      fromAddedDate: dto.fromAddedDate,
+      toAddedDate: dto.toAddedDate,
     );
   }
 
@@ -40,8 +42,10 @@ final class AppWatchFiltersMapper extends AppMapper {
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
       includeWatched: data.includeWatched,
-      fromDate: data.fromDate,
-      toDate: data.toDate,
+      fromPremiereDate: data.fromPremiereDate,
+      toPremiereDate: data.toPremiereDate,
+      fromAddedDate: data.fromAddedDate,
+      toAddedDate: data.toAddedDate,
     );
   }
 
@@ -56,8 +60,10 @@ final class AppWatchFiltersMapper extends AppMapper {
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
       includeWatched: dto.includeWatched ?? true,
-      fromDate: dto.fromDate,
-      toDate: dto.toDate,
+      fromPremiereDate: dto.fromPremiereDate,
+      toPremiereDate: dto.toPremiereDate,
+      fromAddedDate: dto.fromAddedDate,
+      toAddedDate: dto.toAddedDate,
     );
   }
 
@@ -70,8 +76,10 @@ final class AppWatchFiltersMapper extends AppMapper {
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
       includeWatched: data.includeWatched,
-      fromDate: data.fromDate,
-      toDate: data.toDate,
+      fromPremiereDate: data.fromPremiereDate,
+      toPremiereDate: data.toPremiereDate,
+      fromAddedDate: data.fromAddedDate,
+      toAddedDate: data.toAddedDate,
     );
   }
 

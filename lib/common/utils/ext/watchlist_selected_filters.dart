@@ -8,8 +8,8 @@ extension WatchlistSelectedFilters on WatchlistFilterData {
         _getWithoutGenresCount() +
         withCountries.length +
         (includeWatched ? 0 : 1) +
-        (fromDate != null ? 1 : 0) +
-        (toDate != null ? 1 : 0);
+        (fromPremiereDate != null ? 1 : 0) +
+        (toPremiereDate != null ? 1 : 0);
   }
 
   int _getWithGenresCount() {

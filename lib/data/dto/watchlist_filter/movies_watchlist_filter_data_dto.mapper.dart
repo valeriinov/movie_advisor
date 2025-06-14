@@ -49,12 +49,25 @@ class MoviesWatchlistFilterDataDtoMapper
   static const Field<MoviesWatchlistFilterDataDto, List<MovieGenreDto>>
       _f$withoutGenres = Field('withoutGenres', _$withoutGenres,
           key: r'without_genres', opt: true);
-  static DateTime? _$fromDate(MoviesWatchlistFilterDataDto v) => v.fromDate;
-  static const Field<MoviesWatchlistFilterDataDto, DateTime> _f$fromDate =
-      Field('fromDate', _$fromDate, key: r'from_date', opt: true);
-  static DateTime? _$toDate(MoviesWatchlistFilterDataDto v) => v.toDate;
-  static const Field<MoviesWatchlistFilterDataDto, DateTime> _f$toDate =
-      Field('toDate', _$toDate, key: r'to_date', opt: true);
+  static DateTime? _$fromPremiereDate(MoviesWatchlistFilterDataDto v) =>
+      v.fromPremiereDate;
+  static const Field<MoviesWatchlistFilterDataDto, DateTime>
+      _f$fromPremiereDate = Field('fromPremiereDate', _$fromPremiereDate,
+          key: r'from_premiere_date', opt: true);
+  static DateTime? _$toPremiereDate(MoviesWatchlistFilterDataDto v) =>
+      v.toPremiereDate;
+  static const Field<MoviesWatchlistFilterDataDto, DateTime> _f$toPremiereDate =
+      Field('toPremiereDate', _$toPremiereDate,
+          key: r'to_premiere_date', opt: true);
+  static DateTime? _$fromAddedDate(MoviesWatchlistFilterDataDto v) =>
+      v.fromAddedDate;
+  static const Field<MoviesWatchlistFilterDataDto, DateTime> _f$fromAddedDate =
+      Field('fromAddedDate', _$fromAddedDate,
+          key: r'from_added_date', opt: true);
+  static DateTime? _$toAddedDate(MoviesWatchlistFilterDataDto v) =>
+      v.toAddedDate;
+  static const Field<MoviesWatchlistFilterDataDto, DateTime> _f$toAddedDate =
+      Field('toAddedDate', _$toAddedDate, key: r'to_added_date', opt: true);
 
   @override
   final MappableFields<MoviesWatchlistFilterDataDto> fields = const {
@@ -63,8 +76,10 @@ class MoviesWatchlistFilterDataDtoMapper
     #includeWatched: _f$includeWatched,
     #withGenres: _f$withGenres,
     #withoutGenres: _f$withoutGenres,
-    #fromDate: _f$fromDate,
-    #toDate: _f$toDate,
+    #fromPremiereDate: _f$fromPremiereDate,
+    #toPremiereDate: _f$toPremiereDate,
+    #fromAddedDate: _f$fromAddedDate,
+    #toAddedDate: _f$toAddedDate,
   };
   @override
   final bool ignoreNull = true;
@@ -76,8 +91,10 @@ class MoviesWatchlistFilterDataDtoMapper
         includeWatched: data.dec(_f$includeWatched),
         withGenres: data.dec(_f$withGenres),
         withoutGenres: data.dec(_f$withoutGenres),
-        fromDate: data.dec(_f$fromDate),
-        toDate: data.dec(_f$toDate));
+        fromPremiereDate: data.dec(_f$fromPremiereDate),
+        toPremiereDate: data.dec(_f$toPremiereDate),
+        fromAddedDate: data.dec(_f$fromAddedDate),
+        toAddedDate: data.dec(_f$toAddedDate));
   }
 
   @override
@@ -152,8 +169,10 @@ abstract class MoviesWatchlistFilterDataDtoCopyWith<
       bool? includeWatched,
       List<MovieGenreDto>? withGenres,
       List<MovieGenreDto>? withoutGenres,
-      DateTime? fromDate,
-      DateTime? toDate});
+      DateTime? fromPremiereDate,
+      DateTime? toPremiereDate,
+      DateTime? fromAddedDate,
+      DateTime? toAddedDate});
   MoviesWatchlistFilterDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -202,16 +221,20 @@ class _MoviesWatchlistFilterDataDtoCopyWithImpl<$R, $Out>
           Object? includeWatched = $none,
           Object? withGenres = $none,
           Object? withoutGenres = $none,
-          Object? fromDate = $none,
-          Object? toDate = $none}) =>
+          Object? fromPremiereDate = $none,
+          Object? toPremiereDate = $none,
+          Object? fromAddedDate = $none,
+          Object? toAddedDate = $none}) =>
       $apply(FieldCopyWithData({
         if (sortBy != $none) #sortBy: sortBy,
         if (withCountries != $none) #withCountries: withCountries,
         if (includeWatched != $none) #includeWatched: includeWatched,
         if (withGenres != $none) #withGenres: withGenres,
         if (withoutGenres != $none) #withoutGenres: withoutGenres,
-        if (fromDate != $none) #fromDate: fromDate,
-        if (toDate != $none) #toDate: toDate
+        if (fromPremiereDate != $none) #fromPremiereDate: fromPremiereDate,
+        if (toPremiereDate != $none) #toPremiereDate: toPremiereDate,
+        if (fromAddedDate != $none) #fromAddedDate: fromAddedDate,
+        if (toAddedDate != $none) #toAddedDate: toAddedDate
       }));
   @override
   MoviesWatchlistFilterDataDto $make(CopyWithData data) =>
@@ -221,8 +244,11 @@ class _MoviesWatchlistFilterDataDtoCopyWithImpl<$R, $Out>
           includeWatched: data.get(#includeWatched, or: $value.includeWatched),
           withGenres: data.get(#withGenres, or: $value.withGenres),
           withoutGenres: data.get(#withoutGenres, or: $value.withoutGenres),
-          fromDate: data.get(#fromDate, or: $value.fromDate),
-          toDate: data.get(#toDate, or: $value.toDate));
+          fromPremiereDate:
+              data.get(#fromPremiereDate, or: $value.fromPremiereDate),
+          toPremiereDate: data.get(#toPremiereDate, or: $value.toPremiereDate),
+          fromAddedDate: data.get(#fromAddedDate, or: $value.fromAddedDate),
+          toAddedDate: data.get(#toAddedDate, or: $value.toAddedDate));
 
   @override
   MoviesWatchlistFilterDataDtoCopyWith<$R2, MoviesWatchlistFilterDataDto, $Out2>

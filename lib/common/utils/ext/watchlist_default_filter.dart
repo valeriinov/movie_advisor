@@ -7,8 +7,8 @@ extension WatchlistDefaultMoviesFilter on MoviesWatchlistFilterData {
         withoutGenres.isEmpty &&
         withCountries.isEmpty &&
         includeWatched == true &&
-        fromDate == null &&
-        toDate == null;
+        fromPremiereDate == null &&
+        toPremiereDate == null;
   }
 }
 
@@ -18,7 +18,7 @@ extension WatchlistDefaultSeriesFilter on SeriesWatchlistFilterData {
         withoutGenres.isEmpty &&
         withCountries.isEmpty &&
         includeWatched == true &&
-        fromDate == null &&
-        toDate == null;
+        fromPremiereDate == null &&
+        toPremiereDate == null;
   }
 }
