@@ -19,6 +19,7 @@ import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../../widgets/filter/filter_app_bar.dart';
 import '../../../widgets/filter/filter_countries_container.dart';
+import '../../../widgets/filter/filter_date_container.dart';
 import '../../../widgets/filter/filter_divider.dart';
 import '../../../widgets/filter/filter_genres_container.dart';
 import '../../../widgets/filter/filter_years_container.dart';
@@ -115,6 +116,15 @@ class WatchlistFilterMediaView<
               toDate: filter.toPremiereDate,
               onFromDateChanged: viewModel.updateFromPremiereDate,
               onToDateChanged: viewModel.updateToPremiereDate,
+            ),
+            FilterDivider(),
+            FilterDateContainer(
+              key: const PageStorageKey('watchlist-filter-dates'),
+              title: LocaleKeys.filterWatchlistAdd.tr(),
+              fromDate: filter.fromAddedDate,
+              toDate: filter.toAddedDate,
+              onFromDateChanged: viewModel.updateFromAddedDate,
+              onToDateChanged: viewModel.updateToAddedDate,
             ),
             FilterDivider(),
           ],
