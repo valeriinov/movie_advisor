@@ -120,13 +120,13 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
 
   Expression<bool> _countries(TextColumn col, List<CountryDto>? countries) {
     return countries.isNotNullAndNotEmpty
-        ? col.isIn(countries?.map((e) => e.toValue() as String).toList() ?? [])
+        ? _or(countries!.map((c) => col.like('%${c.toValue()}%')))
         : const Constant(true);
   }
 
   Expression<bool> _genresInclude<T>(TextColumn col, List<T>? genres) {
     return genres.isNotNullAndNotEmpty
-        ? _and(genres!.map((g) => col.like('%${_genreId(g)}%')))
+        ? _or(genres!.map((g) => col.like('%${_genreId(g)}%')))
         : const Constant(true);
   }
 
@@ -160,6 +160,9 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
   Expression<bool> _and(Iterable<Expression<bool>> parts) {
     return parts.nonNulls.fold(const Constant(true), (a, b) => a & b);
   }
+
+  Expression<bool> _or(Iterable<Expression<bool>> parts) =>
+      parts.nonNulls.fold(const Constant(false), (a, b) => a | b);
 
   @override
   OrderingTerm moviesWatchedOrder(MoviesTable table, WatchedSortByDto? sortBy) {
