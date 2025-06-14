@@ -18,7 +18,11 @@ class WatchlistMoviesFilterTable extends Table {
 
   BoolColumn get includeWatched => boolean().nullable()();
 
-  DateTimeColumn get fromDate => dateTime().nullable()();
+  DateTimeColumn get fromPremiereDate => dateTime().nullable()();
 
-  DateTimeColumn get toDate => dateTime().nullable()();
+  DateTimeColumn get toPremiereDate => dateTime().nullable()();
+
+  DateTimeColumn get fromAddedDate => dateTime().nullable()();
+
+  DateTimeColumn get toAddedDate => dateTime().nullable()();
 }

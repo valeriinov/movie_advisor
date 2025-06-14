@@ -1179,8 +1179,10 @@ final class Schema5 extends i0.VersionedSchema {
         _column_23,
         _column_24,
         _column_25,
-        _column_27,
-        _column_28,
+        _column_36,
+        _column_37,
+        _column_40,
+        _column_41,
       ],
       attachedDatabase: database,
     ),
@@ -1199,8 +1201,10 @@ final class Schema5 extends i0.VersionedSchema {
         _column_23,
         _column_24,
         _column_25,
-        _column_27,
-        _column_28,
+        _column_36,
+        _column_37,
+        _column_40,
+        _column_41,
       ],
       attachedDatabase: database,
     ),
@@ -1275,12 +1279,30 @@ class Shape10 extends i0.VersionedTable {
       columnsByName['without_genres']! as i1.GeneratedColumn<String>;
   i1.GeneratedColumn<bool> get includeWatched =>
       columnsByName['include_watched']! as i1.GeneratedColumn<bool>;
-  i1.GeneratedColumn<DateTime> get fromDate =>
-      columnsByName['from_date']! as i1.GeneratedColumn<DateTime>;
-  i1.GeneratedColumn<DateTime> get toDate =>
-      columnsByName['to_date']! as i1.GeneratedColumn<DateTime>;
+  i1.GeneratedColumn<DateTime> get fromPremiereDate =>
+      columnsByName['from_premiere_date']! as i1.GeneratedColumn<DateTime>;
+  i1.GeneratedColumn<DateTime> get toPremiereDate =>
+      columnsByName['to_premiere_date']! as i1.GeneratedColumn<DateTime>;
+  i1.GeneratedColumn<DateTime> get fromAddedDate =>
+      columnsByName['from_added_date']! as i1.GeneratedColumn<DateTime>;
+  i1.GeneratedColumn<DateTime> get toAddedDate =>
+      columnsByName['to_added_date']! as i1.GeneratedColumn<DateTime>;
 }
 
+i1.GeneratedColumn<DateTime> _column_40(String aliasedName) =>
+    i1.GeneratedColumn<DateTime>(
+      'from_added_date',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.dateTime,
+    );
+i1.GeneratedColumn<DateTime> _column_41(String aliasedName) =>
+    i1.GeneratedColumn<DateTime>(
+      'to_added_date',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.dateTime,
+    );
 i0.MigrationStepWithVersion migrationSteps({
   required Future<void> Function(i1.Migrator m, Schema2 schema) from1To2,
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,

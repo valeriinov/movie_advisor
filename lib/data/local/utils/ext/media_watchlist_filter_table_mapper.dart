@@ -12,8 +12,10 @@ extension MoviesWatchlistFilterMapper on WatchlistMoviesFilterTableData {
       withGenres: withGenres,
       withoutGenres: withoutGenres,
       includeWatched: includeWatched,
-      fromPremiereDate: fromDate,
-      toPremiereDate: toDate,
+      fromPremiereDate: fromPremiereDate,
+      toPremiereDate: toPremiereDate,
+      fromAddedDate: fromAddedDate,
+      toAddedDate: toAddedDate,
     );
   }
 }
@@ -26,8 +28,10 @@ extension SeriesWatchlistFilterMapper on WatchlistSeriesFilterTableData {
       withGenres: withGenres,
       withoutGenres: withoutGenres,
       includeWatched: includeWatched,
-      fromPremiereDate: fromDate,
-      toPremiereDate: toDate,
+      fromPremiereDate: fromPremiereDate,
+      toPremiereDate: toPremiereDate,
+      fromAddedDate: fromAddedDate,
+      toAddedDate: toAddedDate,
     );
   }
 }
@@ -42,8 +46,10 @@ extension WatchlistMoviesFilterTableMapper on MoviesWatchlistFilterDataDto {
       withGenres: Value(withGenres),
       withoutGenres: Value(withoutGenres),
       includeWatched: Value(includeWatched),
-      fromDate: Value(fromPremiereDate),
-      toDate: Value(toPremiereDate),
+      fromPremiereDate: Value(fromPremiereDate),
+      toPremiereDate: Value(toPremiereDate),
+      fromAddedDate: Value(fromAddedDate),
+      toAddedDate: Value(toAddedDate),
     );
   }
 }
@@ -58,8 +64,10 @@ extension WatchlistSeriesFilterTableMapper on SeriesWatchlistFilterDataDto {
       withGenres: Value(withGenres),
       withoutGenres: Value(withoutGenres),
       includeWatched: Value(includeWatched),
-      fromDate: Value(fromPremiereDate),
-      toDate: Value(toPremiereDate),
+      fromPremiereDate: Value(fromPremiereDate),
+      toPremiereDate: Value(toPremiereDate),
+      fromAddedDate: Value(fromAddedDate),
+      toAddedDate: Value(toAddedDate),
     );
   }
 }
