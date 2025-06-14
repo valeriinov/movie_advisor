@@ -30,10 +30,12 @@ class WatchedFloatingBarContainer<
     final vsp = ref.vspFromADProvider(provider);
     final viewModel = vsp.viewModel;
 
+    final isInitialized = vsp.selectWatch((s) => s.status.isInitialized);
     final filter = vsp.selectWatch((s) => s.filter);
 
     return FilterFloatingBar(
       keyId: 'watched_floating_bar',
+      isInitialized: isInitialized,
       sortBySubtitle: filter.sortBy.desc,
       filterSubtitle: _getFilterSettingsDescription(filter),
       onSortByTap: () => _openSortByDialog(

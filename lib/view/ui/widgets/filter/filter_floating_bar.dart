@@ -5,6 +5,7 @@ import 'package:tap_on_scroll/tap_on_scroll.dart';
 
 import '../../resources/app_images.dart';
 import '../../resources/base_theme/dimens/base_dimens_ext.dart';
+import '../../resources/base_theme/durations/base_durations_ext.dart';
 import '../../resources/locale_keys.g.dart';
 import '../../scenes/filter/widgets/filter_button.dart';
 import '../no_always_scroll_wrapper.dart';
@@ -13,6 +14,7 @@ class FilterFloatingBar extends StatelessWidget {
   final String keyId;
   final String sortBySubtitle;
   final String filterSubtitle;
+  final bool isInitialized;
   final VoidCallback? onSortByTap;
   final VoidCallback? onFilterTap;
 
@@ -21,12 +23,14 @@ class FilterFloatingBar extends StatelessWidget {
     required this.keyId,
     required this.sortBySubtitle,
     required this.filterSubtitle,
+    required this.isInitialized,
     this.onSortByTap,
     this.onFilterTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final durations = context.baseDurations;
     final dimens = context.baseDimens;
 
     final fixedHeight = kToolbarHeight + (dimens.spLarge / 2);
@@ -40,28 +44,33 @@ class FilterFloatingBar extends StatelessWidget {
       automaticallyImplyLeading: false,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(bottom: dimens.spLarge / 2),
-        title: TappableArea(
-          child: NoAlwaysScrollWrapper(
-            child: ListView(
-              key: PageStorageKey(keyId),
-              scrollDirection: Axis.horizontal,
-              padding: 4.insHor(),
-              children: [
-                FilterButton(
-                  iconPath: AppImages.sortIcon,
-                  title: LocaleKeys.filterSortBy.tr(),
-                  subtitle: sortBySubtitle,
-                  onTap: onSortByTap,
-                ),
-                FilterButton(
-                  iconPath: AppImages.tuneIcon,
-                  title: LocaleKeys.filterSettings.tr(),
-                  subtitle: filterSubtitle,
-                  onTap: onFilterTap,
-                ),
-              ],
-            ),
-          ),
+        title: AnimatedSwitcher(
+          duration: durations.animSwitchPrim,
+          child: isInitialized
+              ? TappableArea(
+                  child: NoAlwaysScrollWrapper(
+                    child: ListView(
+                      key: PageStorageKey(keyId),
+                      scrollDirection: Axis.horizontal,
+                      padding: 4.insHor(),
+                      children: [
+                        FilterButton(
+                          iconPath: AppImages.sortIcon,
+                          title: LocaleKeys.filterSortBy.tr(),
+                          subtitle: sortBySubtitle,
+                          onTap: onSortByTap,
+                        ),
+                        FilterButton(
+                          iconPath: AppImages.tuneIcon,
+                          title: LocaleKeys.filterSettings.tr(),
+                          subtitle: filterSubtitle,
+                          onTap: onFilterTap,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : SizedBox(),
         ),
       ),
     );
