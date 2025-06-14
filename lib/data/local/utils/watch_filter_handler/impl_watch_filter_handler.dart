@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:drift/extensions/json1.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../../dto/country_dto.dart';
@@ -167,8 +168,8 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       WatchedSortByDto.watchedDateDesc => table.lastWatchedAt.desc(),
       WatchedSortByDto.premiereDateAsc => table.premiereDate.asc(),
       WatchedSortByDto.premiereDateDesc => table.premiereDate.desc(),
-      WatchedSortByDto.tmdbRateAsc => table.tmdbRating.asc(),
-      WatchedSortByDto.tmdbRateDesc => table.tmdbRating.desc(),
+      WatchedSortByDto.tmdbRateAsc => table.tmdbRating.voteAverage().asc(),
+      WatchedSortByDto.tmdbRateDesc => table.tmdbRating.voteAverage().desc(),
       WatchedSortByDto.userRateAsc => table.userRating.asc(),
       WatchedSortByDto.userRateDesc => table.userRating.desc(),
       null => table.lastWatchedAt.desc(),
@@ -185,8 +186,8 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       WatchlistSortByDto.addedDateDesc => table.watchlistAddedAt.desc(),
       WatchlistSortByDto.premiereDateAsc => table.premiereDate.asc(),
       WatchlistSortByDto.premiereDateDesc => table.premiereDate.desc(),
-      WatchlistSortByDto.tmdbRateAsc => table.tmdbRating.asc(),
-      WatchlistSortByDto.tmdbRateDesc => table.tmdbRating.desc(),
+      WatchlistSortByDto.tmdbRateAsc => table.tmdbRating.voteAverage().asc(),
+      WatchlistSortByDto.tmdbRateDesc => table.tmdbRating.voteAverage().desc(),
       null => table.watchlistAddedAt.asc(),
     };
   }
@@ -198,8 +199,8 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       WatchedSortByDto.watchedDateDesc => table.lastWatchedAt.desc(),
       WatchedSortByDto.premiereDateAsc => table.premiereDate.asc(),
       WatchedSortByDto.premiereDateDesc => table.premiereDate.desc(),
-      WatchedSortByDto.tmdbRateAsc => table.tmdbRating.asc(),
-      WatchedSortByDto.tmdbRateDesc => table.tmdbRating.desc(),
+      WatchedSortByDto.tmdbRateAsc => table.tmdbRating.voteAverage().asc(),
+      WatchedSortByDto.tmdbRateDesc => table.tmdbRating.voteAverage().desc(),
       WatchedSortByDto.userRateAsc => table.userRating.asc(),
       WatchedSortByDto.userRateDesc => table.userRating.desc(),
       null => table.lastWatchedAt.desc(),
@@ -216,11 +217,17 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       WatchlistSortByDto.addedDateDesc => table.watchlistAddedAt.desc(),
       WatchlistSortByDto.premiereDateAsc => table.premiereDate.asc(),
       WatchlistSortByDto.premiereDateDesc => table.premiereDate.desc(),
-      WatchlistSortByDto.tmdbRateAsc => table.tmdbRating.asc(),
-      WatchlistSortByDto.tmdbRateDesc => table.tmdbRating.desc(),
+      WatchlistSortByDto.tmdbRateAsc => table.tmdbRating.voteAverage().asc(),
+      WatchlistSortByDto.tmdbRateDesc => table.tmdbRating.voteAverage().desc(),
       null => table.watchlistAddedAt.asc(),
     };
   }
+}
+
+extension _JsonRatingX on Expression {
+  /// Pulls `voteAverage` (double) out of the JSON stored in `tmdbRating`.
+  Expression<double> voteAverage() =>
+      cast<String>().jsonExtract<double>(r'$.vote_average');
 }
 
 extension _OrderingTermX on Expression {
