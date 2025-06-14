@@ -22,6 +22,12 @@ abstract final class AppRoutes {
   // Home/Filter/Filter Settings
   static const String filterSettings = '/filter-settings';
 
+  // Watchlist/Filter
+  static const String watchlistFilter = '/watchlist-filter';
+
+  // Watched/Filter
+  static const String watchedFilter = '/watched-filter';
+
   // More/About Us
   static const String aboutUs = 'about-us';
 

@@ -2,8 +2,9 @@ part of 'watched_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [WatchedState] with [MovieShortData].
-typedef WatchedMoviesState = WatchedState<MovieShortData>;
+/// A type alias for [WatchedState] with [MovieShortData] and [MoviesWatchedFilterData].
+typedef WatchedMoviesState =
+    WatchedState<MovieShortData, MoviesWatchedFilterData>;
 
 /// {@category StateManagement}
 ///
@@ -23,10 +24,12 @@ final watchedMoviesViewModelPr =
 /// A view model for managing `watched_movies`-specific logic and state.
 ///
 /// This class is responsible for coordinating `watched_movies` behavior and interacting with the UI.
-final class WatchedMoviesViewModel extends WatchedViewModel<MovieShortData> {
+final class WatchedMoviesViewModel
+    extends WatchedViewModel<MovieShortData, MoviesWatchedFilterData> {
   @override
   WatchedMoviesState build() {
     _watchUseCase = ref.read(watchMoviesUseCasePr);
+    _watchedFilterUseCase = ref.read(watchedMovieFilterUseCasePr);
     _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
@@ -40,7 +43,10 @@ final class WatchedMoviesViewModel extends WatchedViewModel<MovieShortData> {
 
     scheduleCall(loadInitialData);
 
-    return WatchedMoviesState();
+    return WatchedMoviesState(
+      status: WatchedBaseStatus(isLoading: true),
+      filter: MoviesWatchedFilterData(),
+    );
   }
 
   @override

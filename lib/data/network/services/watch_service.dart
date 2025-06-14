@@ -48,6 +48,8 @@ class WatchService {
         en: _isCurrentLangEn() ? data.posterUrl : preparedDto.posterPath,
         uk: _isCurrentLangEn() ? preparedDto.posterPath : data.posterUrl,
       ),
+      watchlistAddedAt: data.watchlistAddedAt,
+      lastWatchedAt: data.lastWatchedAt,
     );
   }
 
@@ -78,6 +80,8 @@ class WatchService {
         en: _isCurrentLangEn() ? data.posterUrl : preparedDto.posterPath,
         uk: _isCurrentLangEn() ? preparedDto.posterPath : data.posterUrl,
       ),
+      watchlistAddedAt: data.watchlistAddedAt,
+      lastWatchedAt: data.lastWatchedAt,
     );
   }
 

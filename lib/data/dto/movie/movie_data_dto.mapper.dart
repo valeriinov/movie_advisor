@@ -89,6 +89,14 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
   static bool? _$isWatched(MovieDataDto v) => v.isWatched;
   static const Field<MovieDataDto, bool> _f$isWatched =
       Field('isWatched', _$isWatched, key: r'is_watched', opt: true);
+  static DateTime? _$watchlistAddedAt(MovieDataDto v) => v.watchlistAddedAt;
+  static const Field<MovieDataDto, DateTime> _f$watchlistAddedAt = Field(
+      'watchlistAddedAt', _$watchlistAddedAt,
+      key: r'watchlist_added_at', opt: true, hook: DateMapperHook());
+  static DateTime? _$lastWatchedAt(MovieDataDto v) => v.lastWatchedAt;
+  static const Field<MovieDataDto, DateTime> _f$lastWatchedAt = Field(
+      'lastWatchedAt', _$lastWatchedAt,
+      key: r'last_watched_at', opt: true, hook: DateMapperHook());
 
   @override
   final MappableFields<MovieDataDto> fields = const {
@@ -112,6 +120,8 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
+    #watchlistAddedAt: _f$watchlistAddedAt,
+    #lastWatchedAt: _f$lastWatchedAt,
   };
   @override
   final bool ignoreNull = true;
@@ -137,7 +147,9 @@ class MovieDataDtoMapper extends ClassMapperBase<MovieDataDto> {
         revenue: data.dec(_f$revenue),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
-        isWatched: data.dec(_f$isWatched));
+        isWatched: data.dec(_f$isWatched),
+        watchlistAddedAt: data.dec(_f$watchlistAddedAt),
+        lastWatchedAt: data.dec(_f$lastWatchedAt));
   }
 
   @override
@@ -221,7 +233,9 @@ abstract class MovieDataDtoCopyWith<$R, $In extends MovieDataDto, $Out>
       int? revenue,
       int? userRating,
       bool? isInWatchlist,
-      bool? isWatched});
+      bool? isWatched,
+      DateTime? watchlistAddedAt,
+      DateTime? lastWatchedAt});
   MovieDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -284,7 +298,9 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
           Object? revenue = $none,
           Object? userRating = $none,
           Object? isInWatchlist = $none,
-          Object? isWatched = $none}) =>
+          Object? isWatched = $none,
+          Object? watchlistAddedAt = $none,
+          Object? lastWatchedAt = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (backdropPath != $none) #backdropPath: backdropPath,
@@ -305,7 +321,9 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
         if (revenue != $none) #revenue: revenue,
         if (userRating != $none) #userRating: userRating,
         if (isInWatchlist != $none) #isInWatchlist: isInWatchlist,
-        if (isWatched != $none) #isWatched: isWatched
+        if (isWatched != $none) #isWatched: isWatched,
+        if (watchlistAddedAt != $none) #watchlistAddedAt: watchlistAddedAt,
+        if (lastWatchedAt != $none) #lastWatchedAt: lastWatchedAt
       }));
   @override
   MovieDataDto $make(CopyWithData data) => MovieDataDto(
@@ -329,7 +347,10 @@ class _MovieDataDtoCopyWithImpl<$R, $Out>
       revenue: data.get(#revenue, or: $value.revenue),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
-      isWatched: data.get(#isWatched, or: $value.isWatched));
+      isWatched: data.get(#isWatched, or: $value.isWatched),
+      watchlistAddedAt:
+          data.get(#watchlistAddedAt, or: $value.watchlistAddedAt),
+      lastWatchedAt: data.get(#lastWatchedAt, or: $value.lastWatchedAt));
 
   @override
   MovieDataDtoCopyWith<$R2, MovieDataDto, $Out2> $chain<$R2, $Out2>(

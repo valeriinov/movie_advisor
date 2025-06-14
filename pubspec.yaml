@@ -67,6 +67,7 @@ dependencies:
   hooks_riverpod: ^2.6.1
   dart_mappable: ^4.5.0
   dartz: ^0.10.1
+  uuid: ^4.5.1
   class_namer_annotation:
     git:
       url: https://github.com/valeriinov/class_namer.git

@@ -4,6 +4,7 @@ import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../../../domain/entities/watched_filter/watched_filter_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/content_mode_view_model/content_mode_view_model.dart';
@@ -16,9 +17,11 @@ import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
 import '../watched_view_model/watched_view_model.dart';
+import 'watched_floating_bar_container.dart';
 
-class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
-  final WatchedVMProvider<T> provider;
+class WatchedMediaView<T extends MediaShortData, F extends WatchedFilterData>
+    extends HookConsumerWidget {
+  final WatchedVMProvider<T, F> provider;
   final ContentMode contentMode;
   final String screenTitle;
   final String emptyListTitle;
@@ -96,6 +99,7 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
             onRefresh: !isLoading
                 ? () => vsp.viewModel.loadInitialData(showLoader: false)
                 : null,
+            floatingBar: WatchedFloatingBarContainer(provider: provider),
           ),
           floatingActionButton: isFabVisible
               ? ScrollTopFab(scrollController: scrollController)

@@ -12,19 +12,21 @@ part 'watched_state.mapper.dart';
 /// Represents the state of a view model, extending [BaseState] with a [WatchedStatus].
 /// Manages the current status for reactive updates.
 @mappableEntity
-final class WatchedState<T> extends BaseState<WatchedStatus>
-    with WatchedStateMappable<T> {
+final class WatchedState<T, F> extends BaseState<WatchedStatus>
+    with WatchedStateMappable<T, F> {
   final MediaLoadInfo<T> watched;
+  final F filter;
 
   @override
   final WatchedStatus status;
 
   WatchedState({
+    required this.filter,
     MediaLoadInfo<T>? watched,
     this.status = const WatchedBaseStatus(),
   }) : watched = watched ?? MediaLoadInfo<T>();
 
-  WatchedState<T> copyWithUpdWatched({
+  WatchedState<T, F> copyWithUpdWatched({
     WatchedStatus? status,
     bool? isInitialized,
     bool isNextPageLoading = false,

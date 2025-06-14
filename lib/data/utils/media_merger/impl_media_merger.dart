@@ -48,6 +48,8 @@ class ImplMediaMerger implements MediaMerger {
       userRating: localMovie.userRating,
       isWatched: localMovie.isWatched,
       isInWatchlist: localMovie.isInWatchlist,
+      watchlistAddedAt: localMovie.watchlistAddedAt,
+      lastWatchedAt: localMovie.lastWatchedAt,
     );
   }
 
@@ -60,6 +62,8 @@ class ImplMediaMerger implements MediaMerger {
       userRating: localSeries.userRating,
       isWatched: localSeries.isWatched,
       isInWatchlist: localSeries.isInWatchlist,
+      watchlistAddedAt: localSeries.watchlistAddedAt,
+      lastWatchedAt: localSeries.lastWatchedAt,
     );
   }
 

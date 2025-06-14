@@ -3,9 +3,12 @@ import 'package:flutter_utils/flutter_utils.dart';
 
 import '../dto/general_exceptions.dart';
 import '../dto/movie/movie_short_data_dto.dart';
+import '../dto/movie/movie_watch_event_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
+import '../dto/series/series_watch_event_data_dto.dart';
 import '../dto/sync/sync_user_data_dto.dart';
 import '../local/app_local_database.dart';
+import '../local/utils/ext/media_events_table_mapper.dart';
 import '../local/utils/ext/media_table_mapper.dart';
 import '../local/utils/ext/sync_user_table_mapper.dart';
 import '../network/services/auth_service.dart';
@@ -68,7 +71,7 @@ class ImplSyncDataSource implements SyncDataSource {
     List<MovieShortDataDto> remoteMovies,
     Map<int, MoviesTableData> localMoviesMap,
   ) async {
-    bool changesApplied = false;
+    final updatedIds = <int?>{};
 
     await _localDatabase.batch((batch) {
       for (final remoteMovie in remoteMovies) {
@@ -78,11 +81,19 @@ class ImplSyncDataSource implements SyncDataSource {
           localMoviesMap,
         );
 
-        if (updated) changesApplied = true;
+        if (updated) updatedIds.add(remoteMovie.id);
       }
     });
 
-    return changesApplied;
+    if (updatedIds.isEmpty) return false;
+
+    final updEventFutures = updatedIds.map((movieId) async {
+      await _syncMovieEventsFromRemoteToLocal(movieId);
+    });
+
+    await Future.wait(updEventFutures);
+
+    return true;
   }
 
   bool _processRemoteMovieItem(
@@ -138,6 +149,33 @@ class ImplSyncDataSource implements SyncDataSource {
     return true;
   }
 
+  Future<void> _syncMovieEventsFromRemoteToLocal(int? movieId) async {
+    if (movieId == null) return;
+
+    final events = await _remoteMediaService.getMovieEvents(movieId);
+
+    if (events.isEmpty) return;
+
+    await _localDatabase.batch(
+      (batch) => _processRemoteMovieEvents(batch, events),
+    );
+  }
+
+  void _processRemoteMovieEvents(
+    Batch batch,
+    List<MovieWatchEventDataDto> remoteEvents,
+  ) {
+    for (final event in remoteEvents) {
+      final eventData = event.toTableData();
+
+      batch.insert(
+        _localDatabase.moviesEventsTable,
+        eventData,
+        mode: InsertMode.insertOrReplace,
+      );
+    }
+  }
+
   Future<void> _syncMoviesFromLocalToRemote(
     List<MoviesTableData> localMoviesList,
     Map<int, MovieShortDataDto> remoteMoviesMap,
@@ -149,6 +187,7 @@ class ImplSyncDataSource implements SyncDataSource {
 
     if (moviesToSync.isNotEmpty) {
       await _remoteMediaService.updateOrInsertMovies(moviesToSync);
+      await _syncMovieEventsFromLocalToRemote(moviesToSync);
     }
   }
 
@@ -175,6 +214,32 @@ class ImplSyncDataSource implements SyncDataSource {
 
     return remoteMovie == null ||
         !localMovie.updatedAt.isBeforeOrAtSameMomentAs(remoteUpdatedAt);
+  }
+
+  Future<void> _syncMovieEventsFromLocalToRemote(
+    List<MovieShortDataDto> moviesToSync,
+  ) async {
+    final futures = moviesToSync.map((movie) async {
+      final events = await _getMovieEventsToSync(movie.id);
+
+      if (events.isEmpty || movie.id == null) return;
+
+      await _remoteMediaService.updateOrInsertMovieEvents(movie.id!, events);
+    });
+
+    await Future.wait(futures);
+  }
+
+  Future<List<MovieWatchEventDataDto>> _getMovieEventsToSync(
+    int? movieId,
+  ) async {
+    if (movieId == null) return [];
+
+    final events = await (_localDatabase.select(
+      _localDatabase.moviesEventsTable,
+    )..where((tbl) => tbl.tmdbId.equals(movieId))).get();
+
+    return events.map((e) => e.toDto()).toList();
   }
 
   @override
@@ -214,7 +279,7 @@ class ImplSyncDataSource implements SyncDataSource {
     List<SeriesShortDataDto> remoteSeries,
     Map<int, SeriesTableData> localSeriesMap,
   ) async {
-    bool changesApplied = false;
+    final updatedIds = <int?>{};
 
     await _localDatabase.batch((batch) {
       for (final remoteSeriesItem in remoteSeries) {
@@ -224,11 +289,19 @@ class ImplSyncDataSource implements SyncDataSource {
           localSeriesMap,
         );
 
-        if (updated) changesApplied = true;
+        if (updated) updatedIds.add(remoteSeriesItem.id);
       }
     });
 
-    return changesApplied;
+    if (updatedIds.isEmpty) return false;
+
+    final updEventFutures = updatedIds.map((seriesId) async {
+      await _syncSeriesEventsFromRemoteToLocal(seriesId);
+    });
+
+    await Future.wait(updEventFutures);
+
+    return true;
   }
 
   bool _processRemoteSeriesItem(
@@ -284,6 +357,33 @@ class ImplSyncDataSource implements SyncDataSource {
     return true;
   }
 
+  Future<void> _syncSeriesEventsFromRemoteToLocal(int? seriesId) async {
+    if (seriesId == null) return;
+
+    final events = await _remoteMediaService.getSeriesEvents(seriesId);
+
+    if (events.isEmpty) return;
+
+    await _localDatabase.batch(
+      (batch) => _processRemoteSeriesEvents(batch, events),
+    );
+  }
+
+  void _processRemoteSeriesEvents(
+    Batch batch,
+    List<SeriesWatchEventDataDto> remoteEvents,
+  ) {
+    for (final event in remoteEvents) {
+      final eventData = event.toTableData();
+
+      batch.insert(
+        _localDatabase.seriesEventsTable,
+        eventData,
+        mode: InsertMode.insertOrReplace,
+      );
+    }
+  }
+
   Future<void> _syncSeriesFromLocalToRemote(
     List<SeriesTableData> localSeriesList,
     Map<int, SeriesShortDataDto> remoteSeriesMap,
@@ -295,6 +395,7 @@ class ImplSyncDataSource implements SyncDataSource {
 
     if (seriesToSync.isNotEmpty) {
       await _remoteMediaService.updateOrInsertSeriesList(seriesToSync);
+      await _syncSeriesEventsFromLocalToRemote(seriesToSync);
     }
   }
 
@@ -321,6 +422,32 @@ class ImplSyncDataSource implements SyncDataSource {
 
     return remoteSeries == null ||
         !localSeries.updatedAt.isBeforeOrAtSameMomentAs(remoteUpdatedAt);
+  }
+
+  Future<void> _syncSeriesEventsFromLocalToRemote(
+    List<SeriesShortDataDto> seriesToSync,
+  ) async {
+    final futures = seriesToSync.map((series) async {
+      final events = await _getSeriesEventsToSync(series.id);
+
+      if (events.isEmpty || series.id == null) return;
+
+      await _remoteMediaService.updateOrInsertSeriesEvents(series.id!, events);
+    });
+
+    await Future.wait(futures);
+  }
+
+  Future<List<SeriesWatchEventDataDto>> _getSeriesEventsToSync(
+    int? seriesId,
+  ) async {
+    if (seriesId == null) return [];
+
+    final events = await (_localDatabase.select(
+      _localDatabase.seriesEventsTable,
+    )..where((tbl) => tbl.tmdbId.equals(seriesId))).get();
+
+    return events.map((e) => e.toDto()).toList();
   }
 
   /// Prepares the sync by checking connectivity, user authentication,
@@ -358,6 +485,8 @@ class ImplSyncDataSource implements SyncDataSource {
   Future<void> _clearLocalMediaData() async {
     await _localDatabase.delete(_localDatabase.moviesTable).go();
     await _localDatabase.delete(_localDatabase.seriesTable).go();
+    await _localDatabase.delete(_localDatabase.moviesEventsTable).go();
+    await _localDatabase.delete(_localDatabase.seriesEventsTable).go();
   }
 
   Future<void> _updateSyncUser({required bool isMovies}) async {

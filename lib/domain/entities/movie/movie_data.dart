@@ -1,9 +1,9 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../base_media/cast_data.dart';
+import '../base_media/country.dart';
 import '../base_media/crew_data.dart';
 import '../base_media/media_data.dart';
-import '../base_media/country.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 import '../video/video_data.dart';
@@ -35,5 +35,7 @@ final class MovieData extends MediaData with MovieDataMappable {
     super.userRating = 0,
     super.isInWatchlist = false,
     super.isWatched = false,
+    super.watchlistAddedAt,
+    super.lastWatchedAt,
   });
 }

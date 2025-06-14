@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../common/utils/ext/default_filter_handler.dart';
+import '../../../../../common/utils/ext/default_filter.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
 import '../../../../../domain/entities/filter/filter_data.dart';
 import '../../../../../domain/entities/filter/movies_filter_data.dart';
@@ -17,13 +17,14 @@ import '../../../resources/ext/movie_genre_desc.dart';
 import '../../../resources/ext/series_genre_desc.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
+import '../../../widgets/filter/filter_countries_container.dart';
+import '../../../widgets/filter/filter_divider.dart';
+import '../../../widgets/filter/filter_genres_container.dart';
+import '../../../widgets/filter/filter_years_container.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
 import '../filter_settings_view_model/filter_settings_state.dart';
 import '../filter_settings_view_model/filter_settings_view_model.dart';
-import 'filter_countries_container.dart';
-import 'filter_dates_container.dart';
-import 'filter_genres_container.dart';
-import 'filter_settings_app_bar.dart';
+import '../../../widgets/filter/filter_app_bar.dart';
 import 'filter_user_lists_container.dart';
 
 class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
@@ -67,7 +68,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
     );
 
     return Scaffold(
-      appBar: FilterSettingsAppBar(
+      appBar: FilterAppBar(
         onReset: !_isDefaultFilter(filter) ? viewModel.resetFilter : null,
         onSave: hasUnsavedChanges ? viewModel.setApplyStatus : null,
       ),
@@ -80,7 +81,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
         child: ListView(
           padding: _createScrPadding(context),
           children: [
-            _divider(),
+            FilterDivider(),
             FilterGenresContainer(
               key: const PageStorageKey('filter-with-genres'),
               title: LocaleKeys.filterWithGenres.tr(),
@@ -89,7 +90,7 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               disabledGenresDesc: selectedWithoutGenresDesc,
               onTapGenre: (desc) => _updateWithGenres(vsp, desc),
             ),
-            _divider(),
+            FilterDivider(),
             FilterGenresContainer(
               key: const PageStorageKey('filter-without-genres'),
               title: LocaleKeys.filterWithoutGenres.tr(),
@@ -98,13 +99,13 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               disabledGenresDesc: selectedWithGenresDesc,
               onTapGenre: (desc) => _updateWithoutGenres(vsp, desc),
             ),
-            _divider(),
+            FilterDivider(),
             FilterCountriesContainer(
               key: const PageStorageKey('filter-with-countries'),
               selectedCountries: filter.withCountries,
               onTapCountry: viewModel.updateWithCountries,
             ),
-            _divider(),
+            FilterDivider(),
             FilterUserListsContainer(
               key: const PageStorageKey('filter-user-lists'),
               includeWatched: filter.includeWatched,
@@ -112,23 +113,19 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
               onTapIncludeWatched: viewModel.updateIncludeWatched,
               onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
             ),
-            _divider(),
-            FilterDatesContainer(
+            FilterDivider(),
+            FilterYearsContainer(
               key: const PageStorageKey('filter-dates'),
               fromDate: filter.fromDate,
               toDate: filter.toDate,
               onFromDateChanged: viewModel.updateFromDate,
               onToDateChanged: viewModel.updateToDate,
             ),
-            _divider(),
+            FilterDivider(),
           ],
         ),
       ),
     );
-  }
-
-  Widget _divider() {
-    return const Divider(height: 1);
   }
 
   EdgeInsets _createScrPadding(BuildContext context) {
