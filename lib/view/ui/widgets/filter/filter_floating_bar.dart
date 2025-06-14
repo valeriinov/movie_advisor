@@ -14,7 +14,7 @@ class FilterFloatingBar extends StatelessWidget {
   final String keyId;
   final String sortBySubtitle;
   final String filterSubtitle;
-  final bool isInitialized;
+  final bool isContentVisible;
   final VoidCallback? onSortByTap;
   final VoidCallback? onFilterTap;
 
@@ -23,7 +23,7 @@ class FilterFloatingBar extends StatelessWidget {
     required this.keyId,
     required this.sortBySubtitle,
     required this.filterSubtitle,
-    required this.isInitialized,
+    required this.isContentVisible,
     this.onSortByTap,
     this.onFilterTap,
   });
@@ -46,7 +46,7 @@ class FilterFloatingBar extends StatelessWidget {
         titlePadding: EdgeInsets.only(bottom: dimens.spLarge / 2),
         title: AnimatedSwitcher(
           duration: durations.animSwitchPrim,
-          child: isInitialized
+          child: isContentVisible
               ? TappableArea(
                   child: NoAlwaysScrollWrapper(
                     child: ListView(

@@ -44,7 +44,10 @@ final class WatchlistMoviesViewModel
 
     scheduleCall(loadInitialData);
 
-    return WatchlistMoviesState(filter: MoviesWatchlistFilterData());
+    return WatchlistMoviesState(
+      status: WatchlistBaseStatus(isLoading: true),
+      filter: MoviesWatchlistFilterData(),
+    );
   }
 
   @override

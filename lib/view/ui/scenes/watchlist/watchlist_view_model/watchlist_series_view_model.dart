@@ -44,7 +44,10 @@ final class WatchlistSeriesViewModel
 
     scheduleCall(loadInitialData);
 
-    return WatchlistSeriesState(filter: SeriesWatchlistFilterData());
+    return WatchlistSeriesState(
+      status: WatchlistBaseStatus(isLoading: true),
+      filter: SeriesWatchlistFilterData(),
+    );
   }
 
   @override

@@ -35,7 +35,7 @@ class WatchlistFloatingBarContainer<
 
     return FilterFloatingBar(
       keyId: 'watchlist_floating_bar',
-      isInitialized: isInitialized,
+      isContentVisible: !vsp.isLoading || isInitialized,
       sortBySubtitle: filter.sortBy.desc,
       filterSubtitle: _getFilterSettingsDescription(filter),
       onSortByTap: () => _openSortByDialog(

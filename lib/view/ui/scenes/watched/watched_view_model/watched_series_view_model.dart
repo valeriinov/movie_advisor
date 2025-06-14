@@ -43,7 +43,10 @@ final class WatchedSeriesViewModel
 
     scheduleCall(loadInitialData);
 
-    return WatchedSeriesState(filter: SeriesWatchedFilterData());
+    return WatchedSeriesState(
+      status: WatchedBaseStatus(isLoading: true),
+      filter: SeriesWatchedFilterData(),
+    );
   }
 
   @override

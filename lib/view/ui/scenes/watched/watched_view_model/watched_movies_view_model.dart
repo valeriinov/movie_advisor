@@ -43,7 +43,10 @@ final class WatchedMoviesViewModel
 
     scheduleCall(loadInitialData);
 
-    return WatchedMoviesState(filter: MoviesWatchedFilterData());
+    return WatchedMoviesState(
+      status: WatchedBaseStatus(isLoading: true),
+      filter: MoviesWatchedFilterData(),
+    );
   }
 
   @override
