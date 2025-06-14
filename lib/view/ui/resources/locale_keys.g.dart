@@ -203,6 +203,8 @@ abstract class  LocaleKeys {
   static const filterWithoutGenres = 'filterWithoutGenres';
   static const filterWithCountries = 'filterWithCountries';
   static const filterYear = 'filterYear';
+  static const filterWatchlistAdd = 'filterWatchlistAdd';
+  static const filterWatchedDate = 'filterWatchedDate';
   static const filterDescAll = 'filterDescAll';
   static const filterDescNone = 'filterDescNone';
   static const filterSelectedDesc = 'filterSelectedDesc';
@@ -213,6 +215,8 @@ abstract class  LocaleKeys {
   static const selectYearDialog = 'selectYearDialog';
   static const selectYearFromDialog = 'selectYearFromDialog';
   static const selectYearToDialog = 'selectYearToDialog';
+  static const fromForDialog = 'fromForDialog';
+  static const toForDialog = 'toForDialog';
   static const sortByDialog = 'sortByDialog';
   static const includeYourListsDialog = 'includeYourListsDialog';
   static const includeWatchedDesc = 'includeWatchedDesc';

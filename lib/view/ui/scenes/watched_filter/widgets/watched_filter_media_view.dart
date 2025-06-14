@@ -19,6 +19,7 @@ import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../../widgets/filter/filter_app_bar.dart';
 import '../../../widgets/filter/filter_countries_container.dart';
+import '../../../widgets/filter/filter_date_container.dart';
 import '../../../widgets/filter/filter_divider.dart';
 import '../../../widgets/filter/filter_genres_container.dart';
 import '../../../widgets/filter/filter_years_container.dart';
@@ -110,11 +111,20 @@ class WatchedFilterMediaView<
             ),
             FilterDivider(),
             FilterYearsContainer(
-              key: const PageStorageKey('watched-filter-dates'),
+              key: const PageStorageKey('watched-filter-years'),
               fromDate: filter.fromPremiereDate,
               toDate: filter.toPremiereDate,
               onFromDateChanged: viewModel.updateFromPremiereDate,
               onToDateChanged: viewModel.updateToPremiereDate,
+            ),
+            FilterDivider(),
+            FilterDateContainer(
+              key: const PageStorageKey('watched-filter-dates'),
+              title: LocaleKeys.filterWatchedDate.tr(),
+              fromDate: filter.fromWatchedDate,
+              toDate: filter.toWatchedDate,
+              onFromDateChanged: viewModel.updateFromWatchedDate,
+              onToDateChanged: viewModel.updateToWatchedDate,
             ),
             FilterDivider(),
           ],

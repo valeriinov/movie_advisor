@@ -110,7 +110,7 @@ class WatchlistFilterMediaView<
             ),
             FilterDivider(),
             FilterYearsContainer(
-              key: const PageStorageKey('watchlist-filter-dates'),
+              key: const PageStorageKey('watchlist-filter-years'),
               fromDate: filter.fromDate,
               toDate: filter.toDate,
               onFromDateChanged: viewModel.updateFromDate,

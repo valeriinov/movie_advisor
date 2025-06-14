@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../../resources/base_theme/inputs/base_inputs_styles_ext.dart';
-import '../../../widgets/form/widgets/field_label.dart';
+import '../../resources/app_date_formats.dart';
+import '../../resources/base_theme/inputs/base_inputs_styles_ext.dart';
+import '../form/widgets/field_label.dart';
 
-class YearButton extends HookWidget {
+enum ButtonDateFormat { year, date }
+
+class FilterDateButton extends HookWidget {
   final String label;
   final VoidCallback onTap;
+  final ButtonDateFormat format;
   final DateTime? date;
 
-  const YearButton({
+  const FilterDateButton({
     super.key,
     required this.label,
     required this.onTap,
+    this.format = ButtonDateFormat.year,
     this.date,
   });
 
@@ -20,14 +25,12 @@ class YearButton extends HookWidget {
   Widget build(BuildContext context) {
     final inputStyles = context.baseInputsStyles;
 
-    final controller = useTextEditingController(
-      text: date?.year.toString() ?? '',
-    );
+    final controller = useTextEditingController(text: _getDateString(date));
 
     final scrollController = useScrollController(keepScrollOffset: false);
 
     useEffect(() {
-      controller.text = date?.year.toString() ?? '';
+      controller.text = _getDateString(date);
       return null;
     }, [date]);
 
@@ -69,5 +72,14 @@ class YearButton extends HookWidget {
         ],
       ),
     );
+  }
+
+  String _getDateString(DateTime? date) {
+    if (date == null) return '';
+
+    return switch (format) {
+      ButtonDateFormat.year => AppDateFormats.yearFormat(date),
+      ButtonDateFormat.date => AppDateFormats.dayMonthYearDotsFormat(date),
+    };
   }
 }
