@@ -1,14 +1,46 @@
 import '../../../domain/entities/base_media/media_short_data.dart';
+import '../../../domain/entities/watched_filter/movies_watched_filter_data.dart';
+import '../../../domain/entities/watched_filter/series_watched_filter_data.dart';
 import '../../../domain/entities/watched_filter/watched_sort_by.dart';
+import '../../../domain/entities/watchlist_filter/movies_watchlist_filter_data.dart';
+import '../../../domain/entities/watchlist_filter/series_watchlist_filter_data.dart';
 import '../../../domain/entities/watchlist_filter/watchlist_sort_by.dart';
+import 'watched_filter_handler.dart';
+import 'watchlist_filter_handler.dart';
 
 extension MediaShortListManager<T extends MediaShortData> on List<T> {
-  List<T> handleWatchedItem<S>(T item, S sortBy) {
-    return _sorted(_updateList(item, item.isWatched), sortBy);
+  List<T> handleWatchItem<F>(T item, F filter) {
+    final shouldHave = _matches(filter, item);
+
+    return switch (filter) {
+      MoviesWatchedFilterData f => _sorted(
+        _updateList(item, shouldHave),
+        f.sortBy,
+      ),
+      SeriesWatchedFilterData f => _sorted(
+        _updateList(item, shouldHave),
+        f.sortBy,
+      ),
+      MoviesWatchlistFilterData f => _sorted(
+        _updateList(item, shouldHave),
+        f.sortBy,
+      ),
+      SeriesWatchlistFilterData f => _sorted(
+        _updateList(item, shouldHave),
+        f.sortBy,
+      ),
+      _ => this,
+    };
   }
 
-  List<T> handleWatchlistItem<S>(T item, S sortBy) {
-    return _sorted(_updateList(item, item.isInWatchlist), sortBy);
+  bool _matches<F>(F filter, MediaShortData item) {
+    return switch (filter) {
+      MoviesWatchedFilterData f => f.matches(item),
+      SeriesWatchedFilterData f => f.matches(item),
+      MoviesWatchlistFilterData f => f.matches(item),
+      SeriesWatchlistFilterData f => f.matches(item),
+      _ => false,
+    };
   }
 
   List<T> _updateList(T item, bool shouldHave) {
@@ -30,13 +62,13 @@ extension MediaShortListManager<T extends MediaShortData> on List<T> {
   }
 
   List<T> _sortWatched(List<T> list, WatchedSortBy s) {
-    list.sort((a, b) => s._compare(a, b));
+    list.sort((a, b) => s.compare(a, b));
 
     return list;
   }
 
   List<T> _sortWatchlist(List<T> list, WatchlistSortBy s) {
-    list.sort((a, b) => s._compare(a, b));
+    list.sort((a, b) => s.compare(a, b));
 
     return list;
   }
@@ -55,7 +87,7 @@ extension MediaShortListManager<T extends MediaShortData> on List<T> {
 }
 
 extension _WatchedSort on WatchedSortBy {
-  int _compare(MediaShortData a, MediaShortData b) {
+  int compare(MediaShortData a, MediaShortData b) {
     return switch (this) {
       WatchedSortBy.watchedDateAsc => _ascDate(
         a.lastWatchedAt,
@@ -85,7 +117,7 @@ extension _WatchedSort on WatchedSortBy {
 }
 
 extension _WatchlistSort on WatchlistSortBy {
-  int _compare(MediaShortData a, MediaShortData b) {
+  int compare(MediaShortData a, MediaShortData b) {
     return switch (this) {
       WatchlistSortBy.addedDateAsc => _ascDate(
         a.watchlistAddedAt,
