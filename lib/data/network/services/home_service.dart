@@ -109,10 +109,7 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(
-      result,
-      removeWithoutPoster: true,
-    );
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<MoviesResponseDataDto> getUpcomingMovies({required int page}) async {
@@ -121,10 +118,7 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(
-      result,
-      removeWithoutPoster: true,
-    );
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<MoviesResponseDataDto> getTopRatedMovies({required int page}) async {
@@ -133,10 +127,7 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(
-      result,
-      removeWithoutPoster: true,
-    );
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<MoviesResponseDataDto> getPopularMovies({required int page}) async {
@@ -145,10 +136,7 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleMoviesResponse(
-      result,
-      removeWithoutPoster: true,
-    );
+    return _responseHandler.handleMoviesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getSuggestedSeries(
@@ -274,10 +262,7 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(
-      result,
-      removeWithoutPoster: true,
-    );
+    return _responseHandler.handleSeriesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getOnTheAirSeries({required int page}) async {
@@ -286,10 +271,7 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(
-      result,
-      removeWithoutPoster: true,
-    );
+    return _responseHandler.handleSeriesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getTopRatedSeries({required int page}) async {
@@ -298,10 +280,7 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(
-      result,
-      removeWithoutPoster: true,
-    );
+    return _responseHandler.handleSeriesResponse(result);
   }
 
   Future<SeriesResponseDataDto> getPopularSeries({required int page}) async {
@@ -310,9 +289,6 @@ class HomeService {
       queryParameters: {'page': page},
     );
 
-    return _responseHandler.handleSeriesResponse(
-      result,
-      removeWithoutPoster: true,
-    );
+    return _responseHandler.handleSeriesResponse(result);
   }
 }
