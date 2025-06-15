@@ -9,7 +9,7 @@ import '../utils/transition_builder_mixin.dart';
 part 'watched_routes.g.dart';
 
 @TypedGoRoute<WatchedRoute>(path: AppRoutes.watched)
-class WatchedRoute extends GoRouteData {
+class WatchedRoute extends GoRouteData with _$WatchedRoute {
   @override
   Page<void> buildPage(context, state) {
     return NoTransitionPage(
@@ -21,7 +21,8 @@ class WatchedRoute extends GoRouteData {
 }
 
 @TypedGoRoute<WatchedFilterRoute>(path: AppRoutes.watchedFilter)
-class WatchedFilterRoute extends GoRouteData with TransitionBuilderMixin {
+class WatchedFilterRoute extends GoRouteData
+    with TransitionBuilderMixin, _$WatchedFilterRoute {
   /// The [WatchedFilterRoute] is displayed above the navigation menu,
   /// use `push` when navigating to this screen.
   ///
