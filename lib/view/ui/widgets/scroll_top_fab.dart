@@ -12,6 +12,7 @@ class ScrollTopFab extends StatelessWidget {
     final durations = context.baseDurations;
 
     return FloatingActionButton(
+      heroTag: null,
       onPressed: () => scrollController.animateTo(
         0,
         duration: durations.animScrollToTop,
