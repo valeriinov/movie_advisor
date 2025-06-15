@@ -8,7 +8,7 @@ import '../app_routes.dart';
 part 'details_route.g.dart';
 
 @TypedGoRoute<DetailsRoute>(path: AppRoutes.details)
-class DetailsRoute extends GoRouteData {
+class DetailsRoute extends GoRouteData with _$DetailsRoute {
   final int id;
   final ContentMode contentMode;
 

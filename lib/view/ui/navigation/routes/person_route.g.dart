@@ -8,29 +8,33 @@ part of 'person_route.dart';
 
 List<RouteBase> get $appRoutes => [$personRoute];
 
-RouteBase get $personRoute => GoRouteData.$route(
-  path: '/person',
+RouteBase get $personRoute =>
+    GoRouteData.$route(path: '/person', factory: _$PersonRoute._fromState);
 
-  factory: $PersonRouteExtension._fromState,
-);
-
-extension $PersonRouteExtension on PersonRoute {
+mixin _$PersonRoute on GoRouteData {
   static PersonRoute _fromState(GoRouterState state) => PersonRoute(
     id: _$convertMapValue('id', state.uri.queryParameters, int.parse) ?? -1,
   );
 
+  PersonRoute get _self => this as PersonRoute;
+
+  @override
   String get location => GoRouteData.$location(
     '/person',
-    queryParams: {if (id != -1) 'id': id.toString()},
+    queryParams: {if (_self.id != -1) 'id': _self.id.toString()},
   );
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
+  @override
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
