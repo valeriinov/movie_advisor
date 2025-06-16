@@ -12,6 +12,7 @@ import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../../../widgets/app_bar/main_app_bar.dart';
+import '../../../widgets/bottom_safe_area.dart';
 import '../../../widgets/bottom_sheet/blurred_bottom_sheet.dart';
 import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
@@ -60,20 +61,22 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
           title: Text(appBarTitle),
           leading: BackButton(onPressed: context.goBackOrHome),
         ),
-        body: isSkeletonVisible
-            ? DetailsContentSkeleton(isMovie: T is MovieData)
-            : DetailsScreenContent(
-                data: data,
-                status: status,
-                currentTab: currentTab,
-                scrollController: scrollController,
-                onWatchlistTap: () => _onWatchlistTap(vsp),
-                onWatchedTap: () => _onWatchedTap(context, vsp),
-                onTabSelect: (index) => _onTabSelect(vsp, index),
-                onRefresh: !isLoading
-                    ? () => vsp.viewModel.loadInitialData(showLoader: false)
-                    : null,
-              ),
+        body: BottomSafeArea(
+          child: isSkeletonVisible
+              ? DetailsContentSkeleton(isMovie: T is MovieData)
+              : DetailsScreenContent(
+                  data: data,
+                  status: status,
+                  currentTab: currentTab,
+                  scrollController: scrollController,
+                  onWatchlistTap: () => _onWatchlistTap(vsp),
+                  onWatchedTap: () => _onWatchedTap(context, vsp),
+                  onTabSelect: (index) => _onTabSelect(vsp, index),
+                  onRefresh: !isLoading
+                      ? () => vsp.viewModel.loadInitialData(showLoader: false)
+                      : null,
+                ),
+        ),
         floatingActionButton: isFabVisible
             ? ScrollTopFab(scrollController: scrollController)
             : null,
