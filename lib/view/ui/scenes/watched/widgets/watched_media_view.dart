@@ -3,7 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/ext/watched_default_filter.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../../../domain/entities/watched_filter/movies_watched_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/series_watched_filter_data.dart';
 import '../../../../../domain/entities/watched_filter/watched_filter_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
@@ -74,6 +77,7 @@ class WatchedMediaView<T extends MediaShortData, F extends WatchedFilterData>
     }, []);
 
     final watched = vsp.selectWatch((s) => s.watched);
+    final filter = vsp.selectWatch((s) => s.filter);
 
     return ScrollTopListener(
       scrollController: scrollController,
@@ -95,6 +99,7 @@ class WatchedMediaView<T extends MediaShortData, F extends WatchedFilterData>
             emptyListTitle: emptyListTitle,
             emptyListSubtitle: emptyListSubtitle,
             scrollController: scrollController,
+            isDefaultFilter: _isDefaultFilter(filter),
             onItemSelect: (id) => _goToDetails(context, id),
             onRefresh: !isLoading
                 ? () => vsp.viewModel.loadInitialData(showLoader: false)
@@ -107,6 +112,14 @@ class WatchedMediaView<T extends MediaShortData, F extends WatchedFilterData>
         );
       },
     );
+  }
+
+  bool _isDefaultFilter(F filter) {
+    return switch (filter) {
+      MoviesWatchedFilterData f => f.isDefault,
+      SeriesWatchedFilterData f => f.isDefault,
+      _ => true,
+    };
   }
 
   ScrollPaginationController _initPaginationController(
