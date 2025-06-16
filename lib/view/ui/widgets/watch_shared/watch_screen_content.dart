@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_utils/ext/flutter_ext/widget/edge_insets_creator.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+import 'package:tap_on_scroll/tap_on_scroll.dart';
 
 import '../../../../domain/entities/base_media/media_short_data.dart';
 import '../../base/media_load_info.dart';
@@ -19,10 +20,10 @@ class WatchScreenContent extends StatelessWidget {
   final MediaLoadInfo<MediaShortData> watchlist;
   final String emptyListTitle;
   final String emptyListSubtitle;
+  final ScrollController scrollController;
   final Widget? floatingBar;
   final void Function(int id)? onItemSelect;
   final Future<void> Function()? onRefresh;
-  final ScrollController? scrollController;
 
   bool get _hasEmptyList {
     return watchlist.mediaData.items.isEmpty && isInitialized;
@@ -35,10 +36,10 @@ class WatchScreenContent extends StatelessWidget {
     required this.watchlist,
     required this.emptyListTitle,
     required this.emptyListSubtitle,
+    required this.scrollController,
     this.floatingBar,
     this.onItemSelect,
     this.onRefresh,
-    this.scrollController,
   });
 
   @override
@@ -48,33 +49,36 @@ class WatchScreenContent extends StatelessWidget {
 
     final isNextPageLoading = watchlist.isNextPageLoading;
 
-    return CustomScrollView(
-      controller: scrollController,
-      slivers: [
-        if (floatingBar != null) floatingBar!,
-        SliverPadding(
-          padding: dimens.padHorPrimIns,
-          sliver: SliverAnimatedSwitcher(
-            duration: durations.animSwitchPrim,
-            child: switch (_hasEmptyList) {
-              true => _buildEmptyList(),
-              false when isLoading => SliverFillLoader(),
-              _ => MultiSliver(
-                children: [
-                  SliverRefreshIndicator(onRefresh: onRefresh),
-                  SliverPadding(padding: (dimens.spLarge / 2).insTop()),
-                  WatchItems(
-                    media: watchlist.mediaData.items,
-                    onItemSelect: onItemSelect,
-                  ),
-                  if (isNextPageLoading) NextPageLoader(),
-                  SliverPadding(padding: dimens.padBotPrimIns),
-                ],
-              ),
-            },
+    return TapInterceptor(
+      scrollController: scrollController,
+      child: CustomScrollView(
+        controller: scrollController,
+        slivers: [
+          if (floatingBar != null) floatingBar!,
+          SliverPadding(
+            padding: dimens.padHorPrimIns,
+            sliver: SliverAnimatedSwitcher(
+              duration: durations.animSwitchPrim,
+              child: switch (_hasEmptyList) {
+                true => _buildEmptyList(),
+                false when isLoading => SliverFillLoader(),
+                _ => MultiSliver(
+                  children: [
+                    SliverRefreshIndicator(onRefresh: onRefresh),
+                    SliverPadding(padding: (dimens.spLarge / 2).insTop()),
+                    WatchItems(
+                      media: watchlist.mediaData.items,
+                      onItemSelect: onItemSelect,
+                    ),
+                    if (isNextPageLoading) NextPageLoader(),
+                    SliverPadding(padding: dimens.padBotPrimIns),
+                  ],
+                ),
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
