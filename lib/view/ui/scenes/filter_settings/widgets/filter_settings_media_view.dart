@@ -16,7 +16,9 @@ import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/ext/movie_genre_desc.dart';
 import '../../../resources/ext/series_genre_desc.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/bottom_safe_area.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
+import '../../../widgets/filter/filter_app_bar.dart';
 import '../../../widgets/filter/filter_countries_container.dart';
 import '../../../widgets/filter/filter_divider.dart';
 import '../../../widgets/filter/filter_genres_container.dart';
@@ -24,7 +26,6 @@ import '../../../widgets/filter/filter_years_container.dart';
 import '../../filter/filter_view_model/filter_view_model.dart';
 import '../filter_settings_view_model/filter_settings_state.dart';
 import '../filter_settings_view_model/filter_settings_view_model.dart';
-import '../../../widgets/filter/filter_app_bar.dart';
 import 'filter_user_lists_container.dart';
 
 class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
@@ -72,57 +73,59 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
         onReset: !_isDefaultFilter(filter) ? viewModel.resetFilter : null,
         onSave: hasUnsavedChanges ? viewModel.setApplyStatus : null,
       ),
-      body: PopScope(
-        onPopInvokedWithResult: (didPop, _) {
-          if (didPop) return;
-          _showExitDialog(context);
-        },
-        canPop: !hasUnsavedChanges,
-        child: ListView(
-          padding: _createScrPadding(context),
-          children: [
-            FilterDivider(),
-            FilterGenresContainer(
-              key: const PageStorageKey('filter-with-genres'),
-              title: LocaleKeys.filterWithGenres.tr(),
-              contentMode: contentMode,
-              selectedGenresDesc: selectedWithGenresDesc,
-              disabledGenresDesc: selectedWithoutGenresDesc,
-              onTapGenre: (desc) => _updateWithGenres(vsp, desc),
-            ),
-            FilterDivider(),
-            FilterGenresContainer(
-              key: const PageStorageKey('filter-without-genres'),
-              title: LocaleKeys.filterWithoutGenres.tr(),
-              contentMode: contentMode,
-              selectedGenresDesc: selectedWithoutGenresDesc,
-              disabledGenresDesc: selectedWithGenresDesc,
-              onTapGenre: (desc) => _updateWithoutGenres(vsp, desc),
-            ),
-            FilterDivider(),
-            FilterCountriesContainer(
-              key: const PageStorageKey('filter-with-countries'),
-              selectedCountries: filter.withCountries,
-              onTapCountry: viewModel.updateWithCountries,
-            ),
-            FilterDivider(),
-            FilterUserListsContainer(
-              key: const PageStorageKey('filter-user-lists'),
-              includeWatched: filter.includeWatched,
-              includeWatchlist: filter.includeWatchlist,
-              onTapIncludeWatched: viewModel.updateIncludeWatched,
-              onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
-            ),
-            FilterDivider(),
-            FilterYearsContainer(
-              key: const PageStorageKey('filter-dates'),
-              fromDate: filter.fromDate,
-              toDate: filter.toDate,
-              onFromDateChanged: viewModel.updateFromDate,
-              onToDateChanged: viewModel.updateToDate,
-            ),
-            FilterDivider(),
-          ],
+      body: BottomSafeArea(
+        child: PopScope(
+          onPopInvokedWithResult: (didPop, _) {
+            if (didPop) return;
+            _showExitDialog(context);
+          },
+          canPop: !hasUnsavedChanges,
+          child: ListView(
+            padding: _createScrPadding(context),
+            children: [
+              FilterDivider(),
+              FilterGenresContainer(
+                key: const PageStorageKey('filter-with-genres'),
+                title: LocaleKeys.filterWithGenres.tr(),
+                contentMode: contentMode,
+                selectedGenresDesc: selectedWithGenresDesc,
+                disabledGenresDesc: selectedWithoutGenresDesc,
+                onTapGenre: (desc) => _updateWithGenres(vsp, desc),
+              ),
+              FilterDivider(),
+              FilterGenresContainer(
+                key: const PageStorageKey('filter-without-genres'),
+                title: LocaleKeys.filterWithoutGenres.tr(),
+                contentMode: contentMode,
+                selectedGenresDesc: selectedWithoutGenresDesc,
+                disabledGenresDesc: selectedWithGenresDesc,
+                onTapGenre: (desc) => _updateWithoutGenres(vsp, desc),
+              ),
+              FilterDivider(),
+              FilterCountriesContainer(
+                key: const PageStorageKey('filter-with-countries'),
+                selectedCountries: filter.withCountries,
+                onTapCountry: viewModel.updateWithCountries,
+              ),
+              FilterDivider(),
+              FilterUserListsContainer(
+                key: const PageStorageKey('filter-user-lists'),
+                includeWatched: filter.includeWatched,
+                includeWatchlist: filter.includeWatchlist,
+                onTapIncludeWatched: viewModel.updateIncludeWatched,
+                onTapIncludeWatchlist: viewModel.updateIncludeWatchlist,
+              ),
+              FilterDivider(),
+              FilterYearsContainer(
+                key: const PageStorageKey('filter-dates'),
+                fromDate: filter.fromDate,
+                toDate: filter.toDate,
+                onFromDateChanged: viewModel.updateFromDate,
+                onToDateChanged: viewModel.updateToDate,
+              ),
+              FilterDivider(),
+            ],
+          ),
         ),
       ),
     );

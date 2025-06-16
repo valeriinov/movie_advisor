@@ -4,7 +4,7 @@ abstract final class _BaseDimens {
   // Screen paddings
   static const double padHorPrim = 16;
   static const double padTopPrim = 30;
-  static const double padBotPrim = 30;
+  static const double padBotPrim = 50;
 
   static const double padHorSec = 32;
 

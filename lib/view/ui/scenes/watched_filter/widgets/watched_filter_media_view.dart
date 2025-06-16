@@ -16,6 +16,7 @@ import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../resources/ext/movie_genre_desc.dart';
 import '../../../resources/ext/series_genre_desc.dart';
 import '../../../resources/locale_keys.g.dart';
+import '../../../widgets/bottom_safe_area.dart';
 import '../../../widgets/dialogs/exit_dialog.dart';
 import '../../../widgets/filter/filter_app_bar.dart';
 import '../../../widgets/filter/filter_checkbox_list_tile.dart';
@@ -77,67 +78,69 @@ class WatchedFilterMediaView<
         onReset: !_isDefaultFilter(filter) ? viewModel.resetFilter : null,
         onSave: hasUnsavedChanges ? viewModel.setApplyStatus : null,
       ),
-      body: PopScope(
-        onPopInvokedWithResult: (didPop, _) {
-          if (didPop) return;
-          _showExitDialog(context);
-        },
-        canPop: !hasUnsavedChanges,
-        child: ListView(
-          padding: _createScrPadding(context),
-          children: [
-            FilterDivider(),
-            FilterGenresContainer(
-              key: const PageStorageKey('watched-filter-with-genres'),
-              title: LocaleKeys.filterWithGenres.tr(),
-              contentMode: contentMode,
-              selectedGenresDesc: selectedWithGenresDesc,
-              disabledGenresDesc: selectedWithoutGenresDesc,
-              onTapGenre: (desc) => _updateWithGenres(vsp, desc),
-            ),
-            FilterDivider(),
-            FilterGenresContainer(
-              key: const PageStorageKey('watched-filter-without-genres'),
-              title: LocaleKeys.filterWithoutGenres.tr(),
-              contentMode: contentMode,
-              selectedGenresDesc: selectedWithoutGenresDesc,
-              disabledGenresDesc: selectedWithGenresDesc,
-              onTapGenre: (desc) => _updateWithoutGenres(vsp, desc),
-            ),
-            FilterDivider(),
-            FilterCountriesContainer(
-              key: const PageStorageKey('watched-filter-with-countries'),
-              selectedCountries: filter.withCountries,
-              onTapCountry: viewModel.updateWithCountries,
-            ),
-            FilterDivider(),
-            FilterYearsContainer(
-              key: const PageStorageKey('watched-filter-years'),
-              fromDate: filter.fromPremiereDate,
-              toDate: filter.toPremiereDate,
-              onFromDateChanged: viewModel.updateFromPremiereDate,
-              onToDateChanged: viewModel.updateToPremiereDate,
-            ),
-            FilterDivider(),
-            FilterDateContainer(
-              key: const PageStorageKey('watched-filter-dates'),
-              title: LocaleKeys.filterWatchedDate.tr(),
-              fromDate: filter.fromWatchedDate,
-              toDate: filter.toWatchedDate,
-              onFromDateChanged: viewModel.updateFromWatchedDate,
-              onToDateChanged: viewModel.updateToWatchedDate,
-            ),
-            FilterDivider(),
-            FilterCheckboxListTile(
-              label: LocaleKeys.includeWatchlistDesc.tr(),
-              contentPadding: EdgeInsets.all(5),
-              value: filter.includeWatchlist,
-              onChanged: (val) {
-                if (val == null) return;
-                viewModel.updateIncludeWatchlist(val);
-              },
-            ),
-          ],
+      body: BottomSafeArea(
+        child: PopScope(
+          onPopInvokedWithResult: (didPop, _) {
+            if (didPop) return;
+            _showExitDialog(context);
+          },
+          canPop: !hasUnsavedChanges,
+          child: ListView(
+            padding: _createScrPadding(context),
+            children: [
+              FilterDivider(),
+              FilterGenresContainer(
+                key: const PageStorageKey('watched-filter-with-genres'),
+                title: LocaleKeys.filterWithGenres.tr(),
+                contentMode: contentMode,
+                selectedGenresDesc: selectedWithGenresDesc,
+                disabledGenresDesc: selectedWithoutGenresDesc,
+                onTapGenre: (desc) => _updateWithGenres(vsp, desc),
+              ),
+              FilterDivider(),
+              FilterGenresContainer(
+                key: const PageStorageKey('watched-filter-without-genres'),
+                title: LocaleKeys.filterWithoutGenres.tr(),
+                contentMode: contentMode,
+                selectedGenresDesc: selectedWithoutGenresDesc,
+                disabledGenresDesc: selectedWithGenresDesc,
+                onTapGenre: (desc) => _updateWithoutGenres(vsp, desc),
+              ),
+              FilterDivider(),
+              FilterCountriesContainer(
+                key: const PageStorageKey('watched-filter-with-countries'),
+                selectedCountries: filter.withCountries,
+                onTapCountry: viewModel.updateWithCountries,
+              ),
+              FilterDivider(),
+              FilterYearsContainer(
+                key: const PageStorageKey('watched-filter-years'),
+                fromDate: filter.fromPremiereDate,
+                toDate: filter.toPremiereDate,
+                onFromDateChanged: viewModel.updateFromPremiereDate,
+                onToDateChanged: viewModel.updateToPremiereDate,
+              ),
+              FilterDivider(),
+              FilterDateContainer(
+                key: const PageStorageKey('watched-filter-dates'),
+                title: LocaleKeys.filterWatchedDate.tr(),
+                fromDate: filter.fromWatchedDate,
+                toDate: filter.toWatchedDate,
+                onFromDateChanged: viewModel.updateFromWatchedDate,
+                onToDateChanged: viewModel.updateToWatchedDate,
+              ),
+              FilterDivider(),
+              FilterCheckboxListTile(
+                label: LocaleKeys.includeWatchlistDesc.tr(),
+                contentPadding: EdgeInsets.all(5),
+                value: filter.includeWatchlist,
+                onChanged: (val) {
+                  if (val == null) return;
+                  viewModel.updateIncludeWatchlist(val);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
