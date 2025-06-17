@@ -9,6 +9,7 @@ extension MoviesWatchedFilterHandler on MoviesWatchedFilterData {
     final movie = _asMovie(media);
 
     return movie != null &&
+        movie.isWatched &&
         _countryAllowed(movie) &&
         _watchlistAllowed(movie) &&
         _premiereDateAllowed(movie) &&
@@ -56,6 +57,7 @@ extension SeriesWatchedFilterHandler on SeriesWatchedFilterData {
     final series = _asSeries(media);
 
     return series != null &&
+        series.isWatched &&
         _countryAllowed(series) &&
         _watchlistAllowed(series) &&
         _premiereDateAllowed(series) &&
