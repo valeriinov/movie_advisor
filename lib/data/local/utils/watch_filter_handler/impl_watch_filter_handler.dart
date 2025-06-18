@@ -30,7 +30,7 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       _dateRange(
         table.premiereDate,
         filter.fromPremiereDate,
-        filter.toPremiereDate,
+        _adjustToPremiereDate(filter.toPremiereDate),
       ),
       _dateRange(
         table.lastWatchedAt,
@@ -54,7 +54,7 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       _dateRange(
         table.premiereDate,
         filter.fromPremiereDate,
-        filter.toPremiereDate,
+        _adjustToPremiereDate(filter.toPremiereDate),
       ),
       _dateRange(
         table.watchlistAddedAt,
@@ -78,7 +78,7 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       _dateRange(
         table.premiereDate,
         filter.fromPremiereDate,
-        filter.toPremiereDate,
+        _adjustToPremiereDate(filter.toPremiereDate),
       ),
       _dateRange(
         table.lastWatchedAt,
@@ -102,7 +102,7 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       _dateRange(
         table.premiereDate,
         filter.fromPremiereDate,
-        filter.toPremiereDate,
+        _adjustToPremiereDate(filter.toPremiereDate),
       ),
       _dateRange(
         table.watchlistAddedAt,
@@ -142,6 +142,11 @@ class ImplWatchFilterHandler implements WatchFilterHandler {
       SeriesGenreDto g => g.toValue(),
       _ => -1,
     };
+  }
+
+  DateTime? _adjustToPremiereDate(DateTime? date) {
+    if (date == null) return null;
+    return DateTime(date.year + 1, date.month, date.day);
   }
 
   Expression<bool> _dateRange(
