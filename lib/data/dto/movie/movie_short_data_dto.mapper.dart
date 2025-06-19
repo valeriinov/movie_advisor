@@ -72,6 +72,15 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
   static const Field<MovieShortDataDto, LocalizedString> _f$localizedPosterUrl =
       Field('localizedPosterUrl', _$localizedPosterUrl,
           key: r'localized_poster_url', opt: true);
+  static DateTime? _$watchlistAddedAt(MovieShortDataDto v) =>
+      v.watchlistAddedAt;
+  static const Field<MovieShortDataDto, DateTime> _f$watchlistAddedAt = Field(
+      'watchlistAddedAt', _$watchlistAddedAt,
+      key: r'watchlist_added_at', opt: true, hook: DateMapperHook());
+  static DateTime? _$lastWatchedAt(MovieShortDataDto v) => v.lastWatchedAt;
+  static const Field<MovieShortDataDto, DateTime> _f$lastWatchedAt = Field(
+      'lastWatchedAt', _$lastWatchedAt,
+      key: r'last_watched_at', opt: true, hook: DateMapperHook());
 
   @override
   final MappableFields<MovieShortDataDto> fields = const {
@@ -88,6 +97,8 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
     #updatedAt: _f$updatedAt,
     #localizedTitle: _f$localizedTitle,
     #localizedPosterUrl: _f$localizedPosterUrl,
+    #watchlistAddedAt: _f$watchlistAddedAt,
+    #lastWatchedAt: _f$lastWatchedAt,
   };
   @override
   final bool ignoreNull = true;
@@ -106,7 +117,9 @@ class MovieShortDataDtoMapper extends ClassMapperBase<MovieShortDataDto> {
         isWatched: data.dec(_f$isWatched),
         updatedAt: data.dec(_f$updatedAt),
         localizedTitle: data.dec(_f$localizedTitle),
-        localizedPosterUrl: data.dec(_f$localizedPosterUrl));
+        localizedPosterUrl: data.dec(_f$localizedPosterUrl),
+        watchlistAddedAt: data.dec(_f$watchlistAddedAt),
+        lastWatchedAt: data.dec(_f$lastWatchedAt));
   }
 
   @override
@@ -187,7 +200,9 @@ abstract class MovieShortDataDtoCopyWith<$R, $In extends MovieShortDataDto,
       bool? isWatched,
       DateTime? updatedAt,
       LocalizedString? localizedTitle,
-      LocalizedString? localizedPosterUrl});
+      LocalizedString? localizedPosterUrl,
+      DateTime? watchlistAddedAt,
+      DateTime? lastWatchedAt});
   MovieShortDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -240,7 +255,9 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
           Object? isWatched = $none,
           Object? updatedAt = $none,
           Object? localizedTitle = $none,
-          Object? localizedPosterUrl = $none}) =>
+          Object? localizedPosterUrl = $none,
+          Object? watchlistAddedAt = $none,
+          Object? lastWatchedAt = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (posterUrl != $none) #posterUrl: posterUrl,
@@ -254,7 +271,10 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
         if (isWatched != $none) #isWatched: isWatched,
         if (updatedAt != $none) #updatedAt: updatedAt,
         if (localizedTitle != $none) #localizedTitle: localizedTitle,
-        if (localizedPosterUrl != $none) #localizedPosterUrl: localizedPosterUrl
+        if (localizedPosterUrl != $none)
+          #localizedPosterUrl: localizedPosterUrl,
+        if (watchlistAddedAt != $none) #watchlistAddedAt: watchlistAddedAt,
+        if (lastWatchedAt != $none) #lastWatchedAt: lastWatchedAt
       }));
   @override
   MovieShortDataDto $make(CopyWithData data) => MovieShortDataDto(
@@ -271,7 +291,10 @@ class _MovieShortDataDtoCopyWithImpl<$R, $Out>
       updatedAt: data.get(#updatedAt, or: $value.updatedAt),
       localizedTitle: data.get(#localizedTitle, or: $value.localizedTitle),
       localizedPosterUrl:
-          data.get(#localizedPosterUrl, or: $value.localizedPosterUrl));
+          data.get(#localizedPosterUrl, or: $value.localizedPosterUrl),
+      watchlistAddedAt:
+          data.get(#watchlistAddedAt, or: $value.watchlistAddedAt),
+      lastWatchedAt: data.get(#lastWatchedAt, or: $value.lastWatchedAt));
 
   @override
   MovieShortDataDtoCopyWith<$R2, MovieShortDataDto, $Out2> $chain<$R2, $Out2>(

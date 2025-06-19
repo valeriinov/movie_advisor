@@ -2,8 +2,9 @@ part of 'watchlist_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [WatchlistState] with [SeriesShortData].
-typedef WatchlistSeriesState = WatchlistState<SeriesShortData>;
+/// A type alias for [WatchlistState] with [SeriesShortData] and [SeriesWatchlistFilterData].
+typedef WatchlistSeriesState =
+    WatchlistState<SeriesShortData, SeriesWatchlistFilterData>;
 
 /// {@category StateManagement}
 ///
@@ -25,10 +26,11 @@ final watchlistSeriesViewModelPr =
 ///
 /// This class is responsible for coordinating `watchlist_series` behavior and interacting with the UI.
 final class WatchlistSeriesViewModel
-    extends WatchlistViewModel<SeriesShortData> {
+    extends WatchlistViewModel<SeriesShortData, SeriesWatchlistFilterData> {
   @override
   WatchlistSeriesState build() {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
+    _watchlistFilterUseCase = ref.read(watchlistSeriesFilterUseCasePr);
     _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
@@ -42,7 +44,10 @@ final class WatchlistSeriesViewModel
 
     scheduleCall(loadInitialData);
 
-    return WatchlistSeriesState();
+    return WatchlistSeriesState(
+      status: WatchlistBaseStatus(isLoading: true),
+      filter: SeriesWatchlistFilterData(),
+    );
   }
 
   @override

@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const appName = 'appName';
   static const homeNavTab = 'homeNavTab';
   static const watchlistNavTab = 'watchlistNavTab';
@@ -141,8 +141,7 @@ abstract class LocaleKeys {
   static const emptySuggestionsMoviesTitle = 'emptySuggestionsMoviesTitle';
   static const emptySuggestionsSeriesTitle = 'emptySuggestionsSeriesTitle';
   static const homeEmptyListSubtitle = 'homeEmptyListSubtitle';
-  static const updateAlertNewVersionAvailable =
-      'updateAlertNewVersionAvailable';
+  static const updateAlertNewVersionAvailable = 'updateAlertNewVersionAvailable';
   static const updateAlertNewVersion = 'updateAlertNewVersion';
   static const updateAlertCurrentVersion = 'updateAlertCurrentVersion';
   static const updateAlertIgnore = 'updateAlertIgnore';
@@ -188,6 +187,12 @@ abstract class LocaleKeys {
   static const sortByReleaseDateDesc = 'sortByReleaseDateDesc';
   static const sortByRevenueAsc = 'sortByRevenueAsc';
   static const sortByRevenueDesc = 'sortByRevenueDesc';
+  static const sortByWatchlistAddAsc = 'sortByWatchlistAddAsc';
+  static const sortByWatchlistAddDesc = 'sortByWatchlistAddDesc';
+  static const sortByWatchedDateAsc = 'sortByWatchedDateAsc';
+  static const sortByWatchedDateDesc = 'sortByWatchedDateDesc';
+  static const sortByUserRateAsc = 'sortByUserRateAsc';
+  static const sortByUserRateDesc = 'sortByUserRateDesc';
   static const filterScreenMoviesTitle = 'filterScreenMoviesTitle';
   static const filterScreenSeriesTitle = 'filterScreenSeriesTitle';
   static const emptyFilterTitle = 'emptyFilterTitle';
@@ -198,6 +203,8 @@ abstract class LocaleKeys {
   static const filterWithoutGenres = 'filterWithoutGenres';
   static const filterWithCountries = 'filterWithCountries';
   static const filterYear = 'filterYear';
+  static const filterWatchlistAdd = 'filterWatchlistAdd';
+  static const filterWatchedDate = 'filterWatchedDate';
   static const filterDescAll = 'filterDescAll';
   static const filterDescNone = 'filterDescNone';
   static const filterSelectedDesc = 'filterSelectedDesc';
@@ -208,6 +215,8 @@ abstract class LocaleKeys {
   static const selectYearDialog = 'selectYearDialog';
   static const selectYearFromDialog = 'selectYearFromDialog';
   static const selectYearToDialog = 'selectYearToDialog';
+  static const fromForDialog = 'fromForDialog';
+  static const toForDialog = 'toForDialog';
   static const sortByDialog = 'sortByDialog';
   static const includeYourListsDialog = 'includeYourListsDialog';
   static const includeWatchedDesc = 'includeWatchedDesc';
@@ -235,4 +244,5 @@ abstract class LocaleKeys {
   static const filterToYear = 'filterToYear';
   static const filterFromLabel = 'filterFromLabel';
   static const filterToLabel = 'filterToLabel';
+
 }

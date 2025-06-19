@@ -17,7 +17,7 @@ part 'home_routes.g.dart';
     TypedGoRoute<FilterRoute>(path: AppRoutes.filter),
   ],
 )
-class HomeRoute extends GoRouteData {
+class HomeRoute extends GoRouteData with _$HomeRoute {
   @override
   Page<void> buildPage(context, state) {
     return NoTransitionPage(
@@ -28,7 +28,8 @@ class HomeRoute extends GoRouteData {
   }
 }
 
-class SearchRoute extends GoRouteData with TransitionBuilderMixin {
+class SearchRoute extends GoRouteData
+    with TransitionBuilderMixin, _$SearchRoute {
   SearchRoute();
 
   @override
@@ -42,7 +43,8 @@ class SearchRoute extends GoRouteData with TransitionBuilderMixin {
   }
 }
 
-class FilterRoute extends GoRouteData with TransitionBuilderMixin {
+class FilterRoute extends GoRouteData
+    with TransitionBuilderMixin, _$FilterRoute {
   FilterRoute();
 
   @override
@@ -57,7 +59,8 @@ class FilterRoute extends GoRouteData with TransitionBuilderMixin {
 }
 
 @TypedGoRoute<FilterSettingsRoute>(path: AppRoutes.filterSettings)
-class FilterSettingsRoute extends GoRouteData with TransitionBuilderMixin {
+class FilterSettingsRoute extends GoRouteData
+    with TransitionBuilderMixin, _$FilterSettingsRoute {
   /// The [FilterSettingsRoute] is displayed above the navigation menu,
   /// use `push` when navigating to this screen.
   ///

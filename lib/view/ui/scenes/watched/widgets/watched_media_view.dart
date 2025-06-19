@@ -3,7 +3,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_utils/utils/scroll_pagination_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/ext/watched_default_filter.dart';
 import '../../../../../domain/entities/base_media/media_short_data.dart';
+import '../../../../../domain/entities/watched_filter/movies_watched_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/series_watched_filter_data.dart';
+import '../../../../../domain/entities/watched_filter/watched_filter_data.dart';
 import '../../../../di/injector.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../base/content_mode_view_model/content_mode_view_model.dart';
@@ -16,9 +20,11 @@ import '../../../widgets/scroll_top_fab.dart';
 import '../../../widgets/scroll_top_listener.dart';
 import '../../../widgets/watch_shared/watch_screen_content.dart';
 import '../watched_view_model/watched_view_model.dart';
+import 'watched_floating_bar_container.dart';
 
-class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
-  final WatchedVMProvider<T> provider;
+class WatchedMediaView<T extends MediaShortData, F extends WatchedFilterData>
+    extends HookConsumerWidget {
+  final WatchedVMProvider<T, F> provider;
   final ContentMode contentMode;
   final String screenTitle;
   final String emptyListTitle;
@@ -71,6 +77,7 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
     }, []);
 
     final watched = vsp.selectWatch((s) => s.watched);
+    final filter = vsp.selectWatch((s) => s.filter);
 
     return ScrollTopListener(
       scrollController: scrollController,
@@ -92,10 +99,12 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
             emptyListTitle: emptyListTitle,
             emptyListSubtitle: emptyListSubtitle,
             scrollController: scrollController,
+            isDefaultFilter: _isDefaultFilter(filter),
             onItemSelect: (id) => _goToDetails(context, id),
             onRefresh: !isLoading
                 ? () => vsp.viewModel.loadInitialData(showLoader: false)
                 : null,
+            floatingBar: WatchedFloatingBarContainer(provider: provider),
           ),
           floatingActionButton: isFabVisible
               ? ScrollTopFab(scrollController: scrollController)
@@ -103,6 +112,14 @@ class WatchedMediaView<T extends MediaShortData> extends HookConsumerWidget {
         );
       },
     );
+  }
+
+  bool _isDefaultFilter(F filter) {
+    return switch (filter) {
+      MoviesWatchedFilterData f => f.isDefault,
+      SeriesWatchedFilterData f => f.isDefault,
+      _ => true,
+    };
   }
 
   ScrollPaginationController _initPaginationController(

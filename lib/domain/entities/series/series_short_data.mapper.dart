@@ -52,6 +52,12 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
   static bool _$isWatched(SeriesShortData v) => v.isWatched;
   static const Field<SeriesShortData, bool> _f$isWatched =
       Field('isWatched', _$isWatched, opt: true, def: false);
+  static DateTime? _$watchlistAddedAt(SeriesShortData v) => v.watchlistAddedAt;
+  static const Field<SeriesShortData, DateTime> _f$watchlistAddedAt =
+      Field('watchlistAddedAt', _$watchlistAddedAt, opt: true);
+  static DateTime? _$lastWatchedAt(SeriesShortData v) => v.lastWatchedAt;
+  static const Field<SeriesShortData, DateTime> _f$lastWatchedAt =
+      Field('lastWatchedAt', _$lastWatchedAt, opt: true);
 
   @override
   final MappableFields<SeriesShortData> fields = const {
@@ -65,6 +71,8 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
     #userRating: _f$userRating,
     #isInWatchlist: _f$isInWatchlist,
     #isWatched: _f$isWatched,
+    #watchlistAddedAt: _f$watchlistAddedAt,
+    #lastWatchedAt: _f$lastWatchedAt,
   };
 
   static SeriesShortData _instantiate(DecodingData data) {
@@ -78,7 +86,9 @@ class SeriesShortDataMapper extends ClassMapperBase<SeriesShortData> {
         tmdbRating: data.dec(_f$tmdbRating),
         userRating: data.dec(_f$userRating),
         isInWatchlist: data.dec(_f$isInWatchlist),
-        isWatched: data.dec(_f$isWatched));
+        isWatched: data.dec(_f$isWatched),
+        watchlistAddedAt: data.dec(_f$watchlistAddedAt),
+        lastWatchedAt: data.dec(_f$lastWatchedAt));
   }
 
   @override
@@ -135,7 +145,9 @@ abstract class SeriesShortDataCopyWith<$R, $In extends SeriesShortData, $Out>
       TMDBRating? tmdbRating,
       int? userRating,
       bool? isInWatchlist,
-      bool? isWatched});
+      bool? isWatched,
+      DateTime? watchlistAddedAt,
+      DateTime? lastWatchedAt});
   SeriesShortDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -172,7 +184,9 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
           TMDBRating? tmdbRating,
           int? userRating,
           bool? isInWatchlist,
-          bool? isWatched}) =>
+          bool? isWatched,
+          Object? watchlistAddedAt = $none,
+          Object? lastWatchedAt = $none}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (posterUrl != null) #posterUrl: posterUrl,
@@ -183,7 +197,9 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
         if (tmdbRating != null) #tmdbRating: tmdbRating,
         if (userRating != null) #userRating: userRating,
         if (isInWatchlist != null) #isInWatchlist: isInWatchlist,
-        if (isWatched != null) #isWatched: isWatched
+        if (isWatched != null) #isWatched: isWatched,
+        if (watchlistAddedAt != $none) #watchlistAddedAt: watchlistAddedAt,
+        if (lastWatchedAt != $none) #lastWatchedAt: lastWatchedAt
       }));
   @override
   SeriesShortData $make(CopyWithData data) => SeriesShortData(
@@ -196,7 +212,10 @@ class _SeriesShortDataCopyWithImpl<$R, $Out>
       tmdbRating: data.get(#tmdbRating, or: $value.tmdbRating),
       userRating: data.get(#userRating, or: $value.userRating),
       isInWatchlist: data.get(#isInWatchlist, or: $value.isInWatchlist),
-      isWatched: data.get(#isWatched, or: $value.isWatched));
+      isWatched: data.get(#isWatched, or: $value.isWatched),
+      watchlistAddedAt:
+          data.get(#watchlistAddedAt, or: $value.watchlistAddedAt),
+      lastWatchedAt: data.get(#lastWatchedAt, or: $value.lastWatchedAt));
 
   @override
   SeriesShortDataCopyWith<$R2, SeriesShortData, $Out2> $chain<$R2, $Out2>(

@@ -2,22 +2,33 @@ import 'package:drift/drift.dart';
 
 import '../../common/constants/db_constants.dart';
 import '../dto/movie/movie_short_data_dto.dart';
+import '../dto/movie/movie_watch_event_data_dto.dart';
 import '../dto/movie/movies_short_response_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../dto/series/series_short_response_data_dto.dart';
+import '../dto/series/series_watch_event_data_dto.dart';
+import '../dto/watched_filter/movies_watched_filter_data_dto.dart';
+import '../dto/watched_filter/series_watched_filter_data_dto.dart';
+import '../dto/watchlist_filter/movies_watchlist_filter_data_dto.dart';
+import '../dto/watchlist_filter/series_watchlist_filter_data_dto.dart';
 import '../local/app_local_database.dart';
+import '../local/utils/ext/media_events_table_mapper.dart';
 import '../local/utils/ext/media_table_mapper.dart';
+import '../local/utils/watch_filter_handler/watch_filter_handler.dart';
 import '../repositories/settings_provider.dart';
 import '../repositories/watch/watch_local_data_source.dart';
 
 class ImplWatchLocalDataSource implements WatchLocalDataSource {
   final AppLocalDatabase _database;
+  final WatchFilterHandler _filterHandler;
   final SettingsProvider _settingsProvider;
 
   ImplWatchLocalDataSource({
     required AppLocalDatabase database,
+    required WatchFilterHandler filterHandler,
     required SettingsProvider settingsProvider,
   }) : _database = database,
+       _filterHandler = filterHandler,
        _settingsProvider = settingsProvider;
 
   @override
@@ -63,16 +74,16 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   @override
   Future<MoviesShortResponseDataDto> getWatchedMovies({
     required int page,
+    required MoviesWatchedFilterDataDto filter,
   }) async {
     final int offset = _calculateOffset(page);
 
-    final moviesQuery = (_database.select(_database.moviesTable)
-      ..where((tbl) => tbl.isWatched.equals(true))
+    final moviesQuery = _database.select(_database.moviesTable)
+      ..where((tbl) => _filterHandler.moviesWatchedPredicate(tbl, filter))
       ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.desc),
+        (tbl) => _filterHandler.moviesWatchedOrder(tbl, filter.sortBy),
       ])
-      ..limit(DbConstants.pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset);
 
     final movies = await moviesQuery.get();
 
@@ -94,16 +105,16 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   @override
   Future<MoviesShortResponseDataDto> getWatchlistMovies({
     required int page,
+    required MoviesWatchlistFilterDataDto filter,
   }) async {
     final int offset = _calculateOffset(page);
 
-    final moviesQuery = (_database.select(_database.moviesTable)
-      ..where((tbl) => tbl.isInWatchlist.equals(true))
+    final moviesQuery = _database.select(_database.moviesTable)
+      ..where((tbl) => _filterHandler.moviesWatchlistPredicate(tbl, filter))
       ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.asc),
+        (tbl) => _filterHandler.moviesWatchlistOrder(tbl, filter.sortBy),
       ])
-      ..limit(DbConstants.pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset);
 
     final movies = await moviesQuery.get();
 
@@ -125,16 +136,16 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   @override
   Future<SeriesShortResponseDataDto> getWatchedSeries({
     required int page,
+    required SeriesWatchedFilterDataDto filter,
   }) async {
     final int offset = _calculateOffset(page);
 
-    final seriesQuery = (_database.select(_database.seriesTable)
-      ..where((tbl) => tbl.isWatched.equals(true))
+    final seriesQuery = _database.select(_database.seriesTable)
+      ..where((tbl) => _filterHandler.seriesWatchedPredicate(tbl, filter))
       ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.desc),
+        (tbl) => _filterHandler.seriesWatchedOrder(tbl, filter.sortBy),
       ])
-      ..limit(DbConstants.pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset);
 
     final series = await seriesQuery.get();
 
@@ -156,16 +167,16 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
   @override
   Future<SeriesShortResponseDataDto> getWatchlistSeries({
     required int page,
+    required SeriesWatchlistFilterDataDto filter,
   }) async {
     final int offset = _calculateOffset(page);
 
-    final seriesQuery = (_database.select(_database.seriesTable)
-      ..where((tbl) => tbl.isInWatchlist.equals(true))
+    final seriesQuery = _database.select(_database.seriesTable)
+      ..where((tbl) => _filterHandler.seriesWatchlistPredicate(tbl, filter))
       ..orderBy([
-        (tbl) =>
-            OrderingTerm(expression: tbl.updatedAt, mode: OrderingMode.asc),
+        (tbl) => _filterHandler.seriesWatchlistOrder(tbl, filter.sortBy),
       ])
-      ..limit(DbConstants.pageSize, offset: offset));
+      ..limit(DbConstants.pageSize, offset: offset);
 
     final series = await seriesQuery.get();
 
@@ -293,5 +304,19 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
         updatedAt: Value(DateTime.now()),
       ),
     );
+  }
+
+  @override
+  Future<void> addMovieEvent(MovieWatchEventDataDto data) async {
+    await _database
+        .into(_database.moviesEventsTable)
+        .insert(data.toTableData());
+  }
+
+  @override
+  Future<void> addSeriesEvent(SeriesWatchEventDataDto data) async {
+    await _database
+        .into(_database.seriesEventsTable)
+        .insert(data.toTableData());
   }
 }

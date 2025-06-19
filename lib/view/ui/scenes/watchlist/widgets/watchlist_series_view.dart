@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../domain/entities/series/series_short_data.dart';
+import '../../../../../domain/entities/watchlist_filter/series_watchlist_filter_data.dart';
 import '../../../base/content_mode_view_model/content_mode.dart';
 import '../../../resources/locale_keys.g.dart';
 import '../watchlist_view_model/watchlist_view_model.dart';
@@ -12,7 +13,7 @@ class WatchlistSeriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WatchlistMediaView<SeriesShortData>(
+    return WatchlistMediaView<SeriesShortData, SeriesWatchlistFilterData>(
       provider: watchlistSeriesViewModelPr,
       contentMode: ContentMode.series,
       screenTitle: LocaleKeys.watchlistSeriesScreenTitle.tr(),

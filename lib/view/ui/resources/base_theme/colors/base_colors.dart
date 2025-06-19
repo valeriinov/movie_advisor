@@ -105,12 +105,14 @@ abstract final class _BaseColors {
 
   static const listTilePrimTitle = Color(0xFF92929D);
   static const listTilePrimSubtitle = Color(0xFF9b9ca7);
+  static const listTilePrimTitleDis = Color(0xFF5E5F63);
 
   static const listTileSecTitle = Color(0xFF4E4B66);
   static const listTileSecSubtitle = Color(0xFF595575);
 
   static const checkboxPrimFillSelect = Color(0xFF0296E5);
   static const checkboxPrimBorder = Color(0xFF42474e);
+  static const checkboxPrimBorderDis = Color(0xff33363a);
 
   static const avatarPrimBg = Color(0xFF6200EA);
   static const avatarPrimFg = Color(0xFFFFFFFF);

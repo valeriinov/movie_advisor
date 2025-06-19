@@ -21,10 +21,14 @@ class WatchlistStateMapper extends ClassMapperBase<WatchlistState> {
   @override
   final String id = 'WatchlistState';
   @override
-  Function get typeFactory => <T>(f) => f<WatchlistState<T>>();
+  Function get typeFactory => <T, F>(f) => f<WatchlistState<T, F>>();
 
+  static dynamic _$filter(WatchlistState v) => v.filter;
+  static dynamic _arg$filter<T, F>(f) => f<F>();
+  static const Field<WatchlistState, dynamic> _f$filter =
+      Field('filter', _$filter, arg: _arg$filter);
   static MediaLoadInfo<dynamic> _$watchlist(WatchlistState v) => v.watchlist;
-  static dynamic _arg$watchlist<T>(f) => f<MediaLoadInfo<T>>();
+  static dynamic _arg$watchlist<T, F>(f) => f<MediaLoadInfo<T>>();
   static const Field<WatchlistState, MediaLoadInfo<dynamic>> _f$watchlist =
       Field('watchlist', _$watchlist, opt: true, arg: _arg$watchlist);
   static WatchlistStatus _$status(WatchlistState v) => v.status;
@@ -33,63 +37,68 @@ class WatchlistStateMapper extends ClassMapperBase<WatchlistState> {
 
   @override
   final MappableFields<WatchlistState> fields = const {
+    #filter: _f$filter,
     #watchlist: _f$watchlist,
     #status: _f$status,
   };
 
-  static WatchlistState<T> _instantiate<T>(DecodingData data) {
+  static WatchlistState<T, F> _instantiate<T, F>(DecodingData data) {
     return WatchlistState(
-        watchlist: data.dec(_f$watchlist), status: data.dec(_f$status));
+        filter: data.dec(_f$filter),
+        watchlist: data.dec(_f$watchlist),
+        status: data.dec(_f$status));
   }
 
   @override
   final Function instantiate = _instantiate;
 }
 
-mixin WatchlistStateMappable<T> {
-  WatchlistStateCopyWith<WatchlistState<T>, WatchlistState<T>,
-          WatchlistState<T>, T>
-      get copyWith =>
-          _WatchlistStateCopyWithImpl<WatchlistState<T>, WatchlistState<T>, T>(
-              this as WatchlistState<T>, $identity, $identity);
+mixin WatchlistStateMappable<T, F> {
+  WatchlistStateCopyWith<WatchlistState<T, F>, WatchlistState<T, F>,
+          WatchlistState<T, F>, T, F>
+      get copyWith => _WatchlistStateCopyWithImpl<
+          WatchlistState<T, F>,
+          WatchlistState<T, F>,
+          T,
+          F>(this as WatchlistState<T, F>, $identity, $identity);
   @override
   String toString() {
     return WatchlistStateMapper.ensureInitialized()
-        .stringifyValue(this as WatchlistState<T>);
+        .stringifyValue(this as WatchlistState<T, F>);
   }
 
   @override
   bool operator ==(Object other) {
     return WatchlistStateMapper.ensureInitialized()
-        .equalsValue(this as WatchlistState<T>, other);
+        .equalsValue(this as WatchlistState<T, F>, other);
   }
 
   @override
   int get hashCode {
     return WatchlistStateMapper.ensureInitialized()
-        .hashValue(this as WatchlistState<T>);
+        .hashValue(this as WatchlistState<T, F>);
   }
 }
 
-extension WatchlistStateValueCopy<$R, $Out, T>
-    on ObjectCopyWith<$R, WatchlistState<T>, $Out> {
-  WatchlistStateCopyWith<$R, WatchlistState<T>, $Out, T>
-      get $asWatchlistState => $base
-          .as((v, t, t2) => _WatchlistStateCopyWithImpl<$R, $Out, T>(v, t, t2));
+extension WatchlistStateValueCopy<$R, $Out, T, F>
+    on ObjectCopyWith<$R, WatchlistState<T, F>, $Out> {
+  WatchlistStateCopyWith<$R, WatchlistState<T, F>, $Out, T, F>
+      get $asWatchlistState => $base.as(
+          (v, t, t2) => _WatchlistStateCopyWithImpl<$R, $Out, T, F>(v, t, t2));
 }
 
-abstract class WatchlistStateCopyWith<$R, $In extends WatchlistState<T>, $Out,
-    T> implements ClassCopyWith<$R, $In, $Out> {
+abstract class WatchlistStateCopyWith<$R, $In extends WatchlistState<T, F>,
+    $Out, T, F> implements ClassCopyWith<$R, $In, $Out> {
   MediaLoadInfoCopyWith<$R, MediaLoadInfo<T>, MediaLoadInfo<T>, T>
       get watchlist;
-  $R call({MediaLoadInfo<T>? watchlist, WatchlistStatus? status});
-  WatchlistStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
+  $R call({F? filter, MediaLoadInfo<T>? watchlist, WatchlistStatus? status});
+  WatchlistStateCopyWith<$R2, $In, $Out2, T, F> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
 
-class _WatchlistStateCopyWithImpl<$R, $Out, T>
-    extends ClassCopyWithBase<$R, WatchlistState<T>, $Out>
-    implements WatchlistStateCopyWith<$R, WatchlistState<T>, $Out, T> {
+class _WatchlistStateCopyWithImpl<$R, $Out, T, F>
+    extends ClassCopyWithBase<$R, WatchlistState<T, F>, $Out>
+    implements WatchlistStateCopyWith<$R, WatchlistState<T, F>, $Out, T, F> {
   _WatchlistStateCopyWithImpl(super.value, super.then, super.then2);
 
   @override
@@ -101,20 +110,25 @@ class _WatchlistStateCopyWithImpl<$R, $Out, T>
           .copyWith
           .$chain((v) => call(watchlist: v));
   @override
-  $R call({Object? watchlist = $none, WatchlistStatus? status}) =>
+  $R call(
+          {Object? filter = $none,
+          Object? watchlist = $none,
+          WatchlistStatus? status}) =>
       $apply(FieldCopyWithData({
+        if (filter != $none) #filter: filter,
         if (watchlist != $none) #watchlist: watchlist,
         if (status != null) #status: status
       }));
   @override
-  WatchlistState<T> $make(CopyWithData data) => WatchlistState(
+  WatchlistState<T, F> $make(CopyWithData data) => WatchlistState(
+      filter: data.get(#filter, or: $value.filter),
       watchlist: data.get(#watchlist, or: $value.watchlist),
       status: data.get(#status, or: $value.status));
 
   @override
-  WatchlistStateCopyWith<$R2, WatchlistState<T>, $Out2, T> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _WatchlistStateCopyWithImpl<$R2, $Out2, T>($value, $cast, t);
+  WatchlistStateCopyWith<$R2, WatchlistState<T, F>, $Out2, T, F>
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _WatchlistStateCopyWithImpl<$R2, $Out2, T, F>($value, $cast, t);
 }
 
 class WatchlistBaseStatusMapper extends ClassMapperBase<WatchlistBaseStatus> {

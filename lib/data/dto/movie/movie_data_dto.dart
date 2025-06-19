@@ -2,8 +2,8 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../utils/date_mapper_hook.dart';
 import '../../utils/genres_hook.dart';
-import '../credits/credits_data_dto.dart';
 import '../country_dto.dart';
+import '../credits/credits_data_dto.dart';
 import '../video/videos_data_dto.dart';
 import 'movie_genre_dto.dart';
 
@@ -34,6 +34,10 @@ class MovieDataDto with MovieDataDtoMappable {
   final int? userRating;
   final bool? isInWatchlist;
   final bool? isWatched;
+  @MappableField(hook: DateMapperHook())
+  final DateTime? watchlistAddedAt;
+  @MappableField(hook: DateMapperHook())
+  final DateTime? lastWatchedAt;
 
   const MovieDataDto({
     this.id,
@@ -56,6 +60,8 @@ class MovieDataDto with MovieDataDtoMappable {
     this.userRating,
     this.isInWatchlist,
     this.isWatched,
+    this.watchlistAddedAt,
+    this.lastWatchedAt,
   });
 
   factory MovieDataDto.fromJson(Map<String, dynamic> json) =>

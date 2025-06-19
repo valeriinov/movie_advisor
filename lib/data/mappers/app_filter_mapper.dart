@@ -1,11 +1,10 @@
-import '../../domain/entities/base_media/country.dart';
 import '../../domain/entities/filter/movies_filter_data.dart';
 import '../../domain/entities/filter/series_filter_data.dart';
 import '../../domain/entities/filter/sort_by.dart';
-import '../dto/country_dto.dart';
 import '../dto/filter/movies_filter_data_dto.dart';
 import '../dto/filter/series_filter_data_dto.dart';
 import '../dto/filter/sort_by_dto.dart';
+import 'app_countries_mapper_ext.dart';
 import 'app_genres_mapper_ext.dart';
 import 'app_mapper.dart';
 
@@ -15,7 +14,7 @@ final class AppFilterMapper extends AppMapper {
 
     return MoviesFilterData(
       sortBy: _mapSortByDtoToDomain(dto.sortBy),
-      withCountries: _mapCountriesDtoToDomain(dto.withCountries),
+      withCountries: dto.withCountries.toDomain(),
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
       includeWatchlist: dto.includeWatchlist ?? true,
@@ -28,7 +27,7 @@ final class AppFilterMapper extends AppMapper {
   MoviesFilterDataDto mapMoviesFilterDataToDto(MoviesFilterData data) {
     return MoviesFilterDataDto(
       sortBy: _mapSortByToDto(data.sortBy),
-      withCountries: _mapCountriesToDto(data.withCountries),
+      withCountries: data.withCountries.toDto(),
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
       includeWatchlist: data.includeWatchlist,
@@ -43,7 +42,7 @@ final class AppFilterMapper extends AppMapper {
 
     return SeriesFilterData(
       sortBy: _mapSortByDtoToDomain(dto.sortBy),
-      withCountries: _mapCountriesDtoToDomain(dto.withCountries),
+      withCountries: dto.withCountries.toDomain(),
       withGenres: dto.withGenres.toDomain(),
       withoutGenres: dto.withoutGenres.toDomain(),
       includeWatchlist: dto.includeWatchlist ?? true,
@@ -56,7 +55,7 @@ final class AppFilterMapper extends AppMapper {
   SeriesFilterDataDto mapSeriesFilterDataToDto(SeriesFilterData data) {
     return SeriesFilterDataDto(
       sortBy: _mapSortByToDto(data.sortBy),
-      withCountries: _mapCountriesToDto(data.withCountries),
+      withCountries: data.withCountries.toDto(),
       withGenres: data.withGenres.toDto(),
       withoutGenres: data.withoutGenres.toDto(),
       includeWatchlist: data.includeWatchlist,
@@ -79,28 +78,6 @@ final class AppFilterMapper extends AppMapper {
     return SortByDto.values.firstWhere(
       (e) => e.name == sortBy.name,
       orElse: () => SortByDto.popularityDesc,
-    );
-  }
-
-  List<Country> _mapCountriesDtoToDomain(List<CountryDto>? countries) {
-    return countries?.map(_mapCountryDtoToDomain).toList() ?? [];
-  }
-
-  Country _mapCountryDtoToDomain(CountryDto country) {
-    return Country.values.firstWhere(
-      (e) => e.name == country.name,
-      orElse: () => Country.none,
-    );
-  }
-
-  List<CountryDto> _mapCountriesToDto(List<Country> counties) {
-    return counties.map(_mapCountryToDto).toList();
-  }
-
-  CountryDto _mapCountryToDto(Country country) {
-    return CountryDto.values.firstWhere(
-      (e) => e.name == country.name,
-      orElse: () => CountryDto.none,
     );
   }
 }

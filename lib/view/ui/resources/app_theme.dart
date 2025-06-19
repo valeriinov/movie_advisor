@@ -178,6 +178,11 @@ class AppTheme {
     BaseComponentsStyles styles,
   ) {
     return CheckboxThemeData(
+      side: WidgetStateBorderSide.resolveWith(
+        (states) => states.containsDisabled
+            ? BorderSide(width: 2.0, color: colors.checkboxPrimBorderDis)
+            : null,
+      ),
       fillColor: WidgetStateResolver(selected: colors.checkboxPrimFillSelect),
       shape: styles.checkboxPrimShape,
     );

@@ -18,6 +18,8 @@ extension MoviesMapper on MoviesTableData {
       isInWatchlist: isInWatchlist,
       isWatched: isWatched,
       updatedAt: updatedAt,
+      watchlistAddedAt: watchlistAddedAt,
+      lastWatchedAt: lastWatchedAt,
     );
   }
 }
@@ -36,6 +38,8 @@ extension SeriesMapper on SeriesTableData {
       isInWatchlist: isInWatchlist,
       isWatched: isWatched,
       updatedAt: updatedAt,
+      watchlistAddedAt: watchlistAddedAt,
+      lastWatchedAt: lastWatchedAt,
     );
   }
 }
@@ -54,6 +58,8 @@ extension MoviesTableMapper on MovieShortDataDto {
       updatedAt: Value(updatedAt ?? DateTime.now()),
       localizedTitle: Value(localizedTitle),
       localizedPosterUrl: Value(localizedPosterUrl),
+      watchlistAddedAt: Value(watchlistAddedAt),
+      lastWatchedAt: Value(lastWatchedAt),
     );
   }
 }
@@ -72,6 +78,8 @@ extension SeriesTableMapper on SeriesShortDataDto {
       updatedAt: Value(updatedAt ?? DateTime.now()),
       localizedTitle: Value(localizedTitle),
       localizedPosterUrl: Value(localizedPosterUrl),
+      watchlistAddedAt: Value(watchlistAddedAt),
+      lastWatchedAt: Value(lastWatchedAt),
     );
   }
 }

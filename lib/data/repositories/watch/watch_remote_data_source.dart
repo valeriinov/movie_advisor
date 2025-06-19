@@ -1,5 +1,7 @@
 import '../../dto/movie/movie_short_data_dto.dart';
+import '../../dto/movie/movie_watch_event_data_dto.dart';
 import '../../dto/series/series_short_data_dto.dart';
+import '../../dto/series/series_watch_event_data_dto.dart';
 
 abstract interface class WatchRemoteDataSource {
   Future<MovieShortDataDto> getLocalizedMovie(MovieShortDataDto data);
@@ -21,4 +23,8 @@ abstract interface class WatchRemoteDataSource {
   Future<void> removeFromWatchlistSeries(int id);
 
   Future<void> removeFromWatchedSeries(int id);
+
+  Future<void> addMovieEvent(MovieWatchEventDataDto data);
+
+  Future<void> addSeriesEvent(SeriesWatchEventDataDto data);
 }

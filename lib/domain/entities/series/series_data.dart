@@ -33,5 +33,7 @@ final class SeriesData extends MediaData with SeriesDataMappable {
     super.userRating = 0,
     super.isInWatchlist = false,
     super.isWatched = false,
+    super.watchlistAddedAt,
+    super.lastWatchedAt,
   });
 }

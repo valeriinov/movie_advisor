@@ -12,7 +12,11 @@ import '../../common/adapters/share_adapter/impl_share_adapter.dart';
 import '../../common/adapters/share_adapter/share_adapter.dart';
 import '../../common/adapters/url_launcher_adapter/impl_url_launcher_adapter.dart';
 import '../../common/adapters/url_launcher_adapter/url_launcher_adapter.dart';
+import '../../common/adapters/uuid_adapter/impl_uuid_adapter.dart';
+import '../../common/adapters/uuid_adapter/uuid_adapter.dart';
 import '../../data/local/app_local_database.dart';
+import '../../data/local/utils/watch_filter_handler/impl_watch_filter_handler.dart';
+import '../../data/local/utils/watch_filter_handler/watch_filter_handler.dart';
 import '../../data/mappers/app_auth_mapper.dart';
 import '../../data/mappers/app_credits_mapper.dart';
 import '../../data/mappers/app_filter_mapper.dart';
@@ -23,6 +27,7 @@ import '../../data/mappers/app_rating_mapper.dart';
 import '../../data/mappers/app_search_mapper.dart';
 import '../../data/mappers/app_series_mapper.dart';
 import '../../data/mappers/app_video_mapper.dart';
+import '../../data/mappers/app_watch_filters_mapper.dart';
 import '../../data/network/env_provider/env_provider.dart';
 import '../../data/network/network_manager/impl_dio/dio_builder.dart';
 import '../../data/network/network_manager/impl_dio/dio_error_handler.dart';
@@ -68,6 +73,10 @@ import '../../data/repositories/sync/sync_data_source.dart';
 import '../../data/repositories/watch/impl_watch_repository.dart';
 import '../../data/repositories/watch/watch_local_data_source.dart';
 import '../../data/repositories/watch/watch_remote_data_source.dart';
+import '../../data/repositories/watched_filter/impl_watched_filter_repository.dart';
+import '../../data/repositories/watched_filter/watched_filter_local_data_source.dart';
+import '../../data/repositories/watchlist_filter/impl_watchlist_filter_repository.dart';
+import '../../data/repositories/watchlist_filter/watchlist_filter_local_data_source.dart';
 import '../../data/sources/impl_auth_local_data_source.dart';
 import '../../data/sources/impl_auth_remote_data_source.dart';
 import '../../data/sources/impl_details_remote_data_source.dart';
@@ -83,6 +92,8 @@ import '../../data/sources/impl_settings_provider.dart';
 import '../../data/sources/impl_sync_data_source.dart';
 import '../../data/sources/impl_watch_local_data_source.dart';
 import '../../data/sources/impl_watch_remote_data_source.dart';
+import '../../data/sources/impl_watched_filter_local_data_source.dart';
+import '../../data/sources/impl_watchlist_filter_local_data_source.dart';
 import '../../data/utils/media_merger/impl_media_merger.dart';
 import '../../data/utils/media_merger/media_merger.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -95,6 +106,8 @@ import '../../domain/repositories/search_repository.dart';
 import '../../domain/repositories/settings_repository.dart';
 import '../../domain/repositories/sync_repository.dart';
 import '../../domain/repositories/watch_repository.dart';
+import '../../domain/repositories/watched_filter_repository.dart';
+import '../../domain/repositories/watchlist_filter_repository.dart';
 import '../../domain/usecases/auth_use_case.dart';
 import '../../domain/usecases/details/details_movie_use_case.dart';
 import '../../domain/usecases/details/details_series_use_case.dart';
@@ -110,6 +123,10 @@ import '../../domain/usecases/settings_use_case.dart';
 import '../../domain/usecases/sync_use_case.dart';
 import '../../domain/usecases/watch/watch_movie_use_case.dart';
 import '../../domain/usecases/watch/watch_series_use_case.dart';
+import '../../domain/usecases/watched_filter/watched_movie_filter_use_case.dart';
+import '../../domain/usecases/watched_filter/watched_series_filter_use_case.dart';
+import '../../domain/usecases/watchlist_filter/watchlist_movie_filter_use_case.dart';
+import '../../domain/usecases/watchlist_filter/watchlist_series_filter_use_case.dart';
 import '../ui/base/view_model/base_status_handler.dart';
 import '../ui/impl_base_status_handler.dart';
 import '../ui/navigation/app_router.dart';
@@ -131,6 +148,8 @@ final appRouterPr = Provider<AppRouter>(
 );
 
 final appThemePr = Provider<AppTheme>((_) => AppTheme());
+
+final uuidPr = Provider<UuidAdapter>((_) => ImplUuidAdapter());
 
 final toastManagerPr = Provider<ToastManager>((ref) {
   final rootNavKey = ref.read(appRouterPr).rootNavKey;
@@ -350,9 +369,14 @@ final watchServicePr = Provider<WatchService>(
     imageUrlHandler: ref.read(imageUrlHandlerPr),
   ),
 );
+
+final watchFilterHandlerPr = Provider<WatchFilterHandler>(
+  (_) => ImplWatchFilterHandler(),
+);
 final watchLocalDataSourcePr = Provider<WatchLocalDataSource>(
   (ref) => ImplWatchLocalDataSource(
     database: ref.read(localDatabasePr),
+    filterHandler: ref.read(watchFilterHandlerPr),
     settingsProvider: ref.read(settingsPr),
   ),
 );
@@ -362,12 +386,17 @@ final watchRemoteDataSourcePr = Provider<WatchRemoteDataSource>(
     watchService: ref.read(watchServicePr),
   ),
 );
+final watchFiltersMapperPr = Provider<AppWatchFiltersMapper>(
+  (_) => AppWatchFiltersMapper(),
+);
 final watchRepositoryPr = Provider<WatchRepository>(
   (ref) => ImplWatchRepository(
     localDataSource: ref.read(watchLocalDataSourcePr),
     remoteDataSource: ref.read(watchRemoteDataSourcePr),
     moviesMapper: ref.read(moviesMapperPr),
     seriesMapper: ref.read(seriesMapperPr),
+    watchFiltersMapper: ref.read(watchFiltersMapperPr),
+    uuidAdapter: ref.read(uuidPr),
   ),
 );
 final watchMoviesUseCasePr = Provider<WatchMovieUseCase>(
@@ -375,6 +404,54 @@ final watchMoviesUseCasePr = Provider<WatchMovieUseCase>(
 );
 final watchSeriesUseCasePr = Provider<WatchSeriesUseCase>(
   (ref) => WatchSeriesUseCase(repository: ref.read(watchRepositoryPr)),
+);
+
+// WATCH FILTER
+final watchedFilterLocalDataSourcePr = Provider<WatchedFilterLocalDataSource>(
+  (ref) =>
+      ImplWatchedFilterLocalDataSource(database: ref.read(localDatabasePr)),
+);
+final watchedFilterRepositoryPr = Provider<WatchedFilterRepository>(
+  (ref) => ImplWatchedFilterRepository(
+    dataSource: ref.read(watchedFilterLocalDataSourcePr),
+    mapper: ref.read(watchFiltersMapperPr),
+  ),
+);
+final watchlistFilterLocalDataSourcePr =
+    Provider<WatchlistFilterLocalDataSource>(
+      (ref) => ImplWatchlistFilterLocalDataSource(
+        database: ref.read(localDatabasePr),
+      ),
+    );
+final watchlistFilterRepositoryPr = Provider<WatchlistFilterRepository>(
+  (ref) => ImplWatchlistFilterRepository(
+    dataSource: ref.read(watchlistFilterLocalDataSourcePr),
+    mapper: ref.read(watchFiltersMapperPr),
+  ),
+);
+final watchedMovieFilterUseCasePr = Provider<WatchedMovieFilterUseCase>(
+  (ref) => WatchedMovieFilterUseCase(
+    watchRepository: ref.read(watchRepositoryPr),
+    filterRepository: ref.read(watchedFilterRepositoryPr),
+  ),
+);
+final watchedSeriesFilterUseCasePr = Provider<WatchedSeriesFilterUseCase>(
+  (ref) => WatchedSeriesFilterUseCase(
+    watchRepository: ref.read(watchRepositoryPr),
+    filterRepository: ref.read(watchedFilterRepositoryPr),
+  ),
+);
+final watchlistMovieFilterUseCasePr = Provider<WatchlistMovieFilterUseCase>(
+  (ref) => WatchlistMovieFilterUseCase(
+    watchRepository: ref.read(watchRepositoryPr),
+    filterRepository: ref.read(watchlistFilterRepositoryPr),
+  ),
+);
+final watchlistSeriesFilterUseCasePr = Provider<WatchlistSeriesFilterUseCase>(
+  (ref) => WatchlistSeriesFilterUseCase(
+    watchRepository: ref.read(watchRepositoryPr),
+    filterRepository: ref.read(watchlistFilterRepositoryPr),
+  ),
 );
 
 // AUTH

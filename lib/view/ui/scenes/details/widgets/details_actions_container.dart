@@ -51,7 +51,8 @@ class DetailsActionsContainer extends HookConsumerWidget {
             if (trailerUrl != null) ...[
               dimens.spSmall.gapHor(),
               _buildPlayTrailerButton(ref, trailerUrl),
-            ],
+            ] else
+              Spacer(),
             dimens.spExtSmall.gapHor(),
             _buildShareButton(ref),
           ],

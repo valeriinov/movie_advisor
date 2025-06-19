@@ -1,4 +1,3 @@
-import '../../entities/pagination/list_with_pagination_data.dart';
 import '../../entities/result.dart';
 import '../../entities/series/series_short_data.dart';
 import '../../repositories/watch_repository.dart';
@@ -13,16 +12,6 @@ class WatchSeriesUseCase implements WatchUseCase<SeriesShortData> {
   @override
   Stream<Result<SeriesShortData>> watchChanges() {
     return _repository.watchChangesSeries();
-  }
-
-  @override
-  Future<Result<PaginatedSeries>> getWatchlist({required int page}) {
-    return _repository.getWatchlistSeries(page: page);
-  }
-
-  @override
-  Future<Result<PaginatedSeries>> getWatched({required int page}) {
-    return _repository.getWatchedSeries(page: page);
   }
 
   @override

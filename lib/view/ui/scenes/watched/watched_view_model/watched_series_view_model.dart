@@ -2,8 +2,9 @@ part of 'watched_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [WatchedState] with [SeriesShortData].
-typedef WatchedSeriesState = WatchedState<SeriesShortData>;
+/// A type alias for [WatchedState] with [SeriesShortData] and [SeriesWatchedFilterData].
+typedef WatchedSeriesState =
+    WatchedState<SeriesShortData, SeriesWatchedFilterData>;
 
 /// {@category StateManagement}
 ///
@@ -23,10 +24,12 @@ final watchedSeriesViewModelPr =
 /// A view model for managing `watched_series`-specific logic and state.
 ///
 /// This class is responsible for coordinating `watched_series` behavior and interacting with the UI.
-final class WatchedSeriesViewModel extends WatchedViewModel<SeriesShortData> {
+final class WatchedSeriesViewModel
+    extends WatchedViewModel<SeriesShortData, SeriesWatchedFilterData> {
   @override
   WatchedSeriesState build() {
     _watchUseCase = ref.read(watchSeriesUseCasePr);
+    _watchedFilterUseCase = ref.read(watchedSeriesFilterUseCasePr);
     _syncUseCase = ref.read(syncUseCasePr);
 
     _watchChangesSubscription = _watchUseCase.watchChanges().listen(
@@ -40,7 +43,10 @@ final class WatchedSeriesViewModel extends WatchedViewModel<SeriesShortData> {
 
     scheduleCall(loadInitialData);
 
-    return WatchedSeriesState();
+    return WatchedSeriesState(
+      status: WatchedBaseStatus(isLoading: true),
+      filter: SeriesWatchedFilterData(),
+    );
   }
 
   @override

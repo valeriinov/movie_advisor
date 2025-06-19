@@ -1,8 +1,8 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
-import 'country.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
+import 'country.dart';
 
 part 'media_short_data.mapper.dart';
 
@@ -17,6 +17,8 @@ abstract base class MediaShortData with MediaShortDataMappable {
   final int userRating;
   final bool isInWatchlist;
   final bool isWatched;
+  final DateTime? watchlistAddedAt;
+  final DateTime? lastWatchedAt;
 
   const MediaShortData({
     required this.id,
@@ -28,5 +30,7 @@ abstract base class MediaShortData with MediaShortDataMappable {
     required this.userRating,
     required this.isInWatchlist,
     required this.isWatched,
+    this.watchlistAddedAt,
+    this.lastWatchedAt,
   });
 }

@@ -76,6 +76,8 @@ final class AppMoviesMapper extends AppMapper {
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
+      watchlistAddedAt: dto.watchlistAddedAt,
+      lastWatchedAt: dto.lastWatchedAt,
     );
   }
 
@@ -97,6 +99,8 @@ final class AppMoviesMapper extends AppMapper {
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
+      watchlistAddedAt: dto.watchlistAddedAt,
+      lastWatchedAt: dto.lastWatchedAt,
     );
   }
 
@@ -118,6 +122,8 @@ final class AppMoviesMapper extends AppMapper {
       userRating: dto.userRating ?? 0,
       isInWatchlist: dto.isInWatchlist ?? false,
       isWatched: dto.isWatched ?? false,
+      watchlistAddedAt: dto.watchlistAddedAt,
+      lastWatchedAt: dto.lastWatchedAt,
     );
   }
 
@@ -133,6 +139,8 @@ final class AppMoviesMapper extends AppMapper {
       userRating: data.userRating,
       isInWatchlist: data.isInWatchlist,
       isWatched: data.isWatched,
+      watchlistAddedAt: data.watchlistAddedAt,
+      lastWatchedAt: data.lastWatchedAt,
     );
   }
 

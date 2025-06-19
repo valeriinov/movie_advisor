@@ -8,13 +8,10 @@ part of 'details_route.dart';
 
 List<RouteBase> get $appRoutes => [$detailsRoute];
 
-RouteBase get $detailsRoute => GoRouteData.$route(
-  path: '/details',
+RouteBase get $detailsRoute =>
+    GoRouteData.$route(path: '/details', factory: _$DetailsRoute._fromState);
 
-  factory: $DetailsRouteExtension._fromState,
-);
-
-extension $DetailsRouteExtension on DetailsRoute {
+mixin _$DetailsRoute on GoRouteData {
   static DetailsRoute _fromState(GoRouterState state) => DetailsRoute(
     id: _$convertMapValue('id', state.uri.queryParameters, int.parse) ?? -1,
     contentMode:
@@ -26,22 +23,29 @@ extension $DetailsRouteExtension on DetailsRoute {
         ContentMode.movies,
   );
 
+  DetailsRoute get _self => this as DetailsRoute;
+
+  @override
   String get location => GoRouteData.$location(
     '/details',
     queryParams: {
-      if (id != -1) 'id': id.toString(),
-      if (contentMode != ContentMode.movies)
-        'content-mode': _$ContentModeEnumMap[contentMode],
+      if (_self.id != -1) 'id': _self.id.toString(),
+      if (_self.contentMode != ContentMode.movies)
+        'content-mode': _$ContentModeEnumMap[_self.contentMode],
     },
   );
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
+  @override
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 

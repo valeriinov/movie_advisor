@@ -7,7 +7,7 @@ import '../app_routes.dart';
 part 'person_route.g.dart';
 
 @TypedGoRoute<PersonRoute>(path: AppRoutes.person)
-class PersonRoute extends GoRouteData {
+class PersonRoute extends GoRouteData with _$PersonRoute {
   final int id;
 
   /// The [PersonScreen] is displayed above the navigation menu,

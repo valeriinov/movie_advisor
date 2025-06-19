@@ -32,7 +32,7 @@ part 'more_routes.g.dart';
     TypedGoRoute<SettingsRoute>(path: AppRoutes.settings),
   ],
 )
-class MoreRoute extends GoRouteData {
+class MoreRoute extends GoRouteData with _$MoreRoute {
   @override
   Page<void> buildPage(context, state) {
     return NoTransitionPage(
@@ -43,7 +43,7 @@ class MoreRoute extends GoRouteData {
   }
 }
 
-class AboutUsRoute extends GoRouteData {
+class AboutUsRoute extends GoRouteData with _$AboutUsRoute {
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -54,7 +54,7 @@ class AboutUsRoute extends GoRouteData {
   }
 }
 
-class AuthRoute extends GoRouteData with ExitHandlerMixin {
+class AuthRoute extends GoRouteData with ExitHandlerMixin, _$AuthRoute {
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -75,7 +75,7 @@ class AuthRoute extends GoRouteData with ExitHandlerMixin {
   }
 }
 
-class RegRoute extends GoRouteData with ExitHandlerMixin {
+class RegRoute extends GoRouteData with ExitHandlerMixin, _$RegRoute {
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -96,7 +96,8 @@ class RegRoute extends GoRouteData with ExitHandlerMixin {
   }
 }
 
-class ResetPassRoute extends GoRouteData with ExitHandlerMixin {
+class ResetPassRoute extends GoRouteData
+    with ExitHandlerMixin, _$ResetPassRoute {
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -117,7 +118,8 @@ class ResetPassRoute extends GoRouteData with ExitHandlerMixin {
   }
 }
 
-class DeleteAccountRoute extends GoRouteData with ExitHandlerMixin {
+class DeleteAccountRoute extends GoRouteData
+    with ExitHandlerMixin, _$DeleteAccountRoute {
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -138,7 +140,7 @@ class DeleteAccountRoute extends GoRouteData with ExitHandlerMixin {
   }
 }
 
-class SettingsRoute extends GoRouteData {
+class SettingsRoute extends GoRouteData with _$SettingsRoute {
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(

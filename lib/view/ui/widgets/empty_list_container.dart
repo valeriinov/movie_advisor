@@ -29,7 +29,7 @@ class EmptyListContainer extends StatelessWidget {
       child: Center(
         child: Container(
           padding: dimens.spExtLarge.insVert(),
-          width: 190,
+          width: 200,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

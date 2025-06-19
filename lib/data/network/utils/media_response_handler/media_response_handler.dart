@@ -5,11 +5,11 @@ import '../../network_manager/net_response.dart';
 abstract interface class MediaResponseHandler {
   MoviesResponseDataDto handleMoviesResponse(
     NetResponse<dynamic> response, {
-    bool removeWithoutPoster = false,
+    bool removeNotFilled = true,
   });
 
   SeriesResponseDataDto handleSeriesResponse(
     NetResponse<dynamic> response, {
-    bool removeWithoutPoster = false,
+    bool removeNotFilled = true,
   });
 }
