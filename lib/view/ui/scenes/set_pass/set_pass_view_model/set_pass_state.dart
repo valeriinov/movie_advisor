@@ -40,27 +40,22 @@ sealed class SetPassStatus extends BaseStatus {
 
 /// {@category StateManagement}
 ///
-/// Represents the initial or uninitialized status of a [SetPassState].
-/// Used before it has completed its setup.
+/// Represents the neutral or idle status of a [SetPassState].
 @mappableEntity
 final class SetPassBaseStatus extends SetPassStatus
     with SetPassBaseStatusMappable {
   const SetPassBaseStatus({
     super.isLoading,
     super.errorMessage,
-    super.isInitialized,
+    super.isInitialized = true,
   });
 }
 
-/// {@category StateManagement}
-///
-/// Represents the neutral or idle status of a [SetPassState] after it has completed its initial setup.
-/// Indicates that it is ready for interaction with [isInitialized] set to `true`.
 @mappableEntity
-final class SetPassBaseInitStatus extends SetPassStatus
-    with SetPassBaseInitStatusMappable {
-  const SetPassBaseInitStatus({
-    super.isLoading,
+final class SetPassSuccessStatus extends SetPassStatus
+    with SetPassSuccessStatusMappable {
+  const SetPassSuccessStatus({
+    super.isLoading = false,
     super.errorMessage,
     super.isInitialized = true,
   });

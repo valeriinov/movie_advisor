@@ -143,7 +143,7 @@ class SetPassBaseStatusMapper extends ClassMapperBase<SetPassBaseStatus> {
       Field('errorMessage', _$errorMessage, opt: true);
   static bool _$isInitialized(SetPassBaseStatus v) => v.isInitialized;
   static const Field<SetPassBaseStatus, bool> _f$isInitialized =
-      Field('isInitialized', _$isInitialized, opt: true, def: false);
+      Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
   final MappableFields<SetPassBaseStatus> fields = const {
@@ -232,40 +232,39 @@ class _SetPassBaseStatusCopyWithImpl<$R, $Out>
       _SetPassBaseStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
-class SetPassBaseInitStatusMapper
-    extends ClassMapperBase<SetPassBaseInitStatus> {
-  SetPassBaseInitStatusMapper._();
+class SetPassSuccessStatusMapper extends ClassMapperBase<SetPassSuccessStatus> {
+  SetPassSuccessStatusMapper._();
 
-  static SetPassBaseInitStatusMapper? _instance;
-  static SetPassBaseInitStatusMapper ensureInitialized() {
+  static SetPassSuccessStatusMapper? _instance;
+  static SetPassSuccessStatusMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals.use(_instance = SetPassBaseInitStatusMapper._());
+      MapperContainer.globals.use(_instance = SetPassSuccessStatusMapper._());
     }
     return _instance!;
   }
 
   @override
-  final String id = 'SetPassBaseInitStatus';
+  final String id = 'SetPassSuccessStatus';
 
-  static bool _$isLoading(SetPassBaseInitStatus v) => v.isLoading;
-  static const Field<SetPassBaseInitStatus, bool> _f$isLoading =
+  static bool _$isLoading(SetPassSuccessStatus v) => v.isLoading;
+  static const Field<SetPassSuccessStatus, bool> _f$isLoading =
       Field('isLoading', _$isLoading, opt: true, def: false);
-  static String? _$errorMessage(SetPassBaseInitStatus v) => v.errorMessage;
-  static const Field<SetPassBaseInitStatus, String> _f$errorMessage =
+  static String? _$errorMessage(SetPassSuccessStatus v) => v.errorMessage;
+  static const Field<SetPassSuccessStatus, String> _f$errorMessage =
       Field('errorMessage', _$errorMessage, opt: true);
-  static bool _$isInitialized(SetPassBaseInitStatus v) => v.isInitialized;
-  static const Field<SetPassBaseInitStatus, bool> _f$isInitialized =
+  static bool _$isInitialized(SetPassSuccessStatus v) => v.isInitialized;
+  static const Field<SetPassSuccessStatus, bool> _f$isInitialized =
       Field('isInitialized', _$isInitialized, opt: true, def: true);
 
   @override
-  final MappableFields<SetPassBaseInitStatus> fields = const {
+  final MappableFields<SetPassSuccessStatus> fields = const {
     #isLoading: _f$isLoading,
     #errorMessage: _f$errorMessage,
     #isInitialized: _f$isInitialized,
   };
 
-  static SetPassBaseInitStatus _instantiate(DecodingData data) {
-    return SetPassBaseInitStatus(
+  static SetPassSuccessStatus _instantiate(DecodingData data) {
+    return SetPassSuccessStatus(
         isLoading: data.dec(_f$isLoading),
         errorMessage: data.dec(_f$errorMessage),
         isInitialized: data.dec(_f$isInitialized));
@@ -275,54 +274,54 @@ class SetPassBaseInitStatusMapper
   final Function instantiate = _instantiate;
 }
 
-mixin SetPassBaseInitStatusMappable {
-  SetPassBaseInitStatusCopyWith<SetPassBaseInitStatus, SetPassBaseInitStatus,
-      SetPassBaseInitStatus> get copyWith => _SetPassBaseInitStatusCopyWithImpl<
-          SetPassBaseInitStatus, SetPassBaseInitStatus>(
-      this as SetPassBaseInitStatus, $identity, $identity);
+mixin SetPassSuccessStatusMappable {
+  SetPassSuccessStatusCopyWith<SetPassSuccessStatus, SetPassSuccessStatus,
+      SetPassSuccessStatus> get copyWith => _SetPassSuccessStatusCopyWithImpl<
+          SetPassSuccessStatus, SetPassSuccessStatus>(
+      this as SetPassSuccessStatus, $identity, $identity);
   @override
   String toString() {
-    return SetPassBaseInitStatusMapper.ensureInitialized()
-        .stringifyValue(this as SetPassBaseInitStatus);
+    return SetPassSuccessStatusMapper.ensureInitialized()
+        .stringifyValue(this as SetPassSuccessStatus);
   }
 
   @override
   bool operator ==(Object other) {
-    return SetPassBaseInitStatusMapper.ensureInitialized()
-        .equalsValue(this as SetPassBaseInitStatus, other);
+    return SetPassSuccessStatusMapper.ensureInitialized()
+        .equalsValue(this as SetPassSuccessStatus, other);
   }
 
   @override
   int get hashCode {
-    return SetPassBaseInitStatusMapper.ensureInitialized()
-        .hashValue(this as SetPassBaseInitStatus);
+    return SetPassSuccessStatusMapper.ensureInitialized()
+        .hashValue(this as SetPassSuccessStatus);
   }
 }
 
-extension SetPassBaseInitStatusValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, SetPassBaseInitStatus, $Out> {
-  SetPassBaseInitStatusCopyWith<$R, SetPassBaseInitStatus, $Out>
-      get $asSetPassBaseInitStatus => $base.as(
-          (v, t, t2) => _SetPassBaseInitStatusCopyWithImpl<$R, $Out>(v, t, t2));
+extension SetPassSuccessStatusValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, SetPassSuccessStatus, $Out> {
+  SetPassSuccessStatusCopyWith<$R, SetPassSuccessStatus, $Out>
+      get $asSetPassSuccessStatus => $base.as(
+          (v, t, t2) => _SetPassSuccessStatusCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
-abstract class SetPassBaseInitStatusCopyWith<
+abstract class SetPassSuccessStatusCopyWith<
     $R,
-    $In extends SetPassBaseInitStatus,
+    $In extends SetPassSuccessStatus,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? isLoading, String? errorMessage, bool? isInitialized});
-  SetPassBaseInitStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+  SetPassSuccessStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
 
-class _SetPassBaseInitStatusCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, SetPassBaseInitStatus, $Out>
-    implements SetPassBaseInitStatusCopyWith<$R, SetPassBaseInitStatus, $Out> {
-  _SetPassBaseInitStatusCopyWithImpl(super.value, super.then, super.then2);
+class _SetPassSuccessStatusCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, SetPassSuccessStatus, $Out>
+    implements SetPassSuccessStatusCopyWith<$R, SetPassSuccessStatus, $Out> {
+  _SetPassSuccessStatusCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<SetPassBaseInitStatus> $mapper =
-      SetPassBaseInitStatusMapper.ensureInitialized();
+  late final ClassMapperBase<SetPassSuccessStatus> $mapper =
+      SetPassSuccessStatusMapper.ensureInitialized();
   @override
   $R call(
           {bool? isLoading,
@@ -334,13 +333,13 @@ class _SetPassBaseInitStatusCopyWithImpl<$R, $Out>
         if (isInitialized != null) #isInitialized: isInitialized
       }));
   @override
-  SetPassBaseInitStatus $make(CopyWithData data) => SetPassBaseInitStatus(
+  SetPassSuccessStatus $make(CopyWithData data) => SetPassSuccessStatus(
       isLoading: data.get(#isLoading, or: $value.isLoading),
       errorMessage: data.get(#errorMessage, or: $value.errorMessage),
       isInitialized: data.get(#isInitialized, or: $value.isInitialized));
 
   @override
-  SetPassBaseInitStatusCopyWith<$R2, SetPassBaseInitStatus, $Out2>
+  SetPassSuccessStatusCopyWith<$R2, SetPassSuccessStatus, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _SetPassBaseInitStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+          _SetPassSuccessStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

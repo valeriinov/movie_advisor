@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../domain/entities/result.dart';
 import '../../../../../domain/usecases/auth_use_case.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
@@ -40,7 +41,28 @@ class SetPassViewModel extends AutoDisposeFamilyNotifier<SetPassState, String>
     state = state.copyWith(formState: formState);
   }
 
-  Future<void> setPass() async{}
+  Future<void> setPass() async {
+    _updateStatus(const SetPassBaseStatus(isLoading: true));
+
+    final setPassData = state.formState.toSetPassData(state.oobCode);
+
+    await safeCall(
+      () async => _authUseCase.setPass(setPassData),
+      onResult: _handleSetPassResult,
+    );
+  }
+
+  void _handleSetPassResult(Result<void> result) {
+    result.fold(
+      (error) {
+        _updateStatus(SetPassBaseStatus(errorMessage: error.message));
+      },
+      (_) {
+        _resetFormState();
+        _updateStatus(const SetPassSuccessStatus());
+      },
+    );
+  }
 
   void _resetFormState() {
     state = state.copyWith(formState: const SetPassFormState());

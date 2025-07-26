@@ -2,6 +2,7 @@ import '../entities/auth/auth_data.dart';
 import '../entities/auth/delete_account_data.dart' show DeleteAccountData;
 import '../entities/auth/reg_data.dart';
 import '../entities/auth/reset_pass_data.dart';
+import '../entities/auth/set_pass_data.dart';
 import '../entities/auth/user_data.dart';
 import '../entities/result.dart';
 
@@ -15,6 +16,8 @@ abstract interface class AuthRepository {
   Future<Result<void>> signUp(RegData data);
 
   Future<Result<void>> resetPass(ResetPassData data);
+
+  Future<Result<void>> setPass(SetPassData data);
 
   Future<Result<void>> signOut();
 

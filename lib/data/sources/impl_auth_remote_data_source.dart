@@ -2,6 +2,7 @@ import '../dto/auth/auth_data_dto.dart';
 import '../dto/auth/delete_account_data_dto.dart';
 import '../dto/auth/reg_data_dto.dart';
 import '../dto/auth/reset_pass_data_dto.dart';
+import '../dto/auth/set_pass_data_dto.dart';
 import '../dto/auth/user_data_dto.dart';
 import '../network/services/auth_service.dart';
 import '../repositories/auth/auth_remote_data_source.dart';
@@ -32,6 +33,11 @@ class ImplAuthRemoteDataSource implements AuthRemoteDataSource {
   @override
   Future<void> resetPass(ResetPassDataDto data) {
     return _service.resetPass(data);
+  }
+
+  @override
+  Future<void> setPass(SetPassDataDto data) {
+    return _service.setPass(data);
   }
 
   @override

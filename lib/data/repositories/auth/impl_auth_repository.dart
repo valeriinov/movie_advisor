@@ -6,6 +6,7 @@ import '../../../domain/entities/auth/auth_data.dart';
 import '../../../domain/entities/auth/delete_account_data.dart';
 import '../../../domain/entities/auth/reg_data.dart';
 import '../../../domain/entities/auth/reset_pass_data.dart';
+import '../../../domain/entities/auth/set_pass_data.dart';
 import '../../../domain/entities/auth/user_data.dart';
 import '../../../domain/entities/result.dart';
 import '../../../domain/repositories/auth_repository.dart';
@@ -78,6 +79,17 @@ class ImplAuthRepository implements AuthRepository {
   Future<Result<void>> resetPass(ResetPassData data) async {
     try {
       await _remoteDataSource.resetPass(_mapper.mapResetPassDataToDto(data));
+
+      return Right(null);
+    } catch (e) {
+      return Left(_mapper.getException(e));
+    }
+  }
+
+  @override
+  Future<Result<void>> setPass(SetPassData data) async {
+    try {
+      await _remoteDataSource.setPass(_mapper.mapSetPassDataToDto(data));
 
       return Right(null);
     } catch (e) {

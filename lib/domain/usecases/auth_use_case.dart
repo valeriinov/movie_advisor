@@ -2,6 +2,7 @@ import '../entities/auth/auth_data.dart';
 import '../entities/auth/delete_account_data.dart';
 import '../entities/auth/reg_data.dart';
 import '../entities/auth/reset_pass_data.dart';
+import '../entities/auth/set_pass_data.dart';
 import '../entities/auth/user_data.dart';
 import '../entities/result.dart';
 import '../repositories/auth_repository.dart';
@@ -27,6 +28,10 @@ class AuthUseCase {
 
   Future<Result<void>> resetPass(ResetPassData data) {
     return _repository.resetPass(data);
+  }
+
+  Future<Result<void>> setPass(SetPassData data) {
+    return _repository.setPass(data);
   }
 
   Future<Result<void>> signOut() {
