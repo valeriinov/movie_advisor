@@ -123,6 +123,7 @@ abstract class  LocaleKeys {
   static const setPassSubmitButton = 'setPassSubmitButton';
   static const signUpButton = 'signUpButton';
   static const createAccountSuccessToast = 'createAccountSuccessToast';
+  static const setPassSuccessToast = 'setPassSuccessToast';
   static const resetPassScreenTitle = 'resetPassScreenTitle';
   static const resetPassButton = 'resetPassButton';
   static const syncDataErrorDesc = 'syncDataErrorDesc';

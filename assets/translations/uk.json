@@ -119,6 +119,7 @@
   "setPassSubmitButton": "ВСТАНОВИТИ ПАРОЛЬ",
   "signUpButton": "ЗАРЕЄСТРУВАТИСЯ",
   "createAccountSuccessToast": "Акаунт успішно створено",
+  "setPassSuccessToast": "Пароль успішно встановлено",
   "resetPassScreenTitle": "Скинути пароль",
   "resetPassButton": "СКИНУТИ ПАРОЛЬ",
   "syncDataErrorDesc": "Синхронізація даних не вдалася",

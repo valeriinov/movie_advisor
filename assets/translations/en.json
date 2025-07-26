@@ -119,6 +119,7 @@
   "setPassSubmitButton": "SET PASSWORD",
   "signUpButton": "SIGN UP",
   "createAccountSuccessToast": "Account created successfully",
+  "setPassSuccessToast": "Password set successfully",
   "resetPassScreenTitle": "Reset Password",
   "resetPassButton": "RESET PASSWORD",
   "syncDataErrorDesc": "Data synchronization failed",
