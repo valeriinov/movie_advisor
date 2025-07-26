@@ -8,6 +8,7 @@ import 'routes/details_route.dart';
 import 'routes/home_routes.dart';
 import 'routes/more_routes.dart';
 import 'routes/person_route.dart';
+import 'routes/set_pass_route.dart';
 import 'routes/watched_routes.dart';
 import 'routes/watchlist_routes.dart';
 import 'utils/extended_shell_branch.dart';
@@ -59,6 +60,7 @@ final class ImplAppRouter implements AppRouter {
         $filterSettingsRoute,
         $watchlistFilterRoute,
         $watchedFilterRoute,
+        $setPassRoute,
       ],
       errorBuilder: (context, _) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
