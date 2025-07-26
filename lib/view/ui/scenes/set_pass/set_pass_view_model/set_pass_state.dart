@@ -2,6 +2,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 import '../../../../../domain/entities/mappable_entity.dart';
 import '../../../base/view_model/base_state.dart';
+import '../model/set_pass_form_state.dart';
 
 part 'set_pass_state.mapper.dart';
 
@@ -10,14 +11,17 @@ part 'set_pass_state.mapper.dart';
 /// Represents the state of a view model, extending [BaseState] with a [SetPassStatus].
 /// Manages the current status for reactive updates.
 @mappableEntity
-final class SetPassState extends BaseState<SetPassStatus> with SetPassStateMappable {
+final class SetPassState extends BaseState<SetPassStatus>
+    with SetPassStateMappable {
   final String oobCode;
+  final SetPassFormState formState;
 
   @override
   final SetPassStatus status;
 
   const SetPassState({
     this.oobCode = '',
+    this.formState = const SetPassFormState(),
     this.status = const SetPassBaseStatus(),
   });
 }
@@ -27,8 +31,11 @@ final class SetPassState extends BaseState<SetPassStatus> with SetPassStateMappa
 /// A sealed class representing the possible statuses of a [SetPassState].
 /// Provides properties for loading, initialization, and error handling.
 sealed class SetPassStatus extends BaseStatus {
-const SetPassStatus(
-{super.isLoading, super.errorMessage, super.isInitialized});
+  const SetPassStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -37,9 +44,12 @@ const SetPassStatus(
 /// Used before it has completed its setup.
 @mappableEntity
 final class SetPassBaseStatus extends SetPassStatus
-with SetPassBaseStatusMappable {
-const SetPassBaseStatus(
-{super.isLoading, super.errorMessage, super.isInitialized});
+    with SetPassBaseStatusMappable {
+  const SetPassBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
 }
 
 /// {@category StateManagement}
@@ -48,7 +58,10 @@ const SetPassBaseStatus(
 /// Indicates that it is ready for interaction with [isInitialized] set to `true`.
 @mappableEntity
 final class SetPassBaseInitStatus extends SetPassStatus
-with SetPassBaseInitStatusMappable {
-const SetPassBaseInitStatus(
-{super.isLoading, super.errorMessage, super.isInitialized = true});
+    with SetPassBaseInitStatusMappable {
+  const SetPassBaseInitStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
 }

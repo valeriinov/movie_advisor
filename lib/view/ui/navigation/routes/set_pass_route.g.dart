@@ -8,8 +8,11 @@ part of 'set_pass_route.dart';
 
 List<RouteBase> get $appRoutes => [$setPassRoute];
 
-RouteBase get $setPassRoute =>
-    GoRouteData.$route(path: '/set-pass', factory: _$SetPassRoute._fromState);
+RouteBase get $setPassRoute => GoRouteData.$route(
+  path: '/__/auth/action',
+
+  factory: _$SetPassRoute._fromState,
+);
 
 mixin _$SetPassRoute on GoRouteData {
   static SetPassRoute _fromState(GoRouterState state) =>
@@ -19,7 +22,7 @@ mixin _$SetPassRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location(
-    '/set-pass',
+    '/__/auth/action',
     queryParams: {if (_self.oobCode != '') 'oob-code': _self.oobCode},
   );
 

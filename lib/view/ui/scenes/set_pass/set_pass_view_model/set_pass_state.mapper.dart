@@ -13,6 +13,7 @@ class SetPassStateMapper extends ClassMapperBase<SetPassState> {
   static SetPassStateMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SetPassStateMapper._());
+      SetPassFormStateMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,17 +21,28 @@ class SetPassStateMapper extends ClassMapperBase<SetPassState> {
   @override
   final String id = 'SetPassState';
 
+  static String _$oobCode(SetPassState v) => v.oobCode;
+  static const Field<SetPassState, String> _f$oobCode =
+      Field('oobCode', _$oobCode, opt: true, def: '');
+  static SetPassFormState _$formState(SetPassState v) => v.formState;
+  static const Field<SetPassState, SetPassFormState> _f$formState =
+      Field('formState', _$formState, opt: true, def: const SetPassFormState());
   static SetPassStatus _$status(SetPassState v) => v.status;
   static const Field<SetPassState, SetPassStatus> _f$status =
       Field('status', _$status, opt: true, def: const SetPassBaseStatus());
 
   @override
   final MappableFields<SetPassState> fields = const {
+    #oobCode: _f$oobCode,
+    #formState: _f$formState,
     #status: _f$status,
   };
 
   static SetPassState _instantiate(DecodingData data) {
-    return SetPassState(status: data.dec(_f$status));
+    return SetPassState(
+        oobCode: data.dec(_f$oobCode),
+        formState: data.dec(_f$formState),
+        status: data.dec(_f$status));
   }
 
   @override
@@ -68,7 +80,10 @@ extension SetPassStateValueCopy<$R, $Out>
 
 abstract class SetPassStateCopyWith<$R, $In extends SetPassState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({SetPassStatus? status});
+  SetPassFormStateCopyWith<$R, SetPassFormState, SetPassFormState>
+      get formState;
+  $R call(
+      {String? oobCode, SetPassFormState? formState, SetPassStatus? status});
   SetPassStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -81,11 +96,24 @@ class _SetPassStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<SetPassState> $mapper =
       SetPassStateMapper.ensureInitialized();
   @override
-  $R call({SetPassStatus? status}) =>
-      $apply(FieldCopyWithData({if (status != null) #status: status}));
+  SetPassFormStateCopyWith<$R, SetPassFormState, SetPassFormState>
+      get formState =>
+          $value.formState.copyWith.$chain((v) => call(formState: v));
   @override
-  SetPassState $make(CopyWithData data) =>
-      SetPassState(status: data.get(#status, or: $value.status));
+  $R call(
+          {String? oobCode,
+          SetPassFormState? formState,
+          SetPassStatus? status}) =>
+      $apply(FieldCopyWithData({
+        if (oobCode != null) #oobCode: oobCode,
+        if (formState != null) #formState: formState,
+        if (status != null) #status: status
+      }));
+  @override
+  SetPassState $make(CopyWithData data) => SetPassState(
+      oobCode: data.get(#oobCode, or: $value.oobCode),
+      formState: data.get(#formState, or: $value.formState),
+      status: data.get(#status, or: $value.status));
 
   @override
   SetPassStateCopyWith<$R2, SetPassState, $Out2> $chain<$R2, $Out2>(
