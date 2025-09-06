@@ -1,0 +1,62 @@
+import 'package:dart_mappable/dart_mappable.dart';
+
+import '../../../../../domain/entities/mappable_entity.dart';
+import '../../../base/view_model/base_state.dart';
+import '../model/set_pass_form_state.dart';
+
+part 'set_pass_state.mapper.dart';
+
+/// {@category StateManagement}
+///
+/// Represents the state of a view model, extending [BaseState] with a [SetPassStatus].
+/// Manages the current status for reactive updates.
+@mappableEntity
+final class SetPassState extends BaseState<SetPassStatus>
+    with SetPassStateMappable {
+  final String oobCode;
+  final SetPassFormState formState;
+
+  @override
+  final SetPassStatus status;
+
+  const SetPassState({
+    this.oobCode = '',
+    this.formState = const SetPassFormState(),
+    this.status = const SetPassBaseStatus(),
+  });
+}
+
+/// {@category StateManagement}
+///
+/// A sealed class representing the possible statuses of a [SetPassState].
+/// Provides properties for loading, initialization, and error handling.
+sealed class SetPassStatus extends BaseStatus {
+  const SetPassStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized,
+  });
+}
+
+/// {@category StateManagement}
+///
+/// Represents the neutral or idle status of a [SetPassState].
+@mappableEntity
+final class SetPassBaseStatus extends SetPassStatus
+    with SetPassBaseStatusMappable {
+  const SetPassBaseStatus({
+    super.isLoading,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
+}
+
+@mappableEntity
+final class SetPassSuccessStatus extends SetPassStatus
+    with SetPassSuccessStatusMappable {
+  const SetPassSuccessStatus({
+    super.isLoading = false,
+    super.errorMessage,
+    super.isInitialized = true,
+  });
+}

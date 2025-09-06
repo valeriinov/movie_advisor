@@ -2,6 +2,7 @@ import '../../dto/auth/auth_data_dto.dart';
 import '../../dto/auth/delete_account_data_dto.dart';
 import '../../dto/auth/reg_data_dto.dart';
 import '../../dto/auth/reset_pass_data_dto.dart';
+import '../../dto/auth/set_pass_data_dto.dart';
 import '../../dto/auth/user_data_dto.dart';
 
 abstract interface class AuthRemoteDataSource {
@@ -14,6 +15,8 @@ abstract interface class AuthRemoteDataSource {
   Future<void> signUp(RegDataDto data);
 
   Future<void> resetPass(ResetPassDataDto data);
+
+  Future<void> setPass(SetPassDataDto data);
 
   Future<void> signOut();
 
