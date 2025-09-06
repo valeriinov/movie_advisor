@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../common/utils/ext/router_api_context_ext.dart';
 import '../../../../di/injector.dart';
 import '../../../base/view_model/ext/state_comparator.dart';
 import '../../../base/view_model/ext/vm_state_provider_creator.dart';
@@ -33,7 +34,10 @@ class SetPassScreenView extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: MainAppBar(title: Text(LocaleKeys.setPassScreenTitle.tr())),
+      appBar: MainAppBar(
+        title: Text(LocaleKeys.setPassScreenTitle.tr()),
+        leading: BackButton(onPressed: context.goBackOrHome),
+      ),
       body: Padding(
         padding: dimens.padHorPrimIns,
         child: NoAlwaysScrollWrapper(
