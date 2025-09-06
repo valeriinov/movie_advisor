@@ -15,16 +15,10 @@ RouteBase get $setPassRoute => GoRouteData.$route(
 );
 
 mixin _$SetPassRoute on GoRouteData {
-  static SetPassRoute _fromState(GoRouterState state) =>
-      SetPassRoute(oobCode: state.uri.queryParameters['oob-code'] ?? '');
-
-  SetPassRoute get _self => this as SetPassRoute;
+  static SetPassRoute _fromState(GoRouterState state) => SetPassRoute();
 
   @override
-  String get location => GoRouteData.$location(
-    '/__/auth/action',
-    queryParams: {if (_self.oobCode != '') 'oob-code': _self.oobCode},
-  );
+  String get location => GoRouteData.$location('/__/auth/action');
 
   @override
   void go(BuildContext context) => context.go(location);
