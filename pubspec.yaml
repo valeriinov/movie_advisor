@@ -77,7 +77,7 @@ dependencies:
   # Network
   dio: ^5.9.0
   pretty_dio_logger: ^1.4.0
-  flutter_dotenv: ^5.2.1
+  flutter_dotenv: ^6.0.0
   connectivity_plus: ^6.1.4
 
   # Firebase
