@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: e55636ed79578b9abca5fecf9437947798f5ef7456308b5cb85720b793eac92f
+      sha256: da0d9209ca76bde579f2da330aeb9df62b6319c834fa7baae052021b0462401f
       url: "https://pub.dev"
     source: hosted
-    version: "82.0.0"
+    version: "85.0.0"
   _flutterfire_internals:
     dependency: transitive
     description:
@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "904ae5bb474d32c38fb9482e2d925d5454cda04ddd0e55d2e6826bc72f6ba8c0"
+      sha256: "974859dc0ff5f37bc4313244b3218c791810d03ab3470a579580279ba971a48d"
       url: "https://pub.dev"
     source: hosted
-    version: "7.4.5"
+    version: "7.7.1"
   animated_toggle_switch:
     dependency: "direct main"
     description:
@@ -77,10 +77,10 @@ packages:
     dependency: transitive
     description:
       name: build
-      sha256: "8295b0b6dfe00499b786718f2936a56b5e0d56d169c528472c8c1908f2b1e3ee"
+      sha256: "7d95cbbb1526ab5ae977df9b4cc660963b9b27f6d1075c0b34653868911385e4"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.0"
+    version: "3.0.0"
   build_config:
     dependency: transitive
     description:
@@ -101,26 +101,26 @@ packages:
     dependency: transitive
     description:
       name: build_resolvers
-      sha256: "57fe2f9149b01d52fcd0ea7de17083739b5cf9e040dedb4e24a17c628c1e9caf"
+      sha256: "38c9c339333a09b090a638849a4c56e70a404c6bdd3b511493addfbc113b60c2"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.0"
+    version: "3.0.0"
   build_runner:
     dependency: "direct dev"
     description:
       name: build_runner
-      sha256: "9b196d7b629c5317dff3ec83c7e98840b773cee3b9339b646fe487048d2ebc74"
+      sha256: b971d4a1c789eba7be3e6fe6ce5e5b50fd3719e3cb485b3fad6d04358304351d
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.0"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
-      sha256: dae6a8a5cbef6866cdfa0d96df4b0d85b9086897096270a405a44d946dafffba
+      sha256: c04e612ca801cd0928ccdb891c263a2b1391cb27940a5ea5afcf9ba894de5d62
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "9.2.0"
   build_verify:
     dependency: "direct dev"
     description:
@@ -173,11 +173,11 @@ packages:
     dependency: "direct dev"
     description:
       path: "packages/class_namer"
-      ref: main
-      resolved-ref: "1694d436a8420d7bdba773f7dc6087aa578b4e15"
+      ref: "0.1.1"
+      resolved-ref: "864f73e322bad762c4711c0478137e6ca4621c1d"
       url: "https://github.com/valeriinov/class_namer.git"
     source: git
-    version: "0.0.1"
+    version: "0.1.1"
   class_namer_annotation:
     dependency: "direct main"
     description:
@@ -335,18 +335,18 @@ packages:
     dependency: "direct main"
     description:
       name: dart_mappable
-      sha256: "2255b2c00e328a65fef5a8df2dabfc0dc9c2e518c33a50051a4519b1c7a28c48"
+      sha256: "0e219930c9f7b9e0f14ae7c1de931c401875110fd5c67975b6b9492a6d3a531b"
       url: "https://pub.dev"
     source: hosted
-    version: "4.5.0"
+    version: "4.6.1"
   dart_mappable_builder:
     dependency: "direct dev"
     description:
       name: dart_mappable_builder
-      sha256: adea8c55aac73c8254aa14a8272b788eb0f72799dd8e4810a9b664ec9b4e353c
+      sha256: "1116c70d9923e85e78a9339a67934949334a4190c8a6f46e1fbc908341ce424c"
       url: "https://pub.dev"
     source: hosted
-    version: "4.5.0"
+    version: "4.6.0"
   dart_style:
     dependency: transitive
     description:
@@ -415,10 +415,10 @@ packages:
     dependency: "direct dev"
     description:
       name: drift_dev
-      sha256: "68c138e884527d2bd61df2ade276c3a144df84d1adeb0ab8f3196b5afe021bd4"
+      sha256: d6646ee608b9f359b023ac329321bc9c63b098217291de079b8b2334a48abf39
       url: "https://pub.dev"
     source: hosted
-    version: "2.28.0"
+    version: "2.28.2"
   drift_flutter:
     dependency: "direct main"
     description:
@@ -732,10 +732,10 @@ packages:
     dependency: "direct dev"
     description:
       name: go_router_builder
-      sha256: e436f0c69e717bd215639fbe27381b7e6605a255852b45cb244e28f01ab2e93a
+      sha256: "75200eb331e3bdfcaaa7df059c7db151c6efa56437f6715698cb3ad3d94c36e4"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "3.3.1"
   graphs:
     dependency: transitive
     description:
@@ -1241,18 +1241,18 @@ packages:
     dependency: transitive
     description:
       name: source_gen
-      sha256: "35c8150ece9e8c8d263337a265153c3329667640850b9304861faea59fc98f6b"
+      sha256: "7b19d6ba131c6eb98bfcbf8d56c1a7002eba438af2e7ae6f8398b2b0f4f381e3"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "3.1.0"
   source_helper:
     dependency: transitive
     description:
       name: source_helper
-      sha256: "86d247119aedce8e63f4751bd9626fc9613255935558447569ad42f9f5b48b3c"
+      sha256: "6a3c6cc82073a8797f8c4dc4572146114a39652851c157db37e964d9c7038723"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.5"
+    version: "1.3.8"
   source_map_stack_trace:
     dependency: transitive
     description:
@@ -1393,18 +1393,18 @@ packages:
     dependency: "direct dev"
     description:
       name: theme_tailor
-      sha256: ba98be1d04856deef932757a3ca8fa7a5e2a6f96c30466a59c48924eeb608b97
+      sha256: b6591e5969561f20a24b87a0b9d512f18e46fd204069342f408353dd6c32b6be
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.3"
+    version: "3.1.0"
   theme_tailor_annotation:
     dependency: "direct main"
     description:
       name: theme_tailor_annotation
-      sha256: "0d5ecd13a6a52add2082aa60497179f6093acf482eb69e7fa3a9f37eb990ac34"
+      sha256: "9b9ecc468f892f7d2e638e7a5f704deadce627e24ae2f7bacedcbd47098f892b"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.2"
+    version: "3.1.0"
   timing:
     dependency: transitive
     description:
