@@ -8,7 +8,7 @@ import '../app_routes.dart';
 part 'details_route.g.dart';
 
 @TypedGoRoute<DetailsRoute>(path: AppRoutes.details)
-class DetailsRoute extends GoRouteData with _$DetailsRoute {
+class DetailsRoute extends GoRouteData with $DetailsRoute {
   final int id;
   final ContentMode contentMode;
 
@@ -21,7 +21,7 @@ class DetailsRoute extends GoRouteData with _$DetailsRoute {
   ///   DetailsRoute(id: id, contentMode: ContentMode.movies).push(context);
   /// }
   /// ```
-  DetailsRoute({this.id = -1, this.contentMode = ContentMode.movies});
+  const DetailsRoute({this.id = -1, this.contentMode = ContentMode.movies});
 
   @override
   Page<void> buildPage(context, state) {

@@ -7,7 +7,7 @@ import '../app_routes.dart';
 part 'person_route.g.dart';
 
 @TypedGoRoute<PersonRoute>(path: AppRoutes.person)
-class PersonRoute extends GoRouteData with _$PersonRoute {
+class PersonRoute extends GoRouteData with $PersonRoute {
   final int id;
 
   /// The [PersonScreen] is displayed above the navigation menu,
@@ -19,7 +19,7 @@ class PersonRoute extends GoRouteData with _$PersonRoute {
   ///   PersonRoute(id: id).push(context);
   /// }
   /// ```
-  PersonRoute({this.id = -1});
+  const PersonRoute({this.id = -1});
 
   @override
   Page<void> buildPage(context, state) {

@@ -10,11 +10,12 @@ List<RouteBase> get $appRoutes => [$watchlistRoute, $watchlistFilterRoute];
 
 RouteBase get $watchlistRoute => GoRouteData.$route(
   path: '/watch-list',
-  factory: _$WatchlistRoute._fromState,
+  factory: $WatchlistRoute._fromState,
 );
 
-mixin _$WatchlistRoute on GoRouteData {
-  static WatchlistRoute _fromState(GoRouterState state) => WatchlistRoute();
+mixin $WatchlistRoute on GoRouteData {
+  static WatchlistRoute _fromState(GoRouterState state) =>
+      const WatchlistRoute();
 
   @override
   String get location => GoRouteData.$location('/watch-list');
@@ -35,12 +36,12 @@ mixin _$WatchlistRoute on GoRouteData {
 
 RouteBase get $watchlistFilterRoute => GoRouteData.$route(
   path: '/watchlist-filter',
-  factory: _$WatchlistFilterRoute._fromState,
+  factory: $WatchlistFilterRoute._fromState,
 );
 
-mixin _$WatchlistFilterRoute on GoRouteData {
+mixin $WatchlistFilterRoute on GoRouteData {
   static WatchlistFilterRoute _fromState(GoRouterState state) =>
-      WatchlistFilterRoute();
+      const WatchlistFilterRoute();
 
   @override
   String get location => GoRouteData.$location('/watchlist-filter');

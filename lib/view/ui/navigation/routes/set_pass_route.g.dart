@@ -10,11 +10,11 @@ List<RouteBase> get $appRoutes => [$setPassRoute];
 
 RouteBase get $setPassRoute => GoRouteData.$route(
   path: '/__/auth/action',
-  factory: _$SetPassRoute._fromState,
+  factory: $SetPassRoute._fromState,
 );
 
-mixin _$SetPassRoute on GoRouteData {
-  static SetPassRoute _fromState(GoRouterState state) => SetPassRoute();
+mixin $SetPassRoute on GoRouteData {
+  static SetPassRoute _fromState(GoRouterState state) => const SetPassRoute();
 
   @override
   String get location => GoRouteData.$location('/__/auth/action');

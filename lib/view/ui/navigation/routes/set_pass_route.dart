@@ -7,10 +7,10 @@ import '../app_routes.dart';
 part 'set_pass_route.g.dart';
 
 @TypedGoRoute<SetPassRoute>(path: AppRoutes.setPass)
-class SetPassRoute extends GoRouteData with _$SetPassRoute {
+class SetPassRoute extends GoRouteData with $SetPassRoute {
   static const String _oobCodeKey = 'oobCode';
 
-  SetPassRoute();
+  const SetPassRoute();
 
   @override
   Page<void> buildPage(context, state) {
