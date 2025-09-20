@@ -10,7 +10,6 @@ List<RouteBase> get $appRoutes => [$setPassRoute];
 
 RouteBase get $setPassRoute => GoRouteData.$route(
   path: '/__/auth/action',
-
   factory: _$SetPassRoute._fromState,
 );
 

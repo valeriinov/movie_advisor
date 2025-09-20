@@ -10,26 +10,22 @@ List<RouteBase> get $appRoutes => [$moreRoute];
 
 RouteBase get $moreRoute => GoRouteData.$route(
   path: '/more',
-
   factory: _$MoreRoute._fromState,
   routes: [
     GoRouteData.$route(path: 'about-us', factory: _$AboutUsRoute._fromState),
     GoRouteData.$route(
       path: 'auth',
-
       factory: _$AuthRoute._fromState,
       routes: [
         GoRouteData.$route(path: 'reg', factory: _$RegRoute._fromState),
         GoRouteData.$route(
           path: 'reset-pass',
-
           factory: _$ResetPassRoute._fromState,
         ),
       ],
     ),
     GoRouteData.$route(
       path: 'delete-account',
-
       factory: _$DeleteAccountRoute._fromState,
     ),
     GoRouteData.$route(path: 'settings', factory: _$SettingsRoute._fromState),

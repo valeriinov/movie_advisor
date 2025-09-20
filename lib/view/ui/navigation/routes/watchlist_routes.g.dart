@@ -10,7 +10,6 @@ List<RouteBase> get $appRoutes => [$watchlistRoute, $watchlistFilterRoute];
 
 RouteBase get $watchlistRoute => GoRouteData.$route(
   path: '/watch-list',
-
   factory: _$WatchlistRoute._fromState,
 );
 
@@ -36,7 +35,6 @@ mixin _$WatchlistRoute on GoRouteData {
 
 RouteBase get $watchlistFilterRoute => GoRouteData.$route(
   path: '/watchlist-filter',
-
   factory: _$WatchlistFilterRoute._fromState,
 );
 

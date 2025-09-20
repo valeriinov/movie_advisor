@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format off
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
@@ -21,12 +22,22 @@ class SearchFilterDataMapper extends ClassMapperBase<SearchFilterData> {
   final String id = 'SearchFilterData';
 
   static String? _$query(SearchFilterData v) => v.query;
-  static const Field<SearchFilterData, String> _f$query =
-      Field('query', _$query, opt: true);
+  static const Field<SearchFilterData, String> _f$query = Field(
+    'query',
+    _$query,
+    opt: true,
+  );
+  static bool _$isDefault(SearchFilterData v) => v.isDefault;
+  static const Field<SearchFilterData, bool> _f$isDefault = Field(
+    'isDefault',
+    _$isDefault,
+    mode: FieldMode.member,
+  );
 
   @override
   final MappableFields<SearchFilterData> fields = const {
     #query: _f$query,
+    #isDefault: _f$isDefault,
   };
 
   static SearchFilterData _instantiate(DecodingData data) {
@@ -39,40 +50,48 @@ class SearchFilterDataMapper extends ClassMapperBase<SearchFilterData> {
 
 mixin SearchFilterDataMappable {
   SearchFilterDataCopyWith<SearchFilterData, SearchFilterData, SearchFilterData>
-      get copyWith =>
-          _SearchFilterDataCopyWithImpl<SearchFilterData, SearchFilterData>(
-              this as SearchFilterData, $identity, $identity);
+  get copyWith =>
+      _SearchFilterDataCopyWithImpl<SearchFilterData, SearchFilterData>(
+        this as SearchFilterData,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return SearchFilterDataMapper.ensureInitialized()
-        .stringifyValue(this as SearchFilterData);
+    return SearchFilterDataMapper.ensureInitialized().stringifyValue(
+      this as SearchFilterData,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return SearchFilterDataMapper.ensureInitialized()
-        .equalsValue(this as SearchFilterData, other);
+    return SearchFilterDataMapper.ensureInitialized().equalsValue(
+      this as SearchFilterData,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return SearchFilterDataMapper.ensureInitialized()
-        .hashValue(this as SearchFilterData);
+    return SearchFilterDataMapper.ensureInitialized().hashValue(
+      this as SearchFilterData,
+    );
   }
 }
 
 extension SearchFilterDataValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SearchFilterData, $Out> {
   SearchFilterDataCopyWith<$R, SearchFilterData, $Out>
-      get $asSearchFilterData => $base
-          .as((v, t, t2) => _SearchFilterDataCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asSearchFilterData =>
+      $base.as((v, t, t2) => _SearchFilterDataCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SearchFilterDataCopyWith<$R, $In extends SearchFilterData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   $R call({String? query});
   SearchFilterDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _SearchFilterDataCopyWithImpl<$R, $Out>
@@ -92,6 +111,7 @@ class _SearchFilterDataCopyWithImpl<$R, $Out>
 
   @override
   SearchFilterDataCopyWith<$R2, SearchFilterData, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _SearchFilterDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _SearchFilterDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
+

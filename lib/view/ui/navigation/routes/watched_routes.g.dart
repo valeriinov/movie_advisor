@@ -33,7 +33,6 @@ mixin _$WatchedRoute on GoRouteData {
 
 RouteBase get $watchedFilterRoute => GoRouteData.$route(
   path: '/watched-filter',
-
   factory: _$WatchedFilterRoute._fromState,
 );
 

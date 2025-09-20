@@ -10,7 +10,6 @@ List<RouteBase> get $appRoutes => [$homeRoute, $filterSettingsRoute];
 
 RouteBase get $homeRoute => GoRouteData.$route(
   path: '/home',
-
   factory: _$HomeRoute._fromState,
   routes: [
     GoRouteData.$route(path: 'search', factory: _$SearchRoute._fromState),
@@ -80,7 +79,6 @@ mixin _$FilterRoute on GoRouteData {
 
 RouteBase get $filterSettingsRoute => GoRouteData.$route(
   path: '/filter-settings',
-
   factory: _$FilterSettingsRoute._fromState,
 );
 
