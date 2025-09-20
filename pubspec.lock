@@ -173,20 +173,20 @@ packages:
     dependency: "direct dev"
     description:
       path: "packages/class_namer"
-      ref: "0.1.1"
-      resolved-ref: "864f73e322bad762c4711c0478137e6ca4621c1d"
+      ref: "0.1.0"
+      resolved-ref: "501bcf626c89b55cdd01f2a4621567cef463b720"
       url: "https://github.com/valeriinov/class_namer.git"
     source: git
-    version: "0.1.1"
+    version: "0.1.0"
   class_namer_annotation:
     dependency: "direct main"
     description:
       path: "packages/class_namer_annotation"
-      ref: main
-      resolved-ref: "1694d436a8420d7bdba773f7dc6087aa578b4e15"
+      ref: "0.1.0"
+      resolved-ref: "501bcf626c89b55cdd01f2a4621567cef463b720"
       url: "https://github.com/valeriinov/class_namer.git"
     source: git
-    version: "0.0.1"
+    version: "0.1.0"
   cli_config:
     dependency: transitive
     description:

@@ -72,7 +72,7 @@ dependencies:
     git:
       url: https://github.com/valeriinov/class_namer.git
       path: packages/class_namer_annotation
-      ref: main
+      ref: 0.1.0
 
   # Network
   dio: ^5.9.0
@@ -106,7 +106,7 @@ dev_dependencies:
     git:
       url: https://github.com/valeriinov/class_namer.git
       path: packages/class_namer
-      ref: 0.1.1
+      ref: 0.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
