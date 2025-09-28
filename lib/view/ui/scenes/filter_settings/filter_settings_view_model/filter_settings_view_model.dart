@@ -17,18 +17,18 @@ part 'filter_settings_series_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [FilterSettingsViewModel] and [FilterSettingsState].
-typedef FilterSettingsVSP = ASP<FilterSettingsViewModel, FilterSettingsState>;
+/// A type alias for [VSP] with [FilterSettingsViewModel] and [FilterSettingsState].
+typedef FilterSettingsVSP = VSP<FilterSettingsViewModel, FilterSettingsState>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AutoDisposeNotifierProvider] used to
+/// A type alias for [NotifierProvider] used to
 /// provide an instance of [FilterSettingsViewModel].
 ///
 /// The [F] parameter represents the [FilterData] type.
 /// The [G] parameter represents the genre type.
 typedef FilterSettingsVMProvider<F extends FilterData, G> =
-    AutoDisposeNotifierProvider<
+    NotifierProvider<
       FilterSettingsViewModel<F, G>,
       FilterSettingsState<F>
     >;
@@ -39,7 +39,7 @@ typedef FilterSettingsVMProvider<F extends FilterData, G> =
 ///
 /// This class is responsible for coordinating `filter settings` behavior and interacting with the UI.
 abstract class FilterSettingsViewModel<F extends FilterData, G>
-    extends AutoDisposeNotifier<FilterSettingsState<F>> {
+    extends Notifier<FilterSettingsState<F>> {
   void init({required F initFilter});
 
   void resetFilter();

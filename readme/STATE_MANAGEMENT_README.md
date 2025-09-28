@@ -96,12 +96,12 @@ final class AuthSuccessStatus extends AuthStatus
 
 /// A provider for the [AuthViewModel] class.
 final authViewModelPr =
-AutoDisposeNotifierProvider<AuthViewModel, AuthState>(AuthViewModel.new);
+NotifierProvider<AuthViewModel, AuthState>(AuthViewModel.new);
 
 /// A view model for managing `auth`-specific logic and state.
 ///
 /// This class is responsible for coordinating `auth` behavior and interacting with the UI.
-class AuthViewModel extends AutoDisposeNotifier<AuthState>
+class AuthViewModel extends Notifier<AuthState>
     with SafeOperationsMixin {
   late final AuthUseCase _authUseCase;
 
@@ -180,32 +180,9 @@ offer convenience methods for handling and accessing state and its associated vi
 
 ```dart
 extension VMStateProviderCreator on WidgetRef {
-  /// Creates a ViewModel Notifier State Provider instance [VMAutoDisposeStateProvider]
+  /// Creates a ViewModel Notifier State Provider instance [VMStateProvider]
   /// using the given [provider].
-  ///
-  /// The [provider] parameter is an instance of [AutoDisposeNotifierProvider], which ensures
-  /// that the associated state is automatically disposed of when no longer used.
-  /// This method is suitable for view models with a shorter lifecycle that should be
-  /// disposed of automatically when the widget leaves the widget tree.
-  ASP vspFromADProvider(AutoDisposeNotifierProvider provider);
-
-  /// Creates a ViewModel Notifier State Provider instance [VMAutoDisposeFamilyStateProvider]
-  /// using the given [provider].
-  ///
-  /// The [provider] parameter is an instance of [AutoDisposeFamilyNotifierProvider], which
-  /// supports dynamic initialization based on the argument [A]. Like [AutoDisposeNotifierProvider],
-  /// it ensures automatic disposal of the state. This method is particularly useful when
-  /// state initialization depends on an input argument that varies per instance.
-  AFSP vspFromADFProvider(AutoDisposeFamilyNotifierProvider provider);
-
-  /// Creates a ViewModel Notifier State Provider instance [VMRegularStateProvider]
-  /// using the given [provider].
-  ///
-  /// The [provider] parameter is an instance of [NotifierProvider], which does not provide
-  /// automatic disposal of the state. This method is suitable for managing global view models
-  /// or state that needs to persist throughout the application's lifecycle. Ensure proper
-  /// disposal management manually if required.
-  RSP vspFromRProvider(NotifierProvider provider);
+  VSP vspFromNDProvider(NotifierProvider provider);
 }
 
 /// A base class that wraps around a Riverpod state notifier provider to offer
@@ -331,7 +308,7 @@ class AuthScreenView extends ConsumerWidget {
   Widget build(context, ref) {
     final dimens = context.baseDimens;
 
-    // Create a ViewModel State Provider instance from an AutoDisposeNotifierProvider.
+    // Create a ViewModel State Provider instance from an NotifierProvider.
     final vsp = ref.vspFromADProvider(authViewModelPr);
 
     // Handle state changes.
@@ -388,14 +365,14 @@ manipulations in notifiers after they are disposed. It handles the execution
 and cancellation of asynchronous operations, aiding in avoiding memory leaks
 and ensuring efficient resource management.
 
-This mixin is particularly valuable in notifiers like `AutoDisposeFamilyNotifier`,
-`AutoDisposeNotifier`, `FamilyNotifier` and `Notifier`, where it's
+This mixin is particularly valuable in notifiers like `FamilyNotifier`,
+`Notifier`, `FamilyNotifier` and `Notifier`, where it's
 important to cancel ongoing asynchronous operations upon notifier disposal.
 
 **Usage:**
 
 ```dart
- class MyViewModel extends AutoDisposeNotifier<MyState> with SafeOperationsMixin {
+ class MyViewModel extends Notifier<MyState> with SafeOperationsMixin {
   @override
   MyState build() {
     // Register to cancel operations on dispose to prevent state manipulation.
@@ -417,15 +394,15 @@ important to cancel ongoing asynchronous operations upon notifier disposal.
 A mixin that provides the functionality to schedule asynchronous operations
 in Flutter applications using Riverpod.
 
-This mixin is particularly valuable in notifiers like `AutoDisposeFamilyNotifier`,
-`AutoDisposeNotifier`, `FamilyNotifier` and `Notifier` in scenarios where asynchronous operations
+This mixin is particularly valuable in notifiers like `FamilyNotifier`,
+`Notifier`, `FamilyNotifier` and `Notifier` in scenarios where asynchronous operations
 need to be triggered as part of the notifier's initialization process, but only
 after the initial state has been established.
 
 **Usage:**
 
 ```dart
- class MyViewModel extends AutoDisposeNotifier<MyState> with ScheduleOperationsMixin {
+ class MyViewModel extends Notifier<MyState> with ScheduleOperationsMixin {
   @override
   MyState build() {
     // Schedule an asynchronous operation to be executed after state initialization.

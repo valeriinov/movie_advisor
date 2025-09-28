@@ -10,14 +10,14 @@ import 'reset_pass_state.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [ResetPassViewModel] and [ResetPassState].
-typedef ResetPassVSP = ASP<ResetPassViewModel, ResetPassState>;
+/// A type alias for [VSP] with [ResetPassViewModel] and [ResetPassState].
+typedef ResetPassVSP = VSP<ResetPassViewModel, ResetPassState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [ResetPassViewModel] class.
 final resetPassViewModelPr =
-    AutoDisposeNotifierProvider<ResetPassViewModel, ResetPassState>(
+    NotifierProvider.autoDispose<ResetPassViewModel, ResetPassState>(
       ResetPassViewModel.new,
     );
 
@@ -26,7 +26,7 @@ final resetPassViewModelPr =
 /// A view model for managing `reset pass`-specific logic and state.
 ///
 /// This class is responsible for coordinating `reset pass` behavior and interacting with the UI.
-class ResetPassViewModel extends AutoDisposeNotifier<ResetPassState>
+class ResetPassViewModel extends Notifier<ResetPassState>
     with SafeOperationsMixin {
   late final AuthUseCase _authUseCase;
 

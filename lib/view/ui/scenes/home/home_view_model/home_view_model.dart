@@ -27,17 +27,17 @@ part 'home_series_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [HomeViewModel] and [HomeState].
-typedef HomeVSP = ASP<HomeViewModel, HomeState>;
+/// A type alias for [VSP] with [HomeViewModel] and [HomeState].
+typedef HomeVSP = VSP<HomeViewModel, HomeState>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AutoDisposeNotifierProvider] used to
+/// A type alias for [NotifierProvider] used to
 /// provide an instance of [HomeViewModel].
 ///
 /// The [T] parameter represents the [MediaShortData] type.
 typedef HomeVMProvider<T extends MediaShortData> =
-    AutoDisposeNotifierProvider<HomeViewModel<T>, HomeState<T>>;
+    NotifierProvider<HomeViewModel<T>, HomeState<T>>;
 
 typedef _TabAction<T extends MediaShortData> =
     Future<Result<ListWithPaginationData<T>>> Function({int page});
@@ -48,7 +48,7 @@ typedef _TabAction<T extends MediaShortData> =
 ///
 /// This class is responsible for coordinating `home` behavior and interacting with the UI.
 abstract base class HomeViewModel<T extends MediaShortData>
-    extends AutoDisposeNotifier<HomeState<T>>
+    extends Notifier<HomeState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final HomeUseCase<T> _homeUseCase;
   late final WatchUseCase<T> _watchUseCase;

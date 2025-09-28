@@ -23,7 +23,7 @@ class SetPassSubmitButton extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADFProvider(setPassViewModelPr(oobCode));
+    final vsp = ref.vspFromADProvider(setPassViewModelPr(oobCode));
 
     final formState = vsp.selectWatch((s) => s.formState);
 

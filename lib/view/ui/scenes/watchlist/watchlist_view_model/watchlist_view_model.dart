@@ -28,19 +28,19 @@ part 'watchlist_series_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [WatchlistViewModel] and [WatchlistState].
-typedef WatchlistVSP = ASP<WatchlistViewModel, WatchlistState>;
+/// A type alias for [VSP] with [WatchlistViewModel] and [WatchlistState].
+typedef WatchlistVSP = VSP<WatchlistViewModel, WatchlistState>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AutoDisposeNotifierProvider] used to provide an instance of [WatchlistViewModel].
+/// A type alias for [NotifierProvider] used to provide an instance of [WatchlistViewModel].
 ///
 /// The [T] parameter represents the [MediaShortData] type.
 /// The [F] parameter represents the [WatchlistFilterData] type.
 typedef WatchlistVMProvider<
   T extends MediaShortData,
   F extends WatchlistFilterData
-> = AutoDisposeNotifierProvider<WatchlistViewModel<T, F>, WatchlistState<T, F>>;
+> = NotifierProvider<WatchlistViewModel<T, F>, WatchlistState<T, F>>;
 
 /// {@category StateManagement}
 ///
@@ -51,7 +51,7 @@ abstract base class WatchlistViewModel<
   T extends MediaShortData,
   F extends WatchlistFilterData
 >
-    extends AutoDisposeNotifier<WatchlistState<T, F>>
+    extends Notifier<WatchlistState<T, F>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final WatchUseCase<T> _watchUseCase;
   late final WatchlistFilterUseCase<T, F> _watchlistFilterUseCase;

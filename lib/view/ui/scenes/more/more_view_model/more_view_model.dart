@@ -13,13 +13,13 @@ import 'more_state.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [MoreViewModel] and [MoreState].
-typedef MoreVSP = ASP<MoreViewModel, MoreState>;
+/// A type alias for [VSP] with [MoreViewModel] and [MoreState].
+typedef MoreVSP = VSP<MoreViewModel, MoreState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [MoreViewModel] class.
-final moreViewModelPr = AutoDisposeNotifierProvider<MoreViewModel, MoreState>(
+final moreViewModelPr = NotifierProvider.autoDispose<MoreViewModel, MoreState>(
   MoreViewModel.new,
 );
 
@@ -28,7 +28,7 @@ final moreViewModelPr = AutoDisposeNotifierProvider<MoreViewModel, MoreState>(
 /// A view model for managing `more`-specific logic and state.
 ///
 /// This class is responsible for coordinating `more` behavior and interacting with the UI.
-class MoreViewModel extends AutoDisposeNotifier<MoreState>
+class MoreViewModel extends Notifier<MoreState>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final AuthUseCase _authUseCase;
   late final StreamSubscription<Result<UserData?>> _userSubscription;

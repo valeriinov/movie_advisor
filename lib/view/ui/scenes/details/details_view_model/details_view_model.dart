@@ -24,23 +24,18 @@ part 'details_series_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AFSP] with [DetailsViewModel], [DetailsState], and an integer ID.
-typedef DetailsAFSP = AFSP<DetailsViewModel, DetailsState, int>;
+/// A type alias for [VSP] with [DetailsViewModel], [DetailsState], and an integer ID.
+typedef DetailsAFSP = VSP<DetailsViewModel, DetailsState>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AutoDisposeNotifierProviderFamily] used to
+/// A type alias for [NotifierProvider] used to
 /// provide an instance of [DetailsViewModel].
 ///
 /// The [T] parameter represents the [MediaData] type.
 /// The [S] parameter represents the [MediaShortData] type.
-/// The integer parameter is the media item ID.
 typedef DetailsVMProvider<T extends MediaData, S extends MediaShortData> =
-    AutoDisposeNotifierProviderFamily<
-      DetailsViewModel<T, S>,
-      DetailsState<T>,
-      int
-    >;
+    NotifierProvider<DetailsViewModel<T, S>, DetailsState<T>> Function(int);
 
 /// {@category StateManagement}
 ///
@@ -51,10 +46,13 @@ abstract base class DetailsViewModel<
   T extends MediaData,
   S extends MediaShortData
 >
-    extends AutoDisposeFamilyNotifier<DetailsState<T>, int>
+    extends Notifier<DetailsState<T>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
+  final int _arg;
   late final DetailsUseCase<T> _detailsUseCase;
   late final WatchUseCase<S> _watchUseCase;
+
+  DetailsViewModel(this._arg);
 
   Future<void> loadInitialData({bool showLoader = true}) async {
     _updateStatus(DetailsBaseStatus(isLoading: showLoader));

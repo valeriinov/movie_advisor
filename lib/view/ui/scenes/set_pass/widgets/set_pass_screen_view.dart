@@ -26,7 +26,7 @@ class SetPassScreenView extends ConsumerWidget {
   Widget build(context, ref) {
     final dimens = context.baseDimens;
 
-    final vsp = ref.vspFromADFProvider(setPassViewModelPr(oobCode));
+    final vsp = ref.vspFromADProvider(setPassViewModelPr(oobCode));
 
     vsp.handleState(
       listener: (prev, next) =>

@@ -37,7 +37,7 @@ class AuthSubmitButton extends ConsumerWidget {
 
   void _onSubmit(
     BuildContext context,
-    ASP<AuthViewModel, AuthState> vsp,
+    VSP<AuthViewModel, AuthState> vsp,
     GlobalKey<FormBuilderState> formKey,
     void Function(bool) setAutoValidate,
   ) {

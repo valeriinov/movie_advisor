@@ -11,7 +11,7 @@ import 'auth_state.dart';
 /// {@category StateManagement}
 ///
 /// A provider for the [AuthViewModel] class.
-final authViewModelPr = AutoDisposeNotifierProvider<AuthViewModel, AuthState>(
+final authViewModelPr = NotifierProvider.autoDispose<AuthViewModel, AuthState>(
   AuthViewModel.new,
 );
 
@@ -20,8 +20,7 @@ final authViewModelPr = AutoDisposeNotifierProvider<AuthViewModel, AuthState>(
 /// A view model for managing `auth`-specific logic and state.
 ///
 /// This class is responsible for coordinating `auth` behavior and interacting with the UI.
-class AuthViewModel extends AutoDisposeNotifier<AuthState>
-    with SafeOperationsMixin {
+class AuthViewModel extends Notifier<AuthState> with SafeOperationsMixin {
   late final AuthUseCase _authUseCase;
   late final SyncUseCase _syncUseCase;
 

@@ -7,18 +7,16 @@ typedef DetailsMovieState = DetailsState<MovieData>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AFSP] with [DetailsMovieViewModel], [DetailsMovieState], and an integer ID.
-typedef DetailsMovieVSP = AFSP<DetailsMovieViewModel, DetailsMovieState, int>;
+/// A type alias for [VSP] with [DetailsMovieViewModel], [DetailsMovieState]
+typedef DetailsMovieVSP = VSP<DetailsMovieViewModel, DetailsMovieState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [DetailsMovieViewModel] class.
 final detailsMovieViewModelPr =
-    AutoDisposeNotifierProvider.family<
-      DetailsMovieViewModel,
-      DetailsMovieState,
-      int
-    >(DetailsMovieViewModel.new);
+NotifierProvider.family.autoDispose<DetailsMovieViewModel, DetailsMovieState, int>(
+  DetailsMovieViewModel.new,
+);
 
 /// {@category StateManagement}
 ///
@@ -27,8 +25,10 @@ final detailsMovieViewModelPr =
 /// This class is responsible for coordinating `details_movie` behavior and interacting with the UI.
 final class DetailsMovieViewModel
     extends DetailsViewModel<MovieData, MovieShortData> {
+  DetailsMovieViewModel(super.arg);
+
   @override
-  DetailsMovieState build(arg) {
+  DetailsMovieState build() {
     _detailsUseCase = ref.read(detailsMovieUseCasePr);
     _watchUseCase = ref.read(watchMoviesUseCasePr);
 
@@ -36,7 +36,7 @@ final class DetailsMovieViewModel
     scheduleCall(loadInitialData);
 
     return DetailsMovieState(
-      data: MovieData(id: arg, premiereDate: DateTime.now()),
+      data: MovieData(id: _arg, premiereDate: DateTime.now()),
     );
   }
 }

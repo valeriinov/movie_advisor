@@ -29,19 +29,19 @@ part 'filter_series_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [FilterViewModel] and [FilterState].
-typedef FilterVSP = ASP<FilterViewModel, FilterState>;
+/// A type alias for [VSP] with [FilterViewModel] and [FilterState].
+typedef FilterVSP = VSP<FilterViewModel, FilterState>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AutoDisposeNotifierProvider] used to
+/// A type alias for [NotifierProvider] used to
 /// provide an instance of [FilterViewModel].
 ///
 /// The [T] parameter represents the [MediaShortData] type.
 /// The [F] parameter represents the [FilterData] type.
 /// The [G] parameter represents the genre type.
 typedef FilterVMProvider<T extends MediaShortData, F extends FilterData, G> =
-    AutoDisposeNotifierProvider<FilterViewModel<T, F, G>, FilterState<T, F>>;
+    NotifierProvider<FilterViewModel<T, F, G>, FilterState<T, F>>;
 
 /// {@category StateManagement}
 ///
@@ -53,7 +53,7 @@ abstract base class FilterViewModel<
   F extends FilterData,
   G
 >
-    extends AutoDisposeNotifier<FilterState<T, F>>
+    extends Notifier<FilterState<T, F>>
     with SafeOperationsMixin, ScheduleOperationsMixin {
   late final FilterUseCase<T, F> _filterUseCase;
   late final WatchUseCase<T> _watchUseCase;

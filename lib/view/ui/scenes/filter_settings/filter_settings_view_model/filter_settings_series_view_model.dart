@@ -7,15 +7,15 @@ typedef FilterSettingsSeriesState = FilterSettingsState<SeriesFilterData>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [FilterSettingsSeriesViewModel] and [FilterSettingsState].
+/// A type alias for [VSP] with [FilterSettingsSeriesViewModel] and [FilterSettingsState].
 typedef FilterSettingsSeriesVSP =
-    ASP<FilterSettingsSeriesViewModel, FilterSettingsState>;
+    VSP<FilterSettingsSeriesViewModel, FilterSettingsState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [FilterSettingsSeriesViewModel] class.
 final filterSettingsSeriesViewModelPr =
-    AutoDisposeNotifierProvider<
+    NotifierProvider.autoDispose<
       FilterSettingsSeriesViewModel,
       FilterSettingsSeriesState
     >(FilterSettingsSeriesViewModel.new);

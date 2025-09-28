@@ -27,7 +27,7 @@ class SetPassFormContent extends ConsumerWidget {
     final passFieldName = SetPassFormState.nameof.fieldPassword;
     final confirmPassFieldName = SetPassFormState.nameof.fieldConfirmPassword;
 
-    final vsp = ref.vspFromADFProvider(setPassViewModelPr(oobCode));
+    final vsp = ref.vspFromADProvider(setPassViewModelPr(oobCode));
 
     return SliverToBoxAdapter(
       child: FormAutoValidateBuilder<FormBuilderState>(

@@ -17,19 +17,19 @@ part 'watchlist_filter_series_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [WatchlistFilterViewModel] and [WatchlistFilterState].
+/// A type alias for [VSP] with [WatchlistFilterViewModel] and [WatchlistFilterState].
 typedef WatchlistFilterVSP =
-    ASP<WatchlistFilterViewModel, WatchlistFilterState>;
+    VSP<WatchlistFilterViewModel, WatchlistFilterState>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AutoDisposeNotifierProvider] used to
+/// A type alias for [NotifierProvider] used to
 /// provide an instance of [WatchlistFilterViewModel].
 ///
 /// The [F] parameter represents the [WatchlistFilterData] type.
 /// The [G] parameter represents the genre type.
 typedef WatchlistFilterVMProvider<F extends WatchlistFilterData, G> =
-    AutoDisposeNotifierProvider<
+    NotifierProvider<
       WatchlistFilterViewModel<F, G>,
       WatchlistFilterState<F>
     >;
@@ -40,7 +40,7 @@ typedef WatchlistFilterVMProvider<F extends WatchlistFilterData, G> =
 ///
 /// This class is responsible for coordinating `watchlist filter` behavior and interacting with the UI.
 abstract class WatchlistFilterViewModel<F extends WatchlistFilterData, G>
-    extends AutoDisposeNotifier<WatchlistFilterState<F>> {
+    extends Notifier<WatchlistFilterState<F>> {
   void init({required F initFilter});
 
   void resetFilter();

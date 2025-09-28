@@ -7,14 +7,14 @@ typedef FilterMoviesState = FilterState<MovieShortData, MoviesFilterData>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [FilterMoviesViewModel] and [FilterMoviesState].
-typedef SearchMoviesVSP = ASP<FilterMoviesViewModel, FilterMoviesState>;
+/// A type alias for [VSP] with [FilterMoviesViewModel] and [FilterMoviesState].
+typedef SearchMoviesVSP = VSP<FilterMoviesViewModel, FilterMoviesState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [FilterMoviesViewModel] class.
 final filterMoviesViewModelPr =
-    AutoDisposeNotifierProvider<FilterMoviesViewModel, FilterMoviesState>(
+    NotifierProvider.autoDispose<FilterMoviesViewModel, FilterMoviesState>(
       FilterMoviesViewModel.new,
     );
 
