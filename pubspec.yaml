@@ -46,7 +46,7 @@ dependencies:
   flutter_svg: ^2.2.1
   sliver_tools: ^0.2.12
   url_launcher: ^6.3.2
-  fluttertoast: ^8.2.14
+  fluttertoast: ^9.0.0
   animated_toggle_switch: ^0.8.5
   flutter_keyboard_visibility: ^6.0.0
   upgrader: ^11.5.1
