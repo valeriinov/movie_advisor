@@ -36,7 +36,7 @@ android {
 
    namespace = "com.example.movie_advisor"
     compileSdk rootProject.compileSdk
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = rootProject.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
