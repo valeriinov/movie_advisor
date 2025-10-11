@@ -11,10 +11,9 @@ typedef RefreshVSP = VSP<RefreshViewModel, RefreshState>;
 /// {@category StateManagement}
 ///
 /// A provider for the [RefreshViewModel] class.
-final refreshViewModelPr =
-    NotifierProvider<RefreshViewModel, RefreshState>(
-      RefreshViewModel.new,
-    );
+final refreshViewModelPr = NotifierProvider<RefreshViewModel, RefreshState>(
+  RefreshViewModel.new,
+);
 
 /// {@category StateManagement}
 ///

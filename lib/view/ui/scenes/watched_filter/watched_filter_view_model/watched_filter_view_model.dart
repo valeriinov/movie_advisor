@@ -28,10 +28,7 @@ typedef WatchedFilterVSP = VSP<WatchedFilterViewModel, WatchedFilterState>;
 /// The [F] parameter represents the [WatchedFilterData] type.
 /// The [G] parameter represents the genre type.
 typedef WatchedFilterVMProvider<F extends WatchedFilterData, G> =
-    NotifierProvider<
-      WatchedFilterViewModel<F, G>,
-      WatchedFilterState<F>
-    >;
+    NotifierProvider<WatchedFilterViewModel<F, G>, WatchedFilterState<F>>;
 
 /// {@category StateManagement}
 ///

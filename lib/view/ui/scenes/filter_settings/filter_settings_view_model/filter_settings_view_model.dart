@@ -28,10 +28,7 @@ typedef FilterSettingsVSP = VSP<FilterSettingsViewModel, FilterSettingsState>;
 /// The [F] parameter represents the [FilterData] type.
 /// The [G] parameter represents the genre type.
 typedef FilterSettingsVMProvider<F extends FilterData, G> =
-    NotifierProvider<
-      FilterSettingsViewModel<F, G>,
-      FilterSettingsState<F>
-    >;
+    NotifierProvider<FilterSettingsViewModel<F, G>, FilterSettingsState<F>>;
 
 /// {@category StateManagement}
 ///

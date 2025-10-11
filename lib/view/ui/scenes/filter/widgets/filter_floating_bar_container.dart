@@ -37,7 +37,7 @@ class FilterFloatingBarContainer<
 
     return FilterFloatingBar(
       keyId: 'filter_floating_bar',
-      isContentVisible:  !vsp.isLoading || isInitialized,
+      isContentVisible: !vsp.isLoading || isInitialized,
       sortBySubtitle: filter.sortBy.desc,
       filterSubtitle: _getFilterSettingsDescription(filter),
       onSortByTap: () => _openSortByDialog(

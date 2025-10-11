@@ -6,8 +6,7 @@ import '../../resources/base_theme/components/base_components_styles_ext.dart';
 import '../../resources/base_theme/durations/base_durations_ext.dart';
 import '../../resources/locale_keys.g.dart';
 
-class FilterAppBar extends StatelessWidget
-    implements PreferredSizeWidget {
+class FilterAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onReset;
   final VoidCallback? onSave;
 

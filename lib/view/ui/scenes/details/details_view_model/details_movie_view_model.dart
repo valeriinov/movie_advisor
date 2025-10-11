@@ -13,10 +13,10 @@ typedef DetailsMovieVSP = VSP<DetailsMovieViewModel, DetailsMovieState>;
 /// {@category StateManagement}
 ///
 /// A provider for the [DetailsMovieViewModel] class.
-final detailsMovieViewModelPr =
-NotifierProvider.family.autoDispose<DetailsMovieViewModel, DetailsMovieState, int>(
-  DetailsMovieViewModel.new,
-);
+final detailsMovieViewModelPr = NotifierProvider.family
+    .autoDispose<DetailsMovieViewModel, DetailsMovieState, int>(
+      DetailsMovieViewModel.new,
+    );
 
 /// {@category StateManagement}
 ///

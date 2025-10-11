@@ -9,10 +9,7 @@ import '../base_state.dart';
 ///
 /// [VMStateProvider] wraps an [NotifierProvider] to
 /// provide access to the view model and its state.
-final class VMStateProvider<
-  N extends Notifier<S>,
-  S extends BaseState
->
+final class VMStateProvider<N extends Notifier<S>, S extends BaseState>
     extends ViewModelStateProvider<N, S, NotifierProvider<N, S>>
     with VMStateHandlerMixin {
   VMStateProvider({required super.ref, required super.provider});

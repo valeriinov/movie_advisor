@@ -29,10 +29,7 @@ typedef WatchlistFilterVSP =
 /// The [F] parameter represents the [WatchlistFilterData] type.
 /// The [G] parameter represents the genre type.
 typedef WatchlistFilterVMProvider<F extends WatchlistFilterData, G> =
-    NotifierProvider<
-      WatchlistFilterViewModel<F, G>,
-      WatchlistFilterState<F>
-    >;
+    NotifierProvider<WatchlistFilterViewModel<F, G>, WatchlistFilterState<F>>;
 
 /// {@category StateManagement}
 ///
