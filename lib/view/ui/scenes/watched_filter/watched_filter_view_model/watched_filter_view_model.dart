@@ -17,21 +17,18 @@ part 'watched_filter_series_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [WatchedFilterViewModel] and [WatchedFilterState].
-typedef WatchedFilterVSP = ASP<WatchedFilterViewModel, WatchedFilterState>;
+/// A type alias for [VSP] with [WatchedFilterViewModel] and [WatchedFilterState].
+typedef WatchedFilterVSP = VSP<WatchedFilterViewModel, WatchedFilterState>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AutoDisposeNotifierProvider] used to
+/// A type alias for [NotifierProvider] used to
 /// provide an instance of [WatchedFilterViewModel].
 ///
 /// The [F] parameter represents the [WatchedFilterData] type.
 /// The [G] parameter represents the genre type.
 typedef WatchedFilterVMProvider<F extends WatchedFilterData, G> =
-    AutoDisposeNotifierProvider<
-      WatchedFilterViewModel<F, G>,
-      WatchedFilterState<F>
-    >;
+    NotifierProvider<WatchedFilterViewModel<F, G>, WatchedFilterState<F>>;
 
 /// {@category StateManagement}
 ///
@@ -39,7 +36,7 @@ typedef WatchedFilterVMProvider<F extends WatchedFilterData, G> =
 ///
 /// This class is responsible for coordinating `watched filter` behavior and interacting with the UI.
 abstract class WatchedFilterViewModel<F extends WatchedFilterData, G>
-    extends AutoDisposeNotifier<WatchedFilterState<F>> {
+    extends Notifier<WatchedFilterState<F>> {
   void init({required F initFilter});
 
   void resetFilter();

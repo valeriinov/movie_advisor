@@ -30,8 +30,8 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(provider);
-    final vspFilter = ref.vspFromADProvider(searchFilterViewModelPr);
+    final vsp = ref.vspFromNotifierPr(provider);
+    final vspFilter = ref.vspFromNotifierPr(searchFilterViewModelPr);
 
     useEffect(() {
       _scheduleInitialDataLoad(context, vspFilter, vsp);
@@ -60,7 +60,7 @@ class SearchMediaView<T extends MediaShortData> extends HookConsumerWidget {
 
     final filter = vspFilter.selectWatch((s) => s.filter);
 
-    final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
+    final refreshVsp = ref.vspFromNotifierPr(refreshViewModelPr);
 
     refreshVsp.handleState(
       listener: (prev, next) {

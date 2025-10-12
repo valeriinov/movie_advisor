@@ -23,17 +23,17 @@ part 'search_series_view_model.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [SearchViewModel] and [SearchState].
-typedef SearchVSP = ASP<SearchViewModel, SearchState>;
+/// A type alias for [VSP] with [SearchViewModel] and [SearchState].
+typedef SearchVSP = VSP<SearchViewModel, SearchState>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AutoDisposeNotifierProvider] used to
+/// A type alias for [NotifierProvider] used to
 /// provide an instance of [SearchViewModel].
 ///
 /// The [T] parameter represents the [MediaShortData] type.
 typedef SearchVMProvider<T extends MediaShortData> =
-    AutoDisposeNotifierProvider<SearchViewModel<T>, SearchState<T>>;
+    NotifierProvider<SearchViewModel<T>, SearchState<T>>;
 
 /// {@category StateManagement}
 ///
@@ -41,7 +41,7 @@ typedef SearchVMProvider<T extends MediaShortData> =
 ///
 /// This class is responsible for coordinating `search` behavior and interacting with the UI.
 abstract base class SearchViewModel<T extends MediaShortData>
-    extends AutoDisposeNotifier<SearchState<T>>
+    extends Notifier<SearchState<T>>
     with SafeOperationsMixin {
   late final SearchUseCase<T> _searchUseCase;
   late final WatchUseCase<T> _watchUseCase;

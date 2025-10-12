@@ -12,34 +12,35 @@ import 'person_state.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AFSP] with [DetailsViewModel], [DetailsState], and an integer ID.
-typedef PersonAFSP = AFSP<PersonViewModel, PersonState, int>;
+/// A type alias for [VSP] with [PersonViewModel], [PersonState], and an integer ID.
+typedef PersonAFSP = VSP<PersonViewModel, PersonState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [PersonViewModel] class.
-final personViewModelPr =
-    AutoDisposeNotifierProvider.family<PersonViewModel, PersonState, int>(
-      PersonViewModel.new,
-    );
+final personViewModelPr = NotifierProvider.family
+    .autoDispose<PersonViewModel, PersonState, int>(PersonViewModel.new);
 
 /// {@category StateManagement}
 ///
 /// A view model for managing `person`-specific logic and state.
 ///
 /// This class is responsible for coordinating `person` behavior and interacting with the UI.
-class PersonViewModel extends AutoDisposeFamilyNotifier<PersonState, int>
+class PersonViewModel extends Notifier<PersonState>
     with SafeOperationsMixin, ScheduleOperationsMixin {
+  final int _arg;
   late final PersonUseCase _personUseCase;
 
+  PersonViewModel(this._arg);
+
   @override
-  PersonState build(arg) {
+  PersonState build() {
     _personUseCase = ref.read(personUseCasePr);
 
     ref.onDispose(cancelSafeOperations);
     scheduleCall(loadInitialData);
 
-    return PersonState(person: PersonData(id: arg));
+    return PersonState(person: PersonData(id: _arg));
   }
 
   Future<void> loadInitialData({bool showLoader = true}) async {

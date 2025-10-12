@@ -9,13 +9,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 /// and cancellation of asynchronous operations, aiding in avoiding memory leaks
 /// and ensuring efficient resource management.
 ///
-/// This mixin is particularly valuable in notifiers like [AutoDisposeFamilyNotifier],
-/// [AutoDisposeNotifier], [FamilyNotifier] and [Notifier], where it's
+/// This mixin is particularly valuable in notifiers like [FamilyNotifier],
+/// [Notifier], [FamilyNotifier] and [Notifier], where it's
 /// important to cancel ongoing asynchronous operations upon notifier disposal.
 ///
 /// Example:
 /// ```dart
-/// class MyViewModel extends AutoDisposeNotifier<MyState> with SafeOperationsMixin {
+/// class MyViewModel extends Notifier<MyState> with SafeOperationsMixin {
 ///   @override
 ///   MyState build() {
 ///     // Register to cancel operations on dispose to prevent state manipulation.

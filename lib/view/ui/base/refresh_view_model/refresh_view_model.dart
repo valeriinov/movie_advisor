@@ -5,21 +5,20 @@ import 'refresh_state.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [RefreshViewModel] and [RefreshState].
-typedef RefreshVSP = ASP<RefreshViewModel, RefreshState>;
+/// A type alias for [VSP] with [RefreshViewModel] and [RefreshState].
+typedef RefreshVSP = VSP<RefreshViewModel, RefreshState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [RefreshViewModel] class.
-final refreshViewModelPr =
-    AutoDisposeNotifierProvider<RefreshViewModel, RefreshState>(
-      RefreshViewModel.new,
-    );
+final refreshViewModelPr = NotifierProvider<RefreshViewModel, RefreshState>(
+  RefreshViewModel.new,
+);
 
 /// {@category StateManagement}
 ///
 /// A view model for managing the [RefreshState].
-class RefreshViewModel extends AutoDisposeNotifier<RefreshState> {
+class RefreshViewModel extends Notifier<RefreshState> {
   @override
   RefreshState build() => const RefreshState();
 

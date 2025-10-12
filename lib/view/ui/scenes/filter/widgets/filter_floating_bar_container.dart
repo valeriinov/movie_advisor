@@ -29,7 +29,7 @@ class FilterFloatingBarContainer<
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(provider);
+    final vsp = ref.vspFromNotifierPr(provider);
     final viewModel = vsp.viewModel;
 
     final isInitialized = vsp.selectWatch((s) => s.status.isInitialized);
@@ -37,7 +37,7 @@ class FilterFloatingBarContainer<
 
     return FilterFloatingBar(
       keyId: 'filter_floating_bar',
-      isContentVisible:  !vsp.isLoading || isInitialized,
+      isContentVisible: !vsp.isLoading || isInitialized,
       sortBySubtitle: filter.sortBy.desc,
       filterSubtitle: _getFilterSettingsDescription(filter),
       onSortByTap: () => _openSortByDialog(

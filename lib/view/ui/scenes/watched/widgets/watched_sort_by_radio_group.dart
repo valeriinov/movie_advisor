@@ -18,21 +18,23 @@ class WatchedSortByRadioGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilterSortByRadioWrapper(
+      groupValue: currentSortBy,
+      onChanged: (value) {
+        _onSortSelected(context, value);
+      },
       children: WatchedSortBy.values
-          .map((sortBy) => _buildSortByRadioListTile(context, sortBy))
+          .map((sortBy) => _buildSortByRadioListTile(sortBy))
           .toList(),
     );
   }
 
-  Widget _buildSortByRadioListTile(BuildContext context, WatchedSortBy sortBy) {
+  Widget _buildSortByRadioListTile(WatchedSortBy sortBy) {
     final isSelected = currentSortBy == sortBy;
 
     return FilterSortByTile(
       title: sortBy.desc,
       selected: isSelected,
       value: sortBy,
-      groupValue: currentSortBy,
-      onChanged: (value) => _onSortSelected(context, value),
     );
   }
 

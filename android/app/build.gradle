@@ -36,7 +36,7 @@ android {
 
    namespace = "com.example.movie_advisor"
     compileSdk rootProject.compileSdk
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = rootProject.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -58,6 +58,12 @@ android {
         versionName = flutter.versionName
     }
 
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging false
+        }
+    }
+
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
@@ -70,6 +76,13 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.release
+
+            // Only include arm64-v8a to satisfy Google Play’s 16 KB / 64-bit
+            // requirement and drop legacy 32-bit ABIs
+            ndk {
+                abiFilters.clear()
+                abiFilters.add("arm64-v8a")
+            }
         }
     }
 }

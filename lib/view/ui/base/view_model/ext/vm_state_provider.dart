@@ -7,20 +7,12 @@ import '../base_state.dart';
 ///
 /// Implementation of [ViewModelStateProvider] for auto-disposable state management.
 ///
-/// [VMAutoDisposeFamilyStateProvider] wraps an [AutoDisposeFamilyNotifierProvider] to
+/// [VMStateProvider] wraps an [NotifierProvider] to
 /// provide access to the view model and its state.
-final class VMAutoDisposeFamilyStateProvider<
-  N extends AutoDisposeFamilyNotifier<S, A>,
-  S extends BaseState,
-  A
->
-    extends
-        ViewModelStateProvider<N, S, AutoDisposeFamilyNotifierProvider<N, S, A>>
+final class VMStateProvider<N extends Notifier<S>, S extends BaseState>
+    extends ViewModelStateProvider<N, S, NotifierProvider<N, S>>
     with VMStateHandlerMixin {
-  VMAutoDisposeFamilyStateProvider({
-    required super.ref,
-    required super.provider,
-  });
+  VMStateProvider({required super.ref, required super.provider});
 
   @override
   N get viewModel => ref.read(provider.notifier);

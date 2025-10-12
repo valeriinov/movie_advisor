@@ -26,7 +26,7 @@ class HomeScreenView extends HookConsumerWidget {
 
     final navBarStyles = context.baseNavBarsStyles;
 
-    final vspContMode = ref.vspFromADProvider(contentModeViewModelPr);
+    final vspContMode = ref.vspFromNotifierPr(contentModeViewModelPr);
 
     final contMode = vspContMode.selectWatch((s) => s.mode);
 
