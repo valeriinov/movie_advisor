@@ -16,7 +16,7 @@ class DetailsMovieView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DetailsMediaView<MovieData, MovieShortData>(
       id: id,
-      provider: detailsMovieViewModelPr,
+      provider: detailsMovieViewModelPr.call,
       appBarTitle: LocaleKeys.detailsMovieScreenTitle.tr(),
       rateTitle: LocaleKeys.rateMovieTitle.tr(),
     );

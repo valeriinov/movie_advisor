@@ -6,16 +6,12 @@ class FilterSortByTile<T> extends StatelessWidget {
   final String title;
   final bool selected;
   final T value;
-  final T groupValue;
-  final void Function(T?) onChanged;
 
   const FilterSortByTile({
     super.key,
     required this.title,
     required this.selected,
     required this.value,
-    required this.groupValue,
-    required this.onChanged,
   });
 
   @override
@@ -27,9 +23,7 @@ class FilterSortByTile<T> extends StatelessWidget {
     return RadioListTile<T>(
       title: Text(title, style: selected ? selectedTitleStyle : titleStyle),
       value: value,
-      groupValue: groupValue,
       selected: selected,
-      onChanged: onChanged,
     );
   }
 }

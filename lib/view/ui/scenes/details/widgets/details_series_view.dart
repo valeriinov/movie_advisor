@@ -16,7 +16,7 @@ class DetailsSeriesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DetailsMediaView<SeriesData, SeriesShortData>(
       id: id,
-      provider: detailsSeriesViewModelPr,
+      provider: detailsSeriesViewModelPr.call,
       appBarTitle: LocaleKeys.detailsSeriesScreenTitle.tr(),
       rateTitle: LocaleKeys.rateSeriesTitle.tr(),
     );
