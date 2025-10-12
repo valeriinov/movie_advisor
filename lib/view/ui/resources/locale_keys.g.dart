@@ -118,9 +118,12 @@ abstract class  LocaleKeys {
   static const signOutDialog = 'signOutDialog';
   static const deleteAccountButton = 'deleteAccountButton';
   static const regScreenTitle = 'regScreenTitle';
+  static const setPassScreenTitle = 'setPassScreenTitle';
   static const regSubmitButton = 'regSubmitButton';
+  static const setPassSubmitButton = 'setPassSubmitButton';
   static const signUpButton = 'signUpButton';
   static const createAccountSuccessToast = 'createAccountSuccessToast';
+  static const setPassSuccessToast = 'setPassSuccessToast';
   static const resetPassScreenTitle = 'resetPassScreenTitle';
   static const resetPassButton = 'resetPassButton';
   static const syncDataErrorDesc = 'syncDataErrorDesc';

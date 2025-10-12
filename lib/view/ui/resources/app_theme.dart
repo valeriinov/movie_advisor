@@ -93,10 +93,13 @@ class AppTheme {
     );
   }
 
-  AppBarTheme _createAppBarTheme(BaseColors colors, BaseNavBarsStyles styles) {
-    return AppBarTheme(
+  AppBarThemeData _createAppBarTheme(
+    BaseColors colors,
+    BaseNavBarsStyles styles,
+  ) {
+    return AppBarThemeData(
       scrolledUnderElevation: 0,
-      color: colors.appBarPrimBg,
+      backgroundColor: colors.appBarPrimBg,
       foregroundColor: colors.appBarPrimFg,
       iconTheme: styles.appBarPrimIconTheme,
       titleTextStyle: styles.appBarPrimTitleTextStyle,

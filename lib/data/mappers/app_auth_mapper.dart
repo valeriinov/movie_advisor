@@ -2,11 +2,13 @@ import '../../domain/entities/auth/auth_data.dart';
 import '../../domain/entities/auth/delete_account_data.dart';
 import '../../domain/entities/auth/reg_data.dart';
 import '../../domain/entities/auth/reset_pass_data.dart';
+import '../../domain/entities/auth/set_pass_data.dart';
 import '../../domain/entities/auth/user_data.dart';
 import '../dto/auth/auth_data_dto.dart';
 import '../dto/auth/delete_account_data_dto.dart';
 import '../dto/auth/reg_data_dto.dart';
 import '../dto/auth/reset_pass_data_dto.dart';
+import '../dto/auth/set_pass_data_dto.dart';
 import '../dto/auth/user_data_dto.dart';
 import 'app_mapper.dart';
 
@@ -21,6 +23,10 @@ final class AppAuthMapper extends AppMapper {
 
   ResetPassDataDto mapResetPassDataToDto(ResetPassData data) {
     return ResetPassDataDto(email: data.email);
+  }
+
+  SetPassDataDto mapSetPassDataToDto(SetPassData data) {
+    return SetPassDataDto(oobCode: data.oobCode, password: data.password);
   }
 
   DeleteAccountDataDto mapDeleteAccountDataToDto(DeleteAccountData data) {
