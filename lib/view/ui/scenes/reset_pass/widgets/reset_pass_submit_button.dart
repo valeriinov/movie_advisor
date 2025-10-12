@@ -21,7 +21,7 @@ class ResetPassSubmitButton extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(resetPassViewModelPr);
+    final vsp = ref.vspFromNotifierPr(resetPassViewModelPr);
 
     final formState = vsp.selectWatch((s) => s.formState);
 

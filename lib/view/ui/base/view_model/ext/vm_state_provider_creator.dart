@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../base_state.dart';
-import 'vm_auto_dispose_state_provider.dart';
+import 'vm_state_provider.dart';
 
 /// {@category StateManagement}
 ///
@@ -29,7 +29,7 @@ typedef VSP<N extends Notifier<S>, S extends BaseState> = VMStateProvider<N, S>;
 extension VMStateProviderCreator on WidgetRef {
   /// Creates a ViewModel Notifier State Provider instance [VMStateProvider]
   /// using the given [provider].
-  VSP<N, S> vspFromADProvider<N extends Notifier<S>, S extends BaseState>(
+  VSP<N, S> vspFromNotifierPr<N extends Notifier<S>, S extends BaseState>(
     NotifierProvider<N, S> provider,
   ) {
     return VSP<N, S>(ref: this, provider: provider);

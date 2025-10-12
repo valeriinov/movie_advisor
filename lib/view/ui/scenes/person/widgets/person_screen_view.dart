@@ -23,7 +23,7 @@ class PersonScreenView extends HookConsumerWidget {
   Widget build(context, ref) {
     final colors = context.baseColors;
 
-    final vsp = ref.vspFromADProvider(personViewModelPr(id));
+    final vsp = ref.vspFromNotifierPr(personViewModelPr(id));
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;

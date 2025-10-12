@@ -32,7 +32,7 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(provider);
+    final vsp = ref.vspFromNotifierPr(provider);
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;
@@ -51,7 +51,7 @@ class FilterMediaView<T extends MediaShortData, F extends FilterData, G>
       },
     );
 
-    final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
+    final refreshVsp = ref.vspFromNotifierPr(refreshViewModelPr);
 
     refreshVsp.handleState(
       listener: (prev, next) {

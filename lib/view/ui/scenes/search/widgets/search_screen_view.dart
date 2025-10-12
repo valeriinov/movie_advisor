@@ -21,9 +21,9 @@ class SearchScreenView extends HookConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final vspContMode = ref.vspFromADProvider(contentModeViewModelPr);
+    final vspContMode = ref.vspFromNotifierPr(contentModeViewModelPr);
 
-    final vspFilter = ref.vspFromADProvider(searchFilterViewModelPr);
+    final vspFilter = ref.vspFromNotifierPr(searchFilterViewModelPr);
 
     final contMode = vspContMode.selectWatch((s) => s.mode);
 

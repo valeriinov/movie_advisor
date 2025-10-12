@@ -21,7 +21,7 @@ class RegSubmitButton extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(regViewModelPr);
+    final vsp = ref.vspFromNotifierPr(regViewModelPr);
 
     final formState = vsp.selectWatch((s) => s.formState);
 

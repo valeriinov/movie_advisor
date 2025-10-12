@@ -21,7 +21,7 @@ class DeleteAccountSubmitButton extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(deleteAccountViewModelPr);
+    final vsp = ref.vspFromNotifierPr(deleteAccountViewModelPr);
 
     final formState = vsp.selectWatch((s) => s.formState);
 

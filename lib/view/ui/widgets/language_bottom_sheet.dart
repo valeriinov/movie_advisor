@@ -19,7 +19,7 @@ class LanguageBottomSheet extends ConsumerWidget {
   Widget build(context, ref) {
     final dimens = context.baseDimens;
 
-    final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
+    final refreshVsp = ref.vspFromNotifierPr(refreshViewModelPr);
 
     return Column(
       mainAxisSize: MainAxisSize.min,

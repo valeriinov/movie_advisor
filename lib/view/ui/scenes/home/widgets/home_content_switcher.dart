@@ -17,7 +17,7 @@ class HomeContentSwitcher extends ConsumerWidget {
   Widget build(context, ref) {
     final durations = context.baseDurations;
 
-    final vspContMode = ref.vspFromADProvider(contentModeViewModelPr);
+    final vspContMode = ref.vspFromNotifierPr(contentModeViewModelPr);
 
     final contentMode = vspContMode.selectWatch((s) => s.mode);
 
