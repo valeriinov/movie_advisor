@@ -39,6 +39,9 @@ class SearchRoute extends GoRouteData
     return CustomTransitionPage(
       key: state.pageKey,
       name: state.fullPath,
+      // Keep the parent screen visible to
+      // prevent Riverpod v3 pauses "out-of-view".
+      opaque: false,
       child: SearchScreen(),
       transitionsBuilder: fadeTransitionBuilder,
     );
@@ -54,6 +57,9 @@ class FilterRoute extends GoRouteData
     return CustomTransitionPage(
       key: state.pageKey,
       name: state.fullPath,
+      // Keep the parent screen visible to
+      // prevent Riverpod listeners from pausing.
+      opaque: false,
       child: FilterScreen(),
       transitionsBuilder: fadeTransitionBuilder,
     );
