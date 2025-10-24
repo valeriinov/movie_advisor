@@ -88,7 +88,7 @@ dependencies:
   cloud_functions: ^6.0.2
 
   # Local storage
-  drift: ^2.28.2
+  drift: ^2.29.0
   drift_flutter: ^0.2.7
 
 
@@ -102,7 +102,7 @@ dev_dependencies:
   go_router_builder: ^4.1.1
   build_verify: ^3.1.1
   flutter_flavorizr: ^2.4.1
-  drift_dev: ^2.28.3
+  drift_dev: ^2.29.0
   class_namer:
     git:
       url: https://github.com/valeriinov/class_namer.git
