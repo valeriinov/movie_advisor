@@ -1,0 +1,11 @@
+git_url("git@github.com:valeriinov/movie-advisor-ios-certificates.git")
+
+storage_mode("git")
+
+type("appstore")
+
+app_identifier([
+  "com.movieadvisor.app"
+])
+
+team_id("A8R53836XG")
