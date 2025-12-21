@@ -744,8 +744,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = A8R53836XG;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LAUNCH_SCREEN_STORYBOARD = "";
@@ -755,6 +758,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -816,10 +821,15 @@
 			baseConfigurationReference = 519E668AA48F537F4F182DC6 /* Pods-Runner.debug-dev.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = A8R53836XG;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
 				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 			};
 			name = "Debug-dev";
 		};
@@ -828,10 +838,15 @@
 			baseConfigurationReference = 5402D45229C5E6396FF39D67 /* Pods-Runner.profile-dev.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = A8R53836XG;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
 				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 			};
 			name = "Profile-dev";
 		};
@@ -840,10 +855,15 @@
 			baseConfigurationReference = 3BC4F0CF9135DD7796C9C29B /* Pods-Runner.release-dev.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = A8R53836XG;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDev;
 				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 			};
 			name = "Release-dev";
 		};
@@ -852,9 +872,14 @@
 			baseConfigurationReference = 599AB7FC98F3F088A2B933F4 /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = A8R53836XG;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 			};
 			name = "Debug-prod";
 		};
@@ -863,9 +888,14 @@
 			baseConfigurationReference = D43B0164F62214869402507B /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = A8R53836XG;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 			};
 			name = "Profile-prod";
 		};
@@ -874,9 +904,14 @@
 			baseConfigurationReference = 1578F0B3EFDE71CD470F0DE6 /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = A8R53836XG;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProd;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 			};
 			name = "Release-prod";
 		};
@@ -1193,8 +1228,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = A8R53836XG;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LAUNCH_SCREEN_STORYBOARD = "";
@@ -1204,6 +1242,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1218,8 +1258,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = A8R53836XG;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A8R53836XG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LAUNCH_SCREEN_STORYBOARD = "";
@@ -1229,6 +1272,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.movieadvisor.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.movieadvisor.app";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

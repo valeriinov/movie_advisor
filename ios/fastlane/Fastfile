@@ -1,23 +1,115 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "Build and upload an iOS IPA to TestFlight for the selected flavor."
+  lane :upload_testflight do |options|
+    config = flavor_config(options[:flavor])
+
+    setup_ci_if_needed
+    run_flutter_pub_get
+    install_pods
+    sync_signing(config[:bundle_id])
+    build_ipa(config)
+    setup_app_store_connect_api_key_if_needed
+    upload_to_testflight(skip_waiting_for_build_processing: true)
   end
+end
+
+def flavor_config(flavor)
+  normalized = normalize_flavor(flavor)
+  return dev_config if normalized == "dev"
+  return prod_config if normalized == "prod"
+
+  UI.user_error!("Unsupported flavor '#{normalized}'. Use: dev, prod.")
+end
+
+def normalize_flavor(flavor)
+  normalized = flavor.to_s.strip
+  return normalized unless normalized.empty?
+
+  UI.user_error!("Flavor is required. Use: dev, prod.")
+end
+
+def dev_config
+  {
+    flavor: "dev",
+    scheme: "dev",
+    configuration: "Release-dev",
+    bundle_id: "com.movieadvisor.app.dev",
+    workspace: "Runner.xcworkspace",
+    output_name: "MovieAdvisor-dev.ipa"
+  }
+end
+
+def prod_config
+  {
+    flavor: "prod",
+    scheme: "prod",
+    configuration: "Release-prod",
+    bundle_id: "com.movieadvisor.app",
+    workspace: "Runner.xcworkspace",
+    output_name: "MovieAdvisor-prod.ipa"
+  }
+end
+
+def setup_ci_if_needed
+  return unless ci_enabled
+
+  setup_ci
+end
+
+def run_flutter_pub_get
+  Dir.chdir("..") do
+    sh("flutter", "pub", "get")
+  end
+end
+
+def install_pods
+  cocoapods(
+    clean_install: true,
+    silent: false
+  )
+end
+
+def setup_app_store_connect_api_key_if_needed
+  return unless ci_enabled
+
+  key_id = ENV["APP_STORE_CONNECT_API_KEY_ID"].to_s.strip
+  issuer_id = ENV["APP_STORE_CONNECT_API_ISSUER_ID"].to_s.strip
+  key_content = ENV["APP_STORE_CONNECT_API_KEY_CONTENT"].to_s.strip
+  return if key_id.empty? || issuer_id.empty? || key_content.empty?
+
+  app_store_connect_api_key(
+    key_id: key_id,
+    issuer_id: issuer_id,
+    key_content: key_content,
+    is_key_content_base64: true
+  )
+end
+
+def sync_signing(bundle_id)
+  match(
+    type: "appstore",
+    app_identifier: bundle_id,
+    readonly: ci_enabled
+  )
+end
+
+def build_ipa(config)
+  build_app(
+    workspace: config[:workspace],
+    scheme: config[:scheme],
+    configuration: config[:configuration],
+    export_method: "app-store",
+    clean: true,
+    output_name: config[:output_name]
+  )
+end
+
+def ci_enabled
+  value = ENV["CI"].to_s.downcase
+  return true if value == "true"
+  return true if value == "1"
+
+  false
 end
