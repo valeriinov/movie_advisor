@@ -35,7 +35,7 @@ def dev_config
     flavor: "dev",
     scheme: "dev",
     configuration: "Release-dev",
-    bundle_id: "com.movieadvisor.app.dev",
+    bundle_id: "com.movieadvisor.app",
     workspace: "Runner.xcworkspace",
     output_name: "MovieAdvisor-dev.ipa"
   }

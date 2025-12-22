@@ -1,0 +1,44 @@
+name: ios-build-and-upload-testflight
+
+on:
+  push:
+    tags:
+      - "ios_v*_DEV"
+      - "ios_v*_PROD"
+
+jobs:
+  upload-testflight:
+    runs-on: macos-14
+    timeout-minutes: 60
+    env:
+      APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+      APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+      APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+      MATCH_GIT_PRIVATE_KEY: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
+      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Resolve flavor
+        id: flavor
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          suffix="${tag##*_}"
+          flavor="$(echo "${suffix}" | tr '[:upper:]' '[:lower:]')"
+          if [[ "${flavor}" != "dev" && "${flavor}" != "prod" ]]; then
+            echo "::error::Unsupported tag flavor '${suffix}'. Expected ios_v<version>_DEV or ios_v<version>_PROD."
+            exit 1
+          fi
+          echo "flavor=${flavor}" >> "${GITHUB_OUTPUT}"
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Upload to TestFlight
+        run: bash scripts/ios_build_and_upload_testflight.sh "${{ steps.flavor.outputs.flavor }}"
