@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../domain/entities/series/series_data.dart';
 import '../../../resources/app_date_formats.dart';
@@ -21,17 +22,19 @@ class DetailsSeriesAvailabilityCard extends StatelessWidget {
     final styles = context.baseComponentsStyles;
     final dimens = context.baseDimens;
 
-    return Container(
-      width: double.infinity,
-      decoration: styles.cardSecBoxDecoration,
-      padding: EdgeInsets.all(styles.cardSecContentPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        spacing: dimens.spSmall,
-        children: seriesData.isUpcoming
-            ? [_buildPremiereTile(seriesData)]
-            : _buildAvailabilityTiles(seriesData),
+    return Skeleton.leaf(
+      child: Container(
+        width: double.infinity,
+        decoration: styles.cardSecBoxDecoration,
+        padding: EdgeInsets.all(styles.cardSecContentPadding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          spacing: dimens.spSmall,
+          children: seriesData.isUpcoming
+              ? [_buildPremiereTile(seriesData)]
+              : _buildAvailabilityTiles(seriesData),
+        ),
       ),
     );
   }
