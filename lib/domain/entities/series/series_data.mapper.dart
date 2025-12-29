@@ -212,6 +212,24 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     _$latestSeasonTotalEpisodes,
     mode: FieldMode.member,
   );
+  static bool _$isUpcoming(SeriesData v) => v.isUpcoming;
+  static const Field<SeriesData, bool> _f$isUpcoming = Field(
+    'isUpcoming',
+    _$isUpcoming,
+    mode: FieldMode.member,
+  );
+  static bool _$hasStartedAiring(SeriesData v) => v.hasStartedAiring;
+  static const Field<SeriesData, bool> _f$hasStartedAiring = Field(
+    'hasStartedAiring',
+    _$hasStartedAiring,
+    mode: FieldMode.member,
+  );
+  static DateTime? _$premiereAirDate(SeriesData v) => v.premiereAirDate;
+  static const Field<SeriesData, DateTime> _f$premiereAirDate = Field(
+    'premiereAirDate',
+    _$premiereAirDate,
+    mode: FieldMode.member,
+  );
   static DateTime? _$nextEpisodeAirDate(SeriesData v) => v.nextEpisodeAirDate;
   static const Field<SeriesData, DateTime> _f$nextEpisodeAirDate = Field(
     'nextEpisodeAirDate',
@@ -261,6 +279,9 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     #latestSeasonNumber: _f$latestSeasonNumber,
     #latestSeasonAiredEpisode: _f$latestSeasonAiredEpisode,
     #latestSeasonTotalEpisodes: _f$latestSeasonTotalEpisodes,
+    #isUpcoming: _f$isUpcoming,
+    #hasStartedAiring: _f$hasStartedAiring,
+    #premiereAirDate: _f$premiereAirDate,
     #nextEpisodeAirDate: _f$nextEpisodeAirDate,
     #hasNextEpisode: _f$hasNextEpisode,
     #hasLatestSeasonProgress: _f$hasLatestSeasonProgress,

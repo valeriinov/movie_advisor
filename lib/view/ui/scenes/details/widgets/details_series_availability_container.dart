@@ -20,7 +20,7 @@ class DetailsSeriesAvailabilityContainer extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: switch (seriesData) {
-        final d? when (d.hasAvailabilityData) => Padding(
+        final series? when (series.hasAvailabilityData) => Padding(
           padding: dimens.padHorPrimIns,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -29,13 +29,10 @@ class DetailsSeriesAvailabilityContainer extends StatelessWidget {
               dimens.spMedium.gapVert(),
               Padding(
                 padding: EdgeInsets.only(left: dimens.padHorPrim),
-                child: Text(
-                  LocaleKeys.availability.tr(),
-                  style: context.labelLarge,
-                ),
+                child: Text(_getTitle(series), style: context.labelLarge),
               ),
               10.gapVert(),
-              DetailsSeriesAvailabilityCard(seriesData: seriesData),
+              DetailsSeriesAvailabilityCard(seriesData: series),
               dimens.spMedium.gapVert(),
             ],
           ),
@@ -43,6 +40,12 @@ class DetailsSeriesAvailabilityContainer extends StatelessWidget {
         _ => const SizedBox.shrink(),
       },
     );
+  }
+
+  String _getTitle(SeriesData data) {
+    return data.isUpcoming
+        ? LocaleKeys.premiere.tr()
+        : LocaleKeys.availability.tr();
   }
 
   SeriesData? _getSeriesData() {

@@ -69,14 +69,29 @@ final class SeriesData extends MediaData with SeriesDataMappable {
     return _findSeason(seasonNumber)?.episodeCount;
   }
 
+  /// Whether the series has not started airing yet.
+  bool get isUpcoming =>
+      !hasStartedAiring && (nextEpisodeAirDate != null || premiereDate != null);
+
+  /// Whether at least one episode has already aired.
+  bool get hasStartedAiring => lastEpisodeToAir != null;
+
+  /// Date when the series starts airing.
+  DateTime? get premiereAirDate => premiereDate ?? nextEpisodeAirDate;
+
   DateTime? get nextEpisodeAirDate => nextEpisodeToAir?.airDate;
 
   bool get hasNextEpisode => nextEpisodeAirDate != null;
 
   bool get hasLatestSeasonProgress {
-    return latestSeasonNumber != null &&
-        latestSeasonAiredEpisode != null &&
-        latestSeasonTotalEpisodes != null;
+    final aired = latestSeasonAiredEpisode;
+    final total = latestSeasonTotalEpisodes;
+
+    if (aired == null || total == null) {
+      return false;
+    }
+
+    return aired <= total;
   }
 
   SeriesSeasonData? _findSeason(int seasonNumber) {

@@ -247,5 +247,7 @@
   "latestSeason": "Latest season:",
   "nextEpisode": "Next episode:",
   "episodes": "episodes",
-  "availability": "Availability"
+  "availability": "Availability",
+  "premiere": "Premiere",
+  "startAiring": "Starts airing:"
 }

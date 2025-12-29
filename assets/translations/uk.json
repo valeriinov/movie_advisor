@@ -247,5 +247,7 @@
   "latestSeason": "Останній сезон:",
   "nextEpisode": "Наступний епізод:",
   "episodes": "епізодів",
-  "availability": "Доступність"
+  "availability": "Доступність",
+  "premiere": "Премʼєра",
+  "startAiring": "Початок показу:"
 }

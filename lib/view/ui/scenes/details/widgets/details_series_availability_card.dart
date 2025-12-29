@@ -21,10 +21,6 @@ class DetailsSeriesAvailabilityCard extends StatelessWidget {
     final styles = context.baseComponentsStyles;
     final dimens = context.baseDimens;
 
-    final totalSeasonsTile = _buildTotalSeasonsTile(seriesData);
-    final latestSeasonTile = _buildLatestSeasonTile(seriesData);
-    final nextEpisodeTile = _buildNextEpisodeTile(seriesData);
-
     return Container(
       width: double.infinity,
       decoration: styles.cardSecBoxDecoration,
@@ -33,13 +29,34 @@ class DetailsSeriesAvailabilityCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         spacing: dimens.spSmall,
-        children: [
-          if (totalSeasonsTile != null) totalSeasonsTile,
-          if (latestSeasonTile != null) latestSeasonTile,
-          if (nextEpisodeTile != null) nextEpisodeTile,
-        ],
+        children: seriesData.isUpcoming
+            ? [_buildPremiereTile(seriesData)]
+            : _buildAvailabilityTiles(seriesData),
       ),
     );
+  }
+
+  Widget _buildPremiereTile(SeriesData series) {
+    final premiereAirDate = series.premiereAirDate;
+
+    return _InfoTile(
+      label: LocaleKeys.startAiring.tr(),
+      value: premiereAirDate != null
+          ? '  ${AppDateFormats.dayMonthYearDotsFormat(premiereAirDate)}'
+          : '',
+    );
+  }
+
+  List<Widget> _buildAvailabilityTiles(SeriesData series) {
+    final totalSeasonsTile = _buildTotalSeasonsTile(seriesData);
+    final latestSeasonTile = _buildLatestSeasonTile(seriesData);
+    final nextEpisodeTile = _buildNextEpisodeTile(seriesData);
+
+    return [
+      if (totalSeasonsTile != null) totalSeasonsTile,
+      if (latestSeasonTile != null) latestSeasonTile,
+      if (nextEpisodeTile != null) nextEpisodeTile,
+    ];
   }
 
   Widget? _buildTotalSeasonsTile(SeriesData series) {

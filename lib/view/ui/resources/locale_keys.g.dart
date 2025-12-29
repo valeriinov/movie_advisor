@@ -252,5 +252,7 @@ abstract class  LocaleKeys {
   static const nextEpisode = 'nextEpisode';
   static const episodes = 'episodes';
   static const availability = 'availability';
+  static const premiere = 'premiere';
+  static const startAiring = 'startAiring';
 
 }
