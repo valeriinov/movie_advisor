@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_utils/flutter_utils.dart';
 
 import '../../../../../domain/entities/base_media/media_data.dart';
+import '../../../../../domain/entities/series/series_data.dart';
 import '../../../resources/base_theme/dimens/base_dimens_ext.dart';
 import '../../../widgets/sliver_refresh_indicator.dart';
 import '../../../widgets/tabs/app_tabs.dart';
@@ -10,6 +11,7 @@ import '../model/details_tab.dart';
 import 'details_actions_container.dart';
 import 'details_header.dart';
 import 'details_props_container.dart';
+import 'details_series_availability_container.dart';
 import 'details_tab_content.dart';
 
 class DetailsScreenContent extends StatelessWidget {
@@ -52,7 +54,10 @@ class DetailsScreenContent extends StatelessWidget {
         ),
         SliverPadding(padding: dimens.spMedium.insVert()),
         DetailsPropsContainer(data: data),
-        SliverPadding(padding: dimens.spMedium.insVert()),
+        if (_isSeries())
+          DetailsSeriesAvailabilityContainer(data: data)
+        else
+          SliverPadding(padding: dimens.spMedium.insVert()),
         AppTabs(
           tabs: DetailsTab.descriptions,
           currentIndex: currentTab.index,
@@ -65,5 +70,9 @@ class DetailsScreenContent extends StatelessWidget {
         SliverPadding(padding: dimens.padBotPrim.insBottom()),
       ],
     );
+  }
+
+  bool _isSeries() {
+    return data is SeriesData;
   }
 }
