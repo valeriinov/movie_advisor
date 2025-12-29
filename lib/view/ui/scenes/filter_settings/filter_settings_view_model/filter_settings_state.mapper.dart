@@ -47,19 +47,12 @@ class FilterSettingsStateMapper extends ClassMapperBase<FilterSettingsState> {
         opt: true,
         def: const FilterSettingsBaseStatus(),
       );
-  static bool _$isFilterChanged(FilterSettingsState v) => v.isFilterChanged;
-  static const Field<FilterSettingsState, bool> _f$isFilterChanged = Field(
-    'isFilterChanged',
-    _$isFilterChanged,
-    mode: FieldMode.member,
-  );
 
   @override
   final MappableFields<FilterSettingsState> fields = const {
     #initFilter: _f$initFilter,
     #filter: _f$filter,
     #status: _f$status,
-    #isFilterChanged: _f$isFilterChanged,
   };
 
   static FilterSettingsState<F> _instantiate<F>(DecodingData data) {

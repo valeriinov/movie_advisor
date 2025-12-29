@@ -47,19 +47,12 @@ class WatchlistFilterStateMapper extends ClassMapperBase<WatchlistFilterState> {
         opt: true,
         def: const WatchlistFilterBaseStatus(),
       );
-  static bool _$isFilterChanged(WatchlistFilterState v) => v.isFilterChanged;
-  static const Field<WatchlistFilterState, bool> _f$isFilterChanged = Field(
-    'isFilterChanged',
-    _$isFilterChanged,
-    mode: FieldMode.member,
-  );
 
   @override
   final MappableFields<WatchlistFilterState> fields = const {
     #initFilter: _f$initFilter,
     #filter: _f$filter,
     #status: _f$status,
-    #isFilterChanged: _f$isFilterChanged,
   };
 
   static WatchlistFilterState<F> _instantiate<F>(DecodingData data) {

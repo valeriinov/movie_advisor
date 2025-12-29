@@ -33,7 +33,7 @@ dependencies:
     sdk: flutter
 
   # UI
-  theme_tailor_annotation: ^3.1.0
+  theme_tailor_annotation: ^3.1.1
   skeletonizer: ^2.1.2
   flutter_animate: ^4.5.2
   extended_image: ^10.0.1
@@ -66,14 +66,14 @@ dependencies:
 
   # Architecture
   hooks_riverpod: ^3.1.0
-  dart_mappable: ^4.6.0
+  dart_mappable: ^4.6.1
   dartz: ^0.10.1
   uuid: ^4.5.2
   class_namer_annotation:
     git:
       url: https://github.com/valeriinov/class_namer.git
       path: packages/class_namer_annotation
-      ref: 0.1.0
+      ref: 0.1.2
 
   # Network
   dio: ^5.9.0
@@ -88,26 +88,25 @@ dependencies:
   cloud_functions: ^6.0.5
 
   # Local storage
-  drift: ^2.29.0
-  drift_flutter: ^0.2.7
+  drift: ^2.30.0
+  drift_flutter: ^0.2.8
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  theme_tailor: ^3.1.0
-  build_runner: ^2.6.1
-  dart_mappable_builder: ^4.6.0
-  go_router_builder: ^4.1.1
-  build_verify: ^3.1.1
+  theme_tailor: ^3.1.1
+  build_runner: ^2.10.4
+  dart_mappable_builder: ^4.6.3
+  go_router_builder: ^4.1.3
   flutter_flavorizr: ^2.4.1
-  drift_dev: ^2.29.0
+  drift_dev: ^2.30.0
   class_namer:
     git:
       url: https://github.com/valeriinov/class_namer.git
       path: packages/class_namer
-      ref: 0.1.0
+      ref: 0.1.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -42,26 +42,12 @@ class RegFormStateMapper extends ClassMapperBase<RegFormState> {
     opt: true,
     def: '',
   );
-  static bool _$isFilled(RegFormState v) => v.isFilled;
-  static const Field<RegFormState, bool> _f$isFilled = Field(
-    'isFilled',
-    _$isFilled,
-    mode: FieldMode.member,
-  );
-  static bool _$hasUnsavedData(RegFormState v) => v.hasUnsavedData;
-  static const Field<RegFormState, bool> _f$hasUnsavedData = Field(
-    'hasUnsavedData',
-    _$hasUnsavedData,
-    mode: FieldMode.member,
-  );
 
   @override
   final MappableFields<RegFormState> fields = const {
     #email: _f$email,
     #password: _f$password,
     #confirmPassword: _f$confirmPassword,
-    #isFilled: _f$isFilled,
-    #hasUnsavedData: _f$hasUnsavedData,
   };
 
   static RegFormState _instantiate(DecodingData data) {

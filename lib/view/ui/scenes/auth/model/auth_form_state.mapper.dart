@@ -35,25 +35,11 @@ class AuthFormStateMapper extends ClassMapperBase<AuthFormState> {
     opt: true,
     def: '',
   );
-  static bool _$isFilled(AuthFormState v) => v.isFilled;
-  static const Field<AuthFormState, bool> _f$isFilled = Field(
-    'isFilled',
-    _$isFilled,
-    mode: FieldMode.member,
-  );
-  static bool _$hasUnsavedData(AuthFormState v) => v.hasUnsavedData;
-  static const Field<AuthFormState, bool> _f$hasUnsavedData = Field(
-    'hasUnsavedData',
-    _$hasUnsavedData,
-    mode: FieldMode.member,
-  );
 
   @override
   final MappableFields<AuthFormState> fields = const {
     #email: _f$email,
     #password: _f$password,
-    #isFilled: _f$isFilled,
-    #hasUnsavedData: _f$hasUnsavedData,
   };
 
   static AuthFormState _instantiate(DecodingData data) {

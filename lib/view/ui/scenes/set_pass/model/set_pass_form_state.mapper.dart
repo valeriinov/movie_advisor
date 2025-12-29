@@ -35,25 +35,11 @@ class SetPassFormStateMapper extends ClassMapperBase<SetPassFormState> {
     opt: true,
     def: '',
   );
-  static bool _$isFilled(SetPassFormState v) => v.isFilled;
-  static const Field<SetPassFormState, bool> _f$isFilled = Field(
-    'isFilled',
-    _$isFilled,
-    mode: FieldMode.member,
-  );
-  static bool _$hasUnsavedData(SetPassFormState v) => v.hasUnsavedData;
-  static const Field<SetPassFormState, bool> _f$hasUnsavedData = Field(
-    'hasUnsavedData',
-    _$hasUnsavedData,
-    mode: FieldMode.member,
-  );
 
   @override
   final MappableFields<SetPassFormState> fields = const {
     #password: _f$password,
     #confirmPassword: _f$confirmPassword,
-    #isFilled: _f$isFilled,
-    #hasUnsavedData: _f$hasUnsavedData,
   };
 
   static SetPassFormState _instantiate(DecodingData data) {
