@@ -43,7 +43,7 @@ dependencies:
   flutter_hooks: ^0.21.3+1
   flutter_native_splash: ^2.4.7
   easy_localization: ^3.0.7+1
-  flutter_svg: ^2.2.1
+  flutter_svg: ^2.2.3
   sliver_tools: ^0.2.12
   url_launcher: ^6.3.2
   fluttertoast: ^9.0.0
