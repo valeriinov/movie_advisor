@@ -186,6 +186,12 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     _$nextEpisodeToAir,
     opt: true,
   );
+  static bool _$hasAvailabilityData(SeriesData v) => v.hasAvailabilityData;
+  static const Field<SeriesData, bool> _f$hasAvailabilityData = Field(
+    'hasAvailabilityData',
+    _$hasAvailabilityData,
+    mode: FieldMode.member,
+  );
   static int? _$latestSeasonNumber(SeriesData v) => v.latestSeasonNumber;
   static const Field<SeriesData, int> _f$latestSeasonNumber = Field(
     'latestSeasonNumber',
@@ -251,6 +257,7 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     #seasons: _f$seasons,
     #lastEpisodeToAir: _f$lastEpisodeToAir,
     #nextEpisodeToAir: _f$nextEpisodeToAir,
+    #hasAvailabilityData: _f$hasAvailabilityData,
     #latestSeasonNumber: _f$latestSeasonNumber,
     #latestSeasonAiredEpisode: _f$latestSeasonAiredEpisode,
     #latestSeasonTotalEpisodes: _f$latestSeasonTotalEpisodes,

@@ -242,5 +242,10 @@
   "filterFromYear": "З:",
   "filterToYear": "до",
   "filterFromLabel": "З",
-  "filterToLabel": "До"
+  "filterToLabel": "До",
+  "totalSeasons": "Всього сезонів:",
+  "latestSeason": "Останній сезон:",
+  "nextEpisode": "Наступний епізод:",
+  "episodes": "епізодів",
+  "availability": "Доступність"
 }

@@ -242,5 +242,10 @@
   "filterFromYear": "From:",
   "filterToYear": "to",
   "filterFromLabel": "From",
-  "filterToLabel": "To"
+  "filterToLabel": "To",
+  "totalSeasons": "Total seasons:",
+  "latestSeason": "Latest season:",
+  "nextEpisode": "Next episode:",
+  "episodes": "episodes",
+  "availability": "Availability"
 }

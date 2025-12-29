@@ -12,6 +12,10 @@ part of 'base_components_styles_ext.dart';
 mixin _$BaseComponentsStylesTailorMixin
     on ThemeExtension<BaseComponentsStyles> {
   double get cardPrimBorderRadius;
+  double get cardSecContentPadding;
+  BoxDecoration get cardSecBoxDecoration;
+  TextStyle get cardSecLabelTextStyle;
+  TextStyle get cardSecValTextStyle;
   ShapeBorder get cardPrimShape;
   double get horizontalTitleGap;
   TextStyle get listTilePrimTitleTextStyle;
@@ -52,6 +56,10 @@ mixin _$BaseComponentsStylesTailorMixin
   @override
   BaseComponentsStyles copyWith({
     double? cardPrimBorderRadius,
+    double? cardSecContentPadding,
+    BoxDecoration? cardSecBoxDecoration,
+    TextStyle? cardSecLabelTextStyle,
+    TextStyle? cardSecValTextStyle,
     ShapeBorder? cardPrimShape,
     double? horizontalTitleGap,
     TextStyle? listTilePrimTitleTextStyle,
@@ -91,6 +99,12 @@ mixin _$BaseComponentsStylesTailorMixin
   }) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: cardPrimBorderRadius ?? this.cardPrimBorderRadius,
+      cardSecContentPadding:
+          cardSecContentPadding ?? this.cardSecContentPadding,
+      cardSecBoxDecoration: cardSecBoxDecoration ?? this.cardSecBoxDecoration,
+      cardSecLabelTextStyle:
+          cardSecLabelTextStyle ?? this.cardSecLabelTextStyle,
+      cardSecValTextStyle: cardSecValTextStyle ?? this.cardSecValTextStyle,
       cardPrimShape: cardPrimShape ?? this.cardPrimShape,
       horizontalTitleGap: horizontalTitleGap ?? this.horizontalTitleGap,
       listTilePrimTitleTextStyle:
@@ -155,6 +169,22 @@ mixin _$BaseComponentsStylesTailorMixin
       cardPrimBorderRadius: t < 0.5
           ? cardPrimBorderRadius
           : other.cardPrimBorderRadius,
+      cardSecContentPadding: t < 0.5
+          ? cardSecContentPadding
+          : other.cardSecContentPadding,
+      cardSecBoxDecoration: t < 0.5
+          ? cardSecBoxDecoration
+          : other.cardSecBoxDecoration,
+      cardSecLabelTextStyle: TextStyle.lerp(
+        cardSecLabelTextStyle,
+        other.cardSecLabelTextStyle,
+        t,
+      )!,
+      cardSecValTextStyle: TextStyle.lerp(
+        cardSecValTextStyle,
+        other.cardSecValTextStyle,
+        t,
+      )!,
       cardPrimShape: t < 0.5 ? cardPrimShape : other.cardPrimShape,
       horizontalTitleGap: t < 0.5
           ? horizontalTitleGap
@@ -290,6 +320,22 @@ mixin _$BaseComponentsStylesTailorMixin
             const DeepCollectionEquality().equals(
               cardPrimBorderRadius,
               other.cardPrimBorderRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              cardSecContentPadding,
+              other.cardSecContentPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              cardSecBoxDecoration,
+              other.cardSecBoxDecoration,
+            ) &&
+            const DeepCollectionEquality().equals(
+              cardSecLabelTextStyle,
+              other.cardSecLabelTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              cardSecValTextStyle,
+              other.cardSecValTextStyle,
             ) &&
             const DeepCollectionEquality().equals(
               cardPrimShape,
@@ -442,6 +488,10 @@ mixin _$BaseComponentsStylesTailorMixin
     return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(cardPrimBorderRadius),
+      const DeepCollectionEquality().hash(cardSecContentPadding),
+      const DeepCollectionEquality().hash(cardSecBoxDecoration),
+      const DeepCollectionEquality().hash(cardSecLabelTextStyle),
+      const DeepCollectionEquality().hash(cardSecValTextStyle),
       const DeepCollectionEquality().hash(cardPrimShape),
       const DeepCollectionEquality().hash(horizontalTitleGap),
       const DeepCollectionEquality().hash(listTilePrimTitleTextStyle),

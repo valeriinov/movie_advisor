@@ -48,13 +48,17 @@ final class SeriesData extends MediaData with SeriesDataMappable {
     this.nextEpisodeToAir,
   });
 
-  /// Season number of the latest available episode
+  /// Whether series has any availability-related data.
+  bool get hasAvailabilityData =>
+      totalSeasonsCount > 0 || hasLatestSeasonProgress || hasNextEpisode;
+
+  /// Season number of the latest available episode.
   int? get latestSeasonNumber => lastEpisodeToAir?.seasonNumber;
 
-  /// "8" from "8 / 10 episodes"
+  /// "8" from "8 / 10 episodes".
   int? get latestSeasonAiredEpisode => lastEpisodeToAir?.episodeNumber;
 
-  /// "10" from "8 / 10 episodes"
+  /// "10" from "8 / 10 episodes".
   int? get latestSeasonTotalEpisodes {
     final seasonNumber = latestSeasonNumber;
 

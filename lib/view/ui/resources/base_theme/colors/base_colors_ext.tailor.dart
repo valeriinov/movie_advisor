@@ -99,6 +99,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
   Color get infoCardRating;
   Color get infoCardPrimFg;
   Color get backdropRatingBg;
+  Color get infoCardSecBg;
+  Color get infoCardSecLabel;
+  Color get infoCardSecValue;
   Color get botSheetBg;
   Color get botSheetFg;
   Color get botSheetIcon;
@@ -218,6 +221,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
     Color? infoCardRating,
     Color? infoCardPrimFg,
     Color? backdropRatingBg,
+    Color? infoCardSecBg,
+    Color? infoCardSecLabel,
+    Color? infoCardSecValue,
     Color? botSheetBg,
     Color? botSheetFg,
     Color? botSheetIcon,
@@ -340,6 +346,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       infoCardRating: infoCardRating ?? this.infoCardRating,
       infoCardPrimFg: infoCardPrimFg ?? this.infoCardPrimFg,
       backdropRatingBg: backdropRatingBg ?? this.backdropRatingBg,
+      infoCardSecBg: infoCardSecBg ?? this.infoCardSecBg,
+      infoCardSecLabel: infoCardSecLabel ?? this.infoCardSecLabel,
+      infoCardSecValue: infoCardSecValue ?? this.infoCardSecValue,
       botSheetBg: botSheetBg ?? this.botSheetBg,
       botSheetFg: botSheetFg ?? this.botSheetFg,
       botSheetIcon: botSheetIcon ?? this.botSheetIcon,
@@ -607,6 +616,17 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       backdropRatingBg: Color.lerp(
         backdropRatingBg,
         other.backdropRatingBg,
+        t,
+      )!,
+      infoCardSecBg: Color.lerp(infoCardSecBg, other.infoCardSecBg, t)!,
+      infoCardSecLabel: Color.lerp(
+        infoCardSecLabel,
+        other.infoCardSecLabel,
+        t,
+      )!,
+      infoCardSecValue: Color.lerp(
+        infoCardSecValue,
+        other.infoCardSecValue,
         t,
       )!,
       botSheetBg: Color.lerp(botSheetBg, other.botSheetBg, t)!,
@@ -1022,6 +1042,18 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
               other.backdropRatingBg,
             ) &&
             const DeepCollectionEquality().equals(
+              infoCardSecBg,
+              other.infoCardSecBg,
+            ) &&
+            const DeepCollectionEquality().equals(
+              infoCardSecLabel,
+              other.infoCardSecLabel,
+            ) &&
+            const DeepCollectionEquality().equals(
+              infoCardSecValue,
+              other.infoCardSecValue,
+            ) &&
+            const DeepCollectionEquality().equals(
               botSheetBg,
               other.botSheetBg,
             ) &&
@@ -1218,6 +1250,9 @@ mixin _$BaseColorsTailorMixin on ThemeExtension<BaseColors> {
       const DeepCollectionEquality().hash(infoCardRating),
       const DeepCollectionEquality().hash(infoCardPrimFg),
       const DeepCollectionEquality().hash(backdropRatingBg),
+      const DeepCollectionEquality().hash(infoCardSecBg),
+      const DeepCollectionEquality().hash(infoCardSecLabel),
+      const DeepCollectionEquality().hash(infoCardSecValue),
       const DeepCollectionEquality().hash(botSheetBg),
       const DeepCollectionEquality().hash(botSheetFg),
       const DeepCollectionEquality().hash(botSheetIcon),
