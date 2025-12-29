@@ -32,11 +32,13 @@ class CreditsInfoContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             2.gapVert(),
-            Text(
-              title,
-              style: context.bodyLarge,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            SelectionArea(
+              child: Text(
+                title,
+                style: context.bodyLarge,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             2.gapVert(),
             if (genres.isNotBlank)

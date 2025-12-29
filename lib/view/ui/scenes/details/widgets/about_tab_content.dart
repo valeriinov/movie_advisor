@@ -21,7 +21,10 @@ class AboutTabContent extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Padding(
         padding: dimens.padHorPrimIns,
-        child: Text(content, style: context.bodyMedium?.copyWith(height: 1.8)),
+        child: SelectableText(
+          content,
+          style: context.bodyMedium?.copyWith(height: 1.8),
+        ),
       ),
     );
   }
