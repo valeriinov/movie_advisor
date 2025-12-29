@@ -25,11 +25,15 @@ class SeriesSeasonDataMapper extends ClassMapperBase<SeriesSeasonData> {
   static const Field<SeriesSeasonData, int> _f$seasonNumber = Field(
     'seasonNumber',
     _$seasonNumber,
+    opt: true,
+    def: 0,
   );
   static int _$episodeCount(SeriesSeasonData v) => v.episodeCount;
   static const Field<SeriesSeasonData, int> _f$episodeCount = Field(
     'episodeCount',
     _$episodeCount,
+    opt: true,
+    def: 0,
   );
 
   @override

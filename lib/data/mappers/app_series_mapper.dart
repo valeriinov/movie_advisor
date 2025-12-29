@@ -2,10 +2,14 @@ import '../../common/utils/ext/int/pagination_handler.dart';
 import '../../domain/entities/pagination/list_with_pagination_data.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../../domain/entities/series/series_data.dart';
+import '../../domain/entities/series/series_episode_data.dart';
+import '../../domain/entities/series/series_season_data.dart';
 import '../../domain/entities/series/series_short_data.dart';
 import '../dto/rating/rating_data_dto.dart';
 import '../dto/series/series_data_dto.dart';
+import '../dto/series/series_episode_data_dto.dart';
 import '../dto/series/series_response_data_dto.dart';
+import '../dto/series/series_season_data_dto.dart';
 import '../dto/series/series_short_data_dto.dart';
 import '../dto/series/series_short_response_data_dto.dart';
 import 'app_countries_mapper_ext.dart';
@@ -77,6 +81,10 @@ final class AppSeriesMapper extends AppMapper {
       isWatched: dto.isWatched ?? false,
       watchlistAddedAt: dto.watchlistAddedAt,
       lastWatchedAt: dto.lastWatchedAt,
+      totalSeasonsCount: dto.numberOfSeasons ?? 0,
+      seasons: _mapSeriesSeasonDataListDtoToDomain(dto.seasons),
+      lastEpisodeToAir: _mapSeriesEpisodeDataDtoToDomain(dto.lastEpisodeToAir),
+      nextEpisodeToAir: _mapSeriesEpisodeDataDtoToDomain(dto.nextEpisodeToAir),
     );
   }
 
@@ -84,23 +92,6 @@ final class AppSeriesMapper extends AppMapper {
     List<SeriesDataDto> dtos,
   ) {
     return dtos.map(_mapSeriesDataDtoToShortDomain).toList();
-  }
-
-  SeriesShortData _mapSeriesDataDtoToShortDomain(SeriesDataDto dto) {
-    return SeriesShortData(
-      id: dto.id ?? -1,
-      posterUrl: dto.posterPath ?? '',
-      genres: dto.genres.toDomain(),
-      originCountry: dto.originCountry.toDomain(),
-      premiereDate: dto.firstAirDate,
-      title: dto.name ?? '',
-      tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
-      userRating: dto.userRating ?? 0,
-      isInWatchlist: dto.isInWatchlist ?? false,
-      isWatched: dto.isWatched ?? false,
-      watchlistAddedAt: dto.watchlistAddedAt,
-      lastWatchedAt: dto.lastWatchedAt,
-    );
   }
 
   List<SeriesShortData> mapSeriesShortDataListDtoToDomain(
@@ -140,6 +131,54 @@ final class AppSeriesMapper extends AppMapper {
       isWatched: data.isWatched,
       watchlistAddedAt: data.watchlistAddedAt,
       lastWatchedAt: data.lastWatchedAt,
+    );
+  }
+
+  List<SeriesSeasonData> _mapSeriesSeasonDataListDtoToDomain(
+    List<SeriesSeasonDataDto>? dtos,
+  ) {
+    if (dtos == null || dtos.isEmpty) {
+      return const [];
+    }
+
+    return dtos.map(_mapSeriesSeasonDataDtoToDomain).toList();
+  }
+
+  SeriesSeasonData _mapSeriesSeasonDataDtoToDomain(SeriesSeasonDataDto dto) {
+    return SeriesSeasonData(
+      seasonNumber: dto.seasonNumber ?? 0,
+      episodeCount: dto.episodeCount ?? 0,
+    );
+  }
+
+  SeriesEpisodeData? _mapSeriesEpisodeDataDtoToDomain(
+    SeriesEpisodeDataDto? dto,
+  ) {
+    if (dto == null) {
+      return null;
+    }
+
+    return SeriesEpisodeData(
+      seasonNumber: dto.seasonNumber ?? 0,
+      episodeNumber: dto.episodeNumber ?? 0,
+      airDate: dto.airDate,
+    );
+  }
+
+  SeriesShortData _mapSeriesDataDtoToShortDomain(SeriesDataDto dto) {
+    return SeriesShortData(
+      id: dto.id ?? -1,
+      posterUrl: dto.posterPath ?? '',
+      genres: dto.genres.toDomain(),
+      originCountry: dto.originCountry.toDomain(),
+      premiereDate: dto.firstAirDate,
+      title: dto.name ?? '',
+      tmdbRating: _ratingMapper.mapSeriesDataDtoToTMDBRating(dto),
+      userRating: dto.userRating ?? 0,
+      isInWatchlist: dto.isInWatchlist ?? false,
+      isWatched: dto.isWatched ?? false,
+      watchlistAddedAt: dto.watchlistAddedAt,
+      lastWatchedAt: dto.lastWatchedAt,
     );
   }
 

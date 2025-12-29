@@ -8,7 +8,6 @@ part 'series_episode_data_dto.mapper.dart';
 class SeriesEpisodeDataDto with SeriesEpisodeDataDtoMappable {
   final int? seasonNumber;
   final int? episodeNumber;
-
   @MappableField(hook: DateMapperHook())
   final DateTime? airDate;
 

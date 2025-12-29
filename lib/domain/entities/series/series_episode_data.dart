@@ -9,8 +9,8 @@ final class SeriesEpisodeData with SeriesEpisodeDataMappable {
   final DateTime? airDate;
 
   const SeriesEpisodeData({
-    required this.seasonNumber,
-    required this.episodeNumber,
-    required this.airDate,
+    this.seasonNumber = 0,
+    this.episodeNumber = 0,
+    this.airDate,
   });
 }

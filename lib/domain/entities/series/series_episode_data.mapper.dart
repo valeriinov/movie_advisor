@@ -25,16 +25,21 @@ class SeriesEpisodeDataMapper extends ClassMapperBase<SeriesEpisodeData> {
   static const Field<SeriesEpisodeData, int> _f$seasonNumber = Field(
     'seasonNumber',
     _$seasonNumber,
+    opt: true,
+    def: 0,
   );
   static int _$episodeNumber(SeriesEpisodeData v) => v.episodeNumber;
   static const Field<SeriesEpisodeData, int> _f$episodeNumber = Field(
     'episodeNumber',
     _$episodeNumber,
+    opt: true,
+    def: 0,
   );
   static DateTime? _$airDate(SeriesEpisodeData v) => v.airDate;
   static const Field<SeriesEpisodeData, DateTime> _f$airDate = Field(
     'airDate',
     _$airDate,
+    opt: true,
   );
 
   @override

@@ -7,10 +7,7 @@ class SeriesSeasonDataDto with SeriesSeasonDataDtoMappable {
   final int? seasonNumber;
   final int? episodeCount;
 
-  const SeriesSeasonDataDto({
-    this.seasonNumber,
-    this.episodeCount,
-  });
+  const SeriesSeasonDataDto({this.seasonNumber, this.episodeCount});
 
   factory SeriesSeasonDataDto.fromJson(Map<String, dynamic> json) =>
       SeriesSeasonDataDtoMapper.fromJson(json);

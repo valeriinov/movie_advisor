@@ -7,8 +7,5 @@ final class SeriesSeasonData with SeriesSeasonDataMappable {
   final int seasonNumber;
   final int episodeCount;
 
-  const SeriesSeasonData({
-    required this.seasonNumber,
-    required this.episodeCount,
-  });
+  const SeriesSeasonData({this.seasonNumber = 0, this.episodeCount = 0});
 }
