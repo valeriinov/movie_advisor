@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 
 import '../base_media/cast_data.dart';
@@ -7,13 +8,19 @@ import '../base_media/media_data.dart';
 import '../mappable_entity.dart';
 import '../rating/rating.dart';
 import '../video/video_data.dart';
+import 'series_episode_data.dart';
 import 'series_genre.dart';
+import 'series_season_data.dart';
 
 part 'series_data.mapper.dart';
 
 @mappableEntity
 final class SeriesData extends MediaData with SeriesDataMappable {
   final List<SeriesGenre> genres;
+  final int totalSeasonsCount;
+  final List<SeriesSeasonData> seasons;
+  final SeriesEpisodeData? lastEpisodeToAir;
+  final SeriesEpisodeData? nextEpisodeToAir;
 
   const SeriesData({
     super.id = -1,
@@ -35,5 +42,42 @@ final class SeriesData extends MediaData with SeriesDataMappable {
     super.isWatched = false,
     super.watchlistAddedAt,
     super.lastWatchedAt,
+    this.totalSeasonsCount = 0,
+    this.seasons = const [],
+    this.lastEpisodeToAir,
+    this.nextEpisodeToAir,
   });
+
+  /// Season number of the latest available episode
+  int? get latestSeasonNumber => lastEpisodeToAir?.seasonNumber;
+
+  /// "8" from "8 / 10 episodes"
+  int? get latestSeasonAiredEpisode => lastEpisodeToAir?.episodeNumber;
+
+  /// "10" from "8 / 10 episodes"
+  int? get latestSeasonTotalEpisodes {
+    final seasonNumber = latestSeasonNumber;
+
+    if (seasonNumber == null) {
+      return null;
+    }
+
+    return _findSeason(seasonNumber)?.episodeCount;
+  }
+
+  DateTime? get nextEpisodeAirDate => nextEpisodeToAir?.airDate;
+
+  bool get hasNextEpisode => nextEpisodeAirDate != null;
+
+  bool get hasLatestSeasonProgress {
+    return latestSeasonNumber != null &&
+        latestSeasonAiredEpisode != null &&
+        latestSeasonTotalEpisodes != null;
+  }
+
+  SeriesSeasonData? _findSeason(int seasonNumber) {
+    return seasons.firstWhereOrNull(
+      (season) => season.seasonNumber == seasonNumber,
+    );
+  }
 }

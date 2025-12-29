@@ -19,6 +19,8 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
       CastDataMapper.ensureInitialized();
       CrewDataMapper.ensureInitialized();
       VideoDataMapper.ensureInitialized();
+      SeriesSeasonDataMapper.ensureInitialized();
+      SeriesEpisodeDataMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -156,6 +158,73 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     _$lastWatchedAt,
     opt: true,
   );
+  static int _$totalSeasonsCount(SeriesData v) => v.totalSeasonsCount;
+  static const Field<SeriesData, int> _f$totalSeasonsCount = Field(
+    'totalSeasonsCount',
+    _$totalSeasonsCount,
+    opt: true,
+    def: 0,
+  );
+  static List<SeriesSeasonData> _$seasons(SeriesData v) => v.seasons;
+  static const Field<SeriesData, List<SeriesSeasonData>> _f$seasons = Field(
+    'seasons',
+    _$seasons,
+    opt: true,
+    def: const [],
+  );
+  static SeriesEpisodeData? _$lastEpisodeToAir(SeriesData v) =>
+      v.lastEpisodeToAir;
+  static const Field<SeriesData, SeriesEpisodeData> _f$lastEpisodeToAir = Field(
+    'lastEpisodeToAir',
+    _$lastEpisodeToAir,
+    opt: true,
+  );
+  static SeriesEpisodeData? _$nextEpisodeToAir(SeriesData v) =>
+      v.nextEpisodeToAir;
+  static const Field<SeriesData, SeriesEpisodeData> _f$nextEpisodeToAir = Field(
+    'nextEpisodeToAir',
+    _$nextEpisodeToAir,
+    opt: true,
+  );
+  static int? _$latestSeasonNumber(SeriesData v) => v.latestSeasonNumber;
+  static const Field<SeriesData, int> _f$latestSeasonNumber = Field(
+    'latestSeasonNumber',
+    _$latestSeasonNumber,
+    mode: FieldMode.member,
+  );
+  static int? _$latestSeasonAiredEpisode(SeriesData v) =>
+      v.latestSeasonAiredEpisode;
+  static const Field<SeriesData, int> _f$latestSeasonAiredEpisode = Field(
+    'latestSeasonAiredEpisode',
+    _$latestSeasonAiredEpisode,
+    mode: FieldMode.member,
+  );
+  static int? _$latestSeasonTotalEpisodes(SeriesData v) =>
+      v.latestSeasonTotalEpisodes;
+  static const Field<SeriesData, int> _f$latestSeasonTotalEpisodes = Field(
+    'latestSeasonTotalEpisodes',
+    _$latestSeasonTotalEpisodes,
+    mode: FieldMode.member,
+  );
+  static DateTime? _$nextEpisodeAirDate(SeriesData v) => v.nextEpisodeAirDate;
+  static const Field<SeriesData, DateTime> _f$nextEpisodeAirDate = Field(
+    'nextEpisodeAirDate',
+    _$nextEpisodeAirDate,
+    mode: FieldMode.member,
+  );
+  static bool _$hasNextEpisode(SeriesData v) => v.hasNextEpisode;
+  static const Field<SeriesData, bool> _f$hasNextEpisode = Field(
+    'hasNextEpisode',
+    _$hasNextEpisode,
+    mode: FieldMode.member,
+  );
+  static bool _$hasLatestSeasonProgress(SeriesData v) =>
+      v.hasLatestSeasonProgress;
+  static const Field<SeriesData, bool> _f$hasLatestSeasonProgress = Field(
+    'hasLatestSeasonProgress',
+    _$hasLatestSeasonProgress,
+    mode: FieldMode.member,
+  );
 
   @override
   final MappableFields<SeriesData> fields = const {
@@ -178,6 +247,16 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     #isWatched: _f$isWatched,
     #watchlistAddedAt: _f$watchlistAddedAt,
     #lastWatchedAt: _f$lastWatchedAt,
+    #totalSeasonsCount: _f$totalSeasonsCount,
+    #seasons: _f$seasons,
+    #lastEpisodeToAir: _f$lastEpisodeToAir,
+    #nextEpisodeToAir: _f$nextEpisodeToAir,
+    #latestSeasonNumber: _f$latestSeasonNumber,
+    #latestSeasonAiredEpisode: _f$latestSeasonAiredEpisode,
+    #latestSeasonTotalEpisodes: _f$latestSeasonTotalEpisodes,
+    #nextEpisodeAirDate: _f$nextEpisodeAirDate,
+    #hasNextEpisode: _f$hasNextEpisode,
+    #hasLatestSeasonProgress: _f$hasLatestSeasonProgress,
   };
 
   static SeriesData _instantiate(DecodingData data) {
@@ -201,6 +280,10 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
       isWatched: data.dec(_f$isWatched),
       watchlistAddedAt: data.dec(_f$watchlistAddedAt),
       lastWatchedAt: data.dec(_f$lastWatchedAt),
+      totalSeasonsCount: data.dec(_f$totalSeasonsCount),
+      seasons: data.dec(_f$seasons),
+      lastEpisodeToAir: data.dec(_f$lastEpisodeToAir),
+      nextEpisodeToAir: data.dec(_f$nextEpisodeToAir),
     );
   }
 
@@ -258,6 +341,16 @@ abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
   @override
   ListCopyWith<$R, VideoData, VideoDataCopyWith<$R, VideoData, VideoData>>
   get videos;
+  ListCopyWith<
+    $R,
+    SeriesSeasonData,
+    SeriesSeasonDataCopyWith<$R, SeriesSeasonData, SeriesSeasonData>
+  >
+  get seasons;
+  SeriesEpisodeDataCopyWith<$R, SeriesEpisodeData, SeriesEpisodeData>?
+  get lastEpisodeToAir;
+  SeriesEpisodeDataCopyWith<$R, SeriesEpisodeData, SeriesEpisodeData>?
+  get nextEpisodeToAir;
   @override
   $R call({
     int? id,
@@ -279,6 +372,10 @@ abstract class SeriesDataCopyWith<$R, $In extends SeriesData, $Out>
     bool? isWatched,
     DateTime? watchlistAddedAt,
     DateTime? lastWatchedAt,
+    int? totalSeasonsCount,
+    List<SeriesSeasonData>? seasons,
+    SeriesEpisodeData? lastEpisodeToAir,
+    SeriesEpisodeData? nextEpisodeToAir,
   });
   SeriesDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -330,6 +427,27 @@ class _SeriesDataCopyWithImpl<$R, $Out>
     (v) => call(videos: v),
   );
   @override
+  ListCopyWith<
+    $R,
+    SeriesSeasonData,
+    SeriesSeasonDataCopyWith<$R, SeriesSeasonData, SeriesSeasonData>
+  >
+  get seasons => ListCopyWith(
+    $value.seasons,
+    (v, t) => v.copyWith.$chain(t),
+    (v) => call(seasons: v),
+  );
+  @override
+  SeriesEpisodeDataCopyWith<$R, SeriesEpisodeData, SeriesEpisodeData>?
+  get lastEpisodeToAir => $value.lastEpisodeToAir?.copyWith.$chain(
+    (v) => call(lastEpisodeToAir: v),
+  );
+  @override
+  SeriesEpisodeDataCopyWith<$R, SeriesEpisodeData, SeriesEpisodeData>?
+  get nextEpisodeToAir => $value.nextEpisodeToAir?.copyWith.$chain(
+    (v) => call(nextEpisodeToAir: v),
+  );
+  @override
   $R call({
     int? id,
     String? backdropUrl,
@@ -350,6 +468,10 @@ class _SeriesDataCopyWithImpl<$R, $Out>
     bool? isWatched,
     Object? watchlistAddedAt = $none,
     Object? lastWatchedAt = $none,
+    int? totalSeasonsCount,
+    List<SeriesSeasonData>? seasons,
+    Object? lastEpisodeToAir = $none,
+    Object? nextEpisodeToAir = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
@@ -371,6 +493,10 @@ class _SeriesDataCopyWithImpl<$R, $Out>
       if (isWatched != null) #isWatched: isWatched,
       if (watchlistAddedAt != $none) #watchlistAddedAt: watchlistAddedAt,
       if (lastWatchedAt != $none) #lastWatchedAt: lastWatchedAt,
+      if (totalSeasonsCount != null) #totalSeasonsCount: totalSeasonsCount,
+      if (seasons != null) #seasons: seasons,
+      if (lastEpisodeToAir != $none) #lastEpisodeToAir: lastEpisodeToAir,
+      if (nextEpisodeToAir != $none) #nextEpisodeToAir: nextEpisodeToAir,
     }),
   );
   @override
@@ -394,6 +520,13 @@ class _SeriesDataCopyWithImpl<$R, $Out>
     isWatched: data.get(#isWatched, or: $value.isWatched),
     watchlistAddedAt: data.get(#watchlistAddedAt, or: $value.watchlistAddedAt),
     lastWatchedAt: data.get(#lastWatchedAt, or: $value.lastWatchedAt),
+    totalSeasonsCount: data.get(
+      #totalSeasonsCount,
+      or: $value.totalSeasonsCount,
+    ),
+    seasons: data.get(#seasons, or: $value.seasons),
+    lastEpisodeToAir: data.get(#lastEpisodeToAir, or: $value.lastEpisodeToAir),
+    nextEpisodeToAir: data.get(#nextEpisodeToAir, or: $value.nextEpisodeToAir),
   );
 
   @override

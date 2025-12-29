@@ -18,6 +18,8 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
       CountryDtoMapper.ensureInitialized();
       CreditsDataDtoMapper.ensureInitialized();
       VideosDataDtoMapper.ensureInitialized();
+      SeriesSeasonDataDtoMapper.ensureInitialized();
+      SeriesEpisodeDataDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -166,6 +168,34 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
     opt: true,
     hook: DateMapperHook(),
   );
+  static int? _$numberOfSeasons(SeriesDataDto v) => v.numberOfSeasons;
+  static const Field<SeriesDataDto, int> _f$numberOfSeasons = Field(
+    'numberOfSeasons',
+    _$numberOfSeasons,
+    key: r'number_of_seasons',
+    opt: true,
+  );
+  static List<SeriesSeasonDataDto>? _$seasons(SeriesDataDto v) => v.seasons;
+  static const Field<SeriesDataDto, List<SeriesSeasonDataDto>> _f$seasons =
+      Field('seasons', _$seasons, opt: true);
+  static SeriesEpisodeDataDto? _$lastEpisodeToAir(SeriesDataDto v) =>
+      v.lastEpisodeToAir;
+  static const Field<SeriesDataDto, SeriesEpisodeDataDto> _f$lastEpisodeToAir =
+      Field(
+        'lastEpisodeToAir',
+        _$lastEpisodeToAir,
+        key: r'last_episode_to_air',
+        opt: true,
+      );
+  static SeriesEpisodeDataDto? _$nextEpisodeToAir(SeriesDataDto v) =>
+      v.nextEpisodeToAir;
+  static const Field<SeriesDataDto, SeriesEpisodeDataDto> _f$nextEpisodeToAir =
+      Field(
+        'nextEpisodeToAir',
+        _$nextEpisodeToAir,
+        key: r'next_episode_to_air',
+        opt: true,
+      );
 
   @override
   final MappableFields<SeriesDataDto> fields = const {
@@ -190,6 +220,10 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
     #isWatched: _f$isWatched,
     #watchlistAddedAt: _f$watchlistAddedAt,
     #lastWatchedAt: _f$lastWatchedAt,
+    #numberOfSeasons: _f$numberOfSeasons,
+    #seasons: _f$seasons,
+    #lastEpisodeToAir: _f$lastEpisodeToAir,
+    #nextEpisodeToAir: _f$nextEpisodeToAir,
   };
   @override
   final bool ignoreNull = true;
@@ -217,6 +251,10 @@ class SeriesDataDtoMapper extends ClassMapperBase<SeriesDataDto> {
       isWatched: data.dec(_f$isWatched),
       watchlistAddedAt: data.dec(_f$watchlistAddedAt),
       lastWatchedAt: data.dec(_f$lastWatchedAt),
+      numberOfSeasons: data.dec(_f$numberOfSeasons),
+      seasons: data.dec(_f$seasons),
+      lastEpisodeToAir: data.dec(_f$lastEpisodeToAir),
+      nextEpisodeToAir: data.dec(_f$nextEpisodeToAir),
     );
   }
 
@@ -298,6 +336,16 @@ abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
   get originCountry;
   CreditsDataDtoCopyWith<$R, CreditsDataDto, CreditsDataDto>? get credits;
   VideosDataDtoCopyWith<$R, VideosDataDto, VideosDataDto>? get videos;
+  ListCopyWith<
+    $R,
+    SeriesSeasonDataDto,
+    SeriesSeasonDataDtoCopyWith<$R, SeriesSeasonDataDto, SeriesSeasonDataDto>
+  >?
+  get seasons;
+  SeriesEpisodeDataDtoCopyWith<$R, SeriesEpisodeDataDto, SeriesEpisodeDataDto>?
+  get lastEpisodeToAir;
+  SeriesEpisodeDataDtoCopyWith<$R, SeriesEpisodeDataDto, SeriesEpisodeDataDto>?
+  get nextEpisodeToAir;
   $R call({
     int? id,
     String? backdropPath,
@@ -320,6 +368,10 @@ abstract class SeriesDataDtoCopyWith<$R, $In extends SeriesDataDto, $Out>
     bool? isWatched,
     DateTime? watchlistAddedAt,
     DateTime? lastWatchedAt,
+    int? numberOfSeasons,
+    List<SeriesSeasonDataDto>? seasons,
+    SeriesEpisodeDataDto? lastEpisodeToAir,
+    SeriesEpisodeDataDto? nextEpisodeToAir,
   });
   SeriesDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -374,6 +426,29 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
   VideosDataDtoCopyWith<$R, VideosDataDto, VideosDataDto>? get videos =>
       $value.videos?.copyWith.$chain((v) => call(videos: v));
   @override
+  ListCopyWith<
+    $R,
+    SeriesSeasonDataDto,
+    SeriesSeasonDataDtoCopyWith<$R, SeriesSeasonDataDto, SeriesSeasonDataDto>
+  >?
+  get seasons => $value.seasons != null
+      ? ListCopyWith(
+          $value.seasons!,
+          (v, t) => v.copyWith.$chain(t),
+          (v) => call(seasons: v),
+        )
+      : null;
+  @override
+  SeriesEpisodeDataDtoCopyWith<$R, SeriesEpisodeDataDto, SeriesEpisodeDataDto>?
+  get lastEpisodeToAir => $value.lastEpisodeToAir?.copyWith.$chain(
+    (v) => call(lastEpisodeToAir: v),
+  );
+  @override
+  SeriesEpisodeDataDtoCopyWith<$R, SeriesEpisodeDataDto, SeriesEpisodeDataDto>?
+  get nextEpisodeToAir => $value.nextEpisodeToAir?.copyWith.$chain(
+    (v) => call(nextEpisodeToAir: v),
+  );
+  @override
   $R call({
     Object? id = $none,
     Object? backdropPath = $none,
@@ -396,6 +471,10 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
     Object? isWatched = $none,
     Object? watchlistAddedAt = $none,
     Object? lastWatchedAt = $none,
+    Object? numberOfSeasons = $none,
+    Object? seasons = $none,
+    Object? lastEpisodeToAir = $none,
+    Object? nextEpisodeToAir = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != $none) #id: id,
@@ -419,6 +498,10 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
       if (isWatched != $none) #isWatched: isWatched,
       if (watchlistAddedAt != $none) #watchlistAddedAt: watchlistAddedAt,
       if (lastWatchedAt != $none) #lastWatchedAt: lastWatchedAt,
+      if (numberOfSeasons != $none) #numberOfSeasons: numberOfSeasons,
+      if (seasons != $none) #seasons: seasons,
+      if (lastEpisodeToAir != $none) #lastEpisodeToAir: lastEpisodeToAir,
+      if (nextEpisodeToAir != $none) #nextEpisodeToAir: nextEpisodeToAir,
     }),
   );
   @override
@@ -444,6 +527,10 @@ class _SeriesDataDtoCopyWithImpl<$R, $Out>
     isWatched: data.get(#isWatched, or: $value.isWatched),
     watchlistAddedAt: data.get(#watchlistAddedAt, or: $value.watchlistAddedAt),
     lastWatchedAt: data.get(#lastWatchedAt, or: $value.lastWatchedAt),
+    numberOfSeasons: data.get(#numberOfSeasons, or: $value.numberOfSeasons),
+    seasons: data.get(#seasons, or: $value.seasons),
+    lastEpisodeToAir: data.get(#lastEpisodeToAir, or: $value.lastEpisodeToAir),
+    nextEpisodeToAir: data.get(#nextEpisodeToAir, or: $value.nextEpisodeToAir),
   );
 
   @override
