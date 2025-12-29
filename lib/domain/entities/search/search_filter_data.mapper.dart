@@ -27,18 +27,9 @@ class SearchFilterDataMapper extends ClassMapperBase<SearchFilterData> {
     _$query,
     opt: true,
   );
-  static bool _$isDefault(SearchFilterData v) => v.isDefault;
-  static const Field<SearchFilterData, bool> _f$isDefault = Field(
-    'isDefault',
-    _$isDefault,
-    mode: FieldMode.member,
-  );
 
   @override
-  final MappableFields<SearchFilterData> fields = const {
-    #query: _f$query,
-    #isDefault: _f$isDefault,
-  };
+  final MappableFields<SearchFilterData> fields = const {#query: _f$query};
 
   static SearchFilterData _instantiate(DecodingData data) {
     return SearchFilterData(query: data.dec(_f$query));

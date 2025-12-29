@@ -29,24 +29,10 @@ class DeleteAccountFormStateMapper
     opt: true,
     def: '',
   );
-  static bool _$isFilled(DeleteAccountFormState v) => v.isFilled;
-  static const Field<DeleteAccountFormState, bool> _f$isFilled = Field(
-    'isFilled',
-    _$isFilled,
-    mode: FieldMode.member,
-  );
-  static bool _$hasUnsavedData(DeleteAccountFormState v) => v.hasUnsavedData;
-  static const Field<DeleteAccountFormState, bool> _f$hasUnsavedData = Field(
-    'hasUnsavedData',
-    _$hasUnsavedData,
-    mode: FieldMode.member,
-  );
 
   @override
   final MappableFields<DeleteAccountFormState> fields = const {
     #password: _f$password,
-    #isFilled: _f$isFilled,
-    #hasUnsavedData: _f$hasUnsavedData,
   };
 
   static DeleteAccountFormState _instantiate(DecodingData data) {

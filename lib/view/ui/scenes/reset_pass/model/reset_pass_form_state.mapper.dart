@@ -28,25 +28,9 @@ class ResetPassFormStateMapper extends ClassMapperBase<ResetPassFormState> {
     opt: true,
     def: '',
   );
-  static bool _$isFilled(ResetPassFormState v) => v.isFilled;
-  static const Field<ResetPassFormState, bool> _f$isFilled = Field(
-    'isFilled',
-    _$isFilled,
-    mode: FieldMode.member,
-  );
-  static bool _$hasUnsavedData(ResetPassFormState v) => v.hasUnsavedData;
-  static const Field<ResetPassFormState, bool> _f$hasUnsavedData = Field(
-    'hasUnsavedData',
-    _$hasUnsavedData,
-    mode: FieldMode.member,
-  );
 
   @override
-  final MappableFields<ResetPassFormState> fields = const {
-    #email: _f$email,
-    #isFilled: _f$isFilled,
-    #hasUnsavedData: _f$hasUnsavedData,
-  };
+  final MappableFields<ResetPassFormState> fields = const {#email: _f$email};
 
   static ResetPassFormState _instantiate(DecodingData data) {
     return ResetPassFormState(email: data.dec(_f$email));
