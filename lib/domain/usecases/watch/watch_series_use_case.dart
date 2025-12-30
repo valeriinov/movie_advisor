@@ -31,6 +31,11 @@ class WatchSeriesUseCase implements WatchUseCase<SeriesShortData> {
   }
 
   @override
+  Future<Result<void>> update(SeriesShortData data) {
+    return _repository.updateSeries(data);
+  }
+
+  @override
   Future<Result<void>> removeFromWatchlist(int id) {
     return _repository.removeFromWatchlistSeries(id);
   }

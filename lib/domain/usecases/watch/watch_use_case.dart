@@ -11,6 +11,8 @@ abstract interface class WatchUseCase<T extends MediaShortData> {
     bool deleteFromWatchlistIfExists = false,
   });
 
+  Future<Result<void>> update(T data);
+
   Future<Result<void>> removeFromWatchlist(int id);
 
   Future<Result<void>> removeFromWatched(int id);

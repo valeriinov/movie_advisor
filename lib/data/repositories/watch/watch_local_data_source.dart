@@ -38,6 +38,8 @@ abstract interface class WatchLocalDataSource {
 
   Future<void> addToWatchedMovie(MovieShortDataDto data);
 
+  Future<void> updateMovie(MovieShortDataDto data);
+
   Future<void> removeFromWatchlistMovie(int id);
 
   Future<void> removeFromWatchedMovie(int id);
@@ -45,6 +47,8 @@ abstract interface class WatchLocalDataSource {
   Future<void> addToWatchlistSeries(SeriesShortDataDto data);
 
   Future<void> addToWatchedSeries(SeriesShortDataDto data);
+
+  Future<void> updateSeries(SeriesShortDataDto data);
 
   Future<void> removeFromWatchlistSeries(int id);
 
