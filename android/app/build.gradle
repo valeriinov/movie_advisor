@@ -77,12 +77,6 @@ android {
         release {
             signingConfig = signingConfigs.release
 
-            // Only include arm64-v8a to satisfy Google Play’s 16 KB / 64-bit
-            // requirement and drop legacy 32-bit ABIs
-            ndk {
-                abiFilters.clear()
-                abiFilters.add("arm64-v8a")
-            }
         }
     }
 }
