@@ -230,30 +230,32 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
 
   @override
   Future<void> addToWatchedMovie(MovieShortDataDto data) {
-    return _database
-        .into(_database.moviesTable)
-        .insert(data.toTableData(), mode: InsertMode.insertOrReplace);
+    return _saveMovie(data);
+  }
+
+  @override
+  Future<void> updateMovie(MovieShortDataDto data) async {
+    await _saveMovie(data);
   }
 
   @override
   Future<void> addToWatchedSeries(SeriesShortDataDto data) {
-    return _database
-        .into(_database.seriesTable)
-        .insert(data.toTableData(), mode: InsertMode.insertOrReplace);
+    return _saveSeries(data);
+  }
+
+  @override
+  Future<void> updateSeries(SeriesShortDataDto data) async {
+    await _saveSeries(data);
   }
 
   @override
   Future<void> addToWatchlistMovie(MovieShortDataDto data) {
-    return _database
-        .into(_database.moviesTable)
-        .insert(data.toTableData(), mode: InsertMode.insertOrReplace);
+    return _saveMovie(data);
   }
 
   @override
   Future<void> addToWatchlistSeries(SeriesShortDataDto data) {
-    return _database
-        .into(_database.seriesTable)
-        .insert(data.toTableData(), mode: InsertMode.insertOrReplace);
+    return _saveSeries(data);
   }
 
   @override
@@ -318,5 +320,33 @@ class ImplWatchLocalDataSource implements WatchLocalDataSource {
     await _database
         .into(_database.seriesEventsTable)
         .insert(data.toTableData());
+  }
+
+  Future<void> _saveMovie(MovieShortDataDto data) async {
+    if (data.id == null) return;
+
+    await _database
+        .into(_database.moviesTable)
+        .insert(
+          data.toTableData(),
+          onConflict: DoUpdate(
+            (old) => data.toTableData(),
+            target: [_database.moviesTable.tmdbId],
+          ),
+        );
+  }
+
+  Future<void> _saveSeries(SeriesShortDataDto data) async {
+    if (data.id == null) return;
+
+    await _database
+        .into(_database.seriesTable)
+        .insert(
+          data.toTableData(),
+          onConflict: DoUpdate(
+            (old) => data.toTableData(),
+            target: [_database.seriesTable.tmdbId],
+          ),
+        );
   }
 }

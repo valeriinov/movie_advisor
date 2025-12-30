@@ -31,6 +31,11 @@ class WatchMovieUseCase implements WatchUseCase<MovieShortData> {
   }
 
   @override
+  Future<Result<void>> update(MovieShortData data) {
+    return _repository.updateMovie(data);
+  }
+
+  @override
   Future<Result<void>> removeFromWatchlist(int id) {
     return _repository.removeFromWatchlistMovie(id);
   }

@@ -70,8 +70,22 @@ abstract base class DetailsViewModel<
       },
       (data) {
         state = state.copyWith(status: DetailsBaseInitStatus(), data: data);
+
+        _updateSavedMedia(data);
       },
     );
+  }
+
+  void _updateSavedMedia(T data) {
+    if (!_shouldUpdateSavedMedia(data)) return;
+
+    safeCall(() {
+      return _watchUseCase.update(data.toShortData());
+    });
+  }
+
+  bool _shouldUpdateSavedMedia(T data) {
+    return data.isInWatchlist || data.isWatched;
   }
 
   Future<void> addToWatchlist() async {

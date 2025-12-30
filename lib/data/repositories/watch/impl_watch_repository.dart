@@ -191,6 +191,22 @@ class ImplWatchRepository implements WatchRepository {
   }
 
   @override
+  Future<Result<void>> updateMovie(MovieShortData data) async {
+    try {
+      final dto = _moviesMapper.mapMovieShortDataToDto(data);
+
+      final preparedDto = await _remoteDataSource.getLocalizedMovie(dto);
+
+      await _localDataSource.updateMovie(preparedDto);
+      await _remoteDataSource.updateMovie(preparedDto);
+
+      return Right(null);
+    } catch (e) {
+      return Left(_moviesMapper.getException(e));
+    }
+  }
+
+  @override
   Future<Result<void>> removeFromWatchlistMovie(int id) async {
     try {
       await _localDataSource.removeFromWatchlistMovie(id);
@@ -280,6 +296,22 @@ class ImplWatchRepository implements WatchRepository {
       await _remoteDataSource.addToWatchedSeries(preparedDto);
 
       await _addSeriesEvent(preparedDto.id, WatchEventTypeDto.watch);
+
+      return Right(null);
+    } catch (e) {
+      return Left(_seriesMapper.getException(e));
+    }
+  }
+
+  @override
+  Future<Result<void>> updateSeries(SeriesShortData data) async {
+    try {
+      final dto = _seriesMapper.mapSeriesShortDataToDto(data);
+
+      final preparedDto = await _remoteDataSource.getLocalizedSeries(dto);
+
+      await _localDataSource.updateSeries(preparedDto);
+      await _remoteDataSource.updateSeries(preparedDto);
 
       return Right(null);
     } catch (e) {

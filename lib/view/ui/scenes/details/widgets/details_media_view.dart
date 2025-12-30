@@ -63,7 +63,7 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
         ),
         body: BottomSafeArea(
           child: isSkeletonVisible
-              ? DetailsContentSkeleton(isMovie: T is MovieData)
+              ? DetailsContentSkeleton(isMovie: T == MovieData)
               : DetailsScreenContent(
                   data: data,
                   status: status,

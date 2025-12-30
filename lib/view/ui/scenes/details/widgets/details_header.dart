@@ -55,7 +55,9 @@ class DetailsHeader extends StatelessWidget {
               top: 12,
               right: dimens.padHorPrim,
             ),
-            child: Text(data.title, style: context.titleMedium),
+            child: SelectionArea(
+              child: Text(data.title, style: context.titleMedium),
+            ),
           ),
         );
       },
