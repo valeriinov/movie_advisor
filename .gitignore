@@ -55,3 +55,9 @@ prod.env
 firebase.json
 /functions/build/
 /.firebaserc
+
+# FVM
+.fvm/
+
+# Plans
+plan/
