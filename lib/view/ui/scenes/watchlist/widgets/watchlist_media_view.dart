@@ -43,11 +43,11 @@ class WatchlistMediaView<
 
   @override
   Widget build(context, ref) {
-    final vspContMode = ref.vspFromADProvider(contentModeViewModelPr);
+    final vspContMode = ref.vspFromNotifierPr(contentModeViewModelPr);
 
     final contMode = vspContMode.selectWatch((s) => s.mode);
 
-    final vsp = ref.vspFromADProvider(provider);
+    final vsp = ref.vspFromNotifierPr(provider);
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;

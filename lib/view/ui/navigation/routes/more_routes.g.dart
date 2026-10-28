@@ -10,34 +10,30 @@ List<RouteBase> get $appRoutes => [$moreRoute];
 
 RouteBase get $moreRoute => GoRouteData.$route(
   path: '/more',
-
-  factory: _$MoreRoute._fromState,
+  factory: $MoreRoute._fromState,
   routes: [
-    GoRouteData.$route(path: 'about-us', factory: _$AboutUsRoute._fromState),
+    GoRouteData.$route(path: 'about-us', factory: $AboutUsRoute._fromState),
     GoRouteData.$route(
       path: 'auth',
-
-      factory: _$AuthRoute._fromState,
+      factory: $AuthRoute._fromState,
       routes: [
-        GoRouteData.$route(path: 'reg', factory: _$RegRoute._fromState),
+        GoRouteData.$route(path: 'reg', factory: $RegRoute._fromState),
         GoRouteData.$route(
           path: 'reset-pass',
-
-          factory: _$ResetPassRoute._fromState,
+          factory: $ResetPassRoute._fromState,
         ),
       ],
     ),
     GoRouteData.$route(
       path: 'delete-account',
-
-      factory: _$DeleteAccountRoute._fromState,
+      factory: $DeleteAccountRoute._fromState,
     ),
-    GoRouteData.$route(path: 'settings', factory: _$SettingsRoute._fromState),
+    GoRouteData.$route(path: 'settings', factory: $SettingsRoute._fromState),
   ],
 );
 
-mixin _$MoreRoute on GoRouteData {
-  static MoreRoute _fromState(GoRouterState state) => MoreRoute();
+mixin $MoreRoute on GoRouteData {
+  static MoreRoute _fromState(GoRouterState state) => const MoreRoute();
 
   @override
   String get location => GoRouteData.$location('/more');
@@ -56,8 +52,8 @@ mixin _$MoreRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$AboutUsRoute on GoRouteData {
-  static AboutUsRoute _fromState(GoRouterState state) => AboutUsRoute();
+mixin $AboutUsRoute on GoRouteData {
+  static AboutUsRoute _fromState(GoRouterState state) => const AboutUsRoute();
 
   @override
   String get location => GoRouteData.$location('/more/about-us');
@@ -76,8 +72,8 @@ mixin _$AboutUsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$AuthRoute on GoRouteData {
-  static AuthRoute _fromState(GoRouterState state) => AuthRoute();
+mixin $AuthRoute on GoRouteData {
+  static AuthRoute _fromState(GoRouterState state) => const AuthRoute();
 
   @override
   String get location => GoRouteData.$location('/more/auth');
@@ -96,8 +92,8 @@ mixin _$AuthRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$RegRoute on GoRouteData {
-  static RegRoute _fromState(GoRouterState state) => RegRoute();
+mixin $RegRoute on GoRouteData {
+  static RegRoute _fromState(GoRouterState state) => const RegRoute();
 
   @override
   String get location => GoRouteData.$location('/more/auth/reg');
@@ -116,8 +112,9 @@ mixin _$RegRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ResetPassRoute on GoRouteData {
-  static ResetPassRoute _fromState(GoRouterState state) => ResetPassRoute();
+mixin $ResetPassRoute on GoRouteData {
+  static ResetPassRoute _fromState(GoRouterState state) =>
+      const ResetPassRoute();
 
   @override
   String get location => GoRouteData.$location('/more/auth/reset-pass');
@@ -136,9 +133,9 @@ mixin _$ResetPassRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$DeleteAccountRoute on GoRouteData {
+mixin $DeleteAccountRoute on GoRouteData {
   static DeleteAccountRoute _fromState(GoRouterState state) =>
-      DeleteAccountRoute();
+      const DeleteAccountRoute();
 
   @override
   String get location => GoRouteData.$location('/more/delete-account');
@@ -157,8 +154,8 @@ mixin _$DeleteAccountRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$SettingsRoute on GoRouteData {
-  static SettingsRoute _fromState(GoRouterState state) => SettingsRoute();
+mixin $SettingsRoute on GoRouteData {
+  static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
 
   @override
   String get location => GoRouteData.$location('/more/settings');

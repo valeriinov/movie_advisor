@@ -39,6 +39,8 @@ abstract interface class WatchRepository {
     required bool deleteFromWatchlistIfExists,
   });
 
+  Future<Result<void>> updateMovie(MovieShortData data);
+
   Future<Result<void>> removeFromWatchlistMovie(int id);
 
   Future<Result<void>> removeFromWatchedMovie(int id);
@@ -49,6 +51,8 @@ abstract interface class WatchRepository {
     SeriesShortData data, {
     required bool deleteFromWatchlistIfExists,
   });
+
+  Future<Result<void>> updateSeries(SeriesShortData data);
 
   Future<Result<void>> removeFromWatchlistSeries(int id);
 

@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
 
-class FilterSortByRadioWrapper extends StatelessWidget {
+class FilterSortByRadioWrapper<T> extends StatelessWidget {
+  final T groupValue;
+  final void Function(T?) onChanged;
   final List<Widget> children;
 
-  const FilterSortByRadioWrapper({super.key, required this.children});
+  const FilterSortByRadioWrapper({
+    super.key,
+    required this.groupValue,
+    required this.onChanged,
+    required this.children,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Material(
-        type: MaterialType.transparency,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: children,
+    return RadioGroup<T>(
+      groupValue: groupValue,
+      onChanged: onChanged,
+      child: SingleChildScrollView(
+        child: Material(
+          type: MaterialType.transparency,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: children,
+          ),
         ),
       ),
     );

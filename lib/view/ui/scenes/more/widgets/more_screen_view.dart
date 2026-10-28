@@ -18,7 +18,7 @@ class MoreScreenView extends ConsumerWidget {
   Widget build(context, ref) {
     final durations = context.baseDurations;
 
-    final vsp = ref.vspFromADProvider(moreViewModelPr);
+    final vsp = ref.vspFromNotifierPr(moreViewModelPr);
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;

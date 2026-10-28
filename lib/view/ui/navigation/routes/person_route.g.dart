@@ -9,9 +9,9 @@ part of 'person_route.dart';
 List<RouteBase> get $appRoutes => [$personRoute];
 
 RouteBase get $personRoute =>
-    GoRouteData.$route(path: '/person', factory: _$PersonRoute._fromState);
+    GoRouteData.$route(path: '/person', factory: $PersonRoute._fromState);
 
-mixin _$PersonRoute on GoRouteData {
+mixin $PersonRoute on GoRouteData {
   static PersonRoute _fromState(GoRouterState state) => PersonRoute(
     id: _$convertMapValue('id', state.uri.queryParameters, int.parse) ?? -1,
   );

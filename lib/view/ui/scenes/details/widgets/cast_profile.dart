@@ -32,12 +32,14 @@ class CastProfile extends StatelessWidget {
             ),
           ),
           dimens.spSmall.gapVert(),
-          Text(
-            data.name,
-            style: context.labelMedium,
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+          SelectionArea(
+            child: Text(
+              data.name,
+              style: context.labelMedium,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           dimens.spExtSmall.gapVert(),
           Text(

@@ -26,11 +26,13 @@ class MediaInfoContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             2.gapVert(),
-            Text(
-              itemData.title,
-              style: context.bodyLarge,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            SelectionArea(
+              child: Text(
+                itemData.title,
+                style: context.bodyLarge,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             14.gapVert(),
             MediaInfoTile(

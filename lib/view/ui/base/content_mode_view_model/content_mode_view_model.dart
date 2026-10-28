@@ -8,19 +8,19 @@ import 'content_mode_state.dart';
 ///
 /// A provider for the [ContentModeViewModel] class.
 final contentModeViewModelPr =
-    AutoDisposeNotifierProvider<ContentModeViewModel, ContentModeState>(
+    NotifierProvider<ContentModeViewModel, ContentModeState>(
       ContentModeViewModel.new,
     );
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [ContentModeViewModel] and [ContentModeState].
-typedef ContentModeVSP = ASP<ContentModeViewModel, ContentModeState>;
+/// A type alias for [VSP] with [ContentModeViewModel] and [ContentModeState].
+typedef ContentModeVSP = VSP<ContentModeViewModel, ContentModeState>;
 
 /// {@category StateManagement}
 ///
 /// A view model for managing the [ContentMode] state.
-class ContentModeViewModel extends AutoDisposeNotifier<ContentModeState> {
+class ContentModeViewModel extends Notifier<ContentModeState> {
   @override
   ContentModeState build() {
     return ContentModeState();

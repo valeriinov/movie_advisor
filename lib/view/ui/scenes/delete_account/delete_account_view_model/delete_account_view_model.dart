@@ -10,14 +10,14 @@ import 'delete_account_state.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [MoreViewModel] and [MoreState].
-typedef DeleteAccountVSP = ASP<DeleteAccountViewModel, DeleteAccountState>;
+/// A type alias for [VSP] with [MoreViewModel] and [MoreState].
+typedef DeleteAccountVSP = VSP<DeleteAccountViewModel, DeleteAccountState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [DeleteAccountViewModel] class.
 final deleteAccountViewModelPr =
-    AutoDisposeNotifierProvider<DeleteAccountViewModel, DeleteAccountState>(
+    NotifierProvider.autoDispose<DeleteAccountViewModel, DeleteAccountState>(
       DeleteAccountViewModel.new,
     );
 
@@ -26,7 +26,7 @@ final deleteAccountViewModelPr =
 /// A view model for managing `delete account`-specific logic and state.
 ///
 /// This class is responsible for coordinating `delete account` behavior and interacting with the UI.
-class DeleteAccountViewModel extends AutoDisposeNotifier<DeleteAccountState>
+class DeleteAccountViewModel extends Notifier<DeleteAccountState>
     with SafeOperationsMixin {
   late final AuthUseCase _authUseCase;
 

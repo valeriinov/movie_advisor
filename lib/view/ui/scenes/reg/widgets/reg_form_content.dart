@@ -23,7 +23,7 @@ class RegFormContent extends ConsumerWidget {
     final passFieldName = RegFormState.nameof.fieldPassword;
     final confirmPassFieldName = RegFormState.nameof.fieldConfirmPassword;
 
-    final vsp = ref.vspFromADProvider(regViewModelPr);
+    final vsp = ref.vspFromNotifierPr(regViewModelPr);
 
     return SliverToBoxAdapter(
       child: FormAutoValidateBuilder<FormBuilderState>(

@@ -4,7 +4,9 @@ import '../../domain/entities/movie/movie_data.dart';
 import '../../domain/entities/movie/movie_genre.dart';
 import '../../domain/entities/rating/rating.dart';
 import '../../domain/entities/series/series_data.dart';
+import '../../domain/entities/series/series_episode_data.dart';
 import '../../domain/entities/series/series_genre.dart';
+import '../../domain/entities/series/series_season_data.dart';
 import '../../view/ui/resources/app_images.dart';
 
 class MockMedia {
@@ -38,6 +40,18 @@ class MockMedia {
       userRating: -1,
       isInWatchlist: false,
       isWatched: false,
+      totalSeasonsCount: 1,
+      seasons: const [SeriesSeasonData(seasonNumber: 1, episodeCount: 10)],
+      lastEpisodeToAir: SeriesEpisodeData(
+        seasonNumber: 1,
+        episodeNumber: 8,
+        airDate: DateTime(2024, 5, 10),
+      ),
+      nextEpisodeToAir: SeriesEpisodeData(
+        seasonNumber: 1,
+        episodeNumber: 9,
+        airDate: DateTime(2024, 5, 17),
+      ),
     );
   }
 }

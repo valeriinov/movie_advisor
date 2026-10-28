@@ -11,7 +11,7 @@ class WatchlistScreenView extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final vspContMode = ref.vspFromADProvider(contentModeViewModelPr);
+    final vspContMode = ref.vspFromNotifierPr(contentModeViewModelPr);
 
     final contentMode = vspContMode.selectWatch((s) => s.mode);
 

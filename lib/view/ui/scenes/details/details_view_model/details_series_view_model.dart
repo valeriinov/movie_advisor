@@ -7,19 +7,16 @@ typedef DetailsSeriesState = DetailsState<SeriesData>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AFSP] with [DetailsSeriesViewModel], [DetailsSeriesState], and an integer ID.
-typedef DetailsSeriesVSP =
-    AFSP<DetailsSeriesViewModel, DetailsSeriesState, int>;
+/// A type alias for [VSP] with [DetailsSeriesViewModel], [DetailsSeriesState].
+typedef DetailsSeriesVSP = VSP<DetailsSeriesViewModel, DetailsSeriesState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [DetailsSeriesViewModel] class.
-final detailsSeriesViewModelPr =
-    AutoDisposeNotifierProvider.family<
-      DetailsSeriesViewModel,
-      DetailsSeriesState,
-      int
-    >(DetailsSeriesViewModel.new);
+final detailsSeriesViewModelPr = NotifierProvider.family
+    .autoDispose<DetailsSeriesViewModel, DetailsSeriesState, int>(
+      DetailsSeriesViewModel.new,
+    );
 
 /// {@category StateManagement}
 ///
@@ -28,8 +25,10 @@ final detailsSeriesViewModelPr =
 /// This class is responsible for coordinating `details_series` behavior and interacting with the UI.
 final class DetailsSeriesViewModel
     extends DetailsViewModel<SeriesData, SeriesShortData> {
+  DetailsSeriesViewModel(super.arg);
+
   @override
-  DetailsSeriesState build(arg) {
+  DetailsSeriesState build() {
     _detailsUseCase = ref.read(detailsSeriesUseCasePr);
     _watchUseCase = ref.read(watchSeriesUseCasePr);
 
@@ -37,7 +36,7 @@ final class DetailsSeriesViewModel
     scheduleCall(loadInitialData);
 
     return DetailsSeriesState(
-      data: SeriesData(id: arg, premiereDate: DateTime.now()),
+      data: SeriesData(id: _arg, premiereDate: DateTime.now()),
     );
   }
 }

@@ -19,12 +19,12 @@ class LanguageBottomSheet extends ConsumerWidget {
   Widget build(context, ref) {
     final dimens = context.baseDimens;
 
-    final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
+    final refreshVsp = ref.vspFromNotifierPr(refreshViewModelPr);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        BottomSheetCloseButton(),
+        const BottomSheetCloseButton(),
         BottomSheetTitle(title: LocaleKeys.settingsLanguageTitle.tr()),
         _buildContentModeMenu(refreshVsp),
         dimens.padBotPrim.gapVert(),
@@ -44,35 +44,35 @@ class LanguageBottomSheet extends ConsumerWidget {
         final isEn = _isSelected(currentLangCode, AppLocales.en.locale);
         final isUk = _isSelected(currentLangCode, AppLocales.uk.locale);
 
-        return Material(
-          type: MaterialType.transparency,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              RadioListTile<Locale>(
-                title: Text(
-                  LocaleKeys.english.tr(),
-                  style: isEn ? selectedTitleStyle : titleStyle,
+        return RadioGroup<Locale>(
+          groupValue: currentLocale,
+          onChanged: (Locale? locale) {
+            _onLanguageSelected(context, locale, vsp);
+          },
+          child: Material(
+            type: MaterialType.transparency,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RadioListTile<Locale>(
+                  title: Text(
+                    LocaleKeys.english.tr(),
+                    style: isEn ? selectedTitleStyle : titleStyle,
+                  ),
+                  value: AppLocales.en.locale,
+                  selected: isEn,
                 ),
-                value: AppLocales.en.locale,
-                groupValue: currentLocale,
-                selected: isEn,
-                onChanged: (locale) =>
-                    _onLanguageSelected(context, locale, vsp),
-              ),
-              RadioListTile<Locale>(
-                title: Text(
-                  LocaleKeys.ukrainian.tr(),
-                  style: isUk ? selectedTitleStyle : titleStyle,
+                RadioListTile<Locale>(
+                  title: Text(
+                    LocaleKeys.ukrainian.tr(),
+                    style: isUk ? selectedTitleStyle : titleStyle,
+                  ),
+                  value: AppLocales.uk.locale,
+                  selected: isUk,
                 ),
-                value: AppLocales.uk.locale,
-                groupValue: currentLocale,
-                selected: isUk,
-                onChanged: (locale) =>
-                    _onLanguageSelected(context, locale, vsp),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

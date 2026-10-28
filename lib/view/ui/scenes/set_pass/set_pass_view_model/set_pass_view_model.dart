@@ -10,31 +10,31 @@ import 'set_pass_state.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [AFSP] with [SetPassViewModel], [SetPassState], and an string oobCode.
-typedef SetPassAFSP = AFSP<SetPassViewModel, SetPassState, String>;
+/// A type alias for [VSP] with [SetPassViewModel], [SetPassState].
+typedef SetPassAFSP = VSP<SetPassViewModel, SetPassState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [SetPassViewModel] class.
-final setPassViewModelPr =
-    AutoDisposeNotifierProvider.family<SetPassViewModel, SetPassState, String>(
-      SetPassViewModel.new,
-    );
+final setPassViewModelPr = NotifierProvider.family
+    .autoDispose<SetPassViewModel, SetPassState, String>(SetPassViewModel.new);
 
 /// {@category StateManagement}
 ///
 /// A view model for managing `set pass`-specific logic and state.
 ///
 /// This class is responsible for coordinating `set pass` behavior and interacting with the UI.
-class SetPassViewModel extends AutoDisposeFamilyNotifier<SetPassState, String>
-    with SafeOperationsMixin {
+class SetPassViewModel extends Notifier<SetPassState> with SafeOperationsMixin {
+  final String _arg;
   late final AuthUseCase _authUseCase;
 
+  SetPassViewModel(this._arg);
+
   @override
-  SetPassState build(arg) {
+  SetPassState build() {
     _authUseCase = ref.read(authUseCasePr);
 
-    return SetPassState(oobCode: arg);
+    return SetPassState(oobCode: _arg);
   }
 
   void updateFormState(SetPassFormState formState) {

@@ -48,9 +48,9 @@ class WatchlistFilterMediaView<
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(filterProvider);
+    final vsp = ref.vspFromNotifierPr(filterProvider);
     final viewModel = vsp.viewModel;
-    final watchlistVsp = ref.vspFromADProvider(watchlistProvider);
+    final watchlistVsp = ref.vspFromNotifierPr(watchlistProvider);
 
     useEffect(() {
       _scheduleInitFilter(context, watchlistVsp, vsp);

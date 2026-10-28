@@ -11,13 +11,13 @@ import 'reg_state.dart';
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [RegViewModel] and [RegState].
-typedef RegVSP = ASP<RegViewModel, RegState>;
+/// A type alias for [VSP] with [RegViewModel] and [RegState].
+typedef RegVSP = VSP<RegViewModel, RegState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [RegViewModel] class.
-final regViewModelPr = AutoDisposeNotifierProvider<RegViewModel, RegState>(
+final regViewModelPr = NotifierProvider.autoDispose<RegViewModel, RegState>(
   RegViewModel.new,
 );
 
@@ -26,8 +26,7 @@ final regViewModelPr = AutoDisposeNotifierProvider<RegViewModel, RegState>(
 /// A view model for managing `reg`-specific logic and state.
 ///
 /// This class is responsible for coordinating `reg` behavior and interacting with the UI.
-class RegViewModel extends AutoDisposeNotifier<RegState>
-    with SafeOperationsMixin {
+class RegViewModel extends Notifier<RegState> with SafeOperationsMixin {
   late final AuthUseCase _authUseCase;
   late final SyncUseCase _syncUseCase;
 

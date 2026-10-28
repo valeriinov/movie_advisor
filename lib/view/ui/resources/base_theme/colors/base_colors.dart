@@ -127,6 +127,10 @@ abstract final class _BaseColors {
   static const infoCardPrimFg = Colors.white;
   static final backdropRatingBg = Color(0xFF252836).withValues(alpha: 0.32);
 
+  static const infoCardSecBg = Color(0xFF1f2126);
+  static const infoCardSecLabel = Color(0xFFd8dadd);
+  static const infoCardSecValue = Color(0xFFfcfdff);
+
   static const botSheetBg = Color(0xFFFFFFFF);
   static const botSheetFg = Color(0xFF4E4B66);
   static const botSheetIcon = Color(0xFFA0A3BD);

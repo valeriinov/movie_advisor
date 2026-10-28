@@ -7,8 +7,8 @@ typedef HomeSeriesState = HomeState<SeriesShortData>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [HomeSeriesViewModel] and [HomeSeriesState].
-typedef HomeSeriesVSP = ASP<HomeSeriesViewModel, HomeSeriesState>;
+/// A type alias for [VSP] with [HomeSeriesViewModel] and [HomeSeriesState].
+typedef HomeSeriesVSP = VSP<HomeSeriesViewModel, HomeSeriesState>;
 
 /// {@category StateManagement}
 ///
@@ -16,7 +16,7 @@ typedef HomeSeriesVSP = ASP<HomeSeriesViewModel, HomeSeriesState>;
 ///
 /// This class is responsible for coordinating `home_series` behavior and interacting with the UI.
 final homeSeriesViewModelPr =
-    AutoDisposeNotifierProvider<HomeSeriesViewModel, HomeSeriesState>(
+    NotifierProvider<HomeSeriesViewModel, HomeSeriesState>(
       HomeSeriesViewModel.new,
     );
 

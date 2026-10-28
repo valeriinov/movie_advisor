@@ -32,7 +32,9 @@ part 'more_routes.g.dart';
     TypedGoRoute<SettingsRoute>(path: AppRoutes.settings),
   ],
 )
-class MoreRoute extends GoRouteData with _$MoreRoute {
+class MoreRoute extends GoRouteData with $MoreRoute {
+  const MoreRoute();
+
   @override
   Page<void> buildPage(context, state) {
     return NoTransitionPage(
@@ -43,7 +45,9 @@ class MoreRoute extends GoRouteData with _$MoreRoute {
   }
 }
 
-class AboutUsRoute extends GoRouteData with _$AboutUsRoute {
+class AboutUsRoute extends GoRouteData with $AboutUsRoute {
+  const AboutUsRoute();
+
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -54,7 +58,9 @@ class AboutUsRoute extends GoRouteData with _$AboutUsRoute {
   }
 }
 
-class AuthRoute extends GoRouteData with ExitHandlerMixin, _$AuthRoute {
+class AuthRoute extends GoRouteData with ExitHandlerMixin, $AuthRoute {
+  const AuthRoute();
+
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -75,7 +81,9 @@ class AuthRoute extends GoRouteData with ExitHandlerMixin, _$AuthRoute {
   }
 }
 
-class RegRoute extends GoRouteData with ExitHandlerMixin, _$RegRoute {
+class RegRoute extends GoRouteData with ExitHandlerMixin, $RegRoute {
+  const RegRoute();
+
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -97,7 +105,9 @@ class RegRoute extends GoRouteData with ExitHandlerMixin, _$RegRoute {
 }
 
 class ResetPassRoute extends GoRouteData
-    with ExitHandlerMixin, _$ResetPassRoute {
+    with ExitHandlerMixin, $ResetPassRoute {
+  const ResetPassRoute();
+
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -119,7 +129,9 @@ class ResetPassRoute extends GoRouteData
 }
 
 class DeleteAccountRoute extends GoRouteData
-    with ExitHandlerMixin, _$DeleteAccountRoute {
+    with ExitHandlerMixin, $DeleteAccountRoute {
+  const DeleteAccountRoute();
+
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(
@@ -140,7 +152,9 @@ class DeleteAccountRoute extends GoRouteData
   }
 }
 
-class SettingsRoute extends GoRouteData with _$SettingsRoute {
+class SettingsRoute extends GoRouteData with $SettingsRoute {
+  const SettingsRoute();
+
   @override
   Page<void> buildPage(context, state) {
     return MaterialPage(

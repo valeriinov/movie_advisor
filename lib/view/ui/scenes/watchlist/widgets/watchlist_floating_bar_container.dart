@@ -27,7 +27,7 @@ class WatchlistFloatingBarContainer<
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(provider);
+    final vsp = ref.vspFromNotifierPr(provider);
     final viewModel = vsp.viewModel;
 
     final isInitialized = vsp.selectWatch((s) => s.status.isInitialized);

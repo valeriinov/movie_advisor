@@ -5,7 +5,9 @@ import '../../utils/genres_hook.dart';
 import '../country_dto.dart';
 import '../credits/credits_data_dto.dart';
 import '../video/videos_data_dto.dart';
+import 'series_episode_data_dto.dart';
 import 'series_genre_dto.dart';
+import 'series_season_data_dto.dart';
 
 part 'series_data_dto.mapper.dart';
 
@@ -37,6 +39,10 @@ class SeriesDataDto with SeriesDataDtoMappable {
   final DateTime? watchlistAddedAt;
   @MappableField(hook: DateMapperHook())
   final DateTime? lastWatchedAt;
+  final int? numberOfSeasons;
+  final List<SeriesSeasonDataDto>? seasons;
+  final SeriesEpisodeDataDto? lastEpisodeToAir;
+  final SeriesEpisodeDataDto? nextEpisodeToAir;
 
   const SeriesDataDto({
     this.id,
@@ -60,6 +66,10 @@ class SeriesDataDto with SeriesDataDtoMappable {
     this.isWatched,
     this.watchlistAddedAt,
     this.lastWatchedAt,
+    this.numberOfSeasons,
+    this.seasons,
+    this.lastEpisodeToAir,
+    this.nextEpisodeToAir,
   });
 
   factory SeriesDataDto.fromJson(Map<String, dynamic> json) =>

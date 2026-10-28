@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math_64.dart';
 
 import '../../../../../domain/entities/person/gender.dart';
 import '../../../../../domain/entities/person/person_data.dart';
@@ -29,8 +30,8 @@ class PersonPropsContainer extends StatelessWidget {
               DetailsPropsTile(
                 iconPath: AppImages.genderIcon,
                 iconTransform: Matrix4.identity()
-                  ..translate(-1.5, -2.0)
-                  ..scale(1.3),
+                  ..translateByVector3(Vector3(-1.5, -2.0, 0.0))
+                  ..scaleByVector3(Vector3(1.3, 1.3, 1.0)),
                 description: person.gender.desc,
               ),
             if (person.birthday != null)

@@ -40,7 +40,7 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vsp = ref.vspFromADFProvider(provider(id));
+    final vsp = ref.vspFromNotifierPr(provider(id));
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;
@@ -63,7 +63,7 @@ class DetailsMediaView<T extends MediaData, S extends MediaShortData>
         ),
         body: BottomSafeArea(
           child: isSkeletonVisible
-              ? DetailsContentSkeleton(isMovie: T is MovieData)
+              ? DetailsContentSkeleton(isMovie: T == MovieData)
               : DetailsScreenContent(
                   data: data,
                   status: status,

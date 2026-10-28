@@ -7,15 +7,15 @@ typedef WatchedFilterMoviesState = WatchedFilterState<MoviesWatchedFilterData>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [WatchedFilterMoviesViewModel] and [WatchedFilterState].
+/// A type alias for [VSP] with [WatchedFilterMoviesViewModel] and [WatchedFilterState].
 typedef WatchedFilterMoviesVSP =
-    ASP<WatchedFilterMoviesViewModel, WatchedFilterMoviesState>;
+    VSP<WatchedFilterMoviesViewModel, WatchedFilterMoviesState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [WatchedFilterMoviesViewModel] class.
 final watchedFilterMoviesViewModelPr =
-    AutoDisposeNotifierProvider<
+    NotifierProvider.autoDispose<
       WatchedFilterMoviesViewModel,
       WatchedFilterMoviesState
     >(WatchedFilterMoviesViewModel.new);

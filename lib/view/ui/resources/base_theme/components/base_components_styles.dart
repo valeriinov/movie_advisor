@@ -2,6 +2,7 @@ part of 'base_components_styles_ext.dart';
 
 abstract final class _BaseComponentsStyles {
   static const double cardPrimBorderRadius = 12.0;
+  static const double cardSecContentPadding = 16.0;
 
   static ShapeBorder cardPrimShape({Color? borderColor}) =>
       RoundedRectangleBorder(
@@ -10,6 +11,25 @@ abstract final class _BaseComponentsStyles {
             ? BorderSide(color: borderColor)
             : BorderSide.none,
       );
+
+  static BoxDecoration cardSecBoxDecoration({Color? bgColor}) => BoxDecoration(
+    color: bgColor,
+    borderRadius: BorderRadius.circular(cardPrimBorderRadius),
+  );
+
+  static TextStyle cardSecLabelTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    color: color,
+  );
+
+  static TextStyle cardSecValTextStyle(Color color) => TextStyle(
+    fontFamily: AppFonts.montserrat,
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    color: color,
+  );
 
   static double horizontalTitleGap = 12;
 

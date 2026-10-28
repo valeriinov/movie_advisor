@@ -23,7 +23,7 @@ class RegScreenView extends ConsumerWidget {
   Widget build(context, ref) {
     final dimens = context.baseDimens;
 
-    final vsp = ref.vspFromADProvider(regViewModelPr);
+    final vsp = ref.vspFromNotifierPr(regViewModelPr);
 
     vsp.handleState(
       listener: (prev, next) =>

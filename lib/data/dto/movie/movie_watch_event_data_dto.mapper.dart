@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format off
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
@@ -23,20 +24,38 @@ class MovieWatchEventDataDtoMapper
   final String id = 'MovieWatchEventDataDto';
 
   static String? _$id(MovieWatchEventDataDto v) => v.id;
-  static const Field<MovieWatchEventDataDto, String> _f$id =
-      Field('id', _$id, opt: true);
+  static const Field<MovieWatchEventDataDto, String> _f$id = Field(
+    'id',
+    _$id,
+    opt: true,
+  );
   static int? _$tmdbId(MovieWatchEventDataDto v) => v.tmdbId;
-  static const Field<MovieWatchEventDataDto, int> _f$tmdbId =
-      Field('tmdbId', _$tmdbId, key: r'tmdb_id', opt: true);
+  static const Field<MovieWatchEventDataDto, int> _f$tmdbId = Field(
+    'tmdbId',
+    _$tmdbId,
+    key: r'tmdb_id',
+    opt: true,
+  );
   static WatchEventTypeDto? _$type(MovieWatchEventDataDto v) => v.type;
-  static const Field<MovieWatchEventDataDto, WatchEventTypeDto> _f$type =
-      Field('type', _$type, opt: true);
+  static const Field<MovieWatchEventDataDto, WatchEventTypeDto> _f$type = Field(
+    'type',
+    _$type,
+    opt: true,
+  );
   static int? _$userRating(MovieWatchEventDataDto v) => v.userRating;
-  static const Field<MovieWatchEventDataDto, int> _f$userRating =
-      Field('userRating', _$userRating, key: r'user_rating', opt: true);
+  static const Field<MovieWatchEventDataDto, int> _f$userRating = Field(
+    'userRating',
+    _$userRating,
+    key: r'user_rating',
+    opt: true,
+  );
   static DateTime? _$at(MovieWatchEventDataDto v) => v.at;
-  static const Field<MovieWatchEventDataDto, DateTime> _f$at =
-      Field('at', _$at, opt: true, hook: DateMapperHook());
+  static const Field<MovieWatchEventDataDto, DateTime> _f$at = Field(
+    'at',
+    _$at,
+    opt: true,
+    hook: DateMapperHook(),
+  );
 
   @override
   final MappableFields<MovieWatchEventDataDto> fields = const {
@@ -51,11 +70,12 @@ class MovieWatchEventDataDtoMapper
 
   static MovieWatchEventDataDto _instantiate(DecodingData data) {
     return MovieWatchEventDataDto(
-        id: data.dec(_f$id),
-        tmdbId: data.dec(_f$tmdbId),
-        type: data.dec(_f$type),
-        userRating: data.dec(_f$userRating),
-        at: data.dec(_f$at));
+      id: data.dec(_f$id),
+      tmdbId: data.dec(_f$tmdbId),
+      type: data.dec(_f$type),
+      userRating: data.dec(_f$userRating),
+      at: data.dec(_f$at),
+    );
   }
 
   @override
@@ -81,49 +101,63 @@ mixin MovieWatchEventDataDtoMappable {
         .encodeMap<MovieWatchEventDataDto>(this as MovieWatchEventDataDto);
   }
 
-  MovieWatchEventDataDtoCopyWith<MovieWatchEventDataDto, MovieWatchEventDataDto,
-          MovieWatchEventDataDto>
-      get copyWith => _MovieWatchEventDataDtoCopyWithImpl<
-              MovieWatchEventDataDto, MovieWatchEventDataDto>(
-          this as MovieWatchEventDataDto, $identity, $identity);
+  MovieWatchEventDataDtoCopyWith<
+    MovieWatchEventDataDto,
+    MovieWatchEventDataDto,
+    MovieWatchEventDataDto
+  >
+  get copyWith =>
+      _MovieWatchEventDataDtoCopyWithImpl<
+        MovieWatchEventDataDto,
+        MovieWatchEventDataDto
+      >(this as MovieWatchEventDataDto, $identity, $identity);
   @override
   String toString() {
-    return MovieWatchEventDataDtoMapper.ensureInitialized()
-        .stringifyValue(this as MovieWatchEventDataDto);
+    return MovieWatchEventDataDtoMapper.ensureInitialized().stringifyValue(
+      this as MovieWatchEventDataDto,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return MovieWatchEventDataDtoMapper.ensureInitialized()
-        .equalsValue(this as MovieWatchEventDataDto, other);
+    return MovieWatchEventDataDtoMapper.ensureInitialized().equalsValue(
+      this as MovieWatchEventDataDto,
+      other,
+    );
   }
 
   @override
   int get hashCode {
-    return MovieWatchEventDataDtoMapper.ensureInitialized()
-        .hashValue(this as MovieWatchEventDataDto);
+    return MovieWatchEventDataDtoMapper.ensureInitialized().hashValue(
+      this as MovieWatchEventDataDto,
+    );
   }
 }
 
 extension MovieWatchEventDataDtoValueCopy<$R, $Out>
     on ObjectCopyWith<$R, MovieWatchEventDataDto, $Out> {
   MovieWatchEventDataDtoCopyWith<$R, MovieWatchEventDataDto, $Out>
-      get $asMovieWatchEventDataDto => $base.as((v, t, t2) =>
-          _MovieWatchEventDataDtoCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asMovieWatchEventDataDto => $base.as(
+    (v, t, t2) => _MovieWatchEventDataDtoCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
 abstract class MovieWatchEventDataDtoCopyWith<
-    $R,
-    $In extends MovieWatchEventDataDto,
-    $Out> implements ClassCopyWith<$R, $In, $Out> {
-  $R call(
-      {String? id,
-      int? tmdbId,
-      WatchEventTypeDto? type,
-      int? userRating,
-      DateTime? at});
+  $R,
+  $In extends MovieWatchEventDataDto,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({
+    String? id,
+    int? tmdbId,
+    WatchEventTypeDto? type,
+    int? userRating,
+    DateTime? at,
+  });
   MovieWatchEventDataDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
 
 class _MovieWatchEventDataDtoCopyWithImpl<$R, $Out>
@@ -136,29 +170,33 @@ class _MovieWatchEventDataDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MovieWatchEventDataDto> $mapper =
       MovieWatchEventDataDtoMapper.ensureInitialized();
   @override
-  $R call(
-          {Object? id = $none,
-          Object? tmdbId = $none,
-          Object? type = $none,
-          Object? userRating = $none,
-          Object? at = $none}) =>
-      $apply(FieldCopyWithData({
-        if (id != $none) #id: id,
-        if (tmdbId != $none) #tmdbId: tmdbId,
-        if (type != $none) #type: type,
-        if (userRating != $none) #userRating: userRating,
-        if (at != $none) #at: at
-      }));
+  $R call({
+    Object? id = $none,
+    Object? tmdbId = $none,
+    Object? type = $none,
+    Object? userRating = $none,
+    Object? at = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (id != $none) #id: id,
+      if (tmdbId != $none) #tmdbId: tmdbId,
+      if (type != $none) #type: type,
+      if (userRating != $none) #userRating: userRating,
+      if (at != $none) #at: at,
+    }),
+  );
   @override
   MovieWatchEventDataDto $make(CopyWithData data) => MovieWatchEventDataDto(
-      id: data.get(#id, or: $value.id),
-      tmdbId: data.get(#tmdbId, or: $value.tmdbId),
-      type: data.get(#type, or: $value.type),
-      userRating: data.get(#userRating, or: $value.userRating),
-      at: data.get(#at, or: $value.at));
+    id: data.get(#id, or: $value.id),
+    tmdbId: data.get(#tmdbId, or: $value.tmdbId),
+    type: data.get(#type, or: $value.type),
+    userRating: data.get(#userRating, or: $value.userRating),
+    at: data.get(#at, or: $value.at),
+  );
 
   @override
   MovieWatchEventDataDtoCopyWith<$R2, MovieWatchEventDataDto, $Out2>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _MovieWatchEventDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _MovieWatchEventDataDtoCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
+

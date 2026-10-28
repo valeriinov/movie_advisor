@@ -12,6 +12,16 @@ abstract final class BaseComponentsStylesFactory {
   static BaseComponentsStyles createComponentsStyles(BaseColors colors) {
     return BaseComponentsStyles(
       cardPrimBorderRadius: _BaseComponentsStyles.cardPrimBorderRadius,
+      cardSecContentPadding: _BaseComponentsStyles.cardSecContentPadding,
+      cardSecBoxDecoration: _BaseComponentsStyles.cardSecBoxDecoration(
+        bgColor: colors.infoCardSecBg,
+      ),
+      cardSecLabelTextStyle: _BaseComponentsStyles.cardSecLabelTextStyle(
+        colors.infoCardSecLabel,
+      ),
+      cardSecValTextStyle: _BaseComponentsStyles.cardSecValTextStyle(
+        colors.infoCardSecValue,
+      ),
       cardPrimShape: _BaseComponentsStyles.cardPrimShape(
         borderColor: colors.cardPrimBorder,
       ),
@@ -102,11 +112,27 @@ abstract final class BaseComponentsStylesFactory {
 @TailorMixin()
 class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
     with _$BaseComponentsStylesTailorMixin {
-  /// Primary BorderRadius of the card
+  /// Primary BorderRadius of the card.
   @override
   final double cardPrimBorderRadius;
 
-  /// Primary ShapeBorder of the card
+  /// Secondary content padding of the card.
+  @override
+  final double cardSecContentPadding;
+
+  /// Secondary BoxDecoration of the card.
+  @override
+  final BoxDecoration cardSecBoxDecoration;
+
+  /// Secondary TextStyle of the card label.
+  @override
+  final TextStyle cardSecLabelTextStyle;
+
+  /// Secondary TextStyle of the card value.
+  @override
+  final TextStyle cardSecValTextStyle;
+
+  /// Primary ShapeBorder of the card.
   @override
   final ShapeBorder cardPrimShape;
 
@@ -251,6 +277,10 @@ class BaseComponentsStyles extends ThemeExtension<BaseComponentsStyles>
 
   BaseComponentsStyles({
     required this.cardPrimBorderRadius,
+    required this.cardSecContentPadding,
+    required this.cardSecBoxDecoration,
+    required this.cardSecLabelTextStyle,
+    required this.cardSecValTextStyle,
     required this.cardPrimShape,
     required this.horizontalTitleGap,
     required this.listTilePrimTitleTextStyle,

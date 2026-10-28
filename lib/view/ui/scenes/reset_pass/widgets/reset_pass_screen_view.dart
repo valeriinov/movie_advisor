@@ -23,7 +23,7 @@ class ResetPassScreenView extends ConsumerWidget {
   Widget build(context, ref) {
     final dimens = context.baseDimens;
 
-    final vsp = ref.vspFromADProvider(resetPassViewModelPr);
+    final vsp = ref.vspFromNotifierPr(resetPassViewModelPr);
 
     vsp.handleState(
       listener: (prev, next) =>

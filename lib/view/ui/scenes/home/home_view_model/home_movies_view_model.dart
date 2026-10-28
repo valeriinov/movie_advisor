@@ -7,14 +7,14 @@ typedef HomeMoviesState = HomeState<MovieShortData>;
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [HomeMoviesViewModel] and [HomeMoviesState].
-typedef HomeMoviesVSP = ASP<HomeMoviesViewModel, HomeMoviesState>;
+/// A type alias for [VSP] with [HomeMoviesViewModel] and [HomeMoviesState].
+typedef HomeMoviesVSP = VSP<HomeMoviesViewModel, HomeMoviesState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [HomeMoviesViewModel] class.
 final homeMoviesViewModelPr =
-    AutoDisposeNotifierProvider<HomeMoviesViewModel, HomeMoviesState>(
+    NotifierProvider<HomeMoviesViewModel, HomeMoviesState>(
       HomeMoviesViewModel.new,
     );
 

@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format off
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
@@ -21,11 +22,19 @@ class SetPassDataMapper extends ClassMapperBase<SetPassData> {
   final String id = 'SetPassData';
 
   static String _$oobCode(SetPassData v) => v.oobCode;
-  static const Field<SetPassData, String> _f$oobCode =
-      Field('oobCode', _$oobCode, opt: true, def: '');
+  static const Field<SetPassData, String> _f$oobCode = Field(
+    'oobCode',
+    _$oobCode,
+    opt: true,
+    def: '',
+  );
   static String _$password(SetPassData v) => v.password;
-  static const Field<SetPassData, String> _f$password =
-      Field('password', _$password, opt: true, def: '');
+  static const Field<SetPassData, String> _f$password = Field(
+    'password',
+    _$password,
+    opt: true,
+    def: '',
+  );
 
   @override
   final MappableFields<SetPassData> fields = const {
@@ -35,7 +44,9 @@ class SetPassDataMapper extends ClassMapperBase<SetPassData> {
 
   static SetPassData _instantiate(DecodingData data) {
     return SetPassData(
-        oobCode: data.dec(_f$oobCode), password: data.dec(_f$password));
+      oobCode: data.dec(_f$oobCode),
+      password: data.dec(_f$password),
+    );
   }
 
   @override
@@ -45,17 +56,23 @@ class SetPassDataMapper extends ClassMapperBase<SetPassData> {
 mixin SetPassDataMappable {
   SetPassDataCopyWith<SetPassData, SetPassData, SetPassData> get copyWith =>
       _SetPassDataCopyWithImpl<SetPassData, SetPassData>(
-          this as SetPassData, $identity, $identity);
+        this as SetPassData,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
-    return SetPassDataMapper.ensureInitialized()
-        .stringifyValue(this as SetPassData);
+    return SetPassDataMapper.ensureInitialized().stringifyValue(
+      this as SetPassData,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return SetPassDataMapper.ensureInitialized()
-        .equalsValue(this as SetPassData, other);
+    return SetPassDataMapper.ensureInitialized().equalsValue(
+      this as SetPassData,
+      other,
+    );
   }
 
   @override
@@ -85,17 +102,21 @@ class _SetPassDataCopyWithImpl<$R, $Out>
   late final ClassMapperBase<SetPassData> $mapper =
       SetPassDataMapper.ensureInitialized();
   @override
-  $R call({String? oobCode, String? password}) => $apply(FieldCopyWithData({
-        if (oobCode != null) #oobCode: oobCode,
-        if (password != null) #password: password
-      }));
+  $R call({String? oobCode, String? password}) => $apply(
+    FieldCopyWithData({
+      if (oobCode != null) #oobCode: oobCode,
+      if (password != null) #password: password,
+    }),
+  );
   @override
   SetPassData $make(CopyWithData data) => SetPassData(
-      oobCode: data.get(#oobCode, or: $value.oobCode),
-      password: data.get(#password, or: $value.password));
+    oobCode: data.get(#oobCode, or: $value.oobCode),
+    password: data.get(#password, or: $value.password),
+  );
 
   @override
   SetPassDataCopyWith<$R2, SetPassData, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _SetPassDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
+    Then<$Out2, $R2> t,
+  ) => _SetPassDataCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
+

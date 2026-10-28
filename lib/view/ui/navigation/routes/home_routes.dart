@@ -17,7 +17,9 @@ part 'home_routes.g.dart';
     TypedGoRoute<FilterRoute>(path: AppRoutes.filter),
   ],
 )
-class HomeRoute extends GoRouteData with _$HomeRoute {
+class HomeRoute extends GoRouteData with $HomeRoute {
+  const HomeRoute();
+
   @override
   Page<void> buildPage(context, state) {
     return NoTransitionPage(
@@ -29,14 +31,17 @@ class HomeRoute extends GoRouteData with _$HomeRoute {
 }
 
 class SearchRoute extends GoRouteData
-    with TransitionBuilderMixin, _$SearchRoute {
-  SearchRoute();
+    with TransitionBuilderMixin, $SearchRoute {
+  const SearchRoute();
 
   @override
   Page<void> buildPage(context, state) {
     return CustomTransitionPage(
       key: state.pageKey,
       name: state.fullPath,
+      // Keep the parent screen visible to
+      // prevent Riverpod v3 pauses "out-of-view".
+      opaque: false,
       child: SearchScreen(),
       transitionsBuilder: fadeTransitionBuilder,
     );
@@ -44,14 +49,17 @@ class SearchRoute extends GoRouteData
 }
 
 class FilterRoute extends GoRouteData
-    with TransitionBuilderMixin, _$FilterRoute {
-  FilterRoute();
+    with TransitionBuilderMixin, $FilterRoute {
+  const FilterRoute();
 
   @override
   Page<void> buildPage(context, state) {
     return CustomTransitionPage(
       key: state.pageKey,
       name: state.fullPath,
+      // Keep the parent screen visible to
+      // prevent Riverpod listeners from pausing.
+      opaque: false,
       child: FilterScreen(),
       transitionsBuilder: fadeTransitionBuilder,
     );
@@ -60,7 +68,7 @@ class FilterRoute extends GoRouteData
 
 @TypedGoRoute<FilterSettingsRoute>(path: AppRoutes.filterSettings)
 class FilterSettingsRoute extends GoRouteData
-    with TransitionBuilderMixin, _$FilterSettingsRoute {
+    with TransitionBuilderMixin, $FilterSettingsRoute {
   /// The [FilterSettingsRoute] is displayed above the navigation menu,
   /// use `push` when navigating to this screen.
   ///
@@ -70,7 +78,7 @@ class FilterSettingsRoute extends GoRouteData
   ///   FilterSettingsRoute().push(context);
   /// }
   /// ```
-  FilterSettingsRoute();
+  const FilterSettingsRoute();
 
   @override
   Page<void> buildPage(context, state) {

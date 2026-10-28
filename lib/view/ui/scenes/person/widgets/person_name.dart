@@ -25,11 +25,13 @@ class PersonName extends StatelessWidget {
         decoration: _buildGradientDecoration(context),
         child: Padding(
           padding: EdgeInsets.fromLTRB(left, 35, right, 0),
-          child: Text(
-            name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: context.headlineMedium,
+          child: SelectionArea(
+            child: Text(
+              name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: context.headlineMedium,
+            ),
           ),
         ),
       ),

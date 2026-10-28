@@ -23,7 +23,7 @@ class DeleteAccountScreenView extends ConsumerWidget {
   Widget build(context, ref) {
     final dimens = context.baseDimens;
 
-    final vsp = ref.vspFromADProvider(deleteAccountViewModelPr);
+    final vsp = ref.vspFromNotifierPr(deleteAccountViewModelPr);
 
     vsp.handleState(
       listener: (prev, next) =>

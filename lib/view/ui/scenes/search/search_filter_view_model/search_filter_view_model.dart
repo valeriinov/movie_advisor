@@ -4,19 +4,19 @@ import '../../../base/view_model/ext/vm_state_provider_creator.dart';
 import 'search_filter_state.dart';
 
 final searchFilterViewModelPr =
-    AutoDisposeNotifierProvider<SearchFilterViewModel, SearchFilterState>(
+    NotifierProvider.autoDispose<SearchFilterViewModel, SearchFilterState>(
       SearchFilterViewModel.new,
     );
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [SearchFilterViewModel] and [SearchFilterState].
-typedef SearchFilterVSP = ASP<SearchFilterViewModel, SearchFilterState>;
+/// A type alias for [VSP] with [SearchFilterViewModel] and [SearchFilterState].
+typedef SearchFilterVSP = VSP<SearchFilterViewModel, SearchFilterState>;
 
 /// {@category StateManagement}
 ///
 /// A view model for managing the [SearchFilterState].
-class SearchFilterViewModel extends AutoDisposeNotifier<SearchFilterState> {
+class SearchFilterViewModel extends Notifier<SearchFilterState> {
   @override
   SearchFilterState build() => const SearchFilterState();
 

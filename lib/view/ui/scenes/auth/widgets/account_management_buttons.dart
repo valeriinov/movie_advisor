@@ -12,7 +12,7 @@ class AccountManagementButtons extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(authViewModelPr);
+    final vsp = ref.vspFromNotifierPr(authViewModelPr);
 
     final isLoading = vsp.isLoading;
 

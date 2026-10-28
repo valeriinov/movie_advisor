@@ -9,9 +9,9 @@ part of 'details_route.dart';
 List<RouteBase> get $appRoutes => [$detailsRoute];
 
 RouteBase get $detailsRoute =>
-    GoRouteData.$route(path: '/details', factory: _$DetailsRoute._fromState);
+    GoRouteData.$route(path: '/details', factory: $DetailsRoute._fromState);
 
-mixin _$DetailsRoute on GoRouteData {
+mixin $DetailsRoute on GoRouteData {
   static DetailsRoute _fromState(GoRouterState state) => DetailsRoute(
     id: _$convertMapValue('id', state.uri.queryParameters, int.parse) ?? -1,
     contentMode:

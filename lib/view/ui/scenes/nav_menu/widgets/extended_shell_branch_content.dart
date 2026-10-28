@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../navigation/utils/extended_shell_branch.dart';
 import '../../../navigation/utils/branch_handler_mixin.dart';
+import '../../../navigation/utils/extended_shell_branch.dart';
 
 /// {@category Widgets}
 ///
@@ -36,7 +36,10 @@ class ExtendedShellBranchContent extends StatelessWidget
     return saveState
         ? Offstage(
             offstage: !isActive,
-            child: TickerMode(enabled: isActive, child: child),
+            // Ensure descendant providers/listeners
+            // never pause — Riverpod v3 pauses "out-of-view"
+            // providers by default unless wrapped in TickerMode(true).
+            child: TickerMode(enabled: true, child: child),
           )
         : Visibility(visible: isActive, child: child);
   }

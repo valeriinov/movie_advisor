@@ -247,5 +247,12 @@ abstract class  LocaleKeys {
   static const filterToYear = 'filterToYear';
   static const filterFromLabel = 'filterFromLabel';
   static const filterToLabel = 'filterToLabel';
+  static const totalSeasons = 'totalSeasons';
+  static const latestSeason = 'latestSeason';
+  static const nextEpisode = 'nextEpisode';
+  static const episodes = 'episodes';
+  static const availability = 'availability';
+  static const premiere = 'premiere';
+  static const startAiring = 'startAiring';
 
 }

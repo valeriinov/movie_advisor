@@ -23,7 +23,7 @@ class AuthScreenView extends ConsumerWidget {
   Widget build(context, ref) {
     final dimens = context.baseDimens;
 
-    final vsp = ref.vspFromADProvider(authViewModelPr);
+    final vsp = ref.vspFromNotifierPr(authViewModelPr);
 
     vsp.handleState(
       listener: (prev, next) =>

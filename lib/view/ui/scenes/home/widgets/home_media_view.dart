@@ -39,7 +39,7 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vsp = ref.vspFromADProvider(provider);
+    final vsp = ref.vspFromNotifierPr(provider);
 
     final isLoading = vsp.isLoading;
     final isInitialized = vsp.isInitialized;
@@ -55,7 +55,7 @@ class HomeMediaView<T extends MediaShortData> extends HookConsumerWidget
       ),
     );
 
-    final refreshVsp = ref.vspFromADProvider(refreshViewModelPr);
+    final refreshVsp = ref.vspFromNotifierPr(refreshViewModelPr);
 
     refreshVsp.handleState(
       listener: (prev, next) {

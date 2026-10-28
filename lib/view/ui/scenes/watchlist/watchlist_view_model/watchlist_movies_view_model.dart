@@ -8,17 +8,18 @@ typedef WatchlistMoviesState =
 
 /// {@category StateManagement}
 ///
-/// A type alias for [ASP] with [WatchlistMoviesViewModel] and [WatchlistMoviesState].
+/// A type alias for [VSP] with [WatchlistMoviesViewModel] and [WatchlistMoviesState].
 typedef WatchlistMoviesVSP =
-    ASP<WatchlistMoviesViewModel, WatchlistMoviesState>;
+    VSP<WatchlistMoviesViewModel, WatchlistMoviesState>;
 
 /// {@category StateManagement}
 ///
 /// A provider for the [WatchlistMoviesViewModel] class.
 final watchlistMoviesViewModelPr =
-    AutoDisposeNotifierProvider<WatchlistMoviesViewModel, WatchlistMoviesState>(
-      WatchlistMoviesViewModel.new,
-    );
+    NotifierProvider.autoDispose<
+      WatchlistMoviesViewModel,
+      WatchlistMoviesState
+    >(WatchlistMoviesViewModel.new);
 
 /// {@category StateManagement}
 ///

@@ -43,9 +43,9 @@ class FilterSettingsMediaView<T extends MediaShortData, F extends FilterData, G>
 
   @override
   Widget build(context, ref) {
-    final vsp = ref.vspFromADProvider(filterSettingsProvider);
+    final vsp = ref.vspFromNotifierPr(filterSettingsProvider);
     final viewModel = vsp.viewModel;
-    final vspFilter = ref.vspFromADProvider(filterProvider);
+    final vspFilter = ref.vspFromNotifierPr(filterProvider);
 
     useEffect(() {
       _scheduleInitFilter(context, vspFilter, vsp);

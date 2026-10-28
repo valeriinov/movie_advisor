@@ -22,12 +22,13 @@ class ImplWatchRemoteDataSource implements WatchRemoteDataSource {
   }
 
   @override
-  Future<void> addToWatchlistMovie(MovieShortDataDto data) =>
-      _mediaService.updateOrInsertMovie(data);
+  Future<void> addToWatchlistMovie(MovieShortDataDto data) => _saveMovie(data);
 
   @override
-  Future<void> addToWatchedMovie(MovieShortDataDto data) =>
-      _mediaService.updateOrInsertMovie(data);
+  Future<void> addToWatchedMovie(MovieShortDataDto data) => _saveMovie(data);
+
+  @override
+  Future<void> updateMovie(MovieShortDataDto data) => _saveMovie(data);
 
   @override
   Future<void> removeFromWatchlistMovie(int id) =>
@@ -44,11 +45,13 @@ class ImplWatchRemoteDataSource implements WatchRemoteDataSource {
 
   @override
   Future<void> addToWatchlistSeries(SeriesShortDataDto data) =>
-      _mediaService.updateOrInsertSeries(data);
+      _saveSeries(data);
 
   @override
-  Future<void> addToWatchedSeries(SeriesShortDataDto data) =>
-      _mediaService.updateOrInsertSeries(data);
+  Future<void> addToWatchedSeries(SeriesShortDataDto data) => _saveSeries(data);
+
+  @override
+  Future<void> updateSeries(SeriesShortDataDto data) => _saveSeries(data);
 
   @override
   Future<void> removeFromWatchlistSeries(int id) =>
@@ -79,5 +82,13 @@ class ImplWatchRemoteDataSource implements WatchRemoteDataSource {
   @override
   Future<void> addSeriesEvent(SeriesWatchEventDataDto data) {
     return _mediaService.addSeriesEvent(data);
+  }
+
+  Future<void> _saveMovie(MovieShortDataDto data) async {
+    await _mediaService.updateOrInsertMovie(data);
+  }
+
+  Future<void> _saveSeries(SeriesShortDataDto data) async {
+    await _mediaService.updateOrInsertSeries(data);
   }
 }

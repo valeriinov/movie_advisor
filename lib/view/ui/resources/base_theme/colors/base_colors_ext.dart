@@ -96,6 +96,9 @@ abstract final class BaseColorsFactory {
     infoCardRating: _BaseColors.infoCardRating,
     infoCardPrimFg: _BaseColors.infoCardPrimFg,
     backdropRatingBg: _BaseColors.backdropRatingBg,
+    infoCardSecBg: _BaseColors.infoCardSecBg,
+    infoCardSecLabel: _BaseColors.infoCardSecLabel,
+    infoCardSecValue: _BaseColors.infoCardSecValue,
     botSheetBg: _BaseColors.botSheetBg,
     botSheetFg: _BaseColors.botSheetFg,
     botSheetIcon: _BaseColors.botSheetIcon,
@@ -501,6 +504,18 @@ class BaseColors extends ThemeExtension<BaseColors>
   @override
   final Color backdropRatingBg;
 
+  /// Info card secondary background color.
+  @override
+  final Color infoCardSecBg;
+
+  /// Info card secondary label color.
+  @override
+  final Color infoCardSecLabel;
+
+  /// Info card secondary value color.
+  @override
+  final Color infoCardSecValue;
+
   /// Bottom sheet background color.
   @override
   final Color botSheetBg;
@@ -703,6 +718,9 @@ class BaseColors extends ThemeExtension<BaseColors>
     required this.infoCardRating,
     required this.infoCardPrimFg,
     required this.backdropRatingBg,
+    required this.infoCardSecBg,
+    required this.infoCardSecLabel,
+    required this.infoCardSecValue,
     required this.botSheetBg,
     required this.botSheetFg,
     required this.botSheetIcon,

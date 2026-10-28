@@ -5,14 +5,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 /// A mixin that provides the functionality to schedule asynchronous operations
 /// in Flutter applications using Riverpod.
 ///
-/// This mixin is particularly valuable in notifiers like [AutoDisposeFamilyNotifier],
-/// [AutoDisposeNotifier], [FamilyNotifier] and [Notifier] in scenarios where asynchronous operations
+/// This mixin is particularly valuable in notifiers like [FamilyNotifier],
+/// [Notifier], [FamilyNotifier] and [Notifier] in scenarios where asynchronous operations
 /// need to be triggered as part of the notifier's initialization process, but only
 /// after the initial state has been established.
 ///
 /// Example:
 /// ```dart
-/// class MyViewModel extends AutoDisposeNotifier<MyState> with ScheduleOperationsMixin {
+/// class MyViewModel extends Notifier<MyState> with ScheduleOperationsMixin {
 ///   @override
 ///   MyState build() {
 ///     // Schedule an asynchronous operation to be executed after state initialization.

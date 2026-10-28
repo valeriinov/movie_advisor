@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format off
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
@@ -24,34 +25,55 @@ class MediaShortDataMapper extends ClassMapperBase<MediaShortData> {
   static int _$id(MediaShortData v) => v.id;
   static const Field<MediaShortData, int> _f$id = Field('id', _$id);
   static String _$posterUrl(MediaShortData v) => v.posterUrl;
-  static const Field<MediaShortData, String> _f$posterUrl =
-      Field('posterUrl', _$posterUrl);
+  static const Field<MediaShortData, String> _f$posterUrl = Field(
+    'posterUrl',
+    _$posterUrl,
+  );
   static List<Country> _$originCountry(MediaShortData v) => v.originCountry;
-  static const Field<MediaShortData, List<Country>> _f$originCountry =
-      Field('originCountry', _$originCountry);
+  static const Field<MediaShortData, List<Country>> _f$originCountry = Field(
+    'originCountry',
+    _$originCountry,
+  );
   static DateTime? _$premiereDate(MediaShortData v) => v.premiereDate;
-  static const Field<MediaShortData, DateTime> _f$premiereDate =
-      Field('premiereDate', _$premiereDate, opt: true);
+  static const Field<MediaShortData, DateTime> _f$premiereDate = Field(
+    'premiereDate',
+    _$premiereDate,
+    opt: true,
+  );
   static String _$title(MediaShortData v) => v.title;
   static const Field<MediaShortData, String> _f$title = Field('title', _$title);
   static TMDBRating _$tmdbRating(MediaShortData v) => v.tmdbRating;
-  static const Field<MediaShortData, TMDBRating> _f$tmdbRating =
-      Field('tmdbRating', _$tmdbRating);
+  static const Field<MediaShortData, TMDBRating> _f$tmdbRating = Field(
+    'tmdbRating',
+    _$tmdbRating,
+  );
   static int _$userRating(MediaShortData v) => v.userRating;
-  static const Field<MediaShortData, int> _f$userRating =
-      Field('userRating', _$userRating);
+  static const Field<MediaShortData, int> _f$userRating = Field(
+    'userRating',
+    _$userRating,
+  );
   static bool _$isInWatchlist(MediaShortData v) => v.isInWatchlist;
-  static const Field<MediaShortData, bool> _f$isInWatchlist =
-      Field('isInWatchlist', _$isInWatchlist);
+  static const Field<MediaShortData, bool> _f$isInWatchlist = Field(
+    'isInWatchlist',
+    _$isInWatchlist,
+  );
   static bool _$isWatched(MediaShortData v) => v.isWatched;
-  static const Field<MediaShortData, bool> _f$isWatched =
-      Field('isWatched', _$isWatched);
+  static const Field<MediaShortData, bool> _f$isWatched = Field(
+    'isWatched',
+    _$isWatched,
+  );
   static DateTime? _$watchlistAddedAt(MediaShortData v) => v.watchlistAddedAt;
-  static const Field<MediaShortData, DateTime> _f$watchlistAddedAt =
-      Field('watchlistAddedAt', _$watchlistAddedAt, opt: true);
+  static const Field<MediaShortData, DateTime> _f$watchlistAddedAt = Field(
+    'watchlistAddedAt',
+    _$watchlistAddedAt,
+    opt: true,
+  );
   static DateTime? _$lastWatchedAt(MediaShortData v) => v.lastWatchedAt;
-  static const Field<MediaShortData, DateTime> _f$lastWatchedAt =
-      Field('lastWatchedAt', _$lastWatchedAt, opt: true);
+  static const Field<MediaShortData, DateTime> _f$lastWatchedAt = Field(
+    'lastWatchedAt',
+    _$lastWatchedAt,
+    opt: true,
+  );
 
   @override
   final MappableFields<MediaShortData> fields = const {
@@ -78,26 +100,29 @@ class MediaShortDataMapper extends ClassMapperBase<MediaShortData> {
 
 mixin MediaShortDataMappable {
   MediaShortDataCopyWith<MediaShortData, MediaShortData, MediaShortData>
-      get copyWith;
+  get copyWith;
 }
 
 abstract class MediaShortDataCopyWith<$R, $In extends MediaShortData, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, Country, ObjectCopyWith<$R, Country, Country>>
-      get originCountry;
+  get originCountry;
   TMDBRatingCopyWith<$R, TMDBRating, TMDBRating> get tmdbRating;
-  $R call(
-      {int? id,
-      String? posterUrl,
-      List<Country>? originCountry,
-      DateTime? premiereDate,
-      String? title,
-      TMDBRating? tmdbRating,
-      int? userRating,
-      bool? isInWatchlist,
-      bool? isWatched,
-      DateTime? watchlistAddedAt,
-      DateTime? lastWatchedAt});
+  $R call({
+    int? id,
+    String? posterUrl,
+    List<Country>? originCountry,
+    DateTime? premiereDate,
+    String? title,
+    TMDBRating? tmdbRating,
+    int? userRating,
+    bool? isInWatchlist,
+    bool? isWatched,
+    DateTime? watchlistAddedAt,
+    DateTime? lastWatchedAt,
+  });
   MediaShortDataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+    Then<$Out2, $R2> t,
+  );
 }
+
