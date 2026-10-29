@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'widgets/filter_settings_screen_view.dart';
 
 class FilterSettingsScreen extends StatelessWidget {

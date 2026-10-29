@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'widgets/settings_screen_view.dart';
 
 class SettingsScreen extends StatelessWidget {

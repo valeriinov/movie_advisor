@@ -63,9 +63,9 @@ mixin ExitHandlerMixin on GoRouteData {
   }
 
   bool _isCurrentRoute(BuildContext context, GoRouterState state) {
-    final configuration = GoRouter.of(
-      context,
-    ).routerDelegate.currentConfiguration;
+    final configuration = GoRouter.of(context)
+        .routerDelegate
+        .currentConfiguration;
 
     if (configuration.isEmpty) return false;
 

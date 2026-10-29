@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'widgets/reg_screen_view.dart';
 
 class RegScreen extends StatelessWidget {

@@ -173,36 +173,35 @@ abstract base class DetailsViewModel<
 extension _MediaToShortMapper on MediaData {
   S toShortData<S extends MediaShortData>() {
     return switch (this) {
-          MovieData d => MovieShortData(
-            id: d.id,
-            posterUrl: d.posterUrl,
-            genres: d.genres,
-            originCountry: d.originCountry,
-            premiereDate: d.premiereDate,
-            title: d.title,
-            tmdbRating: d.tmdbRating,
-            userRating: d.userRating,
-            isInWatchlist: d.isInWatchlist,
-            isWatched: d.isWatched,
-            watchlistAddedAt: d.watchlistAddedAt,
-            lastWatchedAt: d.lastWatchedAt,
-          ),
-          SeriesData d => SeriesShortData(
-            id: d.id,
-            posterUrl: d.posterUrl,
-            genres: d.genres,
-            originCountry: d.originCountry,
-            premiereDate: d.premiereDate,
-            title: d.title,
-            tmdbRating: d.tmdbRating,
-            userRating: d.userRating,
-            isInWatchlist: d.isInWatchlist,
-            isWatched: d.isWatched,
-            watchlistAddedAt: d.watchlistAddedAt,
-            lastWatchedAt: d.lastWatchedAt,
-          ),
-          _ => throw Exception('Unknown media type'),
-        }
-        as S;
+      MovieData d => MovieShortData(
+        id: d.id,
+        posterUrl: d.posterUrl,
+        genres: d.genres,
+        originCountry: d.originCountry,
+        premiereDate: d.premiereDate,
+        title: d.title,
+        tmdbRating: d.tmdbRating,
+        userRating: d.userRating,
+        isInWatchlist: d.isInWatchlist,
+        isWatched: d.isWatched,
+        watchlistAddedAt: d.watchlistAddedAt,
+        lastWatchedAt: d.lastWatchedAt,
+      ),
+      SeriesData d => SeriesShortData(
+        id: d.id,
+        posterUrl: d.posterUrl,
+        genres: d.genres,
+        originCountry: d.originCountry,
+        premiereDate: d.premiereDate,
+        title: d.title,
+        tmdbRating: d.tmdbRating,
+        userRating: d.userRating,
+        isInWatchlist: d.isInWatchlist,
+        isWatched: d.isWatched,
+        watchlistAddedAt: d.watchlistAddedAt,
+        lastWatchedAt: d.lastWatchedAt,
+      ),
+      _ => throw Exception('Unknown media type'),
+    } as S;
   }
 }

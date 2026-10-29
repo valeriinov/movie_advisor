@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'widgets/watched_screen_view.dart';
 
 class WatchedScreen extends StatelessWidget {
