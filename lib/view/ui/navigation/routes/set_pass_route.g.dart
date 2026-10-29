@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [$setPassRoute];
 
 RouteBase get $setPassRoute => GoRouteData.$route(
   path: '/__/auth/action',
+  hasOverriddenOnExit: false,
   factory: $SetPassRoute._fromState,
 );
 

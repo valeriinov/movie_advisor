@@ -8,8 +8,11 @@ part of 'details_route.dart';
 
 List<RouteBase> get $appRoutes => [$detailsRoute];
 
-RouteBase get $detailsRoute =>
-    GoRouteData.$route(path: '/details', factory: $DetailsRoute._fromState);
+RouteBase get $detailsRoute => GoRouteData.$route(
+  path: '/details',
+  hasOverriddenOnExit: false,
+  factory: $DetailsRoute._fromState,
+);
 
 mixin $DetailsRoute on GoRouteData {
   static DetailsRoute _fromState(GoRouterState state) => DetailsRoute(

@@ -7536,10 +7536,7 @@ final class $$MoviesTableTableReferences
   _moviesEventsTableRefsTable(_$AppLocalDatabase db) =>
       MultiTypedResultKey.fromTable(
         db.moviesEventsTable,
-        aliasName: $_aliasNameGenerator(
-          db.moviesTable.tmdbId,
-          db.moviesEventsTable.tmdbId,
-        ),
+        aliasName: 'movies_table__tmdb_id__movies_events_table__tmdb_id',
       );
 
   $$MoviesEventsTableTableProcessedTableManager get moviesEventsTableRefs {
@@ -7963,7 +7960,7 @@ class $$MoviesTableTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable(table),
+                  e.readTable<$MoviesTableTable, MoviesTableData>(table),
                   $$MoviesTableTableReferences(db, table, e),
                 ),
               )
@@ -7978,10 +7975,11 @@ class $$MoviesTableTableTableManager
               getPrefetchedDataCallback: (items) async {
                 return [
                   if (moviesEventsTableRefs)
-                    await $_getPrefetchedData<
+                    await $_getPrefetchedDataByColumns<
                       MoviesTableData,
                       $MoviesTableTable,
-                      MoviesEventsTableData
+                      MoviesEventsTableData,
+                      $MoviesEventsTableTable
                     >(
                       currentTable: table,
                       referencedTable: $$MoviesTableTableReferences
@@ -7992,8 +7990,8 @@ class $$MoviesTableTableTableManager
                             table,
                             p0,
                           ).moviesEventsTableRefs,
-                      referencedItemsForCurrentItem: (item, referencedItems) =>
-                          referencedItems.where((e) => e.tmdbId == item.tmdbId),
+                      currentColumn: 'tmdb_id',
+                      referencedColumn: 'tmdb_id',
                       typedResults: items,
                     ),
                 ];
@@ -8071,10 +8069,7 @@ final class $$SeriesTableTableReferences
   _seriesEventsTableRefsTable(_$AppLocalDatabase db) =>
       MultiTypedResultKey.fromTable(
         db.seriesEventsTable,
-        aliasName: $_aliasNameGenerator(
-          db.seriesTable.tmdbId,
-          db.seriesEventsTable.tmdbId,
-        ),
+        aliasName: 'series_table__tmdb_id__series_events_table__tmdb_id',
       );
 
   $$SeriesEventsTableTableProcessedTableManager get seriesEventsTableRefs {
@@ -8532,7 +8527,7 @@ class $$SeriesTableTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable(table),
+                  e.readTable<$SeriesTableTable, SeriesTableData>(table),
                   $$SeriesTableTableReferences(db, table, e),
                 ),
               )
@@ -8547,10 +8542,11 @@ class $$SeriesTableTableTableManager
               getPrefetchedDataCallback: (items) async {
                 return [
                   if (seriesEventsTableRefs)
-                    await $_getPrefetchedData<
+                    await $_getPrefetchedDataByColumns<
                       SeriesTableData,
                       $SeriesTableTable,
-                      SeriesEventsTableData
+                      SeriesEventsTableData,
+                      $SeriesEventsTableTable
                     >(
                       currentTable: table,
                       referencedTable: $$SeriesTableTableReferences
@@ -8561,8 +8557,8 @@ class $$SeriesTableTableTableManager
                             table,
                             p0,
                           ).seriesEventsTableRefs,
-                      referencedItemsForCurrentItem: (item, referencedItems) =>
-                          referencedItems.where((e) => e.tmdbId == item.tmdbId),
+                      currentColumn: 'tmdb_id',
+                      referencedColumn: 'tmdb_id',
                       typedResults: items,
                     ),
                 ];
@@ -8767,7 +8763,16 @@ class $$SyncUserTableTableTableManager
                 seriesSyncedAt: seriesSyncedAt,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<$SyncUserTableTable, SyncUserTableData>(table),
+                  BaseReferences<
+                    _$AppLocalDatabase,
+                    $SyncUserTableTable,
+                    SyncUserTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -8899,12 +8904,10 @@ class $$SettingsTableTableTableManager
               $$SettingsTableTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$SettingsTableTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<bool?> isFirstLaunch = const Value.absent(),
-              }) =>
-                  SettingsTableCompanion(id: id, isFirstLaunch: isFirstLaunch),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<bool?> isFirstLaunch = const Value.absent(),
+          }) => SettingsTableCompanion(id: id, isFirstLaunch: isFirstLaunch),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
@@ -8914,7 +8917,16 @@ class $$SettingsTableTableTableManager
                 isFirstLaunch: isFirstLaunch,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<$SettingsTableTable, SettingsTableData>(table),
+                  BaseReferences<
+                    _$AppLocalDatabase,
+                    $SettingsTableTable,
+                    SettingsTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -9224,7 +9236,18 @@ class $$MoviesFilterTableTableTableManager
                 toDate: toDate,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<$MoviesFilterTableTable, MoviesFilterTableData>(
+                    table,
+                  ),
+                  BaseReferences<
+                    _$AppLocalDatabase,
+                    $MoviesFilterTableTable,
+                    MoviesFilterTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -9534,7 +9557,18 @@ class $$SeriesFilterTableTableTableManager
                 toDate: toDate,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<$SeriesFilterTableTable, SeriesFilterTableData>(
+                    table,
+                  ),
+                  BaseReferences<
+                    _$AppLocalDatabase,
+                    $SeriesFilterTableTable,
+                    SeriesFilterTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -9594,13 +9628,8 @@ final class $$MoviesEventsTableTableReferences
     super.$_typedResult,
   );
 
-  static $MoviesTableTable _tmdbIdTable(_$AppLocalDatabase db) =>
-      db.moviesTable.createAlias(
-        $_aliasNameGenerator(
-          db.moviesEventsTable.tmdbId,
-          db.moviesTable.tmdbId,
-        ),
-      );
+  static $MoviesTableTable _tmdbIdTable(_$AppLocalDatabase db) => db.moviesTable
+      .createAlias('movies_events_table__tmdb_id__movies_table__tmdb_id');
 
   $$MoviesTableTableProcessedTableManager get tmdbId {
     final $_column = $_itemColumn<int>('tmdb_id')!;
@@ -9850,7 +9879,9 @@ class $$MoviesEventsTableTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable(table),
+                  e.readTable<$MoviesEventsTableTable, MoviesEventsTableData>(
+                    table,
+                  ),
                   $$MoviesEventsTableTableReferences(db, table, e),
                 ),
               )
@@ -9876,19 +9907,15 @@ class $$MoviesEventsTableTableTableManager
                     >
                   >(state) {
                     if (tmdbId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.tmdbId,
-                                referencedTable:
-                                    $$MoviesEventsTableTableReferences
-                                        ._tmdbIdTable(db),
-                                referencedColumn:
-                                    $$MoviesEventsTableTableReferences
-                                        ._tmdbIdTable(db)
-                                        .tmdbId,
-                              )
-                              as T;
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.tmdbId,
+                        referencedTable: $$MoviesEventsTableTableReferences
+                            ._tmdbIdTable(db),
+                        referencedColumn: $$MoviesEventsTableTableReferences
+                            ._tmdbIdTable(db)
+                            .tmdbId,
+                      ) as T;
                     }
 
                     return state;
@@ -9948,13 +9975,8 @@ final class $$SeriesEventsTableTableReferences
     super.$_typedResult,
   );
 
-  static $SeriesTableTable _tmdbIdTable(_$AppLocalDatabase db) =>
-      db.seriesTable.createAlias(
-        $_aliasNameGenerator(
-          db.seriesEventsTable.tmdbId,
-          db.seriesTable.tmdbId,
-        ),
-      );
+  static $SeriesTableTable _tmdbIdTable(_$AppLocalDatabase db) => db.seriesTable
+      .createAlias('series_events_table__tmdb_id__series_table__tmdb_id');
 
   $$SeriesTableTableProcessedTableManager get tmdbId {
     final $_column = $_itemColumn<int>('tmdb_id')!;
@@ -10204,7 +10226,9 @@ class $$SeriesEventsTableTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable(table),
+                  e.readTable<$SeriesEventsTableTable, SeriesEventsTableData>(
+                    table,
+                  ),
                   $$SeriesEventsTableTableReferences(db, table, e),
                 ),
               )
@@ -10230,19 +10254,15 @@ class $$SeriesEventsTableTableTableManager
                     >
                   >(state) {
                     if (tmdbId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.tmdbId,
-                                referencedTable:
-                                    $$SeriesEventsTableTableReferences
-                                        ._tmdbIdTable(db),
-                                referencedColumn:
-                                    $$SeriesEventsTableTableReferences
-                                        ._tmdbIdTable(db)
-                                        .tmdbId,
-                              )
-                              as T;
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.tmdbId,
+                        referencedTable: $$SeriesEventsTableTableReferences
+                            ._tmdbIdTable(db),
+                        referencedColumn: $$SeriesEventsTableTableReferences
+                            ._tmdbIdTable(db)
+                            .tmdbId,
+                      ) as T;
                     }
 
                     return state;
@@ -10583,7 +10603,19 @@ class $$WatchedMoviesFilterTableTableTableManager
                 toWatchedDate: toWatchedDate,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<
+                    $WatchedMoviesFilterTableTable,
+                    WatchedMoviesFilterTableData
+                  >(table),
+                  BaseReferences<
+                    _$AppLocalDatabase,
+                    $WatchedMoviesFilterTableTable,
+                    WatchedMoviesFilterTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -10924,7 +10956,19 @@ class $$WatchedSeriesFilterTableTableTableManager
                 toWatchedDate: toWatchedDate,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<
+                    $WatchedSeriesFilterTableTable,
+                    WatchedSeriesFilterTableData
+                  >(table),
+                  BaseReferences<
+                    _$AppLocalDatabase,
+                    $WatchedSeriesFilterTableTable,
+                    WatchedSeriesFilterTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -11269,7 +11313,19 @@ class $$WatchlistMoviesFilterTableTableTableManager
                 toAddedDate: toAddedDate,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<
+                    $WatchlistMoviesFilterTableTable,
+                    WatchlistMoviesFilterTableData
+                  >(table),
+                  BaseReferences<
+                    _$AppLocalDatabase,
+                    $WatchlistMoviesFilterTableTable,
+                    WatchlistMoviesFilterTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -11614,7 +11670,19 @@ class $$WatchlistSeriesFilterTableTableTableManager
                 toAddedDate: toAddedDate,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<
+                    $WatchlistSeriesFilterTableTable,
+                    WatchlistSeriesFilterTableData
+                  >(table),
+                  BaseReferences<
+                    _$AppLocalDatabase,
+                    $WatchlistSeriesFilterTableTable,
+                    WatchlistSeriesFilterTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),

@@ -2,6 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 // ignore_for_file: type=lint
+// ignore_for_file: invalid_use_of_protected_member
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
@@ -129,8 +130,8 @@ abstract class PersonCreditsDataDtoCopyWith<
   T
 >
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, T, ObjectCopyWith<$R, T, T>>? get cast;
-  ListCopyWith<$R, T, ObjectCopyWith<$R, T, T>>? get crew;
+  ListCopyWith<$R, T, ObjectCopyWith<$R, T, T>?>? get cast;
+  ListCopyWith<$R, T, ObjectCopyWith<$R, T, T>?>? get crew;
   $R call({List<T>? cast, List<T>? crew});
   PersonCreditsDataDtoCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
@@ -147,7 +148,8 @@ class _PersonCreditsDataDtoCopyWithImpl<$R, $Out, T>
   late final ClassMapperBase<PersonCreditsDataDto> $mapper =
       PersonCreditsDataDtoMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, T, ObjectCopyWith<$R, T, T>>? get cast => $value.cast != null
+  ListCopyWith<$R, T, ObjectCopyWith<$R, T, T>?>? get cast =>
+      $value.cast != null
       ? ListCopyWith(
           $value.cast!,
           (v, t) => ObjectCopyWith(v, $identity, t),
@@ -155,7 +157,8 @@ class _PersonCreditsDataDtoCopyWithImpl<$R, $Out, T>
         )
       : null;
   @override
-  ListCopyWith<$R, T, ObjectCopyWith<$R, T, T>>? get crew => $value.crew != null
+  ListCopyWith<$R, T, ObjectCopyWith<$R, T, T>?>? get crew =>
+      $value.crew != null
       ? ListCopyWith(
           $value.crew!,
           (v, t) => ObjectCopyWith(v, $identity, t),

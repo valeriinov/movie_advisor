@@ -2,6 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 // ignore_for_file: type=lint
+// ignore_for_file: invalid_use_of_protected_member
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
@@ -186,69 +187,6 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     _$nextEpisodeToAir,
     opt: true,
   );
-  static bool _$hasAvailabilityData(SeriesData v) => v.hasAvailabilityData;
-  static const Field<SeriesData, bool> _f$hasAvailabilityData = Field(
-    'hasAvailabilityData',
-    _$hasAvailabilityData,
-    mode: FieldMode.member,
-  );
-  static int? _$latestSeasonNumber(SeriesData v) => v.latestSeasonNumber;
-  static const Field<SeriesData, int> _f$latestSeasonNumber = Field(
-    'latestSeasonNumber',
-    _$latestSeasonNumber,
-    mode: FieldMode.member,
-  );
-  static int? _$latestSeasonAiredEpisode(SeriesData v) =>
-      v.latestSeasonAiredEpisode;
-  static const Field<SeriesData, int> _f$latestSeasonAiredEpisode = Field(
-    'latestSeasonAiredEpisode',
-    _$latestSeasonAiredEpisode,
-    mode: FieldMode.member,
-  );
-  static int? _$latestSeasonTotalEpisodes(SeriesData v) =>
-      v.latestSeasonTotalEpisodes;
-  static const Field<SeriesData, int> _f$latestSeasonTotalEpisodes = Field(
-    'latestSeasonTotalEpisodes',
-    _$latestSeasonTotalEpisodes,
-    mode: FieldMode.member,
-  );
-  static bool _$isUpcoming(SeriesData v) => v.isUpcoming;
-  static const Field<SeriesData, bool> _f$isUpcoming = Field(
-    'isUpcoming',
-    _$isUpcoming,
-    mode: FieldMode.member,
-  );
-  static bool _$hasStartedAiring(SeriesData v) => v.hasStartedAiring;
-  static const Field<SeriesData, bool> _f$hasStartedAiring = Field(
-    'hasStartedAiring',
-    _$hasStartedAiring,
-    mode: FieldMode.member,
-  );
-  static DateTime? _$premiereAirDate(SeriesData v) => v.premiereAirDate;
-  static const Field<SeriesData, DateTime> _f$premiereAirDate = Field(
-    'premiereAirDate',
-    _$premiereAirDate,
-    mode: FieldMode.member,
-  );
-  static DateTime? _$nextEpisodeAirDate(SeriesData v) => v.nextEpisodeAirDate;
-  static const Field<SeriesData, DateTime> _f$nextEpisodeAirDate = Field(
-    'nextEpisodeAirDate',
-    _$nextEpisodeAirDate,
-    mode: FieldMode.member,
-  );
-  static bool _$hasNextEpisode(SeriesData v) => v.hasNextEpisode;
-  static const Field<SeriesData, bool> _f$hasNextEpisode = Field(
-    'hasNextEpisode',
-    _$hasNextEpisode,
-    mode: FieldMode.member,
-  );
-  static bool _$hasLatestSeasonProgress(SeriesData v) =>
-      v.hasLatestSeasonProgress;
-  static const Field<SeriesData, bool> _f$hasLatestSeasonProgress = Field(
-    'hasLatestSeasonProgress',
-    _$hasLatestSeasonProgress,
-    mode: FieldMode.member,
-  );
 
   @override
   final MappableFields<SeriesData> fields = const {
@@ -275,16 +213,6 @@ class SeriesDataMapper extends ClassMapperBase<SeriesData> {
     #seasons: _f$seasons,
     #lastEpisodeToAir: _f$lastEpisodeToAir,
     #nextEpisodeToAir: _f$nextEpisodeToAir,
-    #hasAvailabilityData: _f$hasAvailabilityData,
-    #latestSeasonNumber: _f$latestSeasonNumber,
-    #latestSeasonAiredEpisode: _f$latestSeasonAiredEpisode,
-    #latestSeasonTotalEpisodes: _f$latestSeasonTotalEpisodes,
-    #isUpcoming: _f$isUpcoming,
-    #hasStartedAiring: _f$hasStartedAiring,
-    #premiereAirDate: _f$premiereAirDate,
-    #nextEpisodeAirDate: _f$nextEpisodeAirDate,
-    #hasNextEpisode: _f$hasNextEpisode,
-    #hasLatestSeasonProgress: _f$hasLatestSeasonProgress,
   };
 
   static SeriesData _instantiate(DecodingData data) {

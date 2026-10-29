@@ -10,10 +10,19 @@ List<RouteBase> get $appRoutes => [$homeRoute, $filterSettingsRoute];
 
 RouteBase get $homeRoute => GoRouteData.$route(
   path: '/home',
+  hasOverriddenOnExit: false,
   factory: $HomeRoute._fromState,
   routes: [
-    GoRouteData.$route(path: 'search', factory: $SearchRoute._fromState),
-    GoRouteData.$route(path: 'filter', factory: $FilterRoute._fromState),
+    GoRouteData.$route(
+      path: 'search',
+      hasOverriddenOnExit: false,
+      factory: $SearchRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'filter',
+      hasOverriddenOnExit: false,
+      factory: $FilterRoute._fromState,
+    ),
   ],
 );
 
@@ -79,6 +88,7 @@ mixin $FilterRoute on GoRouteData {
 
 RouteBase get $filterSettingsRoute => GoRouteData.$route(
   path: '/filter-settings',
+  hasOverriddenOnExit: false,
   factory: $FilterSettingsRoute._fromState,
 );
 

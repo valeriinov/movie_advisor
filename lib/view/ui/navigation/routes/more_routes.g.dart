@@ -10,25 +10,41 @@ List<RouteBase> get $appRoutes => [$moreRoute];
 
 RouteBase get $moreRoute => GoRouteData.$route(
   path: '/more',
+  hasOverriddenOnExit: false,
   factory: $MoreRoute._fromState,
   routes: [
-    GoRouteData.$route(path: 'about-us', factory: $AboutUsRoute._fromState),
+    GoRouteData.$route(
+      path: 'about-us',
+      hasOverriddenOnExit: false,
+      factory: $AboutUsRoute._fromState,
+    ),
     GoRouteData.$route(
       path: 'auth',
+      hasOverriddenOnExit: true,
       factory: $AuthRoute._fromState,
       routes: [
-        GoRouteData.$route(path: 'reg', factory: $RegRoute._fromState),
+        GoRouteData.$route(
+          path: 'reg',
+          hasOverriddenOnExit: true,
+          factory: $RegRoute._fromState,
+        ),
         GoRouteData.$route(
           path: 'reset-pass',
+          hasOverriddenOnExit: true,
           factory: $ResetPassRoute._fromState,
         ),
       ],
     ),
     GoRouteData.$route(
       path: 'delete-account',
+      hasOverriddenOnExit: true,
       factory: $DeleteAccountRoute._fromState,
     ),
-    GoRouteData.$route(path: 'settings', factory: $SettingsRoute._fromState),
+    GoRouteData.$route(
+      path: 'settings',
+      hasOverriddenOnExit: false,
+      factory: $SettingsRoute._fromState,
+    ),
   ],
 );
 

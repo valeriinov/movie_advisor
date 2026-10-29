@@ -2,6 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 // ignore_for_file: type=lint
+// ignore_for_file: invalid_use_of_protected_member
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
@@ -110,6 +111,7 @@ abstract class DetailsStateCopyWith<
   T extends MediaData
 >
     implements ClassCopyWith<$R, $In, $Out> {
+  MediaDataCopyWith<$R, MediaData, T> get data;
   $R call({T? data, DetailsTab? currentTab, DetailsStatus? status});
   DetailsStateCopyWith<$R2, $In, $Out2, T> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
@@ -124,6 +126,9 @@ class _DetailsStateCopyWithImpl<$R, $Out, T extends MediaData>
   @override
   late final ClassMapperBase<DetailsState> $mapper =
       DetailsStateMapper.ensureInitialized();
+  @override
+  MediaDataCopyWith<$R, MediaData, T> get data =>
+      $value.data.copyWith.$chain((v) => call(data: v));
   @override
   $R call({T? data, DetailsTab? currentTab, DetailsStatus? status}) => $apply(
     FieldCopyWithData({

@@ -8,8 +8,11 @@ part of 'watched_routes.dart';
 
 List<RouteBase> get $appRoutes => [$watchedRoute, $watchedFilterRoute];
 
-RouteBase get $watchedRoute =>
-    GoRouteData.$route(path: '/watched', factory: $WatchedRoute._fromState);
+RouteBase get $watchedRoute => GoRouteData.$route(
+  path: '/watched',
+  hasOverriddenOnExit: false,
+  factory: $WatchedRoute._fromState,
+);
 
 mixin $WatchedRoute on GoRouteData {
   static WatchedRoute _fromState(GoRouterState state) => const WatchedRoute();
@@ -33,6 +36,7 @@ mixin $WatchedRoute on GoRouteData {
 
 RouteBase get $watchedFilterRoute => GoRouteData.$route(
   path: '/watched-filter',
+  hasOverriddenOnExit: false,
   factory: $WatchedFilterRoute._fromState,
 );
 

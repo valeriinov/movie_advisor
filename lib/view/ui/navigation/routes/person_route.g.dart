@@ -8,8 +8,11 @@ part of 'person_route.dart';
 
 List<RouteBase> get $appRoutes => [$personRoute];
 
-RouteBase get $personRoute =>
-    GoRouteData.$route(path: '/person', factory: $PersonRoute._fromState);
+RouteBase get $personRoute => GoRouteData.$route(
+  path: '/person',
+  hasOverriddenOnExit: false,
+  factory: $PersonRoute._fromState,
+);
 
 mixin $PersonRoute on GoRouteData {
   static PersonRoute _fromState(GoRouterState state) => PersonRoute(
