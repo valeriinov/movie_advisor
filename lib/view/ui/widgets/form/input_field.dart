@@ -45,7 +45,7 @@ class InputField extends StatelessWidget {
     bool autoFocus = false,
     Function(String)? onSearch,
     VoidCallback? onClear,
-    final TextEditingController? controller,
+    TextEditingController? controller,
   }) : this._(
          key: key,
          child: TextFieldBuilderExtended(
