@@ -61,3 +61,6 @@ firebase.json
 
 # Plans
 plan/
+
+# Worktrees
+.worktrees/
