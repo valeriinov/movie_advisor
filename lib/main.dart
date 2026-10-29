@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'common/app_locales.dart';
 import 'data/network/env_provider/impl_env_provider.dart';
@@ -52,7 +53,10 @@ class MyApp extends ConsumerWidget {
       locale: context.locale,
       routerConfig: routerProvider.routerConfig,
       theme: themeProvider.theme,
-      builder: FToastBuilder(),
+      builder: (context, child) => SkeletonizerConfig(
+        data: SkeletonizerConfigData(brightness: Theme.of(context).brightness),
+        child: FToastBuilder()(context, child),
+      ),
     );
   }
 
